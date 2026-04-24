@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
+import { usePersist } from "../hooks/usePersist.js";
 
 // ── Spell Slots ─────────────────────────────────────────────────────────────
 const FULL_CASTER = [0,[2],[3],[4,2],[4,3],[4,3,2],[4,3,3],[4,3,3,1],[4,3,3,2],[4,3,3,3,1],[4,3,3,3,2],[4,3,3,3,2,1],[4,3,3,3,2,1],[4,3,3,3,2,1,1],[4,3,3,3,2,1,1],[4,3,3,3,2,1,1,1],[4,3,3,3,2,1,1,1],[4,3,3,3,2,1,1,1,1],[4,3,3,3,3,1,1,1,1],[4,3,3,3,3,2,1,1,1],[4,3,3,3,3,2,2,1,1]];
@@ -15,6 +16,29 @@ const CASTER_TYPE = {
   Hexenmeister:"pact",
   Magieschmied:"third",
 };
+
+// ── Slot-Labels & Hilfsfunktion ───────────────────────────────────────────────
+const SLOT_LABELS = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th"];
+
+function buildSlotsForLevel(klass, level) {
+  const cType = CASTER_TYPE[klass];
+  if (!cType) return null; // Kein Zauberer → nichts ändern
+
+  if (cType === "pact") {
+    const pm = PACT_MAGIC[level];
+    if (!pm) return [];
+    const [count, grade] = pm;
+    return [{ lv: grade, lbl: `${SLOT_LABELS[grade - 1]} (Pakt)`, tot: count, used: 0 }];
+  }
+
+  const table = cType === "full" ? FULL_CASTER : cType === "half" ? HALF_CASTER : THIRD_CASTER;
+  const slotRow = table[level];
+  if (!slotRow) return [];
+
+  return slotRow
+    .map((count, i) => count ? { lv: i + 1, lbl: SLOT_LABELS[i], tot: count, used: 0 } : null)
+    .filter(Boolean);
+}
 
 // ── ASI-Levels pro Klasse ───────────────────────────────────────────────────
 const ASI_DEFAULT = [4, 8, 12, 16, 19];
@@ -221,6 +245,8 @@ export default function LevelUpAssistant({ char, setChar }) {
   const hdNum = hdMatch ? parseInt(hdMatch[1]) : 8;
   const conMod = modOf(char.con || 10);
 
+  const [, setSlots] = usePersist("tokens_slots_v4", []);
+
   const [hpChoice, setHpChoice] = useState("avg");
   const [rolledHp, setRolledHp] = useState(null);
   const [doneInfo, setDoneInfo] = useState(null);
@@ -239,11 +265,15 @@ export default function LevelUpAssistant({ char, setChar }) {
   const doLevelUp = () => {
     setDoneInfo({ reachedLevel: newLevel, hpGained: chosenHp, newPb: pb, oldPb: pbOld });
     setChar(p => ({ ...p, level: newLevel, maxHp: p.maxHp + chosenHp, hp: p.hp + chosenHp, hd_used: Math.max(0, (p.hd_used || 0) - 1) }));
+    const newSlots = buildSlotsForLevel(char.klass, newLevel);
+    if (newSlots !== null) setSlots(newSlots);
   };
 
   const doReset = () => {
     const l1Hp = hdNum + conMod;
     setChar(p => ({ ...p, level: 1, maxHp: l1Hp, hp: l1Hp, hd_used: 0 }));
+    const resetSlots = buildSlotsForLevel(char.klass, 1);
+    if (resetSlots !== null) setSlots(resetSlots);
     setConfirmReset(false);
     setDoneInfo(null);
   };
@@ -282,6 +312,7 @@ export default function LevelUpAssistant({ char, setChar }) {
             <div style={slotBox(C.purple)}><div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>Slots</div><div style={{ fontSize: 20, fontWeight: 700, color: C.purpleBright }}>{slots}</div></div>
           </div>
           <div style={{ fontSize: 12, color: C.textDim, marginTop: 8 }}>Pakt-Slots füllen sich nach einem kurzen oder langen Rest auf.</div>
+          <div style={{ fontSize: 12, color: C.greenBright, marginTop: 4 }}>✅ Pakt-Slots werden beim Level-Up automatisch aktualisiert.</div>
         </div>
       );
     }
@@ -309,7 +340,7 @@ export default function LevelUpAssistant({ char, setChar }) {
             </div>
           ) : null)}
         </div>
-        <div style={{ fontSize: 12, color: C.textDim, marginTop: 8 }}>Aktualisiere Zauberplätze manuell im Tokens-Tab.</div>
+        <div style={{ fontSize: 12, color: C.greenBright, marginTop: 8 }}>✅ Zauberplätze werden beim Level-Up automatisch auf diese Werte gesetzt.</div>
       </div>
     );
   };
