@@ -213,10 +213,10 @@ function AppInner() {
 
   // ── Desktop ────────────────────────────────────────────────────────────────
   if (!isMobile) return (
-    <div style={{ display:"flex", height:"100vh", overflow:"hidden", background:C.bg, fontFamily:F, color:C.text }}>
+    <div style={{ display:"flex", height:"100%", overflow:"hidden", background:C.bg, fontFamily:F, color:C.text }}>
 
       {/* Sidebar */}
-      <aside style={{ width:58, flexShrink:0, background:"linear-gradient(180deg,#1a1526 0%,#100d18 100%)", borderRight:"1px solid rgba(201,168,76,0.13)", display:"flex", flexDirection:"column", height:"100vh", boxShadow:"2px 0 24px rgba(0,0,0,0.5)" }}>
+      <aside style={{ width:58, flexShrink:0, background:"linear-gradient(180deg,#1a1526 0%,#100d18 100%)", borderRight:"1px solid rgba(201,168,76,0.13)", display:"flex", flexDirection:"column", height:"100%", boxShadow:"2px 0 24px rgba(0,0,0,0.5)" }}>
 
         {/* Logo */}
         <div style={{ height:44, display:"flex", alignItems:"center", justifyContent:"center", borderBottom:"1px solid rgba(201,168,76,0.10)", flexShrink:0 }}>
@@ -273,7 +273,7 @@ function AppInner() {
 
   // ── Mobile ─────────────────────────────────────────────────────────────────
   return (
-    <div style={{ display:"flex", flexDirection:"column", height:"100vh", background:C.bg, fontFamily:F, color:C.text }}>
+    <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text }}>
       <OfflineBanner />
       <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} />
       <main style={{ flex:1, overflowY:"auto", padding:"12px 10px", boxSizing:"border-box" }}>
