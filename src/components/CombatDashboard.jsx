@@ -202,7 +202,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
               <button onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer" }}>Max</button>
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
                 <div style={{ fontSize: 38, fontWeight: 700, color: hpTxt, lineHeight: 1, transition: "color .3s" }}>{char.hp}</div>
                 {(char.tempHp || 0) > 0 && (

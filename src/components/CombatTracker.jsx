@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { MONSTERS } from "../data/monsters.js";
+import { useIsMobile } from "../hooks/useIsMobile.js";
 
 export default function CombatTracker() {
   const [fighters, setFighters, rdy] = usePersist("combat_v4", []);
@@ -18,6 +19,7 @@ export default function CombatTracker() {
   const [monCount, setMonCount] = useState({});
   const [manualLog, setManualLog] = useState("");
 
+  const isMobile = useIsMobile();
   const allMonsters = [...MONSTERS, ...(customMonsters || [])];
   const sorted = [...fighters].sort((a, b) => b.initiative - a.initiative);
 
@@ -90,12 +92,12 @@ export default function CombatTracker() {
 
   return (
     <div>
-      <div style={{ ...sx.jb, marginBottom: 12 }}>
+      <div style={{ ...sx.jb, marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
         <div style={{ fontFamily: FH, color: C.gold, fontSize: 16 }}>⚔️ Runde {round}</div>
         <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={nextTurn} style={sx.btn(C.green)}>▶ Nächster Zug</button>
+          <button onClick={nextTurn} style={sx.btn(C.green)}>▶ {isMobile ? "Weiter" : "Nächster Zug"}</button>
           <button onClick={() => { setRound(1); setActive(0); }} style={sx.btn(C.textDim)}>↺ Reset</button>
-          <button onClick={() => { setFighters([]); setRound(1); setActive(0); }} style={sx.btn(C.red)}>🗑 Leeren</button>
+          <button onClick={() => { setFighters([]); setRound(1); setActive(0); }} style={sx.btn(C.red)}>🗑{isMobile ? "" : " Leeren"}</button>
         </div>
       </div>
 
@@ -108,13 +110,23 @@ export default function CombatTracker() {
       {tab === "combat" && <div>
         <div style={sx.card}>
           <div style={sx.ct}>+ Kämpfer manuell hinzufügen</div>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <input placeholder="Name" value={nN} onChange={e => setNN(e.target.value)} style={{ ...sx.inp, width: 140 }} onKeyDown={e => e.key === "Enter" && addFighter()} />
-            <input placeholder="Init" type="number" value={nI} onChange={e => setNI(e.target.value)} style={{ ...sx.inp, width: 75 }} />
-            <input placeholder="Max HP" type="number" value={nH} onChange={e => setNH(e.target.value)} style={{ ...sx.inp, width: 80 }} />
-            <input placeholder="AC" type="number" value={nA} onChange={e => setNA(e.target.value)} style={{ ...sx.inp, width: 70 }} />
-            <button onClick={addFighter} style={sx.btn(C.green)}>+ Hinzufügen</button>
-          </div>
+          {isMobile ? (
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+              <input placeholder="Name" value={nN} onChange={e => setNN(e.target.value)} style={{ ...sx.inp, gridColumn: "1 / -1" }} onKeyDown={e => e.key === "Enter" && addFighter()} />
+              <input placeholder="Initiative" type="number" value={nI} onChange={e => setNI(e.target.value)} style={sx.inp} />
+              <input placeholder="Max HP" type="number" value={nH} onChange={e => setNH(e.target.value)} style={sx.inp} />
+              <input placeholder="AC" type="number" value={nA} onChange={e => setNA(e.target.value)} style={sx.inp} />
+              <button onClick={addFighter} style={{ ...sx.btn(C.green), gridColumn: "1 / -1" }}>+ Hinzufügen</button>
+            </div>
+          ) : (
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <input placeholder="Name" value={nN} onChange={e => setNN(e.target.value)} style={{ ...sx.inp, width: 140 }} onKeyDown={e => e.key === "Enter" && addFighter()} />
+              <input placeholder="Init" type="number" value={nI} onChange={e => setNI(e.target.value)} style={{ ...sx.inp, width: 75 }} />
+              <input placeholder="Max HP" type="number" value={nH} onChange={e => setNH(e.target.value)} style={{ ...sx.inp, width: 80 }} />
+              <input placeholder="AC" type="number" value={nA} onChange={e => setNA(e.target.value)} style={{ ...sx.inp, width: 70 }} />
+              <button onClick={addFighter} style={sx.btn(C.green)}>+ Hinzufügen</button>
+            </div>
+          )}
         </div>
         {sorted.length === 0 && <div style={{ ...sx.card, color: C.textDim, textAlign: "center", fontStyle: "italic", padding: 32 }}>
           <div style={{ fontSize: 32, marginBottom: 8 }}>⚔️</div>
@@ -123,29 +135,63 @@ export default function CombatTracker() {
         {sorted.map((c, i) => (
           <div key={c.id} style={{ ...sx.card, position: "relative", border: `1px solid ${i === active ? C.gold : c.hp === 0 ? C.red + "44" : C.border}`, opacity: c.hp === 0 ? .6 : 1, boxShadow: i === active ? `0 0 16px ${C.goldDim}` : "none" }}>
             {i === active && <div style={{ position: "absolute", top: -1, left: -1, background: C.gold, borderRadius: "7px 0 4px 0", padding: "2px 8px", fontSize: 10, fontFamily: FH, color: C.bg, fontWeight: 700 }}>AM ZUG</div>}
-            <div style={{ ...sx.jb, marginTop: i === active ? 12 : 0 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ background: C.surface, borderRadius: 4, padding: "4px", textAlign: "center", minWidth: 52 }}>
-                  <div style={{ fontSize: 10, color: C.textDim }}>INIT</div>
-                  <input type="number" value={c.initiative} onChange={e => setFighters(p => p.map(x => x.id === c.id ? { ...x, initiative: +e.target.value } : x))} style={{ ...sx.inp, textAlign: "center", fontSize: 18, fontWeight: 700, color: C.gold, padding: "2px", background: "transparent", border: "none", width: 48 }} />
+            {isMobile ? (
+              <div style={{ marginTop: i === active ? 12 : 0 }}>
+                {/* Mobile Row 1: Init + Name + Remove */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                  <div style={{ background: C.surface, borderRadius: 4, padding: "4px", textAlign: "center", minWidth: 52, flexShrink: 0 }}>
+                    <div style={{ fontSize: 10, color: C.textDim }}>INIT</div>
+                    <input type="number" value={c.initiative} onChange={e => setFighters(p => p.map(x => x.id === c.id ? { ...x, initiative: +e.target.value } : x))} style={{ ...sx.inp, textAlign: "center", fontSize: 18, fontWeight: 700, color: C.gold, padding: "2px", background: "transparent", border: "none", width: 48 }} />
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontFamily: FH, fontSize: 15, color: C.textBright, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.name}</div>
+                    <div style={{ fontSize: 12, color: C.textDim }}>AC {c.ac}{c.isPlayer && <span style={{ color: C.gold, marginLeft: 6 }}>👤 Spieler</span>}</div>
+                  </div>
+                  <button onClick={() => setFighters(p => p.filter(x => x.id !== c.id))} style={{ ...sx.bsm("#444"), flexShrink: 0 }}>✕</button>
                 </div>
-                <div>
-                  <div style={{ fontFamily: FH, fontSize: 15, color: C.textBright, fontWeight: 700 }}>{c.name}</div>
-                  <div style={{ fontSize: 12, color: C.textDim }}>AC {c.ac}{c.isPlayer && <span style={{ color: C.gold, marginLeft: 6 }}>👤 Spieler</span>}</div>
+                {/* Mobile Row 2: HP bar */}
+                <div style={{ marginBottom: 8 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                    <span style={{ fontSize: 13, color: hCol(c.hp, c.maxHp), fontWeight: 700 }}>{c.hp}/{c.maxHp} HP</span>
+                    {c.hp === 0 && <span style={{ color: C.red, fontSize: 11 }}>💀 Bewusstlos</span>}
+                  </div>
+                  <div style={{ background: C.surface, borderRadius: 10, height: 8, overflow: "hidden" }}>
+                    <div style={{ width: `${(c.hp / c.maxHp) * 100}%`, height: "100%", background: hCol(c.hp, c.maxHp), borderRadius: 10, transition: "width .3s" }} />
+                  </div>
+                </div>
+                {/* Mobile Row 3: Damage/Heal buttons */}
+                <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                  <input type="number" placeholder="HP" value={dmg[c.id] || ""} onChange={e => setDmg(p => ({ ...p, [c.id]: e.target.value }))} style={{ ...sx.inp, flex: 1 }} />
+                  <button onClick={() => applyHP(c.id, dmg[c.id], false)} style={{ ...sx.bsm(C.red), padding: "9px 16px", fontSize: 16 }} title="Schaden">🗡️</button>
+                  <button onClick={() => applyHP(c.id, dmg[c.id], true)} style={{ ...sx.bsm(C.green), padding: "9px 16px", fontSize: 16 }} title="Heilen">💚</button>
+                  <button onClick={() => setFighters(p => p.map(x => x.id === c.id ? { ...x, hp: x.maxHp } : x))} style={{ ...sx.bsm(C.blue), padding: "9px 16px", fontSize: 16 }} title="Vollheilen">♻</button>
                 </div>
               </div>
-              <div style={{ flex: 1, maxWidth: 200, margin: "0 16px" }}>
-                <div style={{ ...sx.jb, marginBottom: 3 }}><span style={{ fontSize: 13, color: hCol(c.hp, c.maxHp), fontWeight: 700 }}>{c.hp}/{c.maxHp} HP</span>{c.hp === 0 && <span style={{ color: C.red, fontSize: 11 }}>💀</span>}</div>
-                <div style={{ background: C.surface, borderRadius: 10, height: 8, overflow: "hidden" }}><div style={{ width: `${(c.hp / c.maxHp) * 100}%`, height: "100%", background: hCol(c.hp, c.maxHp), borderRadius: 10, transition: "width .3s" }} /></div>
+            ) : (
+              <div style={{ ...sx.jb, marginTop: i === active ? 12 : 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{ background: C.surface, borderRadius: 4, padding: "4px", textAlign: "center", minWidth: 52 }}>
+                    <div style={{ fontSize: 10, color: C.textDim }}>INIT</div>
+                    <input type="number" value={c.initiative} onChange={e => setFighters(p => p.map(x => x.id === c.id ? { ...x, initiative: +e.target.value } : x))} style={{ ...sx.inp, textAlign: "center", fontSize: 18, fontWeight: 700, color: C.gold, padding: "2px", background: "transparent", border: "none", width: 48 }} />
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: FH, fontSize: 15, color: C.textBright, fontWeight: 700 }}>{c.name}</div>
+                    <div style={{ fontSize: 12, color: C.textDim }}>AC {c.ac}{c.isPlayer && <span style={{ color: C.gold, marginLeft: 6 }}>👤 Spieler</span>}</div>
+                  </div>
+                </div>
+                <div style={{ flex: 1, maxWidth: 200, margin: "0 16px" }}>
+                  <div style={{ ...sx.jb, marginBottom: 3 }}><span style={{ fontSize: 13, color: hCol(c.hp, c.maxHp), fontWeight: 700 }}>{c.hp}/{c.maxHp} HP</span>{c.hp === 0 && <span style={{ color: C.red, fontSize: 11 }}>💀</span>}</div>
+                  <div style={{ background: C.surface, borderRadius: 10, height: 8, overflow: "hidden" }}><div style={{ width: `${(c.hp / c.maxHp) * 100}%`, height: "100%", background: hCol(c.hp, c.maxHp), borderRadius: 10, transition: "width .3s" }} /></div>
+                </div>
+                <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+                  <input type="number" placeholder="HP" value={dmg[c.id] || ""} onChange={e => setDmg(p => ({ ...p, [c.id]: e.target.value }))} style={{ ...sx.inp, width: 70 }} />
+                  <button onClick={() => applyHP(c.id, dmg[c.id], false)} style={sx.bsm(C.red)} title="Schaden">🗡️</button>
+                  <button onClick={() => applyHP(c.id, dmg[c.id], true)} style={sx.bsm(C.green)} title="Heilen">💚</button>
+                  <button onClick={() => setFighters(p => p.map(x => x.id === c.id ? { ...x, hp: x.maxHp } : x))} style={sx.bsm(C.blue)} title="Vollheilen">♻</button>
+                  <button onClick={() => setFighters(p => p.filter(x => x.id !== c.id))} style={sx.bsm("#444")}>✕</button>
+                </div>
               </div>
-              <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-                <input type="number" placeholder="HP" value={dmg[c.id] || ""} onChange={e => setDmg(p => ({ ...p, [c.id]: e.target.value }))} style={{ ...sx.inp, width: 70 }} />
-                <button onClick={() => applyHP(c.id, dmg[c.id], false)} style={sx.bsm(C.red)} title="Schaden">🗡️</button>
-                <button onClick={() => applyHP(c.id, dmg[c.id], true)} style={sx.bsm(C.green)} title="Heilen">💚</button>
-                <button onClick={() => setFighters(p => p.map(x => x.id === c.id ? { ...x, hp: x.maxHp } : x))} style={sx.bsm(C.blue)} title="Vollheilen">♻</button>
-                <button onClick={() => setFighters(p => p.filter(x => x.id !== c.id))} style={sx.bsm("#444")}>✕</button>
-              </div>
-            </div>
+            )}
             <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
               {["Poisoned", "Prone", "Stunned", "Blinded", "Paralyzed", "Restrained", "Frightened", "Invisible", "Grappled", "Concentration", "Exhaustion"].map(cn => (
                 <button key={cn} onClick={() => togCond(c.id, cn)} style={{ background: c.conditions.includes(cn) ? C.red + "88" : C.surface, border: `1px solid ${c.conditions.includes(cn) ? C.red : C.border}`, borderRadius: 3, color: c.conditions.includes(cn) ? C.textBright : C.textDim, fontSize: 10, padding: "2px 6px", cursor: "pointer", fontFamily: FH }}>{cn}</button>
@@ -164,7 +210,7 @@ export default function CombatTracker() {
             {filteredMonsters.map(m => {
               const cnt = monCount[m.id] || 1;
               return (
-                <div key={m.id} style={{ ...sx.jb, background: C.surface, borderRadius: 6, padding: "8px 12px", marginBottom: 6, border: `1px solid ${C.border}` }}>
+                <div key={m.id} style={{ ...sx.jb, flexWrap: "wrap", gap: 8, background: C.surface, borderRadius: 6, padding: "8px 12px", marginBottom: 6, border: `1px solid ${C.border}` }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <span style={{ fontFamily: FH, fontSize: 14, color: C.textBright, fontWeight: 700 }}>{m.name}</span>
