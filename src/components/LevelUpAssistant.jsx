@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
-import { modOf, modStr, getPB, buildSlotsForLevel, CASTER_TYPE } from "../utils/helpers.js";
+import { modOf, modStr, getPB, buildSlotsForLevel, CASTER_TYPE, FULL_CASTER, HALF_CASTER, THIRD_CASTER, PACT_MAGIC } from "../utils/helpers.js";
 
 // ── ASI-Levels pro Klasse ───────────────────────────────────────────────────
 const ASI_DEFAULT = [4, 8, 12, 16, 19];
