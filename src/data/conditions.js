@@ -1,0 +1,18 @@
+export const CONDITIONS = [
+  {id:"blinded",name:"Blinded",icon:"👁️",desc:"Angriffe auf Dich haben Vorteil. Deine Angriffe haben Nachteil."},
+  {id:"charmed",name:"Charmed",icon:"💜",desc:"Kannst Quelle nicht angreifen. Quelle Vorteil auf soziale Checks."},
+  {id:"deafened",name:"Deafened",icon:"🔇",desc:"Nichts hören. Fehlschlag Hör-Checks."},
+  {id:"exhaustion",name:"Exhaustion",icon:"😴",desc:"Stufe1: Nachteil Checks. 2: Speed÷2. 3: Nachteil Angriffe+Saves. 4: MaxHP÷2. 5: Speed=0. 6: Tod."},
+  {id:"frightened",name:"Frightened",icon:"😱",desc:"Nachteil Checks/Angriffe wenn Quelle sichtbar. Nicht freiwillig näher."},
+  {id:"grappled",name:"Grappled",icon:"🤝",desc:"Speed = 0."},
+  {id:"incapacitated",name:"Incapacitated",icon:"💫",desc:"Keine Aktionen oder Reaktionen."},
+  {id:"invisible",name:"Invisible",icon:"👻",desc:"Angriffe auf dich: Nachteil. Deine Angriffe: Vorteil."},
+  {id:"paralyzed",name:"Paralyzed",icon:"⚡",desc:"Incapacitated. Kein Bewegen/Sprechen. Krit innerhalb 5ft."},
+  {id:"petrified",name:"Petrified",icon:"🗿",desc:"Stein. Incapacitated. Immun Gift/Krankheit. Resist alles."},
+  {id:"poisoned",name:"Poisoned",icon:"☠️",desc:"Nachteil auf Angriffe und Ability Checks."},
+  {id:"prone",name:"Prone",icon:"⬇️",desc:"Nah-Angriffe Vorteil, Fern-Nachteil. Deine Angriffe Nachteil."},
+  {id:"restrained",name:"Restrained",icon:"🕸️",desc:"Speed=0. Angriffe Vorteil. Deine Angriffe+DEX-Saves Nachteil."},
+  {id:"stunned",name:"Stunned",icon:"⭐",desc:"Incapacitated. Kein Bewegen. Angriffe Vorteil."},
+  {id:"unconscious",name:"Unconscious",icon:"💤",desc:"Incapacitated. Krit innerhalb 5ft."},
+  {id:"concentration",name:"Concentration",icon:"🔮",desc:"Hält Zauber. Schaden = CON Save DC 10 oder Hälfte Schaden."},
+];
