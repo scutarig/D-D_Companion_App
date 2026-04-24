@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
-import { getPB } from "./utils/helpers.js";
+import { getPB, buildSlotsForLevel } from "./utils/helpers.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
 
@@ -143,19 +143,26 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
 // ── App ────────────────────────────────────────────────────────────────────────
 function AppInner() {
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
-  const { active }            = useChar();
+  const { active, aid }       = useChar();
   const [refOpen, setRefOpen] = useState(false);
   const [refPos,  setRefPos]  = useState({ top: 0 });
   const refBtnRef             = useRef(null);
   const isMobile              = useIsMobile(768);
 
-  // Lifted state — shared with CombatDashboard
-  const [slots, setSlots] = usePersist("tokens_slots_v4", [
-    { lv:1, lbl:"1st", tot:4, used:0 }, { lv:2, lbl:"2nd", tot:3, used:0 },
-    { lv:3, lbl:"3rd", tot:3, used:0 }, { lv:4, lbl:"4th", tot:3, used:0 },
-    { lv:5, lbl:"5th", tot:2, used:0 },
-  ]);
-  const [custom, setCustom]           = usePersist("tokens_custom_v4", []);
+  // Lifted state — shared with CombatDashboard (per Charakter)
+  const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
+  const [custom, setCustom]       = usePersist(`tokens_custom_${aid}`, []);
+
+  // Slots live aus Klasse+Level ableiten (wie in Tokens.jsx)
+  const slotDef = buildSlotsForLevel(active?.klass, active?.level) ?? [];
+  const slots   = slotDef.map(s => ({ ...s, used: usedSlots[s.lv] || 0 }));
+  const setSlots = (updater) => setUsedSlots(prev => {
+    const cur  = slotDef.map(s => ({ ...s, used: prev[s.lv] || 0 }));
+    const next = typeof updater === "function" ? updater(cur) : updater;
+    const out  = {};
+    next.forEach(s => { out[s.lv] = s.used; });
+    return out;
+  });
   const [restBanner, setRestBanner]   = useState(null);
   const [restHpInput, setRestHpInput] = useState("");
 
