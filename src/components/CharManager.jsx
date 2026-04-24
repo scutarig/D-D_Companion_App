@@ -14,7 +14,7 @@ import CurrencyTab from "./CurrencyTab.jsx";
 export default function CharManager() {
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
   const [subtab, setSubtab] = useState("sheet");
-  const [slots, setSlots] = usePersist("tokens_slots_v4", [{ lv: 1, lbl: "1st", tot: 4, used: 0 }, { lv: 2, lbl: "2nd", tot: 3, used: 0 }, { lv: 3, lbl: "3rd", tot: 3, used: 0 }, { lv: 4, lbl: "4th", tot: 3, used: 0 }, { lv: 5, lbl: "5th", tot: 2, used: 0 }]);
+  const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [restMode, setRestMode] = useState(null);
   const [shortHpVal, setShortHpVal] = useState(5);
   const [shortResult, setShortResult] = useState(null);
@@ -24,7 +24,7 @@ export default function CharManager() {
 
   const doLongRest = () => {
     setActive(p => { const regainHD = Math.max(1, Math.floor(p.level / 2)); return { ...p, hp: p.maxHp, tempHp: 0, deathSaves: { suc: 0, fail: 0 }, hd_used: Math.max(0, (p.hd_used || 0) - regainHD) }; });
-    setSlots(p => p.map(s => ({ ...s, used: 0 })));
+    setUsedSlots({});
     setRestMode("long_done");
   };
   const doShortRest = () => {
@@ -135,7 +135,7 @@ export default function CharManager() {
       {subtab === "levelup" && <LevelUpAssistant char={active} setChar={setActive} />}
       {subtab === "aktionen" && <CharActions char={active} setChar={setActive} />}
       {subtab === "spells" && <Spellbook key={aid} charId={aid} />}
-{subtab === "tokens" && <Tokens />}
+{subtab === "tokens" && <Tokens char={active} charId={aid} usedSlots={usedSlots} setUsedSlots={setUsedSlots} />}
       {subtab === "conditions" && <ConditionsTracker />}
     </div>
   );
