@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { C, sx, FH } from "../../../constants/theme.js";
 import { rollSave } from "../../../utils/rolls.js";
 import { useCombat } from "../../../context/CombatContext.jsx";
 import { useCombatActions } from "../../../hooks/useCombatActions.js";
 import { addLog } from "../../../utils/log.js";
+import { saveModifier, fmtMod } from "../../../data/skills.js";
 import RollResult from "./RollResult.jsx";
 import TargetSelector from "./TargetSelector.jsx";
 
@@ -25,15 +26,25 @@ export default function SaveRollModal({ onClose }) {
   const { state, setState } = useCombat();
   const [saveType, setSaveType] = useState("DEX");
   const [dc, setDc] = useState("15");
-  const [modifier, setModifier] = useState("0");
-  const [targetId, setTargetId] = useState("");
+  const [manualMod, setManualMod] = useState(null); // null = auto from fighter
+  const [targetId, setTargetId] = useState(
+    state.fighters[state.activeIndex]?.id ?? ""
+  );
   const [advantage, setAdvantage] = useState(false);
   const [disadvantage, setDisadvantage] = useState(false);
   const [result, setResult] = useState(null);
 
-  const target = state.fighters.find((f) => f.id === targetId);
+  const target = state.fighters.find((f) => f.id === targetId) ?? null;
   const dcNum = parseInt(dc) || 10;
-  const modNum = parseInt(modifier) || 0;
+
+  // Auto-fill from fighter's save modifier
+  const autoMod = useMemo(() => {
+    if (!target) return 0;
+    return saveModifier(target, saveType);
+  }, [target, saveType]);
+
+  const modNum = manualMod !== null ? (parseInt(manualMod) || 0) : autoMod;
+  const hasSaveProf = target?.saveProficiencies?.[saveType] ?? false;
 
   const handleRoll = () => {
     const res = rollSave(modNum, dcNum, { advantage, disadvantage });
@@ -46,15 +57,15 @@ export default function SaveRollModal({ onClose }) {
       addLog(
         prev,
         "action",
-        `${targetName}: ${typeName} Save (DC ${dcNum}) — ${res.roll} + ${modNum} = ${res.total} → ${res.success ? "✓ SUCCESS" : "✗ FAIL"}`,
+        `${targetName}: ${typeName} Save (DC ${dcNum}) — ${res.roll}${modNum !== 0 ? ` ${fmtMod(modNum)}` : ""} = ${res.total} → ${res.success ? "✓ SUCCESS" : "✗ FAIL"}`,
         null,
         target?.id ?? null
       )
     );
   };
 
-  const toggleAdv = () => { setAdvantage((v) => !v); if (!advantage) setDisadvantage(false); };
-  const toggleDis = () => { setDisadvantage((v) => !v); if (!disadvantage) setAdvantage(false); };
+  const toggleAdv = () => { setAdvantage((v) => !v); if (!advantage) setDisadvantage(false); setResult(null); };
+  const toggleDis = () => { setDisadvantage((v) => !v); if (!disadvantage) setAdvantage(false); setResult(null); };
 
   const activeSave = SAVE_TYPES.find((s) => s.key === saveType);
   const highlight = result ? (result.success ? "hit" : "miss") : null;
@@ -99,15 +110,29 @@ export default function SaveRollModal({ onClose }) {
           </div>
         </div>
 
-        {/* Target (optional) */}
+        {/* Target */}
         <div style={{ marginBottom: 10 }}>
           <TargetSelector
             fighters={state.fighters}
             value={targetId}
-            onChange={(id) => { setTargetId(id); setResult(null); }}
-            label="Creature (optional)"
+            onChange={(id) => { setTargetId(id); setManualMod(null); setResult(null); }}
+            label="Creature"
           />
         </div>
+
+        {/* Auto-mod hint */}
+        {target && (
+          <div style={{
+            fontSize: 11, color: hasSaveProf ? C.greenBright : C.textDim,
+            marginBottom: 8, display: "flex", alignItems: "center", gap: 6,
+            background: `${C.surface}`, border: `1px solid ${C.border}`, borderRadius: 6, padding: "5px 10px",
+          }}>
+            {hasSaveProf
+              ? <span>✓ <strong>{target.name}</strong> ist proficient in {saveType} Saves</span>
+              : <span>{target.name} · {saveType} Save Modifier: <strong>{fmtMod(autoMod)}</strong></span>
+            }
+          </div>
+        )}
 
         {/* DC + Modifier */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
@@ -124,9 +149,12 @@ export default function SaveRollModal({ onClose }) {
             <label style={sx.lbl}>Save Modifier</label>
             <input
               type="number"
-              value={modifier}
-              onChange={(e) => { setModifier(e.target.value); setResult(null); }}
-              style={{ ...sx.inp, fontSize: 16, fontWeight: 700, textAlign: "center" }}
+              value={manualMod !== null ? manualMod : modNum}
+              onChange={(e) => { setManualMod(e.target.value); setResult(null); }}
+              style={{
+                ...sx.inp, fontSize: 16, fontWeight: 700, textAlign: "center",
+                color: modNum >= 0 ? C.greenBright : C.redBright,
+              }}
               placeholder="0"
             />
           </div>

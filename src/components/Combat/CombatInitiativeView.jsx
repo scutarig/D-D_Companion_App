@@ -65,6 +65,17 @@ export default function CombatInitiativeView({ onStartCombat }) {
         spellAbility: char.spellAbility || null,
         spellDC: char.spellDC || null,
         spellAtk: char.spellAtk || null,
+        // Phase 6: Ability scores & proficiencies
+        abilityScores: {
+          STR: char.str || 10,
+          DEX: char.dex || 10,
+          CON: char.con || 10,
+          INT: char.int || 10,
+          WIS: char.wis || 10,
+          CHA: char.cha || 10,
+        },
+        saveProficiencies: char.saves || {},
+        skillProficiencies: char.skills || {},
       });
     });
     setSelectedChars([]);

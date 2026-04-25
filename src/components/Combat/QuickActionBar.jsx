@@ -3,21 +3,23 @@ import { useState } from "react";
 import AttackAction from "./ActionButtons/AttackAction.jsx";
 import SaveRollModal from "./Rolls/SaveRollModal.jsx";
 import SpellcastingPanel from "./Spells/SpellcastingPanel.jsx";
+import SkillCheckModal from "./Rolls/SkillCheckModal.jsx";
 
 const QUICK_ACTIONS = [
-  { id: "attack",  label: "Attack",  icon: "⚔️",  color: C.red },
-  { id: "save",    label: "Save",    icon: "🛡️",  color: C.blue },
-  { id: "dash",    label: "Dash",    icon: "👣",  color: C.teal },
-  { id: "spell",   label: "Spell",   icon: "🔮",  color: C.purple },
+  { id: "attack", label: "Attack", icon: "⚔️", color: C.red    },
+  { id: "spell",  label: "Spell",  icon: "🔮", color: C.purple },
+  { id: "save",   label: "Save",   icon: "🛡️", color: C.blue   },
+  { id: "check",  label: "Check",  icon: "🎯", color: C.teal   },
 ];
 
 const MORE_ACTIONS = [
-  { id: "dodge",      label: "Dodge",      icon: "🔄", color: C.blue },
+  { id: "dash",       label: "Dash",       icon: "👣", color: C.teal  },
+  { id: "dodge",      label: "Dodge",      icon: "🔄", color: C.blue  },
   { id: "help",       label: "Help",       icon: "🤝", color: C.green },
-  { id: "hide",       label: "Hide",       icon: "🫥", color: C.teal },
+  { id: "hide",       label: "Hide",       icon: "🫥", color: C.teal  },
   { id: "disengage",  label: "Disengage",  icon: "🏃", color: C.amber },
   { id: "ready",      label: "Ready",      icon: "⏱️", color: C.purple },
-  { id: "use_item",   label: "Use Item",   icon: "🎒", color: C.gold },
+  { id: "use_item",   label: "Use Item",   icon: "🎒", color: C.gold  },
 ];
 
 export default function QuickActionBar({ onActionClick }) {
@@ -25,11 +27,13 @@ export default function QuickActionBar({ onActionClick }) {
   const [attackOpen, setAttackOpen] = useState(false);
   const [saveOpen, setSaveOpen] = useState(false);
   const [spellsOpen, setSpellsOpen] = useState(false);
+  const [checkOpen, setCheckOpen] = useState(false);
 
   const handleActionClick = (actionId) => {
     if (actionId === "attack") { setAttackOpen(true); return; }
     if (actionId === "save")   { setSaveOpen(true);   return; }
     if (actionId === "spell")  { setSpellsOpen(true); return; }
+    if (actionId === "check")  { setCheckOpen(true);  return; }
     onActionClick?.(actionId);
   };
 
@@ -39,6 +43,7 @@ export default function QuickActionBar({ onActionClick }) {
       <AttackAction open={attackOpen} onClose={() => setAttackOpen(false)} />
       {saveOpen && <SaveRollModal onClose={() => setSaveOpen(false)} />}
       {spellsOpen && <SpellcastingPanel onClose={() => setSpellsOpen(false)} />}
+      {checkOpen && <SkillCheckModal onClose={() => setCheckOpen(false)} />}
 
       {/* Main 4 buttons */}
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 6 }}>

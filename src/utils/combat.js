@@ -21,6 +21,10 @@ export const createFighter = ({
   spellAbility = "INT",
   spellDC = 8,
   spellAtk = 0,
+  // Ability Scores & Proficiencies (Phase 6)
+  abilityScores = { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 },
+  saveProficiencies = { STR: false, DEX: false, CON: false, INT: false, WIS: false, CHA: false },
+  skillProficiencies = {},   // skillId → true | "expertise"
 } = {}) => ({
   id,
   name,
@@ -48,6 +52,11 @@ export const createFighter = ({
   spellAbility,
   spellDC,
   spellAtk,
+
+  // Ability Scores & Proficiencies
+  abilityScores,
+  saveProficiencies,
+  skillProficiencies,
 
   // Action Economy (reset per turn)
   actions: {
