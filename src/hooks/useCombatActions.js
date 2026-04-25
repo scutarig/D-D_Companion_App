@@ -16,6 +16,7 @@ import {
   deletePreset as deletePresetUtil,
 } from "../utils/combat.js";
 import { addLog } from "../utils/log.js";
+import { decrementConditions, getConditionId } from "../utils/conditions.js";
 
 export function useCombatActions() {
   const { state, setState } = useCombat();
@@ -36,28 +37,43 @@ export function useCombatActions() {
     });
   };
 
-  // End turn: increment activeIndex, handle round increment
+  // End turn: increment activeIndex, handle round increment, decrement condition durations
   const endTurn = () => {
     setState((prev) => {
       if (!prev.isActive) return prev;
 
+      const currentFighter = prev.fighters[prev.activeIndex];
       const nextIndex = (prev.activeIndex + 1) % prev.fighters.length;
       const newRound = nextIndex === 0 ? prev.round + 1 : prev.round;
+
+      // Decrement condition durations on the fighter whose turn just ended
+      const decrementedFighters = prev.fighters.map((f, i) => {
+        if (i !== prev.activeIndex) return f;
+        const updated = decrementConditions(f);
+        // Log expired conditions
+        const removed = f.conditions.filter((c) => {
+          const id = getConditionId(c);
+          return !updated.conditions.some((uc) => getConditionId(uc) === id);
+        });
+        return updated;
+      });
+
+      // Reset action economy for the NEXT fighter
+      const resetFighters = decrementedFighters.map((f, i) =>
+        i === nextIndex ? resetActionEconomy(f) : f
+      );
+
       let updated = {
         ...prev,
         activeIndex: nextIndex,
         round: newRound,
+        fighters: resetFighters,
       };
 
-      // Log turn start
+      // Log turn start for next fighter
       if (nextIndex < prev.fighters.length) {
-        const nextFighter = prev.fighters[nextIndex];
-        updated = addLog(
-          updated,
-          "turn",
-          `Turn: ${nextFighter.name}`,
-          nextFighter.id
-        );
+        const nextFighter = resetFighters[nextIndex];
+        updated = addLog(updated, "turn", `Turn: ${nextFighter.name}`, nextFighter.id);
       }
 
       // Log round start if new round

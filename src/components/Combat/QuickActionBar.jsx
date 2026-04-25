@@ -1,111 +1,106 @@
 import { C, sx } from "../../constants/theme.js";
 import { useState } from "react";
 import AttackAction from "./ActionButtons/AttackAction.jsx";
+import SaveRollModal from "./Rolls/SaveRollModal.jsx";
 
 const QUICK_ACTIONS = [
-  { id: "attack", label: "Attack", icon: "⚔️", color: C.red },
-  { id: "dodge", label: "Dodge", icon: "🛡️", color: C.blue },
-  { id: "dash", label: "Dash", icon: "👣", color: C.teal },
-  { id: "spell", label: "Spell", icon: "🔮", color: C.purple },
+  { id: "attack",  label: "Attack",  icon: "⚔️",  color: C.red },
+  { id: "save",    label: "Save",    icon: "🛡️",  color: C.blue },
+  { id: "dash",    label: "Dash",    icon: "👣",  color: C.teal },
+  { id: "spell",   label: "Spell",   icon: "🔮",  color: C.purple },
+];
+
+const MORE_ACTIONS = [
+  { id: "dodge",      label: "Dodge",      icon: "🔄", color: C.blue },
+  { id: "help",       label: "Help",       icon: "🤝", color: C.green },
+  { id: "hide",       label: "Hide",       icon: "🫥", color: C.teal },
+  { id: "disengage",  label: "Disengage",  icon: "🏃", color: C.amber },
+  { id: "ready",      label: "Ready",      icon: "⏱️", color: C.purple },
+  { id: "use_item",   label: "Use Item",   icon: "🎒", color: C.gold },
 ];
 
 export default function QuickActionBar({ onActionClick }) {
   const [moreOpen, setMoreOpen] = useState(false);
   const [attackOpen, setAttackOpen] = useState(false);
+  const [saveOpen, setSaveOpen] = useState(false);
 
   const handleActionClick = (actionId) => {
-    if (actionId === "attack") {
-      setAttackOpen(true);
-      return;
-    }
+    if (actionId === "attack") { setAttackOpen(true); return; }
+    if (actionId === "save")   { setSaveOpen(true);   return; }
     onActionClick?.(actionId);
   };
 
   return (
     <div>
-      {/* Attack modal */}
+      {/* Modals */}
       <AttackAction open={attackOpen} onClose={() => setAttackOpen(false)} />
+      {saveOpen && <SaveRollModal onClose={() => setSaveOpen(false)} />}
 
       {/* Main 4 buttons */}
-      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: moreOpen ? 8 : 0 }}>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 6 }}>
         {QUICK_ACTIONS.map((action) => (
-          <button
-            key={action.id}
-            onClick={() => handleActionClick(action.id)}
-            style={{
-              flex: "1 1 calc(50% - 3px)",
-              minWidth: 70,
-              padding: "10px 8px",
-              borderRadius: 6,
-              border: `1px solid ${action.color}44`,
-              background: `${action.color}12`,
-              color: action.color,
-              fontWeight: 700,
-              cursor: "pointer",
-              transition: "all .2s",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 4,
-              fontSize: 11,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = `${action.color}22`;
-              e.currentTarget.style.boxShadow = `0 0 8px ${action.color}30`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = `${action.color}12`;
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            <span style={{ fontSize: 16 }}>{action.icon}</span>
-            {action.label}
-          </button>
+          <QuickBtn key={action.id} action={action} onClick={() => handleActionClick(action.id)} />
         ))}
       </div>
 
-      {/* More actions button */}
+      {/* More toggle */}
       <button
         onClick={() => setMoreOpen(!moreOpen)}
         style={{
-          width: "100%",
-          padding: "8px",
-          borderRadius: 6,
-          border: `1px solid ${C.border}`,
-          background: moreOpen ? `${C.purple}22` : C.surface,
+          width: "100%", padding: "7px", borderRadius: 6, cursor: "pointer", fontSize: 11, transition: "all .2s",
+          border: `1px solid ${moreOpen ? C.purple + "55" : C.border}`,
+          background: moreOpen ? `${C.purple}18` : C.surface,
           color: moreOpen ? C.purpleBright : C.textDim,
-          cursor: "pointer",
-          fontSize: 11,
           fontWeight: moreOpen ? 700 : 400,
-          transition: "all .2s",
         }}
       >
-        {moreOpen ? "▼ Hide More" : "▶ More Actions..."}
+        {moreOpen ? "▼ Weniger" : "▶ Mehr Aktionen..."}
       </button>
 
-      {/* More actions menu */}
+      {/* More actions grid */}
       {moreOpen && (
-        <div style={{ background: C.surface, borderRadius: 6, padding: "8px 10px", border: `1px solid ${C.border}`, marginTop: 8, fontSize: 11 }}>
-          <button
-            onClick={() => handleActionClick("help")}
-            style={{ ...sx.bsm(C.green), width: "100%", marginBottom: 4 }}
-          >
-            Help
-          </button>
-          <button
-            onClick={() => handleActionClick("hide")}
-            style={{ ...sx.bsm(C.blue), width: "100%", marginBottom: 4 }}
-          >
-            Hide
-          </button>
-          <button
-            onClick={() => handleActionClick("disengage")}
-            style={{ ...sx.bsm(C.teal), width: "100%" }}
-          >
-            Disengage
-          </button>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 6 }}>
+          {MORE_ACTIONS.map((action) => (
+            <QuickBtn key={action.id} action={action} onClick={() => handleActionClick(action.id)} small />
+          ))}
         </div>
       )}
     </div>
+  );
+}
+
+function QuickBtn({ action, onClick, small = false }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        flex: small ? "1 1 calc(33% - 4px)" : "1 1 calc(50% - 3px)",
+        minWidth: small ? 60 : 70,
+        padding: small ? "7px 4px" : "10px 8px",
+        borderRadius: 6,
+        border: `1px solid ${action.color}44`,
+        background: `${action.color}10`,
+        color: action.color,
+        fontWeight: 700,
+        cursor: "pointer",
+        transition: "all .2s",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 3,
+        fontSize: small ? 10 : 11,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = `${action.color}22`;
+        e.currentTarget.style.boxShadow = `0 0 8px ${action.color}30`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = `${action.color}10`;
+        e.currentTarget.style.boxShadow = "none";
+      }}
+    >
+      <span style={{ fontSize: small ? 15 : 18 }}>{action.icon}</span>
+      {action.label}
+    </button>
   );
 }
