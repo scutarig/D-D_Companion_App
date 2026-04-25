@@ -78,15 +78,6 @@ const snb = (active) => ({
   boxShadow: active ? "0 2px 10px rgba(109,79,194,0.35)" : "none",
 });
 
-const mnb = (active) => ({
-  flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-  gap: 2, padding: "6px 4px", cursor: "pointer",
-  background: "none", border: "none",
-  color: active ? C.purpleBright : C.textDim,
-  fontFamily: FH, fontSize: 8, letterSpacing: 0.3,
-  transition: "color .15s",
-});
-
 // ── Persistent char header (shown on all tabs) ────────────────────────────────
 function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom }) {
   const { active: char, setActive: setChar } = useChar();
@@ -145,6 +136,35 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
   );
 }
 
+// ── Mobile nav groups ─────────────────────────────────────────────────────────
+const MOBILE_NAV = [
+  { id: "overview",   label: "Übersicht", icon: "🗺️" },
+  {
+    id: "char-group", label: "Charakter", icon: "📜",
+    groupIds: ["char", "companions", "proficiencies"],
+    children: [
+      { id: "char",          label: "Charakter",    icon: "📜" },
+      { id: "companions",    label: "Begleiter",    icon: "🐾" },
+      { id: "proficiencies", label: "Proficiencies",icon: "🎓" },
+    ],
+  },
+  { id: "inventar", label: "Inventar", icon: "🎒" },
+  { id: "combat",   label: "Kampf",    icon: "⚔️" },
+  {
+    id: "more", label: "Mehr", icon: "⋯",
+    groupIds: ["dice", "notes", "npcs", "bestiary", "klassen", "voelker", "quickref"],
+    children: [
+      { id: "dice",     label: "Würfel",     icon: "🎲" },
+      { id: "notes",    label: "Notizen",    icon: "📝" },
+      { id: "npcs",     label: "NPCs",       icon: "👥" },
+      { id: "bestiary", label: "Bestiary",   icon: "🐉" },
+      { id: "klassen",  label: "Klassen",    icon: "📚" },
+      { id: "voelker",  label: "Völker",     icon: "🧬" },
+      { id: "quickref", label: "Schnellref", icon: "📋" },
+    ],
+  },
+];
+
 // ── App ────────────────────────────────────────────────────────────────────────
 function AppInner() {
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
@@ -153,6 +173,7 @@ function AppInner() {
   const [refPos,  setRefPos]  = useState({ top: 0 });
   const refBtnRef             = useRef(null);
   const isMobile              = useIsMobile(768);
+  const [mobileMenu, setMobileMenu] = useState(null); // null | "char-group" | "more"
 
   // Lifted state — shared with CombatDashboard (per Charakter)
   const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
@@ -287,28 +308,113 @@ function AppInner() {
 
   // ── Mobile ─────────────────────────────────────────────────────────────────
   return (
-    <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text }}>
+    <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text, overflowX:"hidden" }}>
       <OfflineBanner />
       <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} />
-      <main style={{ flex:1, overflowY:"auto", padding:"12px 10px", boxSizing:"border-box" }}>
-        {content}
-        {tab === "char" && active && (
-          <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
-            <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>Charakter speichern</div>
-            <div style={{ display:"flex", gap:8 }}>
-              <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ JSON exportieren</button>
-              <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 PDF drucken</button>
+
+      {/* Main content — click closes sub-menu */}
+      <main
+        style={{ flex:1, overflowY:"auto", overflowX:"hidden", padding:"12px", boxSizing:"border-box" }}
+        onClick={() => mobileMenu && setMobileMenu(null)}
+      >
+        <div style={{ width:"100%", maxWidth:"100%" }}>
+          {content}
+          {tab === "char" && active && (
+            <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
+              <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>Charakter speichern</div>
+              <div style={{ display:"flex", gap:8 }}>
+                <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ JSON exportieren</button>
+                <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 PDF drucken</button>
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Sub-menu panel — appears between content and nav */}
+      {mobileMenu && (() => {
+        const group = MOBILE_NAV.find(n => n.id === mobileMenu);
+        if (!group?.children) return null;
+        return (
+          <div style={{
+            background: "linear-gradient(180deg,#1e1a2e 0%,#18142a 100%)",
+            borderTop: `1px solid ${C.border}`,
+            padding: "12px",
+            flexShrink: 0,
+          }}>
+            {/* Handle bar */}
+            <div style={{ width:32, height:3, background:C.border, borderRadius:2, margin:"0 auto 10px" }} />
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:7 }}>
+              {group.children.map(child => {
+                const isActive = tab === child.id;
+                return (
+                  <button key={child.id}
+                    onClick={() => { setTab(child.id); setMobileMenu(null); }}
+                    style={{
+                      display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
+                      gap:5, padding:"11px 6px", borderRadius:11, cursor:"pointer",
+                      background: isActive ? `${C.purple}33` : C.surface,
+                      border: `1px solid ${isActive ? C.purpleBright + "88" : C.border}`,
+                      color: isActive ? C.purpleBright : C.text,
+                      boxShadow: isActive ? `0 0 12px ${C.purple}44` : "none",
+                      transition: "all .15s",
+                    }}>
+                    <span style={{ fontSize:22 }}>{child.icon}</span>
+                    <span style={{ fontSize:10, fontFamily:FH, letterSpacing:0.4, textAlign:"center", lineHeight:1.2 }}>{child.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
-        )}
-      </main>
-      <nav style={{ background:"linear-gradient(0deg,#1a1526 0%,#100d18 100%)", borderTop:"1px solid rgba(201,168,76,0.13)", display:"flex", flexShrink:0, paddingBottom:"env(safe-area-inset-bottom,0px)" }}>
-        {MAIN_TABS.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={mnb(tab===t.id)}>
-            <span style={{ fontSize:18 }}>{t.icon}</span>
-            {t.label}
-          </button>
-        ))}
+        );
+      })()}
+
+      {/* Bottom nav — 5 grouped tabs */}
+      <nav style={{
+        background: "linear-gradient(0deg,#1a1526 0%,#100d18 100%)",
+        borderTop: "1px solid rgba(201,168,76,0.13)",
+        display: "flex", flexShrink: 0,
+        paddingBottom: "env(safe-area-inset-bottom,0px)",
+      }}>
+        {MOBILE_NAV.map(item => {
+          const isGroup      = !!item.groupIds;
+          const isMenuOpen   = mobileMenu === item.id;
+          const isGroupActive = isGroup && (item.groupIds.includes(tab) || isMenuOpen);
+          const isActive     = isGroup ? isGroupActive : tab === item.id;
+
+          return (
+            <button
+              key={item.id}
+              onClick={() => {
+                if (isGroup) {
+                  setMobileMenu(isMenuOpen ? null : item.id);
+                } else {
+                  setTab(item.id);
+                  setMobileMenu(null);
+                }
+              }}
+              style={{
+                flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
+                gap:2, padding:"7px 2px 8px", cursor:"pointer",
+                background: "none", border: "none",
+                color: isActive ? C.purpleBright : C.textDim,
+                fontFamily: FH, transition: "color .15s",
+                position: "relative",
+              }}
+            >
+              {/* Active indicator dot */}
+              {isActive && (
+                <div style={{ position:"absolute", top:4, left:"50%", transform:"translateX(-50%)", width:4, height:4, borderRadius:"50%", background:C.purpleBright }} />
+              )}
+              <span style={{ fontSize: isGroup && item.id === "more" ? 15 : 18, lineHeight:1 }}>
+                {item.icon}
+              </span>
+              <span style={{ fontSize:8, letterSpacing:0.3, lineHeight:1 }}>
+                {item.label}{isGroup && <span style={{ fontSize:7, opacity:0.6 }}> {isMenuOpen ? "▴" : "▾"}</span>}
+              </span>
+            </button>
+          );
+        })}
       </nav>
     </div>
   );
