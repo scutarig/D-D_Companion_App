@@ -17,17 +17,19 @@ const Bestiary      = lazy(() => import("./components/Bestiary.jsx"));
 const KlassenRef    = lazy(() => import("./components/KlassenRef.jsx"));
 const VoelkerRef    = lazy(() => import("./components/VoelkerRef.jsx"));
 const QuickRef      = lazy(() => import("./components/QuickRef.jsx"));
-const CompanionsPage = lazy(() => import("./components/Companions/CompanionsPage.jsx"));
+const CompanionsPage    = lazy(() => import("./components/Companions/CompanionsPage.jsx"));
+const ProficienciesPage = lazy(() => import("./components/Proficiencies/ProficienciesPage.jsx"));
 
 const MAIN_TABS = [
-  { id: "overview",    label: "Übersicht",  icon: "🗺️" },
-  { id: "char",        label: "Charakter",  icon: "📜" },
-  { id: "inventar",    label: "Inventar",   icon: "🎒" },
-  { id: "companions",  label: "Begleiter",  icon: "🐾" },
-  { id: "notes",       label: "Notizen",    icon: "📝" },
-  { id: "npcs",        label: "NPCs",       icon: "👥" },
-  { id: "combat",      label: "Kampf",      icon: "⚔️" },
-  { id: "dice",        label: "Würfel",     icon: "🎲" },
+  { id: "overview",       label: "Übersicht",    icon: "🗺️" },
+  { id: "char",           label: "Charakter",    icon: "📜" },
+  { id: "inventar",       label: "Inventar",     icon: "🎒" },
+  { id: "companions",     label: "Begleiter",    icon: "🐾" },
+  { id: "proficiencies",  label: "Proficiencies",icon: "🎓" },
+  { id: "notes",          label: "Notizen",      icon: "📝" },
+  { id: "npcs",           label: "NPCs",         icon: "👥" },
+  { id: "combat",         label: "Kampf",        icon: "⚔️" },
+  { id: "dice",           label: "Würfel",       icon: "🎲" },
 ];
 const REF_TABS = [
   { id: "bestiary", label: "Bestiary",        icon: "🐉" },
@@ -211,7 +213,8 @@ function AppInner() {
       {tab==="char"        && <CharManager />}
       {tab==="notes"       && <Notes />}
       {tab==="inventar"    && <InventarTab />}
-      {tab==="companions"  && <CompanionsPage />}
+      {tab==="companions"     && <CompanionsPage />}
+      {tab==="proficiencies"  && <ProficienciesPage />}
       {tab==="npcs"        && <NpcList />}
       {tab==="combat"      && <CombatSystem />}
       {tab==="dice"        && <DiceRoller />}

@@ -23,3 +23,147 @@ export const DND_RACES = [
 
 export const ALL_VOELKER = DND_RACES.map(r => r.name);
 export const DND_BACKGROUNDS = ["Akolyt","Adliger","Ausgestoßener","Entertainer","Edelmann","Fernhändler","Fischer","Forscher","Gildenmitglied","Gladiator","Handwerker","Heimatloser","Held des Volkes","Krimineller","Matrose","Pirat","Scharlatan","Söldner","Soldat","Stadtbewohner","Waldläufer","Verbrechensopfer","Wanderer","Weiser","Zögling"];
+
+// ── Strukturierte Rassen-Daten (9 Standardrassen) ────────────────────────────
+// Jedes Trait/Feature: { id, name, description, source, category }
+// category: "trait" | "feature"
+export const RACES_FULL = [
+  {
+    id: "mensch",
+    name: "Mensch",
+    description: "Die vielseitigste und verbreitetste Rasse. Menschen zeichnen sich durch Anpassungsfähigkeit und Ehrgeiz aus.",
+    statBonuses: { STR: 1, DEX: 1, CON: 1, INT: 1, WIS: 1, CHA: 1 },
+    speed: 30, size: "Mittel",
+    traits: [
+      { id: "mensch_attr_bonus", name: "+1 auf alle Attribute", description: "Jeder deiner sechs Attributswerte erhöht sich um 1.", source: "Mensch", category: "trait" },
+      { id: "mensch_extra_fertigkeit", name: "Vielseitigkeit", description: "Du erhältst Übung in einer Fertigkeit deiner Wahl.", source: "Mensch", category: "trait" },
+      { id: "mensch_extra_sprache", name: "Extra Sprache", description: "Du kannst eine zusätzliche Sprache deiner Wahl sprechen, lesen und schreiben.", source: "Mensch", category: "trait" },
+    ],
+    features: [
+      { id: "mensch_versatile", name: "Anpassungsfähigkeit", description: "Menschen sind in allen Klassen und Rollen gleich stark. Keine Stärke ist herausragend, aber keine Schwäche schränkt ein.", source: "Mensch", category: "feature" },
+    ],
+  },
+  {
+    id: "elf",
+    name: "Elf",
+    description: "Anmutige, langlebige Wesen mit einer tiefen Verbindung zur Natur und Magie. Elfen leben Jahrhunderte.",
+    statBonuses: { STR: 0, DEX: 2, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel",
+    traits: [
+      { id: "elf_dex_bonus", name: "DEX +2", description: "Dein Geschicklichkeitswert erhöht sich um 2.", source: "Elf", category: "trait" },
+      { id: "elf_darkvision", name: "Dunkelsicht", description: "Du siehst in Dunkelheit (schwaches Licht) auf bis zu 60 Fuß als wäre es helles Licht, und in völliger Dunkelheit als wäre es schwaches Licht. In Dunkelheit erkennst du keine Farben, nur Grautöne.", source: "Elf", category: "trait" },
+      { id: "elf_keen_senses", name: "Scharfe Sinne", description: "Du hast Übung in der Fertigkeit Wahrnehmung.", source: "Elf", category: "trait" },
+      { id: "elf_fey_ancestry", name: "Fey-Abstammung", description: "Du hast Vorteil auf Rettungswürfe gegen das Bezaubert-Sein und kannst durch Magie nicht in den Schlaf versetzt werden.", source: "Elf", category: "trait" },
+    ],
+    features: [
+      { id: "elf_trance", name: "Trance", description: "Elfen schlafen nicht. Stattdessen meditieren sie 4 Stunden täglich tief (Trance). Danach profitierst du wie nach einer langen Rast.", source: "Elf", category: "feature" },
+    ],
+  },
+  {
+    id: "zwerg",
+    name: "Zwerg",
+    description: "Robuste Bergbewohner mit kultureller Liebe zu Handwerk, Bergbau und Kampf. Bekannt für ihre Ausdauer.",
+    statBonuses: { STR: 0, DEX: 0, CON: 2, INT: 0, WIS: 0, CHA: 0 },
+    speed: 25, size: "Mittel",
+    traits: [
+      { id: "zwerg_con_bonus", name: "CON +2", description: "Dein Konstitutionswert erhöht sich um 2.", source: "Zwerg", category: "trait" },
+      { id: "zwerg_darkvision", name: "Dunkelsicht", description: "Gewohnt an das Leben unter der Erde, siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Zwerg", category: "trait" },
+      { id: "zwerg_robustheit", name: "Zwerg-Robustheit", description: "Du hast Vorteil auf Rettungswürfe gegen Gift und Resistenz gegen Giftschaden.", source: "Zwerg", category: "trait" },
+      { id: "zwerg_steinkunde", name: "Steinkunde", description: "Wenn du einen Intelligenz(Geschichte)-Wurf machst, der sich auf die Herkunft von Steinmetzarbeiten bezieht, hast du Vorteil.", source: "Zwerg", category: "trait" },
+      { id: "zwerg_kampftraining", name: "Zwerg-Kampftraining", description: "Du hast Übung mit Handaxt, Streitaxt, Leichtem Hammer und Kriegshammer.", source: "Zwerg", category: "trait" },
+    ],
+    features: [
+      { id: "zwerg_werkzeug", name: "Werkzeugübung", description: "Du hast Übung mit dem Werkzeug eines Handwerks deiner Wahl: Schmiedewerkzeug, Brauersutensilien oder Steinmetzwerkzeug.", source: "Zwerg", category: "feature" },
+      { id: "zwerg_bewegung", name: "Standhaftigkeit", description: "Deine Bewegungsgeschwindigkeit wird nicht durch das Tragen schwerer Rüstung verringert.", source: "Zwerg", category: "feature" },
+    ],
+  },
+  {
+    id: "halbling",
+    name: "Halbling",
+    description: "Kleine, fröhliche Wesen mit einer legendären Fähigkeit, dem Pech zu entgehen. Ideal als Schurke oder Waldläufer.",
+    statBonuses: { STR: 0, DEX: 2, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 25, size: "Klein",
+    traits: [
+      { id: "halbling_dex_bonus", name: "DEX +2", description: "Dein Geschicklichkeitswert erhöht sich um 2.", source: "Halbling", category: "trait" },
+      { id: "halbling_luck", name: "Glück", description: "Wenn du bei einem Angriffswurf, Rettungswurf oder Fertigkeitswurf eine 1 würfelst, darfst du den Würfel erneut würfeln und musst das neue Ergebnis verwenden.", source: "Halbling", category: "trait" },
+      { id: "halbling_tapferkeit", name: "Tapferkeit", description: "Du hast Vorteil auf Rettungswürfe gegen das Erschreckt-Sein.", source: "Halbling", category: "trait" },
+      { id: "halbling_beweglichkeit", name: "Halbling-Beweglichkeit", description: "Du kannst durch den Raum einer beliebigen Kreatur gehen, die mindestens eine Größe größer als du ist.", source: "Halbling", category: "trait" },
+    ],
+    features: [],
+  },
+  {
+    id: "drachen_geborener",
+    name: "Drachen-Geborener",
+    description: "Stolze Humanoide mit Drachenblut. Die körperliche Macht ihrer drachischen Vorfahren zeigt sich in Atem und Resistenz.",
+    statBonuses: { STR: 2, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 1 },
+    speed: 30, size: "Mittel",
+    traits: [
+      { id: "drache_str_bonus", name: "STR +2, CHA +1", description: "Dein Stärkewert erhöht sich um 2, dein Charismawert um 1.", source: "Drachen-Geborener", category: "trait" },
+      { id: "drache_abstammung", name: "Drachen-Abstammung", description: "Du hast die Abstammung eines bestimmten Drachentyps (z.B. Gold, Silber, Feuer). Dieser bestimmt deinen Atemwaffen-Schadenstyp und deine Resistenz.", source: "Drachen-Geborener", category: "trait" },
+      { id: "drache_atemwaffe", name: "Atemwaffe", description: "Du kannst als Aktion deinen Atem als Waffe einsetzen (Kegel 15ft oder Linie 5×30ft). Jedes Wesen muss einen Rettungswurf ablegen (SG = 8 + CON-Mod + PB). Bei Erfolg halber Schaden. Einmal nach kurzer oder langer Rast.", source: "Drachen-Geborener", category: "feature" },
+    ],
+    features: [
+      { id: "drache_resistenz", name: "Schadensresistenz", description: "Du hast Resistenz gegen den Schadenstyp, der deiner Drachen-Abstammung entspricht.", source: "Drachen-Geborener", category: "feature" },
+    ],
+  },
+  {
+    id: "gnom",
+    name: "Gnom",
+    description: "Erfinderische Kleinlinge mit natürlicher Resistenz gegen magische Kontrolle. Ideal für Zauberer und Erfinder.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 2, WIS: 0, CHA: 0 },
+    speed: 25, size: "Klein",
+    traits: [
+      { id: "gnom_int_bonus", name: "INT +2", description: "Dein Intelligenzwert erhöht sich um 2.", source: "Gnom", category: "trait" },
+      { id: "gnom_darkvision", name: "Dunkelsicht", description: "Gewohnt an unterirdische Wohnstätten, siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Gnom", category: "trait" },
+      { id: "gnom_list", name: "Gnomische List", description: "Du hast Vorteil auf alle Intelligenz-, Weisheits- und Charismo-Rettungswürfe gegen Magie.", source: "Gnom", category: "trait" },
+    ],
+    features: [],
+  },
+  {
+    id: "halbork",
+    name: "Halbork",
+    description: "Starke Krieger mit dem Erbe der Orks. Unnachgiebige Ausdauer ist eine der besten Überlebensfähigkeiten im Spiel.",
+    statBonuses: { STR: 2, DEX: 0, CON: 1, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel",
+    traits: [
+      { id: "halbork_str_bonus", name: "STR +2, CON +1", description: "Dein Stärkewert erhöht sich um 2, dein Konstitutionswert um 1.", source: "Halbork", category: "trait" },
+      { id: "halbork_darkvision", name: "Dunkelsicht", description: "Dank deines ork'schen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Halbork", category: "trait" },
+      { id: "halbork_einschuechterung", name: "Einschüchterung", description: "Du hast Übung in der Fertigkeit Einschüchterung.", source: "Halbork", category: "trait" },
+    ],
+    features: [
+      { id: "halbork_ausdauer", name: "Unnachgiebige Ausdauer", description: "Wenn du auf 0 Trefferpunkte reduziert wirst, kannst du stattdessen auf 1 Trefferpunkt bleiben. Diese Fähigkeit kann nicht erneut verwendet werden, bis du eine lange Rast abgeschlossen hast.", source: "Halbork", category: "feature" },
+      { id: "halbork_wilde_angriffe", name: "Wilde Angriffe", description: "Wenn du mit einem Nahkampfangriff einen kritischen Treffer erzielst, kannst du einen zusätzlichen Würfel des Schadenswürfels der Waffe zum Extraschadenswurf würfeln.", source: "Halbork", category: "feature" },
+    ],
+  },
+  {
+    id: "halbelfe",
+    name: "Halbelfe",
+    description: "Wesen zwischen zwei Welten. Als einzige Rasse können Halbhelfen ihre +1-Boni frei verteilen und Fertigkeiten frei wählen.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 2 },
+    speed: 30, size: "Mittel",
+    traits: [
+      { id: "halbelfe_cha_bonus", name: "CHA +2, zwei weitere +1", description: "Dein Charismawert erhöht sich um 2. Außerdem erhöhen sich zwei andere Attributswerte deiner Wahl jeweils um 1.", source: "Halbelfe", category: "trait" },
+      { id: "halbelfe_darkvision", name: "Dunkelsicht", description: "Dank deines elfischen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Halbelfe", category: "trait" },
+      { id: "halbelfe_fey_ancestry", name: "Fey-Abstammung", description: "Du hast Vorteil auf Rettungswürfe gegen das Bezaubert-Sein und kannst durch Magie nicht in den Schlaf versetzt werden.", source: "Halbelfe", category: "trait" },
+      { id: "halbelfe_vielseitigkeit", name: "Vielseitigkeit", description: "Du hast Übung in zwei Fertigkeiten deiner Wahl.", source: "Halbelfe", category: "trait" },
+    ],
+    features: [],
+  },
+  {
+    id: "tiefling",
+    name: "Tiefling",
+    description: "Nachfahren von Teufeln, gebrandmarkt durch ein höllisches Erbe. CHA+2 macht sie zu natürlichen Hexenmeistern und Barden.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 1, WIS: 0, CHA: 2 },
+    speed: 30, size: "Mittel",
+    traits: [
+      { id: "tiefling_int_cha_bonus", name: "INT +1, CHA +2", description: "Dein Intelligenzwert erhöht sich um 1, dein Charismawert um 2.", source: "Tiefling", category: "trait" },
+      { id: "tiefling_darkvision", name: "Dunkelsicht", description: "Dank deines höllischen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Tiefling", category: "trait" },
+      { id: "tiefling_feuer_resistenz", name: "Höllische Resistenz", description: "Du hast Resistenz gegen Feuerschaden.", source: "Tiefling", category: "trait" },
+    ],
+    features: [
+      { id: "tiefling_thaumaturgie", name: "Thaumaturgie (Cantrip)", description: "Du kennst den Cantrip Thaumaturgie. Charisma ist deine Zauberfähigkeit für diesen Zauber.", source: "Tiefling", category: "feature" },
+      { id: "tiefling_hoellischer_tadel", name: "Höllischer Tadel (Stufe 3)", description: "Wenn du Stufe 3 erreichst, kannst du Höllischer Tadel als Stufe-2-Zauber wirken. Einmal nach einer langen Rast.", source: "Tiefling", category: "feature" },
+      { id: "tiefling_dunkelheit", name: "Dunkelheit (Stufe 5)", description: "Wenn du Stufe 5 erreichst, kannst du Dunkelheit als Stufe-2-Zauber wirken. Einmal nach einer langen Rast.", source: "Tiefling", category: "feature" },
+    ],
+  },
+];

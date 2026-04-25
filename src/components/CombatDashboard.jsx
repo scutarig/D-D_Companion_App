@@ -8,6 +8,10 @@ import { SPELLS } from "../data/spells.js";
 import { CONDITIONS } from "../data/conditions.js";
 import { useCompanions } from "../hooks/useCompanions.js";
 import { typeOf } from "./Companions/CompanionCard.jsx";
+import { useProficiencies } from "../hooks/useProficiencies.js";
+import { calculateProficiencyBonus, PROF_CATEGORIES } from "../utils/proficiency.js";
+import { useDerivedStats } from "../hooks/useDerivedStats.js";
+import DerivedStatsWidget from "./CharacterSheet/DerivedStatsWidget.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -106,6 +110,8 @@ function InfoModal({ data, onClose }) {
 export default function CombatDashboard({ slots, setSlots, custom, setCustom }) {
   const { active: char, setActive: setChar, aid } = useChar();
   const { companions, updateHp: updateCompanionHp } = useCompanions(aid);
+  const { proficiencies } = useProficiencies(aid);
+  const derivedStats = useDerivedStats(char, proficiencies);
   const [activeConds, setActiveConds] = usePersist("cond_v4", []);
   const [prepIds, setPrepIds]       = useState([]);
   const [knownIds, setKnownIds]     = useState([]);
@@ -332,6 +338,11 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── DERIVED STATS WIDGET ── */}
+      <div style={{ marginBottom: 12 }}>
+        <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
       </div>
 
       {/* ── MAIN GRID: Equipment+Resources  |  Spells ── */}
@@ -567,6 +578,63 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
           </div>
         </div>
       )}
+
+      {/* ── PROFICIENCY WIDGET ── */}
+      {proficiencies.length > 0 && (() => {
+        const profPb = calculateProficiencyBonus(char.level ?? 1);
+        // group counts
+        const grouped = PROF_CATEGORIES.map(cat => ({
+          ...cat,
+          items: proficiencies.filter(p => p.category === cat.id),
+        })).filter(g => g.items.length > 0);
+
+        return (
+          <div style={sx.card}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+              <div style={ctStyle}>🎓 Proficiencies</div>
+              <div style={{
+                background: `${C.tealBright}18`, border: `1px solid ${C.tealBright}44`,
+                borderRadius: 8, padding: "3px 10px", display: "flex", alignItems: "center", gap: 5,
+              }}>
+                <span style={{ fontSize: 10, color: C.textDim }}>PB</span>
+                <span style={{ fontSize: 16, fontWeight: 800, color: C.tealBright, fontFamily: FH }}>+{profPb}</span>
+              </div>
+            </div>
+
+            {/* Category pills */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {grouped.map(group => (
+                <div key={group.id} style={{
+                  display: "flex", alignItems: "center", gap: 5,
+                  background: `${group.color}10`, border: `1px solid ${group.color}25`,
+                  borderRadius: 20, padding: "4px 10px",
+                }}>
+                  <span style={{ fontSize: 12 }}>{group.icon}</span>
+                  <span style={{ fontSize: 11, color: group.color, fontWeight: 600 }}>{group.label}</span>
+                  <span style={{
+                    fontSize: 11, fontWeight: 800, color: group.color,
+                    background: `${group.color}20`, borderRadius: 8, padding: "0 5px",
+                  }}>{group.items.length}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Expertise highlight */}
+            {proficiencies.some(p => p.type === "expertise") && (
+              <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
+                {proficiencies.filter(p => p.type === "expertise").map(p => (
+                  <span key={p.id} style={{
+                    fontSize: 10, padding: "2px 8px", borderRadius: 8, fontWeight: 700,
+                    background: `${C.amber}18`, border: `1px solid ${C.amber}44`, color: C.amberBright,
+                  }}>
+                    ★ {p.name} <span style={{ color: C.textDim }}>+{profPb * 2}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {/* ── Equip Modal ── */}
       {eqModal && (() => {

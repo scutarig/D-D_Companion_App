@@ -3,6 +3,8 @@ import { C, sx, SC, ABS, SKILLS, FH } from "../constants/theme.js";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
 import { ALL_KLASSEN, D3_KLASSEN } from "../data/classes.js";
 import { ALL_VOELKER, DND_BACKGROUNDS } from "../data/races.js";
+import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
+import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 
 export default function CharSheet({ char, setChar }) {
   const [tab, setTab] = useState("stats");
@@ -38,14 +40,7 @@ export default function CharSheet({ char, setChar }) {
             </select>
             {char.klass === "Eigene" && <input value={char.klassCustom || ""} onChange={e => u("klassCustom", e.target.value)} style={{ ...sx.inp, marginTop: 4 }} placeholder="Eigene Klasse..." />}
           </div>
-          <div>
-            <label style={sx.lbl}>Volk</label>
-            <select value={char.race} onChange={e => u("race", e.target.value)} style={sx.sel}>
-              {ALL_VOELKER.map(r => <option key={r}>{r}</option>)}
-              <option value="Eigenes">Eigenes...</option>
-            </select>
-            {char.race === "Eigenes" && <input value={char.raceCustom || ""} onChange={e => u("raceCustom", e.target.value)} style={{ ...sx.inp, marginTop: 4 }} placeholder="Eigenes Volk..." />}
-          </div>
+          <RaceSelector char={char} setChar={setChar} />
           <div>
             <label style={sx.lbl}>Hintergrund</label>
             <select value={char.background} onChange={e => u("background", e.target.value)} style={sx.sel}>
@@ -82,7 +77,7 @@ export default function CharSheet({ char, setChar }) {
       </div>
 
       <div style={{ display: "flex", gap: 5, marginBottom: 12, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 2 }}>
-        {[["stats", "⚔️ Attribute"], ["skills", "🎯 Skills"], ["saves", "💀 Saves"], ["personality", "🎭 Charakter"]].map(([t, l]) => (
+        {[["stats", "⚔️ Attribute"], ["skills", "🎯 Skills"], ["saves", "💀 Saves"], ["traits", "✦ Traits"], ["personality", "🎭 Charakter"]].map(([t, l]) => (
           <button key={t} onClick={() => setTab(t)} style={{ ...sx.nb(tab === t), flexShrink: 0 }}>{l}</button>
         ))}
       </div>
@@ -183,6 +178,10 @@ export default function CharSheet({ char, setChar }) {
             </div>
           </div>
         </div>
+      )}
+
+      {tab === "traits" && (
+        <TraitsFeatures char={char} setChar={setChar} />
       )}
 
       {tab === "personality" && (
