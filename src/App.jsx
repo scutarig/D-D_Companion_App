@@ -11,8 +11,7 @@ const CharManager   = lazy(() => import("./components/CharManager.jsx"));
 const Notes         = lazy(() => import("./components/Notes.jsx"));
 const InventarTab   = lazy(() => import("./components/InventarTab.jsx"));
 const NpcList       = lazy(() => import("./components/NpcList.jsx"));
-const CombatTracker = lazy(() => import("./components/CombatTracker.jsx"));
-const CombatInitiativeView = lazy(() => import("./components/Combat/CombatInitiativeView.jsx"));
+const CombatSystem  = lazy(() => import("./components/Combat/CombatSystem.jsx"));
 const DiceRoller    = lazy(() => import("./components/DiceRoller.jsx"));
 const Bestiary      = lazy(() => import("./components/Bestiary.jsx"));
 const KlassenRef    = lazy(() => import("./components/KlassenRef.jsx"));
@@ -211,7 +210,7 @@ function AppInner() {
       {tab==="notes"     && <Notes />}
       {tab==="inventar"  && <InventarTab />}
       {tab==="npcs"      && <NpcList />}
-      {tab==="combat"    && <CombatInitiativeView onStartCombat={() => {}} />}
+      {tab==="combat"    && <CombatSystem />}
       {tab==="dice"      && <DiceRoller />}
       {tab==="bestiary"  && <Bestiary />}
       {tab==="klassen"   && <KlassenRef />}
