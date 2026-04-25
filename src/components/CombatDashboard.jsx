@@ -206,61 +206,100 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
 
           {/* HP Card */}
           <div style={{ ...sx.card, border: `2px solid ${hpAcc}`, flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-              <span style={ctStyle}>Hit Points</span>
-              <button onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer" }}>Max</button>
-            </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
-                <div style={{ fontSize: 38, fontWeight: 700, color: hpTxt, lineHeight: 1, transition: "color .3s" }}>{char.hp}</div>
-                {(char.tempHp || 0) > 0 && (
-                  <span style={{ fontSize: 20, fontWeight: 700, color: C.blueBright, lineHeight: 1 }}>
-                    +{char.tempHp}
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+              <span style={ctStyle}>❤️ Hit Points</span>
+              <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                {isDying && (
+                  <span style={{ fontSize: 10, color: C.redBright, background: `${C.red}33`, border: `1px solid ${C.redBright}55`, borderRadius: 5, padding: "2px 8px", fontWeight: 700, letterSpacing: 0.5 }}>
+                    ☠ Kampfunfähig
                   </span>
                 )}
-                <div style={{ fontSize: 15, color: C.textDim }}>/</div>
-                <div style={{ fontSize: 15, color: C.text, fontWeight: 600 }}>{char.maxHp}</div>
-              </div>
-              <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
-                <div style={{ display: "flex", gap: 4 }}>
-                  {HP_BTNS.map(b => (
-                    <HoldBtn key={b.label} label={b.label} onPress={b.fn} style={{ width: 36, height: 34, fontSize: 13, fontWeight: 700, background: b.bg, border: `1px solid ${b.border}`, color: b.col, borderRadius: 7, cursor: "pointer" }} />
-                  ))}
-                </div>
-                <div style={{ width: 1, height: 24, background: C.border, flexShrink: 0 }} />
-                <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
-                  <span style={{ fontSize: 9, color: C.blueBright, letterSpacing: 0.5, textTransform: "uppercase", marginRight: 2 }}>TMP</span>
-                  {TEMP_BTNS.map(b => (
-                    <HoldBtn key={b.label} label={b.label} onPress={b.fn} style={{ width: 28, height: 26, fontSize: 11, fontWeight: 700, background: b.bg, border: `1px solid ${b.border}`, color: b.col, borderRadius: 6, cursor: "pointer" }} />
-                  ))}
-                </div>
+                <button
+                  onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))}
+                  style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10 }}
+                >⟳ Max</button>
               </div>
             </div>
 
-            <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: 4, height: 4, overflow: "hidden", marginBottom: 8, display: "flex" }}>
-              <div style={{ height: "100%", background: hpTxt, width: `${Math.min(100, hpPct * 100)}%`, transition: "width .3s, background .3s", boxShadow: `0 0 8px ${hpTxt}88` }} />
-              {(char.tempHp || 0) > 0 && (
-                <div style={{ height: "100%", background: C.blueBright, width: `${Math.min(100 - Math.min(100, hpPct * 100), ((char.tempHp || 0) / char.maxHp) * 100)}%`, transition: "width .3s", boxShadow: `0 0 6px ${C.blueBright}88` }} />
-              )}
+            {/* HP number (editable) + bar */}
+            <div style={{ marginBottom: 8 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 6 }}>
+                <input
+                  type="number" min={0} max={char.maxHp}
+                  value={char.hp}
+                  onChange={e => setChar(p => ({ ...p, hp: Math.max(0, Math.min(p.maxHp, +e.target.value || 0)) }))}
+                  style={{ fontSize: 48, fontWeight: 800, color: hpTxt, lineHeight: 1, background: "transparent", border: "none", outline: "none", width: 90, fontFamily: FH, transition: "color .3s", padding: 0 }}
+                />
+                {(char.tempHp || 0) > 0 && (
+                  <span style={{ fontSize: 20, fontWeight: 700, color: C.blueBright }}>+{char.tempHp}</span>
+                )}
+                <span style={{ fontSize: 18, color: C.textDim }}>/ </span>
+                <input
+                  type="number" min={1} max={999}
+                  value={char.maxHp}
+                  onChange={e => {
+                    const newMax = Math.max(1, +e.target.value || 1);
+                    setChar(p => ({ ...p, maxHp: newMax, hp: Math.min(p.hp, newMax) }));
+                  }}
+                  style={{ fontSize: 18, fontWeight: 600, color: C.text, background: "transparent", border: "none", outline: "none", width: 54, padding: 0 }}
+                />
+              </div>
+              {/* Progress bar */}
+              <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: 5, height: 7, overflow: "hidden", display: "flex" }}>
+                <div style={{ height: "100%", background: hpTxt, width: `${Math.min(100, hpPct * 100)}%`, transition: "width .3s, background .3s", boxShadow: `0 0 8px ${hpTxt}66` }} />
+                {(char.tempHp || 0) > 0 && (
+                  <div style={{ height: "100%", background: C.blueBright, width: `${Math.min(100 - Math.min(100, hpPct * 100), ((char.tempHp || 0) / char.maxHp) * 100)}%`, transition: "width .3s" }} />
+                )}
+              </div>
             </div>
 
-            {/* Combat stats */}
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 1fr 1fr 1fr", gap: 8 }}>
-              <div style={{ background: `${C.gold}12`, border: `1px solid ${C.gold}44`, borderRadius: 10, padding: "8px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ ...lbl, color: C.gold }}>AC</span>
-                <span style={{ fontSize: 30, fontWeight: 700, color: C.gold }}>{char.ac}</span>
-              </div>
-              {[
-                { label: "Initiative", val: modStr(modOf(char.dex || 10)), col: C.blueBright },
-                { label: "Speed",      val: `${char.speed || 30}ft`,       col: C.text       },
-                { label: "Prof",       val: `+${pb}`,                       col: C.tealBright },
-              ].map(s => (
-                <div key={s.label} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 8, padding: "8px 6px", textAlign: "center" }}>
-                  <div style={lbl}>{s.label}</div>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: s.col, marginTop: 2 }}>{s.val}</div>
-                </div>
+            {/* HP ±Buttons */}
+            <div style={{ display: "flex", gap: 5, marginBottom: 10 }}>
+              {HP_BTNS.map(b => (
+                <HoldBtn key={b.label} label={b.label} onPress={b.fn}
+                  style={{ flex: 1, height: 36, fontSize: 13, fontWeight: 700, background: b.bg, border: `1px solid ${b.border}`, color: b.col, borderRadius: 7, cursor: "pointer" }} />
               ))}
+            </div>
+
+            {/* Temp HP row */}
+            <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 8, marginBottom: 10 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1 }}>
+                  <span style={{ fontSize: 13 }}>💙</span>
+                  <span style={{ fontSize: 9, color: C.blueBright, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5 }}>Temp HP</span>
+                  <span style={{ fontSize: 20, fontWeight: 800, color: (char.tempHp || 0) > 0 ? C.blueBright : C.textDim, fontFamily: FH, minWidth: 24, textAlign: "center" }}>
+                    {char.tempHp || 0}
+                  </span>
+                </div>
+                <div style={{ display: "flex", gap: 3 }}>
+                  {TEMP_BTNS.map(b => (
+                    <HoldBtn key={b.label} label={b.label} onPress={b.fn}
+                      style={{ width: 30, height: 28, fontSize: 11, fontWeight: 700, background: b.bg, border: `1px solid ${b.border}`, color: b.col, borderRadius: 6, cursor: "pointer" }} />
+                  ))}
+                </div>
+                <button
+                  onClick={() => { setTempHpInput(String(char.tempHp || "")); setTempHpModal(true); }}
+                  style={{ fontSize: 10, padding: "5px 9px", borderRadius: 6, border: `1px solid ${C.blueBright}44`, background: `${C.blueBright}10`, color: C.blueBright, cursor: "pointer", flexShrink: 0 }}
+                >Setzen</button>
+              </div>
+            </div>
+
+            {/* Mini-stats: AC · Speed · Initiative */}
+            <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8 }}>
+              <div style={{ background: `${C.gold}12`, border: `1px solid ${C.gold}44`, borderRadius: 10, padding: "8px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ ...lbl, color: C.gold }}>🛡 AC</span>
+                <span style={{ fontSize: 28, fontWeight: 700, color: C.gold }}>{char.ac}</span>
+              </div>
+              <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 8, padding: "8px 6px", textAlign: "center" }}>
+                <div style={lbl}>Speed</div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.text, marginTop: 2 }}>{char.speed || 30}ft</div>
+              </div>
+              <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 8, padding: "8px 6px", textAlign: "center" }}>
+                <div style={lbl}>Init</div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.blueBright, marginTop: 2 }}>{modStr(modOf(char.dex || 10))}</div>
+              </div>
             </div>
           </div>
 
@@ -590,15 +629,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
 
         return (
           <div style={sx.card}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+            <div style={{ marginBottom: 10 }}>
               <div style={ctStyle}>🎓 Proficiencies</div>
-              <div style={{
-                background: `${C.tealBright}18`, border: `1px solid ${C.tealBright}44`,
-                borderRadius: 8, padding: "3px 10px", display: "flex", alignItems: "center", gap: 5,
-              }}>
-                <span style={{ fontSize: 10, color: C.textDim }}>PB</span>
-                <span style={{ fontSize: 16, fontWeight: 800, color: C.tealBright, fontFamily: FH }}>+{profPb}</span>
-              </div>
             </div>
 
             {/* Category pills */}
