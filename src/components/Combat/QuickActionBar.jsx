@@ -1,5 +1,6 @@
 import { C, sx } from "../../constants/theme.js";
 import { useState } from "react";
+import AttackAction from "./ActionButtons/AttackAction.jsx";
 
 const QUICK_ACTIONS = [
   { id: "attack", label: "Attack", icon: "⚔️", color: C.red },
@@ -10,13 +11,21 @@ const QUICK_ACTIONS = [
 
 export default function QuickActionBar({ onActionClick }) {
   const [moreOpen, setMoreOpen] = useState(false);
+  const [attackOpen, setAttackOpen] = useState(false);
 
   const handleActionClick = (actionId) => {
+    if (actionId === "attack") {
+      setAttackOpen(true);
+      return;
+    }
     onActionClick?.(actionId);
   };
 
   return (
     <div>
+      {/* Attack modal */}
+      <AttackAction open={attackOpen} onClose={() => setAttackOpen(false)} />
+
       {/* Main 4 buttons */}
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: moreOpen ? 8 : 0 }}>
         {QUICK_ACTIONS.map((action) => (
@@ -77,7 +86,6 @@ export default function QuickActionBar({ onActionClick }) {
       {/* More actions menu */}
       {moreOpen && (
         <div style={{ background: C.surface, borderRadius: 6, padding: "8px 10px", border: `1px solid ${C.border}`, marginTop: 8, fontSize: 11 }}>
-          <div style={{ color: C.textDim, marginBottom: 6 }}>Coming in Phase 3: Help, Hide, Disengage, etc.</div>
           <button
             onClick={() => handleActionClick("help")}
             style={{ ...sx.bsm(C.green), width: "100%", marginBottom: 4 }}

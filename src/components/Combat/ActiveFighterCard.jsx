@@ -1,6 +1,7 @@
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
+import { rollDeathSave } from "../../utils/rolls.js";
 
 const HoldBtn = ({ onClick, children, style, disabled = false }) => {
   const handleMouseDown = (e) => {
@@ -42,7 +43,7 @@ const HoldBtn = ({ onClick, children, style, disabled = false }) => {
 
 export default function ActiveFighterCard() {
   const { state } = useCombat();
-  const { damageTarget, healTarget } = useCombatActions();
+  const { damageTarget, healTarget, addDeathSaveResult } = useCombatActions();
 
   if (state.activeIndex < 0 || state.activeIndex >= state.fighters.length) {
     return (
@@ -152,6 +153,74 @@ export default function ActiveFighterCard() {
           <div style={{ ...sx.tag(C.blue), fontSize: 11 }}>❄️ {fighter.tempHp} Temp HP</div>
         )}
       </div>
+
+      {/* Death Saves — shown only at 0 HP */}
+      {fighter.hp <= 0 && (
+        <div style={{ background: `${C.red}10`, border: `1px solid ${C.red}30`, borderRadius: 8, padding: "10px 12px", marginBottom: 12 }}>
+          <div style={{ fontFamily: FH, fontSize: 11, color: C.redBright, marginBottom: 8, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span>☠️ Death Saves</span>
+            <button
+              onClick={() => {
+                const roll = rollDeathSave();
+                addDeathSaveResult(fighter.id, roll.success ? "success" : "failure");
+              }}
+              style={{ ...sx.bsm(C.red), fontSize: 10, padding: "3px 8px" }}
+            >
+              🎲 Roll Save
+            </button>
+          </div>
+          <div style={{ display: "flex", gap: 10 }}>
+            {/* Successes */}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 10, color: C.greenBright, marginBottom: 4 }}>Successes</div>
+              <div style={{ display: "flex", gap: 4 }}>
+                {[0, 1, 2].map((i) => (
+                  <button
+                    key={i}
+                    onClick={() => addDeathSaveResult(fighter.id, "success")}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: 4,
+                      border: `1px solid ${C.green}`,
+                      background: i < fighter.deathSaves.suc ? C.green : "transparent",
+                      cursor: "pointer",
+                      padding: 0,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            {/* Failures */}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 10, color: C.redBright, marginBottom: 4 }}>Failures</div>
+              <div style={{ display: "flex", gap: 4 }}>
+                {[0, 1, 2].map((i) => (
+                  <button
+                    key={i}
+                    onClick={() => addDeathSaveResult(fighter.id, "failure")}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: 4,
+                      border: `1px solid ${C.red}`,
+                      background: i < fighter.deathSaves.fail ? C.red : "transparent",
+                      cursor: "pointer",
+                      padding: 0,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          {fighter.deathSaves.suc >= 3 && (
+            <div style={{ marginTop: 8, fontSize: 11, color: C.greenBright, fontWeight: 700 }}>✓ Stabilized!</div>
+          )}
+          {fighter.deathSaves.fail >= 3 && (
+            <div style={{ marginTop: 8, fontSize: 11, color: C.redBright, fontWeight: 700 }}>✗ Dead</div>
+          )}
+        </div>
+      )}
 
       {/* Speed Preset */}
       <div style={{ background: C.surface, borderRadius: 6, padding: "8px 10px", border: `1px solid ${C.border}`, fontSize: 11 }}>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useFighter } from "../../hooks/useFighter.js";
-import { Bestiary } from "../../data/monsters.js";
+import { MONSTERS as Bestiary } from "../../data/monsters.js";
 
 export default function FighterAddForm({ onClose }) {
   const { addFighter } = useFighter();
@@ -14,7 +14,7 @@ export default function FighterAddForm({ onClose }) {
     ac: "10",
     initiativeBonus: "0",
   });
-  const [bestiarySe arch, setBestiarySearch] = useState("");
+  const [bestiarySearch, setBestiarySearch] = useState("");
   const [selectedMonster, setSelectedMonster] = useState(null);
   const [monsterCount, setMonsterCount] = useState(1);
 
