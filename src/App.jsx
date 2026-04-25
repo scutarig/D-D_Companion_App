@@ -3,6 +3,7 @@ import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import { getPB, buildSlotsForLevel } from "./utils/helpers.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
+import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
 
 const Overview      = lazy(() => import("./components/CombatDashboard.jsx"));
@@ -11,6 +12,7 @@ const Notes         = lazy(() => import("./components/Notes.jsx"));
 const InventarTab   = lazy(() => import("./components/InventarTab.jsx"));
 const NpcList       = lazy(() => import("./components/NpcList.jsx"));
 const CombatTracker = lazy(() => import("./components/CombatTracker.jsx"));
+const CombatInitiativeView = lazy(() => import("./components/Combat/CombatInitiativeView.jsx"));
 const DiceRoller    = lazy(() => import("./components/DiceRoller.jsx"));
 const Bestiary      = lazy(() => import("./components/Bestiary.jsx"));
 const KlassenRef    = lazy(() => import("./components/KlassenRef.jsx"));
@@ -209,7 +211,7 @@ function AppInner() {
       {tab==="notes"     && <Notes />}
       {tab==="inventar"  && <InventarTab />}
       {tab==="npcs"      && <NpcList />}
-      {tab==="combat"    && <CombatTracker />}
+      {tab==="combat"    && <CombatInitiativeView onStartCombat={() => {}} />}
       {tab==="dice"      && <DiceRoller />}
       {tab==="bestiary"  && <Bestiary />}
       {tab==="klassen"   && <KlassenRef />}
@@ -310,7 +312,9 @@ function AppInner() {
 export default function App() {
   return (
     <CharProvider>
-      <AppInner />
+      <CombatProvider>
+        <AppInner />
+      </CombatProvider>
     </CharProvider>
   );
 }
