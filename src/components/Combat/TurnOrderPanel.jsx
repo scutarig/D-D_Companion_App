@@ -1,58 +1,101 @@
-import { C, sx, FH } from "../../constants/theme.js";
+import { C, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 
 export default function TurnOrderPanel() {
   const { state } = useCombat();
 
+  if (state.fighters.length === 0) {
+    return <div style={{ fontSize: 13, color: C.textDim, padding: "8px 0" }}>Keine Kämpfer</div>;
+  }
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ ...sx.ct, marginBottom: 4 }}>🎯 Turn Order</div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      {state.fighters.map((fighter, idx) => {
+        const isActive = idx === state.activeIndex;
+        const isPast = idx < state.activeIndex;
+        const isPlayer = fighter.isPlayer;
+        const isDead = fighter.hp <= 0;
+        const accentColor = isPlayer ? C.blue : C.red;
 
-      {state.fighters.length === 0 ? (
-        <div style={{ fontSize: 12, color: C.textDim }}>Keine Kämpfer</div>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          {state.fighters.map((fighter, idx) => {
-            const isActive = idx === state.activeIndex;
-            return (
-              <div
-                key={fighter.id}
-                style={{
-                  background: isActive ? `${C.purple}22` : C.surface,
-                  border: `1px solid ${isActive ? C.purple : C.border}`,
-                  borderRadius: 6,
-                  padding: "8px 10px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  cursor: "pointer",
-                  transition: "all .2s",
-                  boxShadow: isActive ? `0 0 8px ${C.purple}40` : "none",
-                }}
-              >
-                <span style={{ fontFamily: FH, fontSize: 11, color: isActive ? C.purpleBright : C.textDim, fontWeight: 700, minWidth: 20 }}>
-                  {idx + 1}.
-                </span>
+        return (
+          <div
+            key={fighter.id}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 10px",
+              borderRadius: 8,
+              border: `1px solid ${isActive ? C.purple + "88" : accentColor + "20"}`,
+              background: isActive
+                ? `${C.purple}18`
+                : isPast
+                ? `${C.surface}60`
+                : `${accentColor}08`,
+              transition: "all .2s",
+              boxShadow: isActive ? `0 0 10px ${C.purple}30` : "none",
+              opacity: isDead ? 0.5 : isPast ? 0.65 : 1,
+            }}
+          >
+            {/* Turn indicator */}
+            <div style={{
+              width: 20, height: 20, borderRadius: "50%",
+              background: isActive ? C.purple : isDead ? C.red + "55" : isPast ? C.surface : accentColor + "22",
+              border: `1px solid ${isActive ? C.purpleBright : isDead ? C.red + "55" : accentColor + "40"}`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+              fontSize: 10,
+            }}>
+              {isActive
+                ? <span style={{ color: "#fff", fontWeight: 700 }}>▶</span>
+                : isDead
+                ? <span>☠</span>
+                : isPast
+                ? <span style={{ color: C.textDim, fontSize: 9 }}>✓</span>
+                : <span style={{ color: accentColor, fontSize: 9, fontWeight: 700 }}>{idx + 1}</span>
+              }
+            </div>
 
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 13, color: isActive ? C.purpleBright : C.textBright, fontWeight: isActive ? 700 : 400 }}>
-                    {fighter.name}
-                  </div>
-                  <div style={{ fontSize: 10, color: C.textDim }}>Init {fighter.initiative}</div>
-                </div>
-
-                {isActive && (
-                  <span style={{ fontSize: 12, color: C.purple, fontWeight: 700 }}>▶</span>
-                )}
-
-                {!isActive && (
-                  <span style={{ fontSize: 10, color: C.textDim }}>✓</span>
-                )}
+            {/* Name + type icon */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{
+                fontSize: 13,
+                fontWeight: isActive ? 700 : 500,
+                color: isActive ? C.purpleBright : isDead ? C.textDim : C.textBright,
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              }}>
+                {isPlayer ? "👤" : "💀"} {fighter.name}
               </div>
-            );
-          })}
-        </div>
-      )}
+              {/* HP bar — mini */}
+              <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 2 }}>
+                <div style={{ flex: 1, height: 3, background: C.surface, borderRadius: 2, overflow: "hidden" }}>
+                  <div style={{
+                    height: "100%",
+                    width: `${Math.max(0, Math.min(100, (fighter.hp / fighter.maxHp) * 100))}%`,
+                    background: fighter.hp > fighter.maxHp * 0.5 ? C.green
+                      : fighter.hp > fighter.maxHp * 0.25 ? C.amber
+                      : C.red,
+                    transition: "width .3s",
+                  }} />
+                </div>
+                <span style={{ fontSize: 10, color: C.textDim, flexShrink: 0 }}>
+                  {fighter.hp}/{fighter.maxHp}
+                </span>
+              </div>
+            </div>
+
+            {/* Initiative */}
+            <div style={{
+              fontSize: 13,
+              fontWeight: 700,
+              color: isActive ? C.gold : C.textDim,
+              flexShrink: 0,
+            }}>
+              {fighter.initiative}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

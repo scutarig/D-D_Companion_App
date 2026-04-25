@@ -1,99 +1,99 @@
-import { C, sx, FH } from "../../constants/theme.js";
+import { C, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 
-const ActionCheckbox = ({ label, icon, checked, onClick }) => (
-  <div
-    onClick={onClick}
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: 4,
-      cursor: "pointer",
-      opacity: checked ? 1 : 0.5,
-      transition: "opacity .2s",
-      padding: "6px 8px",
-      borderRadius: 6,
-      border: `1px solid ${checked ? C.purple : C.border}`,
-      background: checked ? `${C.purple}12` : "transparent",
-      minWidth: 50,
-    }}
-  >
-    <span style={{ fontSize: 20 }}>{icon}</span>
-    <span style={{ fontSize: 10, color: checked ? C.purpleBright : C.textDim, fontFamily: FH, fontWeight: 700 }}>
-      {checked ? "✓" : "✗"}
-    </span>
-    <span style={{ fontSize: 9, color: C.textDim, textAlign: "center" }}>{label}</span>
-  </div>
-);
+const ACTIONS = [
+  { key: "action",          icon: "⚔️",  label: "Action",   color: C.red },
+  { key: "bonusAction",     icon: "⚡",  label: "Bonus",    color: C.amber },
+  { key: "reaction",        icon: "🛡️",  label: "Reaction", color: C.blue },
+];
 
 export default function ActionEconomyBar() {
-  const { state } = useCombat();
+  const { state, setState } = useCombat();
 
-  if (state.activeIndex < 0 || state.activeIndex >= state.fighters.length) {
-    return null;
-  }
+  if (state.activeIndex < 0 || state.activeIndex >= state.fighters.length) return null;
 
   const fighter = state.fighters[state.activeIndex];
 
-  const toggleAction = (actionType) => {
-    // In Phase 2, we just display state. Actual toggle happens in Phase 3+
-    console.log(`Toggle ${actionType} for ${fighter.name}`);
+  const toggle = (key) => {
+    setState((prev) => ({
+      ...prev,
+      fighters: prev.fighters.map((f, i) =>
+        i === prev.activeIndex
+          ? { ...f, actions: { ...f.actions, [key]: !f.actions[key] } }
+          : f
+      ),
+    }));
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-      {/* Actions Row */}
-      <div style={{ display: "flex", gap: 6, justifyContent: "space-between" }}>
-        <ActionCheckbox
-          label="Action"
-          icon="⚔️"
-          checked={fighter.actions.action}
-          onClick={() => toggleAction("action")}
-        />
-        <ActionCheckbox
-          label="Bonus"
-          icon="⚡"
-          checked={fighter.actions.bonusAction}
-          onClick={() => toggleAction("bonusAction")}
-        />
-        <ActionCheckbox
-          label="React"
-          icon="🛡️"
-          checked={fighter.actions.reaction}
-          onClick={() => toggleAction("reaction")}
-        />
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {/* Main 3 action toggles */}
+      <div style={{ display: "flex", gap: 6 }}>
+        {ACTIONS.map(({ key, icon, label, color }) => {
+          const active = fighter.actions[key];
+          return (
+            <button
+              key={key}
+              onClick={() => toggle(key)}
+              style={{
+                flex: 1,
+                padding: "10px 6px",
+                borderRadius: 8,
+                border: `1px solid ${active ? color + "66" : C.border}`,
+                background: active ? `${color}18` : `${C.surface}`,
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 4,
+                transition: "all .2s",
+                opacity: active ? 1 : 0.45,
+              }}
+            >
+              <span style={{ fontSize: 20 }}>{icon}</span>
+              <span style={{ fontSize: 10, color: active ? color : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: 0.5 }}>
+                {label}
+              </span>
+              <span style={{ fontSize: 11, color: active ? color : C.textDim, fontWeight: 700 }}>
+                {active ? "✓" : "✗"}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
-      {/* Movement & Free Interaction */}
-      <div style={{ display: "flex", gap: 6, justifyContent: "space-between", fontSize: 12 }}>
-        <div style={{ flex: 1, background: C.surface, borderRadius: 6, padding: "8px 10px", border: `1px solid ${C.border}` }}>
-          <div style={{ fontSize: 9, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>MOVEMENT</div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: C.textBright }}>
-            {fighter.actions.movement}/30 ft
-          </div>
+      {/* Movement + Free Interaction */}
+      <div style={{ display: "flex", gap: 6 }}>
+        {/* Movement — display only (speed preset) */}
+        <div style={{
+          flex: 1, background: C.surface, borderRadius: 8, padding: "8px 10px",
+          border: `1px solid ${C.border}`,
+          display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+        }}>
+          <span style={{ fontSize: 16 }}>👣</span>
+          <span style={{ fontSize: 9, color: C.textDim, fontFamily: FH, letterSpacing: 0.5 }}>BEWEGUNG</span>
+          <span style={{ fontSize: 14, fontWeight: 700, color: C.tealBright }}>
+            {fighter.actions.movement ?? 30} ft
+          </span>
         </div>
-        <div
-          onClick={() => toggleAction("freeInteraction")}
+
+        {/* Free Interaction toggle */}
+        <button
+          onClick={() => toggle("freeInteraction")}
           style={{
-            flex: 1,
-            background: fighter.actions.freeInteraction ? `${C.green}12` : `${C.red}12`,
-            borderRadius: 6,
-            padding: "8px 10px",
-            border: `1px solid ${fighter.actions.freeInteraction ? C.green : C.red}`,
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            transition: "all .2s",
+            flex: 1, borderRadius: 8, padding: "8px 10px", cursor: "pointer", transition: "all .2s",
+            border: `1px solid ${fighter.actions.freeInteraction ? C.green + "66" : C.border}`,
+            background: fighter.actions.freeInteraction ? `${C.green}18` : C.surface,
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+            opacity: fighter.actions.freeInteraction ? 1 : 0.45,
           }}
         >
-          <div style={{ fontSize: 9, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>FREE</div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: fighter.actions.freeInteraction ? C.greenBright : C.redBright }}>
+          <span style={{ fontSize: 16 }}>🤝</span>
+          <span style={{ fontSize: 9, color: C.textDim, fontFamily: FH, letterSpacing: 0.5 }}>FREE</span>
+          <span style={{ fontSize: 11, fontWeight: 700, color: fighter.actions.freeInteraction ? C.greenBright : C.textDim }}>
             {fighter.actions.freeInteraction ? "✓" : "✗"}
-          </div>
-        </div>
+          </span>
+        </button>
       </div>
     </div>
   );
