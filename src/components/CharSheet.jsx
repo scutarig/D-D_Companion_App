@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { C, sx, SC, ABS, SKILLS, FH } from "../constants/theme.js";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
-import { ALL_KLASSEN, D3_KLASSEN } from "../data/classes.js";
+// ALL_KLASSEN / D3_KLASSEN used by MulticlassManager
 import { ALL_VOELKER, DND_BACKGROUNDS } from "../data/races.js";
 import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
+import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
+import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
+import { useMulticlass } from "../hooks/useMulticlass.js";
 
 export default function CharSheet({ char, setChar }) {
   const [tab, setTab] = useState("stats");
@@ -17,15 +20,8 @@ export default function CharSheet({ char, setChar }) {
   const spellDC = 8 + pb + spellMod;
   const spellAtk = pb + spellMod;
 
-  // Klasse wechseln → HD auto-setzen
-  const handleKlasseChange = (newKlass) => {
-    const classData = D3_KLASSEN.find(c => c.name === newKlass);
-    setChar(p => ({
-      ...p,
-      klass: newKlass,
-      ...(classData ? { hd: classData.hd } : {}),
-    }));
-  };
+  // Multiclass — provides classes[] for spell slot calculation
+  const { classes } = useMulticlass(char.id, char, setChar);
 
   return (
     <div>
@@ -33,12 +29,16 @@ export default function CharSheet({ char, setChar }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 8, marginBottom: 14 }}>
           <div><label style={sx.lbl}>Name</label><input value={char.name} onChange={e => u("name", e.target.value)} style={{ ...sx.inp, fontSize: 16, fontFamily: FH, color: C.gold, fontWeight: 700 }} /></div>
           <div>
-            <label style={sx.lbl}>Klasse</label>
-            <select value={char.klass} onChange={e => handleKlasseChange(e.target.value)} style={sx.sel}>
-              {ALL_KLASSEN.map(k => <option key={k}>{k}</option>)}
-              <option value="Eigene">Eigene...</option>
-            </select>
-            {char.klass === "Eigene" && <input value={char.klassCustom || ""} onChange={e => u("klassCustom", e.target.value)} style={{ ...sx.inp, marginTop: 4 }} placeholder="Eigene Klasse..." />}
+            <label style={sx.lbl}>Primärklasse</label>
+            <div style={{ ...sx.inp, display: "flex", alignItems: "center", fontSize: 13, fontWeight: 700, color: C.gold, fontFamily: FH, cursor: "default", userSelect: "none", gap: 6 }}>
+              {char.klass}
+              {classes.length > 1 && (
+                <span style={{ fontSize: 9, color: C.purpleBright, fontWeight: 400, fontFamily: "inherit" }}>
+                  +{classes.length - 1} Kl.
+                </span>
+              )}
+            </div>
+            <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>via Klassen-Manager</div>
           </div>
           <RaceSelector char={char} setChar={setChar} />
           <div>
@@ -50,11 +50,11 @@ export default function CharSheet({ char, setChar }) {
             {char.background === "Eigener" && <input value={char.backgroundCustom || ""} onChange={e => u("backgroundCustom", e.target.value)} style={{ ...sx.inp, marginTop: 4 }} placeholder="Eigener Hintergrund..." />}
           </div>
           <div>
-            <label style={sx.lbl}>Level</label>
+            <label style={sx.lbl}>Level (gesamt)</label>
             <div style={{ ...sx.inp, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 700, color: C.gold, fontFamily: FH, cursor: "default", userSelect: "none" }}>
               {char.level}
             </div>
-            <div style={{ fontSize: 9, color: C.textDim, textAlign: "center", marginTop: 2 }}>via Level-Up</div>
+            <div style={{ fontSize: 9, color: C.textDim, textAlign: "center", marginTop: 2 }}>PB +{pb}</div>
           </div>
         </div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "stretch" }}>
@@ -84,6 +84,14 @@ export default function CharSheet({ char, setChar }) {
 
       {tab === "stats" && (
         <div>
+          {/* Multiclass Manager */}
+          <MulticlassManager char={char} setChar={setChar} />
+
+          {/* Multiclass Spell Slots (only shown for casters) */}
+          <MulticlassSpellSlots classes={classes} charId={char.id} />
+
+          <div style={{ height: 12 }} />
+
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
             {ABS.map(ab => { const val = char[ab.toLowerCase()] || 10; return (
               <div key={ab} style={sx.statBox(SC[ab])}>
