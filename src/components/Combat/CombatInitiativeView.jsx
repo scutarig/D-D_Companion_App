@@ -60,6 +60,11 @@ export default function CombatInitiativeView({ onStartCombat }) {
         ac: char.ac,
         initiativeBonus: Math.floor(((char.dex || 10) - 10) / 2),
         speed: char.speed || 30,
+        klass: char.klass,
+        level: char.level,
+        spellAbility: char.spellAbility || null,
+        spellDC: char.spellDC || null,
+        spellAtk: char.spellAtk || null,
       });
     });
     setSelectedChars([]);

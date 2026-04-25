@@ -2,6 +2,7 @@ import { C, sx } from "../../constants/theme.js";
 import { useState } from "react";
 import AttackAction from "./ActionButtons/AttackAction.jsx";
 import SaveRollModal from "./Rolls/SaveRollModal.jsx";
+import SpellcastingPanel from "./Spells/SpellcastingPanel.jsx";
 
 const QUICK_ACTIONS = [
   { id: "attack",  label: "Attack",  icon: "⚔️",  color: C.red },
@@ -23,10 +24,12 @@ export default function QuickActionBar({ onActionClick }) {
   const [moreOpen, setMoreOpen] = useState(false);
   const [attackOpen, setAttackOpen] = useState(false);
   const [saveOpen, setSaveOpen] = useState(false);
+  const [spellsOpen, setSpellsOpen] = useState(false);
 
   const handleActionClick = (actionId) => {
     if (actionId === "attack") { setAttackOpen(true); return; }
     if (actionId === "save")   { setSaveOpen(true);   return; }
+    if (actionId === "spell")  { setSpellsOpen(true); return; }
     onActionClick?.(actionId);
   };
 
@@ -35,6 +38,7 @@ export default function QuickActionBar({ onActionClick }) {
       {/* Modals */}
       <AttackAction open={attackOpen} onClose={() => setAttackOpen(false)} />
       {saveOpen && <SaveRollModal onClose={() => setSaveOpen(false)} />}
+      {spellsOpen && <SpellcastingPanel onClose={() => setSpellsOpen(false)} />}
 
       {/* Main 4 buttons */}
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 6 }}>

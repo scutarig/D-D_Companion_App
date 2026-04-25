@@ -13,12 +13,22 @@ export const createFighter = ({
   initiativeBonus = 0,
   conditions = [],
   speed = 30,
+  // Spellcasting
+  klass = null,
+  level = 1,
+  spellSlots = [],       // [{lv, total, used, pact}]
+  concentration = null,  // spellId | null
+  spellAbility = "INT",
+  spellDC = 8,
+  spellAtk = 0,
 } = {}) => ({
   id,
   name,
   isPlayer,
   charRef,
   monsterRef,
+  klass,
+  level,
 
   // Combat Stats
   initiative,
@@ -31,6 +41,13 @@ export const createFighter = ({
   // Status
   conditions,
   deathSaves: { suc: 0, fail: 0 },
+
+  // Spellcasting
+  spellSlots,
+  concentration,
+  spellAbility,
+  spellDC,
+  spellAtk,
 
   // Action Economy (reset per turn)
   actions: {

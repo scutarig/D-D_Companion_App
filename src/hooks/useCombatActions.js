@@ -17,6 +17,8 @@ import {
 } from "../utils/combat.js";
 import { addLog } from "../utils/log.js";
 import { decrementConditions, getConditionId } from "../utils/conditions.js";
+import { useSpellSlot, restoreAllSlots, shortRestSlots, setConcentration, isConcentration } from "../utils/spells.js";
+import { getSpellById } from "../utils/spells.js";
 
 export function useCombatActions() {
   const { state, setState } = useCombat();
@@ -232,6 +234,78 @@ export function useCombatActions() {
     setState((prev) => deletePresetUtil(prev, presetId));
   };
 
+  // Cast a spell: use slot, apply concentration, log
+  const castSpell = (fighterId, spellId, slotLevel) => {
+    setState((prev) => {
+      const fighter = prev.fighters.find((f) => f.id === fighterId);
+      if (!fighter) return prev;
+
+      const spell = getSpellById(spellId);
+      const spellName = spell?.name ?? `Spell #${spellId}`;
+
+      // Use spell slot (cantrips = level 0, no slot used)
+      let updatedFighter = slotLevel > 0 ? useSpellSlot(fighter, slotLevel) : fighter;
+
+      // Handle concentration
+      const needsConc = spell ? isConcentration(spell) : false;
+      if (needsConc) {
+        updatedFighter = setConcentration(updatedFighter, spellId, spellName);
+      }
+
+      const updated = {
+        ...prev,
+        fighters: prev.fighters.map((f) => f.id === fighterId ? updatedFighter : f),
+      };
+
+      const slotText = slotLevel > 0 ? ` (Level ${slotLevel} slot)` : " (Cantrip)";
+      const concText = needsConc ? " 🧠 Concentration" : "";
+      return addLog(updated, "action", `${fighter.name} casts ${spellName}${slotText}${concText}`, fighterId);
+    });
+  };
+
+  // Short rest: recover pact magic slots, roll hit dice (simplified: +half maxHp)
+  const shortRest = (fighterId) => {
+    setState((prev) => {
+      const fighter = prev.fighters.find((f) => f.id === fighterId);
+      if (!fighter) return prev;
+      const updated = shortRestSlots(fighter);
+      const newState = {
+        ...prev,
+        fighters: prev.fighters.map((f) => f.id === fighterId ? updated : f),
+      };
+      return addLog(newState, "generic", `${fighter.name} takes a Short Rest`, fighterId);
+    });
+  };
+
+  // Long rest: restore all slots + full HP
+  const longRest = (fighterId) => {
+    setState((prev) => {
+      const fighter = prev.fighters.find((f) => f.id === fighterId);
+      if (!fighter) return prev;
+      let updated = restoreAllSlots(fighter);
+      updated = { ...updated, hp: updated.maxHp, deathSaves: { suc: 0, fail: 0 } };
+      const newState = {
+        ...prev,
+        fighters: prev.fighters.map((f) => f.id === fighterId ? updated : f),
+      };
+      return addLog(newState, "heal", `${fighter.name} takes a Long Rest (Full HP + All Slots restored)`, fighterId);
+    });
+  };
+
+  // Drop concentration manually
+  const dropConcentration = (fighterId) => {
+    setState((prev) => {
+      const fighter = prev.fighters.find((f) => f.id === fighterId);
+      if (!fighter) return prev;
+      const updated = setConcentration(fighter, null, null);
+      const newState = {
+        ...prev,
+        fighters: prev.fighters.map((f) => f.id === fighterId ? updated : f),
+      };
+      return addLog(newState, "condition", `${fighter.name} drops concentration`, fighterId);
+    });
+  };
+
   // Reset combat (clear everything)
   const resetCombat = () => {
     setState({
@@ -268,5 +342,9 @@ export function useCombatActions() {
     loadPreset,
     deletePreset,
     resetCombat,
+    castSpell,
+    shortRest,
+    longRest,
+    dropConcentration,
   };
 }
