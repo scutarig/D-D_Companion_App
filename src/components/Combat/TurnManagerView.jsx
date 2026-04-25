@@ -1,90 +1,141 @@
+import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
-import { useIsMobile } from "../../hooks/useIsMobile.js";
+import { useCombatArchive } from "../../hooks/useCombatArchive.js";
+import { useLayout } from "../../hooks/useLayout.js";
 import TurnManagerDesktop from "./TurnManagerDesktop.jsx";
 import TurnManagerMobile from "./TurnManagerMobile.jsx";
+import TurnManagerLandscape from "./TurnManagerLandscape.jsx";
 
-function VictoryOverlay({ onEndCombat }) {
+// ─── Shared stats block ───────────────────────────────────────────────────────
+function CombatStats({ state }) {
+  const players = state.fighters.filter((f) => f.isPlayer);
+  const enemies  = state.fighters.filter((f) => !f.isPlayer);
   return (
-    <div style={{
-      position: "absolute",
-      inset: 0,
-      zIndex: 500,
-      background: "rgba(0,0,0,0.85)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}>
-      <div style={{
-        background: "#1e1b22",
-        border: `2px solid ${C.gold}`,
-        borderRadius: 20,
-        padding: "36px 32px",
-        textAlign: "center",
-        maxWidth: 320,
-        boxShadow: `0 0 60px ${C.gold}40`,
-      }}>
-        <div style={{ fontSize: 56, marginBottom: 12 }}>🎉</div>
-        <div style={{ fontFamily: FH, fontSize: 22, color: C.gold, fontWeight: 700, marginBottom: 8, letterSpacing: 2 }}>
+    <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 20 }}>
+      {[
+        { label: "Runden",      value: state.round,                             color: C.purple  },
+        { label: "Spieler am Leben", value: `${players.filter(f => f.hp > 0).length}/${players.length}`, color: C.blue },
+        { label: "Gegner besiegt",   value: `${enemies.filter(f => f.hp <= 0).length}/${enemies.length}`, color: C.red },
+      ].map(({ label, value, color }) => (
+        <div key={label} style={{
+          textAlign: "center", background: `${color}12`,
+          border: `1px solid ${color}30`, borderRadius: 10, padding: "8px 16px", minWidth: 80,
+        }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color, fontFamily: FH }}>{value}</div>
+          <div style={{ fontSize: 10, color: C.textDim, marginTop: 2 }}>{label}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── Victory overlay ──────────────────────────────────────────────────────────
+function VictoryOverlay({ onEndCombat }) {
+  const { state } = useCombat();
+  const { saveToArchive } = useCombatArchive();
+  const [saved, setSaved] = useState(false);
+
+  const handleSaveAndEnd = () => {
+    saveToArchive(state, "victory");
+    setSaved(true);
+    setTimeout(() => onEndCombat(), 800);
+  };
+
+  return (
+    <div style={overlayBg}>
+      <div style={{ ...overlayCard, border: `2px solid ${C.gold}`, boxShadow: `0 0 60px ${C.gold}40` }}>
+        <div style={{ fontSize: 56, marginBottom: 8 }}>🎉</div>
+        <div style={{ fontFamily: FH, fontSize: 24, color: C.gold, fontWeight: 700, marginBottom: 6, letterSpacing: 2 }}>
           VICTORY!
         </div>
-        <div style={{ fontSize: 13, color: C.textDim, marginBottom: 24 }}>
-          All enemies have been defeated.
+        <div style={{ fontSize: 12, color: C.textDim, marginBottom: 18 }}>
+          Alle Feinde wurden besiegt!
         </div>
-        <button
-          onClick={onEndCombat}
-          style={{ ...sx.btn(C.gold), padding: "12px 28px", fontSize: 13, color: C.bg, fontWeight: 700 }}
-        >
-          ✓ End Combat
-        </button>
+
+        <CombatStats state={state} />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {!saved ? (
+            <button
+              onClick={handleSaveAndEnd}
+              style={{ ...sx.btn(C.gold), padding: "12px 28px", fontSize: 13, color: C.bg, fontWeight: 700 }}
+            >
+              💾 Speichern & Beenden
+            </button>
+          ) : (
+            <div style={{ padding: "12px", textAlign: "center", color: C.greenBright, fontSize: 13, fontWeight: 700 }}>
+              ✓ Gespeichert! Wird beendet...
+            </div>
+          )}
+          <button
+            onClick={onEndCombat}
+            style={{ ...sx.bsm(C.border), padding: "10px 20px", fontSize: 12, color: C.textDim }}
+          >
+            Ohne Speichern beenden
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
+// ─── Defeat overlay ───────────────────────────────────────────────────────────
 function DefeatOverlay({ onEndCombat }) {
+  const { state } = useCombat();
+  const { saveToArchive } = useCombatArchive();
+  const [saved, setSaved] = useState(false);
+
+  const handleSaveAndEnd = () => {
+    saveToArchive(state, "defeat");
+    setSaved(true);
+    setTimeout(() => onEndCombat(), 800);
+  };
+
   return (
-    <div style={{
-      position: "absolute",
-      inset: 0,
-      zIndex: 500,
-      background: "rgba(0,0,0,0.85)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}>
-      <div style={{
-        background: "#1e1b22",
-        border: `2px solid ${C.red}`,
-        borderRadius: 20,
-        padding: "36px 32px",
-        textAlign: "center",
-        maxWidth: 320,
-        boxShadow: `0 0 60px ${C.red}40`,
-      }}>
-        <div style={{ fontSize: 56, marginBottom: 12 }}>☠️</div>
-        <div style={{ fontFamily: FH, fontSize: 22, color: C.redBright, fontWeight: 700, marginBottom: 8, letterSpacing: 2 }}>
+    <div style={overlayBg}>
+      <div style={{ ...overlayCard, border: `2px solid ${C.red}`, boxShadow: `0 0 60px ${C.red}40` }}>
+        <div style={{ fontSize: 56, marginBottom: 8 }}>☠️</div>
+        <div style={{ fontFamily: FH, fontSize: 24, color: C.redBright, fontWeight: 700, marginBottom: 6, letterSpacing: 2 }}>
           DEFEAT
         </div>
-        <div style={{ fontSize: 13, color: C.textDim, marginBottom: 24 }}>
-          All player characters have fallen.
+        <div style={{ fontSize: 12, color: C.textDim, marginBottom: 18 }}>
+          Alle Spieler-Charaktere sind gefallen.
         </div>
-        <button
-          onClick={onEndCombat}
-          style={{ ...sx.btn(C.red), padding: "12px 28px", fontSize: 13, fontWeight: 700 }}
-        >
-          End Combat
-        </button>
+
+        <CombatStats state={state} />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {!saved ? (
+            <button
+              onClick={handleSaveAndEnd}
+              style={{ ...sx.btn(C.red), padding: "12px 28px", fontSize: 13, fontWeight: 700 }}
+            >
+              💾 Speichern & Beenden
+            </button>
+          ) : (
+            <div style={{ padding: "12px", textAlign: "center", color: C.greenBright, fontSize: 13, fontWeight: 700 }}>
+              ✓ Gespeichert! Wird beendet...
+            </div>
+          )}
+          <button
+            onClick={onEndCombat}
+            style={{ ...sx.bsm(C.border), padding: "10px 20px", fontSize: 12, color: C.textDim }}
+          >
+            Ohne Speichern beenden
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
+// ─── Main view ────────────────────────────────────────────────────────────────
 export default function TurnManagerView() {
   const { state } = useCombat();
   const { checkVictoryCondition, checkDefeatCondition, endCombat } = useCombatActions();
-  const isMobile = useIsMobile(768);
+  const layout = useLayout();
 
   if (!state.isActive) {
     return (
@@ -99,13 +150,27 @@ export default function TurnManagerView() {
   }
 
   const isVictory = checkVictoryCondition();
-  const isDefeat = checkDefeatCondition();
+  const isDefeat  = checkDefeatCondition();
 
   return (
     <div style={{ position: "relative", height: "100%", overflow: "hidden" }}>
       {isVictory && <VictoryOverlay onEndCombat={endCombat} />}
       {!isVictory && isDefeat && <DefeatOverlay onEndCombat={endCombat} />}
-      {isMobile ? <TurnManagerMobile /> : <TurnManagerDesktop />}
+      {layout === "portrait"  && <TurnManagerMobile />}
+      {layout === "landscape" && <TurnManagerLandscape />}
+      {layout === "desktop"   && <TurnManagerDesktop />}
     </div>
   );
 }
+
+// ─── Shared styles ────────────────────────────────────────────────────────────
+const overlayBg = {
+  position: "absolute", inset: 0, zIndex: 500,
+  background: "rgba(0,0,0,0.88)",
+  display: "flex", alignItems: "center", justifyContent: "center",
+};
+const overlayCard = {
+  background: "#1e1b22",
+  borderRadius: 20, padding: "36px 32px",
+  textAlign: "center", maxWidth: 360, width: "90%",
+};
