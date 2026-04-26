@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
-import { useMobile } from "../hooks/useMobile.js";
+import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 
 export default function Notes() {
   const CATS = [

@@ -52,8 +52,8 @@ export const getProfBonus = (level = 1) =>
 // Calc ability modifier from score
 export const abilityMod = (score = 10) => Math.floor((score - 10) / 2);
 
-// Format modifier: "+2" or "-1"
-export const fmtMod = (mod) => (mod >= 0 ? `+${mod}` : `${mod}`);
+// Format modifier: "+2" or "-1" — re-exported from derivedStats for convenience
+export { fmtMod } from "../utils/derivedStats.js";
 
 /**
  * Calc total skill modifier for a fighter

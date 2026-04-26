@@ -1,7 +1,6 @@
 // Dice & Combat Roll Functions
-
-// Base dice roll: W20, W12, W8, etc.
-export const rollD = (n) => Math.floor(Math.random() * n) + 1;
+import { rollD } from "./helpers.js";
+export { rollD }; // re-export so existing imports from rolls.js keep working
 
 // Roll W20 (returns 1-20)
 export const rollD20 = () => rollD(20);

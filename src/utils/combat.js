@@ -192,7 +192,7 @@ export const resetActionEconomy = (fighter) => ({
     action: true,
     bonusAction: true,
     reaction: true,
-    movement: fighter.actions.movement === 0 ? 30 : 30, // reset movement to default speed
+    movement: fighter.speed || 30, // reset to character's own speed
     freeInteraction: true,
   },
 });

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
-import { useMobile } from "../hooks/useMobile.js";
+import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 import { SRD_NPCS } from "../data/npcs.js";
 
 const ATT_COL  = { freundlich: C.greenBright, neutral: C.textDim, feindlich: C.redBright, unbekannt: C.amber };

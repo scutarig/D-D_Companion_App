@@ -61,7 +61,7 @@ export default function TurnManagerLandscape() {
 
         {/* Quick Actions */}
         <div style={{ ...sx.card, padding: "6px 10px", flex: 1, minHeight: 0, overflowY: "auto" }}>
-          <QuickActionBar onActionClick={(id) => console.log("Action:", id)} />
+          <QuickActionBar onActionClick={() => {}} />
         </div>
 
         {/* End Turn */}

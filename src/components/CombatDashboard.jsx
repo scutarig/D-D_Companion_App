@@ -257,7 +257,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
           {/* Init */}
           <div style={{ textAlign: "center", flex: "0 0 auto" }}>
             <div style={{ fontSize: 9, color: C.blueBright, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase" }}>⚡ Init</div>
-            <div style={{ fontSize: 22, fontWeight: 700, color: C.blueBright, fontFamily: FH, lineHeight: 1.1 }}>{modStr(modOf(char.dex || 10))}</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: C.blueBright, fontFamily: FH, lineHeight: 1.1 }}>{modStr(modOf(char.dex || 10) + (char.initiative || 0))}</div>
           </div>
 
           {/* Speed */}

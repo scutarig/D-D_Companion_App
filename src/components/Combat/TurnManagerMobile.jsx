@@ -82,7 +82,7 @@ export default function TurnManagerMobile() {
         {/* Quick Actions */}
         <div style={sx.card}>
           <div style={{ ...sx.ct, marginBottom: 10 }}>🎯 Quick Actions</div>
-          <QuickActionBar onActionClick={(actionId) => console.log("Action:", actionId)} />
+          <QuickActionBar onActionClick={() => {}} />
         </div>
       </div>
 
