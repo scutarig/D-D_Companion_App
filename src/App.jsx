@@ -297,10 +297,8 @@ function AppInner() {
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
         <OfflineBanner />
         <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} />
-        <main style={{ flex:1, overflowY:"auto", padding:"14px 14px", boxSizing:"border-box" }}>
-          <div style={{ maxWidth:960, margin:"0 auto" }}>
-            {content}
-          </div>
+        <main style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
+          {content}
         </main>
       </div>
     </div>
