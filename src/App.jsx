@@ -169,10 +169,13 @@ const MOBILE_NAV = [
 function AppInner() {
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
   const { active, aid }       = useChar();
-  const [refOpen, setRefOpen] = useState(false);
-  const [refPos,  setRefPos]  = useState({ top: 0 });
-  const refBtnRef             = useRef(null);
-  const isMobile              = useIsMobile(768);
+  const [refOpen,  setRefOpen]  = useState(false);
+  const [refPos,   setRefPos]   = useState({ top: 0 });
+  const [charOpen, setCharOpen] = useState(false);
+  const [charPos,  setCharPos]  = useState({ top: 0 });
+  const refBtnRef               = useRef(null);
+  const charBtnRef              = useRef(null);
+  const isMobile                = useIsMobile(768);
   const [mobileMenu, setMobileMenu] = useState(null); // null | "char-group" | "more"
 
   // Lifted state — shared with CombatDashboard (per Charakter)
@@ -193,20 +196,21 @@ function AppInner() {
   const [restHpInput, setRestHpInput] = useState("");
 
   const toggleRef = () => {
-    if (refBtnRef.current) {
-      const r = refBtnRef.current.getBoundingClientRect();
-      setRefPos({ top: r.top });
-    }
-    setRefOpen(p => !p);
+    if (refBtnRef.current) { const r = refBtnRef.current.getBoundingClientRect(); setRefPos({ top: r.top }); }
+    setRefOpen(p => !p); setCharOpen(false);
+  };
+  const toggleChar = () => {
+    if (charBtnRef.current) { const r = charBtnRef.current.getBoundingClientRect(); setCharPos({ top: r.top }); }
+    setCharOpen(p => !p); setRefOpen(false);
   };
 
-  // Close ref dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
-    if (!refOpen) return;
-    const handler = () => setRefOpen(false);
+    if (!refOpen && !charOpen) return;
+    const handler = () => { setRefOpen(false); setCharOpen(false); };
     window.addEventListener("click", handler);
     return () => window.removeEventListener("click", handler);
-  }, [refOpen]);
+  }, [refOpen, charOpen]);
 
   const exportJSON = () => {
     if (!active) return;
@@ -260,25 +264,43 @@ function AppInner() {
 
         {/* Nav */}
         <nav style={{ flex:1, padding:"8px 4px", display:"flex", flexDirection:"column", gap:2, overflowY:"auto" }}>
-          {MAIN_TABS.filter(t => t.id !== "char").map(t => (
+          {MAIN_TABS.filter(t => !["char","companions","proficiencies"].includes(t.id)).map(t => (
             <button key={t.id} title={t.label} onClick={() => setTab(t.id)} style={snb(tab===t.id)}>
               {t.icon}
             </button>
           ))}
-          <div style={{ marginTop:4 }}>
+          <div style={{ marginTop:4, display:"flex", flexDirection:"column", gap:2 }}>
+            {/* Charakter-Gruppe Dropdown */}
+            <button ref={charBtnRef} title="Charakter" onClick={e => { e.stopPropagation(); toggleChar(); }}
+              style={snb(["char","companions","proficiencies"].includes(tab) || charOpen)}>
+              📜
+            </button>
+            {/* Referenz Dropdown */}
             <button ref={refBtnRef} title="Referenz" onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef)}>
               📚
             </button>
           </div>
         </nav>
 
-        {/* Bottom: Charakter + export */}
+        {/* Bottom: export */}
         <div style={{ padding:"10px 4px 20px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
-          <button title="Charakter" onClick={() => setTab("char")} style={{ ...snb(tab==="char"), fontSize:17 }}>📜</button>
           <button title="JSON exportieren" onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>⬇️</button>
           <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>📄</button>
         </div>
       </aside>
+
+      {/* Charakter dropdown popover */}
+      {charOpen && (
+        <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:charPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.gold}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
+          {[{ id:"char", label:"Charakter", icon:"📜" }, { id:"companions", label:"Begleiter", icon:"🐾" }, { id:"proficiencies", label:"Übungsbonus", icon:"🎓" }].map(t => (
+            <button key={t.id} onClick={() => { setTab(t.id); setCharOpen(false); }}
+              style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===t.id?`${C.gold}22`:"transparent", border:"none", borderRadius:7, color:tab===t.id?C.gold:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
+              <span style={{ fontSize:15 }}>{t.icon}</span>
+              {t.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Referenz dropdown popover */}
       {refOpen && (
