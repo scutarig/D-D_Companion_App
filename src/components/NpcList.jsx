@@ -4,6 +4,23 @@ import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 import { SRD_NPCS } from "../data/npcs.js";
 
+// helper: faction color dot
+function FactionBadge({ factionId, factions, style = {} }) {
+  if (!factionId) return null;
+  const f = factions.find(x => x.id === factionId);
+  if (!f) return null;
+  return (
+    <span title={f.name} style={{
+      display: "inline-flex", alignItems: "center", gap: 4,
+      background: `${f.color}22`, border: `1px solid ${f.color}66`,
+      borderRadius: 5, padding: "1px 7px", fontSize: 10, color: f.color,
+      fontWeight: 700, whiteSpace: "nowrap", ...style,
+    }}>
+      ⚔️ {f.name}
+    </span>
+  );
+}
+
 const ATT_COL  = { freundlich: C.greenBright, neutral: C.textDim, feindlich: C.redBright, unbekannt: C.amber };
 const ATT_ICON = { freundlich: "💚", neutral: "⚪", feindlich: "❤️", unbekannt: "❓" };
 const STATUS_COL = { lebendig: C.greenBright, tot: C.redBright, unbekannt: C.textDim, gefangen: C.amber };
@@ -15,6 +32,7 @@ const SOURCE_LABEL = {
 const sourceOf = id => SOURCE_LABEL[Math.floor(id / 100)] || "—";
 
 export default function NpcList() {
+  const [factions] = usePersist("factions_v1", []);
   const [npcs, setNpcs] = usePersist("npc_list_v1", [
     { id: 1, name: "Tavil, der Wirt", role: "Wirt", location: "Zum Goldenen Pfeil", race: "Mensch", alignment: "Neutral Gut", status: "lebendig", attitude: "freundlich", desc: "Ein grossgewachsener, kahlkoepfiger Mann mit weissem Bart. Fuehrt die Taverne seit 30 Jahren.", notes: "Kennt viele Geruechte. Tochter ist verschwunden.", custom: false },
     { id: 2, name: "Lady Mira Ashveil", role: "Stadtvogt", location: "Hafenstadt Silverton", race: "Mensch", alignment: "Rechtschaffen Neutral", status: "lebendig", attitude: "neutral", desc: "Strenge Buergerin, mittleres Alter, immer in formellen Gewaendern. Misstrauisch gegenueber Abenteurern.", notes: "Hat Verbindungen zur Gilde. Verdaechtig.", custom: false },
@@ -27,7 +45,7 @@ export default function NpcList() {
   const [catAtt, setCatAtt]       = useState("Alle");
   const [sel, setSel]             = useState(null);
   const [showForm, setShowForm]   = useState(false);
-  const blank = { name: "", role: "", location: "", race: "", alignment: "", status: "lebendig", attitude: "neutral", desc: "", notes: "" };
+  const blank = { name: "", role: "", location: "", race: "", alignment: "", status: "lebendig", attitude: "neutral", desc: "", notes: "", factionId: "" };
   const [form, setForm] = useState(blank);
 
   const filtered = npcs.filter(n =>
@@ -103,7 +121,10 @@ export default function NpcList() {
                       <div style={{ fontFamily: FH, fontSize: 12, color: active ? col : C.textBright, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{npc.name}</div>
                       <div style={{ fontSize: 10, color: C.textDim, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{npc.role}{npc.location && ` · ${npc.location}`}</div>
                     </div>
-                    <span style={{ fontSize: 9, color: STATUS_COL[npc.status] || C.textDim, fontWeight: 700, whiteSpace: "nowrap" }}>{npc.status}</span>
+                    <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:2, flexShrink:0 }}>
+                      <span style={{ fontSize: 9, color: STATUS_COL[npc.status] || C.textDim, fontWeight: 700, whiteSpace: "nowrap" }}>{npc.status}</span>
+                      <FactionBadge factionId={npc.factionId} factions={factions} style={{ fontSize: 8, padding: "0px 5px" }} />
+                    </div>
                   </div>
                 </div>
               );
@@ -168,6 +189,14 @@ export default function NpcList() {
                 {["freundlich", "neutral", "feindlich", "unbekannt"].map(a => <option key={a}>{a}</option>)}
               </select>
             </div>
+            {factions.length > 0 && (
+              <div><label style={sx.lbl}>Fraktion</label>
+                <select value={form.factionId || ""} onChange={e => setForm(p => ({ ...p, factionId: e.target.value }))} style={sx.sel}>
+                  <option value="">— keine —</option>
+                  {factions.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+                </select>
+              </div>
+            )}
           </div>
           <div style={{ marginTop: 8 }}><label style={sx.lbl}>Beschreibung / Aussehen</label><textarea value={form.desc} onChange={e => setForm(p => ({ ...p, desc: e.target.value }))} style={{ ...sx.ta, height: 80 }} placeholder="Aussehen, Persönlichkeit..." /></div>
           <div style={{ marginTop: 6 }}><label style={sx.lbl}>DM-Notizen / Plot-Verbindungen</label><textarea value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} style={{ ...sx.ta, height: 60 }} placeholder="Geheimnis, Verbindungen, Quest-Relevanz..." /></div>
@@ -208,6 +237,7 @@ export default function NpcList() {
             {sel.alignment && <span style={sx.tag(C.blue)}>⚖️ {sel.alignment}</span>}
             <span style={sx.tag(STATUS_COL[sel.status] || C.textDim)}>● {sel.status}</span>
             <span style={sx.tag(ATT_COL[sel.attitude] || C.textDim)}>{ATT_ICON[sel.attitude]} {sel.attitude}</span>
+            <FactionBadge factionId={sel.factionId} factions={factions} />
           </div>
           {sel.desc && <div style={{ fontSize: 14, color: C.text, lineHeight: 1.75, marginBottom: sel.notes ? 12 : 0 }}>{sel.desc}</div>}
           {sel.notes && <div style={{ background: `${C.purple}0a`, borderTop: `1px solid ${C.purple}25`, borderRight: `1px solid ${C.purple}25`, borderBottom: `1px solid ${C.purple}25`, borderLeft: `3px solid ${C.purple}`, borderRadius: 8, padding: "10px 12px", fontSize: 13, color: C.textDim, lineHeight: 1.6 }}>
