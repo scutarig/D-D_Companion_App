@@ -1,5 +1,6 @@
 import { C, sx, FH } from "../constants/theme.js";
 import { CONDITIONS, getCondition } from "../utils/conditions.js";
+import ExhaustionTracker from "./ExhaustionTracker.jsx";
 
 // ── Mechanische Effekte als lesbarer Text ────────────────────────────────────
 function effectSummary(cond) {
@@ -46,8 +47,14 @@ export default function ConditionsTracker({ char, setChar }) {
     if (cond.effects.attackerDisadvantage) disHints.push(`${cond.icon} ${cond.name}`);
   }
 
+  // Exhaustion aus regulären Conditions ausfiltern (eigener Tracker)
+  const PICKER_CONDITIONS = CONDITIONS.filter(c => c.id !== "exhaustion");
+
   return (
     <div>
+      {/* ── Exhaustion Tracker ── */}
+      <ExhaustionTracker char={char} setChar={setChar} />
+
       {/* ── Roll-Modifier Hinweis ── */}
       {(advHints.length > 0 || disHints.length > 0) && (
         <div style={{ ...sx.card, background: `${C.amber}0e`, border: `1px solid ${C.amberBright}44`, marginBottom: 6 }}>
@@ -112,7 +119,7 @@ export default function ConditionsTracker({ char, setChar }) {
       <div style={sx.card}>
         <div style={sx.ct}>📋 Condition wählen</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(175px,1fr))", gap: 8 }}>
-          {CONDITIONS.map(cond => {
+          {PICKER_CONDITIONS.map(cond => {
             const isActive = activeIds.includes(cond.id);
             const col = condColor(cond);
             const effects = effectSummary(cond);

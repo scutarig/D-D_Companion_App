@@ -4,6 +4,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useChar } from "../context/CharContext.jsx";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
+import { getExhaustionLevel } from "../data/exhaustion.js";
 import { SPELLS } from "../data/spells.js";
 import { CONDITIONS } from "../data/conditions.js";
 import { useCompanions } from "../hooks/useCompanions.js";
@@ -153,7 +154,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
   const hpAcc   = hpAccent(char.hp, char.maxHp);
   const hpTxt   = hpText(char.hp, char.maxHp);
   const hpPct   = char.hp / char.maxHp;
-  const isDying = char.hp === 0;
+  const isDying    = char.hp === 0;
+  const exhaustLv  = char.exhaustion || 0;
+  const exhaustInfo = exhaustLv > 0 ? getExhaustionLevel(exhaustLv) : null;
   const modHp     = d => setChar(p => ({ ...p, hp: Math.max(0, Math.min(p.maxHp, p.hp + d)) }));
   const modTempHp = d => setChar(p => ({ ...p, tempHp: Math.max(0, (p.tempHp || 0) + d) }));
 
@@ -279,6 +282,11 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
 
           {isDying && (
             <span style={{ fontSize: 10, color: C.redBright, background: `${C.red}33`, border: `1px solid ${C.redBright}55`, borderRadius: 5, padding: "2px 7px", fontWeight: 700, flex: "0 0 auto" }}>☠ Kampfunfähig</span>
+          )}
+          {exhaustInfo && (
+            <span style={{ fontSize: 10, color: exhaustInfo.color, background: `${exhaustInfo.color}22`, border: `1px solid ${exhaustInfo.color}55`, borderRadius: 5, padding: "2px 7px", fontWeight: 700, flex: "0 0 auto" }}>
+              {exhaustInfo.icon} Erschöpfung {exhaustLv}/6
+            </span>
           )}
           <button onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
         </div>

@@ -55,6 +55,8 @@ export const newChar = id => ({
   attunedItems:[],
   // Tracks which item UIDs had attunement toggled since last rest
   attunementChangedSinceRest:[],
+  // Exhaustion level 0-6 (PHB)
+  exhaustion: 0,
 });
 
 /**
@@ -82,5 +84,7 @@ export function applyLongRest(char) {
     deathSaves: { suc: 0, fail: 0 },
     hd_used:    Math.max(0, (char.hd_used || 0) - regain),
     attunementChangedSinceRest: [],
+    // Long Rest reduziert Exhaustion um 1 Stufe (PHB)
+    exhaustion: Math.max(0, (char.exhaustion || 0) - 1),
   };
 }
