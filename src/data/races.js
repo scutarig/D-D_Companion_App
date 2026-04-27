@@ -33,7 +33,7 @@ export const RACES_FULL = [
     name: "Mensch",
     description: "Die vielseitigste und verbreitetste Rasse. Menschen zeichnen sich durch Anpassungsfähigkeit und Ehrgeiz aus.",
     statBonuses: { STR: 1, DEX: 1, CON: 1, INT: 1, WIS: 1, CHA: 1 },
-    speed: 30, size: "Mittel",
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "1 Sprache nach Wahl"],
     traits: [
       { id: "mensch_attr_bonus", name: "+1 auf alle Attribute", description: "Jeder deiner sechs Attributswerte erhöht sich um 1.", source: "Mensch", category: "trait" },
       { id: "mensch_extra_fertigkeit", name: "Vielseitigkeit", description: "Du erhältst Übung in einer Fertigkeit deiner Wahl.", source: "Mensch", category: "trait" },
@@ -48,7 +48,7 @@ export const RACES_FULL = [
     name: "Elf",
     description: "Anmutige, langlebige Wesen mit einer tiefen Verbindung zur Natur und Magie. Elfen leben Jahrhunderte.",
     statBonuses: { STR: 0, DEX: 2, CON: 0, INT: 0, WIS: 0, CHA: 0 },
-    speed: 30, size: "Mittel",
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Elfisch"],
     traits: [
       { id: "elf_dex_bonus", name: "DEX +2", description: "Dein Geschicklichkeitswert erhöht sich um 2.", source: "Elf", category: "trait" },
       { id: "elf_darkvision", name: "Dunkelsicht", description: "Du siehst in Dunkelheit (schwaches Licht) auf bis zu 60 Fuß als wäre es helles Licht, und in völliger Dunkelheit als wäre es schwaches Licht. In Dunkelheit erkennst du keine Farben, nur Grautöne.", source: "Elf", category: "trait" },
@@ -64,7 +64,7 @@ export const RACES_FULL = [
     name: "Zwerg",
     description: "Robuste Bergbewohner mit kultureller Liebe zu Handwerk, Bergbau und Kampf. Bekannt für ihre Ausdauer.",
     statBonuses: { STR: 0, DEX: 0, CON: 2, INT: 0, WIS: 0, CHA: 0 },
-    speed: 25, size: "Mittel",
+    speed: 25, size: "Mittel", languages: ["Gemeinsprache", "Zwergisch"],
     traits: [
       { id: "zwerg_con_bonus", name: "CON +2", description: "Dein Konstitutionswert erhöht sich um 2.", source: "Zwerg", category: "trait" },
       { id: "zwerg_darkvision", name: "Dunkelsicht", description: "Gewohnt an das Leben unter der Erde, siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Zwerg", category: "trait" },
@@ -82,7 +82,7 @@ export const RACES_FULL = [
     name: "Halbling",
     description: "Kleine, fröhliche Wesen mit einer legendären Fähigkeit, dem Pech zu entgehen. Ideal als Schurke oder Waldläufer.",
     statBonuses: { STR: 0, DEX: 2, CON: 0, INT: 0, WIS: 0, CHA: 0 },
-    speed: 25, size: "Klein",
+    speed: 25, size: "Klein", languages: ["Gemeinsprache", "Halblingsprache"],
     traits: [
       { id: "halbling_dex_bonus", name: "DEX +2", description: "Dein Geschicklichkeitswert erhöht sich um 2.", source: "Halbling", category: "trait" },
       { id: "halbling_luck", name: "Glück", description: "Wenn du bei einem Angriffswurf, Rettungswurf oder Fertigkeitswurf eine 1 würfelst, darfst du den Würfel erneut würfeln und musst das neue Ergebnis verwenden.", source: "Halbling", category: "trait" },
@@ -96,7 +96,7 @@ export const RACES_FULL = [
     name: "Drachen-Geborener",
     description: "Stolze Humanoide mit Drachenblut. Die körperliche Macht ihrer drachischen Vorfahren zeigt sich in Atem und Resistenz.",
     statBonuses: { STR: 2, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 1 },
-    speed: 30, size: "Mittel",
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Drachisch"],
     traits: [
       { id: "drache_str_bonus", name: "STR +2, CHA +1", description: "Dein Stärkewert erhöht sich um 2, dein Charismawert um 1.", source: "Drachen-Geborener", category: "trait" },
       { id: "drache_abstammung", name: "Drachen-Abstammung", description: "Du hast die Abstammung eines bestimmten Drachentyps (z.B. Gold, Silber, Feuer). Dieser bestimmt deinen Atemwaffen-Schadenstyp und deine Resistenz.", source: "Drachen-Geborener", category: "trait" },
@@ -111,7 +111,7 @@ export const RACES_FULL = [
     name: "Gnom",
     description: "Erfinderische Kleinlinge mit natürlicher Resistenz gegen magische Kontrolle. Ideal für Zauberer und Erfinder.",
     statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 2, WIS: 0, CHA: 0 },
-    speed: 25, size: "Klein",
+    speed: 25, size: "Klein", languages: ["Gemeinsprache", "Gnomisch"],
     traits: [
       { id: "gnom_int_bonus", name: "INT +2", description: "Dein Intelligenzwert erhöht sich um 2.", source: "Gnom", category: "trait" },
       { id: "gnom_darkvision", name: "Dunkelsicht", description: "Gewohnt an unterirdische Wohnstätten, siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Gnom", category: "trait" },
@@ -124,7 +124,7 @@ export const RACES_FULL = [
     name: "Halbork",
     description: "Starke Krieger mit dem Erbe der Orks. Unnachgiebige Ausdauer ist eine der besten Überlebensfähigkeiten im Spiel.",
     statBonuses: { STR: 2, DEX: 0, CON: 1, INT: 0, WIS: 0, CHA: 0 },
-    speed: 30, size: "Mittel",
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Orkisch"],
     traits: [
       { id: "halbork_str_bonus", name: "STR +2, CON +1", description: "Dein Stärkewert erhöht sich um 2, dein Konstitutionswert um 1.", source: "Halbork", category: "trait" },
       { id: "halbork_darkvision", name: "Dunkelsicht", description: "Dank deines ork'schen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Halbork", category: "trait" },
@@ -140,7 +140,7 @@ export const RACES_FULL = [
     name: "Halbelfe",
     description: "Wesen zwischen zwei Welten. Als einzige Rasse können Halbhelfen ihre +1-Boni frei verteilen und Fertigkeiten frei wählen.",
     statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 2 },
-    speed: 30, size: "Mittel",
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Elfisch", "1 Sprache nach Wahl"],
     traits: [
       { id: "halbelfe_cha_bonus", name: "CHA +2, zwei weitere +1", description: "Dein Charismawert erhöht sich um 2. Außerdem erhöhen sich zwei andere Attributswerte deiner Wahl jeweils um 1.", source: "Halbelfe", category: "trait" },
       { id: "halbelfe_darkvision", name: "Dunkelsicht", description: "Dank deines elfischen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Halbelfe", category: "trait" },
@@ -154,7 +154,7 @@ export const RACES_FULL = [
     name: "Tiefling",
     description: "Nachfahren von Teufeln, gebrandmarkt durch ein höllisches Erbe. CHA+2 macht sie zu natürlichen Hexenmeistern und Barden.",
     statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 1, WIS: 0, CHA: 2 },
-    speed: 30, size: "Mittel",
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Teuflisch"],
     traits: [
       { id: "tiefling_int_cha_bonus", name: "INT +1, CHA +2", description: "Dein Intelligenzwert erhöht sich um 1, dein Charismawert um 2.", source: "Tiefling", category: "trait" },
       { id: "tiefling_darkvision", name: "Dunkelsicht", description: "Dank deines höllischen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Tiefling", category: "trait" },

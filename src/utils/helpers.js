@@ -43,4 +43,10 @@ export const newChar = id => ({
   skills:{}, spellAbility:"INT", spellDC:8, spellAtk:0, inspiration:false,
   traits:"", ideals:"", bonds:"", flaws:"", equipment:"", features:"", backstory:"",
   inventory:[], actions:[], gold:0, silver:0, copper:0, electrum:0, platinum:0,
+  // Auto-applied trait groups
+  raceTraits:[], bgTraits:[], classFeatures:[], subclassFeatures:[], feats:[],
+  // Languages (merged from race + background + manual)
+  languages:[],
+  // Subclass selections per class: { "Barbar": "pfad_berserker", ... }
+  subclasses:{},
 });

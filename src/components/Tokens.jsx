@@ -2,15 +2,33 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { buildSlotsForLevel, CASTER_TYPE } from "../utils/helpers.js";
+import { computeAllResources } from "../data/classResources.js";
+import { useMulticlass } from "../hooks/useMulticlass.js";
 
 const SC = ["#3060c0","#2090a0","#409040","#a08020","#802080","#204080","#800020","#406060","#a02060"];
 
 export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
   const [custom, setCustom] = usePersist(`tokens_custom_${charId}`, []);
+  const [autoUsed, setAutoUsed] = usePersist(`tokens_auto_used_${charId}`, {});
   const [nT, setNT] = useState({ name: "", tot: 3, color: C.purple, tier: "" });
 
   // Slots live aus Klasse + Level ableiten
   const slotDef = buildSlotsForLevel(char?.klass, char?.level);
+
+  // Auto class resources from multiclass
+  const { classes } = useMulticlass(charId, char, null);
+  const autoResources = computeAllResources(classes, char);
+
+  const setAutoUsedR = (id, used) => setAutoUsed(p => ({ ...p, [id]: used }));
+  const resetAutoResources = (resetType) => {
+    const toReset = {};
+    autoResources.forEach(r => {
+      if (resetType === "long" || r.reset === resetType || r.reset === "short") {
+        toReset[r.id] = 0;
+      }
+    });
+    setAutoUsed(p => ({ ...p, ...toReset }));
+  };
   const isPact = CASTER_TYPE[char?.klass] === "pact";
   const slots = slotDef ? slotDef.map(s => ({ ...s, used: usedSlots[s.lv] || 0 })) : [];
 
@@ -94,6 +112,66 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
           </>
         )}
       </div>
+
+      {/* ── Klassen-Ressourcen (auto) ────────────────────────────────────── */}
+      {autoResources.length > 0 && (
+        <div style={sx.card}>
+          <div style={{ ...sx.jb, marginBottom: 8 }}>
+            <div>
+              <div style={sx.ct}>⚡ Klassen-Ressourcen</div>
+              <div style={{ fontSize: 11, color: C.textDim, marginTop: 2 }}>Automatisch aus Klasse + Level</div>
+            </div>
+            <div style={{ display: "flex", gap: 6 }}>
+              <button onClick={() => resetAutoResources("short")} style={sx.bsm(C.teal)}>↺ K.Rast</button>
+              <button onClick={() => resetAutoResources("long")} style={sx.bsm(C.gold)}>↺ L.Rast</button>
+            </div>
+          </div>
+
+          {autoResources.map(r => {
+            const maxNum = typeof r.max === "number" ? r.max : null;
+            const used = autoUsed[r.id] || 0;
+            const resetLabel = r.reset === "short" ? "Kurze Rast" : "Lange Rast";
+            return (
+              <div key={r.id} style={{ background: C.surface, borderRadius: 6, padding: "10px 12px", marginBottom: 10, border: `1px solid ${r.color}44` }}>
+                <div style={{ ...sx.jb, marginBottom: 6 }}>
+                  <div>
+                    <span style={{ fontFamily: FH, fontSize: 13, color: r.color, fontWeight: 700 }}>{r.name}</span>
+                    <span style={{ fontSize: 10, color: C.textDim, marginLeft: 8 }}>{r.className}</span>
+                  </div>
+                  <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                    <span style={{ fontSize: 11, color: C.textDim }}>{resetLabel}</span>
+                    {maxNum !== null && (
+                      <span style={{ fontSize: 12, color: C.textDim }}>{maxNum - used}/{maxNum}</span>
+                    )}
+                    <button onClick={() => setAutoUsedR(r.id, 0)} style={sx.bsm(C.goldDim)}>↺</button>
+                  </div>
+                </div>
+                {maxNum !== null ? (
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {Array.from({ length: maxNum }).map((_, i) => (
+                      <div key={i}
+                        onClick={() => setAutoUsedR(r.id, i < used ? i : i + 1)}
+                        style={{
+                          width: 32, height: 32, borderRadius: 4, cursor: "pointer",
+                          background: i < used ? "#1a1a1a" : r.color + "99",
+                          border: `2px solid ${i < used ? C.border : r.color}`,
+                          transition: "all .2s", display: "flex", alignItems: "center",
+                          justifyContent: "center", fontSize: 16,
+                        }}>
+                        {i < used ? "✗" : "●"}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ fontSize: 12, color: r.color, fontStyle: "italic" }}>
+                    Max: {r.max}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* ── Eigene Ressourcen ─────────────────────────────────────────────── */}
       <div style={sx.card}>

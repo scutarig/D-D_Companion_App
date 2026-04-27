@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { usePersist } from "./usePersist.js";
 import { calculateTotalLevel, createClassEntry, getClassHd } from "../utils/multiclass.js";
 import { getPB } from "../utils/helpers.js";
+import { applyClassFeatures } from "../utils/classFeatures.js";
+import { applySubclasses } from "../utils/subclasses.js";
 
 /**
  * useMulticlass(charId, char, setChar)
@@ -29,12 +31,17 @@ export function useMulticlass(charId, char, setChar) {
     setClassesPersist(newClasses);
     if (!setChar) return;
     const total = calculateTotalLevel(newClasses);
-    setChar(prev => ({
-      ...prev,
-      level: total,
-      klass:  newClasses[0]?.name || prev.klass,
-      hd:     newClasses[0] ? getClassHd(newClasses[0].name) : prev.hd,
-    }));
+    setChar(prev => {
+      let next = {
+        ...prev,
+        level: total,
+        klass:  newClasses[0]?.name || prev.klass,
+        hd:     newClasses[0] ? getClassHd(newClasses[0].name) : prev.hd,
+      };
+      next = applyClassFeatures(next, newClasses);
+      next = applySubclasses(next, newClasses);
+      return next;
+    });
   };
 
   /** Add a new class at level 1 */
@@ -64,6 +71,19 @@ export function useMulticlass(charId, char, setChar) {
     commit(classes.filter(c => c.name !== name));
   };
 
+  /**
+   * Set (or clear) a subclass for a given class name.
+   * Updates char.subclasses and recomputes subclassFeatures.
+   */
+  const setSubclass = (className, subclassName) => {
+    if (!setChar) return;
+    setChar(prev => {
+      const newSubclasses = { ...(prev.subclasses || {}), [className]: subclassName || "" };
+      const next = { ...prev, subclasses: newSubclasses };
+      return applySubclasses(next, classes);
+    });
+  };
+
   return {
     classes,
     totalLevel,
@@ -72,5 +92,6 @@ export function useMulticlass(charId, char, setChar) {
     addKlass,
     updateLevel,
     removeKlass,
+    setSubclass,
   };
 }

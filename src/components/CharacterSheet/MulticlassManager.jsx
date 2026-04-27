@@ -3,6 +3,7 @@ import { C, FH, sx } from "../../constants/theme.js";
 import { ALL_KLASSEN } from "../../data/classes.js";
 import { useMulticlass } from "../../hooks/useMulticlass.js";
 import { canMulticlass } from "../../utils/multiclass.js";
+import SubclassSelector from "./SubclassSelector.jsx";
 
 const CLASS_ICONS = {
   "Barbar":"🪓","Barde":"🎶","Druide":"🌿","Hexenmeister":"👁️","Kämpfer":"⚔️",
@@ -15,7 +16,7 @@ const CLASS_ICONS = {
  * Props: char, setChar
  */
 export default function MulticlassManager({ char, setChar }) {
-  const { classes, totalLevel, pb, addKlass, updateLevel, removeKlass } =
+  const { classes, totalLevel, pb, addKlass, updateLevel, removeKlass, setSubclass } =
     useMulticlass(char.id, char, setChar);
 
   const [selected, setSelected] = useState("");
@@ -56,14 +57,20 @@ export default function MulticlassManager({ char, setChar }) {
             border: `1px solid ${idx === 0 ? C.gold : C.purpleBright}25`,
             borderRadius: 8, padding: "7px 10px",
           }}>
-            {/* Icon + Name */}
+            {/* Icon + Name + Subclass */}
             <span style={{ fontSize: 16 }}>{CLASS_ICONS[klass.name] ?? "🎭"}</span>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: idx === 0 ? C.gold : C.purpleBright, fontFamily: FH }}>
                 {klass.name}
                 {idx === 0 && <span style={{ fontSize: 9, color: C.textDim, fontWeight: 400, marginLeft: 6 }}>PRIMÄR</span>}
               </div>
               <div style={{ fontSize: 10, color: C.textDim }}>HD {klass.hd}</div>
+              <SubclassSelector
+                className={klass.name}
+                level={klass.level}
+                value={(char.subclasses || {})[klass.name] || ""}
+                onChange={sub => setSubclass(klass.name, sub)}
+              />
             </div>
 
             {/* Level controls */}

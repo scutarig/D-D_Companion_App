@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { C, sx, SC, ABS, SKILLS, FH } from "../constants/theme.js";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
-// ALL_KLASSEN / D3_KLASSEN used by MulticlassManager
 import { ALL_VOELKER, DND_BACKGROUNDS } from "../data/races.js";
+import { applyBackground } from "../utils/backgrounds.js";
 import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
@@ -43,7 +43,7 @@ export default function CharSheet({ char, setChar }) {
           <RaceSelector char={char} setChar={setChar} />
           <div>
             <label style={sx.lbl}>Hintergrund</label>
-            <select value={char.background} onChange={e => u("background", e.target.value)} style={sx.sel}>
+            <select value={char.background} onChange={e => setChar(prev => applyBackground(prev, e.target.value))} style={sx.sel}>
               {DND_BACKGROUNDS.map(b => <option key={b}>{b}</option>)}
               <option value="Eigener">Eigener...</option>
             </select>

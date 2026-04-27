@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { modOf, modStr, getPB, buildSlotsForLevel, CASTER_TYPE, FULL_CASTER, HALF_CASTER, THIRD_CASTER, PACT_MAGIC } from "../utils/helpers.js";
+import { CLASS_FEATURES } from "../data/classFeatures.js";
+import { FEATS, meetsPrerequisite } from "../data/feats.js";
+import { applyFeat } from "../utils/feats.js";
 
 // ── ASI-Levels pro Klasse ───────────────────────────────────────────────────
 const ASI_DEFAULT = [4, 8, 12, 16, 19];
@@ -9,8 +12,23 @@ const ASI_BY_CLASS = {
   Schurke:  [4, 8, 10, 12, 16, 19],       // ASI auch auf Level 10
 };
 
-// ── Klassen-Features pro Level ──────────────────────────────────────────────
-const CLF = {
+// ── Klassen-Features — aus data/classFeatures.js importiert ─────────────────
+// CLF[class][level] → [{name, description}]  (format wie bisher via Adapter)
+const CLF = Object.fromEntries(
+  Object.entries(CLASS_FEATURES).map(([cls, lvlMap]) => [
+    cls,
+    Object.fromEntries(
+      Object.entries(lvlMap).map(([lvl, feats]) => [
+        lvl,
+        feats.map(f => ({ n: f.name, d: f.description })),
+      ])
+    ),
+  ])
+);
+
+// ── (Legacy inline CLF removed — now sourced from data/classFeatures.js) ────
+/* DELETED */
+const _CLF_LEGACY_STUB = {
   Barbar: {
     1:[{n:"Kampfrausch",d:"Bonus-Aktion: +2 auf STR-Angriffe/Schaden, Widerstand gegen Hieb/Stich/Wucht. Anzahl = max(1, CON-Mod)."},{n:"Ungerüstete Verteidigung",d:"RK = 10 + DEX-Mod + CON-Mod (ohne Rüstung)."}],
     2:[{n:"Rücksichtsloser Angriff",d:"Vorteil auf STR-Angriffswürfe, Gegner hat Vorteil gegen dich bis zu deinem nächsten Zug."},{n:"Gefahrengespür",d:"Vorteil auf DEX-Rettungswürfe gegen sichtbare Gefahren/Fallen."}],
@@ -211,6 +229,12 @@ export default function LevelUpAssistant({ char, setChar }) {
   const [rolledHp, setRolledHp] = useState(null);
   const [doneInfo, setDoneInfo] = useState(null);
 
+  // ASI / Feat state
+  const [asiMode, setAsiMode] = useState("asi");   // "asi" | "feat"
+  const [asiA, setAsiA]       = useState("");      // first stat for ASI
+  const [asiB, setAsiB]       = useState("");      // second stat (optional)
+  const [featId, setFeatId]   = useState("");
+
   const avgHp = Math.floor(hdNum / 2) + 1 + conMod;
   const chosenHp = hpChoice === "roll" && rolledHp != null ? Math.max(1, rolledHp + conMod) : avgHp;
 
@@ -220,11 +244,28 @@ export default function LevelUpAssistant({ char, setChar }) {
   const isAsi = asiLevels.includes(newLevel);
   const classFeatures = CLF[char.klass]?.[newLevel] || [];
 
+  const ABS_LIST = ["STR","DEX","CON","INT","WIS","CHA"];
+  const availableFeats = FEATS.filter(f =>
+    meetsPrerequisite(char, f) && !(char.feats || []).some(cf => cf.id === f.id)
+  );
+
   const [confirmReset, setConfirmReset] = useState(false);
 
   const doLevelUp = () => {
     setDoneInfo({ reachedLevel: newLevel, hpGained: chosenHp, newPb: pb, oldPb: pbOld });
-    setChar(p => ({ ...p, level: newLevel, maxHp: p.maxHp + chosenHp, hp: p.hp + chosenHp, hd_used: Math.max(0, (p.hd_used || 0) - 1) }));
+    setChar(prev => {
+      let next = { ...prev, level: newLevel, maxHp: prev.maxHp + chosenHp, hp: prev.hp + chosenHp, hd_used: Math.max(0, (prev.hd_used || 0) - 1) };
+      // Apply ASI or Feat at ASI levels
+      if (isAsi) {
+        if (asiMode === "asi") {
+          if (asiA) next = { ...next, [asiA.toLowerCase()]: Math.min(20, (next[asiA.toLowerCase()] || 10) + 1) };
+          if (asiB) next = { ...next, [asiB.toLowerCase()]: Math.min(20, (next[asiB.toLowerCase()] || 10) + 1) };
+        } else if (asiMode === "feat" && featId) {
+          next = applyFeat(next, featId);
+        }
+      }
+      return next;
+    });
   };
 
   const doReset = () => {
@@ -376,9 +417,63 @@ export default function LevelUpAssistant({ char, setChar }) {
         <div style={sx.ct}>2. Klassenmerkmale — {char.klass} Level {newLevel}</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {isAsi && (
-            <div style={featureBox(C.green)}>
-              <div style={{ fontFamily: FH, fontSize: 13, color: C.greenBright, fontWeight: 700, marginBottom: 3 }}>✨ Attributswerterhöhung (ASI) oder Feat</div>
-              <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>2 verschiedene Attribute um je 1 erhöhen (max. 20) — oder ein Feat nehmen (wenn DM erlaubt).</div>
+            <div style={{ ...featureBox(C.green), padding: 14 }}>
+              <div style={{ fontFamily: FH, fontSize: 13, color: C.greenBright, fontWeight: 700, marginBottom: 10 }}>✨ Attributswerterhöhung (ASI) oder Feat</div>
+              {/* Toggle ASI / Feat */}
+              <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
+                {[["asi", "📈 ASI"], ["feat", "⭐ Feat"]].map(([mode, label]) => (
+                  <button key={mode} onClick={() => setAsiMode(mode)} style={{
+                    flex: 1, padding: "7px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 700,
+                    border: `1px solid ${asiMode === mode ? C.greenBright : C.border}`,
+                    background: asiMode === mode ? `${C.greenBright}22` : "transparent",
+                    color: asiMode === mode ? C.greenBright : C.textDim,
+                  }}>{label}</button>
+                ))}
+              </div>
+
+              {asiMode === "asi" && (
+                <div>
+                  <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>Wähle 1–2 Attribute (+1 je Attribut, max. 20):</div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
+                    {ABS_LIST.map(ab => {
+                      const val = char[ab.toLowerCase()] || 10;
+                      const isA = asiA === ab, isB = asiB === ab;
+                      const selected = isA || isB;
+                      return (
+                        <button key={ab} onClick={() => {
+                          if (isA) { setAsiA(asiB); setAsiB(""); }
+                          else if (isB) setAsiB("");
+                          else if (!asiA) setAsiA(ab);
+                          else if (!asiB) setAsiB(ab);
+                        }} style={{
+                          padding: "5px 10px", borderRadius: 8, cursor: val >= 20 ? "default" : "pointer",
+                          border: `1px solid ${selected ? C.greenBright : C.border}`,
+                          background: selected ? `${C.greenBright}22` : "transparent",
+                          color: selected ? C.greenBright : val >= 20 ? C.textDim : C.text,
+                          fontFamily: FH, fontSize: 11, fontWeight: 700,
+                          opacity: val >= 20 ? 0.4 : 1,
+                        }}>
+                          {ab} {val}{selected ? ` → ${Math.min(20, val + 1)}` : ""}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {!asiA && !asiB && <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>Kein Attribut gewählt — Erhöhung wird beim Level-Up übersprungen.</div>}
+                </div>
+              )}
+
+              {asiMode === "feat" && (
+                <div>
+                  <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>Wähle ein Feat (nur Voraussetzungen erfüllte werden angezeigt):</div>
+                  <select value={featId} onChange={e => setFeatId(e.target.value)} style={{ ...sx.sel, width: "100%" }}>
+                    <option value="">— Feat wählen —</option>
+                    {availableFeats.map(f => <option key={f.id} value={f.id}>{f.name}{f.prerequisite ? ` (${f.prerequisite})` : ""}</option>)}
+                  </select>
+                  {featId && (() => { const f = availableFeats.find(x => x.id === featId); return f ? (
+                    <div style={{ marginTop: 8, fontSize: 12, color: C.text, background: C.surface, padding: "8px 10px", borderRadius: 6 }}>{f.description}</div>
+                  ) : null; })()}
+                </div>
+              )}
             </div>
           )}
           {newPbFeature && (

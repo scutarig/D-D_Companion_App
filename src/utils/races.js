@@ -1,4 +1,5 @@
 import { RACES_FULL } from "../data/races.js";
+export { RACES_FULL };
 
 /** Get full race data by name (returns null if not found) */
 export function getRaceData(raceName) {
@@ -35,10 +36,20 @@ export function applyRaceTraits(char, raceName) {
     ...raceData.features,
   ];
 
+  // Merge race languages (remove previous race's languages first — identified by
+  // being in ANY race's languages list, then re-add the new ones)
+  const allRaceLangs = new Set(
+    RACES_FULL.flatMap(r => r.languages || [])
+  );
+  const prevLangs = (charWithoutOld.languages || []).filter(l => !allRaceLangs.has(l));
+  const newLangs = raceData.languages || [];
+  const languages = [...new Set([...prevLangs, ...newLangs])];
+
   return {
     ...charWithoutOld,
     race: raceName,
     raceTraits: [...(charWithoutOld.raceTraits || []), ...newTraits],
+    languages,
   };
 }
 
