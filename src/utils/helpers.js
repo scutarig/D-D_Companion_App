@@ -49,4 +49,6 @@ export const newChar = id => ({
   languages:[],
   // Subclass selections per class: { "Barbar": "pfad_berserker", ... }
   subclasses:{},
+  // Active conditions (IDs from utils/conditions.js)
+  activeConditions:[],
 });

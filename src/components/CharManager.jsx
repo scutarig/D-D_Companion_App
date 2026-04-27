@@ -136,7 +136,7 @@ export default function CharManager() {
       {subtab === "aktionen" && <CharActions char={active} setChar={setActive} />}
       {subtab === "spells" && <Spellbook key={aid} charId={aid} />}
 {subtab === "tokens" && <Tokens char={active} charId={aid} usedSlots={usedSlots} setUsedSlots={setUsedSlots} />}
-      {subtab === "conditions" && <ConditionsTracker />}
+      {subtab === "conditions" && <ConditionsTracker char={active} setChar={setActive} />}
     </div>
   );
 }

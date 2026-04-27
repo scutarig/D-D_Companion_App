@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { rollD } from "../utils/helpers.js";
+import { getCondition } from "../utils/conditions.js";
 
 export default function DiceRoller({ char, setChar }) {
   const [res, setRes]         = useState([]);
@@ -17,6 +18,11 @@ export default function DiceRoller({ char, setChar }) {
   const setUseInspirationSafe = val => { useInspirationRef.current = val; setUseInspiration(val); };
 
   const hasInspiration = char?.inspiration === true;
+
+  // Condition-based roll hints
+  const activeConds = (char?.activeConditions || []).map(getCondition).filter(Boolean);
+  const condAdvHints = activeConds.filter(c => c.effects?.attackerAdvantage).map(c => `${c.icon} ${c.name}`);
+  const condDisHints = activeConds.filter(c => c.effects?.attackerDisadvantage).map(c => `${c.icon} ${c.name}`);
 
   const DICE = [4, 6, 8, 10, 12, 20, 100];
   const DC   = { 4:"#a040c0", 6:"#2060c0", 8:"#20a060", 10:"#c07020", 12:"#c02040", 20:"#c9a84c", 100:"#808080" };
@@ -151,6 +157,25 @@ export default function DiceRoller({ char, setChar }) {
           )}
         </div>
       </div>
+
+      {/* Condition-Hinweise */}
+      {(condAdvHints.length > 0 || condDisHints.length > 0) && (
+        <div style={{ ...sx.card, background: `${C.amber}0e`, border: `1px solid ${C.amberBright}44` }}>
+          <div style={{ fontSize: 11, color: C.amberBright, fontFamily: FH, fontWeight: 700, marginBottom: 4 }}>
+            ⚠️ Aktive Conditions beeinflussen Würfe
+          </div>
+          {condAdvHints.length > 0 && (
+            <div style={{ fontSize: 12, color: C.greenBright, marginBottom: 2 }}>
+              ⬆ Vorteil: {condAdvHints.join(", ")}
+            </div>
+          )}
+          {condDisHints.length > 0 && (
+            <div style={{ fontSize: 12, color: C.redBright }}>
+              ⬇ Nachteil: {condDisHints.join(", ")}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ── Würfel ── */}
       <div style={sx.card}>
