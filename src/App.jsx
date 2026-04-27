@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
-import { getPB, buildSlotsForLevel } from "./utils/helpers.js";
+import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest } from "./utils/helpers.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
@@ -89,13 +89,12 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
 
   const confirmRest = () => {
     if (restBanner === "long") {
-      const regain = Math.max(1, Math.floor(char.level / 2));
-      setChar(p => ({ ...p, hp: p.maxHp, tempHp: 0, deathSaves: { suc: 0, fail: 0 }, hd_used: Math.max(0, (p.hd_used || 0) - regain) }));
+      setChar(p => applyLongRest(p));
       setSlots(p => p.map(s => ({ ...s, used: 0 })));
       setCustom(p => p.map(t => ({ ...t, used: 0 })));
     } else {
-      const hp = parseInt(restHpInput) || 0;
-      setChar(p => ({ ...p, hp: Math.min(p.maxHp, p.hp + hp) }));
+      const hpGain = parseInt(restHpInput) || 0;
+      setChar(p => applyShortRest(p, { hpGain }));
     }
     setRestBanner(null); setRestHpInput("");
   };

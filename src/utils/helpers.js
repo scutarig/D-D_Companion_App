@@ -53,4 +53,34 @@ export const newChar = id => ({
   activeConditions:[],
   // Attuned magic item UIDs (max 3)
   attunedItems:[],
+  // Tracks which item UIDs had attunement toggled since last rest
+  attunementChangedSinceRest:[],
 });
+
+/**
+ * Apply a Short Rest to a char object.
+ * hpGain: HP healed via HD (passed in from UI).
+ */
+export function applyShortRest(char, { hpGain = 0 } = {}) {
+  return {
+    ...char,
+    hp: Math.min(char.maxHp, char.hp + hpGain),
+    attunementChangedSinceRest: [],
+  };
+}
+
+/**
+ * Apply a Long Rest to a char object.
+ * Restores HP, clears temp HP, death saves, regains HD, clears attunement tracking.
+ */
+export function applyLongRest(char) {
+  const regain = Math.max(1, Math.floor(char.level / 2));
+  return {
+    ...char,
+    hp:         char.maxHp,
+    tempHp:     0,
+    deathSaves: { suc: 0, fail: 0 },
+    hd_used:    Math.max(0, (char.hd_used || 0) - regain),
+    attunementChangedSinceRest: [],
+  };
+}

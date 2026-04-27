@@ -129,15 +129,28 @@ export default function CharInventory({ char, setChar }) {
   const [slotModal,   setSlotModal]   = useState(null);
   const [slotError,   setSlotError]   = useState(null);
 
-  // Attunement toggle
+  // Attunement toggle — jede Änderung wird in attunementChangedSinceRest geloggt
   const toggleAttune = (uid) => {
     setChar(p => {
-      const cur = p.attunedItems || [];
-      if (cur.includes(uid)) return { ...p, attunedItems: cur.filter(x => x !== uid) };
+      const cur     = p.attunedItems              || [];
+      const changed = p.attunementChangedSinceRest || [];
+      if (cur.includes(uid)) {
+        return {
+          ...p,
+          attunedItems: cur.filter(x => x !== uid),
+          attunementChangedSinceRest: changed.includes(uid) ? changed : [...changed, uid],
+        };
+      }
       if (cur.length >= MAX_ATTUNEMENT) return p; // max 3
-      return { ...p, attunedItems: [...cur, uid] };
+      return {
+        ...p,
+        attunedItems: [...cur, uid],
+        attunementChangedSinceRest: changed.includes(uid) ? changed : [...changed, uid],
+      };
     });
   };
+
+  const attunementChangedSinceRest = char.attunementChangedSinceRest || [];
 
   // Aggregate active magic bonuses
   const magicBonuses = aggregateBonuses(char);
@@ -205,6 +218,21 @@ export default function CharInventory({ char, setChar }) {
       {allMagicItems.length > 0 && (
         <div style={{ ...panelBg, marginBottom: 12 }}>
           <div style={secTitle}>✨ Attunement ({attunedItems.length}/{MAX_ATTUNEMENT})</div>
+
+          {/* Rest-Hinweis wenn Änderungen seit letzter Rast */}
+          {attunementChangedSinceRest.length > 0 && (
+            <div style={{
+              marginBottom: 8, padding: "6px 10px", borderRadius: 7,
+              background: `${C.amberBright}10`, border: `1px solid ${C.amberBright}44`,
+              fontSize: 11, color: C.amberBright, display: "flex", alignItems: "center", gap: 7,
+            }}>
+              <span>⏳</span>
+              <span>
+                Attunement-Änderungen aktiv — benötigt <strong>Kurze/Lange Rast</strong> zum Abschließen
+                ({attunementChangedSinceRest.length} Gegenstand{attunementChangedSinceRest.length !== 1 ? "e" : ""})
+              </span>
+            </div>
+          )}
           <div style={{ display: "flex", gap: 6, marginBottom: attunedItems.length > 0 ? 10 : 0 }}>
             {Array.from({ length: MAX_ATTUNEMENT }).map((_, i) => {
               const uid  = attunedItems[i];
@@ -494,6 +522,9 @@ export default function CharInventory({ char, setChar }) {
                         }}>
                           {attunedItems.includes(item.uid) ? "Trennen" : `Attunieren (${attunedItems.length}/${MAX_ATTUNEMENT})`}
                         </button>
+                        {attunementChangedSinceRest.includes(item.uid) && (
+                          <span style={{ fontSize: 10, color: C.amberBright }}>⏳ Rast ausstehend</span>
+                        )}
                       </div>
                     )}
 
