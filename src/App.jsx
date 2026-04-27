@@ -168,7 +168,7 @@ const MOBILE_NAV = [
 // ── App ────────────────────────────────────────────────────────────────────────
 function AppInner() {
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
-  const { active, aid }       = useChar();
+  const { active, aid, setActive: setChar } = useChar();
   const [refOpen,  setRefOpen]  = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
   const [charOpen, setCharOpen] = useState(false);
@@ -242,7 +242,7 @@ function AppInner() {
       {tab==="proficiencies"  && <ProficienciesPage />}
       {tab==="npcs"        && <NpcList />}
       {tab==="combat"      && <CombatSystem />}
-      {tab==="dice"        && <DiceRoller />}
+      {tab==="dice"        && <DiceRoller char={active} setChar={setChar} />}
       {tab==="bestiary"    && <Bestiary />}
       {tab==="klassen"     && <KlassenRef />}
       {tab==="voelker"     && <VoelkerRef />}

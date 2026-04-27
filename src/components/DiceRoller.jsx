@@ -2,16 +2,21 @@ import { useState, useRef } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { rollD } from "../utils/helpers.js";
 
-export default function DiceRoller() {
+export default function DiceRoller({ char, setChar }) {
   const [res, setRes]         = useState([]);
   const [cnt, setCnt]         = useState(1);
   const [mod, setMod]         = useState(0);
   const [rolling, setRolling] = useState(null);
   const [adv, setAdv]         = useState("normal");
+  const [useInspiration, setUseInspiration] = useState(false);
 
   // Ref: setTimeout-Closure liest immer aktuellen Wert
   const advRef = useRef("normal");
+  const useInspirationRef = useRef(false);
   const setAdvSafe = val => { advRef.current = val; setAdv(val); };
+  const setUseInspirationSafe = val => { useInspirationRef.current = val; setUseInspiration(val); };
+
+  const hasInspiration = char?.inspiration === true;
 
   const DICE = [4, 6, 8, 10, 12, 20, 100];
   const DC   = { 4:"#a040c0", 6:"#2060c0", 8:"#20a060", 10:"#c07020", 12:"#c02040", 20:"#c9a84c", 100:"#808080" };
@@ -25,18 +30,20 @@ export default function DiceRoller() {
   const go = s => {
     setRolling(s);
     const currentAdv = advRef.current;
+    const consumingInspiration = useInspirationRef.current && hasInspiration && s === 20;
+    // Inspiration gives advantage (overrides normal, stacks with existing advantage)
+    const effectiveAdv = consumingInspiration && currentAdv === "normal" ? "advantage" : currentAdv;
+
     setTimeout(() => {
       let rolls, total;
-      // rollPairs: Array von { a, b, keptIdx } – eines pro Würfel im Cnt
       let rollPairs = null;
 
-      if (currentAdv !== "normal") {
-        // Für jeden Würfelwurf 2× würfeln, besseren/schlechteren behalten
+      if (effectiveAdv !== "normal") {
         const pairs = Array.from({ length: cnt }, () => {
           const a = rollD(s), b = rollD(s);
-          const keptIdx = currentAdv === "advantage"
-            ? (a >= b ? 0 : 1)   // höchsten behalten
-            : (a <= b ? 0 : 1);  // niedrigsten behalten
+          const keptIdx = effectiveAdv === "advantage"
+            ? (a >= b ? 0 : 1)
+            : (a <= b ? 0 : 1);
           return { a, b, keptIdx };
         });
         rollPairs = pairs;
@@ -47,11 +54,18 @@ export default function DiceRoller() {
         total = rolls.reduce((x, y) => x + y, 0) + parseInt(mod || 0);
       }
 
+      // Consume inspiration
+      if (consumingInspiration && setChar) {
+        setChar(p => ({ ...p, inspiration: false }));
+        setUseInspirationSafe(false);
+      }
+
       setRes(p => [{
         id: Date.now(), sides: s, cnt, rolls, mod: parseInt(mod || 0), total,
         ts: new Date().toLocaleTimeString(),
-        adv: currentAdv,
+        adv: effectiveAdv,
         rollPairs,
+        inspirationUsed: consumingInspiration,
       }, ...p.slice(0, 19)]);
       setRolling(null);
     }, 280);
@@ -112,6 +126,27 @@ export default function DiceRoller() {
               {adv === "advantage"
                 ? "⬆ Jeden Würfel 2× würfeln — höchsten nehmen"
                 : "⬇ Jeden Würfel 2× würfeln — niedrigsten nehmen"}
+            </div>
+          )}
+
+          {/* Inspiration */}
+          {hasInspiration && (
+            <div style={{
+              marginTop: 12, padding: "10px 14px", borderRadius: 8,
+              background: `${C.gold}18`, border: `1px solid ${C.gold}55`,
+              display: "flex", alignItems: "center", gap: 10,
+            }}>
+              <span style={{ fontSize: 18 }}>✨</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 12, color: C.gold, fontWeight: 700, fontFamily: FH }}>Inspiration aktiv!</div>
+                <div style={{ fontSize: 11, color: C.textDim }}>Beim nächsten d20 → Vorteil + Inspiration verbraucht</div>
+              </div>
+              <label style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+                <input type="checkbox" checked={useInspiration} onChange={e => setUseInspirationSafe(e.target.checked)} />
+                <span style={{ fontSize: 12, color: useInspiration ? C.gold : C.textDim, fontWeight: useInspiration ? 700 : 400 }}>
+                  Nutzen
+                </span>
+              </label>
             </div>
           )}
         </div>
@@ -219,6 +254,12 @@ export default function DiceRoller() {
                         background:C.redBright, color:"#000",
                         borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
                       }}>⬇ NACHTEIL</span>
+                    )}
+                    {r.inspirationUsed && (
+                      <span style={{
+                        background:C.gold, color:"#000",
+                        borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
+                      }}>✨ INSPIRATION</span>
                     )}
 
                     {isNat20 && <span style={{ color:C.gold, fontSize:12 }}>✨ NAT 20!</span>}
