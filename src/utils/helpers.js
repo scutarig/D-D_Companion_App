@@ -57,6 +57,8 @@ export const newChar = id => ({
   attunementChangedSinceRest:[],
   // Exhaustion level 0-6 (PHB)
   exhaustion: 0,
+  // Active concentration spell — null or { spellId, spellName, school, lv, slotLv, dur, startedAt }
+  concentration: null,
 });
 
 /**

@@ -5,6 +5,8 @@ import { usePersist } from "../hooks/usePersist.js";
 import { useChar } from "../context/CharContext.jsx";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
 import { getExhaustionLevel } from "../data/exhaustion.js";
+import { requiresConcentration, startConcentration, breakConcentration } from "../utils/concentration.js";
+import ConcentrationBanner from "./ConcentrationBanner.jsx";
 import { SPELLS } from "../data/spells.js";
 import { CONDITIONS } from "../data/conditions.js";
 import { useCompanions } from "../hooks/useCompanions.js";
@@ -132,6 +134,28 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
   const [swapSearch, setSwapSearch] = useState("");
   const [swapType,   setSwapType]   = useState("All");
   const [eqInfoModal, setEqInfoModal] = useState(null);
+  const [concWarn,   setConcWarn]   = useState(null); // { spell, slotLv } pending cast
+
+  // Auto-break concentration when unconscious or dead
+  useEffect(() => {
+    if (!char?.concentration) return;
+    const isUnconscious = (char.activeConditions || []).includes("unconscious");
+    if (char.hp === 0 || isUnconscious) {
+      setChar(p => breakConcentration(p));
+    }
+  }, [char?.hp, char?.activeConditions]);
+
+  // handleCast — checks concentration before spending slot
+  const handleCast = (spell, slotLv) => {
+    if (requiresConcentration(spell) && char?.concentration) {
+      setConcWarn({ spell, slotLv });
+      return;
+    }
+    useSlot(slotLv);
+    if (requiresConcentration(spell)) {
+      setChar(p => startConcentration(p, spell, slotLv));
+    }
+  };
 
   useEffect(() => {
     if (!aid && aid !== 0) return;
@@ -290,6 +314,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
           )}
           <button onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
         </div>
+
+        {/* Concentration Banner */}
+        <ConcentrationBanner char={char} setChar={setChar} />
 
         {/* HP Bar */}
         <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: 5, height: 6, overflow: "hidden", display: "flex", marginBottom: 8 }}>
@@ -502,9 +529,11 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
                         <button onClick={() => setCastModal({ spell })}
                           style={{ ...sx.tag(C.amberBright), cursor: "pointer" }}>↑ Upcast</button>
                       )}
-                      <button disabled={!canCast} onClick={() => canCast && useSlot(lowestSlot.lv)}
+                      <button disabled={!canCast} onClick={() => canCast && handleCast(spell, lowestSlot.lv)}
                         style={{ padding: "5px 14px", borderRadius: 7, cursor: canCast ? "pointer" : "default", fontSize: 12, fontWeight: 600, background: canCast ? `${C.purple}44` : C.bg, border: `1px solid ${canCast ? C.purpleBright : C.border}`, color: canCast ? C.purpleBright : C.textDim, whiteSpace: "nowrap" }}>
-                        {canCast ? `Wirken Lv${lowestSlot.lv}` : "Keine Slots"}
+                        {canCast
+                          ? <>{requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}{`Wirken Lv${lowestSlot.lv}`}</>
+                          : "Keine Slots"}
                       </button>
                     </div>
                   </div>
@@ -932,7 +961,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
               {slots.filter(sl => sl.lv >= castModal.spell.lv && sl.tot > 0).map(sl => {
                 const avail = sl.tot - sl.used;
                 return (
-                  <button key={sl.lv} disabled={avail === 0} onClick={() => { useSlot(sl.lv); setCastModal(null); }}
+                  <button key={sl.lv} disabled={avail === 0} onClick={() => { handleCast(castModal.spell, sl.lv); setCastModal(null); }}
                     style={{ background: avail > 0 ? `${C.purpleBright}22` : C.surface, border: `1px solid ${avail > 0 ? C.purpleBright : C.border}`, borderRadius: 8, color: avail > 0 ? C.purpleBright : C.textDim, padding: "6px 14px", cursor: avail > 0 ? "pointer" : "default", fontSize: 13, fontWeight: 600, display: "flex", justifyContent: "space-between", alignItems: "center", opacity: avail > 0 ? 1 : 0.4 }}>
                     <span>{SLOT_LABELS[sl.lv]} Slot</span>
                     <span style={{ fontSize: 11, opacity: 0.8 }}>{avail} übrig</span>
@@ -950,6 +979,30 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
                 ))}
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Concentration Warning Modal — neuer Conc-Zauber während aktiver Konz. */}
+      {concWarn && (
+        <div style={{ position:"fixed", inset:0, background:"#00000099", zIndex:400, display:"flex", alignItems:"center", justifyContent:"center" }}
+          onClick={() => setConcWarn(null)}>
+          <div style={{ ...sx.card, border:`1px solid ${C.amberBright}55`, width:340, padding:22, maxWidth:"90vw" }} onClick={e => e.stopPropagation()}>
+            <div style={{ fontFamily:FH, fontSize:15, color:C.amberBright, fontWeight:700, marginBottom:10 }}>⚠️ Konzentration wechseln?</div>
+            <p style={{ fontSize:13, color:C.text, marginBottom:6, lineHeight:1.6 }}>
+              Du konzentrierst dich auf <strong style={{ color:C.purpleBright }}>{char?.concentration?.spellName}</strong>.
+            </p>
+            <p style={{ fontSize:12, color:C.textDim, marginBottom:16 }}>
+              Das Wirken von <strong style={{ color:C.textBright }}>{concWarn.spell.name}</strong> beendet die aktive Konzentration sofort.
+            </p>
+            <div style={{ display:"flex", gap:10 }}>
+              <button onClick={() => {
+                useSlot(concWarn.slotLv);
+                setChar(p => startConcentration(p, concWarn.spell, concWarn.slotLv));
+                setConcWarn(null);
+              }} style={sx.btn(C.amberBright)}>Trotzdem wirken</button>
+              <button onClick={() => setConcWarn(null)} style={sx.btn(C.textDim)}>Abbrechen</button>
+            </div>
           </div>
         </div>
       )}
