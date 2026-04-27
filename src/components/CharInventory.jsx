@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
+import { aggregateBonuses, formatBonusSummary } from "../utils/magicItemBonuses.js";
 
 // ── Rarity colours ────────────────────────────────────────────────────────────
 const RC   = { Common: C.textDim, Uncommon: "#00c040", Rare: "#3b82f6", "Very Rare": "#a855f7", Legendary: "#f59e0b" };
@@ -108,10 +109,13 @@ function keyInfo(item) {
   return parts.slice(0, 2).join(" · ");
 }
 
+const MAX_ATTUNEMENT = 3;
+
 // ── Hauptkomponente ───────────────────────────────────────────────────────────
 export default function CharInventory({ char, setChar }) {
   const inv    = char.inventory || [];
   const eq     = char.equipSlots || {};
+  const attunedItems = char.attunedItems || [];
   const setInv = fn => setChar(p => ({ ...p, inventory:  typeof fn === "function" ? fn(p.inventory  || []) : fn }));
   const setEq  = fn => setChar(p => ({ ...p, equipSlots: typeof fn === "function" ? fn(p.equipSlots || {}) : fn }));
 
@@ -119,16 +123,35 @@ export default function CharInventory({ char, setChar }) {
   const [expanded,    setExpanded]    = useState(null);
   const [search,      setSearch]      = useState("");
   const [typeFilter,  setTypeFilter]  = useState("All");
+  const [magicOnly,   setMagicOnly]   = useState(false);
   const [showAdd,     setShowAdd]     = useState(false);
   const [form,        setForm]        = useState({ name:"", type:"Item", sub:"", dmg:"", ac:"", eff:"", wt:"", rar:"Common", notes:"" });
   const [slotModal,   setSlotModal]   = useState(null);
-  const [slotError,   setSlotError]   = useState(null); // Fehlermeldung bei ungültigem Slot
+  const [slotError,   setSlotError]   = useState(null);
+
+  // Attunement toggle
+  const toggleAttune = (uid) => {
+    setChar(p => {
+      const cur = p.attunedItems || [];
+      if (cur.includes(uid)) return { ...p, attunedItems: cur.filter(x => x !== uid) };
+      if (cur.length >= MAX_ATTUNEMENT) return p; // max 3
+      return { ...p, attunedItems: [...cur, uid] };
+    });
+  };
+
+  // Aggregate active magic bonuses
+  const magicBonuses = aggregateBonuses(char);
+  const bonusSummary = formatBonusSummary(magicBonuses);
 
   const bagItems = inv.filter(i => !Object.values(eq).some(s => s?.uid === i.uid));
   const filtered = bagItems.filter(i =>
     (typeFilter === "All" || i.type === typeFilter) &&
+    (magicOnly ? i.magic === true || i.sub === "Magic" : true) &&
     (!search || i.name.toLowerCase().includes(search.toLowerCase()))
   );
+
+  // All magic items in inventory (for attunement widget)
+  const allMagicItems = inv.filter(i => i.magic === true || i.sub === "Magic");
 
   // Zweihänder in der Haupthand?
   const mainIsTwoHanded = isTwoHanded(eq.main);
@@ -177,6 +200,58 @@ export default function CharInventory({ char, setChar }) {
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div>
+
+      {/* ── Attunement Widget ── */}
+      {allMagicItems.length > 0 && (
+        <div style={{ ...panelBg, marginBottom: 12 }}>
+          <div style={secTitle}>✨ Attunement ({attunedItems.length}/{MAX_ATTUNEMENT})</div>
+          <div style={{ display: "flex", gap: 6, marginBottom: attunedItems.length > 0 ? 10 : 0 }}>
+            {Array.from({ length: MAX_ATTUNEMENT }).map((_, i) => {
+              const uid  = attunedItems[i];
+              const item = uid ? inv.find(x => x.uid === uid) : null;
+              const col  = item ? RC[item.rar] || C.purpleBright : "#2a2440";
+              return (
+                <div key={i} style={{
+                  flex: 1, borderRadius: 8, border: `2px solid ${col}`,
+                  background: item ? `${col}18` : "rgba(0,0,0,0.3)",
+                  padding: "6px 8px", minHeight: 48,
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  boxShadow: item ? GLOW[item.rar] : "none",
+                }}>
+                  {item ? (
+                    <>
+                      <div style={{ fontSize: 10, color: col, fontFamily: FH, fontWeight: 700, textAlign: "center", marginBottom: 2 }}>
+                        {item.name.length > 16 ? item.name.slice(0, 14) + "…" : item.name}
+                      </div>
+                      <button onClick={() => toggleAttune(uid)} style={{
+                        fontSize: 9, padding: "1px 6px", borderRadius: 4,
+                        background: `${C.red}22`, border: `1px solid ${C.red}55`,
+                        color: C.redBright, cursor: "pointer",
+                      }}>entfernen</button>
+                    </>
+                  ) : (
+                    <div style={{ fontSize: 11, color: "#3a3060", fontFamily: FH }}>leer</div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Active bonus summary */}
+          {bonusSummary.length > 0 && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+              <span style={{ fontSize: 10, color: C.textDim, alignSelf: "center", marginRight: 2 }}>Aktive Boni:</span>
+              {bonusSummary.map((b, i) => (
+                <span key={i} style={{
+                  fontSize: 10, padding: "2px 7px", borderRadius: 10,
+                  background: `${C.purpleBright}20`, border: `1px solid ${C.purpleBright}44`,
+                  color: C.purpleBright, fontWeight: 700,
+                }}>{b}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ── Equip-mode Banner ── */}
       {selForEquip && (
@@ -314,6 +389,11 @@ export default function CharInventory({ char, setChar }) {
             <option value="All">Alle</option>
             {ITEM_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
           </select>
+          <button onClick={() => setMagicOnly(p=>!p)} style={{
+            padding:"6px 10px", borderRadius:6, border:`1px solid ${magicOnly ? C.purpleBright : C.border}`,
+            background: magicOnly ? `${C.purpleBright}22` : "transparent",
+            color: magicOnly ? C.purpleBright : C.textDim, fontSize:13, cursor:"pointer",
+          }} title="Nur magische Items anzeigen">✨</button>
         </div>
 
         {filtered.length === 0 && (
@@ -351,6 +431,8 @@ export default function CharInventory({ char, setChar }) {
                     <div style={{fontFamily:FH,fontSize:13,color:C.textBright,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
                       {item.name}
                       {isTwoHanded(item) && <span style={{fontSize:9,color:C.amberBright,marginLeft:6,fontFamily:F}}>2H</span>}
+                      {item.magic && <span style={{fontSize:9,color:C.purpleBright,marginLeft:6,fontFamily:F}}>✨</span>}
+                      {item.attunement && attunedItems.includes(item.uid) && <span style={{fontSize:9,color:C.purpleBright,marginLeft:3,fontFamily:F}}>🔗</span>}
                     </div>
                     <div style={{fontSize:10,color:C.textDim,display:"flex",gap:6,flexWrap:"wrap",marginTop:2}}>
                       <span style={{color:col}}>{item.rar}</span>
@@ -390,6 +472,31 @@ export default function CharInventory({ char, setChar }) {
                         {item.notes}
                       </div>
                     )}
+                    {/* Attunement toggle */}
+                    {item.attunement && (
+                      <div style={{display:"flex",alignItems:"center",gap:8,padding:"6px 10px",borderRadius:6,
+                        background: attunedItems.includes(item.uid) ? `${C.purpleBright}18` : "rgba(0,0,0,0.2)",
+                        border:`1px solid ${attunedItems.includes(item.uid) ? C.purpleBright : C.border}44`,
+                      }}>
+                        <span style={{fontSize:14}}>🔗</span>
+                        <span style={{flex:1,fontSize:12,color:attunedItems.includes(item.uid) ? C.purpleBright : C.textDim}}>
+                          {attunedItems.includes(item.uid) ? "Attunement aktiv" : "Benötigt Attunement"}
+                        </span>
+                        <button onClick={() => {
+                          if (!attunedItems.includes(item.uid) && attunedItems.length >= MAX_ATTUNEMENT) return;
+                          toggleAttune(item.uid);
+                        }} style={{
+                          padding:"4px 10px", borderRadius:6, fontSize:11, cursor:"pointer",
+                          background: attunedItems.includes(item.uid) ? `${C.red}22` : `${C.purpleBright}22`,
+                          border:`1px solid ${attunedItems.includes(item.uid) ? C.red : C.purpleBright}55`,
+                          color: attunedItems.includes(item.uid) ? C.redBright : C.purpleBright,
+                          opacity: !attunedItems.includes(item.uid) && attunedItems.length >= MAX_ATTUNEMENT ? 0.4 : 1,
+                        }}>
+                          {attunedItems.includes(item.uid) ? "Trennen" : `Attunieren (${attunedItems.length}/${MAX_ATTUNEMENT})`}
+                        </button>
+                      </div>
+                    )}
+
                     <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
                       {canEquip && (
                         <button onClick={() => { setSelForEquip(item); setExpanded(null); }}

@@ -51,4 +51,6 @@ export const newChar = id => ({
   subclasses:{},
   // Active conditions (IDs from utils/conditions.js)
   activeConditions:[],
+  // Attuned magic item UIDs (max 3)
+  attunedItems:[],
 });
