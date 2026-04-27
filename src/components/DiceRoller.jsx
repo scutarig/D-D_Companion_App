@@ -9,7 +9,7 @@ export default function DiceRoller() {
   const [rolling, setRolling] = useState(null);
   const [adv, setAdv]         = useState("normal");
 
-  // Ref guarantees the setTimeout callback always reads the current adv value
+  // Ref: setTimeout-Closure liest immer aktuellen Wert
   const advRef = useRef("normal");
   const setAdvSafe = val => { advRef.current = val; setAdv(val); };
 
@@ -24,25 +24,33 @@ export default function DiceRoller() {
 
   const go = s => {
     setRolling(s);
-    const currentAdv = advRef.current; // safe read
+    const currentAdv = advRef.current;
     setTimeout(() => {
-      let rolls, total, rollPairs = null;
+      let rolls, total;
+      // rollPairs: Array von { a, b, keptIdx } – eines pro Würfel im Cnt
+      let rollPairs = null;
 
-      if (s === 20 && currentAdv !== "normal") {
-        const a = rollD(20), b = rollD(20);
-        const kept = currentAdv === "advantage" ? Math.max(a, b) : Math.min(a, b);
-        rolls     = [kept];
-        rollPairs = [a, b];
-        total     = kept + parseInt(mod || 0);
+      if (currentAdv !== "normal") {
+        // Für jeden Würfelwurf 2× würfeln, besseren/schlechteren behalten
+        const pairs = Array.from({ length: cnt }, () => {
+          const a = rollD(s), b = rollD(s);
+          const keptIdx = currentAdv === "advantage"
+            ? (a >= b ? 0 : 1)   // höchsten behalten
+            : (a <= b ? 0 : 1);  // niedrigsten behalten
+          return { a, b, keptIdx };
+        });
+        rollPairs = pairs;
+        rolls     = pairs.map(p => [p.a, p.b][p.keptIdx]);
+        total     = rolls.reduce((x, y) => x + y, 0) + parseInt(mod || 0);
       } else {
         rolls = Array.from({ length: cnt }, () => rollD(s));
-        total = rolls.reduce((a, b) => a + b, 0) + parseInt(mod || 0);
+        total = rolls.reduce((x, y) => x + y, 0) + parseInt(mod || 0);
       }
 
       setRes(p => [{
         id: Date.now(), sides: s, cnt, rolls, mod: parseInt(mod || 0), total,
         ts: new Date().toLocaleTimeString(),
-        adv: s === 20 ? currentAdv : "normal",
+        adv: currentAdv,
         rollPairs,
       }, ...p.slice(0, 19)]);
       setRolling(null);
@@ -71,9 +79,9 @@ export default function DiceRoller() {
           </div>
         </div>
 
-        {/* ── Vorteil / Nachteil Toggle ── */}
+        {/* Vorteil / Nachteil Toggle */}
         <div style={{ marginTop:14 }}>
-          <label style={sx.lbl}>W20 Modus</label>
+          <label style={sx.lbl}>Modus</label>
           <div style={{
             display:"flex", gap:0, marginTop:6,
             border:`1px solid ${C.border}`, borderRadius:8,
@@ -101,7 +109,9 @@ export default function DiceRoller() {
           </div>
           {adv !== "normal" && (
             <div style={{ marginTop:5, fontSize:11, color:advColor }}>
-              {adv === "advantage" ? "⬆ 2× W20 würfeln — höchsten nehmen" : "⬇ 2× W20 würfeln — niedrigsten nehmen"}
+              {adv === "advantage"
+                ? "⬆ Jeden Würfel 2× würfeln — höchsten nehmen"
+                : "⬇ Jeden Würfel 2× würfeln — niedrigsten nehmen"}
             </div>
           )}
         </div>
@@ -109,20 +119,28 @@ export default function DiceRoller() {
 
       {/* ── Würfel ── */}
       <div style={sx.card}>
-        <div style={sx.ct}>🎲 Würfel</div>
+        <div style={{ ...sx.jb, marginBottom:10 }}>
+          <div style={sx.ct}>🎲 Würfel</div>
+          {adv !== "normal" && (
+            <span style={{
+              background: `${advColor}22`, border:`1px solid ${advColor}`,
+              borderRadius:6, color:advColor,
+              fontSize:12, fontWeight:700, padding:"3px 10px",
+            }}>
+              {adv === "advantage" ? "⬆ Vorteil aktiv" : "⬇ Nachteil aktiv"}
+            </span>
+          )}
+        </div>
         <div style={{ display:"flex", flexWrap:"wrap", gap:10 }}>
           {DICE.map(d => {
             const isRolling = rolling === d;
-            const isD20     = d === 20;
-            const advGlow   = isD20 && adv !== "normal";
-            const glowCol   = adv === "advantage" ? C.greenBright : C.redBright;
             return (
               <button key={d} onClick={() => go(d)} style={{
                 position:     "relative",
                 background:   isRolling
                   ? `radial-gradient(circle,${DC[d]},#000)`
                   : `linear-gradient(135deg,${DC[d]}44,${DC[d]}22)`,
-                border:       `2px solid ${advGlow ? glowCol : DC[d]}`,
+                border:       `2px solid ${adv !== "normal" && !isRolling ? advColor : DC[d]}`,
                 borderRadius: 8,
                 color:        DC[d],
                 fontFamily:   FH,
@@ -135,18 +153,15 @@ export default function DiceRoller() {
                 transform:    isRolling ? "scale(1.1) rotate(8deg)" : "scale(1)",
                 boxShadow:    isRolling
                   ? `0 0 20px ${DC[d]}88`
-                  : advGlow ? `0 0 12px ${glowCol}88` : "none",
+                  : adv !== "normal" ? `0 0 10px ${advColor}55` : "none",
               }}>
                 d{d}
-                {/* Vorteil/Nachteil-Indikator auf d20 */}
-                {advGlow && (
+                {adv !== "normal" && (
                   <span style={{
-                    position:"absolute", top:-8, right:-8,
-                    background: glowCol,
-                    color:"#000",
-                    borderRadius:"50%",
-                    fontSize:10, fontWeight:900,
-                    width:16, height:16,
+                    position:"absolute", top:-7, right:-7,
+                    background: advColor, color:"#000",
+                    borderRadius:"50%", fontSize:9, fontWeight:900,
+                    width:15, height:15,
                     display:"flex", alignItems:"center", justifyContent:"center",
                     fontFamily:"sans-serif",
                   }}>
@@ -168,14 +183,10 @@ export default function DiceRoller() {
           </div>
 
           {res.map(r => {
-            const isNat20 = r.sides === 20 && r.rolls[0] === 20;
-            const isNat1  = r.sides === 20 && r.rolls[0] === 1;
-            const rAdvCol = r.adv === "advantage" ? C.greenBright : C.redBright;
-
-            // which rollPair index was kept?
-            const keptIdx = r.rollPairs
-              ? (r.rolls[0] === r.rollPairs[0] ? 0 : 1)
-              : null;
+            const isNat20  = r.sides === 20 && r.rolls[0] === 20;
+            const isNat1   = r.sides === 20 && r.rolls[0] === 1;
+            const rAdvCol  = r.adv === "advantage" ? C.greenBright : C.redBright;
+            const hasAdv   = r.adv !== "normal";
 
             return (
               <div key={r.id} style={{
@@ -183,10 +194,10 @@ export default function DiceRoller() {
                 borderRadius: 6,
                 padding:      "10px 14px",
                 marginBottom: 6,
-                border:       `1px solid ${
-                  r.adv === "advantage" ? `${C.greenBright}55` :
-                  r.adv === "disadvantage" ? `${C.redBright}55` :
-                  isNat20 ? C.gold : isNat1 ? C.red : C.border
+                border: `1px solid ${
+                  hasAdv  ? `${rAdvCol}55` :
+                  isNat20 ? C.gold :
+                  isNat1  ? C.red  : C.border
                 }`,
                 boxShadow: isNat20 ? `0 0 12px ${C.goldDim}` : "none",
               }}>
@@ -194,23 +205,19 @@ export default function DiceRoller() {
                 <div style={sx.jb}>
                   <div style={{ display:"flex", gap:6, alignItems:"center", flexWrap:"wrap" }}>
                     <span style={{ color:DC[r.sides]||C.gold, fontFamily:FH, fontWeight:700 }}>
-                      {r.adv !== "normal" ? "d20" : `${r.cnt}d${r.sides}`}
-                      {r.mod !== 0 ? (r.mod > 0 ? `+${r.mod}` : r.mod) : ""}
+                      {r.cnt}d{r.sides}{r.mod !== 0 ? (r.mod > 0 ? `+${r.mod}` : r.mod) : ""}
                     </span>
 
-                    {/* Vorteil / Nachteil Badge – prominent */}
                     {r.adv === "advantage" && (
                       <span style={{
-                        background: C.greenBright, color:"#000",
-                        borderRadius:4, fontSize:11, fontWeight:900,
-                        padding:"1px 7px", letterSpacing:"0.03em",
+                        background:C.greenBright, color:"#000",
+                        borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
                       }}>⬆ VORTEIL</span>
                     )}
                     {r.adv === "disadvantage" && (
                       <span style={{
-                        background: C.redBright, color:"#000",
-                        borderRadius:4, fontSize:11, fontWeight:900,
-                        padding:"1px 7px", letterSpacing:"0.03em",
+                        background:C.redBright, color:"#000",
+                        borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
                       }}>⬇ NACHTEIL</span>
                     )}
 
@@ -221,25 +228,22 @@ export default function DiceRoller() {
                 </div>
 
                 {/* Würfelergebnis */}
-                <div style={{ display:"flex", alignItems:"center", gap:8, marginTop:4 }}>
+                <div style={{ display:"flex", alignItems:"center", gap:8, marginTop:4, flexWrap:"wrap" }}>
                   {r.rollPairs ? (
                     <span style={{ fontSize:13 }}>
-                      {r.rollPairs.map((v, i) => {
-                        const isKept = i === keptIdx;
+                      {r.rollPairs.map((p, i) => {
+                        const kept    = [p.a, p.b][p.keptIdx];
+                        const dropped = [p.a, p.b][1 - p.keptIdx];
                         return (
                           <span key={i}>
-                            {i > 0 && <span style={{ color:C.textDim }}> / </span>}
-                            <span style={{
-                              color:          isKept ? rAdvCol : C.textDim,
-                              fontWeight:     isKept ? 700 : 400,
-                              textDecoration: isKept ? "none" : "line-through",
-                            }}>{v}</span>
+                            {i > 0 && <span style={{ color:C.textDim }}>,  </span>}
+                            [<span style={{ color:rAdvCol, fontWeight:700 }}>{kept}</span>
+                            <span style={{ color:C.textDim }}>/</span>
+                            <span style={{ color:C.textDim, textDecoration:"line-through", opacity:0.45 }}>{dropped}</span>]
                           </span>
                         );
                       })}
-                      {r.mod !== 0 && (
-                        <span style={{ color:C.textDim }}> {r.mod > 0 ? "+" : ""}{r.mod}</span>
-                      )}
+                      {r.mod !== 0 && <span style={{ color:C.textDim }}> {r.mod > 0 ? "+" : ""}{r.mod}</span>}
                     </span>
                   ) : (
                     <span style={{ color:C.textDim, fontSize:13 }}>
