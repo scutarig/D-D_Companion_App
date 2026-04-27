@@ -19,6 +19,7 @@ const VoelkerRef    = lazy(() => import("./components/VoelkerRef.jsx"));
 const QuickRef      = lazy(() => import("./components/QuickRef.jsx"));
 const CompanionsPage    = lazy(() => import("./components/Companions/CompanionsPage.jsx"));
 const ProficienciesPage = lazy(() => import("./components/Proficiencies/ProficienciesPage.jsx"));
+const WorldbuildingPage = lazy(() => import("./components/Worldbuilding/WorldbuildingPage.jsx"));
 
 const MAIN_TABS = [
   { id: "overview",       label: "Übersicht",    icon: "🗺️" },
@@ -30,6 +31,7 @@ const MAIN_TABS = [
   { id: "npcs",           label: "NPCs",         icon: "👥" },
   { id: "combat",         label: "Kampf",        icon: "⚔️" },
   { id: "dice",           label: "Würfel",       icon: "🎲" },
+  { id: "world",          label: "Weltenbau",    icon: "🌍" },
 ];
 const REF_TABS = [
   { id: "bestiary", label: "Bestiary",        icon: "🐉" },
@@ -152,11 +154,12 @@ const MOBILE_NAV = [
   { id: "combat",   label: "Kampf",    icon: "⚔️" },
   {
     id: "more", label: "Mehr", icon: "⋯",
-    groupIds: ["dice", "notes", "npcs", "bestiary", "klassen", "voelker", "quickref"],
+    groupIds: ["dice", "notes", "npcs", "world", "bestiary", "klassen", "voelker", "quickref"],
     children: [
       { id: "dice",     label: "Würfel",     icon: "🎲" },
       { id: "notes",    label: "Notizen",    icon: "📝" },
       { id: "npcs",     label: "NPCs",       icon: "👥" },
+      { id: "world",    label: "Weltenbau",  icon: "🌍" },
       { id: "bestiary", label: "Bestiary",   icon: "🐉" },
       { id: "klassen",  label: "Klassen",    icon: "📚" },
       { id: "voelker",  label: "Völker",     icon: "🧬" },
@@ -243,6 +246,7 @@ function AppInner() {
       {tab==="npcs"        && <NpcList />}
       {tab==="combat"      && <CombatSystem />}
       {tab==="dice"        && <DiceRoller char={active} setChar={setChar} />}
+      {tab==="world"       && <WorldbuildingPage />}
       {tab==="bestiary"    && <Bestiary />}
       {tab==="klassen"     && <KlassenRef />}
       {tab==="voelker"     && <VoelkerRef />}
