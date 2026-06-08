@@ -64,7 +64,7 @@ Legende: ⬜ offen · 🔍 in Prüfung · ⚠️ Findings vorhanden · ✅ verif
 
 | Bereich | Stand | Datei | Notizen |
 |---------|-------|-------|---------|
-| Conditions | ⬜ | `conditions.js` | 2024: Exhaustion stark vereinfacht (1 Stufe = -2 auf alles) |
+| Conditions | ✅ | `conditions.js` + `exhaustion.js` | Migriert: Exhaustion linear (-2 D20 + -5ft pro Stufe), Condition-Texte präzisiert |
 | Magic Items | ⬜ | items, attunement | 2024-Anpassungen prüfen |
 | Bestiary | ⬜ | `monsters.js` | 2024 MM ist noch nicht raus (Stand früh 2024) — meist 2014 Stats |
 | Helper-Funktionen | ⬜ | `helpers.js` | PB-Tabelle, Slot-Tabellen, Caster-Types |
