@@ -343,4 +343,69 @@ export const SPELLS = [
   {id:310,name:"True Polymorph",lv:9,school:"Transmutation",ct:"1 Aktion",range:"30ft",comp:"V,S,M",dur:"Conc. 1 Std.",cls:["Bard","Warlock","Wizard"],desc:"DC WIS: Ziel zu beliebigem Wesen/Objekt. Wenn 1 Std: permanent.",dmg:"—",dt:"—",concentration:true},
   {id:311,name:"True Resurrection",lv:9,school:"Necromancy",ct:"1 Std.",range:"Touch",comp:"V,S,M",dur:"Sofort",cls:["Cleric","Druid"],desc:"Auferstehung (max 200 Jahre tot). Heilt jede Wunde/Krankheit. 25000gp Diamant.",dmg:"—",dt:"—"},
   {id:312,name:"Weird",lv:9,school:"Illusion",ct:"1 Aktion",range:"120ft",comp:"V,S",dur:"Conc. 1 Min.",cls:["Wizard"],desc:"30ft Radius: DC WIS oder Frightened + 4d10 psychisch pro Runde.",dmg:"4d10",dt:"psychic",concentration:true},
+
+  // ── Backstop: weitere fehlende Spells ──────────────────────────────────────
+  // Lv1
+  {id:313,name:"Tenser's Floating Disk",lv:1,school:"Conjuration",ct:"1 Aktion",range:"30ft",comp:"V,S,M",dur:"1 Std.",cls:["Wizard"],desc:"3ft Scheibe trägt 500lb. Folgt dir in 20ft.",dmg:"—",dt:"—",ritual:true},
+  {id:314,name:"Earth Tremor",lv:1,school:"Evocation",ct:"1 Aktion",range:"Self",comp:"V,S",dur:"Sofort",cls:["Bard","Druid","Sorcerer","Wizard"],desc:"10ft Radius: DC DEX 1d6 Wucht + Prone (half + Difficult Terrain).",dmg:"1d6",dt:"bludgeoning",upcast:[{slot:2,dmg:"2d6"},{slot:3,dmg:"3d6"},{slot:4,dmg:"4d6"},{slot:5,dmg:"5d6"}]},
+
+  // Lv2
+  {id:315,name:"Blur",lv:2,school:"Illusion",ct:"1 Aktion",range:"Self",comp:"V",dur:"Conc. 1 Min.",cls:["Sorcerer","Wizard"],desc:"Angreifer haben Nachteil auf Würfe gegen dich (außer Blindsight/Truesight).",dmg:"—",dt:"—",concentration:true},
+  {id:316,name:"Branding Smite",lv:2,school:"Evocation",ct:"Bonus",range:"Self",comp:"V",dur:"Conc. 1 Min.",cls:["Paladin"],desc:"Nächster Treffer: +2d6 Strahlend. Falls Ziel unsichtbar: sichtbar.",dmg:"+2d6",dt:"radiant",concentration:true,upcast:[{slot:3,dmg:"+3d6"},{slot:4,dmg:"+4d6"},{slot:5,dmg:"+5d6"}]},
+  {id:317,name:"Enthrall",lv:2,school:"Enchantment",ct:"1 Aktion",range:"60ft",comp:"V,S",dur:"1 Min.",cls:["Bard","Warlock"],desc:"Wesen die dich hören: DC WIS oder -10 Passive Perception (nicht-Bezauberte Effekt-immun).",dmg:"—",dt:"—"},
+  {id:318,name:"Find Traps",lv:2,school:"Divination",ct:"1 Aktion",range:"120ft",comp:"V,S",dur:"Sofort",cls:["Cleric","Druid","Ranger"],desc:"Du spürst Fallen in 120ft (keine spezifische Position).",dmg:"—",dt:"—"},
+  {id:319,name:"Levitate",lv:2,school:"Transmutation",ct:"1 Aktion",range:"60ft",comp:"V,S,M",dur:"Conc. 10 Min.",cls:["Sorcerer","Wizard"],desc:"Ziel/Objekt ≤500lb: schwebt bis 20ft hoch. Bonus-Aktion: 20ft hoch/runter.",dmg:"—",dt:"—",concentration:true},
+  {id:320,name:"Locate Animals or Plants",lv:2,school:"Divination",ct:"1 Aktion",range:"Self",comp:"V,S,M",dur:"Sofort",cls:["Bard","Druid","Ranger"],desc:"Spürt nächstes Tier/Pflanze deiner Wahl in 5 Meilen.",dmg:"—",dt:"—",ritual:true},
+  {id:321,name:"Melf's Acid Arrow",lv:2,school:"Evocation",ct:"1 Aktion",range:"90ft",comp:"V,S,M",dur:"Sofort",cls:["Wizard"],desc:"Ranged spell attack: 4d4 Säure + 2d4 Säure am Ende seines nächsten Zugs.",dmg:"4d4+2d4",dt:"acid",upcast:[{slot:3,dmg:"+1d4 jeder"},{slot:4,dmg:"+2d4 jeder"},{slot:5,dmg:"+3d4 jeder"}]},
+  {id:322,name:"Mind Spike",lv:2,school:"Divination",ct:"1 Aktion",range:"60ft",comp:"S",dur:"Conc. 1 Std.",cls:["Sorcerer","Warlock","Wizard"],desc:"DC WIS 3d8 psychisch (half). Falls fail: Du weißt wo Ziel ist, kein Vorteil aus Invisibility.",dmg:"3d8",dt:"psychic",concentration:true,upcast:[{slot:3,dmg:"4d8"},{slot:4,dmg:"5d8"},{slot:5,dmg:"6d8"}]},
+  {id:323,name:"Nystul's Magic Aura",lv:2,school:"Illusion",ct:"1 Aktion",range:"Touch",comp:"V,S,M",dur:"24 Std.",cls:["Wizard"],desc:"Objekt/Wesen: Maskiert magische Aura (Detect Magic) oder erstellt Falsche Aura.",dmg:"—",dt:"—"},
+
+  // Lv3
+  {id:324,name:"Conjure Barrage",lv:3,school:"Conjuration",ct:"1 Aktion",range:"Self",comp:"V,S,M",dur:"Sofort",cls:["Ranger"],desc:"60ft Kegel Geschosse: DC DEX 3d8 Schaden (half).",dmg:"3d8",dt:"variabel"},
+  {id:325,name:"Glyph of Warding",lv:3,school:"Abjuration",ct:"1 Std.",range:"Touch",comp:"V,S,M",dur:"Bis ausgelöst",cls:["Bard","Cleric","Wizard"],desc:"Glyphe mit Spell oder Schaden-Effekt. 200gp Diamantstaub. Trigger-Bedingung.",dmg:"variabel",dt:"variabel",upcast:[{slot:4,note:"Stärkerer Spell"},{slot:5,note:"Stärkerer Spell"}]},
+  {id:326,name:"Hunger of Hadar",lv:3,school:"Conjuration",ct:"1 Aktion",range:"150ft",comp:"V,S,M",dur:"Conc. 1 Min.",cls:["Warlock"],desc:"20ft Radius Void: Sicht 0, Difficult Terrain. Start des Zugs: 2d6 Kälte. Ende: DC DEX 2d6 Säure.",dmg:"2d6",dt:"cold/acid",concentration:true},
+  {id:327,name:"Lightning Arrow",lv:3,school:"Transmutation",ct:"Bonus",range:"Self",comp:"V,S",dur:"Conc. 1 Min.",cls:["Ranger"],desc:"Nächster Fernkampfangriff: 4d8 Blitz (Treffer) + 2d8 Blitz alle in 10ft (DC DEX half).",dmg:"4d8",dt:"lightning",concentration:true,upcast:[{slot:4,dmg:"+1d8"},{slot:5,dmg:"+2d8"}]},
+  {id:328,name:"Meld into Stone",lv:3,school:"Transmutation",ct:"1 Aktion",range:"Touch",comp:"V,S",dur:"8 Std.",cls:["Cleric","Druid"],desc:"Du verschmilzt mit Stein. Resistenz nicht-magisch. Magic-Items funktionieren nicht.",dmg:"—",dt:"—",ritual:true},
+  {id:329,name:"Remove Curse",lv:3,school:"Abjuration",ct:"1 Aktion",range:"Touch",comp:"V,S",dur:"Sofort",cls:["Cleric","Paladin","Warlock","Wizard"],desc:"Beendet alle Curses auf Wesen / Curse von 1 magischen Item.",dmg:"—",dt:"—"},
+  {id:330,name:"Speak with Plants",lv:3,school:"Transmutation",ct:"1 Aktion",range:"Self",comp:"V,S",dur:"10 Min.",cls:["Bard","Druid","Ranger"],desc:"30ft Aura: Pflanzen werden 'wach', beantworten Fragen, lassen dich/Verbündete durch.",dmg:"—",dt:"—"},
+  {id:331,name:"Water Walk",lv:3,school:"Transmutation",ct:"1 Aktion",range:"30ft",comp:"V,S,M",dur:"1 Std.",cls:["Cleric","Druid","Ranger","Sorcerer"],desc:"10 Wesen: Können auf jeder flüssigen Oberfläche laufen.",dmg:"—",dt:"—",ritual:true},
+
+  // Lv4
+  {id:332,name:"Conjure Minor Elementals",lv:4,school:"Conjuration",ct:"1 Min.",range:"90ft",comp:"V,S",dur:"Conc. 1 Std.",cls:["Druid","Wizard"],desc:"NEU 2024: 10ft Aura. Verbündete +1d8 Element-Schaden bei Treffern.",dmg:"+1d8",dt:"variabel",concentration:true,upcast:[{slot:5,dmg:"+1d8 mehr"},{slot:6,dmg:"+2d8"},{slot:7,dmg:"+3d8"},{slot:8,dmg:"+4d8"},{slot:9,dmg:"+5d8"}]},
+  {id:333,name:"Conjure Woodland Beings",lv:4,school:"Conjuration",ct:"1 Aktion",range:"60ft",comp:"V,S,M",dur:"Conc. 1 Std.",cls:["Druid","Ranger"],desc:"NEU 2024 - Single Summon. Fey Spirit nimmt Pflanzen/Tier-Gestalt an. 60ft Aura: +2 AC für Verbündete.",dmg:"—",dt:"—",concentration:true,upcast:[{slot:5,note:"Bonus Schaden/HP"}]},
+  {id:334,name:"Control Water",lv:4,school:"Transmutation",ct:"1 Aktion",range:"300ft",comp:"V,S,M",dur:"Conc. 10 Min.",cls:["Cleric","Druid","Wizard"],desc:"Bewege Wassermassen: Flood/Part/Redirect/Whirlpool.",dmg:"—",dt:"—",concentration:true},
+  {id:335,name:"Fount of Moonlight",lv:4,school:"Evocation",ct:"Bonus",range:"Self",comp:"V,S",dur:"Conc. 1 Min.",cls:["Druid","Paladin","Ranger"],desc:"NEU 2024. Mondlicht 10ft hell. Bei Schaden: 2d4 Strahlend Aura. Bonus-Aktion: Strahl 60ft 2d4 Strahlend.",dmg:"2d4",dt:"radiant",concentration:true,upcast:[{slot:5,dmg:"3d4"},{slot:6,dmg:"4d4"},{slot:7,dmg:"5d4"},{slot:8,dmg:"6d4"},{slot:9,dmg:"7d4"}]},
+  {id:336,name:"Grasping Vine",lv:4,school:"Conjuration",ct:"Bonus",range:"30ft",comp:"V,S",dur:"Conc. 1 Min.",cls:["Druid","Ranger"],desc:"Ranke greift Wesen: DC DEX oder 20ft zur Ranke gezogen.",dmg:"—",dt:"—",concentration:true},
+  {id:337,name:"Hallucinatory Terrain",lv:4,school:"Illusion",ct:"10 Min.",range:"300ft",comp:"V,S,M",dur:"24 Std.",cls:["Bard","Druid","Warlock","Wizard"],desc:"150ft Würfel: Natürliches Terrain illusorisch verändern (Klang/Geruch/Optik).",dmg:"—",dt:"—"},
+  {id:338,name:"Otiluke's Resilient Sphere",lv:4,school:"Abjuration",ct:"1 Aktion",range:"30ft",comp:"V,S,M",dur:"Conc. 1 Min.",cls:["Wizard"],desc:"Wesen/Objekt (≤Large) in Schutzsphäre. Außen/Innen können sich nicht durchqueren.",dmg:"—",dt:"—",concentration:true},
+  {id:339,name:"Summon Aberration",lv:4,school:"Conjuration",ct:"1 Aktion",range:"90ft",comp:"V,S,M",dur:"Conc. 1 Std.",cls:["Warlock","Wizard"],desc:"Beschwöre Aberration Spirit (Beholderkin/Slaadi/Star Spawn).",dmg:"—",dt:"—",concentration:true,upcast:[{slot:5,note:"Bonus HP/Schaden"}]},
+  {id:340,name:"Summon Construct",lv:4,school:"Conjuration",ct:"1 Aktion",range:"90ft",comp:"V,S,M",dur:"Conc. 1 Std.",cls:["Artificer","Wizard"],desc:"Beschwöre Construct Spirit (Clay/Metal/Stone).",dmg:"—",dt:"—",concentration:true,upcast:[{slot:5,note:"Bonus HP/Schaden"}]},
+  {id:341,name:"Summon Greater Demon",lv:4,school:"Conjuration",ct:"1 Aktion",range:"60ft",comp:"V,S,M",dur:"Conc. 1 Std.",cls:["Warlock","Wizard"],desc:"Beschwöre Greater Demon (CR ≤5). Loyalität nur solange Konzentration hält + Material da.",dmg:"—",dt:"—",concentration:true,upcast:[{slot:5,note:"CR +1"}]},
+
+  // Lv5
+  {id:342,name:"Bigby's Hand",lv:5,school:"Evocation",ct:"1 Aktion",range:"120ft",comp:"V,S,M",dur:"Conc. 1 Min.",cls:["Sorcerer","Wizard"],desc:"Riesige magische Faust: Clenched (4d8 Wucht), Forceful Hand (push), Grasping Hand (grapple), Interposing Hand (+1/2 Cover).",dmg:"4d8",dt:"force",concentration:true,upcast:[{slot:6,dmg:"+2d8"},{slot:7,dmg:"+4d8"},{slot:8,dmg:"+6d8"},{slot:9,dmg:"+8d8"}]},
+  {id:343,name:"Destructive Wave",lv:5,school:"Evocation",ct:"1 Aktion",range:"Self",comp:"V",dur:"Sofort",cls:["Paladin"],desc:"30ft Aura: DC CON 5d6 Wucht + 5d6 Strahlend/Nekrose (Wahl) + Prone (half).",dmg:"5d6+5d6",dt:"thunder",upcast:[{slot:6,dmg:"+1d6"},{slot:7,dmg:"+2d6"}]},
+  {id:344,name:"Far Step",lv:5,school:"Conjuration",ct:"Bonus",range:"Self",comp:"V",dur:"Conc. 1 Min.",cls:["Sorcerer","Warlock","Wizard"],desc:"60ft Teleport. Bonus-Aktion erneut bis Konzentration endet.",dmg:"—",dt:"—",concentration:true},
+  {id:345,name:"Holy Weapon",lv:5,school:"Evocation",ct:"Bonus",range:"Touch",comp:"V,S",dur:"Conc. 1 Std.",cls:["Cleric","Paladin"],desc:"Waffe: +2d8 Strahlend. Aktion: 30ft Burst, DC CON 4d8 Strahlend + Blinded.",dmg:"+2d8",dt:"radiant",concentration:true},
+  {id:346,name:"Synaptic Static",lv:5,school:"Enchantment",ct:"1 Aktion",range:"120ft",comp:"V",dur:"Sofort",cls:["Bard","Sorcerer","Warlock","Wizard"],desc:"20ft Radius: DC INT 8d6 psychisch (half) + -1d6 auf alle Würfe für 1 Min (Save am Ende).",dmg:"8d6",dt:"psychic"},
+
+  // Lv6
+  {id:347,name:"Bones of the Earth",lv:6,school:"Transmutation",ct:"1 Aktion",range:"120ft",comp:"V,S",dur:"Sofort",cls:["Druid"],desc:"6 Steinsäulen aus Boden: 5×30ft. DC DEX bei Wesen-Position oder 4d6 Wucht + 30ft hoch.",dmg:"4d6",dt:"bludgeoning"},
+  {id:348,name:"Investiture of Flame",lv:6,school:"Transmutation",ct:"1 Aktion",range:"Self",comp:"V,S",dur:"Conc. 10 Min.",cls:["Druid","Sorcerer","Warlock","Wizard"],desc:"Du brennst: Immun Feuer, Resistenz Kälte. Nahkampf-Aktion: 4d8 Feuer DC DEX (half).",dmg:"4d8",dt:"fire",concentration:true},
+  {id:349,name:"Investiture of Ice",lv:6,school:"Transmutation",ct:"1 Aktion",range:"Self",comp:"V,S",dur:"Conc. 10 Min.",cls:["Druid","Sorcerer","Warlock","Wizard"],desc:"Eisaura: Immun Kälte, Resistenz Feuer. Aura macht Bereich Difficult Terrain. Aktion: 15ft Kegel 4d6 Kälte + Restrained.",dmg:"4d6",dt:"cold",concentration:true},
+  {id:350,name:"Otto's Irresistible Dance",lv:6,school:"Enchantment",ct:"1 Aktion",range:"30ft",comp:"V",dur:"Conc. 1 Min.",cls:["Bard","Wizard"],desc:"Wesen tanzt: Speed 0, Nachteil DEX-Saves & Angriffe, Angriffe haben Vorteil. WIS-Save am Ende des Zugs.",dmg:"—",dt:"—",concentration:true},
+  {id:351,name:"Word of Recall",lv:6,school:"Conjuration",ct:"1 Aktion",range:"5ft",comp:"V",dur:"Sofort",cls:["Cleric"],desc:"Du + 5 Verbündete: Teleport zu vorbereitetem Tempel-Ort.",dmg:"—",dt:"—"},
+
+  // Lv7
+  {id:352,name:"Crown of Stars",lv:7,school:"Evocation",ct:"1 Aktion",range:"Self",comp:"V,S",dur:"1 Std.",cls:["Sorcerer","Warlock","Wizard"],desc:"7 Sterne über deinem Kopf. Bonus-Aktion: Stern auf Wesen: 4d12 Strahlend (kein Save).",dmg:"4d12",dt:"radiant",upcast:[{slot:8,note:"+2 Sterne"},{slot:9,note:"+4 Sterne"}]},
+  {id:353,name:"Power Word Pain",lv:7,school:"Enchantment",ct:"1 Aktion",range:"60ft",comp:"V",dur:"Bis aufgelöst",cls:["Sorcerer","Warlock","Wizard"],desc:"Ziel ≤100 HP: Speed 10ft, Nachteil auf Angriffe/Saves/Checks, Conc-Save bei Spell-Cast. CON-Save am Ende des Zugs.",dmg:"—",dt:"—"},
+
+  // Lv8
+  {id:354,name:"Telepathy",lv:8,school:"Evocation",ct:"1 Aktion",range:"Unbegrenzt",comp:"V,S,M",dur:"24 Std.",cls:["Wizard"],desc:"Telepathische Verbindung zu bekanntem Wesen, gleiche Ebene.",dmg:"—",dt:"—"},
+  {id:355,name:"Tsunami",lv:8,school:"Conjuration",ct:"1 Min.",range:"Sight",comp:"V,S",dur:"Conc. 6 Runden",cls:["Druid"],desc:"300ft lange/50ft hohe/300ft breite Welle: DC STR 6d10 Wucht + Prone. Rückt 50ft jede Runde.",dmg:"6d10",dt:"bludgeoning",concentration:true},
+
+  // Lv9
+  {id:356,name:"Mass Polymorph",lv:9,school:"Transmutation",ct:"1 Aktion",range:"120ft",comp:"V,S,M",dur:"Conc. 1 Std.",cls:["Bard","Sorcerer","Wizard"],desc:"10 Wesen: DC WIS oder zu Tier (CR ≤ Lv des Ziels) verwandelt.",dmg:"—",dt:"—",concentration:true},
+  {id:357,name:"Power Word Heal",lv:9,school:"Abjuration",ct:"1 Aktion",range:"Touch",comp:"V,S",dur:"Sofort",cls:["Bard"],desc:"NEU 2024 (Bard Lv20). Vollheilung + alle Conditions enden (außer Exhaustion/Petrified).",dmg:"Voll",dt:"healing"},
+  {id:358,name:"Psychic Scream",lv:9,school:"Enchantment",ct:"1 Aktion",range:"90ft",comp:"S",dur:"Sofort",cls:["Bard","Sorcerer","Warlock","Wizard"],desc:"10 Wesen: DC INT 14d6 psychisch (half) + Stunned (kein Save bis Aktion zum Save).",dmg:"14d6",dt:"psychic"},
 ];
