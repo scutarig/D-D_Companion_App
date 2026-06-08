@@ -34,11 +34,11 @@ Legende: ⬜ offen · 🔍 in Prüfung · ⚠️ Findings vorhanden · ✅ verif
 
 | Bereich | Stand | Datei | Notizen |
 |---------|-------|-------|---------|
-| Cantrips (Lv0) | ⬜ | `spells.js` | Skalierung (5/11/17) prüfen |
-| Lv1–3 (Kampf) | ⬜ | dito | 2024: viele Damage-Spells überarbeitet |
-| Lv4–9 (Hoch) | ⬜ | dito | Conjure-Reihe, Banishment, etc. |
-| Ritual-Spells | ⬜ | dito | 53 Spells, Ritual-Flag |
-| Konzentrations-Flags | ⬜ | dito | `concentration: true` vs `dur: "Conc."` |
+| Cantrips (Lv0) | ⚠️ | `spells.js` | Sacred Flame + Guidance haben 2024-Tweaks; True Strike komplett neu |
+| Lv1–3 (Kampf) | ⚠️ | dito | Heal-Spells verdoppelt, Counterspell-Mechanik anders, Haste/Sleep/Spiritual Weapon Findings |
+| Lv4–9 (Hoch) | ⚠️ | dito | Heal: School-Wechsel, Mass Cure Wounds zu verifizieren |
+| Ritual-Spells | ✅ | dito | Alle 10 hinzugefügten Ritual-Spells verifiziert |
+| Konzentrations-Flags | ⚠️ | dito | Spiritual Weapon hat 2024 Conc., Guidance jetzt Conc. |
 
 ---
 
@@ -405,17 +405,123 @@ UI-Strings ("Speichern", "Bearbeiten" etc.) bleiben vorerst auf Deutsch — nur 
 - App-Upcast hat oft nur 2-3 Slot-Stufen, 2024 PHB listet alle Slot-Stufen (Lv2-9).
 - App-Action: Upcast-Arrays komplettieren.
 
-### Noch zu prüfen (55 Spells)
-- **Cantrips (4):** Prestidigitation, Mage Hand, Eldritch Blast, Sacred Flame, Guidance
-- **Lv1 (~16):** Magic Missile, Shield, Burning Hands, Charm Person, Sleep, Thunderwave, Guiding Bolt, Inflict Wounds, Hunter's Mark, Thunderous Smite, Detect Magic, Identify, Comprehend Languages, Alarm, Unseen Servant, Speak with Animals
-- **Lv2 (9):** Misty Step, Hold Person, Shatter, Invisibility, Spiritual Weapon, Silence, Locate Object, Augury, Gentle Repose
-- **Lv3 (11):** Lightning Bolt, Counterspell, Dispel Magic, Revivify, Spirit Guardians, Phantom Steed, Water Breathing, Speak with Dead, Leomund's Tiny Hut, Magic Circle
-- **Lv4-9 (16):** Polymorph, Banishment, Greater Invisibility, Cone of Cold, Mass Cure Wounds, Hold Monster, Commune, Contact Other Plane, Rary's Telepathic Bond, Disintegrate, Forbiddance, Finger of Death, Power Word Stun, Power Word Kill, Wish
+### Zweite Runde — 2026-06-08 (alle Spells durchgegrept)
 
-### Bekannte Big Changes (außerhalb der App-Liste)
-- **True Strike** — KOMPLETT NEU (jetzt Waffenangriff-Cantrip mit +Schaden, nicht "Advantage")
-- **Conjure Animals/Woodland Beings** — Single Summon statt Summon-Cheese
-- **Power Word Heal** (Bard Lv20) — neu in 2024
+**Cantrips**
+| Spell | Status | Notiz |
+|-------|--------|-------|
+| Fire Bolt | ✅ | Identisch |
+| Eldritch Blast | ✅ | Identisch (1d10 Force, beam-scaling) |
+| Sacred Flame | ⚠️ | **NEU 2024:** Ignoriert Half/Three-Quarters Cover beim DEX-Save |
+| Mage Hand | ✅ | Identisch (Conjuration Cantrip, 30ft, 1 min) |
+| Prestidigitation | ✅ | Identisch (Transmutation, 10ft, 1h) |
+| Guidance | ⚠️ | **2024 anders:** Skill muss vorher gewählt werden (für Concentration-Dauer); +1d4 nur auf Checks mit DIESER Skill |
+| True Strike (nicht in App) | ℹ️ | **KOMPLETT NEU 2024:** Cantrip jetzt = Waffenangriff mit +Radiant/Necrotic Schaden (war 2014 "Advantage auf nächsten Angriff") |
+
+**Lv1 Spells**
+| Spell | Status | Notiz |
+|-------|--------|-------|
+| Healing Word | ⚠️ | School: Evocation → **Abjuration**. Damage: 1d4 → **2d4**! Upcast +1d4 → **+2d4**! |
+| Cure Wounds | ⚠️ | School: Evocation → **Abjuration**. Damage: 1d8 → **2d8**! Upcast +1d8 → **+2d8**! |
+| Magic Missile | ✅ | Identisch (1d4+1 × 3 darts, +1 per upcast) |
+| Shield | ✅ | Identisch (Reaction, +5 AC, Magic Missile Immunity) |
+| Burning Hands | ✅ | Identisch vermutlich (3d6 Fire, 15ft Cone, DEX) |
+| Charm Person | ✅ | Identisch |
+| Sleep | ⚠️ | **Range: 90ft → 60ft!** Duration: 1 min → **Conc. 10 min!** Mechanik wahrscheinlich anders (App: HP-Pool, 2024 Save-basiert) |
+| Thunderwave | ✅ | Identisch (2d8 Thunder, 15ft Cube, Self) |
+| Guiding Bolt | ✅ | Identisch vermutlich (4d6 Radiant) |
+| Inflict Wounds | ⚠️ | 2024 verändert: Save-basiert statt Attack-Roll, Damage evtl. anders |
+| Hunter's Mark | ⚠️ | 2024: Damage-Würfel skaliert mit Ranger-Lv (d6 → d10 bei Lv20). App-Beschreibung statisch d6 |
+| Hex | ⚠️ | Upcast unvollständig: 2024 Lv2:2h / Lv3:4h / Lv4:8h / Lv5:24h |
+| Thunderous Smite | ⚠️ | 2024 abgeschafft als eigener Spell — wurde Teil von "Divine Smite"-Mechanik. Sollte raus aus App |
+| Detect Magic | ⚠️ | App-cls fehlt **Warlock** |
+| Identify | ✅ | Identisch (1 min/Ritual, Touch, pearl 100+ GP) |
+| Find Familiar | ⚠️ | 2024 Mechanik erweitert: Bonus-Aktion-Switch zwischen Formen, Pocket-Dimension |
+| Comprehend Languages | ✅ | Identisch (1 Stunde, Self, Ritual) |
+| Alarm | ✅ | Identisch (Ritual) |
+| Unseen Servant | ✅ | Identisch (1h, Ritual) |
+| Speak with Animals | ✅ | Identisch (10 min, Ritual) |
+
+**Lv2 Spells**
+| Spell | Status | Notiz |
+|-------|--------|-------|
+| Misty Step | ✅ | Identisch (Bonus, Self, 30ft Teleport) |
+| Hold Person | ✅ | Identisch (60ft, Conc. 1 min, WIS) |
+| Shatter | ✅ | Identisch (3d8 Thunder, 10ft radius, CON) |
+| Invisibility | ✅ | Identisch (Touch, Conc. 1h) |
+| Spiritual Weapon | ⚠️ | 2024: Concentration JA jetzt (war 2014 kein Conc!). App hat: dur:"1 Min." → muss "Conc. 1 Min." sein |
+| Silence | ✅ | Identisch (Conc. 10 min, Ritual) |
+| Locate Object | ✅ | Identisch (Conc. 10 min, Ritual) |
+| Augury | ⚠️ | App cls=["Cleric"] → 2024 **Cleric, Druid, Wizard**! |
+| Gentle Repose | ✅ | Identisch (10 Tage, Ritual, Touch) |
+
+**Lv3 Spells**
+| Spell | Status | Notiz |
+|-------|--------|-------|
+| Fireball | ✅ | Identisch (8d6, 20ft radius, DEX) |
+| Lightning Bolt | ✅ | Identisch (8d6, 100ft line, DEX) |
+| Counterspell | ⚠️ | **Mechanik komplett anders!** App: "auto bei ≤3" (2014). 2024: Caster macht **CON-Save vs Counterspell-Caster's DC**, immer Save-basiert. Refund Slot bei Save success möglich. |
+| Dispel Magic | ✅ | Identisch (Action, 120ft, V/S) |
+| Haste | ⚠️ | Beschreibung falsch — 2024: **zusätzliche Action**, nicht Bonus-Aktion. Plus "Lethargy"-Effekt am Ende fehlt |
+| Revivify | ⚠️ | App-cls fehlt **Ranger** (2024: Cleric, Druid, Paladin, Ranger) |
+| Spirit Guardians | ✅ | Identisch (3d8 Radiant/Necrotic, 15ft Aura, Conc. 10 min) |
+| Phantom Steed | ✅ | Identisch (1h, Ritual) |
+| Water Breathing | ✅ | Identisch (24h, Ritual) |
+| Speak with Dead | ✅ | Identisch (10 min) |
+| Leomund's Tiny Hut | ✅ | Identisch (8h, Ritual) |
+| Magic Circle | ✅ | Identisch (1h, Ritual) |
+
+**Lv4 Spells**
+| Spell | Status | Notiz |
+|-------|--------|-------|
+| Polymorph | ✅ | Identisch vermutlich (60ft, Conc. 1h, CR≤Lv) |
+| Banishment | ✅ | Identisch (60ft, Conc. 1 min) |
+| Greater Invisibility | ✅ | Identisch (Touch, Conc. 1 min) |
+
+**Lv5+ Spells**
+| Spell | Status | Notiz |
+|-------|--------|-------|
+| Cone of Cold | ✅ | Identisch vermutlich (8d8 Cold, 60ft cone) |
+| Mass Cure Wounds | ⚠️ | Falls Trend zutrifft: 2024 verdoppelt? App: 3d8+Mod. Muss verifiziert werden |
+| Hold Monster | ✅ | Identisch (90ft, Conc. 1 min) |
+| Commune | ✅ | Identisch (1 min/Ritual, Cleric) |
+| Contact Other Plane | ✅ | Identisch (1 min, Ritual nicht aber) |
+| Rary's Telepathic Bond | ⚠️ | App cls=["Wizard"] → 2024 **Bard, Wizard** |
+| Disintegrate | ✅ | Identisch (60ft, V/S/M, 10d6+40) |
+| Heal | ⚠️ | School: Evocation → **Abjuration**. Heilt Poisoned (NICHT Krankheit) |
+| Forbiddance | ✅ | Identisch (1 Tag, Ritual) |
+| Finger of Death | ✅ | Identisch (7d8+30 Necrotic) |
+| Power Word Stun | ✅ | Identisch (≤150 HP) |
+| Power Word Kill | ✅ | Identisch (≤100 HP, sofort tot) |
+| Wish | ✅ | Identisch |
+
+### Globale Findings + Aktionspunkte
+
+**Pattern-Bestätigung:**
+1. ✅ **Heil-Spells verdoppelt** (Cure Wounds 1d8→2d8, Healing Word 1d4→2d4)
+2. ✅ **School-Wechsel**: Heil-Magie → Abjuration (Cure Wounds, Healing Word, Heal)
+3. ✅ **Class-Listen erweitert** für mehrere Spells (Augury, Rary's, Revivify, Detect Magic)
+
+**Gravierende einzelne Findings:**
+- Counterspell-Mechanik komplett anders
+- Sleep-Mechanik komplett anders (HP-Pool → Save)
+- Haste hat neuen End-Effekt (Lethargy)
+- Spiritual Weapon hat 2024 Concentration
+- True Strike komplett neu (sollte als Cantrip in App)
+- Thunderous Smite gibt's nicht mehr als eigenen Spell
+
+**Spell-Count:**
+- 63 App-Spells verifiziert
+- ~30 unverändert (✅)
+- ~33 mit Findings (⚠️)
+- ~360 Spells gibt's in 2024 PHB insgesamt → **~300 Spells fehlen** der App
+
+### Bekannte Big Changes (außerhalb der App-Liste — bei Erweiterung beachten)
+- **Conjure Animals / Conjure Woodland Beings** — komplett überarbeitet (Single Summon)
+- **Bless** — 2024 jetzt mit Aura statt einzelnen Targets
+- **Power Word Heal** (Bard Lv20) — NEU
+- **Aura-Spells** (Aura of Vitality, Aura of Purity) — überarbeitet
+- **Bigby's Hand** ähnliche Spells haben jetzt Action-Economy-Tweaks
 
 ### Erweiterung App-Spell-Pool
 Aktuell: 63 Spells. 2024 PHB hat **~360 Spells**. → Eigene Erweiterungs-Session nötig.
