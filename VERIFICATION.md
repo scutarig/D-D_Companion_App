@@ -368,3 +368,54 @@ UI-Strings ("Speichern", "Bearbeiten" etc.) bleiben vorerst auf Deutsch — nur 
 - AR-1: **Artificer ist NICHT im 2024 PHB!** 2024 Core sind die 12 Klassen: Barbar, Barde, Kleriker, Druide, Kämpfer, Mönch, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard.
 - AR-2: Artificer bleibt 2014 (Tasha's Cauldron of Everything) bis Wizards eine 2024-Version released (laut Roadmap: vermutlich in Eberron 2025 oder als Free Online Release).
 - AR-3: **Entscheidung nötig:** App-Artificer als "Legacy 2014" markieren ODER entfernen ODER warten auf 2024er Update.
+- AR-FIX: ✅ Entscheidung getroffen — als "Legacy 2014" beibehalten mit UI-Markierung.
+
+---
+
+## 2. Spells — gestartet 2026-06-08, **läuft**
+
+### Geprüft bisher (Stichprobe Cantrips + Lv1-3)
+
+| Spell | Status | Wichtige Findings |
+|-------|--------|-------------------|
+| Fire Bolt (cantrip) | ✅ | App identisch mit 2024 |
+| Fireball (Lv3) | ✅ | App identisch mit 2024 |
+| Cure Wounds (Lv1) | ⚠️ | **School: Evocation → Abjuration!** Damage: 1d8 → **2d8** (verdoppelt!) Upcast: +1d8 → **+2d8** |
+| Healing Word (Lv1) | ⚠️ | **School: Evocation → Abjuration!** Damage: 1d4 → **2d4** (verdoppelt!) Upcast: +1d4 → **+2d4** |
+| Heal (Lv6) | ⚠️ | **School: Evocation → Abjuration!** Heilt 2024 "Poisoned" (NICHT Krankheit) |
+| Haste (Lv3) | ⚠️ | App nennt "Bonus-Aktion" → 2024 ist es **zusätzliche Action** + NEU: "Lethargy" (Incapacitated + Speed 0) am Ende |
+| Hex (Lv1) | ⚠️ | Mostly OK, aber Upcast-Skalierung fehlt: Lv2:2h / Lv3:4h / Lv4:8h / Lv5:24h |
+| Find Familiar (Lv1) | ⚠️ | 2024 hat neue Mechanik: Bonus-Aktion-Switch zwischen Forms; Pocket-Dimension Verschwinden bei 0 HP |
+
+### Erkannte Patterns (2024 PHB-Trends)
+
+**Pattern 1: Heilung verdoppelt**
+- ALLE Heil-Spells haben verdoppelte Würfel: Cure Wounds 2d8 (war 1d8), Healing Word 2d4 (war 1d4), Mass Cure Wounds 4d8 (vermutlich, prüfen!).
+- App-Action: alle Heil-Spells in `spells.js` durchgehen, Damage + Upcast verdoppeln.
+
+**Pattern 2: Schulen-Änderungen**
+- Heil-Spells: **Evocation → Abjuration** (Cure Wounds, Healing Word, Heal)
+- Pattern: 2024 hat Heil-Magie als Schutz-Magie (Abjuration) neu kategorisiert.
+
+**Pattern 3: Konzentrations- + Action-Type-Änderungen**
+- Haste: Extra-Action statt Bonus-Action.
+- Mehrere Buff-Spells haben Action-Type-Tweaks.
+
+**Pattern 4: Upcast-Listen-Lücken in App**
+- App-Upcast hat oft nur 2-3 Slot-Stufen, 2024 PHB listet alle Slot-Stufen (Lv2-9).
+- App-Action: Upcast-Arrays komplettieren.
+
+### Noch zu prüfen (55 Spells)
+- **Cantrips (4):** Prestidigitation, Mage Hand, Eldritch Blast, Sacred Flame, Guidance
+- **Lv1 (~16):** Magic Missile, Shield, Burning Hands, Charm Person, Sleep, Thunderwave, Guiding Bolt, Inflict Wounds, Hunter's Mark, Thunderous Smite, Detect Magic, Identify, Comprehend Languages, Alarm, Unseen Servant, Speak with Animals
+- **Lv2 (9):** Misty Step, Hold Person, Shatter, Invisibility, Spiritual Weapon, Silence, Locate Object, Augury, Gentle Repose
+- **Lv3 (11):** Lightning Bolt, Counterspell, Dispel Magic, Revivify, Spirit Guardians, Phantom Steed, Water Breathing, Speak with Dead, Leomund's Tiny Hut, Magic Circle
+- **Lv4-9 (16):** Polymorph, Banishment, Greater Invisibility, Cone of Cold, Mass Cure Wounds, Hold Monster, Commune, Contact Other Plane, Rary's Telepathic Bond, Disintegrate, Forbiddance, Finger of Death, Power Word Stun, Power Word Kill, Wish
+
+### Bekannte Big Changes (außerhalb der App-Liste)
+- **True Strike** — KOMPLETT NEU (jetzt Waffenangriff-Cantrip mit +Schaden, nicht "Advantage")
+- **Conjure Animals/Woodland Beings** — Single Summon statt Summon-Cheese
+- **Power Word Heal** (Bard Lv20) — neu in 2024
+
+### Erweiterung App-Spell-Pool
+Aktuell: 63 Spells. 2024 PHB hat **~360 Spells**. → Eigene Erweiterungs-Session nötig.
