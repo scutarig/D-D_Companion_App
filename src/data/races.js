@@ -1,169 +1,206 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// races.js — D&D 5e 2024 PHB Species + 2014 Legacy
+//
+// 2024 REFORM:
+// - KEINE Ability Score Increases (ASI) an Species! ASI kommt aus dem Background.
+// - "Race" → "Species" umbenannt
+// - Sub-Races zu Lineages innerhalb der Hauptrasse umgebaut
+// - Half-Elf und Half-Orc sind raus (Legacy 2014)
+// - Goliath + Orc + Aasimar sind jetzt Core (PHB 2024)
+//
+// LEGACY (2014):
+// Hochelf, Waldelf, Drow, Berg/Hügelzwerg, Halbelfe, Halbork, Aarakocra,
+// Wasserkind (Genasi), Triton, Yuan-ti, Tiefling-Varianten — bleiben als
+// "Legacy 2014" verfügbar, sind aber NICHT mehr 2024 PHB Core.
+// ─────────────────────────────────────────────────────────────────────────────
+
 export const DND_RACES = [
-  {name:"Mensch",traits:["+1 auf alle Attribute","Extra Fertigkeit","Extra Sprache"],speed:30,size:"Mittel",desc:"Die vielseitigste und verbreitetste Rasse der bekannten Welten. Menschen zeichnen sich durch ihre Anpassungsfähigkeit und ihren Ehrgeiz aus – kein Bonus ist herausragend, aber sie sind in allem kompetent. Die Variantenmenschen können alternativ +1 auf zwei Attribute, eine Fertigkeit und einen Feat wählen, was sie zu den stärksten Startcharakteren macht."},
-  {name:"Elf",traits:["Dunkelsicht 60ft","Fey-Abstammung (Vorteil vs. Charm, Immunität gegen Schlaf-Zauber)","Trance (4h Meditation statt 8h Schlaf)","Scharfe Sinne (Wahrnehmungs-Proficiency)"],speed:30,size:"Mittel",desc:"Anmutige, langlebige Wesen mit einer tiefen Verbindung zur Natur und Magie. Elfen leben Jahrhunderte und haben eine feenhafte Abstammung, die sie gegen Bezauberung schützt. Ihre Trance statt Schlaf macht sie unter bestimmten Umständen weniger anfällig für Überraschungsangriffe in der Nacht."},
-  {name:"Hochelf",traits:["DEX +2, INT +1","Dunkelsicht 60ft","Fey-Abstammung","1 Zauberer-Cantrip","Extra Sprache","Waffenprofizienzen: Langschwert, Kurzschwert, Kurzbogen, Langbogen"],speed:30,size:"Mittel",desc:"Die kultiviertesten aller Elfen, mit einer natürlichen Affinität für arkane Magie. Ein kostenloser Cantrip aus der Zauberer-Liste erweitert ihre Möglichkeiten erheblich. Hochelfen sind in Städten und Elfenreichen zu Hause – sie schätzen Wissen, Kunst und die Schönheit der Magie über alles."},
-  {name:"Waldelfe",traits:["DEX +2, WIS +1","Dunkelsicht 60ft","Fey-Abstammung","Bewegungsgeschwindigkeit 35ft","Maske der Wildnis (Verstecken in natürlicher Umgebung)"],speed:35,size:"Mittel",desc:"Naturverbundene Elfen, die in Wäldern und wilden Gebieten leben. Ihre erhöhte Bewegungsgeschwindigkeit und Fähigkeit, sich in der Natur zu verbergen, machen sie zu hervorragenden Scouts. Waldläufer und Druiden profitieren besonders von ihren Boni auf Weisheit und Mobilität."},
-  {name:"Dunkelelf (Drow)",traits:["DEX +2, CHA +1","Dunkelsicht 120ft","Fey-Abstammung","Angeborene Zauber: Tanzende Lichter (Cantrip), Feen-Feuer (Stufe 3), Dunkelheit (Stufe 5)","Sonnenlicht-Empfindlichkeit (Nachteil in hellem Licht)"],speed:30,size:"Mittel",desc:"Die unterirdischen Elfen aus der Underdark, bekannt für ihre Grausamkeit und mächtige angeborene Magie. Ihr außergewöhnliches Dunkelsicht von 120ft macht sie in der Finsternis überlegen. Die Sonnenlicht-Empfindlichkeit ist ein erheblicher Nachteil auf der Oberfläche, der taktisches Vorgehen erfordert."},
-  {name:"Zwerg",traits:["CON +2","Dunkelsicht 60ft","Zwerg-Robustheit (Vorteil gegen Gift, Resistenz gegen Giftschaden)","Steinkunde (Proficiency in Geschichte für Stein und Metall)","Waffenprofizienzen: Handaxt, Streitaxt, Leichter Hammer, Kriegshammer","Rüstungsprofizienzen: Leichte und Mittlere Rüstungen"],speed:25,size:"Mittel",desc:"Robuste Bergbewohner mit einer kulturellen Liebe zu Handwerk, Bergbau und Kampf. Ihre natürliche Resistenz gegen Gift und der Bonus auf Konstitution machen sie zu ausgezeichneten Kriegern und Tankcharakteren. Zwerge haben trotz kürzerer Beine keine Geschwindigkeitsstrafe durch das Tragen schwerer Rüstungen."},
-  {name:"Bergzwerg",traits:["STR +2, CON +2","Dunkelsicht 60ft","Zwerg-Robustheit","Profizienzen mit leichten und mittleren Rüstungen"],speed:25,size:"Mittel",desc:"Die kriegerischsten der Zwerge, gestählt in den harten Bergfestungen ihrer Vorväter. Als einzige nicht-humanoide Rasse mit natürlichen Rüstungsprofizienzen sind Bergzwerge für Kämpfer und Paladine optimal – mit STR+2 und CON+2 sind sie physisch eine der stärksten Grundrassen im Spiel."},
-  {name:"Hügelzwerg",traits:["WIS +1, CON +2","Zähigkeit (+1 HP pro Level zusätzlich)","Dunkelsicht 60ft","Zwerg-Robustheit"],speed:25,size:"Mittel",desc:"Weise und zähe Zwerge, die in Hügeln und fruchtbaren Landen siedeln. Ihr Bonus-HP pro Level macht sie zu den robustesten Charakteren im frühen Spiel. Kleriker und Druiden profitieren besonders vom Weisheitsbonus, kombiniert mit der natürlichen Zähigkeit und Giftresistenz."},
-  {name:"Halbling",traits:["DEX +2","Glück (Würfe einer 1 dürfen wiederholt werden)","Tapferkeit (Vorteil gegen Erschreckt-Zustand)","Beweglichkeit (kann durch Felder größerer Kreaturen gehen)"],speed:25,size:"Klein",desc:"Kleine, fröhliche Wesen mit einer legendären Fähigkeit, dem Pech zu entgehen. Ihre Glück-Eigenschaft ist mechanisch eine der stärksten in 5e – eine 1 auf einem Würfelwurf niemals akzeptieren zu müssen, erhöht die Zuverlässigkeit erheblich. Ideal als Schurke oder Waldläufer durch den DEX-Bonus und die natürliche Tapferkeit."},
-  {name:"Halbork",traits:["STR +2, CON +1","Dunkelsicht 60ft","Profizient: Einschüchterung","Unnachgiebige Ausdauer (einmal pro lange Rast: 1 HP statt zu sterben)","Wilde Angriffe (kritische Treffer fügen +1 Schadenswürfel hinzu)"],speed:30,size:"Mittel",desc:"Starke Krieger mit dem Erbe der Orks in ihren Adern. Ihre Unnachgiebige Ausdauer ist eine der besten Überlebensfähigkeiten für frontlinige Charaktere – einmal pro langer Rast einem tödlichen Treffer zu überleben, ist spielentscheidend. Barbare und Kämpfer profitieren am meisten von Stärke, Konstitution und Wilden Angriffen."},
-  {name:"Halbelfe",traits:["CHA +2, zwei weitere Attribute +1 (frei wählbar)","Dunkelsicht 60ft","Fey-Abstammung (Vorteil gegen Charm)","Vielseitigkeit (2 Skill-Profizienzen frei wählen)"],speed:30,size:"Mittel",desc:"Wesen zwischen zwei Welten, die das Beste beider Rassen vereinen. Als einzige Rasse können Halbhelfen ihre zwei weiteren +1-Boni frei auf beliebige Attribute verteilen und zwei Fertigkeiten ihrer Wahl erlernen. Diese Flexibilität macht sie zu einer der universellsten Rassen für Barden, Hexenmeister und Paladine."},
-  {name:"Tiefling",traits:["INT +1, CHA +2","Dunkelsicht 60ft","Höllische Resistenz (Resistenz gegen Feuerschaden)","Angeborene Zauber: Thaumaturgie (Cantrip), Höllischer Tadel (Stufe 3), Dunkelheit (Stufe 5)"],speed:30,size:"Mittel",desc:"Nachfahren von Teufeln, gebrandmarkt durch ein höllisches Erbe. Tieflinge tragen die Stigmata ihrer Abstammung – Hörner, Schwanz, flammende Augen – und stoßen viele ab. Ihre angeborene Feuermagie und Resistenz sind in Dungeons wertvoll, und ihr CHA+2 macht sie zu natürlichen Hexenmeistern, Zauberern und Barden."},
-  {name:"Drachen-Geborener",traits:["STR +2, CHA +1","Drachen-Abstammung (bestimmt Schadenstyp und Resistenz)","Atemwaffe (Kegel oder Linie; STR- oder CON-Rettungswurf des Ziels)","Schadensresistenz (entspricht dem Drachen-Typ)"],speed:30,size:"Mittel",desc:"Stolze Humanoide mit Drachenblut, die die körperliche Macht ihrer drachischen Vorfahren tragen. Die Atemwaffe skaliert nicht mit dem Level, ist aber besonders in frühen Stufen mächtig. Der CHA-Bonus ergänzt magische Klassen, der STR-Bonus physische Klassen – Paladine und Barden passen thematisch und mechanisch hervorragend."},
-  {name:"Gnom",traits:["INT +2","Dunkelsicht 60ft","Gnomische List (Vorteil auf INT/WIS/CHA-Rettungswürfe gegen Magie)"],speed:25,size:"Klein",desc:"Erfinderische Kleinlinge mit einer angeborenen Resistenz gegen magische Kontrolle. Gnomische List macht sie besonders resistent gegen Bezauberungen, Illusionen und andere Geistesmagie. Unterrassen: Waldgnom (DEX+1, Tiersprache, Täuschungs-Cantrip) und Gesteinsgnom (CON+1, Tüftler, Schnittstellenwissen) bieten sehr unterschiedliche Spielstile."},
-  {name:"Aarakocra",traits:["DEX +2, WIS +1","Fluggeschwindigkeit 50ft (ohne Rüstung)","Klauenangriff (1W4 Klingenwaffe, natürliche Waffe)"],speed:25,size:"Mittel",desc:"(Elemental Evil Player's Companion) Vogelartige Humanoide aus luftigen Gipfeln, bekannt für ihre außergewöhnliche Mobilität. Eine Fluggeschwindigkeit von 50ft schon auf Stufe 1 ist der größte Mobilitätsvorteil im gesamten Regelwerk – Lufthoheit bedeutet oft taktische Dominanz. Viele Spielleiter schränken diese Rasse ein, da Fliegen den Dungeonschwierigkeitsgrad drastisch senken kann."},
-  {name:"Aasimar",traits:["CHA +2","Dunkelsicht 60ft","Heilende Hände (HP = Charakterlevel wiederherstellen, 1× pro langer Rast)","Licht-Träger (Licht-Cantrip)","Celestialer Widerstand (Resistenz gegen Nekrose- und Strahlungsschaden)"],speed:30,size:"Mittel",desc:"(Volo's Guide) Abkömmlinge himmlischer Wesen, gesegnet mit celestialer Gnade. Ihre Unterrassen bieten markant unterschiedliche Kräfte: Beschützer-Aasimar erhalten temporäre Flügel, Geißel-Aasimar verteilen Strahlungsschaden in der Nähe, und Gefallene Aasimar können Feinde in Angst und Schrecken versetzen – ideal für dunklere Charakterkonzepte."},
-  {name:"Tiefling (Varianten)",traits:["Attributsboni je nach Teufelslord-Abstammung","Angeborene Zauber je nach gewählter Abstammungslinie","Höllische Resistenz (Feuer) bleibt stets erhalten"],speed:30,size:"Mittel",desc:"(Mordenkainen's Tome of Foes) Erweiterte Tiefling-Varianten mit Abstammung von verschiedenen Teufelslords wie Asmodeus, Baalzebul oder Dispater. Jede Variante bietet andere Attributsboni und angeborene Zauber, die weit über den Standard-Tiefling hinausgehen. Ideal für maßgeschneiderte, thematisch tiefe Charakterkonzepte."},
-  {name:"Wasserkind (Genasi)",traits:["CON +2, zusätzlich je nach Element +1","Elementare Kräfte und Zauber je nach gewähltem Element"],speed:30,size:"Mittel",desc:"(Elemental Evil Player's Companion) Nachkommen von Elementarwesen in vier Varianten. Feuer-Genasi (INT+1): Immunität gegen Feuer, Feuerzauber. Wasser-Genasi (WIS+1): Amphibisch, Schwimmgeschwindigkeit. Erd-Genasi (STR+1): Passieren von Felsen, Steinhaut-Zauber. Luft-Genasi (DEX+1): Levitation, Nicht-Atmen. Jede Variante bietet einen völlig anderen Spielstil."},
-  {name:"Triton",traits:["STR +1, CON +1, CHA +1","Amphibisch (atmet Wasser und Luft)","Dunkelsicht 60ft","Kontrolle Luft und Wasser (Windstoß, Strahlendes Licht, Sturm)","Resistenz gegen Kälte- und Feuerschaden"],speed:30,size:"Mittel",desc:"(Volo's Guide) Krieger der tiefen Meere mit einer jahrhundertelangen Geschichte des Kampfes gegen Abyssal-Bedrohungen aus den Meerestiefen. Ihre ausgewogenen +1-Boni auf drei Attribute machen sie flexibel, jedoch nicht spezialisiert. Besonders stark in Unterwasserkampagnen; die Kontrollzauber über Luft und Wasser bieten situative, aber eindrucksvolle Möglichkeiten."},
-  {name:"Yuan-ti Pureblood",traits:["INT +1, CHA +2","Dunkelsicht 60ft","Magieresistenz (Vorteil auf alle Rettungswürfe gegen Zauber)","Gift-Immunität","Angeborene Zauber: Giftspray (Cantrip), Tierfreundschaft (3× LR: Schlangen), Einflüsterung (1× LR)"],speed:30,size:"Mittel",desc:"(Volo's Guide) Schlangenartige Humanoide aus einer alten, dunklen Zivilisation. Ihre Magieresistenz – Vorteil auf alle magischen Rettungswürfe – ist mechanisch eine der stärksten passiven Eigenschaften im Spiel. Kombiniert mit Gift-Immunität und CHA+2 sind sie exzellente Hexenmeister, Zauberer oder Barden, besonders in magieintensiven Kampagnen."},
+  // ── 2024 PHB Core Species ──────────────────────────────────────────────────
+  {name:"Mensch",edition:"2024",traits:["Findig (Heroische Inspiration nach langer Rast)","Geübt (1 Fertigkeit deiner Wahl)","Vielseitig (1 Origin-Feat)"],speed:30,size:"Mittel oder Klein",desc:"Die vielseitigste und verbreitetste Species. Im PHB 2024 ohne Attributs-Boni (diese kommen vom Background). Resourceful + Skillful + Versatile machen den Menschen zur freistens wählbaren Origin-Klasse. Heroische Inspiration nach jeder langen Rast ist mechanisch extrem stark."},
+  {name:"Aasimar",edition:"2024",traits:["Dunkelsicht 60ft","Resistenz Nekrose + Strahlend","Healing Hands (PB×W4 HP)","Light-Cantrip","Celestial Revelation @Lv3 (Wings/Inner Radiance/Necrotic Shroud)"],speed:30,size:"Mittel oder Klein",desc:"Mortale mit himmlischem Funken. 2024 PHB Core (war Volo's). Healing Hands skaliert mit Proficiency Bonus (PB W4). Auf Lv3 erhältst du Celestial Revelation: 3 Transformationen zur Wahl (jede 1×/Long Rest, 1 Min)."},
+  {name:"Dragonborn",edition:"2024",traits:["Drachen-Abstammung (Wahl 10 Typen)","Atemwaffe (Attack-Replacement, 1d10→4d10)","Resistenz (je nach Ancestry)","Dunkelsicht 60ft","Draconic Flight @Lv5 (10 Min Fluggeschwindigkeit, 1×/LR)"],speed:30,size:"Mittel",desc:"Bipedale Drachen-Nachkommen. 2024 Atemwaffe ersetzt einen Angriff (statt eigene Aktion). Skaliert: 1d10 (Lv1), 2d10 (Lv5), 3d10 (Lv11), 4d10 (Lv17). NEU 2024: Draconic Flight auf Lv5 — spektrale Flügel für 10 Minuten."},
+  {name:"Dwarf",edition:"2024",traits:["Dunkelsicht 120ft","Dwarven Resilience (Resistenz Gift + Vorteil vs Poisoned)","Dwarven Toughness (+1 HP/Level)","Stonecunning (Tremorsense 60ft, PB×/LR)"],speed:30,size:"Mittel",desc:"Robuste Bewohner unterirdischer Reiche. 2024: Sub-Races (Hill/Mountain) entfallen — alle Zwerge erhalten Dwarven Toughness (+1 HP/Level, vorher nur Hill). Stonecunning ist jetzt Tremorsense 60ft als Bonus-Aktion. Speed 30ft (war 2014: 25ft)."},
+  {name:"Elf",edition:"2024",traits:["Dunkelsicht 60ft","Elven Lineage (Drow/High/Wood) mit Spells auf Lv1+3+5","Fey Ancestry (Vorteil vs Charmed)","Keen Senses (Insight/Perception/Survival)","Trance (Long Rest in 4h)"],speed:30,size:"Mittel",desc:"Magische, langlebige Wesen. 2024: Sub-Races zu Lineages umgebaut. Drow = Dancing Lights + Faerie Fire (L3) + Darkness (L5), 120ft Darkvision. High Elf = Prestidigitation + Detect Magic + Misty Step. Wood Elf = Druidcraft + Longstrider + Pass without Trace, Speed 35ft."},
+  {name:"Gnome",edition:"2024",traits:["Dunkelsicht 60ft","Gnomish Cunning (Vorteil INT/WIS/CHA-Saves)","Gnomish Lineage (Forest/Rock)"],speed:30,size:"Klein",desc:"Erfinderische Kleinlinge. 2024: Gnomish Cunning gibt Vorteil auf INT/WIS/CHA-Saves gegen ALLES (war 2014: nur gegen Magie). Forest Gnome Lineage = Minor Illusion + Speak with Animals (immer prepared). Rock Gnome = Mending + Prestidigitation + Clockwork Device. Speed 30ft (war 25ft)."},
+  {name:"Goliath",edition:"2024",traits:["Giant Ancestry (Cloud/Fire/Frost/Hill/Stone/Storm)","Powerful Build (Vorteil Grapple-Saves, +1 Größenkategorie Traglast)","Large Form @Lv5 (Größe Large, Vorteil STR-Checks, +10ft Speed, 10 Min)","Speed 35ft"],speed:35,size:"Mittel",desc:"Riesen-Nachkommen. 2024 PHB Core (war SCAG). 6 Giant Ancestry Optionen: Cloud (Teleport 30ft), Fire (+1d10 Feuer), Frost (+1d6 Kälte + Speed -10), Hill (Prone bei Treffer), Stone (Reaction +CON+1d12 Schaden reduzieren), Storm (Reaction 1d8 Donner). Alle PB×/LR. Lv5: Large Form."},
+  {name:"Halfling",edition:"2024",traits:["Brave (Vorteil vs Frightened)","Halfling Nimbleness (durch größere Wesen bewegen)","Luck (Reroll 1 auf d20)","Naturally Stealthy (Hide hinter größeren Wesen)","Speed 30ft"],speed:30,size:"Klein",desc:"Glückliche Kleinlinge. 2024: Lightfoot/Stout entfallen — alle Halflings haben alle Traits. Speed jetzt 30ft (war 25ft). Naturally Stealthy: Verstecken hinter Wesen größer als du."},
+  {name:"Orc",edition:"2024",traits:["Adrenaline Rush (Bonus-Aktion Dash + PB Temp HP, PB×/SR)","Dunkelsicht 120ft","Powerful Build (Vorteil Grapple-Saves, +1 Größenkategorie Traglast)","Relentless Endurance (1×/LR bei 0 HP → 1 HP)"],speed:30,size:"Mittel",desc:"Krieger mit Gruumsh-Erbe. 2024 PHB Core (war Volo's). Adrenaline Rush skaliert: PB-mal pro Short/Long Rest. Powerful Build wie Goliath. 120ft Darkvision (besser als Dwarves' 120ft hier ebenso)."},
+  {name:"Tiefling",edition:"2024",traits:["Dunkelsicht 60ft","Fiendish Legacy (Abyssal/Chthonic/Infernal) mit Spells auf Lv1+3+5","Otherworldly Presence (Thaumaturgy-Cantrip)"],speed:30,size:"Mittel oder Klein",desc:"Mit Fiend-Blut verbunden. 2024: 3 Legacies. Abyssal = Resistenz Gift + Poison Spray, dann Ray of Sickness + Hold Person. Chthonic = Resistenz Nekrose + Chill Touch, dann False Life + Ray of Enfeeblement. Infernal = Resistenz Feuer + Fire Bolt, dann Hellish Rebuke + Darkness."},
+
+  // ── Legacy 2014 Sub-Variants (eigentlich Lineages in 2024) ─────────────────
+  {name:"Hochelf (2014)",edition:"2014",legacy:true,traits:["DEX +2, INT +1","Dunkelsicht 60ft","Fey-Abstammung","1 Zauberer-Cantrip","Extra Sprache"],speed:30,size:"Mittel",desc:"(2014 Legacy) In 2024 als High Elf Lineage innerhalb der Elf-Species verfügbar. Boni: Prestidigitation-Cantrip + Lv3 Detect Magic + Lv5 Misty Step."},
+  {name:"Waldelfe (2014)",edition:"2014",legacy:true,traits:["DEX +2, WIS +1","Dunkelsicht 60ft","Fey-Abstammung","Speed 35ft","Maske der Wildnis"],speed:35,size:"Mittel",desc:"(2014 Legacy) In 2024 als Wood Elf Lineage. Boni: Druidcraft-Cantrip + Lv3 Longstrider + Lv5 Pass without Trace."},
+  {name:"Dunkelelf (Drow) (2014)",edition:"2014",legacy:true,traits:["DEX +2, CHA +1","Dunkelsicht 120ft","Fey-Abstammung","Angeborene Zauber","Sonnenlicht-Empfindlichkeit"],speed:30,size:"Mittel",desc:"(2014 Legacy) In 2024 als Drow Lineage. Boni: Dancing Lights + Lv3 Faerie Fire + Lv5 Darkness. NEU 2024: Keine Sunlight Sensitivity mehr!"},
+  {name:"Bergzwerg (2014)",edition:"2014",legacy:true,traits:["STR +2, CON +2","Dunkelsicht 60ft","Zwerg-Robustheit","Mittlere Rüstungs-Profizienz"],speed:25,size:"Mittel",desc:"(2014 Legacy) In 2024 entfällt die Mountain-Sub-Race komplett. Stattdessen wähle Dwarf + nimm Soldat-Background für STR+CON-Boni und Rüstungs-Profizienz."},
+  {name:"Hügelzwerg (2014)",edition:"2014",legacy:true,traits:["WIS +1, CON +2","Zähigkeit (+1 HP/Level)","Dunkelsicht 60ft","Zwerg-Robustheit"],speed:25,size:"Mittel",desc:"(2014 Legacy) In 2024 entfällt die Hill-Sub-Race — alle Zwerge haben jetzt Dwarven Toughness (+1 HP/Level), nicht nur Hill."},
+  {name:"Halbork (2014)",edition:"2014",legacy:true,traits:["STR +2, CON +1","Dunkelsicht 60ft","Unnachgiebige Ausdauer","Wilde Angriffe"],speed:30,size:"Mittel",desc:"(2014 Legacy) NICHT mehr im 2024 PHB Core. Alternative: Spiele Orc + wähle Outlander/Soldier Background. Oder behalte 2014-Mechaniken."},
+  {name:"Halbelfe (2014)",edition:"2014",legacy:true,traits:["CHA +2, 2 weitere +1","Dunkelsicht 60ft","Fey-Abstammung","Vielseitigkeit (2 Skills)"],speed:30,size:"Mittel",desc:"(2014 Legacy) NICHT mehr im 2024 PHB Core. Alternative: Spiele Elf mit Sage/Entertainer Background. Oder behalte 2014-Mechaniken."},
+
+  // ── Legacy 2014 Settings-/Companion-Species ────────────────────────────────
+  {name:"Drachen-Geborener (2014)",edition:"2014",legacy:true,traits:["STR +2, CHA +1","Drachen-Abstammung","Atemwaffe","Schadensresistenz"],speed:30,size:"Mittel",desc:"(2014 Legacy) In 2024 stark überarbeitet als 'Dragonborn'. Hauptunterschiede: 2024 hat Atemwaffe als Attack-Replacement (statt Aktion), Skalierung mit Char-Level, und NEU: Draconic Flight @ Lv5."},
+  {name:"Aarakocra (2014)",edition:"2014",legacy:true,traits:["DEX +2, WIS +1","Fluggeschwindigkeit 50ft","Klauenangriff"],speed:25,size:"Mittel",desc:"(EE Player's Companion 2014) NICHT im 2024 PHB Core. Vogelartige Humanoide mit Flug ab Lv1 — von vielen DMs eingeschränkt."},
+  {name:"Aasimar (2014)",edition:"2014",legacy:true,traits:["CHA +2","Dunkelsicht 60ft","Heilende Hände","Licht-Träger","Celestialer Widerstand"],speed:30,size:"Mittel",desc:"(Volo's Guide 2014) In 2024 Core und überarbeitet — siehe 'Aasimar' (2024). Hauptunterschied: 2024 hat Healing Hands mit PB×W4 (statt = Level) und 3 Celestial Revelation Forms statt 3 fixe Sub-Races."},
+  {name:"Tiefling (2014 Varianten)",edition:"2014",legacy:true,traits:["Wahl: Asmodeus/Baalzebul/Dispater/etc.","Angeborene Zauber je nach Linie"],speed:30,size:"Mittel",desc:"(Mordenkainen's Tome of Foes 2014) NICHT im 2024 PHB Core. 2024 hat stattdessen 3 Legacies (Abyssal/Chthonic/Infernal)."},
+  {name:"Wasserkind/Genasi (2014)",edition:"2014",legacy:true,traits:["CON +2, Element +1","Elementare Kräfte (Feuer/Wasser/Erd/Luft)"],speed:30,size:"Mittel",desc:"(EE Player's Companion 2014) NICHT im 2024 PHB Core. Elementare Humanoide in 4 Sub-Varianten."},
+  {name:"Triton (2014)",edition:"2014",legacy:true,traits:["STR +1, CON +1, CHA +1","Amphibisch","Kontrolle Luft/Wasser","Kälte-/Feuerresistenz"],speed:30,size:"Mittel",desc:"(Volo's Guide 2014) NICHT im 2024 PHB Core. Meeresvolk für Unterwasser-Kampagnen."},
+  {name:"Yuan-ti Pureblood (2014)",edition:"2014",legacy:true,traits:["INT +1, CHA +2","Magieresistenz","Gift-Immunität","Angeborene Schlangenzauber"],speed:30,size:"Mittel",desc:"(Volo's Guide 2014) NICHT im 2024 PHB Core. Schlangenartige Humanoide. Magieresistenz mechanisch sehr stark."},
 ];
 
 export const ALL_VOELKER = DND_RACES.map(r => r.name);
+
 export const DND_BACKGROUNDS = ["Akolyt","Adliger","Ausgestoßener","Entertainer","Edelmann","Fernhändler","Fischer","Forscher","Gildenmitglied","Gladiator","Handwerker","Heimatloser","Held des Volkes","Krimineller","Matrose","Pirat","Scharlatan","Söldner","Soldat","Stadtbewohner","Waldläufer","Verbrechensopfer","Wanderer","Weiser","Zögling"];
 
-// ── Strukturierte Rassen-Daten (9 Standardrassen) ────────────────────────────
-// Jedes Trait/Feature: { id, name, description, source, category }
-// category: "trait" | "feature"
+// ── Strukturierte 2024 Species-Daten ─────────────────────────────────────────
+// 2024: KEINE statBonuses mehr! Alle auf 0 — ASI kommt vom Background.
+// Format pro Species: { id, name, edition, description, statBonuses (alle 0!), speed, size, languages, traits, features, lineages? }
+// Format pro Lineage: { id, name, description, traits: [{level, ...}], spells: [{level, name}] }
+
 export const RACES_FULL = [
   {
-    id: "mensch",
-    name: "Mensch",
-    description: "Die vielseitigste und verbreitetste Rasse. Menschen zeichnen sich durch Anpassungsfähigkeit und Ehrgeiz aus.",
-    statBonuses: { STR: 1, DEX: 1, CON: 1, INT: 1, WIS: 1, CHA: 1 },
-    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "1 Sprache nach Wahl"],
+    id: "human", name: "Mensch", edition: "2024",
+    description: "Die vielseitigste Species. 2024 PHB ohne ASI — Boni kommen vom Background.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "1 Sprache (Background)"],
     traits: [
-      { id: "mensch_attr_bonus", name: "+1 auf alle Attribute", description: "Jeder deiner sechs Attributswerte erhöht sich um 1.", source: "Mensch", category: "trait" },
-      { id: "mensch_extra_fertigkeit", name: "Vielseitigkeit", description: "Du erhältst Übung in einer Fertigkeit deiner Wahl.", source: "Mensch", category: "trait" },
-      { id: "mensch_extra_sprache", name: "Extra Sprache", description: "Du kannst eine zusätzliche Sprache deiner Wahl sprechen, lesen und schreiben.", source: "Mensch", category: "trait" },
-    ],
-    features: [
-      { id: "mensch_versatile", name: "Anpassungsfähigkeit", description: "Menschen sind in allen Klassen und Rollen gleich stark. Keine Stärke ist herausragend, aber keine Schwäche schränkt ein.", source: "Mensch", category: "feature" },
-    ],
-  },
-  {
-    id: "elf",
-    name: "Elf",
-    description: "Anmutige, langlebige Wesen mit einer tiefen Verbindung zur Natur und Magie. Elfen leben Jahrhunderte.",
-    statBonuses: { STR: 0, DEX: 2, CON: 0, INT: 0, WIS: 0, CHA: 0 },
-    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Elfisch"],
-    traits: [
-      { id: "elf_dex_bonus", name: "DEX +2", description: "Dein Geschicklichkeitswert erhöht sich um 2.", source: "Elf", category: "trait" },
-      { id: "elf_darkvision", name: "Dunkelsicht", description: "Du siehst in Dunkelheit (schwaches Licht) auf bis zu 60 Fuß als wäre es helles Licht, und in völliger Dunkelheit als wäre es schwaches Licht. In Dunkelheit erkennst du keine Farben, nur Grautöne.", source: "Elf", category: "trait" },
-      { id: "elf_keen_senses", name: "Scharfe Sinne", description: "Du hast Übung in der Fertigkeit Wahrnehmung.", source: "Elf", category: "trait" },
-      { id: "elf_fey_ancestry", name: "Fey-Abstammung", description: "Du hast Vorteil auf Rettungswürfe gegen das Bezaubert-Sein und kannst durch Magie nicht in den Schlaf versetzt werden.", source: "Elf", category: "trait" },
-    ],
-    features: [
-      { id: "elf_trance", name: "Trance", description: "Elfen schlafen nicht. Stattdessen meditieren sie 4 Stunden täglich tief (Trance). Danach profitierst du wie nach einer langen Rast.", source: "Elf", category: "feature" },
-    ],
-  },
-  {
-    id: "zwerg",
-    name: "Zwerg",
-    description: "Robuste Bergbewohner mit kultureller Liebe zu Handwerk, Bergbau und Kampf. Bekannt für ihre Ausdauer.",
-    statBonuses: { STR: 0, DEX: 0, CON: 2, INT: 0, WIS: 0, CHA: 0 },
-    speed: 25, size: "Mittel", languages: ["Gemeinsprache", "Zwergisch"],
-    traits: [
-      { id: "zwerg_con_bonus", name: "CON +2", description: "Dein Konstitutionswert erhöht sich um 2.", source: "Zwerg", category: "trait" },
-      { id: "zwerg_darkvision", name: "Dunkelsicht", description: "Gewohnt an das Leben unter der Erde, siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Zwerg", category: "trait" },
-      { id: "zwerg_robustheit", name: "Zwerg-Robustheit", description: "Du hast Vorteil auf Rettungswürfe gegen Gift und Resistenz gegen Giftschaden.", source: "Zwerg", category: "trait" },
-      { id: "zwerg_steinkunde", name: "Steinkunde", description: "Wenn du einen Intelligenz(Geschichte)-Wurf machst, der sich auf die Herkunft von Steinmetzarbeiten bezieht, hast du Vorteil.", source: "Zwerg", category: "trait" },
-      { id: "zwerg_kampftraining", name: "Zwerg-Kampftraining", description: "Du hast Übung mit Handaxt, Streitaxt, Leichtem Hammer und Kriegshammer.", source: "Zwerg", category: "trait" },
-    ],
-    features: [
-      { id: "zwerg_werkzeug", name: "Werkzeugübung", description: "Du hast Übung mit dem Werkzeug eines Handwerks deiner Wahl: Schmiedewerkzeug, Brauersutensilien oder Steinmetzwerkzeug.", source: "Zwerg", category: "feature" },
-      { id: "zwerg_bewegung", name: "Standhaftigkeit", description: "Deine Bewegungsgeschwindigkeit wird nicht durch das Tragen schwerer Rüstung verringert.", source: "Zwerg", category: "feature" },
-    ],
-  },
-  {
-    id: "halbling",
-    name: "Halbling",
-    description: "Kleine, fröhliche Wesen mit einer legendären Fähigkeit, dem Pech zu entgehen. Ideal als Schurke oder Waldläufer.",
-    statBonuses: { STR: 0, DEX: 2, CON: 0, INT: 0, WIS: 0, CHA: 0 },
-    speed: 25, size: "Klein", languages: ["Gemeinsprache", "Halblingsprache"],
-    traits: [
-      { id: "halbling_dex_bonus", name: "DEX +2", description: "Dein Geschicklichkeitswert erhöht sich um 2.", source: "Halbling", category: "trait" },
-      { id: "halbling_luck", name: "Glück", description: "Wenn du bei einem Angriffswurf, Rettungswurf oder Fertigkeitswurf eine 1 würfelst, darfst du den Würfel erneut würfeln und musst das neue Ergebnis verwenden.", source: "Halbling", category: "trait" },
-      { id: "halbling_tapferkeit", name: "Tapferkeit", description: "Du hast Vorteil auf Rettungswürfe gegen das Erschreckt-Sein.", source: "Halbling", category: "trait" },
-      { id: "halbling_beweglichkeit", name: "Halbling-Beweglichkeit", description: "Du kannst durch den Raum einer beliebigen Kreatur gehen, die mindestens eine Größe größer als du ist.", source: "Halbling", category: "trait" },
+      { id: "human_resourceful", name: "Resourceful", description: "Du erhältst Heroische Inspiration nach jeder langen Rast.", source: "Mensch", category: "trait" },
+      { id: "human_skillful", name: "Skillful", description: "Übung in einer Fertigkeit deiner Wahl.", source: "Mensch", category: "trait" },
+      { id: "human_versatile", name: "Versatile", description: "Origin-Feat deiner Wahl (Skilled empfohlen). Siehe Feats-Kapitel.", source: "Mensch", category: "trait" },
     ],
     features: [],
   },
   {
-    id: "drachen_geborener",
-    name: "Drachen-Geborener",
-    description: "Stolze Humanoide mit Drachenblut. Die körperliche Macht ihrer drachischen Vorfahren zeigt sich in Atem und Resistenz.",
-    statBonuses: { STR: 2, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 1 },
+    id: "aasimar", name: "Aasimar", edition: "2024",
+    description: "Mortale mit himmlischem Funken. 2024 PHB Core.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel oder Klein", languages: ["Gemeinsprache"],
+    traits: [
+      { id: "aasimar_resistance", name: "Celestial Resistance", description: "Resistenz gegen Nekrose- und Strahlend-Schaden.", source: "Aasimar", category: "trait" },
+      { id: "aasimar_darkvision", name: "Dunkelsicht 60ft", description: "Du siehst in Dunkelheit auf 60ft als wäre es Schwachlicht.", source: "Aasimar", category: "trait" },
+      { id: "aasimar_healing", name: "Healing Hands", description: "Magic Action: Berühre ein Wesen und würfle PB×W4. Heilt diese HP. 1×/Long Rest.", source: "Aasimar", category: "trait" },
+      { id: "aasimar_light", name: "Light Bearer", description: "Du kennst den Light-Cantrip. CHA ist deine Zauberfähigkeit dafür.", source: "Aasimar", category: "trait" },
+    ],
+    features: [
+      { id: "aasimar_revelation", name: "Celestial Revelation (Lv3)", description: "Bonus-Aktion: Transformiere für 1 Min in eine von 3 Formen (Wahl pro Aktivierung): Heavenly Wings (Fly Speed = Speed), Inner Radiance (10ft Bright Light + PB Radiant Schaden/Runde), Necrotic Shroud (Wesen in 10ft: DC CHA oder Frightened). Während Transformation: 1×/Zug PB Bonus-Schaden auf Treffer. 1×/Long Rest.", source: "Aasimar", category: "feature" },
+    ],
+  },
+  {
+    id: "dragonborn", name: "Dragonborn", edition: "2024",
+    description: "Bipedale Drachen-Nachkommen. 2024: Breath als Attack-Replacement + Flight @ Lv5.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
     speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Drachisch"],
     traits: [
-      { id: "drache_str_bonus", name: "STR +2, CHA +1", description: "Dein Stärkewert erhöht sich um 2, dein Charismawert um 1.", source: "Drachen-Geborener", category: "trait" },
-      { id: "drache_abstammung", name: "Drachen-Abstammung", description: "Du hast die Abstammung eines bestimmten Drachentyps (z.B. Gold, Silber, Feuer). Dieser bestimmt deinen Atemwaffen-Schadenstyp und deine Resistenz.", source: "Drachen-Geborener", category: "trait" },
-      { id: "drache_atemwaffe", name: "Atemwaffe", description: "Du kannst als Aktion deinen Atem als Waffe einsetzen (Kegel 15ft oder Linie 5×30ft). Jedes Wesen muss einen Rettungswurf ablegen (SG = 8 + CON-Mod + PB). Bei Erfolg halber Schaden. Einmal nach kurzer oder langer Rast.", source: "Drachen-Geborener", category: "feature" },
+      { id: "dragonborn_ancestry", name: "Draconic Ancestry", description: "Wähle Drachentyp (Black/Blue/Brass/Bronze/Copper/Gold/Green/Red/Silver/White) — bestimmt Atemwaffen-Schadenstyp und Resistenz. Schadenstypen: Acid/Lightning/Fire/Lightning/Acid/Fire/Poison/Fire/Cold/Cold.", source: "Dragonborn", category: "trait" },
+      { id: "dragonborn_breath", name: "Atemwaffe", description: "Bei Attack-Aktion: Ersetze einen Angriff durch Atemwaffe (15ft Kegel ODER 30ft Linie ×5ft). DC 8+CON+PB DEX-Save. 1d10 (steigt: Lv5→2d10, Lv11→3d10, Lv17→4d10). PB×/Long Rest.", source: "Dragonborn", category: "feature" },
+      { id: "dragonborn_resistance", name: "Damage Resistance", description: "Resistenz gegen Schadenstyp deiner Drachen-Abstammung.", source: "Dragonborn", category: "trait" },
+      { id: "dragonborn_darkvision", name: "Dunkelsicht 60ft", description: "Dunkelsicht 60ft.", source: "Dragonborn", category: "trait" },
     ],
     features: [
-      { id: "drache_resistenz", name: "Schadensresistenz", description: "Du hast Resistenz gegen den Schadenstyp, der deiner Drachen-Abstammung entspricht.", source: "Drachen-Geborener", category: "feature" },
+      { id: "dragonborn_flight", name: "Draconic Flight (Lv5)", description: "NEU 2024: Bonus-Aktion: Spektrale Flügel für 10 Min (oder bis du sie einklappst). Fly Speed = Speed. 1×/Long Rest.", source: "Dragonborn", category: "feature" },
     ],
   },
   {
-    id: "gnom",
-    name: "Gnom",
-    description: "Erfinderische Kleinlinge mit natürlicher Resistenz gegen magische Kontrolle. Ideal für Zauberer und Erfinder.",
-    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 2, WIS: 0, CHA: 0 },
-    speed: 25, size: "Klein", languages: ["Gemeinsprache", "Gnomisch"],
+    id: "dwarf", name: "Dwarf", edition: "2024",
+    description: "Robuste Bewohner unterirdischer Reiche. 2024: Sub-Races entfallen.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Zwergisch"],
     traits: [
-      { id: "gnom_int_bonus", name: "INT +2", description: "Dein Intelligenzwert erhöht sich um 2.", source: "Gnom", category: "trait" },
-      { id: "gnom_darkvision", name: "Dunkelsicht", description: "Gewohnt an unterirdische Wohnstätten, siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Gnom", category: "trait" },
-      { id: "gnom_list", name: "Gnomische List", description: "Du hast Vorteil auf alle Intelligenz-, Weisheits- und Charismo-Rettungswürfe gegen Magie.", source: "Gnom", category: "trait" },
+      { id: "dwarf_darkvision", name: "Dunkelsicht 120ft", description: "Du siehst in Dunkelheit auf 120ft als wäre es Schwachlicht.", source: "Dwarf", category: "trait" },
+      { id: "dwarf_resilience", name: "Dwarven Resilience", description: "Resistenz gegen Gift + Vorteil auf Saves vs Poisoned.", source: "Dwarf", category: "trait" },
+      { id: "dwarf_toughness", name: "Dwarven Toughness", description: "+1 HP-Max + +1 HP-Max bei jedem Level-Up. (Vorher 2014: nur Hill Dwarf)", source: "Dwarf", category: "trait" },
+      { id: "dwarf_stonecunning", name: "Stonecunning", description: "Bonus-Aktion: Tremorsense 60ft für 10 Min (Stein berühren erforderlich). PB×/Long Rest.", source: "Dwarf", category: "trait" },
     ],
     features: [],
   },
   {
-    id: "halbork",
-    name: "Halbork",
-    description: "Starke Krieger mit dem Erbe der Orks. Unnachgiebige Ausdauer ist eine der besten Überlebensfähigkeiten im Spiel.",
-    statBonuses: { STR: 2, DEX: 0, CON: 1, INT: 0, WIS: 0, CHA: 0 },
+    id: "elf", name: "Elf", edition: "2024",
+    description: "Langlebige magische Wesen. 2024: Sub-Races zu Lineages.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Elfisch"],
+    traits: [
+      { id: "elf_darkvision", name: "Dunkelsicht 60ft", description: "Dunkelsicht 60ft.", source: "Elf", category: "trait" },
+      { id: "elf_lineage", name: "Elven Lineage", description: "Wähle eine Lineage: Drow, High Elf, oder Wood Elf (siehe Lineages). Gibt dir Spells auf Lv1, 3, und 5.", source: "Elf", category: "trait" },
+      { id: "elf_fey_ancestry", name: "Fey Ancestry", description: "Vorteil auf Saves gegen Charmed-Zustand.", source: "Elf", category: "trait" },
+      { id: "elf_keen_senses", name: "Keen Senses", description: "Übung in Insight, Perception, ODER Survival (Wahl).", source: "Elf", category: "trait" },
+      { id: "elf_trance", name: "Trance", description: "Du brauchst keinen Schlaf. Long Rest in 4h Meditation (bei Bewusstsein).", source: "Elf", category: "trait" },
+    ],
+    features: [],
+    lineages: [
+      { id: "drow", name: "Drow Lineage", description: "Dunkelsicht erweitert auf 120ft. Spells: Dancing Lights (Cantrip), Faerie Fire (Lv3, 1×/LR), Darkness (Lv5, 1×/LR). INT/WIS/CHA Spellcasting." },
+      { id: "high_elf", name: "High Elf Lineage", description: "Spells: Prestidigitation (Cantrip, austauschbar mit Wizard-Cantrip nach Long Rest), Detect Magic (Lv3, 1×/LR), Misty Step (Lv5, 1×/LR). INT/WIS/CHA Spellcasting." },
+      { id: "wood_elf", name: "Wood Elf Lineage", description: "Speed steigt auf 35ft. Spells: Druidcraft (Cantrip), Longstrider (Lv3, 1×/LR), Pass without Trace (Lv5, 1×/LR). INT/WIS/CHA Spellcasting." },
+    ],
+  },
+  {
+    id: "gnome", name: "Gnome", edition: "2024",
+    description: "Erfinderische Kleinlinge. 2024: Cunning gegen ALLES (nicht nur Magie).",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Klein", languages: ["Gemeinsprache", "Gnomisch"],
+    traits: [
+      { id: "gnome_darkvision", name: "Dunkelsicht 60ft", description: "Dunkelsicht 60ft.", source: "Gnome", category: "trait" },
+      { id: "gnome_cunning", name: "Gnomish Cunning", description: "Vorteil auf alle INT/WIS/CHA-Saves (war 2014: nur gegen Magie).", source: "Gnome", category: "trait" },
+      { id: "gnome_lineage", name: "Gnomish Lineage", description: "Wähle Forest Gnome oder Rock Gnome (siehe Lineages).", source: "Gnome", category: "trait" },
+    ],
+    features: [],
+    lineages: [
+      { id: "forest_gnome", name: "Forest Gnome Lineage", description: "Minor Illusion Cantrip + Speak with Animals immer prepared (PB×/LR ohne Slot, oder mit Slot)." },
+      { id: "rock_gnome", name: "Rock Gnome Lineage", description: "Mending + Prestidigitation Cantrips. Kann 10-Min-Prestidigitation in Tiny Clockwork Device (AC5, 1HP) verwandeln — bis zu 3 gleichzeitig." },
+    ],
+  },
+  {
+    id: "goliath", name: "Goliath", edition: "2024",
+    description: "Riesen-Nachkommen. 2024 PHB Core (war SCAG). Wähle eine von 6 Giant Ancestries.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 35, size: "Mittel", languages: ["Gemeinsprache", "Riesisch"],
+    traits: [
+      { id: "goliath_ancestry", name: "Giant Ancestry", description: "Wähle einen Boon (PB×/LR): Cloud's Jaunt (Bonus-Aktion 30ft Teleport), Fire's Burn (+1d10 Feuer bei Treffer), Frost's Chill (+1d6 Kälte + -10 Speed), Hill's Tumble (Prone bei Treffer ≤Large), Stone's Endurance (Reaction: 1d12+CON Schaden reduzieren), Storm's Thunder (Reaction bei Schaden: 1d8 Donner an Angreifer).", source: "Goliath", category: "trait" },
+      { id: "goliath_build", name: "Powerful Build", description: "Vorteil auf Saves gegen Grappled. +1 Größenkategorie für Traglast/Push/Pull/Lift.", source: "Goliath", category: "trait" },
+      { id: "goliath_speed", name: "Speed 35ft", description: "Deine Bewegungsgeschwindigkeit ist 35ft.", source: "Goliath", category: "trait" },
+    ],
+    features: [
+      { id: "goliath_large", name: "Large Form (Lv5)", description: "Bonus-Aktion: Wachse zu Large für 10 Min (oder beende es). Vorteil auf STR-Checks + +10ft Speed. 1×/Long Rest.", source: "Goliath", category: "feature" },
+    ],
+  },
+  {
+    id: "halfling", name: "Halfling", edition: "2024",
+    description: "Glückliche Kleinlinge. 2024: Lightfoot/Stout entfallen, alle Traits standard.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Klein", languages: ["Gemeinsprache", "Halblingisch"],
+    traits: [
+      { id: "halfling_brave", name: "Brave", description: "Vorteil auf Saves gegen Frightened.", source: "Halfling", category: "trait" },
+      { id: "halfling_nimble", name: "Halfling Nimbleness", description: "Du kannst durch den Raum jeder Kreatur bewegen, die größer als du ist.", source: "Halfling", category: "trait" },
+      { id: "halfling_luck", name: "Luck", description: "Bei 1 auf einem d20: Reroll. Musst neuen Wurf nehmen.", source: "Halfling", category: "trait" },
+      { id: "halfling_stealth", name: "Naturally Stealthy", description: "Du kannst die Hide-Aktion machen wenn du nur von einem Wesen größer als du verdeckt bist.", source: "Halfling", category: "trait" },
+    ],
+    features: [],
+  },
+  {
+    id: "orc", name: "Orc", edition: "2024",
+    description: "Krieger mit Gruumsh-Erbe. 2024 PHB Core (war Volo's).",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
     speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Orkisch"],
     traits: [
-      { id: "halbork_str_bonus", name: "STR +2, CON +1", description: "Dein Stärkewert erhöht sich um 2, dein Konstitutionswert um 1.", source: "Halbork", category: "trait" },
-      { id: "halbork_darkvision", name: "Dunkelsicht", description: "Dank deines ork'schen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Halbork", category: "trait" },
-      { id: "halbork_einschuechterung", name: "Einschüchterung", description: "Du hast Übung in der Fertigkeit Einschüchterung.", source: "Halbork", category: "trait" },
-    ],
-    features: [
-      { id: "halbork_ausdauer", name: "Unnachgiebige Ausdauer", description: "Wenn du auf 0 Trefferpunkte reduziert wirst, kannst du stattdessen auf 1 Trefferpunkt bleiben. Diese Fähigkeit kann nicht erneut verwendet werden, bis du eine lange Rast abgeschlossen hast.", source: "Halbork", category: "feature" },
-      { id: "halbork_wilde_angriffe", name: "Wilde Angriffe", description: "Wenn du mit einem Nahkampfangriff einen kritischen Treffer erzielst, kannst du einen zusätzlichen Würfel des Schadenswürfels der Waffe zum Extraschadenswurf würfeln.", source: "Halbork", category: "feature" },
-    ],
-  },
-  {
-    id: "halbelfe",
-    name: "Halbelfe",
-    description: "Wesen zwischen zwei Welten. Als einzige Rasse können Halbhelfen ihre +1-Boni frei verteilen und Fertigkeiten frei wählen.",
-    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 2 },
-    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Elfisch", "1 Sprache nach Wahl"],
-    traits: [
-      { id: "halbelfe_cha_bonus", name: "CHA +2, zwei weitere +1", description: "Dein Charismawert erhöht sich um 2. Außerdem erhöhen sich zwei andere Attributswerte deiner Wahl jeweils um 1.", source: "Halbelfe", category: "trait" },
-      { id: "halbelfe_darkvision", name: "Dunkelsicht", description: "Dank deines elfischen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Halbelfe", category: "trait" },
-      { id: "halbelfe_fey_ancestry", name: "Fey-Abstammung", description: "Du hast Vorteil auf Rettungswürfe gegen das Bezaubert-Sein und kannst durch Magie nicht in den Schlaf versetzt werden.", source: "Halbelfe", category: "trait" },
-      { id: "halbelfe_vielseitigkeit", name: "Vielseitigkeit", description: "Du hast Übung in zwei Fertigkeiten deiner Wahl.", source: "Halbelfe", category: "trait" },
+      { id: "orc_adrenaline", name: "Adrenaline Rush", description: "Bonus-Aktion: Dash + erhalte PB Temp HP. PB×/Short oder Long Rest.", source: "Orc", category: "trait" },
+      { id: "orc_darkvision", name: "Dunkelsicht 120ft", description: "Dunkelsicht 120ft.", source: "Orc", category: "trait" },
+      { id: "orc_build", name: "Powerful Build", description: "Vorteil auf Saves gegen Grappled. +1 Größenkategorie für Traglast.", source: "Orc", category: "trait" },
+      { id: "orc_endurance", name: "Relentless Endurance", description: "Wenn du auf 0 HP reduziert wirst (nicht sofort getötet): bleibe stattdessen bei 1 HP. 1×/Long Rest.", source: "Orc", category: "trait" },
     ],
     features: [],
   },
   {
-    id: "tiefling",
-    name: "Tiefling",
-    description: "Nachfahren von Teufeln, gebrandmarkt durch ein höllisches Erbe. CHA+2 macht sie zu natürlichen Hexenmeistern und Barden.",
-    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 1, WIS: 0, CHA: 2 },
-    speed: 30, size: "Mittel", languages: ["Gemeinsprache", "Teuflisch"],
+    id: "tiefling", name: "Tiefling", edition: "2024",
+    description: "Mit Fiend-Blut verbunden. 2024: 3 Legacies mit Lv1/3/5 Spells.",
+    statBonuses: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+    speed: 30, size: "Mittel oder Klein", languages: ["Gemeinsprache", "Höllisch"],
     traits: [
-      { id: "tiefling_int_cha_bonus", name: "INT +1, CHA +2", description: "Dein Intelligenzwert erhöht sich um 1, dein Charismawert um 2.", source: "Tiefling", category: "trait" },
-      { id: "tiefling_darkvision", name: "Dunkelsicht", description: "Dank deines höllischen Erbes siehst du in Dunkelheit auf bis zu 60 Fuß.", source: "Tiefling", category: "trait" },
-      { id: "tiefling_feuer_resistenz", name: "Höllische Resistenz", description: "Du hast Resistenz gegen Feuerschaden.", source: "Tiefling", category: "trait" },
+      { id: "tiefling_darkvision", name: "Dunkelsicht 60ft", description: "Dunkelsicht 60ft.", source: "Tiefling", category: "trait" },
+      { id: "tiefling_legacy", name: "Fiendish Legacy", description: "Wähle Abyssal / Chthonic / Infernal (siehe Lineages). Gibt Lv1-Cantrip + Lv3/Lv5 Spells.", source: "Tiefling", category: "trait" },
+      { id: "tiefling_presence", name: "Otherworldly Presence", description: "Du kennst Thaumaturgy-Cantrip. CHA als Spellcasting-Ability dafür.", source: "Tiefling", category: "trait" },
     ],
-    features: [
-      { id: "tiefling_thaumaturgie", name: "Thaumaturgie (Cantrip)", description: "Du kennst den Cantrip Thaumaturgie. Charisma ist deine Zauberfähigkeit für diesen Zauber.", source: "Tiefling", category: "feature" },
-      { id: "tiefling_hoellischer_tadel", name: "Höllischer Tadel (Stufe 3)", description: "Wenn du Stufe 3 erreichst, kannst du Höllischer Tadel als Stufe-2-Zauber wirken. Einmal nach einer langen Rast.", source: "Tiefling", category: "feature" },
-      { id: "tiefling_dunkelheit", name: "Dunkelheit (Stufe 5)", description: "Wenn du Stufe 5 erreichst, kannst du Dunkelheit als Stufe-2-Zauber wirken. Einmal nach einer langen Rast.", source: "Tiefling", category: "feature" },
+    features: [],
+    lineages: [
+      { id: "abyssal", name: "Abyssal Legacy", description: "Resistenz Gift + Poison Spray Cantrip. Lv3: Ray of Sickness (1×/LR). Lv5: Hold Person (1×/LR)." },
+      { id: "chthonic", name: "Chthonic Legacy", description: "Resistenz Nekrose + Chill Touch Cantrip. Lv3: False Life (1×/LR). Lv5: Ray of Enfeeblement (1×/LR)." },
+      { id: "infernal", name: "Infernal Legacy", description: "Resistenz Feuer + Fire Bolt Cantrip. Lv3: Hellish Rebuke (1×/LR). Lv5: Darkness (1×/LR)." },
     ],
   },
 ];

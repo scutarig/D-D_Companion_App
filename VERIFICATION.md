@@ -46,8 +46,8 @@ Legende: ⬜ offen · 🔍 in Prüfung · ⚠️ Findings vorhanden · ✅ verif
 
 | Bereich | Stand | Datei | Notizen |
 |---------|-------|-------|---------|
-| Core-Rassen | ⬜ | `races.js` | 2024: ASI nicht mehr Rassen-gebunden! |
-| Traits & Features | ⬜ | dito | Lifespan, Speed, Resistenzen |
+| Core-Rassen | ⚠️ | `races.js` | siehe Findings unten (RACES-DEEP) |
+| Traits & Features | ⚠️ | dito | Komplette 2024 Race-Reform |
 
 ---
 
@@ -524,4 +524,49 @@ UI-Strings ("Speichern", "Bearbeiten" etc.) bleiben vorerst auf Deutsch — nur 
 - **Bigby's Hand** ähnliche Spells haben jetzt Action-Economy-Tweaks
 
 ### Erweiterung App-Spell-Pool
-Aktuell: 63 Spells. 2024 PHB hat **~360 Spells**. → Eigene Erweiterungs-Session nötig.
+~~Aktuell: 63 Spells.~~ **355 Spells** (Stand 2026-06-08). 2024 PHB hat ~360 Spells. → ✅ Praktisch vollständig.
+
+---
+
+## 3. Rassen / Species — geprüft 2026-06-08 (PHB S. 184–196)
+
+### Wichtigste systemische Reform 2024
+- ⚠️ **KEINE Ability Score Increases an Rassen mehr!** ASI/Boni kommen ab 2024 ausschließlich vom **Background** (siehe Backgrounds-Phase).
+- ⚠️ **"Race" → "Species"** umbenannt
+- ⚠️ **Keine Sub-Races mehr** → ersetzt durch **Lineages** (Elf: Drow/High/Wood; Gnome: Forest/Rock; Goliath: 6 Giant Ancestries; Tiefling: 3 Legacies)
+- ⚠️ **Half-Elf und Half-Orc** sind raus aus dem 2024 PHB Core → ersetzt durch Lineage-Wahl + Background
+
+### 2024 PHB Core Species (10)
+1. **Aasimar** (war Volo's, jetzt Core)
+2. **Dragonborn** (mit Draconic Flight @ Lv5 NEU!)
+3. **Dwarf** (Hill/Mountain Sub-Race weg, Stonecunning ist jetzt Tremorsense)
+4. **Elf** (Lineages: Drow/High/Wood)
+5. **Gnome** (Lineages: Forest/Rock)
+6. **Goliath** (war SCAG, jetzt Core; mit Giant Ancestry: Cloud/Fire/Frost/Hill/Stone/Storm)
+7. **Halfling** (Lightfoot/Stout entfallen, kombiniert)
+8. **Human** (Resourceful, Skillful, Versatile)
+9. **Orc** (war Volo's, jetzt Core)
+10. **Tiefling** (Legacies: Abyssal/Chthonic/Infernal)
+
+### App-Findings (`races.js`)
+- **R-1**: Alle `statBonuses`-Felder müssen raus (ASI gehört zum Background).
+- **R-2**: Halbelf, Halbork — entfernen oder als "Legacy 2014" markieren.
+- **R-3**: Sub-Races (Hochelf, Waldelf, Dunkelelf, Bergzwerg, Hügelzwerg) als separate Einträge → 2024 sind sie **Lineages innerhalb der Hauptrasse**. Struktur muss umgebaut werden.
+- **R-4**: Aarakocra, Wasserkind (Genasi), Triton, Yuan-ti, Tiefling (Varianten) — alle NICHT im 2024 PHB Core. Als "Legacy" markieren oder entfernen.
+- **R-5**: **Goliath** + **Orc** fehlen komplett in App (sind 2024 Core!).
+- **R-6**: **Dragonborn**: Draconic Flight @ Lv5 (NEU 2024) fehlt. Breath Weapon ist jetzt **Attack-Replacement** (war früher Action), skaliert 1d10→4d10 mit Char-Level.
+- **R-7**: **Dwarf**: Stonecunning = Tremorsense 60ft als Bonus-Aktion (war 2014: Geschichte-Proficiency). Dwarven Toughness gibt jetzt +1 HP/Level (war Hill Dwarf only).
+- **R-8**: **Elf**: Trance gibt jetzt Long Rest in 4h (war 2014: nur "4h Meditation"). Lineage gibt Spells auf Lv1+3+5 (z.B. Drow: Dancing Lights, Faerie Fire @3, Darkness @5).
+- **R-9**: **Gnome**: Gnomish Cunning gibt jetzt Vorteil auf INT/WIS/CHA-Saves **gegen alles** (nicht nur Magie).
+- **R-10**: **Goliath**: Giant Ancestry mit 6 Optionen (Cloud/Fire/Frost/Hill/Stone/Storm) — alle 6 unterschiedlich. + Large Form @ Lv5 + Powerful Build.
+- **R-11**: **Halfling**: Lightfoot/Stout sind kombiniert. Halfling Nimbleness, Brave, Luck (Reroll 1), Naturally Stealthy als Standard.
+- **R-12**: **Human**: Resourceful (Heroic Inspiration nach Long Rest), Skillful (+1 Skill), Versatile (Origin Feat — Skilled empfohlen). Kein ASI mehr!
+- **R-13**: **Orc**: Adrenaline Rush (Bonus-Aktion Dash + PB Temp HP, PB×/Long Rest), Darkvision 120ft, Relentless Endurance (1×/Long Rest bei 0 HP → 1 HP).
+- **R-14**: **Tiefling**: 3 Legacies mit Lv1-Cantrip + Lv3/Lv5 Spells. Resistenz je nach Legacy (Poison/Necrotic/Fire). Otherworldly Presence (Thaumaturgy Cantrip immer).
+- **R-15**: **Speeds**: Zwerg/Halfling/Gnom waren 2014 alle 25ft → 2024 sind sie **30ft**!
+- **R-16**: **Aasimar**: Healing Hands = PB d4s (war 2014 = Lv). Celestial Revelation @ Lv3 mit 3 Transformationen (Wings/Inner Radiance/Necrotic Shroud), 1×/Long Rest.
+
+### Ungelöste strukturelle Fragen
+- (a) Bestehende Charaktere mit `statBonuses` aus alter Race-Mechanik → Migration nötig? Oder Legacy-Modus?
+- (b) Sub-Race-Charaktere (z.B. "Hochelf") → automatisch zu "Elf mit High Elf Lineage"?
+- (c) Halbelfen-/Halbork-Charaktere → bleiben als Legacy oder konvertieren zu Elf/Orc mit Background?
