@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
-import LocationsList from "./LocationsList.jsx";
-import FactionsList  from "./FactionsList.jsx";
-import QuestList     from "./QuestList.jsx";
+import LocationsList    from "./LocationsList.jsx";
+import FactionsList     from "./FactionsList.jsx";
+import QuestList        from "./QuestList.jsx";
+import DowntimeTracker  from "../Downtime/DowntimeTracker.jsx";
 
 const TABS = [
   { id: "quests",    label: "📋 Quests"     },
   { id: "locations", label: "📍 Orte"       },
   { id: "factions",  label: "⚔️ Fraktionen" },
+  { id: "downtime",  label: "⏳ Downtime"   },
 ];
 
 export default function WorldbuildingPage() {
@@ -20,7 +22,7 @@ export default function WorldbuildingPage() {
         <span style={{ fontSize:22 }}>🌍</span>
         <div>
           <div style={sx.hT}>WELTENBAU</div>
-          <div style={sx.hS}>Quests · Orte · Fraktionen · Reputationen</div>
+          <div style={sx.hS}>Quests · Orte · Fraktionen · Downtime</div>
         </div>
       </div>
 
@@ -38,6 +40,7 @@ export default function WorldbuildingPage() {
         {tab === "quests"    && <QuestList />}
         {tab === "locations" && <LocationsList />}
         {tab === "factions"  && <FactionsList />}
+        {tab === "downtime"  && <DowntimeTracker />}
       </div>
     </div>
   );

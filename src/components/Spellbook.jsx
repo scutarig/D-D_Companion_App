@@ -9,6 +9,7 @@ export default function Spellbook({ charId }) {
   const [search, setSearch] = useState("");
   const [lf, setLf] = useState("All");
   const [cf, setCf] = useState("All");
+  const [ritualOnly, setRitualOnly] = useState(false);
   const [sel, setSel] = useState(null);
   const [view, setView] = useState("db");
   const CLASSES = ["All","Bard","Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard"];
@@ -21,7 +22,8 @@ export default function Spellbook({ charId }) {
     const lm = lf==="All"||s.lv===parseInt(lf);
     const cm = cf==="All"||s.cls.includes(cf);
     const sm = !search||s.name.toLowerCase().includes(search.toLowerCase())||s.school.toLowerCase().includes(search.toLowerCase());
-    return lm&&cm&&sm;
+    const rm = !ritualOnly || s.ritual;
+    return lm&&cm&&sm&&rm;
   });
   const grps = {}; shown.forEach(s => { (grps[s.lv]=grps[s.lv]||[]).push(s); });
   const togKnown = id => setKnown(p => p.includes(id)?p.filter(x=>x!==id):[...p,id]);
@@ -37,16 +39,25 @@ export default function Spellbook({ charId }) {
         </div>
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="🔍 Zauber suchen…" style={{...sx.inp,marginBottom:6}}/>
         <select value={cf} onChange={e => setCf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{CLASSES.map(c => <option key={c}>{c}</option>)}</select>
-        <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:8}}>
+        <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:6}}>
           {LVS.map(l => <button key={l} onClick={() => setLf(l)} style={{background:lf===l?SPC[parseInt(l)]||C.gold+"44":"transparent",border:`1px solid ${lf===l?SPC[parseInt(l)]||C.gold:C.border}`,borderRadius:3,color:lf===l?C.textBright:C.textDim,fontSize:10,padding:"3px 7px",cursor:"pointer",fontFamily:FH}}>{l==="All"?"All":l==="0"?"C":l}</button>)}
         </div>
+        <button onClick={() => setRitualOnly(p => !p)} style={{background:ritualOnly?`${C.amberBright}22`:"transparent",border:`1px solid ${ritualOnly?C.amberBright:C.border}`,borderRadius:5,color:ritualOnly?C.amberBright:C.textDim,fontSize:10,padding:"3px 10px",cursor:"pointer",fontFamily:FH,marginBottom:8,width:"100%",fontWeight:ritualOnly?700:400}}>
+          ℛ {ritualOnly ? "Nur Rituale" : "Alle Zauber"}{ritualOnly && " ✓"}
+        </button>
         <div style={{maxHeight:"55vh",overflowY:"auto"}}>
           {Object.keys(grps).sort((a,b)=>+a-+b).map(lv => (
             <div key={lv}>
               <div style={{fontSize:11,color:SPC[+lv]||C.textDim,fontFamily:FH,fontWeight:700,padding:"4px 0 2px",borderBottom:`1px solid ${C.border}`,marginBottom:3}}>{ll(+lv)}</div>
               {grps[lv].map(sp => (
                 <div key={sp.id} onClick={() => setSel(sp)} style={{background:sel?.id===sp.id?C.purple+"33":C.surface,border:`1px solid ${sel?.id===sp.id?C.purpleBright:C.border}`,borderRadius:4,padding:"5px 10px",cursor:"pointer",marginBottom:2,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                  <div><div style={{fontSize:12,color:C.textBright,fontFamily:FH}}>{sp.name}</div><div style={{fontSize:10,color:C.textDim}}>{sp.school}</div></div>
+                  <div>
+                    <div style={{fontSize:12,color:C.textBright,fontFamily:FH,display:"flex",alignItems:"center",gap:4}}>
+                      {sp.name}
+                      {sp.ritual && <span style={{fontSize:9,color:C.amberBright,background:`${C.amberBright}22`,border:`1px solid ${C.amberBright}55`,borderRadius:3,padding:"0 3px",fontWeight:700,letterSpacing:.3}}>ℛ</span>}
+                    </div>
+                    <div style={{fontSize:10,color:C.textDim}}>{sp.school}</div>
+                  </div>
                   <div style={{display:"flex",gap:4}}>
                     <button onClick={e=>{e.stopPropagation();togPrep(sp.id);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:prepared.includes(sp.id)?C.gold:"#444"}}>🕯️</button>
                     <button onClick={e=>{e.stopPropagation();togKnown(sp.id);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:known.includes(sp.id)?C.blueBright:"#444"}}>★</button>
@@ -70,6 +81,8 @@ export default function Spellbook({ charId }) {
             </div>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:12}}>
               {[["⏱",sel.ct],["📏",sel.range],["⏳",sel.dur],["🔤",sel.comp]].map(([ic,v]) => <span key={ic} style={sx.tag(C.blue)}>{ic} {v}</span>)}
+              {sel.ritual && <span style={sx.tag(C.amberBright)}>ℛ Ritual (+10 Min.)</span>}
+              {sel.concentration && <span style={sx.tag(C.purpleBright)}>🔮 Konzentration</span>}
             </div>
             {sel.dmg!=="—"&&<div style={{display:"flex",gap:8,marginBottom:10}}><span style={sx.tag(C.red)}>💥 {sel.dmg}</span><span style={sx.tag(C.red)}>{DT[sel.dt]||"⚡"} {sel.dt}</span></div>}
             <div style={{fontSize:15,color:C.text,lineHeight:1.7,marginBottom:12}}>{sel.desc}</div>
@@ -92,6 +105,12 @@ export default function Spellbook({ charId }) {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+            {sel.ritual && (
+              <div style={{background:`${C.amberBright}0d`,border:`1px solid ${C.amberBright}30`,borderRadius:8,padding:"8px 12px",marginBottom:10,fontSize:12,color:C.amberBright}}>
+                <span style={{fontWeight:700,fontFamily:FH}}>ℛ Ritual-Casting:</span>{" "}
+                Kann ohne Zauberplatz gewirkt werden (+10 Minuten Wirken). Zauberer können Ritual-Zauber aus dem Zauberbuch wirken, ohne sie vorzubereiten.
               </div>
             )}
             <div style={{borderTop:`1px solid ${C.border}`,paddingTop:8,fontSize:12,color:C.textDim}}>Klassen: {sel.cls.join(", ")}</div>

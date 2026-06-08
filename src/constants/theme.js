@@ -48,8 +48,8 @@ export const C = {
 };
 
 // ─── Typography ──────────────────────────────────────────────────────────────
-export const F  = "'Segoe UI','Helvetica Neue',Arial,sans-serif";
-export const FH = "'Cinzel',serif";
+export const F  = "'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif";
+export const FH = "'Cinzel','Inter','Segoe UI',Georgia,serif";
 
 // ─── Style Factories ─────────────────────────────────────────────────────────
 export const sx = {

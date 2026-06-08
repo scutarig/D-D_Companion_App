@@ -7,6 +7,9 @@ import { modOf, modStr, getPB } from "../utils/helpers.js";
 import { getExhaustionLevel } from "../data/exhaustion.js";
 import { requiresConcentration, startConcentration, breakConcentration } from "../utils/concentration.js";
 import ConcentrationBanner from "./ConcentrationBanner.jsx";
+import WildShapePanel from "./WildShape/WildShapePanel.jsx";
+import { useMulticlass } from "../hooks/useMulticlass.js";
+import { computeAllResources } from "../data/classResources.js";
 import { SPELLS } from "../data/spells.js";
 import { CONDITIONS } from "../data/conditions.js";
 import { useCompanions } from "../hooks/useCompanions.js";
@@ -110,11 +113,14 @@ function InfoModal({ data, onClose }) {
   );
 }
 
-export default function CombatDashboard({ slots, setSlots, custom, setCustom }) {
+export default function CombatDashboard({ slots, setSlots, custom, setCustom, autoUsed = {}, setAutoUsed = () => {} }) {
   const { active: char, setActive: setChar, aid } = useChar();
   const { companions, updateHp: updateCompanionHp } = useCompanions(aid);
   const { proficiencies } = useProficiencies(aid);
   const derivedStats = useDerivedStats(char, proficiencies);
+  const { classes } = useMulticlass(aid, char, null);
+  const autoResources = computeAllResources(classes, char);
+  const setAutoUsedR = (id, used) => setAutoUsed(p => ({ ...p, [id]: used }));
   const [activeConds, setActiveConds] = usePersist("cond_v4", []);
   const [prepIds, setPrepIds]       = useState([]);
   const [knownIds, setKnownIds]     = useState([]);
@@ -154,6 +160,17 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
     useSlot(slotLv);
     if (requiresConcentration(spell)) {
       setChar(p => startConcentration(p, spell, slotLv));
+    }
+  };
+
+  // handleRitualCast — no slot consumed, +10 minutes
+  const handleRitualCast = (spell) => {
+    if (requiresConcentration(spell) && char?.concentration) {
+      setConcWarn({ spell, slotLv: null, ritual: true });
+      return;
+    }
+    if (requiresConcentration(spell)) {
+      setChar(p => startConcentration(p, spell, spell.lv));
     }
   };
 
@@ -463,7 +480,47 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
 
         {/* Right: Spells */}
         <div style={sx.card}>
-          <div style={ctStyle}>🔮 Zauber</div>
+          <div style={ctStyle}>🔮 Magie & Ressourcen</div>
+
+          {/* Class Resources (Rage, Ki, Sorcery, etc.) */}
+          {autoResources.length > 0 && (
+            <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 14px", marginBottom: 14 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                <span style={{ fontSize: 11, color: C.amberBright, fontFamily: FH, fontWeight: 700, letterSpacing: 0.5 }}>⚡ KLASSEN-RESSOURCEN</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {autoResources.map(r => {
+                  const maxNum = typeof r.max === "number" ? r.max : null;
+                  const used = autoUsed[r.id] || 0;
+                  if (maxNum === null) {
+                    return (
+                      <div key={r.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontFamily: FH, fontSize: 12, color: r.color, fontWeight: 700, minWidth: 130 }}>{r.name}</span>
+                        <span style={{ fontSize: 11, color: r.color, fontStyle: "italic" }}>{r.max}</span>
+                        <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? "K.Rast" : "L.Rast"}</span>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={r.id} style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                      <span style={{ fontFamily: FH, fontSize: 12, color: r.color, fontWeight: 700, minWidth: 130 }}>{r.name}</span>
+                      <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+                        {Array.from({ length: maxNum }).map((_, i) => (
+                          <button key={i}
+                            onClick={() => setAutoUsedR(r.id, i < used ? i : i + 1)}
+                            title={`${r.name} ${i < (maxNum - used) ? "verbrauchen" : "wiederherstellen"}`}
+                            style={{ width: 18, height: 18, borderRadius: 4, cursor: "pointer", border: `2px solid ${r.color}`, background: i < used ? "transparent" : r.color, transition: "background .15s", padding: 0 }} />
+                        ))}
+                      </div>
+                      <span style={{ fontSize: 11, color: C.textDim }}>{maxNum - used}/{maxNum}</span>
+                      <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? "K.Rast" : "L.Rast"}</span>
+                      <button onClick={() => setAutoUsedR(r.id, 0)} style={{ ...sx.bsm(C.goldDim), fontSize: 10, padding: "1px 6px" }}>↺</button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Cantrips */}
           {cantrips.length > 0 && (
@@ -508,15 +565,18 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
               {preparedSpells.map(spell => {
                 const lowestSlot = slots.find(sl => sl.lv >= spell.lv && sl.tot > 0 && sl.tot > sl.used);
                 const canCast    = !!lowestSlot;
+                const canRitual  = !!spell.ritual;
+                const rowActive  = canCast || canRitual;
                 return (
                   <div key={spell.id}
-                    style={{ background: canCast ? C.surface : C.bg, borderRadius: 10, border: `1px solid ${canCast ? C.border : C.border + "66"}`, padding: "10px 14px", opacity: canCast ? 1 : 0.5, transition: "opacity .2s", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, cursor: "pointer" }}
+                    style={{ background: rowActive ? C.surface : C.bg, borderRadius: 10, border: `1px solid ${rowActive ? C.border : C.border + "66"}`, padding: "10px 14px", opacity: rowActive ? 1 : 0.5, transition: "opacity .2s", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, cursor: "pointer" }}
                     onClick={() => setInfoModal({ title: spell.name, color: C.purpleBright, badges: [{ label: `Level ${spell.lv}`, col: C.purpleBright }, { label: spell.school, col: C.textDim }, { label: spell.ct, col: C.textDim }, { label: spell.dur, col: C.amberBright }], stats: [spell.dmg !== "—" && { label: "Schaden", val: spell.dmg, col: C.redBright }, { label: "Reichweite", val: spell.range, col: C.text }, { label: "Komp.", val: spell.comp, col: C.textDim }, spell.upcast?.length && { label: "Upcast", val: "Skaliert", col: C.amberBright }].filter(Boolean), desc: spell.desc })}>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ display: "flex", gap: 8, marginBottom: 4, alignItems: "center" }}>
-                        <span style={{ fontSize: 14, fontWeight: 600, color: canCast ? C.textBright : C.text }}>{spell.name}</span>
+                      <div style={{ display: "flex", gap: 8, marginBottom: 4, alignItems: "center", flexWrap: "wrap" }}>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: rowActive ? C.textBright : C.text }}>{spell.name}</span>
                         <span style={sx.tag(C.purpleBright)}>Lv{spell.lv}</span>
                         <span style={{ fontSize: 11, color: C.textDim }}>{spell.school}</span>
+                        {spell.ritual && <span style={{ fontSize: 9, color: C.amberBright, background: `${C.amberBright}22`, border: `1px solid ${C.amberBright}55`, borderRadius: 3, padding: "0 4px", fontWeight: 700 }}>ℛ</span>}
                       </div>
                       <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
                         <span style={{ fontSize: 11, color: C.text }}>{spell.dmg !== "—" ? spell.dmg : spell.dur}</span>
@@ -524,10 +584,16 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
                         {spell.upcast?.length > 0 && <span style={{ fontSize: 11, color: C.amberBright }}>↑ Skaliert</span>}
                       </div>
                     </div>
-                    <div style={{ display: "flex", gap: 6 }} onClick={e => e.stopPropagation()}>
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }} onClick={e => e.stopPropagation()}>
                       {spell.upcast?.length > 0 && canCast && (
                         <button onClick={() => setCastModal({ spell })}
                           style={{ ...sx.tag(C.amberBright), cursor: "pointer" }}>↑ Upcast</button>
+                      )}
+                      {spell.ritual && (
+                        <button onClick={() => handleRitualCast(spell)}
+                          style={{ padding: "5px 12px", borderRadius: 7, cursor: "pointer", fontSize: 11, fontWeight: 600, background: `${C.amberBright}18`, border: `1px solid ${C.amberBright}55`, color: C.amberBright, whiteSpace: "nowrap" }}>
+                          {requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}ℛ +10 Min.
+                        </button>
                       )}
                       <button disabled={!canCast} onClick={() => canCast && handleCast(spell, lowestSlot.lv)}
                         style={{ padding: "5px 14px", borderRadius: 7, cursor: canCast ? "pointer" : "default", fontSize: 12, fontWeight: 600, background: canCast ? `${C.purple}44` : C.bg, border: `1px solid ${canCast ? C.purpleBright : C.border}`, color: canCast ? C.purpleBright : C.textDim, whiteSpace: "nowrap" }}>
@@ -542,6 +608,14 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
             </div>
           )}
         </div>
+      </div>
+
+      {/* ── WILD SHAPE / POLYMORPH ── */}
+      <div style={sx.card}>
+        <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, letterSpacing: 0.5, marginBottom: 10 }}>
+          🐺 WILD SHAPE & POLYMORPH
+        </div>
+        <WildShapePanel compact={true} />
       </div>
 
       {/* ── ACTIONS HOTBAR ── */}
@@ -997,10 +1071,10 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom }) 
             </p>
             <div style={{ display:"flex", gap:10 }}>
               <button onClick={() => {
-                useSlot(concWarn.slotLv);
-                setChar(p => startConcentration(p, concWarn.spell, concWarn.slotLv));
+                if (!concWarn.ritual) useSlot(concWarn.slotLv);
+                setChar(p => startConcentration(p, concWarn.spell, concWarn.slotLv ?? concWarn.spell.lv));
                 setConcWarn(null);
-              }} style={sx.btn(C.amberBright)}>Trotzdem wirken</button>
+              }} style={sx.btn(C.amberBright)}>{concWarn.ritual ? "ℛ Ritual wirken" : "Trotzdem wirken"}</button>
               <button onClick={() => setConcWarn(null)} style={sx.btn(C.textDim)}>Abbrechen</button>
             </div>
           </div>

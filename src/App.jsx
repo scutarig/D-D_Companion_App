@@ -5,6 +5,8 @@ import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest } from "./util
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
+import { useMulticlass } from "./hooks/useMulticlass.js";
+import { computeAllResources } from "./data/classResources.js";
 
 const Overview      = lazy(() => import("./components/CombatDashboard.jsx"));
 const CharManager   = lazy(() => import("./components/CharManager.jsx"));
@@ -81,20 +83,30 @@ const snb = (active) => ({
 });
 
 // ── Persistent char header (shown on all tabs) ────────────────────────────────
-function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom }) {
-  const { active: char, setActive: setChar } = useChar();
+function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed }) {
+  const { active: char, setActive: setChar, aid } = useChar();
+  const { classes } = useMulticlass(aid, char, null);
   if (!char) return null;
 
   const lbl = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
 
   const confirmRest = () => {
+    const autoResources = computeAllResources(classes, char);
     if (restBanner === "long") {
       setChar(p => applyLongRest(p));
       setSlots(p => p.map(s => ({ ...s, used: 0 })));
       setCustom(p => p.map(t => ({ ...t, used: 0 })));
+      // Long rest resets ALL class resources (long + short)
+      const reset = {};
+      autoResources.forEach(r => { reset[r.id] = 0; });
+      setAutoUsed(p => ({ ...p, ...reset }));
     } else {
       const hpGain = parseInt(restHpInput) || 0;
       setChar(p => applyShortRest(p, { hpGain }));
+      // Short rest resets only short-rest class resources
+      const reset = {};
+      autoResources.forEach(r => { if (r.reset === "short") reset[r.id] = 0; });
+      setAutoUsed(p => ({ ...p, ...reset }));
     }
     setRestBanner(null); setRestHpInput("");
   };
@@ -183,6 +195,7 @@ function AppInner() {
   // Lifted state — shared with CombatDashboard (per Charakter)
   const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [custom, setCustom]       = usePersist(`tokens_custom_${aid}`, []);
+  const [autoUsed, setAutoUsed]   = usePersist(`tokens_auto_used_${aid}`, {});
 
   // Slots live aus Klasse+Level ableiten (wie in Tokens.jsx)
   const slotDef = buildSlotsForLevel(active?.klass, active?.level) ?? [];
@@ -236,7 +249,7 @@ function AppInner() {
 
   const content = (
     <Suspense fallback={<Loader />}>
-      {tab==="overview"    && <Overview  slots={slots} setSlots={setSlots} custom={custom} setCustom={setCustom} />}
+      {tab==="overview"    && <Overview  slots={slots} setSlots={setSlots} custom={custom} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} />}
       {tab==="char"        && <CharManager />}
       {tab==="notes"       && <Notes />}
       {tab==="inventar"    && <InventarTab />}
@@ -321,7 +334,7 @@ function AppInner() {
       {/* Main column */}
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
         <OfflineBanner />
-        <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} />
+        <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} />
         <main style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
           {content}
         </main>
@@ -333,7 +346,7 @@ function AppInner() {
   return (
     <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text, overflowX:"hidden" }}>
       <OfflineBanner />
-      <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} />
+      <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} />
 
       {/* Main content — click closes sub-menu */}
       <main

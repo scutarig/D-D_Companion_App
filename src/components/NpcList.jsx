@@ -33,6 +33,8 @@ const sourceOf = id => SOURCE_LABEL[Math.floor(id / 100)] || "—";
 
 export default function NpcList() {
   const [factions] = usePersist("factions_v1", []);
+  const [dmMode, setDmMode] = usePersist("npc_dm_mode", false);
+  const [dmConfirm, setDmConfirm] = useState(false);
   const [npcs, setNpcs] = usePersist("npc_list_v1", [
     { id: 1, name: "Tavil, der Wirt", role: "Wirt", location: "Zum Goldenen Pfeil", race: "Mensch", alignment: "Neutral Gut", status: "lebendig", attitude: "freundlich", desc: "Ein grossgewachsener, kahlkoepfiger Mann mit weissem Bart. Fuehrt die Taverne seit 30 Jahren.", notes: "Kennt viele Geruechte. Tochter ist verschwunden.", custom: false },
     { id: 2, name: "Lady Mira Ashveil", role: "Stadtvogt", location: "Hafenstadt Silverton", race: "Mensch", alignment: "Rechtschaffen Neutral", status: "lebendig", attitude: "neutral", desc: "Strenge Buergerin, mittleres Alter, immer in formellen Gewaendern. Misstrauisch gegenueber Abenteurern.", notes: "Hat Verbindungen zur Gilde. Verdaechtig.", custom: false },
@@ -89,6 +91,42 @@ export default function NpcList() {
 
       {/* ── Linke Sidebar ─────────────────────────────────────────────── */}
       <div style={{ width: mob ? "100%" : 260, flexShrink: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+
+        {/* DM Mode Toggle */}
+        <button
+          onClick={() => dmMode ? setDmMode(false) : setDmConfirm(true)}
+          style={{
+            background: dmMode ? `${C.purple}22` : "transparent",
+            border: `1px solid ${dmMode ? C.purpleBright : C.border}`,
+            borderRadius: 6,
+            color: dmMode ? C.purpleBright : C.textDim,
+            fontSize: 11,
+            padding: "6px 10px",
+            cursor: "pointer",
+            fontFamily: FH,
+            fontWeight: dmMode ? 700 : 500,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 8,
+          }}
+          title={dmMode ? "DM-Modus ist aktiv — DM-Notizen sichtbar" : "DM-Modus inaktiv — DM-Notizen versteckt"}
+        >
+          <span>🎲 DM-Modus</span>
+          <span style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: 28, height: 14, borderRadius: 7,
+            background: dmMode ? C.purpleBright : C.border,
+            position: "relative", transition: "background .2s",
+          }}>
+            <span style={{
+              position: "absolute", top: 1, left: dmMode ? 15 : 1,
+              width: 12, height: 12, borderRadius: "50%",
+              background: dmMode ? C.bg : C.textDim,
+              transition: "left .2s",
+            }} />
+          </span>
+        </button>
 
         {/* Tab-Switcher */}
         <div style={{ display: "flex", gap: 4 }}>
@@ -240,8 +278,8 @@ export default function NpcList() {
             <FactionBadge factionId={sel.factionId} factions={factions} />
           </div>
           {sel.desc && <div style={{ fontSize: 14, color: C.text, lineHeight: 1.75, marginBottom: sel.notes ? 12 : 0 }}>{sel.desc}</div>}
-          {sel.notes && <div style={{ background: `${C.purple}0a`, borderTop: `1px solid ${C.purple}25`, borderRight: `1px solid ${C.purple}25`, borderBottom: `1px solid ${C.purple}25`, borderLeft: `3px solid ${C.purple}`, borderRadius: 8, padding: "10px 12px", fontSize: 13, color: C.textDim, lineHeight: 1.6 }}>
-            <div style={{ fontSize: 10, color: C.purple, fontFamily: FH, fontWeight: 700, marginBottom: 4 }}>DM-NOTIZEN</div>
+          {sel.notes && dmMode && <div style={{ background: `${C.purple}0a`, borderTop: `1px solid ${C.purple}25`, borderRight: `1px solid ${C.purple}25`, borderBottom: `1px solid ${C.purple}25`, borderLeft: `3px solid ${C.purple}`, borderRadius: 8, padding: "10px 12px", fontSize: 13, color: C.textDim, lineHeight: 1.6 }}>
+            <div style={{ fontSize: 10, color: C.purple, fontFamily: FH, fontWeight: 700, marginBottom: 4 }}>🎲 DM-NOTIZEN</div>
             {sel.notes}
           </div>}
         </div>}
@@ -254,6 +292,34 @@ export default function NpcList() {
           }
         </div>}
       </div>
+
+      {/* DM-Mode Confirm Popup */}
+      {dmConfirm && (
+        <div style={{ position: "fixed", inset: 0, background: "#000b", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 500 }}
+          onClick={() => setDmConfirm(false)}>
+          <div style={{ ...sx.card, width: "min(420px, 92vw)", border: `2px solid ${C.purpleBright}` }}
+            onClick={e => e.stopPropagation()}>
+            <div style={{ fontFamily: FH, fontSize: 18, color: C.purpleBright, fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
+              🎲 DM-Modus aktivieren?
+            </div>
+            <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6, marginBottom: 16 }}>
+              Im DM-Modus sind <strong style={{ color: C.purpleBright }}>geheime DM-Notizen</strong> zu jedem NPC sichtbar — Plot-Hooks, Geheimnisse, Verbindungen.
+              <br /><br />
+              <strong style={{ color: C.amberBright }}>⚠️ Nur aktivieren, wenn du der DM bist!</strong> Spieler sollten diese Notizen nicht sehen.
+            </div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={() => { setDmMode(true); setDmConfirm(false); }}
+                style={{ ...sx.btn(C.purpleBright), flex: 1 }}>
+                ✓ Ja, ich bin der DM
+              </button>
+              <button onClick={() => setDmConfirm(false)}
+                style={{ ...sx.btn(C.textDim), padding: "8px 16px" }}>
+                Abbrechen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
