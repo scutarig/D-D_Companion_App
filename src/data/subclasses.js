@@ -53,7 +53,7 @@ export const SUBCLASSES = {
   ],
   Druide: [
     {
-      id: "druide_mond", name: "Zirkel des Mondes", levelGained: 2,
+      id: "druide_mond", name: "Zirkel des Mondes (Circle of the Moon)", levelGained: 3,
       features: [
         { level: 2, id: "druide_mond_combat", name: "Kampfwildnis", description: "Tiergestalt bis CR Stufe÷3 (min CR 1). Bonus-Aktion statt Aktion.", category: "feature" },
         { level: 6, id: "druide_mond_primal", name: "Urwandlung", description: "Tier-Angriffe gelten als magisch in Tiergestalt.", category: "feature" },
@@ -62,7 +62,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "druide_land", name: "Zirkel des Landes", levelGained: 2,
+      id: "druide_land", name: "Zirkel des Landes (Circle of the Land)", levelGained: 3,
       features: [
         { level: 2, id: "druide_land_bonus", name: "Bonus-Cantrip", description: "Lerne 1 weiteren Druiden-Cantrip.", category: "feature" },
         { level: 2, id: "druide_land_recovery", name: "Natürliche Wiederherstellung", description: "Nach kurzem Rest: Zauberplätze ≤ ½ Level zurückerhalten.", category: "feature" },
@@ -73,7 +73,7 @@ export const SUBCLASSES = {
   ],
   Hexenmeister: [
     {
-      id: "hex_grosser_alte", name: "Der Große Alte", levelGained: 1,
+      id: "hex_grosser_alte", name: "Der Große Alte", levelGained: 3,
       features: [
         { level: 1, id: "hex_ga_mind", name: "Ausgeweitetes Gedächtnis", description: "+WIS-Mod auf Arkane-Kunde-Proben.", category: "feature" },
         { level: 6, id: "hex_ga_telepathy", name: "Telepathie", description: "Telepath. Kommunikation in 30 Fuß (ohne Zustimmung).", category: "feature" },
@@ -82,7 +82,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "hex_unhold", name: "Der Unhold", levelGained: 1,
+      id: "hex_unhold", name: "Der Unhold", levelGained: 3,
       features: [
         { level: 1, id: "hex_fey_presence", name: "Unholds Segen",  description: "+CHA-Mod auf Schadensrollen (1× pro Zug).", category: "feature" },
         { level: 6, id: "hex_fey_ward", name: "Dunkle Abwehr", description: "Reaktion: Reduziere Schaden um 2× Hexenmeisterlevel.", category: "feature" },
@@ -91,7 +91,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "hex_erzfee", name: "Erzfeen", levelGained: 1,
+      id: "hex_erzfee", name: "Erzfeen", levelGained: 3,
       features: [
         { level: 1, id: "hex_arc_presence", name: "Feenpräsenz", description: "Aktion: Wesen in 10 Fuß Kubus um dich → WIS-RW oder bezaubert/erschreckt bis Ende deines nächsten Zugs.", category: "feature" },
         { level: 6, id: "hex_arc_step", name: "Misty Escape", description: "Reaktion wenn Schaden: Teleportiere 60 Fuß + unsichtbar bis Ende deines nächsten Zugs.", category: "feature" },
@@ -132,7 +132,7 @@ export const SUBCLASSES = {
   ],
   Kleriker: [
     {
-      id: "kleriker_leben", name: "Domäne des Lebens", levelGained: 1,
+      id: "kleriker_leben", name: "Domäne des Lebens", levelGained: 3,
       features: [
         { level: 1, id: "life_proficiency", name: "Schwere Rüstungsprofizienzen", description: "Profizient mit schwerer Rüstung.", category: "feature" },
         { level: 1, id: "life_disciple", name: "Jünger des Lebens", description: "Heilzauber: Heile 2 + Zaubergrad extra HP.", category: "feature" },
@@ -142,7 +142,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "kleriker_wissen", name: "Domäne des Wissens", levelGained: 1,
+      id: "kleriker_wissen", name: "Domäne des Wissens", levelGained: 3,
       features: [
         { level: 1, id: "know_languages", name: "Sprachen & Profizienzen", description: "Lerne 2 Sprachen. Wähle 2 Fertigkeiten: Expertise in ihnen.", category: "feature" },
         { level: 2, id: "know_channel", name: "Kanalenergie: Wissen", description: "10 Min. Konzentration: Profizient in 1 Skill oder Werkzeug.", category: "feature" },
@@ -151,7 +151,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "kleriker_krieg", name: "Domäne des Krieges", levelGained: 1,
+      id: "kleriker_krieg", name: "Domäne des Krieges", levelGained: 3,
       features: [
         { level: 1, id: "war_proficiency", name: "Kriegsprofizienzen", description: "Schwere Rüstung, Kriegswaffen.", category: "feature" },
         { level: 1, id: "war_bonus", name: "Kriegspriester", description: "Bonus-Aktion: Waffenangriff (WIS-Mod × pro Rast).", category: "feature" },
@@ -163,7 +163,7 @@ export const SUBCLASSES = {
   ],
   Magier: [
     {
-      id: "magier_verzauberung", name: "Schule der Verzauberung", levelGained: 2,
+      id: "magier_verzauberung", name: "Schule der Verzauberung", levelGained: 3,
       features: [
         { level: 2, id: "enc_hypnotic", name: "Hypnotischer Blick", description: "Aktion: 1 Wesen in 5 Fuß → WIS-RW oder bezaubert bis Ende deines nächsten Zugs.", category: "feature" },
         { level: 6, id: "enc_instinctive", name: "Instinktive Bezauberung", description: "Wenn gegen dich angegriffen: Leite Angriff auf nahes Wesen um.", category: "feature" },
@@ -172,7 +172,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "magier_hervorrufung", name: "Schule der Hervorrufung", levelGained: 2,
+      id: "magier_hervorrufung", name: "Schule der Hervorrufung", levelGained: 3,
       features: [
         { level: 2, id: "evoc_sculpt", name: "Zauber formen", description: "Rette Verbündete automatisch aus Flächenzaubern.", category: "feature" },
         { level: 6, id: "evoc_potent", name: "Wirksamer Cantrip", description: "Wenn Wesen bei Cantrip-Schaden RW besteht: ½ Schaden (statt keiner).", category: "feature" },
@@ -181,7 +181,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "magier_nekromantie", name: "Schule der Nekromantie", levelGained: 2,
+      id: "magier_nekromantie", name: "Schule der Nekromantie", levelGained: 3,
       features: [
         { level: 2, id: "nec_grim", name: "Düstere Ernte", description: "Töte Wesen mit Nekromantie-Zauber: Erhalte Max(Level, 1) temporäre HP.", category: "feature" },
         { level: 6, id: "nec_undead", name: "Untote Diener", description: "Animiere Untote als Bonus-Aktion + erhöhe Max-Anzahl animierter Untote.", category: "feature" },
@@ -283,7 +283,7 @@ export const SUBCLASSES = {
   ],
   Zauberer: [
     {
-      id: "zauber_drachenblut", name: "Drachenblut", levelGained: 1,
+      id: "zauber_drachenblut", name: "Drachenblut", levelGained: 3,
       features: [
         { level: 1, id: "drac_ancestry", name: "Drachen-Abstammung", description: "Wähle Drachentyp → bestimmt Cantrip und Schadensresistenz.", category: "feature" },
         { level: 1, id: "drac_resilience", name: "Drakonische Robustheit", description: "+1 HP pro Level. RK = 13 + DEX-Mod ohne Rüstung.", category: "feature" },
@@ -293,7 +293,7 @@ export const SUBCLASSES = {
       ],
     },
     {
-      id: "zauber_wildmagie", name: "Wilde Magie", levelGained: 1,
+      id: "zauber_wildmagie", name: "Wilde Magie", levelGained: 3,
       features: [
         { level: 1, id: "wild_surge", name: "Wilde Magie-Woge",  description: "DM kann W1-100 rollen → zufällige magische Effekte nach Zaubern.", category: "feature" },
         { level: 1, id: "wild_tides", name: "Tides of Chaos", description: "1× pro langem Rest: Vorteil auf Angriff/Probe/RW. Reset bei wilder Woge.", category: "feature" },

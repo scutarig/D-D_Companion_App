@@ -10,14 +10,14 @@
 
 export const CLASS_RESOURCES = {
 
-  // ── Barbar ────────────────────────────────────────────────────────────────
+  // ── Barbar (2024 PHB) ─────────────────────────────────────────────────────
   Barbar: [
     {
       id: "rage",
       name: "Wut",
       color: "#ff4d4d",
-      reset: "long",
-      levels: { 1: 2, 3: 3, 6: 4, 12: 5, 17: 6, 20: Infinity },
+      reset: "long",   // 2024: 1 Use bei Short Rest, ALLE bei Long Rest
+      levels: { 1: 2, 3: 3, 6: 4, 12: 5, 17: 6 },  // 2024 FIX: Lv20 ist 6 (nicht ∞)
     },
   ],
 
@@ -35,14 +35,14 @@ export const CLASS_RESOURCES = {
     },
   ],
 
-  // ── Druide ────────────────────────────────────────────────────────────────
+  // ── Druide (2024 PHB) ─────────────────────────────────────────────────────
   Druide: [
     {
       id: "wild_shape",
       name: "Wildgestalt",
       color: "#4ade80",
       reset: "short",
-      levels: { 2: 2 },  // always 2 uses after lv 2
+      levels: { 2: 2, 6: 3, 17: 4 },  // 2024 FIX: skaliert 2/3/4
     },
   ],
 
@@ -64,46 +64,46 @@ export const CLASS_RESOURCES = {
     },
   ],
 
-  // ── Kämpfer ───────────────────────────────────────────────────────────────
+  // ── Kämpfer (2024 PHB) ────────────────────────────────────────────────────
   Kämpfer: [
     {
       id: "action_surge",
-      name: "Kraftakt",
+      name: "Kraftakt (Action Surge)",
       color: "#f97316",
       reset: "short",
-      levels: { 1: 1, 17: 2 },
+      levels: { 2: 1, 17: 2 },  // 2024 FIX: Lv2 (nicht Lv1)
     },
     {
       id: "second_wind",
       name: "Zweiter Wind",
       color: "#fb923c",
       reset: "short",
-      levels: { 1: 1 },
+      levels: { 1: 2, 4: 3, 10: 4 },  // 2024 FIX: skaliert 2/3/4
     },
     {
       id: "indomitable",
       name: "Unbeugsamkeit",
       color: "#fbbf24",
       reset: "long",
-      levels: { 9: 1, 13: 2, 17: 3 },
+      levels: { 9: 1, 13: 2, 17: 3 },  // ✓ korrekt
     },
   ],
 
-  // ── Kleriker ──────────────────────────────────────────────────────────────
+  // ── Kleriker (2024 PHB) ───────────────────────────────────────────────────
   Kleriker: [
     {
       id: "channel_divinity",
-      name: "Göttliche Kraft",
+      name: "Göttliche Kraft (Channel Divinity)",
       color: "#fde68a",
       reset: "short",
-      levels: { 2: 1, 6: 2, 18: 3 },
+      levels: { 2: 2, 6: 3, 18: 4 },  // 2024 FIX: 2/3/4 (vorher 1/2/3)
     },
     {
       id: "divine_intervention",
       name: "Göttliche Intervention",
       color: "#fbbf24",
       reset: "long",
-      levels: { 10: 1 },
+      levels: { 10: 1 },  // ✓ korrekt (Mechanik 2024 anders: wirke Spell ≤Lv5)
     },
   ],
 
@@ -118,11 +118,11 @@ export const CLASS_RESOURCES = {
     },
   ],
 
-  // ── Mönch ─────────────────────────────────────────────────────────────────
+  // ── Mönch (2024 PHB) ──────────────────────────────────────────────────────
   Mönch: [
     {
-      id: "ki_points",
-      name: "Ki-Punkte",
+      id: "focus_points",
+      name: "Fokus-Punkte (Focus Points)",  // 2024 FIX: 'Ki' heißt jetzt 'Focus Points'
       color: "#34d399",
       reset: "short",
       levels: {
@@ -132,7 +132,7 @@ export const CLASS_RESOURCES = {
     },
   ],
 
-  // ── Paladin ───────────────────────────────────────────────────────────────
+  // ── Paladin (2024 PHB) ────────────────────────────────────────────────────
   Paladin: [
     {
       id: "lay_on_hands",
@@ -144,21 +144,14 @@ export const CLASS_RESOURCES = {
       levels: { 1: 5 }, // placeholder; actual = level * 5
     },
     {
-      id: "divine_smite_slots",
-      name: "Göttlicher Eifer (Zb-Plätze)",
-      color: "#fca5a5",
-      reset: "long",
-      levels: {
-        1: 1, 2: 2, 3: 3, 5: 4, 7: 5, 9: 6, 11: 7, 13: 8, 15: 9, 17: 10
-      },
-    },
-    {
       id: "channel_divinity_paladin",
-      name: "Göttliche Kraft",
+      name: "Göttliche Kraft (Channel Divinity)",
       color: "#fde68a",
       reset: "short",
-      levels: { 3: 1 },
+      levels: { 3: 2, 11: 3 },  // 2024 FIX: 2 Uses ab Lv3, 3 Uses ab Lv11
     },
+    // 2024 ENTFERNT: divine_smite_slots war 2014. In 2024 nutzt Smite normale Spell-Slots
+    // wie 2014, aber NEU: Paladin's Smite (Lv2) erlaubt Searing Smite 1×/LR ohne Slot.
   ],
 
   // ── Schurke ───────────────────────────────────────────────────────────────
@@ -179,9 +172,9 @@ export const CLASS_RESOURCES = {
   Zauberer: [
     {
       id: "sorcery_points",
-      name: "Zauberkraft-Punkte",
+      name: "Zauberkraft-Punkte (Sorcery Points)",
       color: "#f0abfc",
-      reset: "long",
+      reset: "long",  // 2024: bei Lv5 Sorcerous Restoration auch halbe SP nach Short Rest
       levels: {
         2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10,
         11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16, 17: 17, 18: 18, 19: 19, 20: 20,
@@ -189,7 +182,8 @@ export const CLASS_RESOURCES = {
     },
   ],
 
-  // ── Magieschmied ──────────────────────────────────────────────────────────
+  // ── Magieschmied (Artificer 2014 — NICHT im 2024 PHB Core) ───────────────
+  // Bleibt als "Legacy 2014" verfügbar bis Wizards eine 2024-Version released.
   Magieschmied: [
     {
       id: "infusions",
