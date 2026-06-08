@@ -55,8 +55,8 @@ Legende: ⬜ offen · 🔍 in Prüfung · ⚠️ Findings vorhanden · ✅ verif
 
 | Bereich | Stand | Datei | Notizen |
 |---------|-------|-------|---------|
-| Backgrounds | ⬜ | `backgrounds.js` | 2024: Backgrounds geben ASI + Feat |
-| Feats | ⬜ | `feats.js` | 2024: Origin/General/Fighting-Style/Epic |
+| Backgrounds | ✅ | `backgrounds.js` | Migriert auf 2024 PHB (16 Backgrounds mit ASI + Origin Feat) |
+| Feats | ✅ | `feats.js` | Migriert auf 2024 PHB (75 Feats in 4 Kategorien) |
 
 ---
 
@@ -570,3 +570,47 @@ UI-Strings ("Speichern", "Bearbeiten" etc.) bleiben vorerst auf Deutsch — nur 
 - (a) Bestehende Charaktere mit `statBonuses` aus alter Race-Mechanik → Migration nötig? Oder Legacy-Modus?
 - (b) Sub-Race-Charaktere (z.B. "Hochelf") → automatisch zu "Elf mit High Elf Lineage"?
 - (c) Halbelfen-/Halbork-Charaktere → bleiben als Legacy oder konvertieren zu Elf/Orc mit Background?
+
+---
+
+## 4. Backgrounds — migriert 2026-06-08 (PHB S. 177–185)
+
+### 2024 PHB Reform
+- ⚠️ **ASI** kommt jetzt vom Background (3 Stats vorgegeben: +2/+1 oder +1/+1/+1)
+- ⚠️ **Origin Feat** dabei (spezifischer Feat pro Background)
+- ⚠️ Narrative "Features" wie "Schutz der Heiligen Stätte" sind WEG — Backgrounds geben Mechaniken, nicht mehr Story-Privilegien
+
+### 16 PHB Core Backgrounds (alle migriert)
+Acolyte · Artisan · Charlatan · Criminal · Entertainer · Farmer · Guard · Guide · Hermit · Merchant · Noble · Sage · Sailor · Scribe · Soldier · Wayfarer
+
+### App-Status `backgrounds.js`
+- ✅ Komplett neu geschrieben mit 2024-Schema
+- ✅ Alle 16 Backgrounds mit `abilityScores`, `feat`, `skillProfs`, `toolProf`, `equipmentA`/`B`
+- ⚠️ Verifiziert in Browser: 16 Backgrounds geladen, keine Errors
+- ⏭️ TODO: BG-Picker UI muss angepasst werden um ASI-Verteilung + Origin Feat zu nutzen (jetzt nur Listen-Picker)
+
+---
+
+## 5. Feats — migriert 2026-06-08 (PHB S. 198–225)
+
+### 2024 PHB Reform
+- ⚠️ Feats jetzt in **4 Kategorien**: Origin / General / Fighting Style / Epic Boon
+- ⚠️ Origin Feats: durch Background gewährt (Lv1)
+- ⚠️ General Feats: bei Class-ASI-Levels (Lv4, 8, 12, 16, 19)
+- ⚠️ Fighting Style: Fighter/Paladin/Ranger Subclass-Choice
+- ⚠️ Epic Boon: Lv19-Feature (1 wählbar)
+- ⚠️ Viele Feats sind "Half Feats" (+1 auf wählbarem Stat)
+
+### Migration
+- ✅ Origin Feats: 10 (Alert, Crafter, Healer, Lucky, Magic Initiate, Musician, Savage Attacker, Skilled, Tavern Brawler, Tough)
+- ✅ General Feats: 43
+- ✅ Fighting Style Feats: 10 (Archery, Blind Fighting, Defense, Dueling, Great Weapon Fighting, Interception, Protection, Thrown Weapon Fighting, Two-Weapon Fighting, Unarmed Fighting)
+- ✅ Epic Boon Feats: 12 (alle Boon of …)
+- ✅ Total: 75 Feats (vorher 36)
+- ⚠️ Verifiziert in Browser: 75 Feats nach Kategorien geladen
+
+### App-Status `feats.js`
+- ✅ Schema erweitert: `category` Feld hinzugefügt
+- ✅ `getFeatById()`, `getFeatsByCategory()`, `FEAT_CATEGORIES` exportiert
+- ✅ `meetsPrerequisite()` Funktion bleibt (Backward-Compat)
+- ⏭️ TODO: LevelUpAssistant UI sollte nach Kategorie filtern können (Origin nur bei Background-Wahl, Epic Boon nur Lv19, etc.)
