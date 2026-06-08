@@ -591,6 +591,35 @@ Acolyte · Artisan · Charlatan · Criminal · Entertainer · Farmer · Guard ·
 
 ---
 
+## 6. Subklassen — migriert 2026-06-09 (PHB S. 50-175)
+
+### 2024 PHB Subklassen (4 pro Klasse = 48 Core + Magieschmied Legacy)
+
+| Klasse | Subklassen | Neue 2024 |
+|--------|------------|-----------|
+| Barbar | Berserker, Wild Heart, World Tree, Zealot | Wild Heart (ersetzt Totem), World Tree |
+| Barde | Dance, Glamour, Lore, Valor | College of Dance |
+| Druide | Land, Moon, Sea, Stars | Sea, Stars |
+| Hexenmeister | Archfey, Celestial, Fiend, Great Old One | Celestial (war Xanathar's) |
+| Kämpfer | Battle Master, Champion, Eldritch Knight, Psi Warrior | Psi Warrior (war Tasha's) |
+| Kleriker | Life, Light, Trickery, War | — (Knowledge raus, Nature/Tempest/Forge etc. nicht im Core) |
+| Magier | Abjurer, Diviner, Evoker, Illusionist | — (Necromancy/Enchantment/Transmutation/Conjuration raus aus Core) |
+| Mönch | Mercy, Shadow, Elements, Open Hand | Warrior of Mercy |
+| Paladin | Devotion, Glory, Ancients, Vengeance | Oath of Glory (war Tasha's) |
+| Schurke | Arcane Trickster, Assassin, Soulknife, Thief | Soulknife (war Tasha's) |
+| Waldläufer | Beast Master, Fey Wanderer, Gloom Stalker, Hunter | Fey Wanderer (war Tasha's), Gloom Stalker (war Xanathar's) |
+| Zauberer | Aberrant, Clockwork, Draconic, Wild Magic | Aberrant (war Tasha's als Aberrant Mind), Clockwork (war Tasha's) |
+
+### App-Status `subclasses.js`
+- ✅ Komplett neu geschrieben mit 2024 PHB Daten
+- ✅ Total: 50 Subklassen (48 Core 2024 + 2 Magieschmied Legacy)
+- ✅ Total: 250 Subklassen-Features
+- ✅ Alle `levelGained: 3` (außer Magieschmied = 3 ebenfalls)
+- ✅ Helper-Funktionen ergänzt: `getSubclassNames()`, `getSubclassChoiceLevel()`, `getSubclassById()`
+- ✅ Verifiziert im Browser, keine Errors
+
+---
+
 ## 5. Feats — migriert 2026-06-08 (PHB S. 198–225)
 
 ### 2024 PHB Reform
