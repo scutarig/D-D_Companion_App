@@ -17,6 +17,7 @@ const NpcList       = lazy(() => import("./components/NpcList.jsx"));
 const CombatSystem  = lazy(() => import("./components/Combat/CombatSystem.jsx"));
 const DiceRoller    = lazy(() => import("./components/DiceRoller.jsx"));
 const Bestiary      = lazy(() => import("./components/Bestiary.jsx"));
+const EncounterBuilder = lazy(() => import("./components/EncounterBuilder.jsx"));
 const KlassenRef    = lazy(() => import("./components/KlassenRef.jsx"));
 const VoelkerRef    = lazy(() => import("./components/VoelkerRef.jsx"));
 const QuickRef      = lazy(() => import("./components/QuickRef.jsx"));
@@ -36,6 +37,7 @@ const ALL_TABS = [
   { id: "quickref",       label: "Schnellreferenz", icon: "📋", mode: "player" },
   { id: "combat",         label: "Kampf",        icon: "⚔️", mode: "dm" },
   { id: "bestiary",       label: "Bestiary",     icon: "🐉", mode: "dm" },
+  { id: "encounter",      label: "Encounter",    icon: "🎲", mode: "dm" },
   { id: "klassen",        label: "Klassen",      icon: "⚔️", mode: "dm" },
   { id: "voelker",        label: "Völker",       icon: "🧬", mode: "dm" },
   { id: "notes",          label: "Notizen",      icon: "📝", mode: "both" },
@@ -241,15 +243,16 @@ const MOBILE_NAV_PLAYER = [
 const MOBILE_NAV_DM = [
   { id: "combat",   label: "Kampf",    icon: "⚔️" },
   { id: "bestiary", label: "Bestiary", icon: "🐉" },
+  { id: "encounter", label: "Encounter", icon: "🎲" },
   { id: "npcs",     label: "NPCs",     icon: "👥" },
-  { id: "dice",     label: "Würfel",   icon: "🎲" },
   {
     id: "more", label: "Mehr", icon: "⋯",
-    groupIds: ["klassen", "voelker", "notes"],
+    groupIds: ["klassen", "voelker", "notes", "dice"],
     children: [
       { id: "klassen", label: "Klassen", icon: "⚔️" },
       { id: "voelker", label: "Völker",  icon: "🧬" },
       { id: "notes",   label: "Notizen", icon: "📝" },
+      { id: "dice",    label: "Würfel",  icon: "🎲" },
     ],
   },
 ];
@@ -430,7 +433,7 @@ function AppInner() {
 
   // Mode-filtered tabs for Desktop sidebar (top-level, excluding grouped ones)
   const SIDEBAR_TOP_PLAYER = ["overview", "inventar", "world", "quickref", "notes", "npcs", "dice"];
-  const SIDEBAR_TOP_DM     = ["combat", "npcs", "notes", "dice"];
+  const SIDEBAR_TOP_DM     = ["combat", "encounter", "npcs", "notes", "dice"];
   const sidebarTopIds = isDM ? SIDEBAR_TOP_DM : SIDEBAR_TOP_PLAYER;
   const sidebarTopTabs = sidebarTopIds.map(id => ALL_TABS.find(t => t.id === id)).filter(Boolean);
 
@@ -447,6 +450,7 @@ function AppInner() {
       {tab==="dice"        && <DiceRoller char={active} setChar={setChar} />}
       {tab==="world"       && <WorldbuildingPage />}
       {tab==="bestiary"    && <Bestiary />}
+      {tab==="encounter"   && <EncounterBuilder />}
       {tab==="klassen"     && <KlassenRef />}
       {tab==="voelker"     && <VoelkerRef />}
       {tab==="quickref"    && <QuickRef />}
