@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import TraitFeatureCard from "./TraitFeatureCard.jsx";
+import { getFeatById } from "../../data/feats.js";
 
 // ── Colour map for each trait group ──────────────────────────────────────────
 const GROUP_STYLE = {
@@ -22,6 +23,11 @@ function groupKey(source) {
   return "race";
 }
 
+/** Detect the auto-added Origin Feat trait (from BG_SOURCE_PREFIX builder) */
+function isOriginFeatTrait(t) {
+  return t?.id?.endsWith("_feat") && t?.source?.startsWith("Hintergrund:");
+}
+
 function buildGroups(char) {
   const all = [
     ...(char.raceTraits      || []),
@@ -33,6 +39,8 @@ function buildGroups(char) {
 
   const map = {};
   all.forEach(t => {
+    // Skip the Origin Feat — rendered separately in featured section
+    if (isOriginFeatTrait(t)) return;
     const gk = groupKey(t.source);
     if (!map[gk]) map[gk] = [];
     map[gk].push(t);
@@ -49,7 +57,10 @@ export default function TraitsFeatures({ char, setChar }) {
   const [customForm, setCustomForm] = useState({ name: "", description: "", category: "trait" });
 
   const groups = buildGroups(char);
-  const hasAny = Object.keys(groups).length > 0 || (char.languages || []).length > 0;
+  const hasAny = Object.keys(groups).length > 0 || (char.languages || []).length > 0 || char.originFeat;
+
+  // Look up Origin Feat description from feats.js (if available)
+  const originFeatObj = char.originFeat ? findFeatByName(char.originFeat) : null;
 
   // Custom trait add
   const addCustomTrait = () => {
@@ -96,6 +107,46 @@ export default function TraitsFeatures({ char, setChar }) {
           ＋ Eigener Trait
         </button>
       </div>
+
+      {/* ── Origin Feat (2024 PHB — vom Background) ── */}
+      {char.originFeat && (
+        <div style={{ marginBottom: 14 }}>
+          <GroupHeader icon="⚔" label="Origin Feat (2024)" color={C.amberBright} />
+          <div style={{
+            marginTop: 6,
+            background: `linear-gradient(135deg, ${C.amber}18, rgba(0,0,0,0.25))`,
+            border: `1px solid ${C.amberBright}55`,
+            borderLeft: `4px solid ${C.amberBright}`,
+            borderRadius: 8,
+            padding: "10px 14px",
+            boxShadow: `0 0 14px ${C.amberBright}11`,
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
+              <span style={{ fontFamily: FH, fontSize: 14, color: C.amberBright, fontWeight: 700 }}>
+                ⚔ {char.originFeat}
+              </span>
+              {char.background && (
+                <span style={{
+                  fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700,
+                  background: "rgba(0,0,0,0.35)", border: `1px solid ${C.border}`,
+                  color: C.textDim, letterSpacing: 0.3,
+                }}>
+                  Background: {char.background}
+                </span>
+              )}
+            </div>
+            {originFeatObj?.description ? (
+              <div style={{ fontSize: 12, color: C.text, lineHeight: 1.55 }}>
+                {originFeatObj.description}
+              </div>
+            ) : (
+              <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>
+                Details siehe Spielerhandbuch (Origin Feat).
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* ── Languages ── */}
       {(char.languages || []).length > 0 && (
@@ -201,6 +252,14 @@ export default function TraitsFeatures({ char, setChar }) {
       })}
     </div>
   );
+}
+
+/** Find a feat object by display-name (e.g. 'Savage Attacker' → feat object) */
+function findFeatByName(featName) {
+  if (!featName) return null;
+  // Strip parens like "Magic Initiate (Cleric)" → "magic_initiate"
+  const baseId = featName.toLowerCase().split("(")[0].trim().replace(/[\s']/g, "_").replace(/[^a-z_]/g, "");
+  return getFeatById(baseId);
 }
 
 function GroupHeader({ icon, label, color }) {

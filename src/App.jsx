@@ -116,7 +116,21 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:6, height:44 }}>
         <div>
           <div style={{ fontFamily:FH, fontSize:14, fontWeight:700, color:C.gold, lineHeight:1.1 }}>{char.name}</div>
-          <div style={{ fontSize:9, color:C.textDim, marginTop:1 }}>{char.race} · {char.klass} · Level {char.level}</div>
+          <div style={{ fontSize:9, color:C.textDim, marginTop:1, display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
+            <span>{char.race} · {char.klass} · Level {char.level}</span>
+            {char.originFeat && (
+              <span
+                title={`Origin Feat (von Background ${char.background || "—"})`}
+                style={{
+                  fontSize:9, padding:"1px 6px", borderRadius:6, fontWeight:700,
+                  background:`${C.amberBright}22`, border:`1px solid ${C.amberBright}55`,
+                  color:C.amberBright, letterSpacing:0.3, cursor:"help",
+                }}
+              >
+                ⚔ {char.originFeat}
+              </span>
+            )}
+          </div>
         </div>
         <div style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
           <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
