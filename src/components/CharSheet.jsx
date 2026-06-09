@@ -4,6 +4,7 @@ import { modOf, modStr, getPB } from "../utils/helpers.js";
 import { ALL_VOELKER } from "../data/races.js";
 import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
 import BackgroundSelector from "./CharacterSheet/BackgroundSelector.jsx";
+import WeaponMasteryPicker from "./CharacterSheet/WeaponMasteryPicker.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
 import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
@@ -82,6 +83,9 @@ export default function CharSheet({ char, setChar }) {
 
           {/* Multiclass Spell Slots (only shown for casters) */}
           <MulticlassSpellSlots classes={classes} charId={char.id} />
+
+          {/* Weapon Mastery (only shown for martial classes) */}
+          <WeaponMasteryPicker char={char} setChar={setChar} />
 
           <div style={{ height: 12 }} />
 
