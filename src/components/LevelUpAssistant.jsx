@@ -12,6 +12,25 @@ const ASI_BY_CLASS = {
   Schurke:  [4, 8, 10, 12, 16, 19],       // ASI auch auf Level 10
 };
 
+// ── Half-Feat Detection ─────────────────────────────────────────────────────
+// Detects "+1 STR" / "+1 STR oder DEX" / "+1 STR/DEX" in feat descriptions.
+// Returns array of stat letters (["STR","DEX"]) or [] if no half-feat boost.
+function getHalfFeatStats(feat) {
+  if (!feat?.description) return [];
+  // Skip the generic "Ability Score Improvement" feat (which IS pure ASI)
+  if (feat.id === "ability_score_improvement") return [];
+  const desc = feat.description;
+  const stats = new Set();
+  const re = /\+1\s+(STR|DEX|CON|INT|WIS|CHA)(?:\s*(?:oder|or|\/|,)\s*(STR|DEX|CON|INT|WIS|CHA))?(?:\s*(?:oder|or|\/|,)\s*(STR|DEX|CON|INT|WIS|CHA))?/gi;
+  let m;
+  while ((m = re.exec(desc)) !== null) {
+    if (m[1]) stats.add(m[1].toUpperCase());
+    if (m[2]) stats.add(m[2].toUpperCase());
+    if (m[3]) stats.add(m[3].toUpperCase());
+  }
+  return [...stats];
+}
+
 // ── Klassen-Features — aus data/classFeatures.js importiert ─────────────────
 // CLF[class][level] → [{name, description}]  (format wie bisher via Adapter)
 const CLF = Object.fromEntries(
@@ -418,10 +437,23 @@ export default function LevelUpAssistant({ char, setChar }) {
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {isAsi && (
             <div style={{ ...featureBox(C.green), padding: 14 }}>
-              <div style={{ fontFamily: FH, fontSize: 13, color: C.greenBright, fontWeight: 700, marginBottom: 10 }}>✨ Attributswerterhöhung (ASI) oder Feat</div>
+              <div style={{ fontFamily: FH, fontSize: 13, color: C.greenBright, fontWeight: 700, marginBottom: 8 }}>✨ Attributswerterhöhung (ASI) oder Feat</div>
+
+              {/* ── EXPLANATION BANNER ─────────────────────────────────────── */}
+              <div style={{
+                fontSize: 11, color: C.text, lineHeight: 1.55,
+                background: `${C.purple}10`, border: `1px solid ${C.purple}33`, borderLeft: `3px solid ${C.purpleBright}`,
+                borderRadius: 6, padding: "8px 10px", marginBottom: 12,
+              }}>
+                <div style={{ fontWeight: 700, color: C.purpleBright, marginBottom: 4 }}>ℹ️ Entweder/Oder — du wählst EINS pro ASI-Level</div>
+                <div style={{ marginBottom: 3 }}><b style={{ color: C.greenBright }}>📈 ASI</b> = pures Stat-Plus (+2 auf 1 Attribut <i>oder</i> +1 auf 2 Attribute).</div>
+                <div style={{ marginBottom: 3 }}><b style={{ color: C.amberBright }}>⭐ Feat</b> = neue Fähigkeit. Viele sind <b>Half-Feats</b> — sie geben <b>+1 Stat als Teil des Feats</b> (markiert mit 🎯 in der Liste).</div>
+                <div style={{ color: C.textDim, fontSize: 10 }}>↳ Background-ASI (Level 1, einmalig) ist eine andere Quelle — nicht zu verwechseln.</div>
+              </div>
+
               {/* Toggle ASI / Feat */}
               <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-                {[["asi", "📈 ASI"], ["feat", "⭐ Feat"]].map(([mode, label]) => (
+                {[["asi", "📈 ASI (pures Stat-Plus)"], ["feat", "⭐ Feat (Fähigkeit)"]].map(([mode, label]) => (
                   <button key={mode} onClick={() => setAsiMode(mode)} style={{
                     flex: 1, padding: "7px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 700,
                     border: `1px solid ${asiMode === mode ? C.greenBright : C.border}`,
@@ -464,14 +496,41 @@ export default function LevelUpAssistant({ char, setChar }) {
 
               {asiMode === "feat" && (
                 <div>
-                  <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>Wähle ein Feat (nur Voraussetzungen erfüllte werden angezeigt):</div>
+                  <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>
+                    Wähle ein Feat — <span style={{ color: C.amberBright }}>🎯 = Half-Feat (gibt +1 Stat zusätzlich zur Fähigkeit)</span>
+                  </div>
                   <select value={featId} onChange={e => setFeatId(e.target.value)} style={{ ...sx.sel, width: "100%" }}>
                     <option value="">— Feat wählen —</option>
-                    {availableFeats.map(f => <option key={f.id} value={f.id}>{f.name}{f.prerequisite ? ` (${f.prerequisite})` : ""}</option>)}
+                    {availableFeats.map(f => {
+                      const halfStats = getHalfFeatStats(f);
+                      const halfMark = halfStats.length ? `🎯 [+1 ${halfStats.join("/")}] ` : "";
+                      return (
+                        <option key={f.id} value={f.id}>
+                          {halfMark}{f.name}{f.prerequisite ? ` (${f.prerequisite})` : ""}
+                        </option>
+                      );
+                    })}
                   </select>
-                  {featId && (() => { const f = availableFeats.find(x => x.id === featId); return f ? (
-                    <div style={{ marginTop: 8, fontSize: 12, color: C.text, background: C.surface, padding: "8px 10px", borderRadius: 6 }}>{f.description}</div>
-                  ) : null; })()}
+                  {featId && (() => {
+                    const f = availableFeats.find(x => x.id === featId);
+                    if (!f) return null;
+                    const halfStats = getHalfFeatStats(f);
+                    return (
+                      <div style={{ marginTop: 8 }}>
+                        {halfStats.length > 0 && (
+                          <div style={{
+                            background: `${C.amber}15`, border: `1px solid ${C.amber}55`, borderLeft: `3px solid ${C.amberBright}`,
+                            borderRadius: 6, padding: "6px 10px", marginBottom: 6, fontSize: 11, color: C.amberBright, fontWeight: 700,
+                          }}>
+                            🎯 Half-Feat: Du erhältst <b>+1 auf {halfStats.join(" oder ")}</b> zusätzlich zur Fähigkeit (max 20).
+                          </div>
+                        )}
+                        <div style={{ fontSize: 12, color: C.text, background: C.surface, padding: "8px 10px", borderRadius: 6 }}>
+                          {f.description}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
             </div>
