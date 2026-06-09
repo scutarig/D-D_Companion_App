@@ -27,6 +27,7 @@ export default function Bestiary() {
   const [custom, setCustom] = usePersist("bestiary_v4", []);
   const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
   const [encountered, setEncountered] = usePersist("encountered_monsters_v1", []);
+  const [dmNotes, setDmNotes] = usePersist("dm_monster_notes_v1", {});
   const [search, setSearch] = useState("");
   const [tf, setTf] = useState("All");
   const [sel, setSel] = useState(null);
@@ -335,6 +336,43 @@ export default function Bestiary() {
             {sel.legendary && (
               <Sect title="Legendäre Aktionen">
                 <div style={{fontSize:13,color:C.purple,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.legendary}</div>
+              </Sect>
+            )}
+
+            {/* DM-Notizen (Phase 4) — nur im DM-Mode (viewMode = full) */}
+            {viewMode === "full" && (
+              <Sect title="🎲 DM-Notizen (privat)">
+                <div style={{
+                  background: `${C.purpleBright}08`,
+                  border: `1px solid ${C.purpleBright}33`,
+                  borderLeft: `3px solid ${C.purpleBright}`,
+                  borderRadius: 8, padding: 10, marginBottom: 6,
+                }}>
+                  <textarea
+                    value={dmNotes[sel.id] || ""}
+                    onChange={e => setDmNotes(p => ({ ...p, [sel.id]: e.target.value }))}
+                    placeholder="Eigene DM-Notizen für Encounter-Planung… (z.B. 'Schwächt sich nach Stunning Strike', 'Hat Schwertkönig-Schwert im Hort', 'Verwende für Boss-Encounter Sitzung 5')"
+                    style={{
+                      ...sx.ta,
+                      minHeight: 80,
+                      fontSize: 13,
+                      background: "rgba(0,0,0,0.3)",
+                    }}
+                  />
+                  {dmNotes[sel.id] && (
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginTop:6 }}>
+                      <div style={{ fontSize:10, color:C.textDim, fontStyle:"italic" }}>
+                        ✓ Lokal gespeichert · pro Monster
+                      </div>
+                      <button
+                        onClick={() => { if (window.confirm("Notiz löschen?")) setDmNotes(p => { const np = {...p}; delete np[sel.id]; return np; }); }}
+                        style={{ ...sx.bsm(C.red), fontSize:9, padding:"3px 7px" }}
+                      >
+                        🗑 Löschen
+                      </button>
+                    </div>
+                  )}
+                </div>
               </Sect>
             )}
           </div>
