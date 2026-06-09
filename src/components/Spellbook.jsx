@@ -2,10 +2,21 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { SPELLS } from "../data/spells.js";
+import { useChar } from "../context/CharContext.jsx";
+import { useMulticlass } from "../hooks/useMulticlass.js";
+import { getAllCantripLimits } from "../data/spellPreparation.js";
+
+const KLASS_TO_SPELL_TAG = {
+  Barde: "Bard", Druide: "Druid", Hexenmeister: "Warlock", Kleriker: "Cleric",
+  Magier: "Wizard", Zauberer: "Sorcerer", Magieschmied: "Artificer",
+};
 
 export default function Spellbook({ charId }) {
   const [known, setKnown] = usePersist(`spells_known_${charId||"g"}`, []);
   const [prepared, setPrepared] = usePersist(`spells_prep_${charId||"g"}`, []);
+  const { active, setActive } = useChar();
+  const { classes } = useMulticlass(charId, active, setActive);
+  const cantripLimits = getAllCantripLimits(classes || [], active || {});
   const [search, setSearch] = useState("");
   const [lf, setLf] = useState("All");
   const [cf, setCf] = useState("All");
@@ -26,9 +37,62 @@ export default function Spellbook({ charId }) {
     return lm&&cm&&sm&&rm;
   });
   const grps = {}; shown.forEach(s => { (grps[s.lv]=grps[s.lv]||[]).push(s); });
-  const togKnown = id => setKnown(p => p.includes(id)?p.filter(x=>x!==id):[...p,id]);
-  const togPrep = id => { if(!known.includes(id)){setKnown(p=>[...p,id]);} setPrepared(p=>p.includes(id)?p.filter(x=>x!==id):[...p,id]); };
+
+  /**
+   * Check if adding this cantrip would exceed any class's limit.
+   * Returns warning message string if over limit, null if OK.
+   */
+  const checkCantripLimit = (spell) => {
+    if (spell.lv !== 0) return null;
+    if (!cantripLimits.length) return null;
+    const knownCantrips = SPELLS.filter(s => known.includes(s.id) && s.lv === 0);
+    // Check each class that this cantrip belongs to
+    for (const limit of cantripLimits) {
+      const tag = KLASS_TO_SPELL_TAG[limit.klassName];
+      const spellMatchesClass = tag && (spell.cls?.includes(tag) || spell.cls === tag);
+      if (!spellMatchesClass) continue;
+      const currentClassCount = knownCantrips.filter(s => tag && (s.cls?.includes(tag) || s.cls === tag)).length;
+      if (currentClassCount >= limit.limit) {
+        return `${limit.klassName} (Lv${limit.level}) hat bereits ${currentClassCount}/${limit.limit} Cantrips bekannt. Trotzdem hinzufügen?`;
+      }
+    }
+    return null;
+  };
+
+  const togKnown = id => setKnown(p => {
+    if (p.includes(id)) return p.filter(x => x !== id); // remove always allowed
+    const spell = SPELLS.find(s => s.id === id);
+    const warning = checkCantripLimit(spell);
+    if (warning && !window.confirm(`⚠ Cantrip-Limit erreicht\n\n${warning}`)) {
+      return p; // user declined → keep state
+    }
+    return [...p, id];
+  });
+
+  const togPrep = id => {
+    if (!known.includes(id)) {
+      const spell = SPELLS.find(s => s.id === id);
+      const warning = checkCantripLimit(spell);
+      if (warning && !window.confirm(`⚠ Cantrip-Limit erreicht\n\n${warning}`)) {
+        return; // user declined → don't add to known or prepared
+      }
+      setKnown(p => [...p, id]);
+    }
+    setPrepared(p => p.includes(id) ? p.filter(x => x !== id) : [...p, id]);
+  };
   const ll = l => l===0?"Cantrip":`Level ${l}`;
+
+  // Build "X/Y" status for cantrip section header
+  const cantripStatus = (() => {
+    if (!cantripLimits.length) return null;
+    return cantripLimits.map(l => {
+      const tag = KLASS_TO_SPELL_TAG[l.klassName];
+      const cnt = SPELLS.filter(s => known.includes(s.id) && s.lv === 0 && tag && (s.cls?.includes(tag) || s.cls === tag)).length;
+      const isOver = cnt > l.limit;
+      const isFull = cnt === l.limit;
+      return { name: l.klassName, count: cnt, limit: l.limit, isOver, isFull };
+    });
+  })();
   return (
     <div style={{display:"flex",gap:12}}>
       <div style={{width:255,flexShrink:0}}>
@@ -48,7 +112,23 @@ export default function Spellbook({ charId }) {
         <div style={{maxHeight:"55vh",overflowY:"auto"}}>
           {Object.keys(grps).sort((a,b)=>+a-+b).map(lv => (
             <div key={lv}>
-              <div style={{fontSize:11,color:SPC[+lv]||C.textDim,fontFamily:FH,fontWeight:700,padding:"4px 0 2px",borderBottom:`1px solid ${C.border}`,marginBottom:3}}>{ll(+lv)}</div>
+              <div style={{fontSize:11,color:SPC[+lv]||C.textDim,fontFamily:FH,fontWeight:700,padding:"4px 0 2px",borderBottom:`1px solid ${C.border}`,marginBottom:3,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:4}}>
+                <span>{ll(+lv)}</span>
+                {+lv === 0 && cantripStatus && cantripStatus.length > 0 && (
+                  <div style={{display:"flex",gap:3,flexWrap:"wrap"}}>
+                    {cantripStatus.map(s => (
+                      <span key={s.name} title={`${s.name}: ${s.count} von ${s.limit} Cantrips bekannt`} style={{
+                        fontSize: 9, padding: "1px 5px", borderRadius: 4, fontWeight: 700, letterSpacing: 0.3,
+                        background: s.isOver ? `${C.redBright}22` : s.isFull ? `${C.amberBright}22` : `${C.greenBright}1a`,
+                        border: `1px solid ${s.isOver ? C.redBright : s.isFull ? C.amberBright : C.greenBright}55`,
+                        color: s.isOver ? C.redBright : s.isFull ? C.amberBright : C.greenBright,
+                      }}>
+                        {s.name.slice(0,3)} {s.count}/{s.limit}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
               {grps[lv].map(sp => (
                 <div key={sp.id} onClick={() => setSel(sp)} style={{background:sel?.id===sp.id?C.purple+"33":C.surface,border:`1px solid ${sel?.id===sp.id?C.purpleBright:C.border}`,borderRadius:4,padding:"5px 10px",cursor:"pointer",marginBottom:2,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                   <div>
