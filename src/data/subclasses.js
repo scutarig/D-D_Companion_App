@@ -577,8 +577,15 @@ export function getSubclassFeaturesUpToLevel(className, subclassId, level) {
   return sub.features.filter(f => f.level <= level);
 }
 
-/** Get all subclass display names for a class */
+/** Get all subclass display names for a class (string[]) */
 export function getSubclassNames(className) {
+  const subs = SUBCLASSES[className];
+  if (!subs) return [];
+  return subs.map(s => s.name);
+}
+
+/** Get [{id, name}] list for a class (for picker UIs) */
+export function getSubclasses(className) {
   const subs = SUBCLASSES[className];
   if (!subs) return [];
   return subs.map(s => ({ id: s.id, name: s.name }));
@@ -596,4 +603,11 @@ export function getSubclassById(className, subclassId) {
   const subs = SUBCLASSES[className];
   if (!subs) return null;
   return subs.find(s => s.id === subclassId) || null;
+}
+
+/** Get full subclass data by name (used because char.subclasses stores names) */
+export function getSubclassByName(className, subclassName) {
+  const subs = SUBCLASSES[className];
+  if (!subs) return null;
+  return subs.find(s => s.name === subclassName) || null;
 }

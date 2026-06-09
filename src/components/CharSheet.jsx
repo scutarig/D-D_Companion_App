@@ -5,6 +5,7 @@ import { ALL_VOELKER } from "../data/races.js";
 import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
 import BackgroundSelector from "./CharacterSheet/BackgroundSelector.jsx";
 import WeaponMasteryPicker from "./CharacterSheet/WeaponMasteryPicker.jsx";
+import SubclassPicker from "./CharacterSheet/SubclassPicker.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
 import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
@@ -22,7 +23,7 @@ export default function CharSheet({ char, setChar }) {
   const spellAtk = pb + spellMod;
 
   // Multiclass — provides classes[] for spell slot calculation
-  const { classes } = useMulticlass(char.id, char, setChar);
+  const { classes, setSubclass } = useMulticlass(char.id, char, setChar);
 
   return (
     <div>
@@ -86,6 +87,9 @@ export default function CharSheet({ char, setChar }) {
 
           {/* Weapon Mastery (only shown for martial classes) */}
           <WeaponMasteryPicker char={char} setChar={setChar} />
+
+          {/* Subclass Picker (Lv3 in 2024 PHB) */}
+          <SubclassPicker char={char} classes={classes} setSubclass={setSubclass} />
 
           <div style={{ height: 12 }} />
 
