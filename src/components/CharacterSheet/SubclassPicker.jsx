@@ -74,36 +74,36 @@ export default function SubclassPicker({ char, classes, setSubclass }) {
                   <span style={{ fontSize: 10, color: C.textDim }}>Lv{klass.level}</span>
                 </div>
                 {isLocked && (
-                  <span style={{
-                    fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700,
-                    background: `${C.textDim}22`, border: `1px solid ${C.textDim}55`,
-                    color: C.textDim,
-                  }}>
-                    🔒 Lv{klass.choiceLevel} erforderlich
+                  <span
+                    title="Du kannst Subklassen jetzt schon vorab anschauen, die Auswahl wird erst beim Erreichen des Choice-Levels wirksam."
+                    style={{
+                      fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700,
+                      background: `${C.amberBright}1f`, border: `1px solid ${C.amberBright}55`,
+                      color: C.amberBright,
+                    }}>
+                    🔍 Preview · Lv{klass.choiceLevel} erforderlich
                   </span>
                 )}
               </div>
 
-              {!isLocked && (
-                <>
-                  <select
-                    value={selected}
-                    onChange={e => setSubclass(klass.name, e.target.value)}
-                    style={sx.sel}
-                  >
-                    <option value="">— Subklasse wählen —</option>
-                    {choices.map(c => (
-                      <option key={c.id} value={c.name}>{c.name}</option>
-                    ))}
-                  </select>
+              {/* Show dropdown always — locked classes use it for preview only */}
+              <select
+                value={selected}
+                onChange={e => setSubclass(klass.name, e.target.value)}
+                style={{ ...sx.sel, opacity: isLocked ? 0.85 : 1 }}
+              >
+                <option value="">{isLocked ? "— Subklasse vorab anschauen —" : "— Subklasse wählen —"}</option>
+                {choices.map(c => (
+                  <option key={c.id} value={c.name}>{c.name}</option>
+                ))}
+              </select>
 
-                  {subclassData && (
-                    <SubclassFeaturesPreview
-                      subclass={subclassData}
-                      classLevel={klass.level}
-                    />
-                  )}
-                </>
+              {selected && subclassData && (
+                <SubclassFeaturesPreview
+                  subclass={subclassData}
+                  classLevel={klass.level}
+                  isPreview={isLocked}
+                />
               )}
             </div>
           );
@@ -114,7 +114,7 @@ export default function SubclassPicker({ char, classes, setSubclass }) {
 }
 
 // ── Feature Preview Card ─────────────────────────────────────────────────────
-function SubclassFeaturesPreview({ subclass, classLevel }) {
+function SubclassFeaturesPreview({ subclass, classLevel, isPreview = false }) {
   // Group features by level
   const byLevel = {};
   subclass.features.forEach(f => {
@@ -123,17 +123,24 @@ function SubclassFeaturesPreview({ subclass, classLevel }) {
   });
   const levels = Object.keys(byLevel).map(Number).sort((a, b) => a - b);
 
+  const accentColor = isPreview ? C.amberBright : C.purpleBright;
+
   return (
     <div style={{
       marginTop: 8,
       padding: "8px 10px",
       borderRadius: 6,
-      background: `${C.purple}0d`,
-      border: `1px solid ${C.purple}30`,
-      borderLeft: `3px solid ${C.purpleBright}`,
+      background: isPreview ? `${C.amberBright}08` : `${C.purple}0d`,
+      border: `1px solid ${isPreview ? C.amberBright : C.purple}30`,
+      borderLeft: `3px solid ${accentColor}`,
     }}>
-      <div style={{ fontSize: 11, color: C.purpleBright, fontFamily: FH, fontWeight: 700, marginBottom: 6 }}>
-        ✦ {subclass.name}
+      <div style={{ fontSize: 11, color: accentColor, fontFamily: FH, fontWeight: 700, marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+        {isPreview ? "🔍" : "✦"} {subclass.name}
+        {isPreview && (
+          <span style={{ fontSize: 9, color: C.textDim, fontWeight: 400, fontFamily: "inherit", fontStyle: "italic" }}>
+            (Vorschau — wird auf Lv{subclass.levelGained || 3} wirksam)
+          </span>
+        )}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
