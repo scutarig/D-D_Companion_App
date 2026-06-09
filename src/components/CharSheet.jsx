@@ -6,6 +6,7 @@ import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
 import BackgroundSelector from "./CharacterSheet/BackgroundSelector.jsx";
 import WeaponMasteryPicker from "./CharacterSheet/WeaponMasteryPicker.jsx";
 import SubclassPicker from "./CharacterSheet/SubclassPicker.jsx";
+import SpellPreparationCard from "./CharacterSheet/SpellPreparationCard.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
 import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
@@ -90,6 +91,9 @@ export default function CharSheet({ char, setChar }) {
 
           {/* Subclass Picker (Lv3 in 2024 PHB) */}
           <SubclassPicker char={char} classes={classes} setSubclass={setSubclass} />
+
+          {/* Spell Preparation Status (only for caster classes) */}
+          <SpellPreparationCard char={char} classes={classes} />
 
           <div style={{ height: 12 }} />
 
