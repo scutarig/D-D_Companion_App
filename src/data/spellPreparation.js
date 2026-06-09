@@ -115,3 +115,60 @@ export function getAllSpellPreparedLimits(classes, char) {
     })
     .filter(Boolean);
 }
+
+// ─── CANTRIPS (2024 PHB) ──────────────────────────────────────────────────────
+// 2024 Reform: Cantrip count steigt bei Lv4 und Lv10 (statt zufällig wie 2014).
+// Cantrips können NICHT täglich getauscht werden — nur bei Levelup 1 Cantrip
+// gegen anderen aus eigener Liste (2024-Regel).
+//
+// Paladin/Ranger haben KEINE Cantrips in 2024 PHB.
+
+/**
+ * Get number of cantrips known for a class at a given level.
+ * Returns null for non-caster classes (and Paladin/Ranger who get no cantrips).
+ */
+export function getCantripsKnown(klass, level) {
+  const lv = Math.max(1, Math.min(20, level || 1));
+  switch (klass) {
+    case "Barde":
+    case "Hexenmeister":
+    case "Druide":
+    case "Magieschmied":
+      // 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, ...
+      if (lv >= 10) return 4;
+      if (lv >= 4)  return 3;
+      return 2;
+    case "Kleriker":
+    case "Magier":
+      // 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, ...
+      if (lv >= 10) return 5;
+      if (lv >= 4)  return 4;
+      return 3;
+    case "Zauberer":
+      // 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, ...
+      if (lv >= 10) return 6;
+      if (lv >= 4)  return 5;
+      return 4;
+    case "Paladin":
+    case "Waldläufer":
+      return null;   // 2024: keine Cantrips
+    default:
+      return null;
+  }
+}
+
+/**
+ * Multi-class cantrip limits.
+ * Returns [{ klassName, level, limit, ability }] for each cantrip-using class.
+ */
+export function getAllCantripLimits(classes, char) {
+  if (!Array.isArray(classes)) return [];
+  return classes
+    .map(c => {
+      const limit = getCantripsKnown(c.name, c.level);
+      if (limit === null) return null;
+      const ability = CASTER_ABILITY[c.name];
+      return { klassName: c.name, level: c.level, limit, ability };
+    })
+    .filter(Boolean);
+}

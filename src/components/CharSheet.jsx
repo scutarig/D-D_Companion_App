@@ -7,6 +7,7 @@ import BackgroundSelector from "./CharacterSheet/BackgroundSelector.jsx";
 import WeaponMasteryPicker from "./CharacterSheet/WeaponMasteryPicker.jsx";
 import SubclassPicker from "./CharacterSheet/SubclassPicker.jsx";
 import SpellPreparationCard from "./CharacterSheet/SpellPreparationCard.jsx";
+import CantripsCard from "./CharacterSheet/CantripsCard.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
 import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
@@ -91,6 +92,9 @@ export default function CharSheet({ char, setChar }) {
 
           {/* Subclass Picker (Lv3 in 2024 PHB) */}
           <SubclassPicker char={char} classes={classes} setSubclass={setSubclass} />
+
+          {/* Cantrips Known (only for cantrip-using caster classes) */}
+          <CantripsCard char={char} classes={classes} />
 
           {/* Spell Preparation Status (only for caster classes) */}
           <SpellPreparationCard char={char} classes={classes} />
