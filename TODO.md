@@ -92,11 +92,18 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - Alle haben jetzt: nameDE, edition, pb, initiative, initiativePassive,
     saveBonuses, habitat, treasure, separated bonusActions+reactions
 
-### Phase 5: Lokalisierung
-- [ ] **DE-Übersetzung** D&D-konform (Begriffe wie "Übungsbonus" statt "Proficiency Bonus")
-- [ ] Sprach-Toggle EN/DE in Settings
-- [ ] Alle data/*.js Files mit i18n-Keys
-- [ ] PHB-DE als Referenz nutzen, nicht banal übersetzen
+### Phase 5: Lokalisierung — START (Grundinfrastruktur) [pending commit]
+- [x] **i18n-Foundation** `src/i18n/index.js`:
+  - `useI18n()` Hook (returns lang, setLang, t)
+  - `t(key, fallback)` module-level für non-React code
+  - Dictionary für DE + EN (~80 keys)
+  - localStorage `app_lang_v1` persistence
+  - D&D-konforme Begriffe (Übungsbonus, Heldenhafte Inspiration etc.)
+- [x] **Lang-Toggle UI** im Sidebar (Desktop) + Mobile-Strip (über Mode-Toggle)
+- [x] **Mode-Confirm-Modal** komplett auf i18n umgestellt
+- [ ] Weitere UI-Texte schrittweise migrieren (CharHeader, Rest, Tabs, ...)
+- [ ] Data-Files mit i18n-Keys (classes/races/feats descriptions)
+- [ ] PHB-DE als Referenz für komplette Übersetzung
 
 ---
 

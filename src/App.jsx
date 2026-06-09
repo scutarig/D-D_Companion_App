@@ -3,6 +3,7 @@ import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
+import { useI18n } from "./i18n/index.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
@@ -300,6 +301,7 @@ const MOBILE_NAV_DM = [
 function AppInner() {
   const [mode, setMode]       = usePersist("app_mode_v1", "player");
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
+  const { lang, setLang, t }  = useI18n();
   const { active, aid, setActive: setChar } = useChar();
   const [refOpen,  setRefOpen]  = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
@@ -527,14 +529,13 @@ function AppInner() {
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
           <span style={{ fontSize: 36, lineHeight: 1 }}>{isDM ? "👤" : "🎲"}</span>
           <div style={{ fontFamily: FH, fontSize: 18, color: isDM ? C.gold : C.purpleBright, fontWeight: 700, letterSpacing: 0.4 }}>
-            Wechsel in {isDM ? "Spieler" : "DM"}-Modus?
+            {t(isDM ? "mode.confirm_title_player" : "mode.confirm_title_dm")}
           </div>
         </div>
 
         {isDM ? (
           <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6, marginBottom: 16 }}>
-            Im Spieler-Modus werden alle DM-Tabs (<b>Kampf, Bestiary, Klassen-Ref, Völker-Ref, Encounter</b>) ausgeblendet.
-            Save/PDF und Heroic Inspiration werden wieder sichtbar.
+            {t("mode.confirm_player_desc")}
           </div>
         ) : (
           <>
@@ -545,11 +546,10 @@ function AppInner() {
               borderRadius: 8, padding: "10px 12px", marginBottom: 12,
               fontSize: 12, color: C.amberBright, fontWeight: 700,
             }}>
-              ⚠️ ACHTUNG — Spoiler-Risiko!
+              ⚠️ {t("mode.confirm_warning")}
             </div>
             <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6, marginBottom: 16 }}>
-              Im DM-Modus siehst du <b>alle Monster-Stats</b> ohne Spoiler-Filter und alle Referenzen.
-              Save/PDF-Funktionen + Rast-Buttons werden versteckt (DM-Spieler braucht sie nicht).
+              {t("mode.confirm_dm_desc")}
             </div>
           </>
         )}
@@ -559,13 +559,13 @@ function AppInner() {
             onClick={() => setModeConfirm(false)}
             style={{ ...sx.bsm(C.textDim), padding: "10px 18px", fontSize: 12 }}
           >
-            Abbrechen
+            {t("action.cancel")}
           </button>
           <button
             onClick={confirmModeSwitch}
             style={{ ...sx.btn(isDM ? C.gold : C.purpleBright), padding: "10px 22px", fontSize: 13 }}
           >
-            {isDM ? "👤 Zu Spieler" : "🎲 Zu DM"}
+            {t(isDM ? "mode.switch_to_player" : "mode.switch_to_dm")}
           </button>
         </div>
       </div>
@@ -607,7 +607,7 @@ function AppInner() {
           </div>
         </nav>
 
-        {/* Bottom: export (nur Player) + Mode-Toggle (immer, prominentest unten) */}
+        {/* Bottom: export (nur Player) + Lang + Mode-Toggle */}
         <div style={{ padding:"8px 4px 14px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
           {!isDM && (
             <>
@@ -615,6 +615,21 @@ function AppInner() {
               <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
             </>
           )}
+          {/* Lang Toggle */}
+          <button
+            onClick={() => setLang(lang === "de" ? "en" : "de")}
+            title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
+            style={{
+              width: "100%", padding: "6px 4px", borderRadius: 7,
+              border: `1px solid ${C.blueBright}55`,
+              background: `${C.blueBright}11`,
+              color: C.blueBright,
+              fontFamily: FH, fontSize: 10, fontWeight: 700,
+              cursor: "pointer", letterSpacing: 0.5,
+              transition: "all .15s",
+            }}>
+            🌐 {lang.toUpperCase()}
+          </button>
           {/* Mode-Toggle: prominent, hervorgehoben, unterhalb Exporte */}
           <button
             onClick={requestModeSwitch}
@@ -757,7 +772,25 @@ function AppInner() {
         borderTop: "1px solid rgba(201,168,76,0.10)",
         padding: "6px 10px",
         flexShrink: 0,
+        display: "flex",
+        gap: 6,
+        alignItems: "stretch",
       }}>
+        <button
+          onClick={() => setLang(lang === "de" ? "en" : "de")}
+          title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
+          style={{
+            padding: "6px 10px", borderRadius: 8,
+            border: `1px solid ${C.blueBright}55`,
+            background: `${C.blueBright}11`,
+            color: C.blueBright,
+            fontFamily: FH, fontSize: 10, fontWeight: 700,
+            cursor: "pointer", letterSpacing: 0.5,
+            display: "flex", alignItems: "center", gap: 4,
+            flexShrink: 0,
+          }}>
+          🌐 {lang.toUpperCase()}
+        </button>
         <button
           onClick={requestModeSwitch}
           style={{
@@ -779,11 +812,12 @@ function AppInner() {
             justifyContent: "center",
             gap: 8,
             boxShadow: isDM ? `0 0 12px ${C.purple}44` : `0 0 12px ${C.gold}33`,
+            flex: 1,
           }}
         >
           <span style={{ fontSize: 16 }}>{isDM ? "🎲" : "👤"}</span>
-          <span>{isDM ? "DM-MODUS AKTIV" : "SPIELER-MODUS AKTIV"}</span>
-          <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 4 }}>↻ Wechseln</span>
+          <span>{isDM ? (lang === "de" ? "DM-MODUS AKTIV" : "DM MODE ACTIVE") : (lang === "de" ? "SPIELER-MODUS AKTIV" : "PLAYER MODE ACTIVE")}</span>
+          <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 4 }}>↻ {lang === "de" ? "Wechseln" : "Switch"}</span>
         </button>
       </div>
 
