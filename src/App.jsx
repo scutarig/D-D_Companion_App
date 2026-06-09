@@ -169,7 +169,15 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                       ? "Heroic Inspiration verfügbar (Mensch erhält sie nach jeder Long Rest). Klick: manuell setzen"
                       : "Heroic Inspiration aktivieren (DM-Belohnung oder Klassen-Feature)")
                 }
-                style={{ ...sx.bsm(C.gold), fontSize:9, padding:"3px 7px", background: char.inspiration ? `${C.gold}22` : "transparent", border:`1px solid ${char.inspiration ? C.gold : C.border}`, color: char.inspiration ? C.gold : C.textDim, fontWeight:700 }}>
+                style={{
+                  ...sx.bsm(C.gold),
+                  fontSize: 9, padding: "3px 7px", fontWeight: 700,
+                  background: char.inspiration ? `linear-gradient(135deg, ${C.gold}33, ${C.gold}11)` : "transparent",
+                  border: `1px solid ${char.inspiration ? C.gold : C.border}`,
+                  color: char.inspiration ? C.gold : C.textDim,
+                  boxShadow: char.inspiration ? `0 0 8px ${C.gold}66` : "none",
+                  transition: "all .2s",
+                }}>
                 {char.inspiration ? "✦" : "✧"} Heroic Inspiration
               </button>
               <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 Kurze Rast</button>

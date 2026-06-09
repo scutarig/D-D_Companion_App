@@ -30,6 +30,7 @@ export default function Bestiary() {
   const [dmNotes, setDmNotes] = usePersist("dm_monster_notes_v1", {});
   const [search, setSearch] = useState("");
   const [tf, setTf] = useState("All");
+  const [crFilter, setCrFilter] = useState("All"); // "All" | "weak" | "moderate" | "deadly" | "boss"
   const [sel, setSel] = useState(null);
   const [showAdd, setShowAdd] = useState(false);
   const [form, setForm] = useState({name:"",cr:"1",hp:10,ac:10,speed:"30 ft.",type:"Beast",size:"Medium",alignment:"",str:10,dex:10,con:10,int:10,wis:10,cha:10,saves:{},skills:{},resistances:[],immunities:[],vulnerabilities:[],condImmunities:[],senses:"",languages:"",traits:"",actions:"",legendary:""});
@@ -41,10 +42,22 @@ export default function Bestiary() {
   const isSpoilerMode = viewMode === "spoiler";
   const isEncountered = (m) => m.custom || encountered.includes(m.id);
 
+  // CR-Filter ranges (PHB 2024)
+  const crInRange = (cr) => {
+    if (crFilter === "All") return true;
+    const n = crN(cr);
+    if (crFilter === "weak") return n < 1;         // <1 — Mooks
+    if (crFilter === "moderate") return n >= 1 && n < 5;   // 1-4 — Standard
+    if (crFilter === "deadly") return n >= 5 && n < 11;    // 5-10 — Tough
+    if (crFilter === "boss") return n >= 11;       // 11+ — Boss-Level
+    return true;
+  };
+
   // List filter
   const filtered = all.filter(m =>
     (tf==="All"||m.type===tf) &&
-    (m.name.toLowerCase().includes(search.toLowerCase())||m.type.toLowerCase().includes(search.toLowerCase()))
+    crInRange(m.cr) &&
+    (m.name.toLowerCase().includes(search.toLowerCase())||(m.nameDE||"").toLowerCase().includes(search.toLowerCase())||m.type.toLowerCase().includes(search.toLowerCase()))
   ).sort((a,b) => crN(a.cr)-crN(b.cr));
 
   // In spoiler mode: separate encountered (full) from unknown (minimal)
@@ -100,6 +113,30 @@ export default function Bestiary() {
 
         <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={isSpoilerMode ? "🔍 Monster suchen (Name)…" : "🔍 Monster suchen…"} style={{...sx.inp,marginBottom:6}}/>
         <select value={tf} onChange={e=>setTf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{types.map(t=><option key={t}>{t}</option>)}</select>
+
+        {/* CR-Filter (4 Stufen für DM-Encounter-Design) */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 3, marginBottom: 6 }}>
+          {[
+            { id: "All",      label: "Alle",   col: C.textDim },
+            { id: "weak",     label: "<1",     col: "#40a060" },
+            { id: "moderate", label: "1-4",    col: C.gold },
+            { id: "deadly",   label: "5-10",   col: C.red },
+            { id: "boss",     label: "11+",    col: "#c020c0" },
+          ].map(opt => (
+            <button key={opt.id} onClick={() => setCrFilter(opt.id)} title={`CR ${opt.label}`}
+              style={{
+                padding: "5px 2px", borderRadius: 5, fontSize: 9,
+                fontFamily: FH, fontWeight: 700, letterSpacing: 0.3, cursor: "pointer",
+                background: crFilter === opt.id ? `${opt.col}33` : "transparent",
+                border: `1px solid ${crFilter === opt.id ? opt.col : C.border}`,
+                color: crFilter === opt.id ? opt.col : C.textDim,
+                transition: "all .15s",
+              }}>
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
         <button onClick={()=>setShowAdd(!showAdd)} style={{...sx.btn(C.green),width:"100%",marginBottom:8}}>+ Eigenes Monster</button>
 
         <div style={{maxHeight:"62vh",overflowY:"auto"}}>
@@ -107,8 +144,13 @@ export default function Bestiary() {
           {visibleList.map(m=>(
             <div key={m.id} onClick={()=>{setSel(m);setShowAdd(false);}} style={{background:sel?.id===m.id?`${C.red}33`:C.surface,border:`1px solid ${sel?.id===m.id?C.red:C.border}`,borderRadius:4,padding:"7px 10px",cursor:"pointer",marginBottom:3}}>
               <div style={sx.jb}>
-                <span style={{fontSize:13,fontFamily:FH,color:C.textBright}}>{m.name}</span>
-                <span style={{fontSize:11,fontWeight:700,color:crC(m.cr)}}>CR {m.cr}</span>
+                <div style={{display:"flex",flexDirection:"column",minWidth:0,flex:1}}>
+                  <span style={{fontSize:13,fontFamily:FH,color:C.textBright,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.name}</span>
+                  {m.nameDE && m.nameDE !== m.name && (
+                    <span style={{fontSize:10,color:C.textDim,fontStyle:"italic",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.nameDE}</span>
+                  )}
+                </div>
+                <span style={{fontSize:11,fontWeight:700,color:crC(m.cr),flexShrink:0,marginLeft:6}}>CR {m.cr}</span>
               </div>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <span style={{fontSize:11,color:C.textDim}}>{m.size} {m.type}{m.custom&&<span style={{color:C.gold}}> ★</span>}{m.edition === "2024" && <span style={{color:C.purpleBright, marginLeft:4}}>· 2024</span>}</span>
