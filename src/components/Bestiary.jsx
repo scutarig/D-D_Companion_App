@@ -4,20 +4,60 @@ import { usePersist } from "../hooks/usePersist.js";
 import { modStr } from "../utils/helpers.js";
 import { MONSTERS } from "../data/monsters.js";
 
+/**
+ * Bestiary — Monster lookup + custom-monster CRUD
+ *
+ * 2024 MM SCHEMA SUPPORT:
+ *   - Edition badge (2024 / 2014 Legacy)
+ *   - Initiative line (separate from DEX)
+ *   - Gear section
+ *   - Habitat + Treasure pills
+ *   - Three-column stat display (Score / Mod / Save) when saveBonuses present
+ *   - Reactions + Bonus Actions blocks
+ *
+ * SPOILER-HIDE MODE (Player View):
+ *   - Global toggle: app_view_mode_v1 → "full" | "spoiler"
+ *   - Encountered tracking: encountered_monsters_v1 → number[] (monster IDs)
+ *   - In spoiler mode: list shows only encountered + custom monsters
+ *   - Search reveals MINIMAL cards (just name) with "Begegnet" button
+ *   - Click → monster added to encountered list, full card now visible
+ *   - Custom monsters are always visible (user added them themselves)
+ */
 export default function Bestiary() {
   const [custom, setCustom] = usePersist("bestiary_v4", []);
+  const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
+  const [encountered, setEncountered] = usePersist("encountered_monsters_v1", []);
   const [search, setSearch] = useState("");
   const [tf, setTf] = useState("All");
   const [sel, setSel] = useState(null);
   const [showAdd, setShowAdd] = useState(false);
   const [form, setForm] = useState({name:"",cr:"1",hp:10,ac:10,speed:"30 ft.",type:"Beast",size:"Medium",alignment:"",str:10,dex:10,con:10,int:10,wis:10,cha:10,saves:{},skills:{},resistances:[],immunities:[],vulnerabilities:[],condImmunities:[],senses:"",languages:"",traits:"",actions:"",legendary:""});
+
   const all = [...MONSTERS, ...(custom||[])];
   const types = ["All", ...new Set(all.map(m => m.type))].sort();
   const crN = cr => { const n=parseFloat(cr); return isNaN(n)?0:n; };
+
+  const isSpoilerMode = viewMode === "spoiler";
+  const isEncountered = (m) => m.custom || encountered.includes(m.id);
+
+  // List filter
   const filtered = all.filter(m =>
     (tf==="All"||m.type===tf) &&
     (m.name.toLowerCase().includes(search.toLowerCase())||m.type.toLowerCase().includes(search.toLowerCase()))
   ).sort((a,b) => crN(a.cr)-crN(b.cr));
+
+  // In spoiler mode: separate encountered (full) from unknown (minimal)
+  const visibleList = isSpoilerMode ? filtered.filter(isEncountered) : filtered;
+  const hiddenMatches = isSpoilerMode && search ? filtered.filter(m => !isEncountered(m)) : [];
+
+  const markEncountered = (id) => {
+    setEncountered(p => p.includes(id) ? p : [...p, id]);
+  };
+  const forgetEncountered = (id) => {
+    setEncountered(p => p.filter(x => x !== id));
+    if (sel?.id === id) setSel(null);
+  };
+
   const crC = cr => { const n=crN(cr); return n<1?"#40a060":n<5?C.gold:n<10?C.red:"#c020c0"; };
 
   const Tag = ({label, color}) => (
@@ -32,22 +72,81 @@ export default function Bestiary() {
 
   return (
     <div style={{display:"flex",gap:12}}>
-      {/* ── Left: list ── */}
-      <div style={{width:220,flexShrink:0}}>
-        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="🔍 Monster suchen…" style={{...sx.inp,marginBottom:6}}/>
+      {/* ── Left: list + mode toggle ── */}
+      <div style={{width:240,flexShrink:0}}>
+        {/* Spoiler-Hide Mode toggle */}
+        <div style={{marginBottom:8,display:"flex",gap:4}}>
+          <button
+            onClick={() => setViewMode(isSpoilerMode ? "full" : "spoiler")}
+            title={isSpoilerMode ? "Zeige alle Monster (DM/Lookup)" : "Verstecke unbekannte Monster (Spoiler-Schutz)"}
+            style={{
+              flex:1,
+              padding:"6px 8px",
+              fontSize:10,
+              fontFamily:FH,
+              fontWeight:700,
+              letterSpacing:0.5,
+              borderRadius:6,
+              cursor:"pointer",
+              background: isSpoilerMode ? `${C.purpleBright}1f` : `${C.amberBright}1f`,
+              border: `1px solid ${isSpoilerMode ? C.purpleBright : C.amberBright}55`,
+              color: isSpoilerMode ? C.purpleBright : C.amberBright,
+            }}
+          >
+            {isSpoilerMode ? "🎲 Spoiler-Modus" : "📖 Vollansicht"}
+          </button>
+        </div>
+
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={isSpoilerMode ? "🔍 Monster suchen (Name)…" : "🔍 Monster suchen…"} style={{...sx.inp,marginBottom:6}}/>
         <select value={tf} onChange={e=>setTf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{types.map(t=><option key={t}>{t}</option>)}</select>
         <button onClick={()=>setShowAdd(!showAdd)} style={{...sx.btn(C.green),width:"100%",marginBottom:8}}>+ Eigenes Monster</button>
+
         <div style={{maxHeight:"62vh",overflowY:"auto"}}>
-          {filtered.map(m=>(
+          {/* Encountered + custom: full cards */}
+          {visibleList.map(m=>(
             <div key={m.id} onClick={()=>{setSel(m);setShowAdd(false);}} style={{background:sel?.id===m.id?`${C.red}33`:C.surface,border:`1px solid ${sel?.id===m.id?C.red:C.border}`,borderRadius:4,padding:"7px 10px",cursor:"pointer",marginBottom:3}}>
               <div style={sx.jb}>
                 <span style={{fontSize:13,fontFamily:FH,color:C.textBright}}>{m.name}</span>
                 <span style={{fontSize:11,fontWeight:700,color:crC(m.cr)}}>CR {m.cr}</span>
               </div>
-              <span style={{fontSize:11,color:C.textDim}}>{m.size} {m.type}{m.custom&&<span style={{color:C.gold}}> ★</span>}</span>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <span style={{fontSize:11,color:C.textDim}}>{m.size} {m.type}{m.custom&&<span style={{color:C.gold}}> ★</span>}{m.edition === "2024" && <span style={{color:C.purpleBright, marginLeft:4}}>· 2024</span>}</span>
+                {isSpoilerMode && encountered.includes(m.id) && (
+                  <button
+                    onClick={e=>{e.stopPropagation(); forgetEncountered(m.id);}}
+                    title="Aus 'Begegnet'-Liste entfernen"
+                    style={{background:"transparent",border:"none",cursor:"pointer",color:C.textDim,fontSize:11,padding:"0 4px"}}
+                  >✕</button>
+                )}
+              </div>
             </div>
           ))}
-          <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>{filtered.length} Monster</div>
+
+          {/* Spoiler mode: minimal name-cards for non-encountered search hits */}
+          {hiddenMatches.length > 0 && (
+            <div style={{marginTop:8,paddingTop:8,borderTop:`1px dashed ${C.border}`}}>
+              <div style={{fontSize:9,color:C.textDim,fontFamily:FH,letterSpacing:0.5,marginBottom:6}}>
+                ❔ TREFFER (NOCH NICHT BEGEGNET)
+              </div>
+              {hiddenMatches.map(m => (
+                <div key={m.id} style={{background:C.surface,border:`1px dashed ${C.border}`,borderRadius:4,padding:"6px 10px",marginBottom:3,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                  <span style={{fontSize:12,fontFamily:FH,color:C.textDim,fontStyle:"italic"}}>{m.name}</span>
+                  <button
+                    onClick={()=>markEncountered(m.id)}
+                    title="Als 'Begegnet' markieren — Stats werden sichtbar"
+                    style={{padding:"3px 8px",fontSize:9,fontFamily:FH,fontWeight:700,borderRadius:5,cursor:"pointer",background:`${C.green}33`,border:`1px solid ${C.green}88`,color:C.greenBright}}
+                  >
+                    ✓ Begegnet
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Counter */}
+          <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>
+            {isSpoilerMode ? `${visibleList.length} bekannt · ${encountered.length} gesamt begegnet` : `${filtered.length} Monster`}
+          </div>
         </div>
       </div>
 
@@ -72,36 +171,86 @@ export default function Bestiary() {
             {/* Header */}
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontFamily:FH,fontSize:22,color:C.gold,fontWeight:700}}>{sel.name}</div>
+                <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+                  <div style={{fontFamily:FH,fontSize:22,color:C.gold,fontWeight:700}}>{sel.name}</div>
+                  {sel.edition === "2024" && (
+                    <span style={{fontSize:9,padding:"2px 7px",borderRadius:8,fontWeight:700,background:`${C.purpleBright}1f`,border:`1px solid ${C.purpleBright}55`,color:C.purpleBright,letterSpacing:0.3}}>
+                      2024 MM
+                    </span>
+                  )}
+                  {sel.edition === "2014" && (
+                    <span style={{fontSize:9,padding:"2px 7px",borderRadius:8,fontWeight:700,background:`${C.amberBright}1f`,border:`1px solid ${C.amberBright}55`,color:C.amberBright,letterSpacing:0.3}} title="2014 MM Legacy — noch nicht auf 2024 migriert">
+                      ⚠ Legacy 2014
+                    </span>
+                  )}
+                </div>
                 <div style={{color:C.textDim,fontSize:13}}>{sel.size} {sel.type}{sel.alignment?` · ${sel.alignment}`:""}</div>
+                {sel.nameDE && <div style={{color:C.textDim,fontSize:11,fontStyle:"italic",marginTop:1}}>DE: {sel.nameDE}</div>}
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:22,fontWeight:900,color:crC(sel.cr),fontFamily:FH}}>CR {sel.cr}</div>
-                {sel.xp && <div style={{fontSize:11,color:C.textDim}}>{sel.xp.toLocaleString("de")} XP</div>}
+                {sel.xp && <div style={{fontSize:11,color:C.textDim}}>{sel.xp.toLocaleString("de")} XP{sel.pb?` · PB +${sel.pb}`:""}</div>}
                 {sel.custom&&<button onClick={()=>{setCustom(p=>p.filter(m=>m.id!==sel.id));setSel(null);}} style={{...sx.bsm(C.red),marginTop:4}}>🗑</button>}
+                {!sel.custom && isSpoilerMode && encountered.includes(sel.id) && (
+                  <button onClick={()=>forgetEncountered(sel.id)} style={{...sx.bsm(C.textDim),marginTop:4,fontSize:10}} title="Aus 'Begegnet'-Liste entfernen">
+                    🙈 Vergessen
+                  </button>
+                )}
               </div>
             </div>
+
+            {/* Habitat + Treasure pills (2024) */}
+            {(sel.habitat?.length > 0 || sel.treasure) && (
+              <div style={{display:"flex",gap:5,marginBottom:8,flexWrap:"wrap"}}>
+                {sel.habitat?.map(h => (
+                  <span key={h} style={{fontSize:9,padding:"2px 7px",borderRadius:6,background:`${C.greenBright}1f`,border:`1px solid ${C.greenBright}55`,color:C.greenBright,fontWeight:700}}>
+                    🌍 {h}
+                  </span>
+                ))}
+                {sel.treasure && (
+                  <span style={{fontSize:9,padding:"2px 7px",borderRadius:6,background:`${C.gold}22`,border:`1px solid ${C.gold}66`,color:C.gold,fontWeight:700}}>
+                    💰 Treasure: {sel.treasure}
+                  </span>
+                )}
+              </div>
+            )}
 
             {/* Core stats bar */}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:10}}>
               <span style={sx.tag(C.red)}>❤️ {sel.hp} HP{sel.hpDice?` (${sel.hpDice})`:""}</span>
               <span style={sx.tag(C.blue)}>🛡️ {sel.ac} AC{sel.acNote?` (${sel.acNote})`:""}</span>
+              {(sel.initiative !== undefined || sel.initiativePassive !== undefined) && (
+                <span style={sx.tag(C.purple)}>
+                  ⚡ Init {sel.initiative >= 0 ? `+${sel.initiative}` : sel.initiative}
+                  {sel.initiativePassive !== undefined && ` (${sel.initiativePassive})`}
+                </span>
+              )}
               <span style={sx.tag(C.green)}>💨 {sel.speed}</span>
             </div>
 
-            {/* Ability scores */}
+            {/* Ability scores — 2024 three-column layout if saveBonuses present */}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:10}}>
-              {ABS.map(a=>(
-                <div key={a} style={{textAlign:"center",background:C.surface,borderRadius:6,padding:"6px 10px",minWidth:52}}>
-                  <div style={{fontSize:10,color:SC[a],fontFamily:FH,fontWeight:700}}>{a}</div>
-                  <div style={{fontSize:18,fontWeight:700,color:C.textBright}}>{sel[a.toLowerCase()]}</div>
-                  <div style={{fontSize:12,color:C.gold}}>{modStr(sel[a.toLowerCase()])}</div>
-                </div>
-              ))}
+              {ABS.map(a => {
+                const raw = sel[a.toLowerCase()];
+                const saveBonus = sel.saveBonuses?.[a];
+                const hasSave = saveBonus !== undefined && saveBonus !== null;
+                return (
+                  <div key={a} style={{textAlign:"center",background:C.surface,borderRadius:6,padding:"6px 10px",minWidth:hasSave ? 70 : 52}}>
+                    <div style={{fontSize:10,color:SC[a],fontFamily:FH,fontWeight:700}}>{a}</div>
+                    <div style={{fontSize:18,fontWeight:700,color:C.textBright}}>{raw}</div>
+                    <div style={{fontSize:12,color:C.gold}}>{modStr(raw)}</div>
+                    {hasSave && (
+                      <div style={{fontSize:9,color:C.tealBright,fontWeight:700,marginTop:2,paddingTop:2,borderTop:`1px solid ${C.tealBright}33`}}>
+                        SAVE {saveBonus >= 0 ? `+${saveBonus}` : saveBonus}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Saves */}
-            {sel.saves && Object.keys(sel.saves).length>0 && (
+            {/* Legacy saves block (only if no saveBonuses but old saves field) */}
+            {!sel.saveBonuses && sel.saves && Object.keys(sel.saves).length>0 && (
               <Sect title="Rettungswürfe">
                 <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
                   {Object.entries(sel.saves).map(([ab,val])=>(
@@ -122,6 +271,15 @@ export default function Bestiary() {
               </Sect>
             )}
 
+            {/* Gear (2024) */}
+            {sel.gear?.length > 0 && (
+              <Sect title="Ausrüstung">
+                <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
+                  {sel.gear.map(g => <Tag key={g} label={`⚔ ${g}`} color={C.amber}/>)}
+                </div>
+              </Sect>
+            )}
+
             {/* Resistances / Immunities / Vulnerabilities */}
             {((sel.resistances?.length>0)||(sel.immunities?.length>0)||(sel.vulnerabilities?.length>0)||(sel.condImmunities?.length>0)) && (
               <Sect title="Resistenzen & Immunitäten">
@@ -138,31 +296,54 @@ export default function Bestiary() {
               {sel.languages && <div style={{fontSize:13,color:C.text}}>🗣 {sel.languages}</div>}
             </Sect>
 
+            {/* Description */}
+            {sel.desc && (
+              <Sect title="Beschreibung">
+                <div style={{fontSize:13,color:C.text,lineHeight:1.6,fontStyle:"italic"}}>{sel.desc}</div>
+              </Sect>
+            )}
+
             {/* Traits */}
             {sel.traits && (
               <Sect title="Eigenschaften">
-                <div style={{fontSize:13,color:C.text,lineHeight:1.6}}>{sel.traits}</div>
+                <div style={{fontSize:13,color:C.text,lineHeight:1.6,whiteSpace:"pre-wrap"}}>{sel.traits}</div>
               </Sect>
             )}
 
             {/* Actions */}
             {sel.actions && (
               <Sect title="Aktionen">
-                <div style={{fontSize:13,color:C.textBright,lineHeight:1.7}}>{sel.actions}</div>
+                <div style={{fontSize:13,color:C.textBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.actions}</div>
+              </Sect>
+            )}
+
+            {/* Bonus Actions (2024) */}
+            {sel.bonusActions && (
+              <Sect title="Bonus-Aktionen">
+                <div style={{fontSize:13,color:C.amberBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.bonusActions}</div>
+              </Sect>
+            )}
+
+            {/* Reactions (2024 separates from Actions) */}
+            {sel.reactions && (
+              <Sect title="Reaktionen">
+                <div style={{fontSize:13,color:C.tealBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.reactions}</div>
               </Sect>
             )}
 
             {/* Legendary */}
             {sel.legendary && (
               <Sect title="Legendäre Aktionen">
-                <div style={{fontSize:13,color:C.purple,lineHeight:1.7}}>{sel.legendary}</div>
+                <div style={{fontSize:13,color:C.purple,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.legendary}</div>
               </Sect>
             )}
           </div>
         ) : (
           <div style={{...sx.card,color:C.textDim,textAlign:"center",fontStyle:"italic",padding:40}}>
             <div style={{fontSize:36,marginBottom:10}}>🐉</div>
-            Monster auswählen ({MONSTERS.length} SRD) oder eigenes erstellen.
+            {isSpoilerMode
+              ? <>Spoiler-Modus aktiv. Suche nach einem Monster (Name) → "Begegnet" markieren um Stats zu sehen.</>
+              : <>Monster auswählen ({MONSTERS.length} SRD) oder eigenes erstellen.</>}
           </div>
         )}
       </div>

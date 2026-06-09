@@ -86,7 +86,9 @@ const snb = (active) => ({
 function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed }) {
   const { active: char, setActive: setChar, aid } = useChar();
   const { classes } = useMulticlass(aid, char, null);
+  const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
   if (!char) return null;
+  const isSpoilerMode = viewMode === "spoiler";
 
   const lbl = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
 
@@ -133,6 +135,18 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
           </div>
         </div>
         <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
+          <button
+            onClick={() => setViewMode(isSpoilerMode ? "full" : "spoiler")}
+            title={isSpoilerMode ? "Spoiler-Modus aktiv — Bestiary versteckt unbekannte Monster. Klick: Vollansicht (DM)" : "Vollansicht aktiv — alle Monster sichtbar. Klick: Spoiler-Modus für Spieler"}
+            style={{
+              ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px", fontWeight:700,
+              background: isSpoilerMode ? `${C.purpleBright}22` : "transparent",
+              border:`1px solid ${isSpoilerMode ? C.purpleBright : C.border}`,
+              color: isSpoilerMode ? C.purpleBright : C.textDim,
+            }}
+          >
+            {isSpoilerMode ? "🎲 Spoiler" : "📖 Voll"}
+          </button>
           <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
             style={{ ...sx.bsm(C.gold), fontSize:9, padding:"3px 7px", background: char.inspiration ? `${C.gold}22` : "transparent", border:`1px solid ${char.inspiration ? C.gold : C.border}`, color: char.inspiration ? C.gold : C.textDim, fontWeight:700 }}>
             {char.inspiration ? "✦" : "✧"} Inspiration

@@ -1,3 +1,31 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// monsters.js — D&D 5e Monster Bestiary
+//
+// SCHEMA (alle 2024-Felder optional, backward-compatible mit 2014-Datensatz):
+//
+// 2014-Felder (immer da):
+//   id, name, cr, xp, hp, hpDice, ac, acNote, speed,
+//   type, size, alignment,
+//   str, dex, con, int, wis, cha,
+//   saves: {STR:"+X", DEX:"+X", ...}, skills: {Skill:"+X", ...},
+//   resistances:[], immunities:[], vulnerabilities:[], condImmunities:[],
+//   senses, languages, desc, traits, actions, legendary
+//
+// 2024 MM-Erweiterungen (optional):
+//   edition:     "2024" | "2014"      — Migration-Marker
+//   nameDE:      string                — deutsche Übersetzung (Fallback name=DE)
+//   initiative:  number                — z.B. +1, separat vom DEX-Mod (manche Monster
+//                                        haben Initiative Proficiency)
+//   initiativePassive: number          — passiver Initiative-Score (z.B. 11)
+//   gear:        string[]              — z.B. ["Leather Armor", "Light Crossbow"]
+//   habitat:     string[]              — z.B. ["Any", "Forest", "Underdark"]
+//   treasure:    string                — z.B. "Any", "Individual", "Hoard"
+//   pb:          number                — Proficiency Bonus (CR-abhängig, im 2024 explizit)
+//   saveBonuses: {STR:n, DEX:n, ...}   — Save-Mods als Zahlen (2024 zeigt Bonus statt nur Stat)
+//   reactions:   string                — Reactions-Block (2024 trennt sie von Aktionen)
+//   bonusActions: string               — Bonus-Actions-Block
+// ─────────────────────────────────────────────────────────────────────────────
+
 export const MONSTERS = [
   // ── CR 0 / 1/8 ────────────────────────────────────────────────────────────
   {id:1, name:"Bandit", cr:"1/8", xp:25, hp:11, hpDice:"2d8+2", ac:12, acNote:"Lederrüstung", speed:"30 ft.",
