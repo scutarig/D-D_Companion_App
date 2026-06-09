@@ -47,6 +47,16 @@ function buildResourceMaxMap(classes, char, resetType) {
  * @param {object} usedAuto — current tokens_auto_used_<aid> state
  * @returns {{ char, usedAuto, hdRecovered, exhaustionRemoved }}
  */
+/**
+ * Returns true if this character should auto-grant Heroic Inspiration on Long Rest.
+ * PHB 2024 sources:
+ *  - Human (Resourceful trait): always on every Long Rest
+ *  - Could be extended later (Bardic source, DM grant)
+ */
+export function grantsHeroicInspirationOnLR(char) {
+  return char.race === "Mensch" || char.race === "Human";
+}
+
 export function applyLongRest(char, classes, usedAuto = {}) {
   const regainHD = Math.max(1, Math.floor((char.level || 1) / 2));
   const oldHdUsed = char.hd_used || 0;
@@ -62,6 +72,10 @@ export function applyLongRest(char, classes, usedAuto = {}) {
   const newUsedAuto = { ...usedAuto };
   Object.keys(resetMap).forEach(id => { newUsedAuto[id] = 0; });
 
+  // PHB 2024: Human Resourceful trait grants Heroic Inspiration on every LR
+  const grantInspiration = grantsHeroicInspirationOnLR(char);
+  const inspirationGranted = grantInspiration && !char.inspiration;
+
   return {
     char: {
       ...char,
@@ -70,10 +84,12 @@ export function applyLongRest(char, classes, usedAuto = {}) {
       deathSaves: { suc: 0, fail: 0 },
       hd_used: newHdUsed,
       exhaustion: newExhaustion,
+      inspiration: grantInspiration ? true : char.inspiration,
     },
     usedAuto: newUsedAuto,
     hdRecovered: actualHdRecovered,
     exhaustionRemoved,
+    inspirationGranted,
   };
 }
 

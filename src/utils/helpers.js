@@ -74,8 +74,17 @@ export function applyShortRest(char, { hpGain = 0 } = {}) {
 }
 
 /**
+ * Returns true if char's species/feature grants Heroic Inspiration on Long Rest.
+ * PHB 2024: Human's "Resourceful" trait grants it on every Long Rest.
+ */
+export function grantsHeroicInspirationOnLR(char) {
+  return char.race === "Mensch" || char.race === "Human";
+}
+
+/**
  * Apply a Long Rest to a char object.
  * Restores HP, clears temp HP, death saves, regains HD, clears attunement tracking.
+ * PHB 2024: Human's "Resourceful" trait auto-grants Heroic Inspiration.
  */
 export function applyLongRest(char) {
   const regain = Math.max(1, Math.floor(char.level / 2));
@@ -88,5 +97,7 @@ export function applyLongRest(char) {
     attunementChangedSinceRest: [],
     // Long Rest reduziert Exhaustion um 1 Stufe (PHB)
     exhaustion: Math.max(0, (char.exhaustion || 0) - 1),
+    // PHB 2024: Mensch (Resourceful) erhält automatisch Heroic Inspiration
+    inspiration: grantsHeroicInspirationOnLR(char) ? true : char.inspiration,
   };
 }

@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
-import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest } from "./utils/helpers.js";
+import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
@@ -158,9 +158,16 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
         <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
           {!isDM && (
             <>
-              <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
+              <button
+                onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
+                title={char.inspiration
+                  ? "Heroic Inspiration aktiv — Klick: ausgeben (Reroll auf D20 Test)"
+                  : (grantsHeroicInspirationOnLR(char)
+                      ? "Heroic Inspiration verfügbar (Mensch erhält sie nach jeder Long Rest). Klick: manuell setzen"
+                      : "Heroic Inspiration aktivieren (DM-Belohnung oder Klassen-Feature)")
+                }
                 style={{ ...sx.bsm(C.gold), fontSize:9, padding:"3px 7px", background: char.inspiration ? `${C.gold}22` : "transparent", border:`1px solid ${char.inspiration ? C.gold : C.border}`, color: char.inspiration ? C.gold : C.textDim, fontWeight:700 }}>
-                {char.inspiration ? "✦" : "✧"} Inspiration
+                {char.inspiration ? "✦" : "✧"} Heroic Inspiration
               </button>
               <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 Kurze Rast</button>
               <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px" }}>🌟 Lange Rast</button>
@@ -181,7 +188,16 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                 style={{ ...sx.inp, width:70, fontSize:14, textAlign:"center" }} />
             </span>
           )}
-          {restBanner==="long" && <span style={{ fontSize:12, color:C.text }}>Volle HP · Alle Slots · Ressourcen zurück</span>}
+          {restBanner==="long" && (
+            <span style={{ fontSize:12, color:C.text }}>
+              Volle HP · Alle Slots · Ressourcen zurück · Exhaustion -1
+              {grantsHeroicInspirationOnLR(char) && (
+                <span style={{ color:C.gold, marginLeft:6, fontWeight:700 }}>
+                  · ✦ Heroic Inspiration (Mensch)
+                </span>
+              )}
+            </span>
+          )}
           <button onClick={confirmRest} style={sx.btn(restBanner==="long" ? C.purpleBright : C.tealBright)}>Bestätigen</button>
           <button onClick={() => setRestBanner(null)} style={{ background:"none", border:"none", color:C.textDim, fontSize:18, cursor:"pointer" }}>✕</button>
         </div>
