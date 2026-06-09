@@ -80,7 +80,13 @@ Offene Punkte nach der 2024 PHB UI-Migration.
 ### Phase 4: DM-Features (nach Split)
 - [x] **DM-Mode Notes** pro Monster [05bb6fe]
 - [x] **Encounter Builder** mit CR-Budget [afa52a5]
-- [ ] **Kampflog persistent** mit Session-Archiv
+- [x] **Kampflog persistent** mit Session-Archiv [pending commit]
+  - combat_archives_v1 in localStorage (last 50 fights)
+  - Auto-Save bei Victory/Defeat/Ended
+  - Speichert: Fighter, Rounds, Outcome, vollständiger Log
+  - Export als .txt
+  - NEU: Archive auch im Encounter Builder zugänglich (DM-Workflow)
+  - Visual Outcome-Icons + Status-Summary pro Eintrag
 - [ ] **2024 MM Vollständigkeit** — restl. ~10 Monster (Sukkubus, Schwarze Schlickpest, Ritter)
 
 ### Phase 5: Lokalisierung

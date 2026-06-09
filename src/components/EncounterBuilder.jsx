@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { MONSTERS } from "../data/monsters.js";
+import { useCombatArchive } from "../hooks/useCombatArchive.js";
 
 /**
  * Encounter Builder — DM-Mode Tool für Encounter-Design mit CR-Budget
@@ -59,6 +60,8 @@ export default function EncounterBuilder() {
   const [encounter, setEncounter] = useState([]); // [{ monsterId, count }]
   const [search, setSearch] = useState("");
   const [savedEncounters, setSavedEncounters] = usePersist("encounters_v1", []);
+  const { archives, deleteArchive } = useCombatArchive();
+  const [showArchive, setShowArchive] = useState(false);
 
   // Budget calculations
   const threshold = getThreshold(partyLevel);
@@ -261,6 +264,54 @@ export default function EncounterBuilder() {
           ))}
         </div>
       </div>
+
+      {/* Combat Archive Toggle + Section */}
+      {archives.length > 0 && (
+        <div style={{ ...sx.card, borderLeft: `3px solid ${C.red}` }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: showArchive ? 8 : 0 }}>
+            <div style={{ fontFamily: FH, fontSize: 13, color: C.red, fontWeight: 700 }}>
+              📜 KAMPF-ARCHIV ({archives.length} gespeichert)
+            </div>
+            <button
+              onClick={() => setShowArchive(!showArchive)}
+              style={{ ...sx.bsm(C.red), fontSize: 10 }}
+            >
+              {showArchive ? "▲ Einklappen" : "▼ Anzeigen"}
+            </button>
+          </div>
+          {showArchive && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 8, maxHeight: 300, overflowY: "auto" }}>
+              {archives.map(a => {
+                const survived = a.playersAlive || 0;
+                const total = a.playerCount || 0;
+                const defeated = a.enemiesDefeated || 0;
+                const date = a.timestamp ? new Date(a.timestamp).toLocaleDateString("de-DE") : "—";
+                const outcomeIcon = a.outcome === "victory" ? "🎉" : a.outcome === "defeat" ? "☠️" : "⊗";
+                const outcomeColor = a.outcome === "victory" ? C.gold : a.outcome === "defeat" ? C.red : C.textDim;
+                return (
+                  <div key={a.id} style={{
+                    display: "flex", alignItems: "center", gap: 8,
+                    background: "rgba(255,255,255,0.03)", borderRadius: 6, padding: "8px 12px",
+                    borderLeft: `3px solid ${outcomeColor}`,
+                  }}>
+                    <div style={{ fontSize: 18 }}>{outcomeIcon}</div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {a.name}
+                      </div>
+                      <div style={{ fontSize: 10, color: C.textDim }}>
+                        {date} · {a.rounds} Runden · Spieler {survived}/{total} · Gegner besiegt {defeated}
+                      </div>
+                    </div>
+                    <button onClick={() => { if (window.confirm("Archiv-Eintrag löschen?")) deleteArchive(a.id); }}
+                      style={{ ...sx.bsm(C.red), fontSize: 10, padding: "2px 6px" }}>🗑</button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Saved Encounters */}
       {savedEncounters.length > 0 && (
