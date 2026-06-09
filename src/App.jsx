@@ -55,8 +55,39 @@ const CHAR_GROUP = ALL_TABS.filter(t => ["char","companions","proficiencies"].in
   .map(t => t.id === "proficiencies" ? { ...t, label: "Übungsbonus" } : t);
 
 const Loader = () => (
-  <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:60, color:C.textDim, fontSize:14 }}>
-    <span style={{ marginRight:10, fontSize:20 }}>🐉</span> Laden…
+  <div style={{
+    display: "flex", alignItems: "center", justifyContent: "center",
+    padding: 60, gap: 14,
+  }}>
+    <div style={{
+      fontSize: 28,
+      animation: "dndPulse 1.4s ease-in-out infinite",
+    }}>🐉</div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 180 }}>
+      <div style={{
+        height: 12,
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)",
+        backgroundSize: "200% 100%",
+        borderRadius: 4,
+        animation: "dndShimmer 1.6s linear infinite",
+      }} />
+      <div style={{
+        height: 8, width: "70%",
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)",
+        backgroundSize: "200% 100%",
+        borderRadius: 4,
+        animation: "dndShimmer 1.6s linear infinite",
+        animationDelay: "0.15s",
+      }} />
+      <div style={{
+        height: 8, width: "50%",
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)",
+        backgroundSize: "200% 100%",
+        borderRadius: 4,
+        animation: "dndShimmer 1.6s linear infinite",
+        animationDelay: "0.3s",
+      }} />
+    </div>
   </div>
 );
 
@@ -305,6 +336,16 @@ function AppInner() {
     const styleEl = document.createElement("style");
     styleEl.id = "dnd-print-styles";
     styleEl.textContent = `
+      /* ── Loader Animations ── */
+      @keyframes dndPulse {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.08); }
+      }
+      @keyframes dndShimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+
       /* ── Touch-Optimization for Tablets (S7 FE, iPad etc.) ──
          Bumps button padding/min-height on coarse-pointer devices ≥ 768px.
          Mobile (<768px) stays compact for bottom-nav efficiency. */
