@@ -3,6 +3,8 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { newChar } from "../utils/helpers.js";
 import { useChar } from "../context/CharContext.jsx";
+import { useMulticlass } from "../hooks/useMulticlass.js";
+import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
 import CharSheet from "./CharSheet.jsx";
 import LevelUpAssistant from "./LevelUpAssistant.jsx";
 import CharActions from "./CharActions.jsx";
@@ -15,10 +17,15 @@ export default function CharManager() {
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
   const [subtab, setSubtab] = useState("sheet");
   const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
+  const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
   const [restMode, setRestMode] = useState(null);
-  const [shortHpVal, setShortHpVal] = useState(5);
+  const [shortHpVal, setShortHpVal] = useState(0);
   const [shortResult, setShortResult] = useState(null);
+  const [longResult, setLongResult] = useState(null);
+  const [hdRollLog, setHdRollLog] = useState([]);
   const [printMode, setPrintMode] = useState(false);
+  // Multiclass info needed for rest resource tracking
+  const { classes } = useMulticlass(aid, active, setActive);
 
   // Trigger browser print after React renders printMode
   useEffect(() => {
@@ -41,15 +48,35 @@ export default function CharManager() {
   const delChar = id => { if (chars.length <= 1) return; const nx = chars.find(c => c.id !== id); setChars(p => p.filter(c => c.id !== id)); setAid(nx?.id); };
 
   const doLongRest = () => {
-    setActive(p => { const regainHD = Math.max(1, Math.floor(p.level / 2)); return { ...p, hp: p.maxHp, tempHp: 0, deathSaves: { suc: 0, fail: 0 }, hd_used: Math.max(0, (p.hd_used || 0) - regainHD) }; });
-    setUsedSlots({});
+    const result = applyLongRestUtil(active, classes, usedAuto);
+    setActive(result.char);
+    setUsedAuto(result.usedAuto);
+    setUsedSlots({});  // All spell slots reset
+    setLongResult({
+      hdRecovered: result.hdRecovered,
+      exhaustionRemoved: result.exhaustionRemoved,
+      resourcesReset: Object.keys(result.usedAuto).length,
+    });
     setRestMode("long_done");
   };
+
   const doShortRest = () => {
-    const hp = Math.max(0, shortHpVal || 0);
-    setActive(p => ({ ...p, hp: Math.min(p.maxHp, p.hp + hp) }));
-    setShortResult({ healed: hp });
+    const result = applyShortRestUtil(active, classes, usedAuto, shortHpVal);
+    setActive(result.char);
+    setUsedAuto(result.usedAuto);
+    setShortResult({
+      healed: result.healed,
+      resourcesReset: Object.keys(result.usedAuto).length,
+    });
     setRestMode("short_done");
+  };
+
+  const doRollHitDie = () => {
+    const result = spendHitDie(active);
+    if (result.error) return;
+    setActive(result.char);
+    setShortHpVal(prev => prev + result.healed);
+    setHdRollLog(prev => [...prev, { roll: result.roll, hdSize: result.hdSize, mod: result.modifier, healed: result.healed }]);
   };
 
   const importJSON = e => {
@@ -96,49 +123,91 @@ export default function CharManager() {
           </div>
         </div>
 
-        {restMode === "short" && (
-          <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(13,148,136,0.1)", border: `1px solid ${C.teal}40`, borderRadius: 10 }}>
-            <div style={{ fontSize: 13, color: C.tealBright, fontFamily: FH, fontWeight: 700, marginBottom: 8 }}>🌙 Kurze Rast — HP wiederherstellen</div>
-            <div style={{ fontSize: 12, color: C.textDim, marginBottom: 10 }}>Aktuelle HP: <strong style={{ color: C.textBright }}>{active.hp} / {active.maxHp}</strong></div>
-            <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-              <label style={{ ...sx.lbl, marginBottom: 0 }}>HP-Betrag:</label>
-              <input type="number" min={0} max={active.maxHp} value={shortHpVal} onChange={e => setShortHpVal(Math.max(0, +e.target.value))} style={{ ...sx.inp, width: 80 }} />
-              <button onClick={doShortRest} style={sx.btn(C.teal)}>Heilen</button>
-              <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>Abbrechen</button>
+        {restMode === "short" && (() => {
+          const hdRemaining = (active.level || 1) - (active.hd_used || 0);
+          const hdMatch = (active.hd || "d8").match(/[dDwW](\d+)/);
+          const hdSize = hdMatch ? parseInt(hdMatch[1]) : 8;
+          const conMod = Math.floor(((active.con || 10) - 10) / 2);
+          return (
+            <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(13,148,136,0.1)", border: `1px solid ${C.teal}40`, borderRadius: 10 }}>
+              <div style={{ fontSize: 13, color: C.tealBright, fontFamily: FH, fontWeight: 700, marginBottom: 8 }}>🌙 Kurze Rast — Hit Dice ausgeben (2024 RAW)</div>
+              <div style={{ fontSize: 12, color: C.textDim, marginBottom: 10 }}>
+                HP: <strong style={{ color: C.textBright }}>{active.hp} / {active.maxHp}</strong>
+                {" · "}HD verfügbar: <strong style={{ color: hdRemaining > 0 ? C.tealBright : C.textDim }}>{hdRemaining} × d{hdSize}</strong>
+                {" · "}CON-Mod: <strong style={{ color: C.amberBright }}>{conMod >= 0 ? `+${conMod}` : conMod}</strong>
+              </div>
+              <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 8 }}>
+                <button onClick={doRollHitDie} disabled={hdRemaining <= 0 || active.hp >= active.maxHp} style={{ ...sx.btn(C.teal), opacity: (hdRemaining <= 0 || active.hp >= active.maxHp) ? 0.4 : 1 }}>
+                  🎲 1 HD würfeln (d{hdSize} + {conMod >= 0 ? `+${conMod}` : conMod})
+                </button>
+                <span style={{ fontSize: 11, color: C.textDim }}>oder manuell:</span>
+                <label style={{ ...sx.lbl, marginBottom: 0 }}>HP:</label>
+                <input type="number" min={0} max={active.maxHp} value={shortHpVal} onChange={e => setShortHpVal(Math.max(0, +e.target.value))} style={{ ...sx.inp, width: 70 }} />
+              </div>
+              {hdRollLog.length > 0 && (
+                <div style={{ marginBottom: 8, padding: "6px 10px", background: "rgba(0,0,0,0.25)", borderRadius: 6, fontSize: 11, color: C.text }}>
+                  <span style={{ color: C.tealBright, fontWeight: 700 }}>🎲 Würfe: </span>
+                  {hdRollLog.map((l, i) => (
+                    <span key={i} style={{ marginRight: 8 }}>
+                      [{l.roll}+{l.mod >= 0 ? l.mod : `(${l.mod})`}={l.healed}]
+                    </span>
+                  ))}
+                  <span style={{ color: C.greenBright, marginLeft: 4, fontWeight: 700 }}>= {shortHpVal} HP</span>
+                </div>
+              )}
+              <div style={{ display: "flex", gap: 8 }}>
+                <button onClick={doShortRest} style={sx.btn(C.tealBright)}>✓ Kurze Rast abschließen</button>
+                <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>Abbrechen</button>
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {restMode === "short_done" && shortResult && (
           <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(13,148,136,0.1)", border: `1px solid ${C.teal}40`, borderRadius: 10, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
             <div style={{ fontSize: 22 }}>🌙</div>
-            <div>
+            <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, color: C.tealBright, fontWeight: 700 }}>Kurze Rast abgeschlossen!</div>
-              <div style={{ fontSize: 12, color: C.textDim }}><strong style={{ color: C.greenBright }}>+{shortResult.healed} HP</strong> wiederhergestellt</div>
+              <div style={{ fontSize: 12, color: C.textDim }}>
+                <strong style={{ color: C.greenBright }}>+{shortResult.healed} HP</strong> wiederhergestellt
+                {shortResult.resourcesReset > 0 && <> · <strong style={{ color: C.amberBright }}>{shortResult.resourcesReset} Klassen-Ressource(n)</strong> zurückgesetzt (Action Surge, Bardische Inspiration, Channel Divinity, Focus Points, Pact Slots…)</>}
+              </div>
             </div>
-            <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>✕</button>
+            <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>✕</button>
           </div>
         )}
 
         {restMode === "long_confirm" && (
           <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(124,58,237,0.1)", border: `1px solid ${C.purple}40`, borderRadius: 10 }}>
-            <div style={{ fontSize: 13, color: C.purpleBright, fontFamily: FH, fontWeight: 700, marginBottom: 6 }}>🌟 Lange Rast — Bestaetigen</div>
-            <div style={{ fontSize: 12, color: C.textDim, marginBottom: 10 }}>
-              Stellt wieder her: <strong style={{ color: C.textBright }}>volle HP</strong>, <strong style={{ color: C.textBright }}>alle Spell Slots</strong>, <strong style={{ color: C.textBright }}>Temp HP → 0</strong>, <strong style={{ color: C.textBright }}>Todeswuerfe reset</strong>, <strong style={{ color: C.textBright }}>{Math.max(1, Math.floor(active.level / 2))} Hit Dice</strong> wiederhergestellt.
+            <div style={{ fontSize: 13, color: C.purpleBright, fontFamily: FH, fontWeight: 700, marginBottom: 6 }}>🌟 Lange Rast — Bestätigen (2024 PHB)</div>
+            <div style={{ fontSize: 12, color: C.textDim, marginBottom: 10, lineHeight: 1.6 }}>
+              Stellt wieder her:
+              <ul style={{ margin: "4px 0 0 16px", padding: 0 }}>
+                <li><strong style={{ color: C.greenBright }}>HP → Max</strong> ({active.maxHp})</li>
+                <li><strong style={{ color: C.blueBright }}>Alle Spell Slots</strong></li>
+                <li><strong style={{ color: C.amberBright }}>{Math.max(1, Math.floor((active.level || 1) / 2))} Hit Dice</strong> wiederhergestellt</li>
+                <li><strong style={{ color: C.tealBright }}>Temp HP → 0</strong>, Death Saves reset</li>
+                <li><strong style={{ color: C.redBright }}>Exhaustion -1 Level</strong> (2024 RAW)</li>
+                <li><strong style={{ color: C.purpleBright }}>Alle Klassen-Ressourcen</strong> (Rage, Action Surge, Bardische Inspiration, Focus Points, Pact Slots, etc.)</li>
+              </ul>
             </div>
             <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={doLongRest} style={sx.btn(C.purple)}>🌟 Lange Rast durchfuehren</button>
+              <button onClick={doLongRest} style={sx.btn(C.purple)}>🌟 Lange Rast durchführen</button>
               <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>Abbrechen</button>
             </div>
           </div>
         )}
 
-        {restMode === "long_done" && (
+        {restMode === "long_done" && longResult && (
           <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(124,58,237,0.1)", border: `1px solid ${C.purple}40`, borderRadius: 10, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
             <div style={{ fontSize: 22 }}>🌟</div>
-            <div>
+            <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, color: C.purpleBright, fontWeight: 700 }}>Lange Rast abgeschlossen!</div>
-              <div style={{ fontSize: 12, color: C.textDim }}>HP voll · Alle Spell Slots zurück · Hit Dice teilweise wiederhergestellt</div>
+              <div style={{ fontSize: 12, color: C.textDim }}>
+                HP voll · Spell Slots zurück · <strong style={{ color: C.amberBright }}>+{longResult.hdRecovered} HD</strong>
+                {longResult.exhaustionRemoved > 0 && <> · <strong style={{ color: C.redBright }}>Exhaustion -{longResult.exhaustionRemoved}</strong></>}
+                {longResult.resourcesReset > 0 && <> · <strong style={{ color: C.purpleBright }}>{longResult.resourcesReset} Ressourcen</strong> reset</>}
+              </div>
             </div>
             <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>✕</button>
           </div>
