@@ -2,62 +2,133 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { CONDITIONS } from "../data/conditions.js";
 
-const SECTIONS = [{ id: "conditions", label: "⚡ Zustände" }, { id: "combat", label: "⚔️ Kampf" }, { id: "actions", label: "🎯 Aktionen" }, { id: "movement", label: "💨 Bewegung" }, { id: "resting", label: "🌙 Rasten" }, { id: "magic", label: "🔮 Magie" }, { id: "checks", label: "🎲 Checks" }, { id: "tables", label: "📊 Tabellen" }];
+// ─── PHB 2024 Schnellreferenz ────────────────────────────────────────────────
+// Quelle: D&D Player's Handbook 2024 (Wizards of the Coast)
+// Pages: Actions Chapter 1 (pp.13-22), Weapons Chapter 6 (pp.213-218),
+//        Conditions/Rules Glossary Appendix C (pp.360-377)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SECTIONS = [
+  { id: "conditions", label: "⚡ Zustände" },
+  { id: "actions", label: "🎯 Aktionen" },
+  { id: "combat", label: "⚔️ Kampf" },
+  { id: "mastery", label: "🗡️ Mastery" },
+  { id: "weapons", label: "🪓 Waffen-Props" },
+  { id: "movement", label: "💨 Bewegung" },
+  { id: "resting", label: "🌙 Rasten" },
+  { id: "magic", label: "🔮 Magie" },
+  { id: "checks", label: "🎲 Checks" },
+  { id: "tables", label: "📊 Tabellen" },
+];
 
 const RULES = {
   combat: [
-    { t: "Initiative", b: "1d20+DEX-Mod. Höchste geht zuerst." },
-    { t: "Angriff & Treffer", b: "1d20+Angriffs-Bonus vs AC. Nat20=Krit (Würfel×2). Nat1=Fehlschlag. Vorteil=2d20 höchsten, Nachteil=niedrigsten." },
-    { t: "Trefferpunkte & Tod", b: "Bei 0 HP: bewusstlos. Todeswürfe: 3× Erfolg (≥10)=stabil, 3× Fehlschlag=tod. Nat20=1HP sofort. Nat1=2 Fehlschläge." },
-    { t: "Deckung", b: "Halbe: +2 AC/DEX-Saves. Dreiviertel: +5 AC/DEX-Saves. Voll: nicht direkt angreifbar." },
-    { t: "Konzentration", b: "Max 1 Konz.-Zauber. Schaden: CON-Save DC max(10, halber Schaden). Fehlschlag=Ende." },
-    { t: "Gelegenheitsangriff", b: "Kreatur verlässt Nahkampfbereich ohne Disengage: 1 Nahkampfangriff als Reaktion." },
-    { t: "Fernkampf in Nahkampf", b: "Fernkampfangriffe in 5ft: Nachteil." },
-    { t: "Unsichtbarkeit", b: "Angriffe gegen unsichtbare: Nachteil. Von unsichtbarer: Vorteil." },
+    { t: "Initiative", b: "1d20 + DEX-Mod (+ PB wenn proficient). Höchster Wert beginnt. Bei Gleichstand: höheres DEX entscheidet." },
+    { t: "Angriff & Treffer", b: "1d20 + Angriffs-Bonus vs AC. Nat20 auf Weapon Attack = Critical Hit (Schadenswürfel ×2, KEINE flat-bonuses). Nat1 = Auto-Miss. Spell Attacks: Nat20 = Krit." },
+    { t: "Vorteil/Nachteil", b: "Vorteil: 2d20, höchsten nehmen. Nachteil: niedrigsten. Stacken nicht. Beides = neutral. NEU 2024: Vorteil-Quellen klarer kategorisiert." },
+    { t: "Trefferpunkte & Tod", b: "Bei 0 HP: bewusstlos. Todeswürfe pro Zug-Start: 3× Erfolg (≥10) = stabil, 3× Fehlschlag = tot. Nat20 = sofort 1 HP. Nat1 = 2 Fehlschläge." },
+    { t: "Critical Hit", b: "NEU 2024: NUR Weapon Attacks und Unarmed Strikes können Krits sein. NICHT Spells (außer als Klassenfeature). Verdopple ALLE Schadenswürfel (Weapon + Sneak Attack + Smite etc.), nicht die flat bonuses." },
+    { t: "Cover (Deckung)", b: "Halbe: +2 AC + DEX-Saves. Dreiviertel: +5 AC + DEX-Saves. Voll: nicht direkt angreifbar. Kreaturen geben halbe Deckung." },
+    { t: "Konzentration", b: "Max 1 Konzentrations-Zauber gleichzeitig. Bei Schaden: CON-Save DC max(10, halber Schaden). Fehlschlag bricht Spell. Incapacitated/Death bricht auch." },
+    { t: "Gelegenheitsangriff (OA)", b: "Reaktion: wenn feindliche Kreatur deinen Nahkampfbereich verlässt (ohne Disengage). 1 Nahkampfangriff. Nicht beim Teleport." },
+    { t: "Fernkampf in Nahkampf", b: "Fernkampfangriff in 5ft eines feindlichen Wesens, das nicht Incapacitated ist: Nachteil." },
+    { t: "Two-Weapon Fighting", b: "Bonus Action nach Attack mit Light-Waffe: Angriff mit anderer Light-Waffe (oder NEU: Nick-Mastery erlaubt es als Teil der Attack-Aktion). Kein Schadens-Mod (außer negativ)." },
   ],
-  actions: [
-    { t: "Angriff", typ: "Aktion", b: "1+ Nahkampf/Fernkampfangriff (Extra-Angriffe bei höherem Level)." },
-    { t: "Zaubern", typ: "Aktion", b: "Zauber mit Casting Time 1 Aktion. Wenn Bonus-Aktion-Zauber: nur Cantrips als Aktion." },
-    { t: "Dash", typ: "Aktion", b: "Bewegungsreichweite verdoppeln bis Ende des Zuges." },
-    { t: "Ausweichen", typ: "Aktion", b: "Angriffe gegen dich: Nachteil. DEX-Saves: Vorteil. Bis nächster Zug." },
-    { t: "Helfen", typ: "Aktion", b: "Verbündeter: Vorteil auf nächsten Angriff/Check gegen Ziel in 5ft." },
-    { t: "Verstecken", typ: "Aktion", b: "Verbergen-Check vs passive Wahrnehmung. Nur wenn unbeobachtet." },
-    { t: "Bereit machen", typ: "Aktion", b: "Trigger+Reaktion planen. Zauber mit Konzentration." },
-    { t: "Greifen", typ: "Aktion", b: "Athletik vs Athletik/Akrobatik. Erfolg: Grappled (Speed 0)." },
-    { t: "Umwerfen", typ: "Aktion", b: "Athletik vs Athletik/Akrobatik. Erfolg: Prone oder 5ft weg." },
-    { t: "Nebenhandangriff", typ: "Bonus", b: "Nach Angriff mit leichter Waffe: leichte Nebenhandwaffe. Kein Schadens-Mod." },
-    { t: "Bonus-Zaubern", typ: "Bonus", b: "Zauber mit Casting Time Bonus-Aktion. Dann nur Cantrips als Hauptaktion." },
-    { t: "Gelegenheitsangriff", typ: "Reaktion", b: "Kreatur verlässt Nahkampfbereich ohne Disengage: 1 Nahkampfangriff." },
-  ],
+
   movement: [
-    { t: "Grundbewegung", b: "Volle Bewegung pro Runde (meist 30ft). Teilbar vor/nach Aktionen. Schwieriges Gelände: 2× Kosten." },
-    { t: "Stehen nach Prone", b: "Kostet halbe Bewegung." },
-    { t: "Klettern/Schwimmen", b: "2× Bewegungskosten. Klettern: Athletik-Check wenn schwierig." },
-    { t: "Springen", b: "Weitsprung: STR-Score ft (mit Anlauf). Hochsprung: 3+STR-Mod ft." },
-    { t: "Fallen", b: "Fallschaden: 1d6/10ft (max 20d6). Landen=Prone." },
-    { t: "Disengage", b: "Aktion: keine Gelegenheitsangriffe bis Zugende. Schurke: Bonus-Aktion." },
+    { t: "Grundbewegung", b: "Volle Speed pro Runde (meist 30ft). Teilbar vor/nach/zwischen Aktionen. Schwieriges Gelände: 2× Kosten pro ft." },
+    { t: "Stehen aus Prone", b: "Kostet halbe Bewegung (15ft bei Speed 30)." },
+    { t: "Klettern/Schwimmen", b: "2× Bewegungskosten. Klettern: STR(Athletik)-Check bei rutschigem/instabilem Untergrund." },
+    { t: "Springen", b: "Weitsprung: STR-Score in ft (mit 10ft Anlauf, sonst halb). Hochsprung: 3 + STR-Mod in ft (mit Anlauf, sonst halb)." },
+    { t: "Fallen", b: "Fallschaden: 1d6 pro 10ft (max 20d6 bei 200ft+). Landung = Prone (außer flying/Feather Fall etc.)." },
+    { t: "Mounted Combat", b: "Reittier-Initiative = deine. Bewegung gilt zusammen. Dismount = halbe Bewegung. Vorteil auf Angriffe gegen Reittier wenn unbewusst." },
   ],
+
   resting: [
-    { t: "Kurze Rast (1h)", b: "Hit Dice ausgeben: würfle HD+CON-Mod pro HD. Kurz-Rast-Fähigkeiten nachladen." },
-    { t: "Lange Rast (8h)", b: "Volle HP. Alle Spell Slots zurück. HD bis Hälfte Level regeneriert. Nur 1×/24h." },
-    { t: "Erschöpfung", b: "1:Nachteil Checks. 2:Speed÷2. 3:Nachteil Angriffe+Saves. 4:MaxHP÷2. 5:Speed=0. 6:Tod." },
+    { t: "Kurze Rast (1h)", b: "HD ausgeben: 1d{HD}+CON-Mod pro Würfel, HP heilen. Kurz-Rast-Ressourcen recharge (Action Surge, Second Wind, Channel Divinity, Pact Magic Slots, Focus Points etc.)." },
+    { t: "Lange Rast (8h)", b: "NEU 2024: Volle HP. Alle Spell Slots. HD recovered = ½ Char-Level (min 1). Long-Rest-Ressourcen reset. Exhaustion -1 Stufe. Nur 1×/24h. Heroic Inspiration (manche Backgrounds)." },
+    { t: "Exhaustion (2024)", b: "NEU komplett: Pro Stufe -2 auf alle D20-Tests + -5ft Speed. Stufe 6 = Tod. Long Rest entfernt 1 Stufe." },
+    { t: "Hit Dice", b: "Pro Klassen-Level 1 HD (Klassen-Hit-Die). Auf KR ausgeben. Auf LR: regenerieren bis ½ Char-Level. Bei Multiclass: separate HD pro Klasse." },
   ],
+
   magic: [
-    { t: "Spell-Save DC", b: "8 + PB + Spellcasting-Mod. Angriffs-Bonus: PB + Spellcasting-Mod." },
-    { t: "Spell Slots", b: "Ressource für Zauber. Cantrips kostenlos. Höherer Slot = stärker." },
-    { t: "Ritual-Zaubern", b: "Ritual-Tag: +10 Min. aber kein Slot-Verbrauch. Kleriker/Druide/Barde: alle bekannten Rituale." },
-    { t: "Counterspell", b: "Reaktion in 60ft. Grad≤3: auto. Grad4+: Spellcasting-Check DC 10+Grad." },
-    { t: "Dispel Magic", b: "Grad3-Slot: alle Zauber ≤3 enden. Höherer Slot: Ability-Check DC 10+Grad." },
+    { t: "Spell-Save DC", b: "8 + PB + Spellcasting-Mod. Angriffs-Bonus für Spell Attacks: PB + Spellcasting-Mod." },
+    { t: "Spell Slots", b: "Ressource für Lv1+ Zauber. Cantrips kostenlos. Höherer Slot = stärkerer Spell-Effekt (siehe Spell-Beschreibung 'At Higher Levels'). Long Rest recharge alle." },
+    { t: "Ritual-Zaubern", b: "Ritual-Tag: +10 Min Casting Time, KEIN Slot-Verbrauch. Cleric/Druid/Bard: alle prepared Spells ritual-fähig. Wizard: alle im Spellbook (Ritual Adept Lv1)." },
+    { t: "Counterspell (2024)", b: "Reaktion in 60ft beim Sehen eines Zauberers casts. NEU: Target macht CON-Save (DC = dein Spell-Save-DC). Fehlschlag = Spell verfällt. Erfolg = Spell wirkt normal." },
+    { t: "Dispel Magic", b: "Wirke als Lv3-Slot: alle Spells ≤ Lv3 enden. Höhere Levels: Spellcasting-Check DC 10 + Spell-Lv." },
+    { t: "Spell Components", b: "V (verbal), S (somatic), M (material). Spellcasting Focus ersetzt M (außer kostspezifizierte). Subtle Spell (Sorcerer) ignoriert V+S+M." },
+    { t: "Bonus-Action Spell Rule", b: "Wenn du einen Spell als Bonus Action castest, kannst du auf gleicher Runde nur Cantrips mit Action casten (außer Action ist ein Cantrip mit 1 Action Casting Time)." },
+    { t: "Concentration & Multiclass", b: "Spell Slots werden geteilt nach Multiclass-Caster-Level. Cantrips, Known/Prepared bleiben pro Klasse separat." },
   ],
+
   checks: [
-    { t: "Fähigkeitsprobe", b: "1d20+Mod (+PB bei Proficiency). DC: 5=trivial, 10=einfach, 15=mittel, 20=schwer, 25=sehr schwer." },
-    { t: "Passive Checks", b: "10+Mod(+PB). Vorteil:+5. Nachteil:-5." },
-    { t: "Vorteil/Nachteil", b: "Vorteil: 2d20 höchsten. Nachteil: niedrigsten. Mehrfach: kein Stacken. Beides=normal." },
-    { t: "Rettungswürfe", b: "1d20+Mod(+PB). Gegen DC des Effekts. Erfolg: kein/halber Effekt." },
+    { t: "Fähigkeitsprobe", b: "1d20 + Ability-Mod (+ PB wenn proficient/Expertise: ×2 PB). Vergleich vs DC." },
+    { t: "DC-Skala", b: "5 = trivial, 10 = einfach, 15 = mittel, 20 = schwer, 25 = sehr schwer, 30 = fast unmöglich." },
+    { t: "Passive Checks", b: "10 + alle Mods (PB inklusive). Vorteil: +5, Nachteil: -5. Beispiel: Passive Perception für Hide-DC." },
+    { t: "Rettungswürfe (Saves)", b: "1d20 + Save-Mod (+ PB wenn proficient). Gegen DC des Effekts. Klassen entscheiden Save-Proficiencies." },
+    { t: "Group Checks", b: "Mind. halbe Gruppe muss DC schaffen = Gruppen-Erfolg. Für gemeinsame Tasks (z.B. unbemerkt Wache passieren)." },
+    { t: "D20 Test", b: "NEU 2024: Sammelbegriff für alle d20-Würfe = Attack Rolls + Saving Throws + Ability Checks. 'Reroll a D20 Test' = ALLE drei Arten." },
   ],
 };
 
-const COL = { combat: C.amber, actions: C.red, movement: C.green, resting: C.purple, magic: C.purpleBright, checks: C.teal };
+// ─── Actions PHB 2024 (Chapter 1, p.15) ──────────────────────────────────────
+const ACTIONS_2024 = [
+  // ─── Standard Actions ───
+  { t: "Attack", typ: "Aktion", new: false, b: "Angriff mit Weapon oder Unarmed Strike. Extra-Angriffe bei Lv5+ (Klassen-Feature)." },
+  { t: "Dash", typ: "Aktion", new: false, b: "Rest des Zuges: Extra-Bewegung = deine Speed." },
+  { t: "Disengage", typ: "Aktion", new: false, b: "Rest des Zuges: Bewegung provoziert keine OAs." },
+  { t: "Dodge", typ: "Aktion", new: false, b: "Bis nächster Zug: Angriffe gegen dich = Nachteil + DEX-Saves = Vorteil. Verloren bei Incapacitated oder Speed 0." },
+  { t: "Help", typ: "Aktion", new: false, b: "Verbündeter erhält Vorteil auf nächsten Check ODER nächsten Angriffsrolle gegen Ziel in 5ft." },
+  { t: "Hide", typ: "Aktion", new: false, b: "DEX(Stealth)-Check. Erfolg bedeutet, du hast Invisible-Condition gegen Wesen, die dich nicht sehen — bis du Angriff machst oder gesehen wirst." },
+  { t: "Influence", typ: "Aktion", new: true, b: "🆕 PHB 2024: CHA(Deception/Intimidation/Performance/Persuasion) oder WIS(Animal Handling)-Check, um NPC-Einstellung zu ändern (Friendly/Indifferent/Hostile)." },
+  { t: "Magic", typ: "Aktion", new: true, b: "🆕 PHB 2024: Wirke einen Spell, nutze ein Magic Item oder ein magisches Klassenfeature. (Vorher: 'Cast a Spell')" },
+  { t: "Ready", typ: "Aktion", new: false, b: "Bereite Aktion oder Bewegung vor + Trigger. Auslöser tritt ein → Reaktion ausführen. Spell ready = Concentration nötig." },
+  { t: "Search", typ: "Aktion", new: false, b: "WIS(Insight/Medicine/Perception/Survival)-Check, um etwas zu entdecken." },
+  { t: "Study", typ: "Aktion", new: true, b: "🆕 PHB 2024: INT(Arcana/History/Investigation/Nature/Religion)-Check, um Wesen, Objekt oder Phänomen zu analysieren." },
+  { t: "Utilize", typ: "Aktion", new: true, b: "🆕 PHB 2024: Nicht-magisches Objekt verwenden, das nicht klar zu einer anderen Aktion gehört (z.B. Trank schlucken, Schalter umlegen, Tür öffnen)." },
+
+  // ─── Special Actions ───
+  { t: "Grapple", typ: "Aktion", new: false, b: "Unarmed Strike Special: bei Treffer (STR-Athletik vs DEX-Save) → Target Grappled. Speed 0, bis Disengage-Check." },
+  { t: "Shove", typ: "Aktion", new: false, b: "Unarmed Strike Special: bei Treffer (STR-Athletik vs DEX-Save) → Target 5ft schieben oder Prone." },
+
+  // ─── Bonus Actions ───
+  { t: "Off-Hand Attack", typ: "Bonus", new: false, b: "Nach Attack-Action mit Light Melee Weapon: zweiter Angriff mit anderer Light-Waffe. Kein Schadens-Mod (außer negativ)." },
+  { t: "Bonus-Action Spell", typ: "Bonus", new: false, b: "Zauber mit Casting Time 1 Bonus Action. Dann darfst du auf gleicher Runde nur Cantrips (Action Casting Time) zaubern." },
+
+  // ─── Reactions ───
+  { t: "Opportunity Attack", typ: "Reaktion", new: false, b: "Feind verlässt deinen Nahkampfbereich (ohne Teleport/Disengage): 1 Nahkampfangriff." },
+  { t: "Readied Action", typ: "Reaktion", new: false, b: "Trigger (durch Ready-Aktion definiert) tritt ein: vorbereitete Aktion/Bewegung ausführen." },
+  { t: "Counterspell", typ: "Reaktion", new: false, b: "🔄 NEU 2024: Spell, gegen anderen Caster in 60ft. Target macht CON-Save vs deinem Spell-DC. Fehlschlag = Spell verfällt." },
+];
+
+// ─── Mastery Properties (PHB 2024 Chapter 6, p.213) ──────────────────────────
+const MASTERIES = [
+  { id: "cleave", name: "Cleave", icon: "🪓", b: "Bei Treffer mit Melee-Attack: Extra-Angriff gegen 2. Wesen in 5ft des ersten Ziels (gleiche Reach). Kein Schadens-Mod auf Extra-Angriff (außer negativ). Nur 1×/Zug.", weapons: "Greataxe, Halberd" },
+  { id: "graze", name: "Graze", icon: "💢", b: "Bei MISS mit Attack: Schaden = dein Ability-Mod (gleicher Schadens-Typ wie Waffe). Skaliert nur über Ability-Mod-Increase.", weapons: "Glaive, Greatsword" },
+  { id: "nick", name: "Nick", icon: "⚡", b: "Bei Nutzung der Light-Bonus-Action: kannst du den Extra-Angriff als TEIL der Attack-Aktion machen (statt Bonus Action). Nur 1×/Zug.", weapons: "Dagger, Scimitar, Sickle, Light Hammer" },
+  { id: "push", name: "Push", icon: "↗️", b: "Bei Treffer: Push das Wesen bis zu 10ft gerade weg von dir (Large oder kleiner).", weapons: "Greatclub, Maul, Pike, Warhammer" },
+  { id: "sap", name: "Sap", icon: "🌀", b: "Bei Treffer und Schaden: Target hat Nachteil auf nächsten Angriffsrolle bis Ende seines nächsten Zugs.", weapons: "Mace, Spear, Longsword (eine Hand), Morningstar, Warpick" },
+  { id: "slow", name: "Slow", icon: "🐌", b: "Bei Treffer und Schaden: Speed des Targets -10ft bis Anfang deines nächsten Zugs. Multiple Treffer stapeln NICHT.", weapons: "Club, Javelin, Light Crossbow, Longbow, Shortbow, Sling, Whip" },
+  { id: "topple", name: "Topple", icon: "🤸", b: "Bei Treffer: Target macht CON-Save (DC = 8 + Ability-Mod + PB) oder ist Prone.", weapons: "Battleaxe, Flail, Quarterstaff, Trident, Lance" },
+  { id: "vex", name: "Vex", icon: "👁️", b: "Bei Treffer und Schaden: Vorteil auf deinen nächsten Angriff gegen dasselbe Target (bis Ende deines nächsten Zugs).", weapons: "Handaxe, Dart, Rapier, Shortsword, Hand Crossbow, Heavy Crossbow, Musket, Pistol" },
+];
+
+// ─── Weapon Properties (PHB 2024, p.213) ─────────────────────────────────────
+const WEAPON_PROPS = [
+  { t: "Ammunition", b: "Range-Weapon braucht Ammo (Bow=Arrows, Crossbow=Bolts). Draw aus Quiver = frei. Halve Ammo recoverable nach Combat." },
+  { t: "Finesse", b: "Wahl STR oder DEX für Attack + Damage. Beispiele: Rapier, Scimitar, Whip." },
+  { t: "Heavy", b: "Small-Wesen haben Nachteil mit Heavy-Weapons. Beispiele: Greatsword, Greataxe, Longbow." },
+  { t: "Light", b: "Bonus Action Off-Hand Attack möglich nach Main-Hand-Attack mit Light Weapon. Beispiele: Dagger, Shortsword." },
+  { t: "Loading", b: "Nur 1 Schuss pro Action/Bonus/Reaction. Beispiele: Heavy Crossbow, Hand Crossbow." },
+  { t: "Range", b: "Normalbereich / Maximum. Bei Maximum: Nachteil. Beyond: kein Schuss möglich. Beispiel: Longbow 150/600ft." },
+  { t: "Reach", b: "+5ft Nahkampf-Reichweite. Beispiele: Glaive, Halberd, Whip." },
+  { t: "Thrown", b: "Kann geworfen werden für Ranged Attack. Melee-Mod (STR/DEX wenn Finesse) gilt auch für Throw." },
+  { t: "Two-Handed", b: "Erfordert zwei Hände beim Angriff. Beispiel: Greatsword." },
+  { t: "Versatile", b: "Wahl: ein- oder zweihändig. Zweihändig erhöht Damage Die (z.B. Longsword 1d8/1d10)." },
+];
+
+const COL = { combat: C.amber, actions: C.red, movement: C.green, resting: C.purple, magic: C.purpleBright, checks: C.teal, mastery: C.amberBright, weapons: C.tealBright };
 const ACTIONCOLS = { Aktion: C.red, Bonus: C.amber, Reaktion: C.blue };
 
 const RuleCard = ({ title, body, col }) => (
@@ -82,44 +153,116 @@ export default function QuickRef() {
 
   return (
     <div>
+      {/* PHB 2024 Banner */}
+      <div style={{
+        background: `linear-gradient(90deg, ${C.amberBright}11 0%, transparent 100%)`,
+        border: `1px solid ${C.amberBright}33`,
+        borderLeft: `3px solid ${C.amberBright}`,
+        borderRadius: 6, padding: "6px 10px", marginBottom: 10,
+        fontSize: 10, color: C.amberBright, fontFamily: FH, letterSpacing: 0.5,
+        display: "flex", alignItems: "center", gap: 8,
+      }}>
+        <span style={{ fontSize: 14 }}>📖</span>
+        <span><b>Schnellreferenz nach PHB 2024</b> · Conditions, Actions, Mastery Properties, Weapon Properties, Rules Glossary</span>
+      </div>
+
       <div style={{ display: "flex", gap: 5, marginBottom: 14, flexWrap: "wrap" }}>
         {SECTIONS.map(s => <button key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.label}</button>)}
       </div>
 
-      {section === "conditions" && <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
-        {CONDITIONS.map(c => <RuleCard key={c.id} title={`${c.icon} ${c.name}`} body={c.desc} col={C.redBright} />)}
-      </div>}
+      {/* CONDITIONS */}
+      {section === "conditions" && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
+          {CONDITIONS.map(c => <RuleCard key={c.id} title={`${c.icon} ${c.name}`} body={c.desc} col={C.redBright} />)}
+        </div>
+      )}
 
-      {["combat", "movement", "resting", "magic", "checks"].includes(section) && <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
-        {(RULES[section] || []).map((r, i) => <RuleCard key={i} title={r.t} body={r.b} col={COL[section]} />)}
-      </div>}
+      {/* RULES sections (combat, movement, resting, magic, checks) */}
+      {["combat", "movement", "resting", "magic", "checks"].includes(section) && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
+          {(RULES[section] || []).map((r, i) => <RuleCard key={i} title={r.t} body={r.b} col={COL[section]} />)}
+        </div>
+      )}
 
-      {section === "actions" && <div>
-        {["Aktion", "Bonus", "Reaktion"].map(typ => {
-          const col = ACTIONCOLS[typ];
-          const items = RULES.actions.filter(a => a.typ === typ);
-          return (
-            <div key={typ} style={{ marginBottom: 14 }}>
-              <div style={{ fontFamily: FH, fontSize: 13, color: col, fontWeight: 700, marginBottom: 8, borderBottom: `1px solid ${col}30`, paddingBottom: 4 }}>{typ === "Aktion" ? "⚔️" : typ === "Bonus" ? "⚡" : "🛡️"} {typ} ({items.length})</div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 6 }}>
-                {items.map((a, i) => (
-                  <div key={i} style={{ background: `${col}0a`, border: `1px solid ${col}20`, borderLeft: `3px solid ${col}`, borderRadius: 8, padding: "8px 10px" }}>
-                    <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700, marginBottom: 3 }}>{a.t}</div>
-                    <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{a.b}</div>
-                  </div>
-                ))}
+      {/* ACTIONS (PHB 2024) */}
+      {section === "actions" && (
+        <div>
+          {["Aktion", "Bonus", "Reaktion"].map(typ => {
+            const col = ACTIONCOLS[typ];
+            const items = ACTIONS_2024.filter(a => a.typ === typ);
+            return (
+              <div key={typ} style={{ marginBottom: 14 }}>
+                <div style={{ fontFamily: FH, fontSize: 13, color: col, fontWeight: 700, marginBottom: 8, borderBottom: `1px solid ${col}30`, paddingBottom: 4 }}>
+                  {typ === "Aktion" ? "⚔️" : typ === "Bonus" ? "⚡" : "🛡️"} {typ}en ({items.length})
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 6 }}>
+                  {items.map((a, i) => (
+                    <div key={i} style={{
+                      background: a.new ? `${C.amberBright}11` : `${col}0a`,
+                      border: `1px solid ${a.new ? C.amberBright + '33' : col + '20'}`,
+                      borderLeft: `3px solid ${col}`,
+                      borderRadius: 8, padding: "8px 10px",
+                    }}>
+                      <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700, marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>
+                        {a.t}
+                        {a.new && <span style={{ fontSize: 8, padding: "1px 5px", borderRadius: 3, background: `${C.amberBright}22`, border: `1px solid ${C.amberBright}55`, color: C.amberBright, fontWeight: 700, letterSpacing: 0.3 }}>2024</span>}
+                      </div>
+                      <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{a.b}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>}
+            );
+          })}
+        </div>
+      )}
 
-      {section === "tables" && <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 10 }}>
-        <DataTable title="Proficiency Bonus" headers={["Level", "PB"]} rows={[["1-4", "+2"], ["5-8", "+3"], ["9-12", "+4"], ["13-16", "+5"], ["17-20", "+6"]]} col={C.gold} />
-        <DataTable title="Difficulty Class" headers={["DC", "Schwierigkeit"]} rows={[["5", "Trivial"], ["10", "Einfach"], ["15", "Mittel"], ["20", "Schwer"], ["25", "Sehr schwer"], ["30", "Nahezu unmöglich"]]} col={C.amber} />
-        <DataTable title="Kritische Würfe" headers={["Wurf", "Effekt"]} rows={[["Nat 20 Angriff", "Auto-Treffer + Krit (Würfel×2)"], ["Nat 1 Angriff", "Auto-Fehlschlag"], ["Nat 20 Todeswurf", "Sofort 1 HP"], ["Nat 1 Todeswurf", "2 Fehlschläge"]]} col={C.red} />
-        <DataTable title="XP zum nächsten Level" headers={["Level", "XP"]} rows={[["1", "300"], ["2", "600"], ["3", "1.800"], ["4", "3.800"], ["5", "7.500"], ["6", "9.000"], ["7", "11.000"], ["8", "14.000"], ["9", "16.000"], ["10", "21.000"]]} col={C.purple} />
-      </div>}
+      {/* MASTERY PROPERTIES (PHB 2024 NEU) */}
+      {section === "mastery" && (
+        <div>
+          <div style={{
+            background: `${C.amberBright}11`, border: `1px solid ${C.amberBright}33`,
+            borderLeft: `3px solid ${C.amberBright}`, borderRadius: 6,
+            padding: "8px 12px", marginBottom: 10, fontSize: 12, color: C.text, lineHeight: 1.5,
+          }}>
+            <b style={{ color: C.amberBright }}>🆕 PHB 2024 Reform:</b> Jede Waffe hat eine <b>Mastery Property</b>, die freigeschaltet wird durch Klassen-Feature (Barbarian, Fighter, Paladin, Ranger, Rogue Lv1). Du kannst eine bestimmte Anzahl Waffen-Masteries gleichzeitig nutzen.
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 8 }}>
+            {MASTERIES.map(m => (
+              <div key={m.id} style={{ ...sx.card, borderLeft: `3px solid ${C.amberBright}`, marginBottom: 0 }}>
+                <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 5, display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ fontSize: 16 }}>{m.icon}</span> {m.name}
+                </div>
+                <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5, marginBottom: 6 }}>{m.b}</div>
+                <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", borderTop: `1px solid ${C.border}`, paddingTop: 5 }}>
+                  <b style={{ color: C.amberBright }}>Waffen:</b> {m.weapons}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* WEAPON PROPERTIES */}
+      {section === "weapons" && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
+          {WEAPON_PROPS.map((w, i) => <RuleCard key={i} title={w.t} body={w.b} col={C.tealBright} />)}
+        </div>
+      )}
+
+      {/* TABLES */}
+      {section === "tables" && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 10 }}>
+          <DataTable title="Proficiency Bonus" headers={["Level", "PB"]} rows={[["1-4", "+2"], ["5-8", "+3"], ["9-12", "+4"], ["13-16", "+5"], ["17-20", "+6"]]} col={C.gold} />
+          <DataTable title="DC Schwierigkeit" headers={["DC", "Stufe"]} rows={[["5", "Trivial"], ["10", "Einfach"], ["15", "Mittel"], ["20", "Schwer"], ["25", "Sehr schwer"], ["30", "Fast unmöglich"]]} col={C.amber} />
+          <DataTable title="Cover (Deckung)" headers={["Typ", "AC + DEX-Save"]} rows={[["Halbe", "+2"], ["Dreiviertel", "+5"], ["Voll", "Nicht angreifbar"]]} col={C.teal} />
+          <DataTable title="Critical Hits" headers={["Wurf", "Effekt"]} rows={[["Nat 20 Weapon", "Auto-Treffer + Krit (Schadens-Würfel ×2)"], ["Nat 20 Spell", "Auto-Treffer (Krit nur via Feature)"], ["Nat 1 Attack", "Auto-Miss"], ["Nat 20 Todeswurf", "Sofort 1 HP"], ["Nat 1 Todeswurf", "2 Fehlschläge"]]} col={C.red} />
+          <DataTable title="Carrying Capacity" headers={["Wert", "Limit"]} rows={[["Push/Drag/Lift", "STR × 30 lb"], ["Carry", "STR × 15 lb"], ["Encumbered (variant)", "STR × 5 lb"]]} col={C.purple} />
+          <DataTable title="Falling Damage" headers={["Höhe", "Schaden"]} rows={[["10 ft", "1d6"], ["20 ft", "2d6"], ["50 ft", "5d6"], ["100 ft", "10d6"], ["200+ ft", "20d6 (Max)"]]} col={C.redBright} />
+          <DataTable title="XP für nächstes Level" headers={["Lv", "XP"]} rows={[["1→2", "300"], ["2→3", "600"], ["3→4", "1.800"], ["4→5", "3.800"], ["5→6", "7.500"], ["10→11", "85.000"], ["15→16", "195.000"], ["19→20", "305.000"]]} col={C.purple} />
+          <DataTable title="Coin Values" headers={["Münze", "Wert"]} rows={[["1 PP", "10 GP"], ["1 GP", "10 SP"], ["1 EP", "5 SP"], ["1 SP", "10 CP"]]} col={C.gold} />
+        </div>
+      )}
     </div>
   );
 }

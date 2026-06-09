@@ -30,7 +30,12 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - Strukturierte Traits + Features + Lineages-Anzeige
   - 10 PHB-2024-Species verifiziert vs. PHB-2024 PDF
   - Legacy 2014 mit Warnhinweis + Verweis auf Ersatz-Optionen
-- [ ] **Schnellreferenz** exakt nach PHB-2024-Original (Conditions, Actions, Skills, Tarnung etc.)
+- [x] **Schnellreferenz** exakt nach PHB-2024-Original [pending commit]
+  - 10 Sektionen: Zustände, Aktionen, Kampf, Mastery, Waffen-Props, Bewegung, Rasten, Magie, Checks, Tabellen
+  - 12 Aktionen (4 NEU 2024: Influence, Magic, Study, Utilize) mit 2024-Badge
+  - 8 Mastery Properties komplett (Cleave/Graze/Nick/Push/Sap/Slow/Topple/Vex)
+  - 10 Weapon Properties (Ammunition, Finesse, Heavy, Light, Loading, Range, Reach, Thrown, Two-Handed, Versatile)
+  - PHB-2024-Reform-Hinweise (D20 Test, Critical nur auf Weapon, Counterspell-Änderung etc.)
 - [ ] **Equipment-Katalog** überarbeiten:
   - Magic-Modifier-System statt eigener Waffen-Entry
   - Langschwert +0/+1/+2/+3 als Modifier, nicht 4 Entries
