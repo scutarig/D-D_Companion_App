@@ -276,16 +276,12 @@ function AppInner() {
   }, [mode]);
   const isDM = mode === "dm";
 
-  // Mode-Toggle mit Confirm-Dialog (verhindert versehentlichen Wechsel)
-  const requestModeSwitch = () => {
-    const target = isDM ? "Spieler" : "DM";
-    const targetIcon = isDM ? "👤" : "🎲";
-    const msg = isDM
-      ? "Möchtest du wirklich in den Spieler-Modus wechseln?\n\nDM-Tabs (Kampf, Bestiary, Klassen-Ref, Völker-Ref) werden ausgeblendet."
-      : "Möchtest du wirklich in den DM-Modus wechseln?\n\n⚠️ ACHTUNG: Im DM-Modus siehst du alle Monster-Stats (Spoiler!) und Save/PDF-Funktionen sind versteckt.";
-    if (window.confirm(`${targetIcon} Wechsel in ${target}-Modus?\n\n${msg}`)) {
-      setMode(isDM ? "player" : "dm");
-    }
+  // Mode-Toggle Confirm-Modal State (verhindert versehentlichen Wechsel)
+  const [modeConfirm, setModeConfirm] = useState(false);
+  const requestModeSwitch = () => setModeConfirm(true);
+  const confirmModeSwitch = () => {
+    setMode(isDM ? "player" : "dm");
+    setModeConfirm(false);
   };
 
   // Auto-couple viewMode (Bestiary spoiler) with global mode
@@ -457,6 +453,76 @@ function AppInner() {
     </Suspense>
   );
 
+  // ── Shared Mode-Switch Confirm Modal ─────────────────────────────────────
+  const modeConfirmModal = modeConfirm && (
+    <div
+      onClick={(e) => e.target === e.currentTarget && setModeConfirm(false)}
+      style={{
+        position: "fixed", inset: 0, zIndex: 10000,
+        background: "rgba(0,0,0,0.78)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 16,
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          maxWidth: 460, width: "100%",
+          background: C.surface,
+          border: `2px solid ${isDM ? C.gold : C.purpleBright}`,
+          borderRadius: 14,
+          padding: "22px 22px 18px",
+          boxShadow: `0 12px 60px rgba(0,0,0,0.8), 0 0 30px ${isDM ? C.gold : C.purpleBright}44`,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+          <span style={{ fontSize: 36, lineHeight: 1 }}>{isDM ? "👤" : "🎲"}</span>
+          <div style={{ fontFamily: FH, fontSize: 18, color: isDM ? C.gold : C.purpleBright, fontWeight: 700, letterSpacing: 0.4 }}>
+            Wechsel in {isDM ? "Spieler" : "DM"}-Modus?
+          </div>
+        </div>
+
+        {isDM ? (
+          <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6, marginBottom: 16 }}>
+            Im Spieler-Modus werden alle DM-Tabs (<b>Kampf, Bestiary, Klassen-Ref, Völker-Ref, Encounter</b>) ausgeblendet.
+            Save/PDF und Heroic Inspiration werden wieder sichtbar.
+          </div>
+        ) : (
+          <>
+            <div style={{
+              background: `${C.amberBright}15`,
+              border: `1px solid ${C.amberBright}55`,
+              borderLeft: `3px solid ${C.amberBright}`,
+              borderRadius: 8, padding: "10px 12px", marginBottom: 12,
+              fontSize: 12, color: C.amberBright, fontWeight: 700,
+            }}>
+              ⚠️ ACHTUNG — Spoiler-Risiko!
+            </div>
+            <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6, marginBottom: 16 }}>
+              Im DM-Modus siehst du <b>alle Monster-Stats</b> ohne Spoiler-Filter und alle Referenzen.
+              Save/PDF-Funktionen + Rast-Buttons werden versteckt (DM-Spieler braucht sie nicht).
+            </div>
+          </>
+        )}
+
+        <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+          <button
+            onClick={() => setModeConfirm(false)}
+            style={{ ...sx.bsm(C.textDim), padding: "10px 18px", fontSize: 12 }}
+          >
+            Abbrechen
+          </button>
+          <button
+            onClick={confirmModeSwitch}
+            style={{ ...sx.btn(isDM ? C.gold : C.purpleBright), padding: "10px 22px", fontSize: 13 }}
+          >
+            {isDM ? "👤 Zu Spieler" : "🎲 Zu DM"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   // ── Desktop ────────────────────────────────────────────────────────────────
   if (!isMobile) return (
     <div style={{ display:"flex", height:"100%", overflow:"hidden", background:C.bg, fontFamily:F, color:C.text }}>
@@ -569,6 +635,7 @@ function AppInner() {
           {content}
         </main>
       </div>
+      {modeConfirmModal}
     </div>
   );
 
@@ -718,6 +785,7 @@ function AppInner() {
           );
         })}
       </nav>
+      {modeConfirmModal}
     </div>
   );
 }

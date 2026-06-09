@@ -190,12 +190,50 @@ export default function EncounterBuilder() {
         </div>
       </div>
 
+      {/* Empty State Hint */}
+      {encounter.length === 0 && (
+        <div style={{
+          ...sx.card,
+          borderLeft: `3px solid ${C.amberBright}`,
+          background: `${C.amberBright}08`,
+          textAlign: "center",
+          padding: "20px 24px",
+        }}>
+          <div style={{ fontSize: 36, marginBottom: 8 }}>🎯</div>
+          <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 6 }}>
+            Bereit für Encounter-Design
+          </div>
+          <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>
+            Wähle unten Monster aus, um sie zum Encounter hinzuzufügen.<br />
+            Die <b>XP-Budget-Bar</b> oben zeigt live ob das Encounter zur Schwierigkeit passt.
+          </div>
+        </div>
+      )}
+
       {/* Current Encounter */}
-      {encounter.length > 0 && (
+      {encounter.length > 0 && (() => {
+        // Compute quick-stats
+        const totalMonsters = encounter.reduce((s,e)=>s+e.count,0);
+        let totalHp = 0, totalAc = 0, count = 0;
+        encounter.forEach(e => {
+          const m = MONSTERS.find(x => x.id === e.monsterId);
+          if (m) {
+            totalHp += (m.hp || 0) * e.count;
+            totalAc += (m.ac || 0) * e.count;
+            count += e.count;
+          }
+        });
+        const avgAc = count > 0 ? Math.round(totalAc / count) : 0;
+
+        return (
         <div style={{ ...sx.card, borderLeft: `3px solid ${C.amberBright}` }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, flexWrap: "wrap", gap: 6 }}>
             <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, letterSpacing: 0.4 }}>
-              ⚔️ AKTUELLER ENCOUNTER ({encounter.reduce((s,e)=>s+e.count,0)} Monster)
+              ⚔️ AKTUELLER ENCOUNTER ({totalMonsters} Monster)
+            </div>
+            <div style={{ display: "flex", gap: 8, fontSize: 11 }}>
+              <span style={{ color: C.red }}>❤️ {totalHp} HP</span>
+              <span style={{ color: C.blue }}>🛡️ Ø {avgAc} AC</span>
             </div>
             <div style={{ display: "flex", gap: 5 }}>
               <button onClick={saveEncounter} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>💾 Speichern</button>
@@ -231,7 +269,8 @@ export default function EncounterBuilder() {
             })}
           </div>
         </div>
-      )}
+        );
+      })()}
 
       {/* Monster Picker */}
       <div style={{ ...sx.card }}>
