@@ -2,6 +2,7 @@ import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
+import { getMasteryCount } from "./data/weaponMasteries.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
@@ -189,14 +190,19 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
             </span>
           )}
           {restBanner==="long" && (
-            <span style={{ fontSize:12, color:C.text }}>
-              Volle HP · Alle Slots · Ressourcen zurück · Exhaustion -1
+            <div style={{ fontSize:12, color:C.text, display:"flex", flexDirection:"column", gap:3, flex:1, minWidth:160 }}>
+              <span>Volle HP · Alle Slots · Ressourcen zurück · Exhaustion -1</span>
               {grantsHeroicInspirationOnLR(char) && (
-                <span style={{ color:C.gold, marginLeft:6, fontWeight:700 }}>
-                  · ✦ Heroic Inspiration (Mensch)
+                <span style={{ color:C.gold, fontSize:11, fontWeight:700 }}>
+                  ✦ Heroic Inspiration (Mensch: Resourceful)
                 </span>
               )}
-            </span>
+              {getMasteryCount(char.klass, char.level) > 0 && (
+                <span style={{ color:C.redBright, fontSize:11, fontStyle:"italic" }}>
+                  🗡️ Weapon Mastery Swap erlaubt — ggf. im Charakter-Tab tauschen
+                </span>
+              )}
+            </div>
           )}
           <button onClick={confirmRest} style={sx.btn(restBanner==="long" ? C.purpleBright : C.tealBright)}>Bestätigen</button>
           <button onClick={() => setRestBanner(null)} style={{ background:"none", border:"none", color:C.textDim, fontSize:18, cursor:"pointer" }}>✕</button>

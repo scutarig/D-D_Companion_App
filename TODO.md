@@ -53,13 +53,20 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - useIsMobile-Breakpoint: 768 → 900 (S7 FE/iPad-Portrait friendlier)
   - Landscape-Tablet (≥900px) bleibt Desktop-Layout mit Sidebar
 
-### Phase 3: PHB-2024 Restpunkte
-- [ ] **Heroic Inspiration** (2024 NEU)
-  - Bei Background-Wahl: auto-grant nach Long Rest
-  - Halfling Lucky etc. → Auto-Vorschlag
-- [ ] **Epic Boons Lv19** Picker
-- [ ] **Weapon Mastery Swap** bei Long Rest (RAW)
-- [ ] **Bonus-Action Spell-Rule** Tracker (1 Cantrip + 1 Bonus-Spell pro Turn)
+### Phase 3: PHB-2024 Restpunkte ✅ KOMPLETT [pending commit]
+- [x] **Heroic Inspiration** (2024 NEU) [67b65ea]
+  - Auto-Grant für Mensch (Resourceful) nach Long Rest
+  - Label-Rename "Inspiration" → "Heroic Inspiration" in UI
+  - Long-Rest-Banner zeigt Inspiration-Hinweis
+- [x] **Epic Boons Lv19** Picker [pending commit]
+  - Banner auf Lv19: "🌟 EPIC BOON LEVEL (PHB 2024)"
+  - Epic Boons in eigener optgroup mit 🌟 Icon
+  - Detail-Box markiert Epic Boon mit Hinweis "Stats bis 30 statt 20"
+- [x] **Weapon Mastery Swap** bei Long Rest [pending commit]
+  - LR-Banner zeigt "🗡️ Weapon Mastery Swap erlaubt" für relevante Klassen
+- [x] **Bonus-Action Spell-Rule** [pending commit]
+  - Spellbook-Detail zeigt PHB-2024-Warnung für Bonus-Action-Zauber
+  - Erklärt: Nur 1 Cantrip mit Action Casting Time auf gleichem Turn
 - [ ] **6 komplexe Origin Feats** mit User-Picker:
   - Magic Initiate (2 Cantrips + 1 Lv1-Spell aus Cleric/Druid/Wizard)
   - Crafter (3 Artisan's Tools)

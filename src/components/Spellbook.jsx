@@ -164,6 +164,31 @@ export default function Spellbook({ charId }) {
               {sel.ritual && <span style={sx.tag(C.amberBright)}>ℛ Ritual (+10 Min.)</span>}
               {sel.concentration && <span style={sx.tag(C.purpleBright)}>🔮 Konzentration</span>}
             </div>
+
+            {/* PHB 2024 Bonus-Action Spell Rule Warning */}
+            {sel.ct && sel.ct.toLowerCase().includes("bonus") && sel.lv > 0 && (
+              <div style={{
+                background: `${C.amberBright}0d`,
+                border: `1px solid ${C.amberBright}40`,
+                borderLeft: `3px solid ${C.amberBright}`,
+                borderRadius: 8,
+                padding: "8px 12px",
+                marginBottom: 10,
+                fontSize: 12,
+                color: C.amberBright,
+                display: "flex",
+                gap: 8,
+                alignItems: "flex-start",
+              }}>
+                <span style={{fontSize: 16, lineHeight: 1}}>⚠️</span>
+                <div>
+                  <b style={{fontFamily:FH, fontWeight:700, letterSpacing:0.4}}>PHB 2024 — Bonus-Action Spell Rule:</b>
+                  <div style={{color: C.text, fontSize: 12, lineHeight: 1.5, marginTop: 3}}>
+                    Wenn du diesen Zauber als <b>Bonus Action</b> wirkst, darfst du auf demselben Zug als Action nur einen <b>Cantrip mit 1 Aktion Casting Time</b> wirken (keinen Lv1+ Spell).
+                  </div>
+                </div>
+              </div>
+            )}
             {sel.dmg!=="—"&&<div style={{display:"flex",gap:8,marginBottom:10}}><span style={sx.tag(C.red)}>💥 {sel.dmg}</span><span style={sx.tag(C.red)}>{DT[sel.dt]||"⚡"} {sel.dt}</span></div>}
             <div style={{fontSize:15,color:C.text,lineHeight:1.7,marginBottom:12}}>{sel.desc}</div>
             {sel.upcast?.length > 0 && (

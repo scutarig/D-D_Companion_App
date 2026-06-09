@@ -514,33 +514,76 @@ export default function LevelUpAssistant({ char, setChar }) {
 
               {asiMode === "feat" && (
                 <div>
+                  {/* Epic Boon Banner für Lv19 */}
+                  {isEpicLevel && (
+                    <div style={{
+                      background: `linear-gradient(135deg, ${C.amberBright}22 0%, ${C.gold}11 100%)`,
+                      border: `2px solid ${C.amberBright}`,
+                      borderRadius: 10, padding: "10px 14px", marginBottom: 10,
+                      boxShadow: `0 0 16px ${C.amberBright}44`,
+                    }}>
+                      <div style={{ fontFamily: FH, fontSize: 14, color: C.amberBright, fontWeight: 700, marginBottom: 4, letterSpacing: 0.6 }}>
+                        🌟 EPIC BOON LEVEL (PHB 2024)
+                      </div>
+                      <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>
+                        Auf Lv19 wählst du statt eines normalen ASI/Feats einen <b>Epic Boon</b> — extrem mächtige Fähigkeiten, die Stats <b>bis 30</b> erlauben. Allgemeine Feats bleiben auch wählbar.
+                      </div>
+                    </div>
+                  )}
+
                   <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>
-                    Wähle ein Feat — <span style={{ color: C.amberBright }}>🎯 = Half-Feat (gibt +1 Stat zusätzlich zur Fähigkeit)</span>
+                    Wähle ein Feat — <span style={{ color: C.amberBright }}>🎯 = Half-Feat (+1 Stat)</span>
+                    {isEpicLevel && <span> · <span style={{ color: C.amberBright, fontWeight: 700 }}>🌟 = Epic Boon</span></span>}
                   </div>
                   <select value={featId} onChange={e => setFeatId(e.target.value)} style={{ ...sx.sel, width: "100%" }}>
                     <option value="">— Feat wählen —</option>
-                    {availableFeats.map(f => {
-                      const halfStats = getHalfFeatStats(f);
-                      const halfMark = halfStats.length ? `🎯 [+1 ${halfStats.join("/")}] ` : "";
-                      return (
-                        <option key={f.id} value={f.id}>
-                          {halfMark}{f.name}{f.prerequisite ? ` (${f.prerequisite})` : ""}
-                        </option>
-                      );
-                    })}
+                    {/* Epic Boons zuerst auf Lv19 */}
+                    {isEpicLevel && (
+                      <optgroup label="🌟 Epic Boons (PHB 2024 Lv19)">
+                        {availableFeats.filter(f => f.category === "epic_boon").map(f => {
+                          const halfStats = getHalfFeatStats(f);
+                          const halfMark = halfStats.length ? `🎯 ` : "";
+                          return (
+                            <option key={f.id} value={f.id}>
+                              🌟 {halfMark}{f.name}
+                            </option>
+                          );
+                        })}
+                      </optgroup>
+                    )}
+                    <optgroup label={isEpicLevel ? "Allgemeine Feats (auch wählbar)" : "Allgemeine Feats"}>
+                      {availableFeats.filter(f => f.category !== "epic_boon").map(f => {
+                        const halfStats = getHalfFeatStats(f);
+                        const halfMark = halfStats.length ? `🎯 [+1 ${halfStats.join("/")}] ` : "";
+                        return (
+                          <option key={f.id} value={f.id}>
+                            {halfMark}{f.name}{f.prerequisite ? ` (${f.prerequisite})` : ""}
+                          </option>
+                        );
+                      })}
+                    </optgroup>
                   </select>
                   {featId && (() => {
                     const f = availableFeats.find(x => x.id === featId);
                     if (!f) return null;
                     const halfStats = getHalfFeatStats(f);
+                    const isEpic = f.category === "epic_boon";
                     return (
                       <div style={{ marginTop: 8 }}>
+                        {isEpic && (
+                          <div style={{
+                            background: `${C.amberBright}15`, border: `1px solid ${C.amberBright}55`, borderLeft: `3px solid ${C.amberBright}`,
+                            borderRadius: 6, padding: "6px 10px", marginBottom: 6, fontSize: 11, color: C.amberBright, fontWeight: 700,
+                          }}>
+                            🌟 Epic Boon: Mächtige Lv19-Fähigkeit. Stat-Bumps gehen bis <b>30</b> (statt 20).
+                          </div>
+                        )}
                         {halfStats.length > 0 && (
                           <div style={{
                             background: `${C.amber}15`, border: `1px solid ${C.amber}55`, borderLeft: `3px solid ${C.amberBright}`,
                             borderRadius: 6, padding: "6px 10px", marginBottom: 6, fontSize: 11, color: C.amberBright, fontWeight: 700,
                           }}>
-                            🎯 Half-Feat: Du erhältst <b>+1 auf {halfStats.join(" oder ")}</b> zusätzlich zur Fähigkeit (max 20).
+                            🎯 Half-Feat: Du erhältst <b>+1 auf {halfStats.join(" oder ")}</b> zusätzlich zur Fähigkeit (max {isEpic ? 30 : 20}).
                           </div>
                         )}
                         <div style={{ fontSize: 12, color: C.text, background: C.surface, padding: "8px 10px", borderRadius: 6 }}>
