@@ -20,13 +20,15 @@ export const FEATS = [
   // ── ORIGIN FEATS (10) ──────────────────────────────────────────────────────
   { id: "alert", name: "Alert", category: "origin", prerequisite: null,
     description: "Initiative Proficiency: Füge deinen PB zu Initiative-Würfen hinzu. Initiative Swap: Direkt nach Initiative-Wurf darfst du deine Initiative mit der eines willigen Verbündeten tauschen.",
-    statBonus: null },
+    statBonus: null,
+    effects: [{ type: "initiative_pb", value: true }] },
   { id: "crafter", name: "Crafter", category: "origin", prerequisite: null,
     description: "Übung mit 3 Artisan's Tools. 20% Rabatt auf nicht-magische Items. Nach Long Rest: ein Stück Ausrüstung herstellen (z.B. Iron Pot, Rope, Quarterstaff).",
     statBonus: null },
   { id: "healer", name: "Healer", category: "origin", prerequisite: null,
     description: "Übung mit Herbalism Kit. Aktion: Benutze Healer's Kit auf Wesen → 2d6+PB HP heilen (Charge verbraucht). Nach Initiative: Verbündeten in 5ft Temp HP = 1d6+PB geben.",
-    statBonus: null },
+    statBonus: null,
+    effects: [{ type: "tool_prof", value: "Herbalism Kit" }] },
   { id: "lucky", name: "Lucky", category: "origin", prerequisite: null,
     description: "PB Luck Points pro Long Rest. Spend 1 vor d20-Wurf: Reroll. Spend 1 nach gegnerischem Wurf gegen dich: Gegner muss rerollen.",
     statBonus: null },
@@ -47,7 +49,8 @@ export const FEATS = [
     statBonus: null },
   { id: "tough", name: "Tough", category: "origin", prerequisite: null,
     description: "HP-Max +2 pro Char-Level. Bei späteren Level-Ups: weitere +2 HP-Max.",
-    statBonus: null },
+    statBonus: null,
+    effects: [{ type: "hp_per_level", value: 2 }] },
 
   // ── GENERAL FEATS (~40) ────────────────────────────────────────────────────
   { id: "ability_score_improvement", name: "Ability Score Improvement*", category: "general", prerequisite: "Lv4+",

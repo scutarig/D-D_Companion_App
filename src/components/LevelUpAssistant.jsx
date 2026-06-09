@@ -4,6 +4,7 @@ import { modOf, modStr, getPB, buildSlotsForLevel, CASTER_TYPE, FULL_CASTER, HAL
 import { CLASS_FEATURES } from "../data/classFeatures.js";
 import { FEATS, meetsPrerequisite } from "../data/feats.js";
 import { applyFeat } from "../utils/feats.js";
+import { updateOriginFeatOnLevelUp } from "../utils/originFeats.js";
 
 // ── ASI-Levels pro Klasse ───────────────────────────────────────────────────
 const ASI_DEFAULT = [4, 8, 12, 16, 19];
@@ -298,6 +299,8 @@ export default function LevelUpAssistant({ char, setChar }) {
           next = applyFeat(next, featId);
         }
       }
+      // Auto-scale Origin Feat HP-bonus (Tough: +2 per level)
+      next = updateOriginFeatOnLevelUp(next, newLevel);
       return next;
     });
   };

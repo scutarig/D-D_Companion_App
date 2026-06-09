@@ -15,6 +15,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { BACKGROUNDS_FULL, getBackgroundData } from "../data/backgrounds.js";
+import { applyOriginFeatEffects } from "./originFeats.js";
 
 const BG_SOURCE_PREFIX = "Hintergrund:";
 
@@ -123,6 +124,9 @@ export function applyBackground(char, backgroundName) {
   // Step 1: Revert old ASI (set bgAsi to null/empty applies negative delta)
   let workChar = applyBackgroundAsi(char, null);
 
+  // Step 1b: Revert old Origin Feat auto-effects (HP bonus, tool prof, etc.)
+  workChar = applyOriginFeatEffects(workChar, null);
+
   // Step 2: Remove old traits
   workChar = removeBackgroundTraits(workChar);
 
@@ -140,8 +144,7 @@ export function applyBackground(char, backgroundName) {
   }
 
   const newTraits = buildBgTraits(bg);
-
-  return {
+  let finalChar = {
     ...workChar,
     background: backgroundName,
     bgTraits: [...(workChar.bgTraits || []), ...newTraits],
@@ -149,6 +152,11 @@ export function applyBackground(char, backgroundName) {
     originFeat: bg.feat || null,
     bgEquipChoice: null, // User must pick A or B
   };
+
+  // Step 4: Apply Origin Feat auto-effects (Tough HP+, Healer Tool, etc.)
+  finalChar = applyOriginFeatEffects(finalChar, bg.feat);
+
+  return finalChar;
 }
 
 export { getBackgroundData };
