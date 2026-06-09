@@ -23,24 +23,33 @@ const CompanionsPage    = lazy(() => import("./components/Companions/CompanionsP
 const ProficienciesPage = lazy(() => import("./components/Proficiencies/ProficienciesPage.jsx"));
 const WorldbuildingPage = lazy(() => import("./components/Worldbuilding/WorldbuildingPage.jsx"));
 
-const MAIN_TABS = [
-  { id: "overview",       label: "Übersicht",    icon: "🗺️" },
-  { id: "char",           label: "Charakter",    icon: "📜" },
-  { id: "inventar",       label: "Inventar",     icon: "🎒" },
-  { id: "companions",     label: "Begleiter",    icon: "🐾" },
-  { id: "proficiencies",  label: "Proficiencies",icon: "🎓" },
-  { id: "notes",          label: "Notizen",      icon: "📝" },
-  { id: "npcs",           label: "NPCs",         icon: "👥" },
-  { id: "combat",         label: "Kampf",        icon: "⚔️" },
-  { id: "dice",           label: "Würfel",       icon: "🎲" },
-  { id: "world",          label: "Weltenbau",    icon: "🌍" },
+// ── Tab definitions with mode classification ─────────────────────────────────
+// mode: "player" | "dm" | "both"
+const ALL_TABS = [
+  { id: "overview",       label: "Übersicht",    icon: "🗺️", mode: "player" },
+  { id: "char",           label: "Charakter",    icon: "📜", mode: "player" },
+  { id: "companions",     label: "Begleiter",    icon: "🐾", mode: "player" },
+  { id: "proficiencies",  label: "Proficiencies",icon: "🎓", mode: "player" },
+  { id: "inventar",       label: "Inventar",     icon: "🎒", mode: "player" },
+  { id: "world",          label: "Weltenbau",    icon: "🌍", mode: "player" },
+  { id: "quickref",       label: "Schnellreferenz", icon: "📋", mode: "player" },
+  { id: "combat",         label: "Kampf",        icon: "⚔️", mode: "dm" },
+  { id: "bestiary",       label: "Bestiary",     icon: "🐉", mode: "dm" },
+  { id: "klassen",        label: "Klassen",      icon: "⚔️", mode: "dm" },
+  { id: "voelker",        label: "Völker",       icon: "🧬", mode: "dm" },
+  { id: "notes",          label: "Notizen",      icon: "📝", mode: "both" },
+  { id: "npcs",           label: "NPCs",         icon: "👥", mode: "both" },
+  { id: "dice",           label: "Würfel",       icon: "🎲", mode: "both" },
 ];
-const REF_TABS = [
-  { id: "bestiary", label: "Bestiary",        icon: "🐉" },
-  { id: "klassen",  label: "Klassen",         icon: "⚔️" },
-  { id: "voelker",  label: "Völker",          icon: "🧬" },
-  { id: "quickref", label: "Schnellreferenz", icon: "📋" },
-];
+
+const tabsForMode = (mode) =>
+  ALL_TABS.filter(t => t.mode === mode || t.mode === "both");
+
+// Reference dropdown (Desktop) — DM-only
+const REF_TABS = ALL_TABS.filter(t => ["bestiary","klassen","voelker"].includes(t.id));
+// Character group dropdown (Desktop) — Player-only
+const CHAR_GROUP = ALL_TABS.filter(t => ["char","companions","proficiencies"].includes(t.id))
+  .map(t => t.id === "proficiencies" ? { ...t, label: "Übungsbonus" } : t);
 
 const Loader = () => (
   <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:60, color:C.textDim, fontSize:14 }}>
@@ -83,12 +92,11 @@ const snb = (active) => ({
 });
 
 // ── Persistent char header (shown on all tabs) ────────────────────────────────
-function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed }) {
+function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed, mode, setMode }) {
   const { active: char, setActive: setChar, aid } = useChar();
   const { classes } = useMulticlass(aid, char, null);
-  const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
-  if (!char) return null;
-  const isSpoilerMode = viewMode === "spoiler";
+  const isDM = mode === "dm";
+  // Don't return early — render mode toggle even without char (for DM-only setups)
 
   const lbl = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
 
@@ -113,6 +121,38 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
     setRestBanner(null); setRestHpInput("");
   };
 
+  // Mode-Toggle (always visible)
+  const modeBtn = (
+    <button
+      onClick={() => setMode(isDM ? "player" : "dm")}
+      title={isDM ? "DM-Modus aktiv — Klick für Spieler-Ansicht" : "Spieler-Modus aktiv — Klick für DM-Ansicht"}
+      style={{
+        ...sx.bsm(isDM ? C.purpleBright : C.gold),
+        fontSize: 10, padding: "4px 9px", fontWeight: 700,
+        background: isDM ? `${C.purpleBright}22` : `${C.gold}22`,
+        border: `1px solid ${isDM ? C.purpleBright : C.gold}88`,
+        color: isDM ? C.purpleBright : C.gold,
+        letterSpacing: 0.4,
+      }}
+    >
+      {isDM ? "🎲 DM" : "👤 Spieler"}
+    </button>
+  );
+
+  // Char-less header (e.g. DM mode without active char)
+  if (!char) {
+    return (
+      <div data-no-print style={{ background: "linear-gradient(180deg,#1c1826 0%,#16121e 100%)", borderBottom: `1px solid rgba(201,168,76,0.15)`, padding: "0 14px", flexShrink: 0 }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height: 44 }}>
+          <div style={{ fontFamily: FH, fontSize: 12, color: C.textDim, fontStyle: "italic" }}>
+            {isDM ? "🎲 DM-Modus aktiv — kein Charakter erforderlich" : "Kein Charakter gewählt"}
+          </div>
+          {modeBtn}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ background: "linear-gradient(180deg,#1c1826 0%,#16121e 100%)", borderBottom: `1px solid rgba(201,168,76,0.15)`, padding: "0 14px", flexShrink: 0 }}>
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:6, height:44 }}>
@@ -135,24 +175,17 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
           </div>
         </div>
         <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
-          <button
-            onClick={() => setViewMode(isSpoilerMode ? "full" : "spoiler")}
-            title={isSpoilerMode ? "Spoiler-Modus aktiv — Bestiary versteckt unbekannte Monster. Klick: Vollansicht (DM)" : "Vollansicht aktiv — alle Monster sichtbar. Klick: Spoiler-Modus für Spieler"}
-            style={{
-              ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px", fontWeight:700,
-              background: isSpoilerMode ? `${C.purpleBright}22` : "transparent",
-              border:`1px solid ${isSpoilerMode ? C.purpleBright : C.border}`,
-              color: isSpoilerMode ? C.purpleBright : C.textDim,
-            }}
-          >
-            {isSpoilerMode ? "🎲 Spoiler" : "📖 Voll"}
-          </button>
-          <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
-            style={{ ...sx.bsm(C.gold), fontSize:9, padding:"3px 7px", background: char.inspiration ? `${C.gold}22` : "transparent", border:`1px solid ${char.inspiration ? C.gold : C.border}`, color: char.inspiration ? C.gold : C.textDim, fontWeight:700 }}>
-            {char.inspiration ? "✦" : "✧"} Inspiration
-          </button>
-          <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 Kurze Rast</button>
-          <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px" }}>🌟 Lange Rast</button>
+          {modeBtn}
+          {!isDM && (
+            <>
+              <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
+                style={{ ...sx.bsm(C.gold), fontSize:9, padding:"3px 7px", background: char.inspiration ? `${C.gold}22` : "transparent", border:`1px solid ${char.inspiration ? C.gold : C.border}`, color: char.inspiration ? C.gold : C.textDim, fontWeight:700 }}>
+                {char.inspiration ? "✦" : "✧"} Inspiration
+              </button>
+              <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 Kurze Rast</button>
+              <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px" }}>🌟 Lange Rast</button>
+            </>
+          )}
         </div>
       </div>
 
@@ -177,8 +210,8 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
   );
 }
 
-// ── Mobile nav groups ─────────────────────────────────────────────────────────
-const MOBILE_NAV = [
+// ── Mobile nav groups (mode-aware) ────────────────────────────────────────────
+const MOBILE_NAV_PLAYER = [
   { id: "overview",   label: "Übersicht", icon: "🗺️" },
   {
     id: "char-group", label: "Charakter", icon: "📜",
@@ -186,34 +219,64 @@ const MOBILE_NAV = [
     children: [
       { id: "char",          label: "Charakter",    icon: "📜" },
       { id: "companions",    label: "Begleiter",    icon: "🐾" },
-      { id: "proficiencies", label: "Proficiencies",icon: "🎓" },
+      { id: "proficiencies", label: "Übungsbonus",  icon: "🎓" },
     ],
   },
   { id: "inventar", label: "Inventar", icon: "🎒" },
-  { id: "combat",   label: "Kampf",    icon: "⚔️" },
+  { id: "world",    label: "Welt",     icon: "🌍" },
   {
     id: "more", label: "Mehr", icon: "⋯",
-    groupIds: ["dice", "notes", "npcs", "world", "bestiary", "klassen", "voelker", "quickref"],
+    groupIds: ["dice", "notes", "npcs", "quickref"],
     children: [
       { id: "dice",     label: "Würfel",     icon: "🎲" },
       { id: "notes",    label: "Notizen",    icon: "📝" },
       { id: "npcs",     label: "NPCs",       icon: "👥" },
-      { id: "world",    label: "Weltenbau",  icon: "🌍" },
-      { id: "bestiary", label: "Bestiary",   icon: "🐉" },
-      { id: "klassen",  label: "Klassen",    icon: "📚" },
-      { id: "voelker",  label: "Völker",     icon: "🧬" },
       { id: "quickref", label: "Schnellref", icon: "📋" },
+    ],
+  },
+];
+
+const MOBILE_NAV_DM = [
+  { id: "combat",   label: "Kampf",    icon: "⚔️" },
+  { id: "bestiary", label: "Bestiary", icon: "🐉" },
+  { id: "npcs",     label: "NPCs",     icon: "👥" },
+  { id: "dice",     label: "Würfel",   icon: "🎲" },
+  {
+    id: "more", label: "Mehr", icon: "⋯",
+    groupIds: ["klassen", "voelker", "notes"],
+    children: [
+      { id: "klassen", label: "Klassen", icon: "⚔️" },
+      { id: "voelker", label: "Völker",  icon: "🧬" },
+      { id: "notes",   label: "Notizen", icon: "📝" },
     ],
   },
 ];
 
 // ── App ────────────────────────────────────────────────────────────────────────
 function AppInner() {
+  const [mode, setMode]       = usePersist("app_mode_v1", "player");
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
   const { active, aid, setActive: setChar } = useChar();
   const [refOpen,  setRefOpen]  = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
   const [charOpen, setCharOpen] = useState(false);
+
+  // Auto-tab-switch when mode changes and current tab is invalid
+  const allowedTabIds = tabsForMode(mode).map(t => t.id);
+  useEffect(() => {
+    if (!allowedTabIds.includes(tab)) {
+      setTab(mode === "dm" ? "combat" : "overview");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
+  const isDM = mode === "dm";
+
+  // Auto-couple viewMode (Bestiary spoiler) with global mode
+  const [, setViewMode] = usePersist("app_view_mode_v1", "full");
+  useEffect(() => {
+    setViewMode(isDM ? "full" : "spoiler");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDM]);
 
   // Inject @media print styles once for PDF export
   useEffect(() => {
@@ -254,6 +317,9 @@ function AppInner() {
   const charBtnRef              = useRef(null);
   const isMobile                = useIsMobile(768);
   const [mobileMenu, setMobileMenu] = useState(null); // null | "char-group" | "more"
+
+  // Close mobile menu / dropdowns when mode changes
+  useEffect(() => { setMobileMenu(null); setCharOpen(false); setRefOpen(false); }, [mode]);
 
   // Lifted state — shared with CombatDashboard (per Charakter)
   const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
@@ -309,6 +375,13 @@ function AppInner() {
   };
 
   const isRef = REF_TABS.some(t => t.id === tab);
+  const isCharGroup = CHAR_GROUP.some(t => t.id === tab);
+
+  // Mode-filtered tabs for Desktop sidebar (top-level, excluding grouped ones)
+  const SIDEBAR_TOP_PLAYER = ["overview", "inventar", "world", "quickref", "notes", "npcs", "dice"];
+  const SIDEBAR_TOP_DM     = ["combat", "npcs", "notes", "dice"];
+  const sidebarTopIds = isDM ? SIDEBAR_TOP_DM : SIDEBAR_TOP_PLAYER;
+  const sidebarTopTabs = sidebarTopIds.map(id => ALL_TABS.find(t => t.id === id)).filter(Boolean);
 
   const content = (
     <Suspense fallback={<Loader />}>
@@ -343,35 +416,46 @@ function AppInner() {
 
         {/* Nav */}
         <nav style={{ flex:1, padding:"8px 4px", display:"flex", flexDirection:"column", gap:2, overflowY:"auto" }}>
-          {MAIN_TABS.filter(t => !["char","companions","proficiencies"].includes(t.id)).map(t => (
+          {sidebarTopTabs.map(t => (
             <button key={t.id} title={t.label} onClick={() => setTab(t.id)} style={snb(tab===t.id)}>
               {t.icon}
             </button>
           ))}
           <div style={{ marginTop:4, display:"flex", flexDirection:"column", gap:2 }}>
-            {/* Charakter-Gruppe Dropdown */}
-            <button ref={charBtnRef} title="Charakter" onClick={e => { e.stopPropagation(); toggleChar(); }}
-              style={snb(["char","companions","proficiencies"].includes(tab) || charOpen)}>
-              📜
-            </button>
-            {/* Referenz Dropdown */}
-            <button ref={refBtnRef} title="Referenz" onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef)}>
-              📚
-            </button>
+            {/* Player: Charakter-Gruppe / DM: Referenz */}
+            {!isDM && (
+              <button ref={charBtnRef} title="Charakter" onClick={e => { e.stopPropagation(); toggleChar(); }}
+                style={snb(isCharGroup || charOpen)}>
+                📜
+              </button>
+            )}
+            {isDM && (
+              <button ref={refBtnRef} title="Referenz" onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef || refOpen)}>
+                📚
+              </button>
+            )}
           </div>
         </nav>
 
-        {/* Bottom: export */}
-        <div style={{ padding:"10px 4px 20px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
-          <button title="JSON exportieren" onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>⬇️</button>
-          <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>📄</button>
-        </div>
+        {/* Bottom: export (nur Player) */}
+        {!isDM && (
+          <div style={{ padding:"10px 4px 20px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
+            <button title="JSON exportieren" onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>⬇️</button>
+            <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>📄</button>
+          </div>
+        )}
+        {/* DM-Mode-Indicator at bottom */}
+        {isDM && (
+          <div style={{ padding:"10px 4px 20px", borderTop:"1px solid rgba(201,168,76,0.10)", textAlign:"center" }}>
+            <div style={{ fontSize:9, color:C.purpleBright, fontFamily:FH, letterSpacing:0.5, fontWeight:700 }}>🎲<br/>DM</div>
+          </div>
+        )}
       </aside>
 
       {/* Charakter dropdown popover */}
-      {charOpen && (
+      {charOpen && !isDM && (
         <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:charPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.gold}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
-          {[{ id:"char", label:"Charakter", icon:"📜" }, { id:"companions", label:"Begleiter", icon:"🐾" }, { id:"proficiencies", label:"Übungsbonus", icon:"🎓" }].map(t => (
+          {CHAR_GROUP.map(t => (
             <button key={t.id} onClick={() => { setTab(t.id); setCharOpen(false); }}
               style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===t.id?`${C.gold}22`:"transparent", border:"none", borderRadius:7, color:tab===t.id?C.gold:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
               <span style={{ fontSize:15 }}>{t.icon}</span>
@@ -381,8 +465,8 @@ function AppInner() {
         </div>
       )}
 
-      {/* Referenz dropdown popover */}
-      {refOpen && (
+      {/* Referenz dropdown popover (DM-only) */}
+      {refOpen && isDM && (
         <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:refPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.purple}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
           {REF_TABS.map(t => (
             <button key={t.id} onClick={() => { setTab(t.id); setRefOpen(false); }}
@@ -397,7 +481,7 @@ function AppInner() {
       {/* Main column */}
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
         <OfflineBanner />
-        <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} />
+        <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} setMode={setMode} />
         <main style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
           {content}
         </main>
@@ -409,7 +493,7 @@ function AppInner() {
   return (
     <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text, overflowX:"hidden" }}>
       <OfflineBanner />
-      <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} />
+      <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} setMode={setMode} />
 
       {/* Main content — click closes sub-menu */}
       <main
@@ -418,7 +502,7 @@ function AppInner() {
       >
         <div style={{ width:"100%", maxWidth:"100%" }}>
           {content}
-          {tab === "char" && active && (
+          {tab === "char" && active && !isDM && (
             <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
               <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>Charakter speichern</div>
               <div style={{ display:"flex", gap:8 }}>
@@ -432,7 +516,7 @@ function AppInner() {
 
       {/* Sub-menu panel — appears between content and nav */}
       {mobileMenu && (() => {
-        const group = MOBILE_NAV.find(n => n.id === mobileMenu);
+        const group = (isDM ? MOBILE_NAV_DM : MOBILE_NAV_PLAYER).find(n => n.id === mobileMenu);
         if (!group?.children) return null;
         return (
           <div style={{
@@ -475,7 +559,7 @@ function AppInner() {
         display: "flex", flexShrink: 0,
         paddingBottom: "env(safe-area-inset-bottom,0px)",
       }}>
-        {MOBILE_NAV.map(item => {
+        {(isDM ? MOBILE_NAV_DM : MOBILE_NAV_PLAYER).map(item => {
           const isGroup      = !!item.groupIds;
           const isMenuOpen   = mobileMenu === item.id;
           const isGroupActive = isGroup && (item.groupIds.includes(tab) || isMenuOpen);

@@ -2,6 +2,59 @@
 
 Offene Punkte nach der 2024 PHB UI-Migration.
 
+---
+
+## 🎯 AKTIVE PHASE — Player/DM-Split
+
+### Phase 1: Mode-Switch (in Arbeit)
+- [ ] `app_mode_v1` persistierter Mode-State (`player` | `dm`)
+- [ ] Header-Toggle global (👤 Player ↔ 🎲 DM) ersetzt Spoiler-Button
+- [ ] MAIN_TABS / MOBILE_NAV pro Mode filtern
+- [ ] Player-Mode: overview, char, companions, proficiencies, inventar, notes, dice, world, quickref, npcs
+- [ ] DM-Mode: combat, bestiary, klassen, voelker, npcs, dice, notes
+- [ ] Save/PDF-Buttons nur im Player-Mode anzeigen
+- [ ] Auto-Tab-Switch wenn aktueller Tab im neuen Mode nicht existiert
+- [ ] viewMode (Spoiler/Voll) automatisch an Mode koppeln
+
+### Phase 2: Content-Refresh (nach Phase 1)
+- [ ] **Klassen-Referenz** komplett auf PHB 2024 (alle 12 Klassen, exakte Feature-Tabellen)
+- [ ] **Völker-Referenz** komplett auf PHB 2024 (Lineages-System, alle Traits)
+- [ ] **Schnellreferenz** exakt nach PHB-2024-Original (Conditions, Actions, Skills, Tarnung etc.)
+- [ ] **Equipment-Katalog** überarbeiten:
+  - Magic-Modifier-System statt eigener Waffen-Entry
+  - Langschwert +0/+1/+2/+3 als Modifier, nicht 4 Entries
+  - DMG-2024 Magic-Items-Liste vollständig
+- [ ] **Tablet/Mobile-Tauglichkeit** prüfen (Samsung S7 FE Reference)
+
+### Phase 3: PHB-2024 Restpunkte
+- [ ] **Heroic Inspiration** (2024 NEU)
+  - Bei Background-Wahl: auto-grant nach Long Rest
+  - Halfling Lucky etc. → Auto-Vorschlag
+- [ ] **Epic Boons Lv19** Picker
+- [ ] **Weapon Mastery Swap** bei Long Rest (RAW)
+- [ ] **Bonus-Action Spell-Rule** Tracker (1 Cantrip + 1 Bonus-Spell pro Turn)
+- [ ] **6 komplexe Origin Feats** mit User-Picker:
+  - Magic Initiate (2 Cantrips + 1 Lv1-Spell aus Cleric/Druid/Wizard)
+  - Crafter (3 Artisan's Tools)
+  - Skilled (3 Skills/Tools)
+  - Musician (3 Instrumente)
+  - Lucky (PB Luck Points trackbar)
+  - Tavern Brawler (+1 STR/CON Half-Feat)
+
+### Phase 4: DM-Features (nach Split)
+- [ ] **DM-Mode Notes** pro Monster (für Encounter-Planung)
+- [ ] **Encounter Builder** mit CR-Budget (Party-Level × Difficulty)
+- [ ] **Kampflog persistent** mit Session-Archiv
+- [ ] **2024 MM Vollständigkeit** — restl. ~10 Monster (Sukkubus, Schwarze Schlickpest, Ritter)
+
+### Phase 5: Lokalisierung
+- [ ] **DE-Übersetzung** D&D-konform (Begriffe wie "Übungsbonus" statt "Proficiency Bonus")
+- [ ] Sprach-Toggle EN/DE in Settings
+- [ ] Alle data/*.js Files mit i18n-Keys
+- [ ] PHB-DE als Referenz nutzen, nicht banal übersetzen
+
+---
+
 ## ✅ ABGESCHLOSSEN
 
 ### P1 — Rast-System 2024-Update [c30c9f6]
@@ -28,26 +81,3 @@ Offene Punkte nach der 2024 PHB UI-Migration.
 - ✅ window.confirm-Dialog beim Über-Limit-Hinzufügen
 - ✅ Cantrip-Status-Badges im Section-Header (Bar 4/4 / Mag 3/4 etc.)
 - ✅ Multi-class-aware
-
----
-
-## ⏳ AUSSTEHEND (LOW PRIORITY)
-
-### Origin Feats (komplex — brauchen User-Input-Picker)
-- [ ] **Magic Initiate**: Spell-Auswahl-Picker (2 Cantrips + 1 Lv1 Spell aus Cleric/Druid/Wizard Liste)
-- [ ] **Crafter**: 3 Artisan's Tools Wahl-Picker
-- [ ] **Skilled**: 3 Skills/Tools Wahl-Picker
-- [ ] **Musician**: 3 Musical Instruments Wahl-Picker
-- [ ] **Lucky**: PB Luck Points als trackbare Ressource (analog Rage)
-- [ ] **Tavern Brawler**: +1 STR oder CON via Half-Feat-Picker
-
-### Heroic Inspiration (2024 NEU)
-- [ ] Bei Background-Wahl: manche Backgrounds geben Heroic Inspiration nach Long Rest
-- [ ] Bei Klassen-Features die Heroic Inspiration triggern (z.B. Halfling Lucky):
-  Auto-Vorschlag beim Würfeln
-
-### Sonstige
-- [ ] **DM-Mode Notes**: Pro Monster eigene DM-Notizen (für Encounter-Planung)
-- [ ] **Encounter Builder**: CR-Budget basierend auf Party-Level + Encounter-Difficulty
-- [ ] **2024 MM Vollständigkeit**: Restl. ~10 Monster wie Sukkubus, Schwarze
-  Schlickpest, Ritter (selten genutzt — als "Legacy 2014" markieren?)
