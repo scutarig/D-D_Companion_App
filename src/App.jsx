@@ -92,11 +92,11 @@ const snb = (active) => ({
 });
 
 // ── Persistent char header (shown on all tabs) ────────────────────────────────
-function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed, mode, setMode }) {
+function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed, mode }) {
   const { active: char, setActive: setChar, aid } = useChar();
   const { classes } = useMulticlass(aid, char, null);
   const isDM = mode === "dm";
-  // Don't return early — render mode toggle even without char (for DM-only setups)
+  // Don't return early — render placeholder even without char (for DM-only setups)
 
   const lbl = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
 
@@ -121,33 +121,14 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
     setRestBanner(null); setRestHpInput("");
   };
 
-  // Mode-Toggle (always visible)
-  const modeBtn = (
-    <button
-      onClick={() => setMode(isDM ? "player" : "dm")}
-      title={isDM ? "DM-Modus aktiv — Klick für Spieler-Ansicht" : "Spieler-Modus aktiv — Klick für DM-Ansicht"}
-      style={{
-        ...sx.bsm(isDM ? C.purpleBright : C.gold),
-        fontSize: 10, padding: "4px 9px", fontWeight: 700,
-        background: isDM ? `${C.purpleBright}22` : `${C.gold}22`,
-        border: `1px solid ${isDM ? C.purpleBright : C.gold}88`,
-        color: isDM ? C.purpleBright : C.gold,
-        letterSpacing: 0.4,
-      }}
-    >
-      {isDM ? "🎲 DM" : "👤 Spieler"}
-    </button>
-  );
-
   // Char-less header (e.g. DM mode without active char)
   if (!char) {
     return (
       <div data-no-print style={{ background: "linear-gradient(180deg,#1c1826 0%,#16121e 100%)", borderBottom: `1px solid rgba(201,168,76,0.15)`, padding: "0 14px", flexShrink: 0 }}>
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height: 44 }}>
+        <div style={{ display:"flex", alignItems:"center", height: 44 }}>
           <div style={{ fontFamily: FH, fontSize: 12, color: C.textDim, fontStyle: "italic" }}>
             {isDM ? "🎲 DM-Modus aktiv — kein Charakter erforderlich" : "Kein Charakter gewählt"}
           </div>
-          {modeBtn}
         </div>
       </div>
     );
@@ -175,7 +156,6 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
           </div>
         </div>
         <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
-          {modeBtn}
           {!isDM && (
             <>
               <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
@@ -270,6 +250,18 @@ function AppInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
   const isDM = mode === "dm";
+
+  // Mode-Toggle mit Confirm-Dialog (verhindert versehentlichen Wechsel)
+  const requestModeSwitch = () => {
+    const target = isDM ? "Spieler" : "DM";
+    const targetIcon = isDM ? "👤" : "🎲";
+    const msg = isDM
+      ? "Möchtest du wirklich in den Spieler-Modus wechseln?\n\nDM-Tabs (Kampf, Bestiary, Klassen-Ref, Völker-Ref) werden ausgeblendet."
+      : "Möchtest du wirklich in den DM-Modus wechseln?\n\n⚠️ ACHTUNG: Im DM-Modus siehst du alle Monster-Stats (Spoiler!) und Save/PDF-Funktionen sind versteckt.";
+    if (window.confirm(`${targetIcon} Wechsel in ${target}-Modus?\n\n${msg}`)) {
+      setMode(isDM ? "player" : "dm");
+    }
+  };
 
   // Auto-couple viewMode (Bestiary spoiler) with global mode
   const [, setViewMode] = usePersist("app_view_mode_v1", "full");
@@ -437,19 +429,47 @@ function AppInner() {
           </div>
         </nav>
 
-        {/* Bottom: export (nur Player) */}
-        {!isDM && (
-          <div style={{ padding:"10px 4px 20px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
-            <button title="JSON exportieren" onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>⬇️</button>
-            <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"6px 0", width:"100%" }}>📄</button>
-          </div>
-        )}
-        {/* DM-Mode-Indicator at bottom */}
-        {isDM && (
-          <div style={{ padding:"10px 4px 20px", borderTop:"1px solid rgba(201,168,76,0.10)", textAlign:"center" }}>
-            <div style={{ fontSize:9, color:C.purpleBright, fontFamily:FH, letterSpacing:0.5, fontWeight:700 }}>🎲<br/>DM</div>
-          </div>
-        )}
+        {/* Bottom: export (nur Player) + Mode-Toggle (immer, prominentest unten) */}
+        <div style={{ padding:"8px 4px 14px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+          {!isDM && (
+            <>
+              <button title="JSON exportieren" onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
+              <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
+            </>
+          )}
+          {/* Mode-Toggle: prominent, hervorgehoben, unterhalb Exporte */}
+          <button
+            onClick={requestModeSwitch}
+            title={isDM ? "🎲 DM-Modus aktiv — Klick: Wechsel in Spieler-Modus" : "👤 Spieler-Modus aktiv — Klick: Wechsel in DM-Modus"}
+            style={{
+              width: "100%",
+              marginTop: 4,
+              padding: "10px 4px",
+              borderRadius: 9,
+              border: `1.5px solid ${isDM ? C.purpleBright : C.gold}`,
+              background: isDM
+                ? `linear-gradient(135deg, ${C.purple}55 0%, ${C.purple}22 100%)`
+                : `linear-gradient(135deg, ${C.gold}33 0%, ${C.gold}11 100%)`,
+              color: isDM ? C.purpleBright : C.gold,
+              fontFamily: FH,
+              fontWeight: 700,
+              fontSize: 9,
+              letterSpacing: 0.6,
+              cursor: "pointer",
+              transition: "all .18s",
+              boxShadow: isDM
+                ? `0 0 12px ${C.purple}55`
+                : `0 0 12px ${C.gold}33`,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 3,
+            }}
+          >
+            <span style={{ fontSize: 18, lineHeight: 1 }}>{isDM ? "🎲" : "👤"}</span>
+            <span style={{ fontSize: 8, lineHeight: 1 }}>{isDM ? "DM" : "PLAYER"}</span>
+          </button>
+        </div>
       </aside>
 
       {/* Charakter dropdown popover */}
@@ -481,7 +501,7 @@ function AppInner() {
       {/* Main column */}
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
         <OfflineBanner />
-        <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} setMode={setMode} />
+        <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
         <main style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
           {content}
         </main>
@@ -493,7 +513,7 @@ function AppInner() {
   return (
     <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text, overflowX:"hidden" }}>
       <OfflineBanner />
-      <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} setMode={setMode} />
+      <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
 
       {/* Main content — click closes sub-menu */}
       <main
@@ -551,6 +571,42 @@ function AppInner() {
           </div>
         );
       })()}
+
+      {/* Mode-Toggle-Strip — über Bottom-Nav, prominenter Wechsel-Button */}
+      <div style={{
+        background: "#0e0c14",
+        borderTop: "1px solid rgba(201,168,76,0.10)",
+        padding: "6px 10px",
+        flexShrink: 0,
+      }}>
+        <button
+          onClick={requestModeSwitch}
+          style={{
+            width: "100%",
+            padding: "8px 12px",
+            borderRadius: 9,
+            border: `1.5px solid ${isDM ? C.purpleBright : C.gold}`,
+            background: isDM
+              ? `linear-gradient(135deg, ${C.purple}55 0%, ${C.purple}22 100%)`
+              : `linear-gradient(135deg, ${C.gold}33 0%, ${C.gold}11 100%)`,
+            color: isDM ? C.purpleBright : C.gold,
+            fontFamily: FH,
+            fontWeight: 700,
+            fontSize: 11,
+            letterSpacing: 0.8,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+            boxShadow: isDM ? `0 0 12px ${C.purple}44` : `0 0 12px ${C.gold}33`,
+          }}
+        >
+          <span style={{ fontSize: 16 }}>{isDM ? "🎲" : "👤"}</span>
+          <span>{isDM ? "DM-MODUS AKTIV" : "SPIELER-MODUS AKTIV"}</span>
+          <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 4 }}>↻ Wechseln</span>
+        </button>
+      </div>
 
       {/* Bottom nav — 5 grouped tabs */}
       <nav style={{
