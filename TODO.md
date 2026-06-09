@@ -67,13 +67,15 @@ Offene Punkte nach der 2024 PHB UI-Migration.
 - [x] **Bonus-Action Spell-Rule** [pending commit]
   - Spellbook-Detail zeigt PHB-2024-Warnung für Bonus-Action-Zauber
   - Erklärt: Nur 1 Cantrip mit Action Casting Time auf gleichem Turn
-- [ ] **6 komplexe Origin Feats** mit User-Picker:
-  - Magic Initiate (2 Cantrips + 1 Lv1-Spell aus Cleric/Druid/Wizard)
-  - Crafter (3 Artisan's Tools)
-  - Skilled (3 Skills/Tools)
-  - Musician (3 Instrumente)
-  - Lucky (PB Luck Points trackbar)
-  - Tavern Brawler (+1 STR/CON Half-Feat)
+- [x] **6 komplexe Origin Feats** mit User-Picker [pending commit]
+  - [x] Magic Initiate (Liste → 2 Cantrips + 1 Lv1-Spell aus Cleric/Druid/Wizard)
+  - [x] Crafter (3 Artisan's Tools)
+  - [x] Skilled (3 Skills/Tools — mixed: Skills/Tools/Instrumente)
+  - [x] Musician (3 Instrumente)
+  - [x] Lucky (PB Luck Points trackbar mit Dot-UI, Auto-Reset auf LR)
+  - [x] Tavern Brawler (+1 STR/CON Half-Feat)
+  - Architektur: `src/data/originFeatChoices.js` + `src/components/CharacterSheet/OriginFeatChoices.jsx`
+  - Auto-Display nur bei komplexen Origin Feats
 
 ### Phase 4: DM-Features (nach Split)
 - [ ] **DM-Mode Notes** pro Monster (für Encounter-Planung)

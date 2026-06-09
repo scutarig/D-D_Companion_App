@@ -99,5 +99,10 @@ export function applyLongRest(char) {
     exhaustion: Math.max(0, (char.exhaustion || 0) - 1),
     // PHB 2024: Mensch (Resourceful) erhält automatisch Heroic Inspiration
     inspiration: grantsHeroicInspirationOnLR(char) ? true : char.inspiration,
+    // PHB 2024 Lucky Origin Feat: Luck Points refill on Long Rest
+    featChoices: {
+      ...(char.featChoices || {}),
+      ...(char.featChoices?.lucky ? { lucky: { ...char.featChoices.lucky, used: 0 } } : {}),
+    },
   };
 }

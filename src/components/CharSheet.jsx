@@ -5,6 +5,7 @@ import { ALL_VOELKER } from "../data/races.js";
 import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
 import BackgroundSelector from "./CharacterSheet/BackgroundSelector.jsx";
 import WeaponMasteryPicker from "./CharacterSheet/WeaponMasteryPicker.jsx";
+import OriginFeatChoices from "./CharacterSheet/OriginFeatChoices.jsx";
 import SubclassPicker from "./CharacterSheet/SubclassPicker.jsx";
 import SpellPreparationCard from "./CharacterSheet/SpellPreparationCard.jsx";
 import CantripsCard from "./CharacterSheet/CantripsCard.jsx";
@@ -91,6 +92,9 @@ export default function CharSheet({ char, setChar, printMode = false }) {
 
           {/* Weapon Mastery (only shown for martial classes) */}
           <WeaponMasteryPicker char={char} setChar={setChar} />
+
+          {/* Origin Feat Configuration (only if complex feat: Magic Initiate, Crafter, etc.) */}
+          <OriginFeatChoices char={char} setChar={setChar} />
 
           {/* Subclass Picker (Lv3 in 2024 PHB) */}
           <SubclassPicker char={char} classes={classes} setSubclass={setSubclass} />
