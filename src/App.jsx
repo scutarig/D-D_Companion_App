@@ -270,12 +270,47 @@ function AppInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDM]);
 
-  // Inject @media print styles once for PDF export
+  // Inject @media print + touch-optimization styles once
   useEffect(() => {
     if (document.getElementById("dnd-print-styles")) return;
     const styleEl = document.createElement("style");
     styleEl.id = "dnd-print-styles";
     styleEl.textContent = `
+      /* ── Touch-Optimization for Tablets (S7 FE, iPad etc.) ──
+         Bumps button padding/min-height on coarse-pointer devices ≥ 768px.
+         Mobile (<768px) stays compact for bottom-nav efficiency. */
+      @media (pointer: coarse) and (min-width: 768px) {
+        button {
+          min-height: 44px !important;
+        }
+        button[title]:not([data-no-touch]) {
+          padding-top: 8px !important;
+          padding-bottom: 8px !important;
+        }
+        input, select, textarea {
+          min-height: 40px !important;
+          font-size: 15px !important;
+        }
+        /* Sidebar buttons get more breathing room */
+        aside button {
+          padding: 12px 4px !important;
+        }
+        /* Mode-Toggle: ensure it's prominently touchable */
+        aside button[title*="Modus"] {
+          min-height: 60px !important;
+        }
+      }
+
+      /* ── Touch on Phones (<768px): keep compact but ≥40px ── */
+      @media (pointer: coarse) and (max-width: 767px) {
+        button {
+          min-height: 40px !important;
+        }
+        nav button {
+          min-height: 52px !important;
+        }
+      }
+
       @media print {
         /* Hide UI chrome */
         [data-no-print] { display: none !important; }
@@ -307,7 +342,9 @@ function AppInner() {
   const [charPos,  setCharPos]  = useState({ top: 0 });
   const refBtnRef               = useRef(null);
   const charBtnRef              = useRef(null);
-  const isMobile                = useIsMobile(768);
+  // Breakpoint 900: catches S7 FE portrait (~750px) and iPad portrait (~820px)
+  // so they get touch-friendly bottom-nav layout. Landscape tablet stays desktop.
+  const isMobile                = useIsMobile(900);
   const [mobileMenu, setMobileMenu] = useState(null); // null | "char-group" | "more"
 
   // Close mobile menu / dropdowns when mode changes

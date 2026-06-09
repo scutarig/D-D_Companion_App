@@ -6,7 +6,7 @@ import { D3_KLASSEN, is2024Class } from "../data/classes.js";
 const CL_COL = { Barbar:"#dc2626",Barde:"#a78bfa",Druide:"#4ade80",Hexenmeister:"#9d174d",Kämpfer:"#0d9488",Kleriker:"#f59e0b",Magier:"#60a5fa",Mönch:"#fb923c",Paladin:"#fde68a",Schurke:"#9ca3af",Waldläufer:"#22c55e",Zauberer:"#e879f9",Magieschmied:"#38bdf8" };
 
 export default function KlassenRef() {
-  const mob = useIsMobile(768);
+  const mob = useIsMobile(900);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
 

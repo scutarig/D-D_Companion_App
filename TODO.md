@@ -44,7 +44,14 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - Generische "+1 Waffe" Einträge bleiben als Legacy-Backward-Compat
   - 9 neue DMG-2024 Magic Items hinzugefügt (Berserker-Axt, Bag of Holding,
     Wand of Magic Missiles, Glas-Trinkhorn etc.)
-- [ ] **Tablet/Mobile-Tauglichkeit** prüfen (Samsung S7 FE Reference)
+- [x] **Tablet/Mobile-Tauglichkeit** [pending commit]
+  - Touch-Optimization CSS via `@media (pointer: coarse)` injected in App.jsx
+  - Buttons: min-height 44px auf Tablets, 40px auf Phones (Apple HIG ≥44px)
+  - Sidebar-Buttons: 12px padding für mehr Touch-Hitbox
+  - Mode-Toggle prominent: min-height 60px auf Tablets
+  - Inputs: min-height 40px + 15px font-size auf touch devices
+  - useIsMobile-Breakpoint: 768 → 900 (S7 FE/iPad-Portrait friendlier)
+  - Landscape-Tablet (≥900px) bleibt Desktop-Layout mit Sidebar
 
 ### Phase 3: PHB-2024 Restpunkte
 - [ ] **Heroic Inspiration** (2024 NEU)

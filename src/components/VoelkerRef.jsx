@@ -29,7 +29,7 @@ const fullByName = Object.fromEntries(RACES_FULL.map(r => [r.name, r]));
 const fullById = Object.fromEntries(RACES_FULL.map(r => [r.id, r]));
 
 export default function VoelkerRef() {
-  const mob = useIsMobile(768);
+  const mob = useIsMobile(900);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
   const [editionFilter, setEditionFilter] = useState("all"); // "all" | "2024" | "2014"
