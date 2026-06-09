@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { C, sx, SC, ABS, SKILLS, FH } from "../constants/theme.js";
 import { modOf, modStr, getPB } from "../utils/helpers.js";
-import { ALL_VOELKER, DND_BACKGROUNDS } from "../data/races.js";
-import { applyBackground } from "../utils/backgrounds.js";
+import { ALL_VOELKER } from "../data/races.js";
 import RaceSelector from "./CharacterSheet/RaceSelector.jsx";
+import BackgroundSelector from "./CharacterSheet/BackgroundSelector.jsx";
 import TraitsFeatures from "./CharacterSheet/TraitsFeatures.jsx";
 import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
 import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
@@ -41,14 +41,7 @@ export default function CharSheet({ char, setChar }) {
             <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>via Klassen-Manager</div>
           </div>
           <RaceSelector char={char} setChar={setChar} />
-          <div>
-            <label style={sx.lbl}>Hintergrund</label>
-            <select value={char.background} onChange={e => setChar(prev => applyBackground(prev, e.target.value))} style={sx.sel}>
-              {DND_BACKGROUNDS.map(b => <option key={b}>{b}</option>)}
-              <option value="Eigener">Eigener...</option>
-            </select>
-            {char.background === "Eigener" && <input value={char.backgroundCustom || ""} onChange={e => u("backgroundCustom", e.target.value)} style={{ ...sx.inp, marginTop: 4 }} placeholder="Eigener Hintergrund..." />}
-          </div>
+          <BackgroundSelector char={char} setChar={setChar} />
           <div>
             <label style={sx.lbl}>Level (gesamt)</label>
             <div style={{ ...sx.inp, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 700, color: C.gold, fontFamily: FH, cursor: "default", userSelect: "none" }}>

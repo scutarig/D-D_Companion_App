@@ -1,3 +1,19 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// utils/backgrounds.js — 2024 PHB Background Logic
+//
+// 2024 Reform: Backgrounds geben jetzt
+//   - ASI (Ability Score Increase): 3 vorgegebene Stats, +2/+1 oder +1/+1/+1
+//   - Origin Feat (1 Feat pro Background)
+//   - 2 Skill Profs (fest)
+//   - 1 Tool Prof (fest)
+//   - Equipment Wahl A (Items) oder B (50 GP)
+//
+// ASI wird per Delta-Tracking auf char.str/dex/etc. angewendet:
+//   - char.bgAsi = { str: 2, dex: 1 } speichert die User-Wahl
+//   - applyBackgroundAsi() berechnet diff zur vorherigen Wahl und
+//     addiert/subtrahiert auf den Stats → kein Double-Apply möglich
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { BACKGROUNDS_FULL, getBackgroundData } from "../data/backgrounds.js";
 
 const BG_SOURCE_PREFIX = "Hintergrund:";
@@ -11,7 +27,7 @@ export function removeBackgroundTraits(char) {
 }
 
 /**
- * Build the bgTraits array for a given background.
+ * Build the bgTraits array for a 2024 background.
  * Returns [{id, name, description, source, category}]
  */
 function buildBgTraits(bg) {
@@ -29,48 +45,23 @@ function buildBgTraits(bg) {
     });
   }
 
-  // Tool proficiencies
-  if (bg.toolProfs?.length) {
+  // Tool proficiency
+  if (bg.toolProf) {
     traits.push({
-      id: `bg_${bg.id}_tools`,
-      name: `Werkzeuge: ${bg.toolProfs.join(", ")}`,
-      description: `Vom Hintergrund ${bg.name}: Du hast Übung mit ${bg.toolProfs.join(", ")}.`,
+      id: `bg_${bg.id}_tool`,
+      name: `Werkzeug: ${bg.toolProf}`,
+      description: `Vom Hintergrund ${bg.name}: Du hast Übung mit ${bg.toolProf}.`,
       source: src,
       category: "trait",
     });
   }
 
-  // Languages
-  if (bg.languages) {
-    const langText = typeof bg.languages === "number"
-      ? `${bg.languages} Sprache${bg.languages > 1 ? "n" : ""} nach Wahl`
-      : bg.languages.join(", ");
+  // Origin Feat (NEU 2024)
+  if (bg.feat) {
     traits.push({
-      id: `bg_${bg.id}_lang`,
-      name: `Sprachen: ${langText}`,
-      description: `Vom Hintergrund ${bg.name}: Du sprichst ${langText}.`,
-      source: src,
-      category: "trait",
-    });
-  }
-
-  // Equipment
-  if (bg.equipment?.length) {
-    traits.push({
-      id: `bg_${bg.id}_equipment`,
-      name: "Startausrüstung",
-      description: `${bg.equipment.join(", ")}.`,
-      source: src,
-      category: "trait",
-    });
-  }
-
-  // Feature
-  if (bg.feature) {
-    traits.push({
-      id: `bg_${bg.id}_feature`,
-      name: bg.feature.name,
-      description: bg.feature.description,
+      id: `bg_${bg.id}_feat`,
+      name: `Origin Feat: ${bg.feat}`,
+      description: `Vom Hintergrund ${bg.name}: Du erhältst den Origin Feat ${bg.feat} (siehe feats.js für Details).`,
       source: src,
       category: "feature",
     });
@@ -79,36 +70,84 @@ function buildBgTraits(bg) {
   return traits;
 }
 
+/** Stats die Background gibt (lowercase) */
+const ASI_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
+
+/** Sum of all values in an ASI object */
+export function asiTotal(asi) {
+  if (!asi) return 0;
+  return ASI_KEYS.reduce((sum, k) => sum + (asi[k] || 0), 0);
+}
+
+/** Validate ASI distribution: total = 3, max per stat = 2, all stats in background.abilityScores */
+export function isAsiValid(asi, bg) {
+  if (!asi || !bg) return false;
+  const total = asiTotal(asi);
+  if (total !== 3) return false;
+  const validStats = bg.abilityScores.map(s => s.toLowerCase());
+  for (const k of ASI_KEYS) {
+    const v = asi[k] || 0;
+    if (v < 0 || v > 2) return false;
+    if (v > 0 && !validStats.includes(k)) return false;
+  }
+  return true;
+}
+
+/**
+ * Apply ASI delta to char.str/dex/etc.
+ * Calculates diff between newAsi and char.bgAsi, applies to base stats.
+ *
+ * Example: old = {str:2}, new = {str:0, dex:2, con:1}
+ *   → char.str -= 2, char.dex += 2, char.con += 1
+ */
+export function applyBackgroundAsi(char, newAsi) {
+  const oldAsi = char.bgAsi || {};
+  const newChar = { ...char };
+  for (const k of ASI_KEYS) {
+    const delta = (newAsi?.[k] || 0) - (oldAsi[k] || 0);
+    if (delta !== 0) {
+      newChar[k] = (newChar[k] || 10) + delta;
+    }
+  }
+  newChar.bgAsi = newAsi ? { ...newAsi } : null;
+  return newChar;
+}
+
 /**
  * Apply a background to a character:
- * 1. Remove old background traits
- * 2. Add new traits from the chosen background
- * 3. Merge specific languages into char.languages
+ * 1. Revert old ASI (if any)
+ * 2. Remove old background traits
+ * 3. Add new traits from the chosen background
  */
 export function applyBackground(char, backgroundName) {
-  const charWithoutOld = removeBackgroundTraits(char);
-  const bg = getBackgroundData(backgroundName);
+  // Step 1: Revert old ASI (set bgAsi to null/empty applies negative delta)
+  let workChar = applyBackgroundAsi(char, null);
 
+  // Step 2: Remove old traits
+  workChar = removeBackgroundTraits(workChar);
+
+  // Step 3: Apply new background
+  const bg = getBackgroundData(backgroundName);
   if (!bg) {
-    // Unknown/custom background: just clear traits, keep name
-    return { ...charWithoutOld, background: backgroundName };
+    // Unknown/custom background: just clear, keep name
+    return {
+      ...workChar,
+      background: backgroundName,
+      bgAsi: null,
+      originFeat: null,
+      bgEquipChoice: null,
+    };
   }
 
   const newTraits = buildBgTraits(bg);
 
-  // Merge specific languages (when bg.languages is an array)
-  let languages = [...(charWithoutOld.languages || [])];
-  if (Array.isArray(bg.languages)) {
-    bg.languages.forEach(lang => {
-      if (!languages.includes(lang)) languages.push(lang);
-    });
-  }
-
   return {
-    ...charWithoutOld,
+    ...workChar,
     background: backgroundName,
-    bgTraits: [...(charWithoutOld.bgTraits || []), ...newTraits],
-    languages,
+    bgTraits: [...(workChar.bgTraits || []), ...newTraits],
+    bgAsi: null,         // User must re-pick distribution
+    originFeat: bg.feat || null,
+    bgEquipChoice: null, // User must pick A or B
   };
 }
 
