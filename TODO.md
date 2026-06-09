@@ -87,7 +87,10 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - Export als .txt
   - NEU: Archive auch im Encounter Builder zugänglich (DM-Workflow)
   - Visual Outcome-Icons + Status-Summary pro Eintrag
-- [ ] **2024 MM Vollständigkeit** — restl. ~10 Monster (Sukkubus, Schwarze Schlickpest, Ritter)
+- [x] **2024 MM Vollständigkeit** — ALLE 62 Monster auf 2024-Schema [pending commit]
+  - Wolf, Orc (Krieger), Gelatinous Cube, Black Pudding, Knight, Succubus migriert
+  - Alle haben jetzt: nameDE, edition, pb, initiative, initiativePassive,
+    saveBonuses, habitat, treasure, separated bonusActions+reactions
 
 ### Phase 5: Lokalisierung
 - [ ] **DE-Übersetzung** D&D-konform (Begriffe wie "Übungsbonus" statt "Proficiency Bonus")
