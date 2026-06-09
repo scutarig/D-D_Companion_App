@@ -1,20 +1,45 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useIsMobile } from "../hooks/useIsMobile.js";
-import { DND_RACES } from "../data/races.js";
+import { DND_RACES, RACES_FULL } from "../data/races.js";
 
-const RACE_COL = { Mensch:"#c9a84c",Elf:"#4ade80",Hochelf:"#60a5fa",Waldelfe:"#22c55e","Dunkelelf (Drow)":"#a78bfa",Zwerg:"#fb923c",Bergzwerg:"#f97316",Hügelzwerg:"#d97706",Halbling:"#34d399",Halbork:"#dc2626",Halbelfe:"#c084fc",Tiefling:"#f472b6","Drachen-Geborener":"#ef4444",Gnom:"#38bdf8",Aarakocra:"#a3e635","Tiefling (Varianten)":"#e879f9",Aasimar:"#fde68a","Wasserkind (Genasi)":"#06b6d4",Triton:"#3b82f6","Yuan-ti Pureblood":"#4ade80" };
-const RACE_ICON = { Mensch:"👤",Elf:"🧝",Hochelf:"🔮",Waldelfe:"🌿","Dunkelelf (Drow)":"🕷️",Zwerg:"⛏️",Bergzwerg:"🏔️",Hügelzwerg:"🍄",Halbling:"🍀",Halbork:"⚔️",Halbelfe:"✨",Tiefling:"😈","Drachen-Geborener":"🐉",Gnom:"🔧",Aarakocra:"🦅","Tiefling (Varianten)":"🌑",Aasimar:"👼","Wasserkind (Genasi)":"💧",Triton:"🌊","Yuan-ti Pureblood":"🐍" };
+const RACE_COL = {
+  Mensch:"#c9a84c", Aasimar:"#fde68a", Dragonborn:"#ef4444",
+  Dwarf:"#fb923c", Elf:"#4ade80", Gnome:"#38bdf8",
+  Goliath:"#a78bfa", Halfling:"#34d399", Orc:"#dc2626", Tiefling:"#f472b6",
+  // Legacy
+  Hochelf:"#60a5fa", Waldelfe:"#22c55e", "Dunkelelf (Drow)":"#a78bfa",
+  Bergzwerg:"#f97316", Hügelzwerg:"#d97706", Halbork:"#dc2626", Halbelfe:"#c084fc",
+  "Drachen-Geborener":"#ef4444", Aarakocra:"#a3e635", "Tiefling (Varianten)":"#e879f9",
+  "Wasserkind (Genasi)":"#06b6d4", Triton:"#3b82f6", "Yuan-ti Pureblood":"#4ade80",
+};
+const RACE_ICON = {
+  Mensch:"👤", Aasimar:"👼", Dragonborn:"🐉",
+  Dwarf:"⛏️", Elf:"🧝", Gnome:"🔧",
+  Goliath:"🏔️", Halfling:"🍀", Orc:"⚔️", Tiefling:"😈",
+  // Legacy
+  Hochelf:"🔮", Waldelfe:"🌿", "Dunkelelf (Drow)":"🕷️",
+  Bergzwerg:"🏔️", Hügelzwerg:"🍄", Halbork:"⚔️", Halbelfe:"✨",
+  "Drachen-Geborener":"🐉", Aarakocra:"🦅", "Tiefling (Varianten)":"🌑",
+  "Wasserkind (Genasi)":"💧", Triton:"🌊", "Yuan-ti Pureblood":"🐍",
+};
+
+// Merge data: prefer RACES_FULL when available (structured 2024 PHB)
+const fullByName = Object.fromEntries(RACES_FULL.map(r => [r.name, r]));
+const fullById = Object.fromEntries(RACES_FULL.map(r => [r.id, r]));
 
 export default function VoelkerRef() {
   const mob = useIsMobile(768);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
+  const [editionFilter, setEditionFilter] = useState("all"); // "all" | "2024" | "2014"
 
-  const filtered = DND_RACES.filter(r =>
-    r.name.toLowerCase().includes(search.toLowerCase()) ||
-    r.desc?.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = DND_RACES.filter(r => {
+    const matchesSearch = r.name.toLowerCase().includes(search.toLowerCase()) ||
+      r.desc?.toLowerCase().includes(search.toLowerCase());
+    const matchesEdition = editionFilter === "all" || r.edition === editionFilter;
+    return matchesSearch && matchesEdition;
+  });
 
   const Tag = ({label,color}) => (
     <span style={{background:`${color}22`,border:`1px solid ${color}55`,borderRadius:4,padding:"1px 6px",fontSize:11,color,display:"inline-block",margin:"1px 2px"}}>{label}</span>
@@ -26,23 +51,54 @@ export default function VoelkerRef() {
     </div>
   );
 
+  const col = sel ? (RACE_COL[sel.name]||C.purpleBright) : C.purpleBright;
+  const full = sel ? fullByName[sel.name] : null;
+  const is2024 = sel?.edition === "2024";
+  const count2024 = DND_RACES.filter(r => r.edition === "2024").length;
+
   return (
     <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
       {/* ── Left: list ── */}
       <div style={{width:mob?"100%":220,flexShrink:0}}>
         <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="🔍 Volk suchen…" style={{...sx.inp,marginBottom:6}}/>
-        <div style={{fontSize:10,color:C.textDim,fontFamily:FH,letterSpacing:1,marginBottom:6,paddingBottom:6,borderBottom:`1px solid ${C.border}`}}>
-          {DND_RACES.length} VÖLKER · D&D 5e
+
+        {/* Edition filter */}
+        <div style={{display:"flex",gap:4,marginBottom:6}}>
+          {[
+            { id:"all", label:"Alle" },
+            { id:"2024", label:"PHB 2024" },
+            { id:"2014", label:"Legacy" },
+          ].map(opt => (
+            <button key={opt.id} onClick={() => setEditionFilter(opt.id)}
+              style={{
+                flex:1, padding:"4px 6px", borderRadius:5, fontSize:10,
+                fontFamily:FH, fontWeight:700, letterSpacing:0.3,
+                cursor:"pointer", transition:"all .15s",
+                background: editionFilter === opt.id ? `${C.amberBright}22` : C.surface,
+                border: `1px solid ${editionFilter === opt.id ? C.amberBright : C.border}`,
+                color: editionFilter === opt.id ? C.amberBright : C.textDim,
+              }}>
+              {opt.label}
+            </button>
+          ))}
         </div>
-        <div style={{maxHeight:mob?"none":"62vh",overflowY:"auto"}}>
+
+        <div style={{fontSize:10,color:C.textDim,fontFamily:FH,letterSpacing:1,marginBottom:6,paddingBottom:6,borderBottom:`1px solid ${C.border}`}}>
+          {DND_RACES.length} VÖLKER · {count2024} auf PHB 2024
+        </div>
+        <div style={{maxHeight:mob?"none":"58vh",overflowY:"auto"}}>
           {filtered.map(r=>{
-            const col = RACE_COL[r.name]||C.purpleBright;
+            const c = RACE_COL[r.name]||C.purpleBright;
             const active = sel?.name===r.name;
+            const legacy = r.edition === "2014";
             return (
-              <div key={r.name} onClick={()=>setSel(r)} style={{background:active?`${col}33`:C.surface,borderTop:`1px solid ${active?col:C.border}`,borderRight:`1px solid ${active?col:C.border}`,borderBottom:`1px solid ${active?col:C.border}`,borderLeft:`3px solid ${col}`,borderRadius:4,padding:"7px 10px",cursor:"pointer",marginBottom:3,display:"flex",alignItems:"center",gap:8}}>
+              <div key={r.name} onClick={()=>setSel(r)} style={{background:active?`${c}33`:C.surface,borderTop:`1px solid ${active?c:C.border}`,borderRight:`1px solid ${active?c:C.border}`,borderBottom:`1px solid ${active?c:C.border}`,borderLeft:`3px solid ${c}`,borderRadius:4,padding:"7px 10px",cursor:"pointer",marginBottom:3,display:"flex",alignItems:"center",gap:8,opacity:legacy?0.7:1}}>
                 <span style={{fontSize:15,flexShrink:0}}>{RACE_ICON[r.name]||"🧬"}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontSize:13,fontFamily:FH,color:active?col:C.textBright,fontWeight:active?700:400}}>{r.name}</div>
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{fontSize:13,fontFamily:FH,color:active?c:C.textBright,fontWeight:active?700:400,display:"flex",alignItems:"center",gap:5}}>
+                    {r.name}
+                    {!legacy && <span title="PHB 2024" style={{fontSize:8,padding:"1px 4px",borderRadius:3,background:`${C.amberBright}22`,border:`1px solid ${C.amberBright}55`,color:C.amberBright,fontWeight:700,letterSpacing:0.3}}>2024</span>}
+                  </div>
                   <div style={{fontSize:11,color:C.textDim}}>{r.size} · {r.speed}ft</div>
                 </div>
               </div>
@@ -61,10 +117,15 @@ export default function VoelkerRef() {
               <div style={{display:"flex",alignItems:"center",gap:12}}>
                 <span style={{fontSize:36}}>{RACE_ICON[sel.name]||"🧬"}</span>
                 <div>
-                  <div style={{fontFamily:FH,fontSize:22,color:RACE_COL[sel.name]||C.gold,fontWeight:700}}>{sel.name}</div>
+                  <div style={{fontFamily:FH,fontSize:22,color:col,fontWeight:700,display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+                    {sel.name}
+                    {is2024 && <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:`${C.amberBright}22`,border:`1px solid ${C.amberBright}55`,color:C.amberBright,fontWeight:700,letterSpacing:0.5}}>PHB 2024</span>}
+                    {!is2024 && <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:`${C.textDim}22`,border:`1px solid ${C.textDim}55`,color:C.textDim,fontWeight:700,letterSpacing:0.5}}>LEGACY 2014</span>}
+                  </div>
                   <div style={{display:"flex",gap:6,marginTop:4,flexWrap:"wrap"}}>
-                    <Tag label={`📏 ${sel.size}`} color={RACE_COL[sel.name]||C.purple}/>
-                    <Tag label={`💨 ${sel.speed}ft`} color={RACE_COL[sel.name]||C.purple}/>
+                    <Tag label={`📏 ${sel.size}`} color={col}/>
+                    <Tag label={`💨 ${sel.speed}ft`} color={col}/>
+                    {full?.languages && <Tag label={`💬 ${full.languages.join(", ")}`} color={C.blue}/>}
                   </div>
                 </div>
               </div>
@@ -72,27 +133,79 @@ export default function VoelkerRef() {
 
             {/* Description */}
             <Sect title="Über das Volk">
-              <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{sel.desc}</div>
+              <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{full?.description || sel.desc}</div>
             </Sect>
 
-            {/* Traits */}
-            <Sect title={`Rassenmerkmale (${sel.traits.length})`}>
-              <div style={{display:"flex",flexDirection:"column",gap:4}}>
-                {sel.traits.map((t,i)=>(
-                  <div key={i} style={{display:"flex",gap:8,background:"rgba(255,255,255,0.03)",borderRadius:6,padding:"7px 10px",borderTop:`1px solid ${C.border}`,borderRight:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`,borderLeft:`3px solid ${RACE_COL[sel.name]||C.purple}`}}>
-                    <span style={{color:RACE_COL[sel.name]||C.teal,fontSize:12,minWidth:14,flexShrink:0}}>▸</span>
-                    <span style={{fontSize:13,color:C.text,lineHeight:1.5}}>{t}</span>
-                  </div>
-                ))}
-              </div>
-            </Sect>
+            {/* 2024 Structured Traits */}
+            {full?.traits && full.traits.length > 0 && (
+              <Sect title={`Rassen-Merkmale (${full.traits.length})`}>
+                <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                  {full.traits.map((t,i)=>(
+                    <div key={i} style={{background:"rgba(255,255,255,0.03)",borderRadius:6,padding:"8px 11px",borderLeft:`3px solid ${col}`}}>
+                      <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:3,fontFamily:FH,letterSpacing:0.3}}>{t.name}</div>
+                      <div style={{fontSize:11,color:C.textDim,lineHeight:1.5}}>{t.description}</div>
+                    </div>
+                  ))}
+                </div>
+              </Sect>
+            )}
+
+            {/* 2024 Features (z.B. Lv3 Aasimar Celestial Revelation) */}
+            {full?.features && full.features.length > 0 && (
+              <Sect title={`Level-Features (${full.features.length})`}>
+                <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                  {full.features.map((f,i)=>(
+                    <div key={i} style={{background:`${col}11`,borderRadius:6,padding:"8px 11px",borderLeft:`3px solid ${col}`,border:`1px solid ${col}33`}}>
+                      <div style={{fontSize:12,fontWeight:700,color:col,marginBottom:3,fontFamily:FH,letterSpacing:0.3}}>✦ {f.name}</div>
+                      <div style={{fontSize:11,color:C.text,lineHeight:1.5}}>{f.description}</div>
+                    </div>
+                  ))}
+                </div>
+              </Sect>
+            )}
+
+            {/* 2024 Lineages */}
+            {full?.lineages && full.lineages.length > 0 && (
+              <Sect title={`Lineages (${full.lineages.length})`}>
+                <div style={{display:"flex",flexDirection:"column",gap:5}}>
+                  {full.lineages.map((l)=>(
+                    <div key={l.id} style={{background:"rgba(255,255,255,0.02)",borderRadius:6,padding:"7px 11px",borderLeft:`3px solid ${col}88`}}>
+                      <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:2,fontFamily:FH}}>{l.name}</div>
+                      <div style={{fontSize:11,color:C.textDim,lineHeight:1.45}}>{l.description}</div>
+                    </div>
+                  ))}
+                </div>
+              </Sect>
+            )}
+
+            {/* Legacy Traits (string list — for 2014 entries without RACES_FULL) */}
+            {!full && sel.traits && (
+              <Sect title={`Rassen-Merkmale (${sel.traits.length})`}>
+                <div style={{display:"flex",flexDirection:"column",gap:4}}>
+                  {sel.traits.map((t,i)=>(
+                    <div key={i} style={{display:"flex",gap:8,background:"rgba(255,255,255,0.03)",borderRadius:6,padding:"7px 10px",borderLeft:`3px solid ${col}`}}>
+                      <span style={{color:col,fontSize:12,minWidth:14,flexShrink:0}}>▸</span>
+                      <span style={{fontSize:13,color:C.text,lineHeight:1.5}}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{marginTop:8,padding:"6px 10px",background:`${C.amberBright}11`,border:`1px solid ${C.amberBright}33`,borderRadius:6,fontSize:10,color:C.amberBright,fontStyle:"italic"}}>
+                  ⚠️ Legacy 2014 — keine strukturierten 2024-Daten. Siehe PHB 2024 Species für ersatzweise Optionen.
+                </div>
+              </Sect>
+            )}
           </div>
         ) : (
           <div style={{...sx.card,color:C.textDim,textAlign:"center",fontStyle:"italic",padding:40}}>
             <div style={{fontSize:36,marginBottom:10}}>🧬</div>
-            Volk auswählen ({DND_RACES.length} verfügbar)
+            Volk auswählen ({count2024} auf PHB 2024 verfügbar)
             <div style={{display:"flex",flexWrap:"wrap",gap:5,justifyContent:"center",marginTop:14}}>
-              {DND_RACES.map(r=><span key={r.name} onClick={()=>setSel(r)} style={{...sx.tag(RACE_COL[r.name]||C.purple),cursor:"pointer",fontFamily:FH,fontSize:11}}>{RACE_ICON[r.name]||"🧬"} {r.name}</span>)}
+              {DND_RACES.filter(r => r.edition === "2024").map(r=>(
+                <span key={r.name} onClick={()=>setSel(r)} style={{...sx.tag(RACE_COL[r.name]||C.purple),cursor:"pointer",fontFamily:FH,fontSize:11}}>{RACE_ICON[r.name]||"🧬"} {r.name}</span>
+              ))}
+            </div>
+            <div style={{marginTop:14,fontSize:10,color:C.textDim,fontStyle:"italic"}}>
+              2024-Reform: Keine ASI an Species — Boni kommen vom Background!
             </div>
           </div>
         )}

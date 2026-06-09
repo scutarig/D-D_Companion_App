@@ -23,7 +23,13 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - [x] Bündel C (Mages): Wizard, Sorcerer, Warlock [6b6e2a5]
   - [x] Bündel D (Priests): Cleric, Druid [pending commit]
   - [ ] **Artificer:** NICHT in PHB 2024 — bleibt 2014-Legacy bis WotC Update veröffentlicht (Tasha's-Quelle)
-- [ ] **Völker-Referenz** komplett auf PHB 2024 (Lineages-System, alle Traits)
+- [x] **Völker-Referenz** komplett auf PHB 2024 [pending commit]
+  - VoelkerRef.jsx nutzt jetzt RACES_FULL (strukturierte 2024-Daten)
+  - 2024-Badge in Liste + Detail
+  - Edition-Filter (Alle/PHB 2024/Legacy)
+  - Strukturierte Traits + Features + Lineages-Anzeige
+  - 10 PHB-2024-Species verifiziert vs. PHB-2024 PDF
+  - Legacy 2014 mit Warnhinweis + Verweis auf Ersatz-Optionen
 - [ ] **Schnellreferenz** exakt nach PHB-2024-Original (Conditions, Actions, Skills, Tarnung etc.)
 - [ ] **Equipment-Katalog** überarbeiten:
   - Magic-Modifier-System statt eigener Waffen-Entry
