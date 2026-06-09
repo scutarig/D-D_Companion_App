@@ -97,6 +97,18 @@ export const RACES_FULL = [
     features: [
       { id: "dragonborn_flight", name: "Draconic Flight (Lv5)", description: "NEU 2024: Bonus-Aktion: Spektrale Flügel für 10 Min (oder bis du sie einklappst). Fly Speed = Speed. 1×/Long Rest.", source: "Dragonborn", category: "feature" },
     ],
+    lineages: [
+      { id: "black",  name: "Schwarzer Drache",  description: "Acid Damage. Atemwaffe: 30ft Linie." },
+      { id: "blue",   name: "Blauer Drache",     description: "Lightning Damage. Atemwaffe: 30ft Linie." },
+      { id: "brass",  name: "Messingdrache",     description: "Fire Damage. Atemwaffe: 30ft Linie." },
+      { id: "bronze", name: "Bronzedrache",      description: "Lightning Damage. Atemwaffe: 30ft Linie." },
+      { id: "copper", name: "Kupferdrache",      description: "Acid Damage. Atemwaffe: 30ft Linie." },
+      { id: "gold",   name: "Golddrache",        description: "Fire Damage. Atemwaffe: 15ft Kegel." },
+      { id: "green",  name: "Grüner Drache",     description: "Poison Damage. Atemwaffe: 15ft Kegel." },
+      { id: "red",    name: "Roter Drache",      description: "Fire Damage. Atemwaffe: 15ft Kegel." },
+      { id: "silver", name: "Silberdrache",      description: "Cold Damage. Atemwaffe: 15ft Kegel." },
+      { id: "white",  name: "Weißer Drache",     description: "Cold Damage. Atemwaffe: 15ft Kegel." },
+    ],
   },
   {
     id: "dwarf", name: "Dwarf", edition: "2024",
@@ -158,6 +170,14 @@ export const RACES_FULL = [
     ],
     features: [
       { id: "goliath_large", name: "Large Form (Lv5)", description: "Bonus-Aktion: Wachse zu Large für 10 Min (oder beende es). Vorteil auf STR-Checks + +10ft Speed. 1×/Long Rest.", source: "Goliath", category: "feature" },
+    ],
+    lineages: [
+      { id: "cloud",  name: "Cloud Giant Ancestry", description: "Cloud's Jaunt: Bonus-Aktion → magisch 30ft teleportieren. PB×/LR." },
+      { id: "fire",   name: "Fire Giant Ancestry",  description: "Fire's Burn: Bei Treffer 1d10 Fire-Schaden extra. PB×/LR." },
+      { id: "frost",  name: "Frost Giant Ancestry", description: "Frost's Chill: Bei Treffer 1d6 Cold + Speed -10ft bis Anfang deines nächsten Zugs. PB×/LR." },
+      { id: "hill",   name: "Hill Giant Ancestry",  description: "Hill's Tumble: Bei Treffer Large oder kleinere Wesen → Prone. PB×/LR." },
+      { id: "stone",  name: "Stone Giant Ancestry", description: "Stone's Endurance: Reaktion bei Schaden → 1d12+CON reduzieren. PB×/LR." },
+      { id: "storm",  name: "Storm Giant Ancestry", description: "Storm's Thunder: Reaktion bei Schaden von Wesen in 60ft → 1d8 Thunder zurück. PB×/LR." },
     ],
   },
   {
