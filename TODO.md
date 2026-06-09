@@ -36,10 +36,14 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - 8 Mastery Properties komplett (Cleave/Graze/Nick/Push/Sap/Slow/Topple/Vex)
   - 10 Weapon Properties (Ammunition, Finesse, Heavy, Light, Loading, Range, Reach, Thrown, Two-Handed, Versatile)
   - PHB-2024-Reform-Hinweise (D20 Test, Critical nur auf Weapon, Counterspell-Änderung etc.)
-- [ ] **Equipment-Katalog** überarbeiten:
-  - Magic-Modifier-System statt eigener Waffen-Entry
-  - Langschwert +0/+1/+2/+3 als Modifier, nicht 4 Entries
-  - DMG-2024 Magic-Items-Liste vollständig
+- [x] **Equipment-Katalog** Magic-Modifier-System [pending commit]
+  - `applyMagicModifier(item, plus)` Helper in items.js
+  - Pro Basis-Waffe/Rüstung: +0/+1/+2/+3 Picker direkt im Katalog-Modal
+  - Auto-Naming: "Langschwert +2", Auto-Rarity: Uncommon/Rare/Very Rare
+  - Auto-Bonuses: hit/dmg für Weapons, ac für Armor
+  - Generische "+1 Waffe" Einträge bleiben als Legacy-Backward-Compat
+  - 9 neue DMG-2024 Magic Items hinzugefügt (Berserker-Axt, Bag of Holding,
+    Wand of Magic Missiles, Glas-Trinkhorn etc.)
 - [ ] **Tablet/Mobile-Tauglichkeit** prüfen (Samsung S7 FE Reference)
 
 ### Phase 3: PHB-2024 Restpunkte

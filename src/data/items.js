@@ -1,3 +1,62 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// SRD Items + 2024 Equipment + DMG Magic Items
+//
+// MAGIC-MODIFIER-SYSTEM:
+// Waffen + Rüstungen mit `magicCompatible: true` können im Katalog als
+// +0/+1/+2/+3 Variante zum Inventar hinzugefügt werden (siehe Katalog.jsx).
+// Damit verschwindet die Notwendigkeit für N×3 separate Magic-Variants.
+//
+// Bonus-Anwendung beim Add-to-Inventory:
+//   +1: Common→Uncommon, +1 auf Hit/Damage (Weapon) ODER +1 AC (Armor)
+//   +2: Rare, +2 auf Hit/Damage ODER +2 AC
+//   +3: Very Rare, +3 auf Hit/Damage ODER +3 AC
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// PHB 2024 Mastery-Property auf Waffen (siehe weaponMasteries.js):
+// Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const MAGIC_MODIFIERS = [
+  { plus: 0, label: "Standard", rar: "Common",    glow: false },
+  { plus: 1, label: "+1",       rar: "Uncommon",  glow: true },
+  { plus: 2, label: "+2",       rar: "Rare",      glow: true },
+  { plus: 3, label: "+3",       rar: "Very Rare", glow: true },
+];
+
+/**
+ * Apply magic modifier to a base item.
+ * Returns a new item with:
+ *  - name: "Langschwert +2"
+ *  - dmg: "1d8 S +2" (Weapon) or ac: "+2 AC" (Armor)
+ *  - rarity bumped
+ *  - magic: true, bonuses: { hit: 2, dmg: 2 } / { ac: 2 }
+ */
+export function applyMagicModifier(baseItem, plus) {
+  if (!plus || plus < 1) return baseItem;
+  const mod = MAGIC_MODIFIERS.find(m => m.plus === plus);
+  if (!mod) return baseItem;
+  const isWeapon = baseItem.type === "Weapon";
+  const isArmor  = baseItem.type === "Armor";
+  if (!isWeapon && !isArmor) return baseItem;
+
+  return {
+    ...baseItem,
+    name: `${baseItem.name} +${plus}`,
+    rar: mod.rar,
+    magic: true,
+    bonuses: isWeapon
+      ? { hit: plus, dmg: plus }
+      : { ac: plus },
+    dmg: isWeapon
+      ? `${baseItem.dmg} (+${plus})`
+      : baseItem.dmg,
+    ac: isArmor
+      ? `${baseItem.ac} (+${plus})`
+      : baseItem.ac,
+    notes: `Magische Waffe +${plus}: +${plus} auf Angriffsrolle und Schaden. Gilt als magisch.${baseItem.notes ? "\n\nBasis: " + baseItem.notes : ""}`,
+  };
+}
+
 export const SRD_ITEMS = [
   // ── Simple Melee ──────────────────────────────────────────────────────────
   {id:1,  name:"Langschwert",       type:"Weapon",sub:"Martial Melee",  dmg:"1d8 S",  ac:"",eff:"",wt:"3 lb",  rar:"Common",notes:"Vielseitig: 1d10 zweihändig."},
@@ -107,10 +166,14 @@ export const SRD_ITEMS = [
   {id:106,name:"Blasrohr-Nadeln (50)",type:"Item",sub:"Ammo",           dmg:"",ac:"",eff:"",wt:"1 lb",  rar:"Common",notes:"Für Blasrohr."},
 
   // ── Magic Items ───────────────────────────────────────────────────────────
-  {id:25, name:"+1 Waffe",          type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:1,dmg:1},        dmg:"+1",ac:"",eff:"",wt:"—",   rar:"Uncommon",notes:"+1 auf Angriff und Schaden. Gilt als magisch."},
-  {id:26, name:"+2 Waffe",          type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:2,dmg:2},        dmg:"+2",ac:"",eff:"",wt:"—",   rar:"Rare",    notes:"+2 auf Angriff und Schaden."},
-  {id:27, name:"+3 Waffe",          type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:3,dmg:3},        dmg:"+3",ac:"",eff:"",wt:"—",   rar:"Very Rare",notes:"+3 auf Angriff und Schaden."},
-  {id:28, name:"+1 Rüstung",        type:"Armor", sub:"Magic", magic:true, attunement:false, bonuses:{ac:1},               dmg:"",ac:"+1",eff:"",wt:"—",   rar:"Rare",    notes:"+1 auf AC-Basiswert."},
+  // ⚠️ Generische +X-Waffen/Rüstungen (Legacy): Im Katalog jetzt direkt
+  // beim Anklicken der Basis-Waffe via Magic-Modifier-Picker (+0/+1/+2/+3)
+  // hinzufügbar. Diese generischen Einträge bleiben für Backward-Compat
+  // (alte Charaktere mit "+1 Waffe" in Inventar).
+  {id:25, name:"+1 Waffe (generisch)",type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:1,dmg:1},        dmg:"+1",ac:"",eff:"",wt:"—",   rar:"Uncommon",notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker auf einer Basis-Waffe (z.B. Langschwert → +1)."},
+  {id:26, name:"+2 Waffe (generisch)",type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:2,dmg:2},        dmg:"+2",ac:"",eff:"",wt:"—",   rar:"Rare",    notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker."},
+  {id:27, name:"+3 Waffe (generisch)",type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:3,dmg:3},        dmg:"+3",ac:"",eff:"",wt:"—",   rar:"Very Rare",notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker."},
+  {id:28, name:"+1 Rüstung (generisch)",type:"Armor",sub:"Magic", magic:true, attunement:false, bonuses:{ac:1},              dmg:"",ac:"+1",eff:"",wt:"—",   rar:"Rare",    notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker auf einer Basis-Rüstung."},
   {id:29, name:"Amulett der Gesundheit",type:"Item",sub:"Magic",magic:true,attunement:true,  bonuses:{setCon:19},          dmg:"",ac:"",eff:"CON=19",wt:"—",rar:"Rare",    notes:"Req. Attunement. CON wird 19."},
   {id:30, name:"Ring der Unsichtbarkeit",type:"Item",sub:"Magic",magic:true,attunement:true, bonuses:{},                   dmg:"",ac:"",eff:"Unsichtbar",wt:"—",rar:"Legendary",notes:"Req. Attunement. Unsichtbar bis Angriff/Zauber."},
   {id:31, name:"Stiefel des Elfenschritts",type:"Item",sub:"Magic",magic:true,attunement:true,bonuses:{},                  dmg:"",ac:"",eff:"Kein Stealth-Nachteil",wt:"—",rar:"Uncommon",notes:"Req. Attunement. Bewegungsgeräusche unterdrückt."},
@@ -129,4 +192,15 @@ export const SRD_ITEMS = [
   {id:113,name:"Flammenzunge",      type:"Weapon",sub:"Magic", magic:true, attunement:true,  bonuses:{extraDmg:"2d6 Feuer"},dmg:"+2d6 F",ac:"",eff:"Licht 40ft",wt:"3 lb",rar:"Rare",notes:"Req. Attunement. Befehlswort: Klinge entzündet sich. 2d6 Feuer."},
   {id:114,name:"Handschuhe der Ogrenkraft",type:"Item",sub:"Magic",magic:true,attunement:true,bonuses:{setStr:19},         dmg:"",ac:"",eff:"STR=19",wt:"—",rar:"Uncommon",notes:"Req. Attunement. STR wird 19 (wenn nicht höher)."},
   {id:115,name:"Mantel der Verschiebung",type:"Item",sub:"Magic",magic:true, attunement:true, bonuses:{},                  dmg:"",ac:"",eff:"Nachteil auf Angriffe",wt:"—",rar:"Rare",notes:"Req. Attunement. Angriffe auf dich haben Nachteil (bis getroffen)."},
+
+  // ── DMG 2024 Named Magic Items ────────────────────────────────────────────
+  {id:120,name:"Berserker-Axt",     type:"Weapon",sub:"Magic", magic:true, attunement:true,  bonuses:{hit:1,dmg:1},        dmg:"+1 H",ac:"",eff:"Max HP +Lv",wt:"4 lb",rar:"Rare",notes:"Req. Attunement. Verflucht. +1 Streitaxt. Erhöht maxHP um deinen Level beim Attunen. Beim Schaden: Frenzy-CON-Save oder muss zum nächsten Wesen angreifen."},
+  {id:121,name:"Wakizashi der Schärfe",type:"Weapon",sub:"Magic", magic:true, attunement:true, bonuses:{hit:2,dmg:2},      dmg:"+2 P",ac:"",eff:"Krit 18-20",wt:"2 lb",rar:"Very Rare",notes:"Req. Attunement. +2 auf Hit/Dmg. NEU 2024: Krit auch auf Nat 18 und 19."},
+  {id:122,name:"Bogen der Tiefen Hölle",type:"Weapon",sub:"Magic", magic:true, attunement:true, bonuses:{hit:1,dmg:1},     dmg:"+1 P",ac:"",eff:"Sehnenlos",wt:"2 lb",rar:"Very Rare",notes:"Req. Attunement (Hexenmeister/Ranger). +1 Langbogen. Keine Munition nötig. Pfeile aus Schatten."},
+  {id:123,name:"Stiefel der Geschwindigkeit",type:"Item",sub:"Magic",magic:true,attunement:true,bonuses:{speedMult:2},     dmg:"",ac:"",eff:"Speed ×2 + Dash BA",wt:"1 lb",rar:"Rare",notes:"Req. Attunement. Bonus Action: 10 Min lang Speed ×2 + Disengage als Bonus. Bricht bei Schaden. 1×/LR."},
+  {id:124,name:"Glas-Trinkhorn",    type:"Item",  sub:"Magic", magic:true, attunement:false, bonuses:{},                   dmg:"",ac:"",eff:"Stat ↑ 19",wt:"1 lb",rar:"Uncommon to Legendary",notes:"DMG 2024: Cloud Giant Strength → STR 27 (Legendary). Frost Giant → STR 23 (Very Rare). Fire/Stone → STR 25 (Rare). Hill → STR 21 (Uncommon)."},
+  {id:125,name:"Sphäre der Anihilation",type:"Item",sub:"Magic",magic:true, attunement:false, bonuses:{},                  dmg:"4d10 F",ac:"",eff:"Schwarzes Loch",wt:"—",rar:"Legendary",notes:"3ft schwarze Sphäre. Bewegt sich INT-Check kontrolliert (DC 25). Berührung: 4d10 Force-Schaden + Tod bei 0 HP."},
+  {id:126,name:"Wand der Magic Missiles",type:"Item",sub:"Magic",magic:true, attunement:false, bonuses:{},                 dmg:"3 Slots",ac:"",eff:"Magic Missile",wt:"1 lb",rar:"Uncommon",notes:"7 Charges. Lv1: 1 Charge. Lv2: 2. Lv3: 3. Bei 0 Charges: 1d20 → Nat1 = Wand zerstört. Erholt 1d6+1/Dawn."},
+  {id:127,name:"Stab der Striking",  type:"Weapon",sub:"Magic", magic:true, attunement:true,  bonuses:{hit:3,dmg:3,extraDmg:"3d6"},dmg:"+3 + 3d6 F",ac:"",eff:"Force-Strike",wt:"4 lb",rar:"Very Rare",notes:"Req. Attunement. +3 Stab. Bei Strike-Power-Use: +3d6 Force-Schaden, kostet 1 Charge (10 Charges, 1d6+4 recovers/Dawn)."},
+  {id:128,name:"Bag of Holding",    type:"Item",  sub:"Magic", magic:true, attunement:false, bonuses:{},                   dmg:"",ac:"",eff:"500 lb / 64 ft³",wt:"15 lb",rar:"Uncommon",notes:"500 Pfund / 64 Kubikfuß Stauraum. Beim Reinpacken anderer extradimensionaler Items (Bag of Holding in Bag): Loch zu Astral Plane!"},
 ];

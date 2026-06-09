@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
-import { SRD_ITEMS } from "../data/items.js";
+import { SRD_ITEMS, MAGIC_MODIFIERS, applyMagicModifier } from "../data/items.js";
 import { usePersist } from "../hooks/usePersist.js";
+
+// Check if item can be enhanced with +0/+1/+2/+3 magic modifier
+const isMagicCompatible = (item) =>
+  (item.type === "Weapon" || item.type === "Armor") &&
+  item.sub !== "Magic" &&
+  !item.magic;
 
 const RC   = { Common: C.textDim, Uncommon: "#00c040", Rare: "#3b82f6", "Very Rare": "#a855f7", Legendary: "#f59e0b" };
 const RCBG = { Common: "rgba(255,255,255,0.03)", Uncommon: "rgba(0,192,64,0.07)", Rare: "rgba(59,130,246,0.09)", "Very Rare": "rgba(168,85,247,0.09)", Legendary: "rgba(245,158,11,0.11)" };
@@ -45,14 +51,15 @@ export default function Katalog({ char, setChar }) {
   );
 
   const countInInv = name => inv.filter(i => i.name === name).reduce((s,i)=>(s+(i.qty||1)),0);
-  const addToInv = item => {
+  const addToInv = (item, magicPlus = 0) => {
     if (!char) return;
+    const finalItem = magicPlus > 0 ? applyMagicModifier(item, magicPlus) : item;
     // Wenn schon im Inventar: qty erhöhen, sonst neu hinzufügen
-    const existing = inv.find(i => i.name === item.name);
+    const existing = inv.find(i => i.name === finalItem.name);
     if (existing) {
-      setInv(p => p.map(i => i.name === item.name ? { ...i, qty: (i.qty||1) + 1 } : i));
+      setInv(p => p.map(i => i.name === finalItem.name ? { ...i, qty: (i.qty||1) + 1 } : i));
     } else {
-      setInv(p => [...p, { ...item, uid: Date.now() + Math.random(), qty: 1 }]);
+      setInv(p => [...p, { ...finalItem, uid: Date.now() + Math.random(), qty: 1 }]);
     }
   };
 
@@ -204,8 +211,56 @@ export default function Katalog({ char, setChar }) {
               </div>
             )}
 
+            {/* Magic Modifier Picker (Waffen & Rüstungen) */}
+            {char && isMagicCompatible(modal) && (
+              <div style={{
+                marginBottom: 14,
+                padding: "10px 12px",
+                background: "rgba(0,0,0,0.35)",
+                borderRadius: 8,
+                border: `1px solid ${C.amberBright}33`,
+                borderLeft: `3px solid ${C.amberBright}`,
+              }}>
+                <div style={{ fontSize: 10, color: C.amberBright, fontFamily: FH, letterSpacing: 0.5, fontWeight: 700, marginBottom: 6 }}>
+                  ✨ ALS MAGISCHE VARIANTE HINZUFÜGEN
+                </div>
+                <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+                  {MAGIC_MODIFIERS.map(mod => {
+                    const previewName = mod.plus === 0 ? modal.name : `${modal.name} +${mod.plus}`;
+                    const cnt = countInInv(previewName);
+                    return (
+                      <button
+                        key={mod.plus}
+                        onClick={() => { addToInv(modal, mod.plus); setModal(null); }}
+                        title={mod.plus === 0 ? "Standard ohne Magie" : `+${mod.plus} auf Angriff & Schaden (Waffe) bzw. +${mod.plus} AC (Rüstung). Rarität: ${mod.rar}`}
+                        style={{
+                          flex: "1 1 auto",
+                          padding: "8px 10px",
+                          borderRadius: 7,
+                          fontFamily: FH,
+                          fontSize: 11,
+                          fontWeight: 700,
+                          cursor: "pointer",
+                          transition: "all .15s",
+                          background: mod.plus === 0 ? "rgba(255,255,255,0.04)" : `${RC[mod.rar] || C.amberBright}22`,
+                          border: `1px solid ${RC[mod.rar] || C.amberBright}55`,
+                          color: RC[mod.rar] || C.amberBright,
+                          letterSpacing: 0.5,
+                          minWidth: 70,
+                        }}>
+                        {mod.label}
+                        <div style={{ fontSize: 8, opacity: 0.7, marginTop: 2, fontFamily: "inherit", letterSpacing: 0.3 }}>
+                          {mod.rar}{cnt > 0 ? ` · ${cnt}×` : ""}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-              {char && (() => {
+              {char && !isMagicCompatible(modal) && (() => {
                 const cnt = countInInv(modal.name);
                 return (
                   <button onClick={() => { addToInv(modal); setModal(null); }}
