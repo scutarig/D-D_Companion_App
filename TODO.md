@@ -78,8 +78,8 @@ Offene Punkte nach der 2024 PHB UI-Migration.
   - Auto-Display nur bei komplexen Origin Feats
 
 ### Phase 4: DM-Features (nach Split)
-- [ ] **DM-Mode Notes** pro Monster (für Encounter-Planung)
-- [ ] **Encounter Builder** mit CR-Budget (Party-Level × Difficulty)
+- [x] **DM-Mode Notes** pro Monster [05bb6fe]
+- [x] **Encounter Builder** mit CR-Budget [afa52a5]
 - [ ] **Kampflog persistent** mit Session-Archiv
 - [ ] **2024 MM Vollständigkeit** — restl. ~10 Monster (Sukkubus, Schwarze Schlickpest, Ritter)
 
