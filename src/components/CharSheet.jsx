@@ -102,13 +102,29 @@ export default function CharSheet({ char, setChar }) {
           <div style={{ height: 12 }} />
 
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
-            {ABS.map(ab => { const val = char[ab.toLowerCase()] || 10; return (
-              <div key={ab} style={sx.statBox(SC[ab])}>
-                <div style={{ fontSize: 11, fontFamily: FH, color: SC[ab], fontWeight: 700, letterSpacing: 1, marginBottom: 2 }}>{ab}</div>
-                <input type="number" min={1} max={30} value={val} onChange={e => u(ab.toLowerCase(), +e.target.value)} style={{ ...sx.inp, textAlign: "center", fontSize: 28, fontWeight: 900, color: C.textBright, padding: "4px 0", background: "transparent", border: "none" }} />
-                <div style={{ fontSize: 17, fontWeight: 700, color: SC[ab], borderTop: `1px solid ${SC[ab]}25`, paddingTop: 4, marginTop: 2 }}>{modStr(val)}</div>
-              </div>
-            ); })}
+            {ABS.map(ab => {
+              const val = char[ab.toLowerCase()] || 10;
+              const bgBonus = (char.bgAsi || {})[ab.toLowerCase()] || 0;
+              return (
+                <div key={ab} style={sx.statBox(SC[ab])}>
+                  <div style={{ fontSize: 11, fontFamily: FH, color: SC[ab], fontWeight: 700, letterSpacing: 1, marginBottom: 2 }}>{ab}</div>
+                  <input type="number" min={1} max={30} value={val} onChange={e => u(ab.toLowerCase(), +e.target.value)} style={{ ...sx.inp, textAlign: "center", fontSize: 28, fontWeight: 900, color: C.textBright, padding: "4px 0", background: "transparent", border: "none" }} />
+                  <div style={{ fontSize: 17, fontWeight: 700, color: SC[ab], borderTop: `1px solid ${SC[ab]}25`, paddingTop: 4, marginTop: 2 }}>{modStr(val)}</div>
+                  {bgBonus > 0 && (
+                    <div
+                      title={`+${bgBonus} aus Background${char.background ? ` (${char.background})` : ""}`}
+                      style={{
+                        marginTop: 4, fontSize: 8, padding: "1px 5px", borderRadius: 6, fontWeight: 700,
+                        background: `${C.amberBright}1f`, border: `1px solid ${C.amberBright}55`,
+                        color: C.amberBright, letterSpacing: 0.3, display: "inline-block",
+                      }}
+                    >
+                      +{bgBonus} BG
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
           <div style={sx.g2}>
             <div style={sx.card}>
