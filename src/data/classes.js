@@ -642,6 +642,136 @@ const WARLOCK = {
   edition: "2024-PHB",
 };
 
+const CLERIC = {
+  id: "kleriker", name: "Kleriker", enName: "Cleric", icon: "✝️",
+  hd: "d8", primary: "Wisdom", saves: "WIS & CHA",
+  armor: "Light, Medium, Shields", weapons: "Simple",
+  tools: "—",
+  skills: { count: 2, choices: ["History","Insight","Medicine","Persuasion","Religion"] },
+  startingEquipment: {
+    A: "Chain Shirt · Shield · Mace · Holy Symbol · Priest's Pack · 7 GP",
+    B: "110 GP",
+  },
+  spellcasting: {
+    ability: "WIS",
+    focus: "Holy Symbol",
+    progression: "full",
+    prepared: true,
+    cantrips: true,
+  },
+  subclassName: "Divine Domain",
+  subclassChoiceLevel: 3,
+  subclasses: ["Life Domain","Light Domain","Trickery Domain","War Domain"],
+  desc: "Clerics draw power from the realms of the gods and harness it to work miracles. Blessed by a deity, pantheon, or other immortal entity, a Cleric reaches out to the divine magic of the Outer Planes and channels it to bolster people and battle foes. Their devotion can heal or smite — guided by Divine Order, sworn role, and Channel Divinity.",
+  srd: "https://www.dnddeutsch.de/srd/character/classes/cleric/",
+  progressionHeaders: ["Lv","PB","Class Features","CD","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
+  progressionRows: [
+    ["1","+2","Spellcasting, Divine Order","—","3","4","2","—","—","—","—","—","—","—","—"],
+    ["2","+2","Channel Divinity","2","3","5","3","—","—","—","—","—","—","—","—"],
+    ["3","+2","Cleric Subclass","2","3","6","4","2","—","—","—","—","—","—","—"],
+    ["4","+2","Ability Score Improvement","2","4","7","4","3","—","—","—","—","—","—","—"],
+    ["5","+3","Sear Undead","2","4","9","4","3","2","—","—","—","—","—","—"],
+    ["6","+3","Subclass feature","3","4","10","4","3","3","—","—","—","—","—","—"],
+    ["7","+3","Blessed Strikes","3","4","11","4","3","3","1","—","—","—","—","—"],
+    ["8","+3","Ability Score Improvement","3","4","12","4","3","3","2","—","—","—","—","—"],
+    ["9","+4","—","3","4","14","4","3","3","3","1","—","—","—","—"],
+    ["10","+4","Divine Intervention","3","5","15","4","3","3","3","2","—","—","—","—"],
+    ["11","+4","—","3","5","16","4","3","3","3","2","1","—","—","—"],
+    ["12","+4","Ability Score Improvement","3","5","16","4","3","3","3","2","1","—","—","—"],
+    ["13","+5","—","3","5","17","4","3","3","3","2","1","1","—","—"],
+    ["14","+5","Improved Blessed Strikes","3","5","17","4","3","3","3","2","1","1","—","—"],
+    ["15","+5","—","3","5","18","4","3","3","3","2","1","1","1","—"],
+    ["16","+5","Ability Score Improvement","3","5","18","4","3","3","3","2","1","1","1","—"],
+    ["17","+6","Subclass feature","3","5","19","4","3","3","3","2","1","1","1","1"],
+    ["18","+6","—","4","5","20","4","3","3","3","3","1","1","1","1"],
+    ["19","+6","Epic Boon","4","5","21","4","3","3","3","3","2","1","1","1"],
+    ["20","+6","Greater Divine Intervention","4","5","22","4","3","3","3","3","2","2","1","1"],
+  ],
+  featuresByLevel: {
+    1: [
+      { name: "Spellcasting", desc: "Prepared casting; WIS-based. Holy Symbol as Focus. 3 cantrips (Guidance, Sacred Flame, Thaumaturgy rec.). Prepared spells grow from 4 (Lv1) to 22 (Lv20)." },
+      { name: "Divine Order", desc: "Choose: Protector (Martial weapons + Heavy armor proficiency) OR Thaumaturge (+1 cantrip + WIS-mod bonus to Arcana/Religion checks)." },
+    ],
+    2: [{ name: "Channel Divinity", desc: "Divine Spark (Magic action, 30 ft target, 1d8+WIS heal OR CON-save Necrotic/Radiant damage. Scales 2d8 Lv7, 3d8 Lv13, 4d8 Lv18). Turn Undead (Magic action, 30 ft Frightened+Incapacitated 1 min). 2 uses Lv2, +1 Lv6, +1 Lv18. Recharge: 1 Short Rest, all Long Rest." }],
+    3: [{ name: "Cleric Subclass", desc: "Choose: Life, Light, Trickery, or War Domain." }],
+    4: [{ name: "Ability Score Improvement", desc: "ASI or feat. Also Lv 8, 12, 16." }],
+    5: [{ name: "Sear Undead", desc: "When using Turn Undead: roll d8s = WIS-mod, failing Undead take Radiant damage = roll total." }],
+    7: [{ name: "Blessed Strikes", desc: "Choose: Divine Strike (1d8 Necrotic/Radiant once/turn on weapon hit) OR Potent Spellcasting (+WIS-mod cantrip damage)." }],
+    10: [{ name: "Divine Intervention", desc: "Magic action: cast any Cleric spell of Lv5 or lower without slot/components. 1×/long rest." }],
+    14: [{ name: "Improved Blessed Strikes", desc: "Divine Strike → 2d8. Potent Spellcasting → +2× WIS-mod Temp HP on cantrip damage." }],
+    19: [{ name: "Epic Boon", desc: "Gain Epic Boon feat. Boon of Fate recommended." }],
+    20: [{ name: "Greater Divine Intervention", desc: "Divine Intervention can now cast Wish. After: can't use Divine Intervention until 2d4 Long Rests." }],
+  },
+  edition: "2024-PHB",
+};
+
+const DRUID = {
+  id: "druide", name: "Druide", enName: "Druid", icon: "🌿",
+  hd: "d8", primary: "Wisdom", saves: "INT & WIS",
+  armor: "Light, Shields", weapons: "Simple",
+  tools: "Herbalism Kit",
+  skills: { count: 2, choices: ["Arcana","Animal Handling","Insight","Medicine","Nature","Perception","Religion","Survival"] },
+  startingEquipment: {
+    A: "Leather Armor · Shield · Sickle · Druidic Focus (Quarterstaff) · Explorer's Pack · Herbalism Kit · 9 GP",
+    B: "50 GP",
+  },
+  spellcasting: {
+    ability: "WIS",
+    focus: "Druidic Focus",
+    progression: "full",
+    prepared: true,
+    cantrips: true,
+  },
+  subclassName: "Druid Circle",
+  subclassChoiceLevel: 3,
+  subclasses: ["Circle of the Land","Circle of the Moon","Circle of the Sea","Circle of the Stars"],
+  desc: "Druids belong to ancient orders that call on the forces of nature. Harnessing the magic of animals, plants, and the four elements, Druids heal, transform into animals via Wild Shape, and wield elemental destruction. Revering nature above all, they guard sacred sites and unite to perform rites marking natural cycles.",
+  srd: "https://www.dnddeutsch.de/srd/character/classes/druid/",
+  progressionHeaders: ["Lv","PB","Class Features","WildShape","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
+  progressionRows: [
+    ["1","+2","Spellcasting, Druidic, Primal Order","—","2","4","2","—","—","—","—","—","—","—","—"],
+    ["2","+2","Wild Shape, Wild Companion","2","2","5","3","—","—","—","—","—","—","—","—"],
+    ["3","+2","Druid Subclass","2","2","6","4","2","—","—","—","—","—","—","—"],
+    ["4","+2","Ability Score Improvement","2","3","7","4","3","—","—","—","—","—","—","—"],
+    ["5","+3","Wild Resurgence","2","3","9","4","3","2","—","—","—","—","—","—"],
+    ["6","+3","Subclass feature","3","3","10","4","3","3","—","—","—","—","—","—"],
+    ["7","+3","Elemental Fury","3","3","11","4","3","3","1","—","—","—","—","—"],
+    ["8","+3","Ability Score Improvement","3","3","12","4","3","3","2","—","—","—","—","—"],
+    ["9","+4","—","3","3","14","4","3","3","3","1","—","—","—","—"],
+    ["10","+4","Subclass feature","3","4","15","4","3","3","3","2","—","—","—","—"],
+    ["11","+4","—","3","4","16","4","3","3","3","2","1","—","—","—"],
+    ["12","+4","Ability Score Improvement","3","4","16","4","3","3","3","2","1","—","—","—"],
+    ["13","+5","—","3","4","17","4","3","3","3","2","1","1","—","—"],
+    ["14","+5","Subclass feature","3","4","17","4","3","3","3","2","1","1","—","—"],
+    ["15","+5","Improved Elemental Fury","3","4","18","4","3","3","3","2","1","1","1","—"],
+    ["16","+5","Ability Score Improvement","3","4","18","4","3","3","3","2","1","1","1","—"],
+    ["17","+6","—","4","4","19","4","3","3","3","2","1","1","1","1"],
+    ["18","+6","Beast Spells","4","4","20","4","3","3","3","3","1","1","1","1"],
+    ["19","+6","Epic Boon","4","4","21","4","3","3","3","3","2","1","1","1"],
+    ["20","+6","Archdruid","4","4","22","4","3","3","3","3","2","2","1","1"],
+  ],
+  featuresByLevel: {
+    1: [
+      { name: "Spellcasting", desc: "Prepared casting; WIS-based. Druidic Focus. 2 cantrips (Druidcraft, Produce Flame rec.). Prepared spells grow from 4 (Lv1) to 22 (Lv20)." },
+      { name: "Druidic", desc: "Know the secret Druid language. Always have Speak with Animals prepared." },
+      { name: "Primal Order", desc: "Choose: Magician (+1 cantrip + WIS-mod bonus to Arcana/Nature checks) OR Warden (Martial weapons + Medium armor proficiency)." },
+    ],
+    2: [
+      { name: "Wild Shape", desc: "Bonus Action: shift into Beast form (4 known, max CR 1/4 at Lv2 → CR 1/2 Lv4, CR 1 + Fly Lv8). Lasts ½ Druid level hours. 2 uses, recharge Short Rest, all on Long Rest." },
+      { name: "Wild Companion", desc: "Magic action: spend slot OR Wild Shape use to cast Find Familiar (Fey, lasts until Long Rest)." },
+    ],
+    3: [{ name: "Druid Subclass", desc: "Choose: Land, Moon, Sea, or Stars Circle." }],
+    4: [{ name: "Ability Score Improvement", desc: "ASI or feat. Also Lv 8, 12, 16." }],
+    5: [{ name: "Wild Resurgence", desc: "Once/turn if Wild Shape exhausted: spend spell slot to gain 1 use. OR spend Wild Shape use to gain Lv1 spell slot (1×/long rest)." }],
+    7: [{ name: "Elemental Fury", desc: "Choose: Potent Spellcasting (+WIS-mod cantrip damage) OR Primal Strike (1d8 Cold/Fire/Lightning/Thunder on weapon or Beast-form attack, once/turn)." }],
+    15: [{ name: "Improved Elemental Fury", desc: "Potent Spellcasting: cantrips with ≥10 ft range +300 ft. Primal Strike: damage → 2d8." }],
+    18: [{ name: "Beast Spells", desc: "Cast spells while in Wild Shape (except costly Material components)." }],
+    19: [{ name: "Epic Boon", desc: "Gain Epic Boon feat. Boon of Dimensional Travel recommended." }],
+    20: [{ name: "Archdruid", desc: "Evergreen Wild Shape (regain 1 use on Initiative). Nature Magician (convert Wild Shape uses to spell slot, 2 levels per use, 1×/long rest). Longevity (age 1 yr per 10)." }],
+  },
+  edition: "2024-PHB",
+};
+
 const RANGER = {
   id: "waldlaeufer", name: "Waldläufer", enName: "Ranger", icon: "🏹",
   hd: "d10", primary: "Dexterity & Wisdom", saves: "STR & DEX",
@@ -713,27 +843,36 @@ const RANGER = {
   edition: "2024-PHB",
 };
 
-// ─── Legacy classes (still on 2014 schema — refresh in Phase 2 bundle D) ─────
-const LEGACY_CLASSES = [
-  {id:"druide",name:"Druide",icon:"🌿",hd:"W8",primary:"Weisheit",saves:"INT & WIS",armor:"Leicht, Mittel, Schilde (kein Metall)",weapons:"Knüppel, Dolch, Kampfstab, Sichel, Schleuder, Speer",tools:"Kräuterkundeausrüstung",skills:"Wähle 2: Arkane Kunde, Heilkunde, Tiere, Motiv, Naturkunde, Religion, Wahrnehmung, Überleben",desc:"Hüter der natürlichen Ordnung mit Zugang zu uralter Primärmagie. Druiden können die Gestalt von Tieren annehmen (Tiergestalt), Stürme beschwören und das Wachstum der Erde lenken.",archetypes:["Zirkel des Mondes","Zirkel des Landes","Zirkel der Sporen","Zirkel der Sterne","Zirkel des Wildfeuers","Zirkel des Hirten"],srd:"https://www.dnddeutsch.de/srd/character/classes/druid/",table:[["1","+2","Druidisch, Zauberwirken"],["2","+2","Tiergestalt, Druidenzirkel"],["18","+6","Zeitloser Körper"],["20","+6","Erzdruide"]],tableHead:["Stufe","ÜB","Merkmale"],edition:"2014-LEGACY"},
-  {id:"kleriker",name:"Kleriker",icon:"✝️",hd:"W8",primary:"Weisheit",saves:"WIS & CHA",armor:"Leicht, Mittel, Schilde",weapons:"Einfach",tools:"keine",skills:"Wähle 2: Geschichte, Heilkunde, Motiv, Religion, Überzeugen",desc:"Heilige Streiter, die göttliche Macht direkt von ihren Göttern empfangen. Kleriker verbinden starke Heilmagie mit direktem Kampf und können durch Göttliche Macht Untote vertreiben.",archetypes:["Domäne des Lebens","Domäne des Krieges","Domäne der Natur","Domäne des Wissens","Domäne der List","Domäne der Dämmerung","Domäne des Friedens","Domäne des Grabes","Domäne der Ordnung","Domäne des Sturms"],srd:"https://www.dnddeutsch.de/srd/character/classes/cleric/",table:[["1","+2","Zauberwirken, Göttliche Domäne"],["2","+2","Göttliche Macht fokussieren"],["10","+4","Göttliche Intervention"],["20","+6","Verbesserte Göttliche Intervention"]],tableHead:["Stufe","ÜB","Merkmale"],edition:"2014-LEGACY"},
-  {id:"magieschmied",name:"Magieschmied",icon:"⚙️",hd:"W8",primary:"Intelligenz",saves:"CON & INT",armor:"Leicht, Mittel, Schilde",weapons:"Einfach",tools:"Diebeswerkzeug, Handwerkerausrüstung, 1 Spezialwerkzeug",skills:"Wähle 2: Arkane Kunde, Geschichte, Motiv, Nachforschung, Religion, Naturkunde",desc:"Handwerker der arkanen Schmiede, die magische Gegenstände erschaffen und Verbündete mit Infusionen ausrüsten. Als einziger Halbzauberer mit allen Rüstungsprofizenzen verbinden Magieschmiede Intelligenz mit Kampfstärke.",archetypes:["Alchemist","Artillerist","Kampfschmied"],srd:"https://www.dnddeutsch.de/srd/character/classes/artificer/",table:[["1","+2","Magisches Basteln, Zauberwirken"],["2","+2","Infusionen"],["3","+2","Artifizient-Spezialisierung"],["5","+3","Extra-Angriff"],["20","+6","Seele der Artefakthändler"]],tableHead:["Stufe","ÜB","Merkmale"],edition:"2014-LEGACY"},
-];
+// ─── Legacy: Artificer (Magieschmied) — NICHT im PHB 2024 enthalten! ─────────
+// Aktuell aus 2014-Quelle. Update käme aus Tasha's oder zukünftigem Update.
+const ARTIFICER_LEGACY = {
+  id:"magieschmied", name:"Magieschmied", enName:"Artificer", icon:"⚙️",
+  hd:"d8", primary:"Intelligence", saves:"CON & INT",
+  armor:"Light, Medium, Shields", weapons:"Simple",
+  tools:"Thieves' Tools, Tinker's Tools, 1 Type of Artisan's Tools",
+  skills: "Wähle 2: Arkane Kunde, Geschichte, Motiv, Nachforschung, Religion, Naturkunde",
+  desc:"Handwerker der arkanen Schmiede, die magische Gegenstände erschaffen und Verbündete mit Infusionen ausrüsten. Als einziger Halbzauberer mit allen Rüstungsprofizenzen verbinden Magieschmiede Intelligenz mit Kampfstärke. ⚠️ NICHT im PHB 2024 — Daten aus 2014/Tasha's.",
+  archetypes:["Alchemist","Artillerist","Battle Smith","Armorer"],
+  srd:"https://www.dnddeutsch.de/srd/character/classes/artificer/",
+  table:[["1","+2","Magical Tinkering, Spellcasting"],["2","+2","Infuse Item"],["3","+2","Artificer Specialist"],["5","+3","Extra Attack (Battle Smith)"],["20","+6","Soul of Artifice"]],
+  tableHead:["Lv","PB","Features"],
+  edition:"2014-LEGACY",
+};
 
 export const D3_KLASSEN = [
   BARBARIAN,
   BARD,
-  ...LEGACY_CLASSES.filter(c => c.id === "druide"),
+  DRUID,
   WARLOCK,
   FIGHTER,
-  ...LEGACY_CLASSES.filter(c => c.id === "kleriker"),
+  CLERIC,
   WIZARD,
   MONK,
   PALADIN,
   ROGUE,
   RANGER,
   SORCERER,
-  ...LEGACY_CLASSES.filter(c => c.id === "magieschmied"),
+  ARTIFICER_LEGACY,
 ];
 
 // ─── Helper: detect 2024 schema ──────────────────────────────────────────────

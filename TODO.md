@@ -20,8 +20,9 @@ Offene Punkte nach der 2024 PHB UI-Migration.
 - [ ] **Klassen-Referenz** komplett auf PHB 2024 (alle 13 Klassen, exakte Feature-Tabellen)
   - [x] Bündel A (Warriors): Barbarian, Fighter, Paladin, Ranger [71d3ce1]
   - [x] Bündel B (Experts): Bard, Monk, Rogue [fcb231b]
-  - [x] Bündel C (Mages): Wizard, Sorcerer, Warlock [pending commit]
-  - [ ] Bündel D (Priests + Special): Cleric, Druid, Artificer
+  - [x] Bündel C (Mages): Wizard, Sorcerer, Warlock [6b6e2a5]
+  - [x] Bündel D (Priests): Cleric, Druid [pending commit]
+  - [ ] **Artificer:** NICHT in PHB 2024 — bleibt 2014-Legacy bis WotC Update veröffentlicht (Tasha's-Quelle)
 - [ ] **Völker-Referenz** komplett auf PHB 2024 (Lineages-System, alle Traits)
 - [ ] **Schnellreferenz** exakt nach PHB-2024-Original (Conditions, Actions, Skills, Tarnung etc.)
 - [ ] **Equipment-Katalog** überarbeiten:
