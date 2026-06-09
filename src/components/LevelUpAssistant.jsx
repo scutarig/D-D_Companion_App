@@ -264,9 +264,24 @@ export default function LevelUpAssistant({ char, setChar }) {
   const classFeatures = CLF[char.klass]?.[newLevel] || [];
 
   const ABS_LIST = ["STR","DEX","CON","INT","WIS","CHA"];
-  const availableFeats = FEATS.filter(f =>
-    meetsPrerequisite(char, f) && !(char.feats || []).some(cf => cf.id === f.id)
-  );
+
+  // ── Feat filter ──────────────────────────────────────────────────────────
+  // Auf Lv19 = Epic Boon Level (2024). Sonst nur General Feats.
+  // Origin Feats kommen vom Background, Fighting Style Feats von der Klasse.
+  // "Ability Score Improvement" wird ausgeblendet — dafür gibt es den ASI-Toggle.
+  const isEpicLevel = newLevel === 19;
+  const availableFeats = FEATS.filter(f => {
+    // Skip redundant ASI-as-feat (ASI-Toggle deckt das ab)
+    if (f.id === "ability_score_improvement") return false;
+    // Category filter
+    if (isEpicLevel) {
+      if (f.category !== "epic_boon" && f.category !== "general") return false;
+    } else {
+      if (f.category !== "general") return false;
+    }
+    // Prereq + not already taken
+    return meetsPrerequisite(char, f) && !(char.feats || []).some(cf => cf.id === f.id);
+  });
 
   const [confirmReset, setConfirmReset] = useState(false);
 
