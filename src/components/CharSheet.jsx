@@ -13,8 +13,10 @@ import MulticlassManager from "./CharacterSheet/MulticlassManager.jsx";
 import MulticlassSpellSlots from "./CharacterSheet/MulticlassSpellSlots.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 
-export default function CharSheet({ char, setChar }) {
+export default function CharSheet({ char, setChar, printMode = false }) {
   const [tab, setTab] = useState("stats");
+  // In print mode: show all sections at once for full character sheet PDF
+  const show = (t) => printMode || tab === t;
   const u = (f, v) => setChar(p => ({ ...p, [f]: v }));
   const pb = getPB(char.level);
 
@@ -73,13 +75,13 @@ export default function CharSheet({ char, setChar }) {
         </div>
       </div>
 
-      <div style={{ display: "flex", gap: 5, marginBottom: 12, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 2 }}>
+      <div data-no-print style={{ display: "flex", gap: 5, marginBottom: 12, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 2 }}>
         {[["stats", "⚔️ Attribute"], ["skills", "🎯 Skills"], ["saves", "💀 Saves"], ["traits", "✦ Traits"], ["personality", "🎭 Charakter"]].map(([t, l]) => (
           <button key={t} onClick={() => setTab(t)} style={{ ...sx.nb(tab === t), flexShrink: 0 }}>{l}</button>
         ))}
       </div>
 
-      {tab === "stats" && (
+      {show("stats") && (
         <div>
           {/* Multiclass Manager */}
           <MulticlassManager char={char} setChar={setChar} />
@@ -140,7 +142,7 @@ export default function CharSheet({ char, setChar }) {
         </div>
       )}
 
-      {tab === "skills" && (
+      {show("skills") && (
         <div style={sx.card}>
           <div style={sx.ct}>🎯 Skills <span style={{ color: C.textDim, fontSize: 11, fontWeight: 400 }}>(☑ Proficient · ☑☑ Expertise)</span></div>
           <div style={{ columns: 2, gap: 12 }}>
@@ -162,7 +164,7 @@ export default function CharSheet({ char, setChar }) {
         </div>
       )}
 
-      {tab === "saves" && (
+      {show("saves") && (
         <div>
           <div style={sx.card}>
             <div style={sx.ct}>🎯 Saving Throws</div>
@@ -213,11 +215,11 @@ export default function CharSheet({ char, setChar }) {
         </div>
       )}
 
-      {tab === "traits" && (
+      {show("traits") && (
         <TraitsFeatures char={char} setChar={setChar} />
       )}
 
-      {tab === "personality" && (
+      {show("personality") && (
         <div>
           <div style={sx.g2}>
             {[["traits", "🎭 Persönlichkeit", "Ich bin…"], ["ideals", "💡 Ideale", "Ich glaube an…"], ["bonds", "❤️ Bindungen", "Ich sorge mich um…"], ["flaws", "💔 Makel", "Mein größter Fehler…"]].map(([f, l, ph]) => (

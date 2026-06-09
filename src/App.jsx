@@ -132,7 +132,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
             )}
           </div>
         </div>
-        <div style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
+        <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
           <button onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
             style={{ ...sx.bsm(C.gold), fontSize:9, padding:"3px 7px", background: char.inspiration ? `${C.gold}22` : "transparent", border:`1px solid ${char.inspiration ? C.gold : C.border}`, color: char.inspiration ? C.gold : C.textDim, fontWeight:700 }}>
             {char.inspiration ? "✦" : "✧"} Inspiration
@@ -200,6 +200,41 @@ function AppInner() {
   const [refOpen,  setRefOpen]  = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
   const [charOpen, setCharOpen] = useState(false);
+
+  // Inject @media print styles once for PDF export
+  useEffect(() => {
+    if (document.getElementById("dnd-print-styles")) return;
+    const styleEl = document.createElement("style");
+    styleEl.id = "dnd-print-styles";
+    styleEl.textContent = `
+      @media print {
+        /* Hide UI chrome */
+        [data-no-print] { display: none !important; }
+        /* Light theme override for readable PDF */
+        body, html { background: #fff !important; color: #111 !important; }
+        * { background: transparent !important; color: #111 !important; box-shadow: none !important; }
+        /* Borders subtle */
+        [style*="border"] { border-color: #aaa !important; }
+        /* Preserve accent colors via filter */
+        input[type="text"], input[type="number"], textarea {
+          color: #111 !important; background: transparent !important; border: 1px solid #999 !important;
+        }
+        /* Override gradient backgrounds */
+        [style*="gradient"] { background: #fff !important; }
+        /* Page setup */
+        @page { size: A4; margin: 12mm; }
+        /* Avoid weird page-cuts inside cards */
+        [style*="card"], div { page-break-inside: avoid; break-inside: avoid; }
+        /* Hide scrollbars */
+        ::-webkit-scrollbar { display: none; }
+        /* Sidebar / nav fully hidden */
+        aside { display: none !important; }
+        /* Reset main layout: full width */
+        body > div, body > div > div { display: block !important; height: auto !important; overflow: visible !important; }
+      }
+    `;
+    document.head.appendChild(styleEl);
+  }, []);
   const [charPos,  setCharPos]  = useState({ top: 0 });
   const refBtnRef               = useRef(null);
   const charBtnRef              = useRef(null);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { newChar } from "../utils/helpers.js";
@@ -18,6 +18,24 @@ export default function CharManager() {
   const [restMode, setRestMode] = useState(null);
   const [shortHpVal, setShortHpVal] = useState(5);
   const [shortResult, setShortResult] = useState(null);
+  const [printMode, setPrintMode] = useState(false);
+
+  // Trigger browser print after React renders printMode
+  useEffect(() => {
+    if (!printMode) return;
+    const t = setTimeout(() => window.print(), 150);
+    const onAfter = () => setPrintMode(false);
+    window.addEventListener("afterprint", onAfter);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("afterprint", onAfter);
+    };
+  }, [printMode]);
+
+  const exportPDF = () => {
+    setSubtab("sheet");        // PDF only covers the character sheet
+    setPrintMode(true);
+  };
 
   const addChar = () => { const id = Date.now(); setChars(p => [...p, newChar(id)]); setAid(id); };
   const delChar = id => { if (chars.length <= 1) return; const nx = chars.find(c => c.id !== id); setChars(p => p.filter(c => c.id !== id)); setAid(nx?.id); };
@@ -52,7 +70,7 @@ export default function CharManager() {
 
   return (
     <div>
-      <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${C.border}`, borderRadius: 14, padding: "12px 16px", marginBottom: 14 }}>
+      <div data-no-print style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${C.border}`, borderRadius: 14, padding: "12px 16px", marginBottom: 14 }}>
         <div style={{ ...sx.jb, flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
             <span style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1 }}>CHARAKTER</span>
@@ -67,6 +85,9 @@ export default function CharManager() {
               📥 Import
               <input type="file" accept=".json" onChange={importJSON} style={{ display: "none" }} />
             </label>
+            <button onClick={exportPDF} title="Charakter-Bogen als PDF drucken/speichern" style={sx.bsm(C.gold)}>
+              📄 PDF Export
+            </button>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             <button onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 Kurze Rast</button>
@@ -124,13 +145,13 @@ export default function CharManager() {
         )}
       </div>
 
-      <div style={{ display: "flex", gap: 5, marginBottom: 14, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 4 }}>
+      <div data-no-print style={{ display: "flex", gap: 5, marginBottom: 14, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 4 }}>
         {[["sheet", "📜 Bogen"], ["currency", "💰 Währung"], ["levelup", "⬆️ Level-Up"], ["aktionen", "⚔️ Aktionen"], ["spells", "🔮 Spellbook"], ["tokens", "🏷️ Tokens"], ["conditions", "⚡ Conditions"]].map(([t, l]) => (
           <button key={t} onClick={() => setSubtab(t)} style={{ ...sx.nb(subtab === t), flexShrink: 0 }}>{l}</button>
         ))}
       </div>
 
-      {subtab === "sheet" && <CharSheet char={active} setChar={setActive} />}
+      {subtab === "sheet" && <CharSheet char={active} setChar={setActive} printMode={printMode} />}
       {subtab === "currency" && <CurrencyTab />}
       {subtab === "levelup" && <LevelUpAssistant char={active} setChar={setActive} />}
       {subtab === "aktionen" && <CharActions char={active} setChar={setActive} />}
