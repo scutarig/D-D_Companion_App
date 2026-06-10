@@ -34,6 +34,8 @@ const RULES = {
     { t: "Gelegenheitsangriff (OA)", b: "Reaktion: wenn feindliche Kreatur deinen Nahkampfbereich verlässt (ohne Disengage). 1 Nahkampfangriff. Nicht beim Teleport." },
     { t: "Fernkampf in Nahkampf", b: "Fernkampfangriff in 5ft eines feindlichen Wesens, das nicht Incapacitated ist: Nachteil." },
     { t: "Two-Weapon Fighting", b: "Bonus Action nach Attack mit Light-Waffe: Angriff mit anderer Light-Waffe (oder NEU: Nick-Mastery erlaubt es als Teil der Attack-Aktion). Kein Schadens-Mod (außer negativ)." },
+    { t: "Resistenz / Verwundbarkeit / Immunität", b: "Resistenz: halber Schaden (abgerundet). Verwundbarkeit: doppelter Schaden. Immunität: kein Schaden. Mehrere Resistenzen zum gleichen Typ stacken NICHT. Vulnerability + Resistance = normaler Schaden." },
+    { t: "Heldenhafte Inspiration", b: "🆕 2024: Reroll-Token (1×). Verbrauche um EINEN deiner D20-Würfel neu zu würfeln (nach dem Wurf, vor dem Ergebnis). Manche Backgrounds + Lineages geben sie. Mensch: 1 pro Lange Rast." },
   ],
 
   movement: [
@@ -61,6 +63,8 @@ const RULES = {
     { t: "Spell Components", b: "V (verbal), S (somatic), M (material). Spellcasting Focus ersetzt M (außer kostspezifizierte). Subtle Spell (Sorcerer) ignoriert V+S+M." },
     { t: "Bonus-Action Spell Rule", b: "Wenn du einen Spell als Bonus Action castest, kannst du auf gleicher Runde nur Cantrips mit Action casten (außer Action ist ein Cantrip mit 1 Action Casting Time)." },
     { t: "Concentration & Multiclass", b: "Spell Slots werden geteilt nach Multiclass-Caster-Level. Cantrips, Known/Prepared bleiben pro Klasse separat." },
+    { t: "Multiclass Spell-Slot-Berechnung", b: "Multiclass Caster-Level = Full Caster-Level + ½ Half-Caster-Level (abgerundet) + ⅓ Third-Caster-Level. Pact Magic (Warlock) separat — eigener Slot-Pool." },
+    { t: "Heroic Inspiration mit Spells", b: "Reroll wirkt auf ALLE D20-Tests — auch Concentration-Saves, Spell-Attacks, Counterspell-Save. Eine Inspiration = 1 Reroll, nicht 1 pro Wurftyp." },
   ],
 
   checks: [
@@ -70,6 +74,7 @@ const RULES = {
     { t: "Rettungswürfe (Saves)", b: "1d20 + Save-Mod (+ PB wenn proficient). Gegen DC des Effekts. Klassen entscheiden Save-Proficiencies." },
     { t: "Group Checks", b: "Mind. halbe Gruppe muss DC schaffen = Gruppen-Erfolg. Für gemeinsame Tasks (z.B. unbemerkt Wache passieren)." },
     { t: "D20 Test", b: "NEU 2024: Sammelbegriff für alle d20-Würfe = Attack Rolls + Saving Throws + Ability Checks. 'Reroll a D20 Test' = ALLE drei Arten." },
+    { t: "Skill-Liste (PHB 2024)", b: "Akrobatik (DEX), Tierkunde (WIS), Arkane Kunde (INT), Athletik (STR), Täuschung (CHA), Geschichte (INT), Einsicht (WIS), Einschüchtern (CHA), Nachforschungen (INT), Heilkunde (WIS), Natur (INT), Wahrnehmung (WIS), Auftreten (CHA), Überzeugen (CHA), Religion (INT), Fingerfertigkeit (DEX), Heimlichkeit (DEX), Überleben (WIS). = 18 Skills." },
   ],
 };
 
