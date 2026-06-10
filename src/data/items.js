@@ -166,14 +166,9 @@ export const SRD_ITEMS = [
   {id:106,name:"Blasrohr-Nadeln (50)",type:"Item",sub:"Ammo",           dmg:"",ac:"",eff:"",wt:"1 lb",  rar:"Common",notes:"Für Blasrohr."},
 
   // ── Magic Items ───────────────────────────────────────────────────────────
-  // ⚠️ Generische +X-Waffen/Rüstungen (Legacy): Im Katalog jetzt direkt
-  // beim Anklicken der Basis-Waffe via Magic-Modifier-Picker (+0/+1/+2/+3)
-  // hinzufügbar. Diese generischen Einträge bleiben für Backward-Compat
-  // (alte Charaktere mit "+1 Waffe" in Inventar).
-  {id:25, name:"+1 Waffe (generisch)",type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:1,dmg:1},        dmg:"+1",ac:"",eff:"",wt:"—",   rar:"Uncommon",notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker auf einer Basis-Waffe (z.B. Langschwert → +1)."},
-  {id:26, name:"+2 Waffe (generisch)",type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:2,dmg:2},        dmg:"+2",ac:"",eff:"",wt:"—",   rar:"Rare",    notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker."},
-  {id:27, name:"+3 Waffe (generisch)",type:"Weapon",sub:"Magic", magic:true, attunement:false, bonuses:{hit:3,dmg:3},        dmg:"+3",ac:"",eff:"",wt:"—",   rar:"Very Rare",notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker."},
-  {id:28, name:"+1 Rüstung (generisch)",type:"Armor",sub:"Magic", magic:true, attunement:false, bonuses:{ac:1},              dmg:"",ac:"+1",eff:"",wt:"—",   rar:"Rare",    notes:"⚠️ Veraltet: Nutze stattdessen den Magic-Modifier-Picker auf einer Basis-Rüstung."},
+  // Generische +X-Waffen/Rüstungen entfernt — werden jetzt direkt via
+  // Magic-Modifier-Picker (+0/+1/+2/+3) auf Basis-Item erstellt.
+  // IDs 25-28 sind reserviert für Backward-Compat (alte Inventare).
   {id:29, name:"Amulett der Gesundheit",type:"Item",sub:"Magic",magic:true,attunement:true,  bonuses:{setCon:19},          dmg:"",ac:"",eff:"CON=19",wt:"—",rar:"Rare",    notes:"Req. Attunement. CON wird 19."},
   {id:30, name:"Ring der Unsichtbarkeit",type:"Item",sub:"Magic",magic:true,attunement:true, bonuses:{},                   dmg:"",ac:"",eff:"Unsichtbar",wt:"—",rar:"Legendary",notes:"Req. Attunement. Unsichtbar bis Angriff/Zauber."},
   {id:31, name:"Stiefel des Elfenschritts",type:"Item",sub:"Magic",magic:true,attunement:true,bonuses:{},                  dmg:"",ac:"",eff:"Kein Stealth-Nachteil",wt:"—",rar:"Uncommon",notes:"Req. Attunement. Bewegungsgeräusche unterdrückt."},

@@ -165,11 +165,37 @@ export const CLASS_RESOURCES = {
     },
   ],
 
-  // ── Waldläufer ────────────────────────────────────────────────────────────
-  Waldläufer: [],  // No non-spell resource pool
+  // ── Waldläufer (2024 PHB) ─────────────────────────────────────────────────
+  Waldläufer: [
+    {
+      id: "favored_enemy",
+      name: "Jägermal-Nutzungen (Favored Enemy)",
+      color: "#84cc16",
+      reset: "long",
+      // 2024 NEU: Cast Hunter's Mark 2× ohne Slot, skaliert auf 6 ab Lv17
+      levels: { 1: 2, 5: 3, 9: 4, 13: 5, 17: 6 },
+    },
+    {
+      id: "tireless",
+      name: "Unermüdlich (Temp HP)",
+      color: "#65a30d",
+      reset: "long",
+      // 2024 Lv10: PB-mal pro Lange Rast Temp HP via Bonus-Aktion
+      formulaKey: "pb",
+      levels: { 10: 2 },
+    },
+  ],
 
-  // ── Zauberer ──────────────────────────────────────────────────────────────
+  // ── Zauberer (2024 PHB) ───────────────────────────────────────────────────
   Zauberer: [
+    {
+      id: "innate_sorcery",
+      name: "Angeborene Magie (Innate Sorcery)",
+      color: "#c084fc",
+      reset: "long",
+      // 2024 NEU Lv1: 2 Nutzungen pro Lange Rast (1 Min Aktivierung)
+      levels: { 1: 2 },
+    },
     {
       id: "sorcery_points",
       name: "Zauberkraft-Punkte (Sorcery Points)",
@@ -228,6 +254,10 @@ function resolveMax(resource, charLevel, char) {
     }
     if (resource.formulaKey === "level5x") {
       return charLevel * 5;
+    }
+    if (resource.formulaKey === "pb") {
+      // Proficiency Bonus: 2 (Lv1-4), 3 (Lv5-8), 4 (Lv9-12), 5 (Lv13-16), 6 (Lv17-20)
+      return Math.ceil(charLevel / 4) + 1;
     }
     return maxVal;  // return raw string if no handler
   }

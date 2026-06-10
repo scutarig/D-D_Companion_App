@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { C, sx, FH } from "../constants/theme.js";
+import { C, sx, F, FH } from "../constants/theme.js";
 import { CONDITIONS } from "../data/conditions.js";
 import { useI18n } from "../i18n/index.js";
 
@@ -156,16 +156,24 @@ const WEAPON_PROPS = [
 const COL = { combat: C.amber, actions: C.red, movement: C.green, resting: C.purple, magic: C.purpleBright, checks: C.teal, mastery: C.amberBright, weapons: C.tealBright };
 const ACTIONCOLS = { Aktion: C.red, Bonus: C.amber, Reaktion: C.blue };
 
+// Box-Heading-Style: breitere Inter-Font statt schmaler Cinzel,
+// damit Überschriften in dunklen Cards besser lesbar sind.
+const boxHeadStyle = (col) => ({
+  fontFamily: F, fontSize: 13, color: col || C.gold,
+  fontWeight: 800, letterSpacing: 0.5, marginBottom: 6,
+  textTransform: "uppercase",
+});
+
 const RuleCard = ({ title, body, col }) => (
   <div style={{ ...sx.card, borderLeft: `3px solid ${col || C.border}`, marginBottom: 0 }}>
-    <div style={{ fontFamily: FH, fontSize: 12, color: col || C.gold, fontWeight: 700, marginBottom: 5 }}>{title}</div>
+    <div style={boxHeadStyle(col)}>{title}</div>
     <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6 }}>{body}</div>
   </div>
 );
 
 const DataTable = ({ title, headers, rows, col }) => (
   <div style={{ ...sx.card, borderLeft: `3px solid ${col}`, marginBottom: 0 }}>
-    <div style={{ fontFamily: FH, fontSize: 12, color: col, fontWeight: 700, marginBottom: 8 }}>{title}</div>
+    <div style={boxHeadStyle(col)}>{title}</div>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
       <thead><tr>{headers.map((h, i) => <th key={i} style={{ textAlign: "left", padding: "3px 6px", color: C.textDim, borderBottom: `1px solid ${C.border}` }}>{h}</th>)}</tr></thead>
       <tbody>{rows.map((row, i) => <tr key={i} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "transparent" }}>{row.map((cell, j) => <td key={j} style={{ padding: "3px 6px", color: C.textBright, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>{cell}</td>)}</tr>)}</tbody>
@@ -227,7 +235,7 @@ export default function QuickRef() {
                 : t("quickref.reactions_section", "Reaktionen");
             return (
               <div key={typ} style={{ marginBottom: 14 }}>
-                <div style={{ fontFamily: FH, fontSize: 13, color: col, fontWeight: 700, marginBottom: 8, borderBottom: `1px solid ${col}30`, paddingBottom: 4 }}>
+                <div style={{ fontFamily: F, fontSize: 14, color: col, fontWeight: 800, letterSpacing: 0.5, marginBottom: 8, borderBottom: `1px solid ${col}30`, paddingBottom: 4, textTransform: "uppercase" }}>
                   {typ === "Aktion" ? "⚔️" : typ === "Bonus" ? "⚡" : "🛡️"} {sectionLabel} ({items.length})
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 6 }}>
@@ -238,7 +246,7 @@ export default function QuickRef() {
                       borderLeft: `3px solid ${col}`,
                       borderRadius: 8, padding: "8px 10px",
                     }}>
-                      <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700, marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>
+                      <div style={{ fontFamily: F, fontSize: 13, color: C.textBright, fontWeight: 700, marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>
                         {a.t}
                         {a.new && <span style={{ fontSize: 8, padding: "1px 5px", borderRadius: 3, background: `${C.amberBright}22`, border: `1px solid ${C.amberBright}55`, color: C.amberBright, fontWeight: 700, letterSpacing: 0.3 }}>2024</span>}
                       </div>
@@ -265,7 +273,7 @@ export default function QuickRef() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 8 }}>
             {MASTERIES.map(m => (
               <div key={m.id} style={{ ...sx.card, borderLeft: `3px solid ${C.amberBright}`, marginBottom: 0 }}>
-                <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 5, display: "flex", alignItems: "center", gap: 6 }}>
+                <div style={{ fontFamily: F, fontSize: 14, color: C.amberBright, fontWeight: 800, marginBottom: 5, display: "flex", alignItems: "center", gap: 6 }}>
                   <span style={{ fontSize: 16 }}>{m.icon}</span> {m.name}
                 </div>
                 <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5, marginBottom: 6 }}>{lang === "en" && m.bEN ? m.bEN : m.b}</div>
