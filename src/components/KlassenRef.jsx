@@ -190,8 +190,8 @@ export default function KlassenRef() {
                       </div>
                       {feats.map((f,i)=>(
                         <div key={i} style={{marginBottom:6}}>
-                          <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:2}}>{f.name}</div>
-                          <div style={{fontSize:11,color:C.textDim,lineHeight:1.5}}>{f.desc}</div>
+                          <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:2}}>{lang === "de" && f.nameDE ? f.nameDE : f.name}</div>
+                          <div style={{fontSize:11,color:C.textDim,lineHeight:1.5}}>{lang === "de" && f.descDE ? f.descDE : f.desc}</div>
                         </div>
                       ))}
                     </div>
