@@ -5,6 +5,80 @@ import { modStr } from "../utils/helpers.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useI18n } from "../i18n/index.js";
 
+// ─── Inline DE→EN ⇄ EN→DE translation for common monster stat patterns ──
+// Bestiary monster traits/actions follow regex patterns. Auto-translate.
+const MONSTER_TEXT_DE = (text) => {
+  if (!text) return text;
+  return text
+    // Action headers
+    .replace(/Multiattack\./gi, "Mehrfachangriff.")
+    .replace(/\bMelee Attack Roll:/gi, "Nahkampfangriff:")
+    .replace(/\bRanged Attack Roll:/gi, "Fernkampfangriff:")
+    .replace(/\bMelee or Ranged Attack Roll:/gi, "Nah- oder Fernkampfangriff:")
+    .replace(/\bStrength Saving Throw:/gi, "Stärke-Rettungswurf:")
+    .replace(/\bDexterity Saving Throw:/gi, "Geschicklichkeit-Rettungswurf:")
+    .replace(/\bConstitution Saving Throw:/gi, "Konstitution-Rettungswurf:")
+    .replace(/\bIntelligence Saving Throw:/gi, "Intelligenz-Rettungswurf:")
+    .replace(/\bWisdom Saving Throw:/gi, "Weisheit-Rettungswurf:")
+    .replace(/\bCharisma Saving Throw:/gi, "Charisma-Rettungswurf:")
+    .replace(/\bSTR Save/gi, "STR-Save")
+    .replace(/\bDEX Save/gi, "DEX-Save")
+    .replace(/\bCON Save/gi, "KON-Save")
+    .replace(/\bINT Save/gi, "INT-Save")
+    .replace(/\bWIS Save/gi, "WIS-Save")
+    .replace(/\bCHA Save/gi, "CHA-Save")
+    .replace(/\bHit:/gi, "Treffer:")
+    .replace(/\bFailure:/gi, "Fehlschlag:")
+    .replace(/\bSuccess:/gi, "Erfolg:")
+    .replace(/\breach 5 ft\./gi, "Reichweite 5 ft.")
+    .replace(/\breach 10 ft\./gi, "Reichweite 10 ft.")
+    .replace(/\brange (\d+\/\d+) ft\./gi, "Reichweite $1 ft.")
+    // Damage types
+    .replace(/\bBludgeoning damage/gi, "Wuchtschaden")
+    .replace(/\bPiercing damage/gi, "Stichschaden")
+    .replace(/\bSlashing damage/gi, "Hiebschaden")
+    .replace(/\bFire damage/gi, "Feuerschaden")
+    .replace(/\bCold damage/gi, "Kälteschaden")
+    .replace(/\bLightning damage/gi, "Blitzschaden")
+    .replace(/\bThunder damage/gi, "Donnerschaden")
+    .replace(/\bAcid damage/gi, "Säureschaden")
+    .replace(/\bPoison damage/gi, "Giftschaden")
+    .replace(/\bNecrotic damage/gi, "Nekrose-Schaden")
+    .replace(/\bRadiant damage/gi, "Strahlend-Schaden")
+    .replace(/\bForce damage/gi, "Kraftschaden")
+    .replace(/\bPsychic damage/gi, "Psychischer Schaden")
+    // Common terms
+    .replace(/\bAdvantage on/gi, "Vorteil auf")
+    .replace(/\bDisadvantage on/gi, "Nachteil auf")
+    .replace(/\bBonus Action/gi, "Bonus-Aktion")
+    .replace(/\bMagic Action/gi, "Magie-Aktion")
+    .replace(/\bReaction/gi, "Reaktion")
+    .replace(/\bShort Rest/gi, "Kurze Rast")
+    .replace(/\bLong Rest/gi, "Lange Rast")
+    .replace(/\bSaving Throw/gi, "Rettungswurf")
+    .replace(/\bPack Tactics\./gi, "Rudeltaktik.")
+    .replace(/\bBrave\./gi, "Tapfer.")
+    .replace(/\bUndead Fortitude\./gi, "Untote Standhaftigkeit.")
+    .replace(/\bIncapacitated condition/gi, "Handlungsunfähig-Zustand")
+    .replace(/\bGrappled condition/gi, "Gegriffen-Zustand")
+    .replace(/\bProne condition/gi, "Liegend-Zustand")
+    .replace(/\bRestrained condition/gi, "Festgehalten-Zustand")
+    .replace(/\bCharmed condition/gi, "Bezaubert-Zustand")
+    .replace(/\bFrightened condition/gi, "Verängstigt-Zustand")
+    .replace(/\bPoisoned condition/gi, "Vergiftet-Zustand")
+    .replace(/\bBlinded condition/gi, "Geblendet-Zustand")
+    .replace(/\bStunned condition/gi, "Betäubt-Zustand")
+    .replace(/\bAdvantage\b/gi, "Vorteil")
+    .replace(/\bDisadvantage\b/gi, "Nachteil")
+    .replace(/\battack roll\b/gi, "Angriffsrolle")
+    .replace(/\battack rolls\b/gi, "Angriffsrollen")
+    .replace(/\bability check\b/gi, "Fertigkeits-Check")
+    .replace(/\bability checks\b/gi, "Fertigkeits-Checks");
+};
+
+// Pick correct field based on lang (EN is default storage)
+const pickMonsterField = (lang, en, de) => (lang === "de" ? (de || MONSTER_TEXT_DE(en)) : en);
+
 /**
  * Bestiary — Monster lookup + custom-monster CRUD
  *
@@ -26,6 +100,7 @@ import { useI18n } from "../i18n/index.js";
  */
 export default function Bestiary() {
   const { t, lang } = useI18n();
+  const tMon = (en, de) => pickMonsterField(lang, en, de);
   const [custom, setCustom] = usePersist("bestiary_v4", []);
   const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
   const [encountered, setEncountered] = usePersist("encountered_monsters_v1", []);
@@ -343,43 +418,43 @@ export default function Bestiary() {
 
             {/* Description */}
             {sel.desc && (
-              <Sect title="Beschreibung">
-                <div style={{fontSize:13,color:C.text,lineHeight:1.6,fontStyle:"italic"}}>{sel.desc}</div>
+              <Sect title={lang === "en" ? "Description" : "Beschreibung"}>
+                <div style={{fontSize:13,color:C.text,lineHeight:1.6,fontStyle:"italic"}}>{tMon(sel.desc, sel.descDE)}</div>
               </Sect>
             )}
 
             {/* Traits */}
             {sel.traits && (
-              <Sect title="Eigenschaften">
-                <div style={{fontSize:13,color:C.text,lineHeight:1.6,whiteSpace:"pre-wrap"}}>{sel.traits}</div>
+              <Sect title={lang === "en" ? "Traits" : "Eigenschaften"}>
+                <div style={{fontSize:13,color:C.text,lineHeight:1.6,whiteSpace:"pre-wrap"}}>{tMon(sel.traits, sel.traitsDE)}</div>
               </Sect>
             )}
 
             {/* Actions */}
             {sel.actions && (
-              <Sect title="Aktionen">
-                <div style={{fontSize:13,color:C.textBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.actions}</div>
+              <Sect title={lang === "en" ? "Actions" : "Aktionen"}>
+                <div style={{fontSize:13,color:C.textBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.actions, sel.actionsDE)}</div>
               </Sect>
             )}
 
             {/* Bonus Actions (2024) */}
             {sel.bonusActions && (
-              <Sect title="Bonus-Aktionen">
-                <div style={{fontSize:13,color:C.amberBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.bonusActions}</div>
+              <Sect title={lang === "en" ? "Bonus Actions" : "Bonus-Aktionen"}>
+                <div style={{fontSize:13,color:C.amberBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.bonusActions, sel.bonusActionsDE)}</div>
               </Sect>
             )}
 
             {/* Reactions (2024 separates from Actions) */}
             {sel.reactions && (
-              <Sect title="Reaktionen">
-                <div style={{fontSize:13,color:C.tealBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.reactions}</div>
+              <Sect title={lang === "en" ? "Reactions" : "Reaktionen"}>
+                <div style={{fontSize:13,color:C.tealBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.reactions, sel.reactionsDE)}</div>
               </Sect>
             )}
 
             {/* Legendary */}
             {sel.legendary && (
-              <Sect title="Legendäre Aktionen">
-                <div style={{fontSize:13,color:C.purple,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{sel.legendary}</div>
+              <Sect title={lang === "en" ? "Legendary Actions" : "Legendäre Aktionen"}>
+                <div style={{fontSize:13,color:C.purple,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.legendary, sel.legendaryDE)}</div>
               </Sect>
             )}
 
