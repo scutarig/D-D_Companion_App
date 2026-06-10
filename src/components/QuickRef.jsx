@@ -105,14 +105,38 @@ const ACTIONS_2024 = [
 
 // ─── Mastery Properties (PHB 2024 Chapter 6, p.213) ──────────────────────────
 const MASTERIES = [
-  { id: "cleave", name: "Cleave", icon: "🪓", b: "Bei Treffer mit Melee-Attack: Extra-Angriff gegen 2. Wesen in 5ft des ersten Ziels (gleiche Reach). Kein Schadens-Mod auf Extra-Angriff (außer negativ). Nur 1×/Zug.", weapons: "Greataxe, Halberd" },
-  { id: "graze", name: "Graze", icon: "💢", b: "Bei MISS mit Attack: Schaden = dein Ability-Mod (gleicher Schadens-Typ wie Waffe). Skaliert nur über Ability-Mod-Increase.", weapons: "Glaive, Greatsword" },
-  { id: "nick", name: "Nick", icon: "⚡", b: "Bei Nutzung der Light-Bonus-Action: kannst du den Extra-Angriff als TEIL der Attack-Aktion machen (statt Bonus Action). Nur 1×/Zug.", weapons: "Dagger, Scimitar, Sickle, Light Hammer" },
-  { id: "push", name: "Push", icon: "↗️", b: "Bei Treffer: Push das Wesen bis zu 10ft gerade weg von dir (Large oder kleiner).", weapons: "Greatclub, Maul, Pike, Warhammer" },
-  { id: "sap", name: "Sap", icon: "🌀", b: "Bei Treffer und Schaden: Target hat Nachteil auf nächsten Angriffsrolle bis Ende seines nächsten Zugs.", weapons: "Mace, Spear, Longsword (eine Hand), Morningstar, Warpick" },
-  { id: "slow", name: "Slow", icon: "🐌", b: "Bei Treffer und Schaden: Speed des Targets -10ft bis Anfang deines nächsten Zugs. Multiple Treffer stapeln NICHT.", weapons: "Club, Javelin, Light Crossbow, Longbow, Shortbow, Sling, Whip" },
-  { id: "topple", name: "Topple", icon: "🤸", b: "Bei Treffer: Target macht CON-Save (DC = 8 + Ability-Mod + PB) oder ist Prone.", weapons: "Battleaxe, Flail, Quarterstaff, Trident, Lance" },
-  { id: "vex", name: "Vex", icon: "👁️", b: "Bei Treffer und Schaden: Vorteil auf deinen nächsten Angriff gegen dasselbe Target (bis Ende deines nächsten Zugs).", weapons: "Handaxe, Dart, Rapier, Shortsword, Hand Crossbow, Heavy Crossbow, Musket, Pistol" },
+  { id: "cleave", name: "Cleave", icon: "🪓",
+    b: "Bei Treffer mit Melee-Attack: Extra-Angriff gegen 2. Wesen in 5ft des ersten Ziels (gleiche Reach). Kein Schadens-Mod auf Extra-Angriff (außer negativ). Nur 1×/Zug.",
+    bEN: "On hit with Melee Attack: Extra attack against a 2nd creature within 5 ft of the first target (same reach). No damage mod on extra attack (unless negative). Once per turn.",
+    weapons: "Greataxe, Halberd" },
+  { id: "graze", name: "Graze", icon: "💢",
+    b: "Bei MISS mit Attack: Schaden = dein Ability-Mod (gleicher Schadens-Typ wie Waffe). Skaliert nur über Ability-Mod-Increase.",
+    bEN: "On MISS with attack: damage = your ability modifier (same damage type as weapon). Scales only via ability mod increases.",
+    weapons: "Glaive, Greatsword" },
+  { id: "nick", name: "Nick", icon: "⚡",
+    b: "Bei Nutzung der Light-Bonus-Action: kannst du den Extra-Angriff als TEIL der Attack-Aktion machen (statt Bonus Action). Nur 1×/Zug.",
+    bEN: "When using the Light bonus-action: you may make the extra attack as PART of the Attack action (instead of Bonus Action). Once per turn.",
+    weapons: "Dagger, Scimitar, Sickle, Light Hammer" },
+  { id: "push", name: "Push", icon: "↗️",
+    b: "Bei Treffer: Push das Wesen bis zu 10ft gerade weg von dir (Large oder kleiner).",
+    bEN: "On hit: Push the creature up to 10 ft straight away from you (Large or smaller).",
+    weapons: "Greatclub, Maul, Pike, Warhammer" },
+  { id: "sap", name: "Sap", icon: "🌀",
+    b: "Bei Treffer und Schaden: Target hat Nachteil auf nächsten Angriffsrolle bis Ende seines nächsten Zugs.",
+    bEN: "On hit and damage: Target has Disadvantage on its next attack roll until the end of its next turn.",
+    weapons: "Mace, Spear, Longsword (one-handed), Morningstar, Warpick" },
+  { id: "slow", name: "Slow", icon: "🐌",
+    b: "Bei Treffer und Schaden: Speed des Targets -10ft bis Anfang deines nächsten Zugs. Multiple Treffer stapeln NICHT.",
+    bEN: "On hit and damage: Target's Speed −10 ft until the start of your next turn. Multiple hits do NOT stack.",
+    weapons: "Club, Javelin, Light Crossbow, Longbow, Shortbow, Sling, Whip" },
+  { id: "topple", name: "Topple", icon: "🤸",
+    b: "Bei Treffer: Target macht CON-Save (DC = 8 + Ability-Mod + PB) oder ist Prone.",
+    bEN: "On hit: Target makes a CON save (DC = 8 + Ability Mod + PB) or is Prone.",
+    weapons: "Battleaxe, Flail, Quarterstaff, Trident, Lance" },
+  { id: "vex", name: "Vex", icon: "👁️",
+    b: "Bei Treffer und Schaden: Vorteil auf deinen nächsten Angriff gegen dasselbe Target (bis Ende deines nächsten Zugs).",
+    bEN: "On hit and damage: Advantage on your next attack against the same target (until the end of your next turn).",
+    weapons: "Handaxe, Dart, Rapier, Shortsword, Hand Crossbow, Heavy Crossbow, Musket, Pistol" },
 ];
 
 // ─── Weapon Properties (PHB 2024, p.213) ─────────────────────────────────────
@@ -150,7 +174,7 @@ const DataTable = ({ title, headers, rows, col }) => (
 );
 
 export default function QuickRef() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [section, setSection] = useState("conditions");
 
   return (
@@ -175,7 +199,11 @@ export default function QuickRef() {
       {/* CONDITIONS */}
       {section === "conditions" && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
-          {CONDITIONS.map(c => <RuleCard key={c.id} title={`${c.icon} ${c.name}`} body={c.desc} col={C.redBright} />)}
+          {CONDITIONS.map(c => {
+            const displayName = lang === "en" && c.nameEN ? c.nameEN : c.name;
+            const displayDesc = lang === "en" && c.descEN ? c.descEN : c.desc;
+            return <RuleCard key={c.id} title={`${c.icon} ${displayName}`} body={displayDesc} col={C.redBright} />;
+          })}
         </div>
       )}
 
@@ -240,7 +268,7 @@ export default function QuickRef() {
                 <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 5, display: "flex", alignItems: "center", gap: 6 }}>
                   <span style={{ fontSize: 16 }}>{m.icon}</span> {m.name}
                 </div>
-                <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5, marginBottom: 6 }}>{m.b}</div>
+                <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5, marginBottom: 6 }}>{lang === "en" && m.bEN ? m.bEN : m.b}</div>
                 <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", borderTop: `1px solid ${C.border}`, paddingTop: 5 }}>
                   <b style={{ color: C.amberBright }}>Waffen:</b> {m.weapons}
                 </div>
