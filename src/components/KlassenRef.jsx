@@ -7,7 +7,7 @@ import { useI18n } from "../i18n/index.js";
 const CL_COL = { Barbar:"#dc2626",Barde:"#a78bfa",Druide:"#4ade80",Hexenmeister:"#9d174d",Kämpfer:"#0d9488",Kleriker:"#f59e0b",Magier:"#60a5fa",Mönch:"#fb923c",Paladin:"#fde68a",Schurke:"#9ca3af",Waldläufer:"#22c55e",Zauberer:"#e879f9",Magieschmied:"#38bdf8" };
 
 export default function KlassenRef() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const mob = useIsMobile(900);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
@@ -100,7 +100,7 @@ export default function KlassenRef() {
             {/* Description */}
             {sel.desc && (
               <Sect title={t("ref.about_class", "Über die Klasse")}>
-                <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{sel.desc}</div>
+                <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{lang === "de" && sel.descDE ? sel.descDE : sel.desc}</div>
               </Sect>
             )}
 

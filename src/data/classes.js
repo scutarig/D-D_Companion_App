@@ -33,6 +33,7 @@ const BARBARIAN = {
   subclassChoiceLevel: 3,
   subclasses: ["Path of the Berserker","Path of the Wild Heart","Path of the World Tree","Path of the Zealot"],
   desc: "Mighty warriors powered by primal forces of the multiverse that manifest as Rage. More than mere emotion, this Rage is an incarnation of a predator's ferocity, a storm's fury, and a sea's turmoil. Barbarians often serve as protectors and leaders in their communities, charging headlong into danger so those under their protection don't have to.",
+  descDE: "Mächtige Krieger, angetrieben von urzeitlichen Kräften des Multiversums, die sich als Kampfrausch manifestieren. Mehr als bloße Emotion verkörpert dieser Rausch die Wildheit eines Raubtiers, die Wut eines Sturms und das Toben des Meeres. Barbaren dienen ihren Gemeinschaften oft als Beschützer und Anführer, stürmen kopflos in Gefahren, damit ihre Schutzbefohlenen es nicht müssen.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/barbarian/",
   progressionHeaders: ["Lv","PB","Class Features","Rages","Rage Dmg","Wpn Mastery"],
   progressionRows: [
@@ -108,6 +109,7 @@ const FIGHTER = {
   subclassChoiceLevel: 3,
   subclasses: ["Battle Master","Champion","Eldritch Knight","Psi Warrior"],
   desc: "Fighters rule many battlefields. Questing knights, royal champions, elite soldiers, and hardened mercenaries — they all share an unparalleled prowess with weapons and armor. Fighters master various weapon techniques and specialize in styles ranging from archery to two-weapon fighting to magical augmentation.",
+  descDE: "Kämpfer beherrschen viele Schlachtfelder. Suchende Ritter, königliche Champions, Elite-Soldaten und abgehärtete Söldner — sie alle teilen unvergleichliche Fähigkeiten mit Waffen und Rüstungen. Kämpfer meistern verschiedene Waffentechniken und spezialisieren sich auf Stile von der Bogenschütze über Zweiwaffenkampf bis zur magischen Verstärkung.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/fighter/",
   progressionHeaders: ["Lv","PB","Class Features","2nd Wind","Wpn Mastery"],
   progressionRows: [
@@ -181,6 +183,7 @@ const PALADIN = {
   subclassChoiceLevel: 3,
   subclasses: ["Oath of Devotion","Oath of Glory","Oath of the Ancients","Oath of Vengeance"],
   desc: "Paladins are united by their oaths to stand against the forces of annihilation and corruption. A Paladin's oath is a powerful bond — a source of power that turns a devout warrior into a blessed champion. They wield magical power to heal the injured, smite their foes, and protect the helpless.",
+  descDE: "Paladine sind durch ihre Eide vereint, gegen die Kräfte der Vernichtung und Verderbnis zu kämpfen. Der Eid eines Paladins ist ein mächtiges Band — eine Machtquelle, die einen frommen Krieger in einen gesegneten Streiter verwandelt. Sie wirken magische Macht, um Verletzte zu heilen, Feinde zu schmettern und Hilflose zu beschützen.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/paladin/",
   progressionHeaders: ["Lv","PB","Class Features","CD","Prepared","S1","S2","S3","S4","S5"],
   progressionRows: [
@@ -256,6 +259,7 @@ const BARD = {
   subclassChoiceLevel: 3,
   subclasses: ["College of Dance","College of Glamour","College of Lore","College of Valor"],
   desc: "Invoking magic through music, dance, and verse, Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Bardic magic harnesses the Words of Creation that still resound on every plane of existence. Their mastery of music sets them apart from any other entertainer.",
+  descDE: "Durch Musik, Tanz und Verse beschwören Barden Magie. Sie sind Experten darin, andere zu inspirieren, Wunden zu lindern, Feinde zu entmutigen und Illusionen zu erschaffen. Bardische Magie nutzt die Worte der Schöpfung, die noch auf jeder Ebene der Existenz nachhallen. Ihre Beherrschung der Musik hebt sie von allen anderen Künstlern ab.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/bard/",
   progressionHeaders: ["Lv","PB","Class Features","Bardic Die","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
   progressionRows: [
@@ -317,6 +321,7 @@ const MONK = {
   subclassChoiceLevel: 3,
   subclasses: ["Warrior of Mercy","Warrior of Shadow","Warrior of the Elements","Warrior of the Open Hand"],
   desc: "Monks use rigorous combat training and mental discipline to align themselves with the multiverse and focus their internal reservoirs of power (Focus Points). They channel uncanny speed and strength into attacks — with or without weapons. In a Monk's hands, even basic weapons become sophisticated implements of combat mastery.",
+  descDE: "Mönche nutzen strenges Kampftraining und geistige Disziplin, um sich mit dem Multiversum auszurichten und ihre inneren Machtreserven (Fokuspunkte) zu bündeln. Sie kanalisieren übermenschliche Geschwindigkeit und Kraft in ihre Angriffe — mit oder ohne Waffen. In den Händen eines Mönchs werden selbst einfache Waffen zu raffinierten Werkzeugen der Kampfmeisterschaft.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/monk/",
   progressionHeaders: ["Lv","PB","Class Features","Martial Arts","Focus","Movement"],
   progressionRows: [
@@ -395,6 +400,7 @@ const ROGUE = {
   subclassChoiceLevel: 3,
   subclasses: ["Arcane Trickster","Assassin","Soulknife","Thief"],
   desc: "Rogues rely on cunning, stealth, and exploiting foes' vulnerabilities. They prioritize subtle strikes over brute strength — one precise strike beats a barrage. Some Rogues focus on stealth and deception, others on dungeon skills like climbing, finding traps, and disarming locks. A few even learn magical tricks (Arcane Trickster).",
+  descDE: "Schurken verlassen sich auf List, Heimlichkeit und das Ausnutzen feindlicher Schwächen. Sie bevorzugen subtile Schläge gegenüber roher Gewalt — ein präziser Schlag schlägt einen Hagel von Angriffen. Manche Schurken fokussieren sich auf Heimlichkeit und Täuschung, andere auf Verlies-Fähigkeiten wie Klettern, Fallen finden und Schlösser knacken. Einige lernen sogar magische Tricks (Arkaner Trickser).",
   srd: "https://www.dnddeutsch.de/srd/character/classes/rogue/",
   progressionHeaders: ["Lv","PB","Class Features","Sneak Attack"],
   progressionRows: [
@@ -473,6 +479,7 @@ const WIZARD = {
   subclassChoiceLevel: 3,
   subclasses: ["Abjurer","Diviner","Evoker","Illusionist"],
   desc: "Wizards are defined by their exhaustive study of magic's inner workings. They cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. Their spellbook is their most prized possession — a culmination of arcane research that grows with every adventure.",
+  descDE: "Magier sind durch ihr erschöpfendes Studium der inneren Funktionsweise der Magie definiert. Sie wirken Zauber von explosivem Feuer, zuckenden Blitzen, subtiler Täuschung und spektakulären Verwandlungen. Ihr Zauberbuch ist ihr wertvollster Besitz — eine Zusammenführung arkaner Forschung, die mit jedem Abenteuer wächst.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/wizard/",
   progressionHeaders: ["Lv","PB","Class Features","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
   progressionRows: [
@@ -535,6 +542,7 @@ const SORCERER = {
   subclassChoiceLevel: 3,
   subclasses: ["Aberrant Sorcery","Clockwork Sorcery","Draconic Sorcery","Wild Magic Sorcery"],
   desc: "Sorcerers wield innate magic stamped into their being. Some can't name its origin — the blessing of a dragon, lightning from a clear sky, or exposure to strange planar magic. Sorcerers don't learn magic; they harness it through Metamagic, allowing them to alter their spells in staggering ways.",
+  descDE: "Zauberer wirken angeborene Magie, die in ihr Wesen eingeprägt ist. Manche können den Ursprung nicht benennen — der Segen eines Drachen, Blitz aus heiterem Himmel oder Kontakt mit seltsamer planarer Magie. Zauberer lernen keine Magie; sie kanalisieren sie durch Metamagie, was ihnen erlaubt, ihre Zauber auf umwerfende Weise zu modifizieren.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/sorcerer/",
   progressionHeaders: ["Lv","PB","Class Features","Sorc.Pts","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
   progressionRows: [
@@ -599,6 +607,7 @@ const WARLOCK = {
   subclassChoiceLevel: 3,
   subclasses: ["Archfey Patron","Celestial Patron","Fiend Patron","Great Old One Patron"],
   desc: "Warlocks quest for knowledge that lies hidden in the multiverse. Each is drawn into a binding pact with a powerful patron — archfey, fiends, celestials, or alien entities. Drawing on ancient knowledge, Warlocks piece together arcane secrets and shape Eldritch Invocations to bolster their power. Pact Magic slots return on Short Rest.",
+  descDE: "Hexenmeister streben nach Wissen, das im Multiversum verborgen liegt. Jeder wird in einen bindenden Pakt mit einem mächtigen Schutzherrn gezogen — Erzfeen, Unholden, Himmlischen oder fremdartigen Wesenheiten. Aus uraltem Wissen schöpfend setzen Hexenmeister arkane Geheimnisse zusammen und formen Schauerliche Anrufungen, um ihre Macht zu stärken. Paktmagie-Plätze kehren bei einer Kurzen Rast zurück.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/warlock/",
   progressionHeaders: ["Lv","PB","Class Features","Cant.","Prep.","Slots","Slot Lv","Invoc."],
   progressionRows: [
@@ -663,6 +672,7 @@ const CLERIC = {
   subclassChoiceLevel: 3,
   subclasses: ["Life Domain","Light Domain","Trickery Domain","War Domain"],
   desc: "Clerics draw power from the realms of the gods and harness it to work miracles. Blessed by a deity, pantheon, or other immortal entity, a Cleric reaches out to the divine magic of the Outer Planes and channels it to bolster people and battle foes. Their devotion can heal or smite — guided by Divine Order, sworn role, and Channel Divinity.",
+  descDE: "Kleriker schöpfen Macht aus den Reichen der Götter und nutzen sie, um Wunder zu wirken. Gesegnet von einer Gottheit, einem Pantheon oder einer anderen unsterblichen Wesenheit, greift ein Kleriker nach der göttlichen Magie der Äußeren Ebenen und kanalisiert sie, um Menschen zu stärken und Feinde zu bekämpfen. Ihre Hingabe kann heilen oder vernichten — geleitet von Göttlicher Ordnung, geschworener Rolle und Göttlicher Macht fokussieren.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/cleric/",
   progressionHeaders: ["Lv","PB","Class Features","CD","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
   progressionRows: [
@@ -726,6 +736,7 @@ const DRUID = {
   subclassChoiceLevel: 3,
   subclasses: ["Circle of the Land","Circle of the Moon","Circle of the Sea","Circle of the Stars"],
   desc: "Druids belong to ancient orders that call on the forces of nature. Harnessing the magic of animals, plants, and the four elements, Druids heal, transform into animals via Wild Shape, and wield elemental destruction. Revering nature above all, they guard sacred sites and unite to perform rites marking natural cycles.",
+  descDE: "Druiden gehören uralten Orden an, die die Kräfte der Natur anrufen. Sie kanalisieren die Magie der Tiere, Pflanzen und vier Elemente — Druiden heilen, verwandeln sich durch Tiergestalt in Tiere und entfesseln elementare Zerstörung. Die Natur über alles ehrend wachen sie über heilige Stätten und vereinen sich, um Riten der natürlichen Zyklen durchzuführen.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/druid/",
   progressionHeaders: ["Lv","PB","Class Features","WildShape","Cant.","Prep.","S1","S2","S3","S4","S5","S6","S7","S8","S9"],
   progressionRows: [
@@ -793,6 +804,7 @@ const RANGER = {
   subclassChoiceLevel: 3,
   subclasses: ["Beast Master","Fey Wanderer","Gloom Stalker","Hunter"],
   desc: "Rangers keep their unending watch in the wilderness — tracking quarry, moving stealthily, and harnessing primal powers through spells. A Ranger's talents and magic are honed with deadly focus to protect the world from the ravages of monsters and tyrants.",
+  descDE: "Waldläufer halten ihre unendliche Wacht in der Wildnis — verfolgen Beute, bewegen sich heimlich und kanalisieren Urkräfte durch Zauber. Talente und Magie eines Waldläufers werden mit tödlichem Fokus geschärft, um die Welt vor den Verheerungen von Monstern und Tyrannen zu schützen.",
   srd: "https://www.dnddeutsch.de/srd/character/classes/ranger/",
   progressionHeaders: ["Lv","PB","Class Features","Fav. Enemy","Prep.","S1","S2","S3","S4","S5"],
   progressionRows: [
