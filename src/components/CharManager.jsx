@@ -3,6 +3,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { newChar } from "../utils/helpers.js";
 import { useChar } from "../context/CharContext.jsx";
+import { useI18n } from "../i18n/index.js";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
 import CharSheet from "./CharSheet.jsx";
@@ -14,8 +15,14 @@ import ConditionsTracker from "./ConditionsTracker.jsx";
 import CurrencyTab from "./CurrencyTab.jsx";
 
 export default function CharManager() {
+  const { t } = useI18n();
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
-  const [subtab, setSubtab] = useState("sheet");
+  const [subtab, _setSubtab] = useState("sheet");
+  // Wrapper: bei Subtab-Wechsel Scroll zurück zum Anfang
+  const setSubtab = (next) => {
+    _setSubtab(next);
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "auto" });
+  };
   const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
   const [restMode, setRestMode] = useState(null);
@@ -86,8 +93,8 @@ export default function CharManager() {
       try {
         const data = JSON.parse(ev.target.result);
         if (data && data.name) { const id = Date.now(); const newC = { ...newChar(id), ...data, id }; setChars(p => [...p, newC]); setAid(id); }
-        else { alert("Ungültige Charakter-Datei."); }
-      } catch { alert("JSON konnte nicht gelesen werden."); }
+        else { alert(t("char.invalid_file","Ungültige Charakter-Datei.")); }
+      } catch { alert(t("char.json_error","JSON konnte nicht gelesen werden.")); }
     };
     reader.readAsText(file);
     e.target.value = "";
@@ -117,9 +124,9 @@ export default function CharManager() {
             </button>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-            <button onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 Kurze Rast</button>
-            <button onClick={() => setRestMode(restMode === "long_confirm" ? null : "long_confirm")} style={{ ...sx.bsm(C.purple), background: restMode === "long_confirm" ? `${C.purple}30` : `${C.purple}18`, border: `1px solid ${C.purple}55`, fontWeight: 700 }}>🌟 Lange Rast</button>
-            <span style={{ fontSize: 10, color: C.textDim }}>💾 Auto-Speichern</span>
+            <button onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 {t("header.short_rest","Kurze Rast")}</button>
+            <button onClick={() => setRestMode(restMode === "long_confirm" ? null : "long_confirm")} style={{ ...sx.bsm(C.purple), background: restMode === "long_confirm" ? `${C.purple}30` : `${C.purple}18`, border: `1px solid ${C.purple}55`, fontWeight: 700 }}>🌟 {t("header.long_rest","Lange Rast")}</button>
+            <span style={{ fontSize: 10, color: C.textDim }}>💾 {t("char.auto_save","Auto-Speichern")}</span>
           </div>
         </div>
 
@@ -215,8 +222,16 @@ export default function CharManager() {
       </div>
 
       <div data-no-print style={{ display: "flex", gap: 5, marginBottom: 14, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 4 }}>
-        {[["sheet", "📜 Bogen"], ["currency", "💰 Währung"], ["levelup", "⬆️ Level-Up"], ["aktionen", "⚔️ Aktionen"], ["spells", "🔮 Spellbook"], ["tokens", "🏷️ Tokens"], ["conditions", "⚡ Conditions"]].map(([t, l]) => (
-          <button key={t} onClick={() => setSubtab(t)} style={{ ...sx.nb(subtab === t), flexShrink: 0 }}>{l}</button>
+        {[
+          ["sheet", `📜 ${t("char.tab_sheet","Bogen")}`],
+          ["currency", `💰 ${t("char.tab_currency","Währung")}`],
+          ["levelup", `⬆️ ${t("char.tab_levelup","Level-Up")}`],
+          ["aktionen", `⚔️ ${t("char.tab_actions","Aktionen")}`],
+          ["spells", `🔮 ${t("char.tab_spells","Spellbook")}`],
+          ["tokens", `🏷️ ${t("char.tab_tokens","Tokens")}`],
+          ["conditions", `⚡ ${t("char.tab_conditions","Conditions")}`],
+        ].map(([id, l]) => (
+          <button key={id} onClick={() => setSubtab(id)} style={{ ...sx.nb(subtab === id), flexShrink: 0 }}>{l}</button>
         ))}
       </div>
 

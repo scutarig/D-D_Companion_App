@@ -3,6 +3,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { breakConcentration, getConcentrationDC } from "../utils/concentration.js";
 import { modOf, getPB } from "../utils/helpers.js";
 import { rollD } from "../utils/helpers.js";
+import { useI18n } from "../i18n/index.js";
 
 const SCHOOL_COLOR = {
   Evocation: "#ff6644", Conjuration: "#40a0ff", Abjuration: "#44c4a1",
@@ -11,6 +12,7 @@ const SCHOOL_COLOR = {
 };
 
 export default function ConcentrationBanner({ char, setChar }) {
+  const { t } = useI18n();
   const conc = char?.concentration;
   const [dmgInput, setDmgInput]  = useState("");
   const [saveResult, setSaveResult] = useState(null); // { roll, total, dc, success }
@@ -62,7 +64,7 @@ export default function ConcentrationBanner({ char, setChar }) {
           <span style={{ fontSize: 20 }}>🔮</span>
           <div>
             <div style={{ fontFamily: FH, fontSize: 13, color: schoolColor, fontWeight: 700 }}>
-              KONZENTRATION AKTIV
+              {t("concentration.active","KONZENTRATION AKTIV")}
             </div>
             <div style={{ fontSize: 12, color: C.textBright, marginTop: 2 }}>
               {conc.spellName}
@@ -79,7 +81,7 @@ export default function ConcentrationBanner({ char, setChar }) {
             🎲 CON Save
           </button>
           <button onClick={doBreak} style={{ ...sx.bsm(C.red), fontSize: 11 }}>
-            ✕ Beenden
+            ✕ {t("concentration.end","Beenden")}
           </button>
         </div>
       </div>
@@ -88,11 +90,11 @@ export default function ConcentrationBanner({ char, setChar }) {
       {showSave && (
         <div style={{ marginTop: 10, borderTop: `1px solid ${C.border}`, paddingTop: 10 }}>
           <div style={{ fontSize: 11, color: C.textDim, marginBottom: 6 }}>
-            DC = max(10, Schaden ÷ 2) · CON Mod: {conMod >= 0 ? `+${conMod}` : conMod}{char.saves?.CON ? ` · +${pb} PB` : ""}
+            {t("concentration.dc_formula","DC = max(10, Schaden ÷ 2)")} · CON Mod: {conMod >= 0 ? `+${conMod}` : conMod}{char.saves?.CON ? ` · +${pb} PB` : ""}
           </div>
           <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <label style={{ ...sx.lbl, margin: 0 }}>Schaden erlitten:</label>
+              <label style={{ ...sx.lbl, margin: 0 }}>{t("concentration.damage_taken","Schaden erlitten:")}</label>
               <input type="number" min={0} value={dmgInput}
                 onChange={e => { setDmgInput(e.target.value); setSaveResult(null); }}
                 placeholder="0"
@@ -106,7 +108,7 @@ export default function ConcentrationBanner({ char, setChar }) {
               </div>
             )}
             <button onClick={rollSave} style={sx.btn(C.amberBright)}>
-              🎲 Würfeln
+              🎲 {t("concentration.roll","Würfeln")}
             </button>
           </div>
 
@@ -121,11 +123,11 @@ export default function ConcentrationBanner({ char, setChar }) {
               <span style={{ fontSize: 18 }}>{saveResult.success ? "✅" : "💔"}</span>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: saveResult.success ? C.greenBright : C.redBright, fontFamily: FH }}>
-                  {saveResult.success ? "Save gehalten!" : "Konzentration gebrochen!"}
+                  {saveResult.success ? t("concentration.held","Save gehalten!") : t("concentration.broken","Konzentration gebrochen!")}
                 </div>
                 <div style={{ fontSize: 11, color: C.textDim }}>
-                  Würfel: {saveResult.roll} + {conMod >= 0 ? conMod : `(${conMod})`}{char.saves?.CON ? ` + ${pb}` : ""} = <strong style={{ color: C.textBright }}>{saveResult.total}</strong> vs DC {saveResult.dc}
-                  {saveResult.hasWarCaster && " (War Caster: Vorteil)"}
+                  {t("concentration.dice","Würfel")}: {saveResult.roll} + {conMod >= 0 ? conMod : `(${conMod})`}{char.saves?.CON ? ` + ${pb}` : ""} = <strong style={{ color: C.textBright }}>{saveResult.total}</strong> vs DC {saveResult.dc}
+                  {saveResult.hasWarCaster && ` (${t("concentration.war_caster_adv","War Caster: Vorteil")})`}
                 </div>
               </div>
             </div>

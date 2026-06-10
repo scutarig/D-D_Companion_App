@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../../../constants/theme.js";
 import { useCombatActions } from "../../../hooks/useCombatActions.js";
 import { isConcentration, getDamageTypeEmoji, slotLabel, slotColor, getAvailableSlotLevels } from "../../../utils/spells.js";
+import { useI18n } from "../../../i18n/index.js";
 import DamageRollModal from "../Rolls/DamageRollModal.jsx";
 
 /**
@@ -12,6 +13,7 @@ import DamageRollModal from "../Rolls/DamageRollModal.jsx";
  *   onClose: () => void
  */
 export default function SpellCastModal({ spell, fighter, onClose }) {
+  const { t } = useI18n();
   const { castSpell } = useCombatActions();
   const [slotLevel, setSlotLevel] = useState(spell.lv === 0 ? 0 : null);
   const [showDamage, setShowDamage] = useState(false);
@@ -101,10 +103,10 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
         {/* Slot level selection */}
         {!isCantrip && (
           <div style={{ marginBottom: 14 }}>
-            <label style={sx.lbl}>Zauberplatz-Stufe wählen</label>
+            <label style={sx.lbl}>{t("spellcast.choose_slot","Zauberplatz-Stufe wählen")}</label>
             {availableLevels.length === 0 ? (
               <div style={{ background: `${C.red}12`, border: `1px solid ${C.red}30`, borderRadius: 8, padding: "10px 12px", fontSize: 13, color: C.redBright }}>
-                ✕ Keine Zauberplätze verfügbar (Stufe {spell.lv}+)
+                ✕ {t("spellcast.no_slots","Keine Zauberplätze verfügbar")} ({t("spellcast.level","Stufe")} {spell.lv}+)
               </div>
             ) : (
               <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -165,11 +167,11 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
           <div style={{ textAlign: "center", padding: "12px 0" }}>
             <div style={{ fontSize: 20, marginBottom: 6 }}>✨</div>
             <div style={{ color: C.purpleBright, fontWeight: 700, fontSize: 14, marginBottom: 10 }}>
-              {spell.name} gewirkt!
+              {spell.name} {t("spellcast.cast","gewirkt!")}
             </div>
             {needsConc && (
               <div style={{ fontSize: 12, color: C.amberBright, marginBottom: 10 }}>
-                🧠 Konzentration aktiv — erscheint als Condition
+                🧠 {t("spellcast.conc_active","Konzentration aktiv — erscheint als Condition")}
               </div>
             )}
             <button onClick={onClose} style={{ ...sx.btn(C.teal), padding: "10px 24px" }}>

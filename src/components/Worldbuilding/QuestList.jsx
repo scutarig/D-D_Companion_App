@@ -124,7 +124,7 @@ export default function QuestList() {
   };
 
   const deleteQuest = (id) => {
-    if (!confirm("Quest löschen?")) return;
+    if (!window.confirm("Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)")) return;
     setQuests(p => p.filter(q => q.id !== id));
     if (selId === id) setSelId(null);
     if (editing === id) { setEditing(null); setDraft(null); }

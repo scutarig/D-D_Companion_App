@@ -82,7 +82,7 @@ export default function SaveRollModal({ onClose }) {
         {/* Save type selector */}
         <div style={{ marginBottom: 12 }}>
           <label style={sx.lbl}>Save Type</label>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 4 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(50px, 1fr))", gap: 4 }}>
             {SAVE_TYPES.map((s) => (
               <button
                 key={s.key}

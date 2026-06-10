@@ -164,6 +164,36 @@ const TRANSLATIONS = {
     "save.player_mode_active": "SPIELER-MODUS AKTIV",
     "save.switch": "Wechseln",
 
+    // ── CharManager Subtabs ──────────────────────────────────────────────
+    "char.tab_sheet": "Bogen",
+    "char.tab_currency": "Währung",
+    "char.tab_levelup": "Level-Up",
+    "char.tab_actions": "Aktionen",
+    "char.tab_spells": "Spellbook",
+    "char.tab_tokens": "Tokens",
+    "char.tab_conditions": "Conditions",
+    "char.invalid_file": "Ungültige Charakter-Datei.",
+    "char.json_error": "JSON konnte nicht gelesen werden.",
+    "char.auto_save": "Auto-Speichern",
+
+    // ── Concentration Banner ─────────────────────────────────────────────
+    "concentration.active": "KONZENTRATION AKTIV",
+    "concentration.end": "Beenden",
+    "concentration.dc_formula": "DC = max(10, Schaden ÷ 2)",
+    "concentration.damage_taken": "Schaden erlitten:",
+    "concentration.roll": "Würfeln",
+    "concentration.held": "Save gehalten!",
+    "concentration.broken": "Konzentration gebrochen!",
+    "concentration.dice": "Würfel",
+    "concentration.war_caster_adv": "War Caster: Vorteil",
+
+    // ── SpellCastModal ───────────────────────────────────────────────────
+    "spellcast.choose_slot": "Zauberplatz-Stufe wählen",
+    "spellcast.no_slots": "Keine Zauberplätze verfügbar",
+    "spellcast.level": "Stufe",
+    "spellcast.cast": "gewirkt!",
+    "spellcast.conc_active": "Konzentration aktiv — erscheint als Condition",
+
     // ── QuickRef ─────────────────────────────────────────────────────────
     "quickref.conditions": "⚡ Zustände",
     "quickref.actions": "🎯 Aktionen",
@@ -345,6 +375,36 @@ const TRANSLATIONS = {
     "save.dm_mode_active": "DM MODE ACTIVE",
     "save.player_mode_active": "PLAYER MODE ACTIVE",
     "save.switch": "Switch",
+
+    // ── CharManager Subtabs ──────────────────────────────────────────────
+    "char.tab_sheet": "Sheet",
+    "char.tab_currency": "Currency",
+    "char.tab_levelup": "Level-Up",
+    "char.tab_actions": "Actions",
+    "char.tab_spells": "Spellbook",
+    "char.tab_tokens": "Tokens",
+    "char.tab_conditions": "Conditions",
+    "char.invalid_file": "Invalid character file.",
+    "char.json_error": "Could not parse JSON.",
+    "char.auto_save": "Auto-Save",
+
+    // ── Concentration Banner ─────────────────────────────────────────────
+    "concentration.active": "CONCENTRATION ACTIVE",
+    "concentration.end": "End",
+    "concentration.dc_formula": "DC = max(10, Damage ÷ 2)",
+    "concentration.damage_taken": "Damage taken:",
+    "concentration.roll": "Roll",
+    "concentration.held": "Save held!",
+    "concentration.broken": "Concentration broken!",
+    "concentration.dice": "Die",
+    "concentration.war_caster_adv": "War Caster: Advantage",
+
+    // ── SpellCastModal ───────────────────────────────────────────────────
+    "spellcast.choose_slot": "Choose spell slot level",
+    "spellcast.no_slots": "No spell slots available",
+    "spellcast.level": "Level",
+    "spellcast.cast": "cast!",
+    "spellcast.conc_active": "Concentration active — appears as Condition",
 
     // ── QuickRef ─────────────────────────────────────────────────────────
     "quickref.conditions": "⚡ Conditions",

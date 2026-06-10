@@ -116,8 +116,9 @@ export default function SkillCheckModal({ onClose }) {
                   onClick={() => setActiveAbility(activeAbility === ab.key ? null : ab.key)}
                   title={`${ab.label}: ${score} (${fmtMod(mod)})`}
                   style={{
-                    flex: "1 1 0", minWidth: 0, padding: "5px 2px",
-                    borderRadius: 6, cursor: "pointer", fontSize: 10, fontWeight: 700,
+                    flex: "1 1 50px", minWidth: 50, padding: "7px 4px",
+                    borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: 700,
+                    minHeight: 40,
                     border: `1px solid ${activeAbility === ab.key ? ab.color : ab.color + "40"}`,
                     background: activeAbility === ab.key ? `${ab.color}28` : `${ab.color}0e`,
                     color: activeAbility === ab.key ? ab.color : ab.color + "cc",

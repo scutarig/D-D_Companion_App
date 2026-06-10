@@ -37,7 +37,10 @@ export default function WildShapePanel({ compact = false }) {
 
   const isDruid    = char?.klass === "Druide";
   const level      = char?.level ?? 1;
-  const isMoon     = false; // TODO: detect Circle of Moon subclass
+  // Circle of Moon-Subklasse-Detection: subklass-Feld oder multiclass-Slot prüfen
+  const subclass   = char?.subclass || char?.subKlass || "";
+  const multiSubs  = (char?.classes || []).map(c => c.subclass || c.subKlass || "").filter(Boolean);
+  const isMoon     = /mond|moon/i.test(subclass) || multiSubs.some(s => /mond|moon/i.test(s));
   const maxUses    = level >= 20 ? Infinity : 2;
   const usesLeft   = Math.max(0, maxUses - uses);
 
