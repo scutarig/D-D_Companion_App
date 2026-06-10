@@ -47,9 +47,11 @@ const CLF = Object.fromEntries(
   ])
 );
 
-// ── (Legacy inline CLF removed — now sourced from data/classFeatures.js) ────
-/* DELETED */
-const _CLF_LEGACY_STUB = {
+// ── (Legacy inline CLF entfernt — Quelle: data/classFeatures.js) ────
+// ~190 Zeilen Dead Code (_CLF_LEGACY_STUB) entfernt — nie referenziert.
+const _REMOVED_LEGACY_KEEP_THIS_AS_DELETION_MARKER = null;
+/* DEAD-CODE-DROP-START
+const _REMOVED_LEGACY = {
   Barbar: {
     1:[{n:"Kampfrausch",d:"Bonus-Aktion: +2 auf STR-Angriffe/Schaden, Widerstand gegen Hieb/Stich/Wucht. Anzahl = max(1, CON-Mod)."},{n:"Ungerüstete Verteidigung",d:"RK = 10 + DEX-Mod + CON-Mod (ohne Rüstung)."}],
     2:[{n:"Rücksichtsloser Angriff",d:"Vorteil auf STR-Angriffswürfe, Gegner hat Vorteil gegen dich bis zu deinem nächsten Zug."},{n:"Gefahrengespür",d:"Vorteil auf DEX-Rettungswürfe gegen sichtbare Gefahren/Fallen."}],
@@ -232,10 +234,9 @@ const _CLF_LEGACY_STUB = {
     11:[{n:"Zauber-speicherndes Objekt",d:"Nach langem Rest: Speichere einen Grad-1- oder Grad-2-Zauber in einem Item (bis zu 2× täglich nutzbar)."}],
     14:[{n:"Meister Magischer Gegenstände (verbessert)",d:"Trage 2 weitere attunierte Items (total 5)."}],
     15:[{n:"Spezialisierungs-Feature",d:"Unterklassen-Feature."}],
-    18:[{n:"Meister Magischer Gegenstände (weiter)",d:"Trage 3 weitere attunierte Items (total 6)."}],
-    20:[{n:"Seele des Artefakthändlers",d:"+1 auf alle Rettungswürfe für jedes attunierte Item (max. +6)."}],
   },
 };
+DEAD-CODE-DROP-END */
 
 // ── Komponente ───────────────────────────────────────────────────────────────
 export default function LevelUpAssistant({ char, setChar }) {
