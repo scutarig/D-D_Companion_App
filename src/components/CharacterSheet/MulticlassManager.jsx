@@ -79,7 +79,7 @@ export default function MulticlassManager({ char, setChar }) {
                 onClick={() => updateLevel(klass.name, -1)}
                 disabled={klass.level <= 1}
                 style={{
-                  width: 22, height: 22, borderRadius: 5, border: `1px solid ${C.border}`,
+                  width: 32, height: 32, borderRadius: 5, border: `1px solid ${C.border}`,
                   background: "none", color: C.textDim, cursor: klass.level <= 1 ? "default" : "pointer",
                   fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center",
                   opacity: klass.level <= 1 ? 0.3 : 1,
@@ -92,7 +92,7 @@ export default function MulticlassManager({ char, setChar }) {
                 onClick={() => updateLevel(klass.name, 1)}
                 disabled={totalLevel >= 20}
                 style={{
-                  width: 22, height: 22, borderRadius: 5, border: `1px solid ${C.border}`,
+                  width: 32, height: 32, borderRadius: 5, border: `1px solid ${C.border}`,
                   background: "none", color: C.textDim, cursor: totalLevel >= 20 ? "default" : "pointer",
                   fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center",
                   opacity: totalLevel >= 20 ? 0.3 : 1,
@@ -105,7 +105,7 @@ export default function MulticlassManager({ char, setChar }) {
               <button
                 onClick={() => removeKlass(klass.name)}
                 style={{
-                  width: 20, height: 20, borderRadius: 4, border: `1px solid ${C.redBright}40`,
+                  width: 32, height: 32, borderRadius: 4, border: `1px solid ${C.redBright}40`,
                   background: `${C.redBright}10`, color: C.redBright, cursor: "pointer",
                   fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center",
                 }}

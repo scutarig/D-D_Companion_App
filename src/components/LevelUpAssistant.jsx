@@ -499,11 +499,12 @@ export default function LevelUpAssistant({ char, setChar }) {
                           else if (!asiA) setAsiA(ab);
                           else if (!asiB) setAsiB(ab);
                         }} style={{
-                          padding: "5px 10px", borderRadius: 8, cursor: val >= 20 ? "default" : "pointer",
+                          padding: "9px 12px", borderRadius: 8, cursor: val >= 20 ? "default" : "pointer",
                           border: `1px solid ${selected ? C.greenBright : C.border}`,
                           background: selected ? `${C.greenBright}22` : "transparent",
                           color: selected ? C.greenBright : val >= 20 ? C.textDim : C.text,
-                          fontFamily: FH, fontSize: 11, fontWeight: 700,
+                          fontFamily: FH, fontSize: 12, fontWeight: 700,
+                          minHeight: 40,
                           opacity: val >= 20 ? 0.4 : 1,
                         }}>
                           {ab} {val}{selected ? ` → ${Math.min(20, val + 1)}` : ""}

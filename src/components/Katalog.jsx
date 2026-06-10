@@ -3,6 +3,7 @@ import { C, sx, F, FH } from "../constants/theme.js";
 import { SRD_ITEMS, MAGIC_MODIFIERS, applyMagicModifier } from "../data/items.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useI18n } from "../i18n/index.js";
+import { useScrollLock } from "../hooks/useScrollLock.js";
 
 // Check if item can be enhanced with +0/+1/+2/+3 magic modifier
 const isMagicCompatible = (item) =>
@@ -117,6 +118,9 @@ const BLANK_FORM = { name:"", type:"Weapon", sub:"Simple Melee", dmg:"", ac:"", 
 export default function Katalog({ char, setChar }) {
   const { t, lang } = useI18n();
   const inv    = char?.inventory || [];
+
+  // Used later for modal scroll-lock
+  // (declared early so hooks run unconditionally)
   const setInv = fn => setChar && setChar(p => ({ ...p, inventory: typeof fn === "function" ? fn(p.inventory || []) : fn }));
 
   const [custom, setCustom] = usePersist("katalog_custom_v1", []);
@@ -126,6 +130,7 @@ export default function Katalog({ char, setChar }) {
   const [form,   setForm]   = useState(BLANK_FORM);
   const [showForm, setShowForm] = useState(false);
   const [modal,  setModal]  = useState(null);
+  useScrollLock(!!modal);
   const [editId, setEditId] = useState(null);
 
   const allItems = [...SRD_ITEMS, ...custom];
@@ -285,7 +290,7 @@ export default function Katalog({ char, setChar }) {
             {/* Griff */}
             <div style={{width:40,height:4,background:C.border,borderRadius:2,margin:"0 auto 16px"}}/>
 
-            <div style={{display:"flex",gap:14,alignItems:"flex-start",marginBottom:14}}>
+            <div style={{display:"flex",gap:14,alignItems:"flex-start",marginBottom:14,paddingRight:50}}>
               <span style={{fontSize:44}}>{TICON[modal.type]||"📦"}</span>
               <div style={{flex:1}}>
                 <div style={{fontFamily:FH,fontSize:20,color:RC[modal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{modal.name}</div>

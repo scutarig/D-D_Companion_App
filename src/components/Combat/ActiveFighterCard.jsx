@@ -69,7 +69,7 @@ export default function ActiveFighterCard() {
       ...prev,
       fighters: prev.fighters.map((f, i) =>
         i === prev.activeIndex
-          ? { ...f, conditions: [...f.conditions, duration === null ? condId : { id: condId, duration, sourceId: null }] }
+          ? { ...f, conditions: [...(f.conditions ?? []), duration === null ? condId : { id: condId, duration, sourceId: null }] }
           : f
       ),
     }));
@@ -81,7 +81,7 @@ export default function ActiveFighterCard() {
       ...prev,
       fighters: prev.fighters.map((f, i) =>
         i === prev.activeIndex
-          ? { ...f, conditions: f.conditions.filter((c) => getConditionId(c) !== condId) }
+          ? { ...f, conditions: (f.conditions ?? []).filter((c) => getConditionId(c) !== condId) }
           : f
       ),
     }));

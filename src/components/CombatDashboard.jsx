@@ -370,7 +370,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                 {[0, 1, 2].map(i => (
                   <button key={i}
                     onClick={() => isDying && setChar(p => ({ ...p, deathSaves: { ...p.deathSaves, [row.key]: (p.deathSaves?.[row.key] || 0) === i + 1 ? i : i + 1 } }))}
-                    style={{ width: 20, height: 20, borderRadius: "50%", cursor: isDying ? "pointer" : "default", border: `2px solid ${row.col}`, background: i < (char.deathSaves?.[row.key] || 0) ? row.col : "transparent" }} />
+                    style={{ width: 32, height: 32, borderRadius: "50%", cursor: isDying ? "pointer" : "default", border: `2px solid ${row.col}`, background: i < (char.deathSaves?.[row.key] || 0) ? row.col : "transparent", padding: 0 }} />
                 ))}
               </div>
             </div>

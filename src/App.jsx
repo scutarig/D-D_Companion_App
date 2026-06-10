@@ -438,13 +438,17 @@ function AppInner() {
   useEffect(() => { setMobileMenu(null); setCharOpen(false); setRefOpen(false); }, [mode]);
 
   // ── Global inputMode patch ──
-  // Auto-set inputmode="numeric" on all type="number" inputs so mobile
+  // Auto-set inputmode on all type="number" inputs so mobile
   // keyboards show the numeric pad instead of full QWERTY.
+  // Heuristik: Felder mit step=".." oder min decimal → "decimal";
+  // alle anderen → "numeric" (integer-only Tastatur).
   // Cheaper than editing 21 files — observes DOM mutations & patches new inputs.
   useEffect(() => {
     const patch = (root) => {
       root.querySelectorAll('input[type="number"]:not([inputmode])').forEach(el => {
-        el.setAttribute('inputmode', 'numeric');
+        const step = el.getAttribute('step');
+        const usesDecimal = step && step !== '1' && step !== '' && !Number.isInteger(parseFloat(step));
+        el.setAttribute('inputmode', usesDecimal ? 'decimal' : 'numeric');
       });
     };
     patch(document.body);

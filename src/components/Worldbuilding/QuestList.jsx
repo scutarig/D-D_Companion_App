@@ -369,7 +369,7 @@ export default function QuestList() {
                           <div key={s.id} style={{ display:"flex", alignItems:"center", gap:7, marginBottom:5 }}>
                             <input type="checkbox" checked={s.done}
                               onChange={() => setQuests(p => p.map(x => x.id !== q.id ? x : {
-                                ...x, steps: x.steps.map(st2 => st2.id === s.id ? { ...st2, done: !st2.done } : st2)
+                                ...x, steps: (x.steps ?? []).map(st2 => st2.id === s.id ? { ...st2, done: !st2.done } : st2)
                               }))}
                               style={{ cursor:"pointer", accentColor:st.color, flexShrink:0 }} />
                             <span style={{ fontSize:12, color:s.done?C.textDim:C.text, textDecoration:s.done?"line-through":"none" }}>{s.text}</span>

@@ -131,14 +131,14 @@ export default function CurrencyTab() {
                   style={{ ...sx.inp, fontSize: 32, fontWeight: 900, color: c.color, textAlign: "center", background: "transparent", border: `1px solid ${c.color}30`, borderRadius: 10, padding: "6px 4px", width: "100%" }}
                 />
 
-                {/* +/- Buttons */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 4, width: "100%" }}>
+                {/* +/- Buttons — responsive grid: 2 Spalten auf engen Screens, 4 sonst */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(40px, 1fr))", gap: 4, width: "100%" }}>
                   {[-10, -1, 1, 10].map(d => (
                     <button key={d} onClick={() => adjust(c.id, d)} style={{
                       background: d < 0 ? `${C.red}18` : `${c.color}18`,
                       border: `1px solid ${d < 0 ? C.red : c.color}40`,
                       borderRadius: 8, color: d < 0 ? C.redBright : c.color,
-                      fontSize: 12, fontWeight: 700, padding: "6px 0", cursor: "pointer",
+                      fontSize: 12, fontWeight: 700, padding: "8px 0", cursor: "pointer", minHeight: 36,
                     }}>
                       {d > 0 ? `+${d}` : d}
                     </button>

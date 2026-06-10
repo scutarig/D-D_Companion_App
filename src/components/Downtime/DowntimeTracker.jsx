@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
+import { useScrollLock } from "../../hooks/useScrollLock.js";
 import { DOWNTIME_ACTIVITIES, DOWNTIME_TYPES } from "../../data/downtime.js";
 import { useChar } from "../../context/CharContext.jsx";
 
@@ -14,6 +15,7 @@ export default function DowntimeTracker() {
   const [history, setHistory]   = usePersist(`downtime_history_${charId}`, []);
   const [typeFilter, setTypeFilter] = useState("all");
   const [newForm, setNewForm]   = useState(null);   // { activityId, label, daysTotal, notes }
+  useScrollLock(!!newForm);
   const [selEntry, setSelEntry] = useState(null);   // active entry id for detail
   const [histShow, setHistShow] = useState(false);
 
@@ -259,12 +261,12 @@ export default function DowntimeTracker() {
                 aria-label="Schließen"
                 style={{
                   position:"absolute", top:8, right:8, zIndex:10,
-                  width:32, height:32, borderRadius:"50%",
+                  width:36, height:36, borderRadius:"50%",
                   background:"transparent", border:`1px solid ${C.border}`,
                   color:C.textDim, fontSize:16, lineHeight:1, cursor:"pointer",
                   display:"flex", alignItems:"center", justifyContent:"center",
                 }}>✕</button>
-              <div style={{ fontFamily: FH, fontSize: 16, color: act?.color || C.purpleBright, fontWeight: 700, marginBottom: 12, paddingRight: 32 }}>
+              <div style={{ fontFamily: FH, fontSize: 16, color: act?.color || C.purpleBright, fontWeight: 700, marginBottom: 12, paddingRight: 40 }}>
                 {act?.icon} {act?.name} starten
               </div>
               <label style={sx.lbl}>Beschriftung</label>

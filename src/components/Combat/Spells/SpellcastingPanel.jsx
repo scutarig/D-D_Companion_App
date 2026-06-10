@@ -69,7 +69,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
       ...prev,
       fighters: prev.fighters.map((f, i) =>
         i === prev.activeIndex
-          ? { ...f, spellSlots: f.spellSlots.map((s) => s.lv === lv && s.used < s.total ? { ...s, used: s.used + 1 } : s) }
+          ? { ...f, spellSlots: (f.spellSlots ?? []).map((s) => s.lv === lv && s.used < s.total ? { ...s, used: s.used + 1 } : s) }
           : f
       ),
     }));
@@ -79,7 +79,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
       ...prev,
       fighters: prev.fighters.map((f, i) =>
         i === prev.activeIndex
-          ? { ...f, spellSlots: f.spellSlots.map((s) => s.lv === lv && s.used > 0 ? { ...s, used: s.used - 1 } : s) }
+          ? { ...f, spellSlots: (f.spellSlots ?? []).map((s) => s.lv === lv && s.used > 0 ? { ...s, used: s.used - 1 } : s) }
           : f
       ),
     }));
@@ -119,11 +119,11 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
         })()}
 
         {/* Spell Slots */}
-        {fighter.spellSlots.length > 0 && (
+        {(fighter.spellSlots?.length ?? 0) > 0 && (
           <div style={{ ...sx.card, padding: "12px 14px", marginBottom: 10 }}>
             <div style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 8 }}>ZAUBERPLÄTZE</div>
             <SpellSlotTracker
-              spellSlots={fighter.spellSlots}
+              spellSlots={fighter.spellSlots ?? []}
               onUse={handleUseSlot}
               onRestore={handleRestoreSlot}
             />
