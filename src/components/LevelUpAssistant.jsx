@@ -5,6 +5,7 @@ import { CLASS_FEATURES } from "../data/classFeatures.js";
 import { FEATS, meetsPrerequisite } from "../data/feats.js";
 import { applyFeat } from "../utils/feats.js";
 import { updateOriginFeatOnLevelUp } from "../utils/originFeats.js";
+import { useI18n } from "../i18n/index.js";
 
 // ── ASI-Levels pro Klasse ───────────────────────────────────────────────────
 const ASI_DEFAULT = [4, 8, 12, 16, 19];
@@ -238,6 +239,7 @@ const _CLF_LEGACY_STUB = {
 
 // ── Komponente ───────────────────────────────────────────────────────────────
 export default function LevelUpAssistant({ char, setChar }) {
+  const { lang } = useI18n();
   const newLevel = char.level + 1;
   const pb = getPB(newLevel);
   const pbOld = getPB(char.level);
@@ -587,7 +589,7 @@ export default function LevelUpAssistant({ char, setChar }) {
                           </div>
                         )}
                         <div style={{ fontSize: 12, color: C.text, background: C.surface, padding: "8px 10px", borderRadius: 6 }}>
-                          {f.description}
+                          {lang === "en" && f.descriptionEN ? f.descriptionEN : f.description}
                         </div>
                       </div>
                     );
