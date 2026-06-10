@@ -1,6 +1,7 @@
 import { C, sx, FH } from "../../constants/theme.js";
 import { ALL_BACKGROUNDS, applyBackground, applyBackgroundAsi, getBackgroundData, asiTotal, isAsiValid } from "../../utils/backgrounds.js";
 import { getFeatById } from "../../data/feats.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * BackgroundSelector — 2024 PHB Background Picker
@@ -25,6 +26,7 @@ const ASI_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
 const STAT_COLOR = { str: C.red, dex: C.green, con: C.amber, int: C.blue, wis: C.teal, cha: C.purple };
 
 export default function BackgroundSelector({ char, setChar }) {
+  const { lang } = useI18n();
   const bg = getBackgroundData(char.background);
   const isCustom = char.background === "Eigener";
   const bgAsi = char.bgAsi || {};
@@ -98,7 +100,7 @@ export default function BackgroundSelector({ char, setChar }) {
         <>
           {/* ── Description ──────────────────────────────── */}
           <div style={{ marginTop: 8, fontSize: 11, color: C.textDim, lineHeight: 1.5, fontStyle: "italic" }}>
-            {bg.description}
+            {lang === "en" && bg.descriptionEN ? bg.descriptionEN : bg.description}
           </div>
 
           {/* ── ASI Picker ───────────────────────────────── */}
@@ -172,7 +174,7 @@ export default function BackgroundSelector({ char, setChar }) {
               </div>
               {featObj?.description && (
                 <div style={{ fontSize: 10, color: C.text, lineHeight: 1.5 }}>
-                  {featObj.description}
+                  {lang === "en" && featObj.descriptionEN ? featObj.descriptionEN : featObj.description}
                 </div>
               )}
             </div>
