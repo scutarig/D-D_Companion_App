@@ -307,7 +307,28 @@ export default function QuickRef() {
           <DataTable title="Critical Hits" headers={["Wurf", "Effekt"]} rows={[["Nat 20 Weapon", "Auto-Treffer + Krit (Schadens-Würfel ×2)"], ["Nat 20 Spell", "Auto-Treffer (Krit nur via Feature)"], ["Nat 1 Attack", "Auto-Miss"], ["Nat 20 Todeswurf", "Sofort 1 HP"], ["Nat 1 Todeswurf", "2 Fehlschläge"]]} col={C.red} />
           <DataTable title="Carrying Capacity" headers={["Wert", "Limit"]} rows={[["Push/Drag/Lift", "STR × 30 lb"], ["Carry", "STR × 15 lb"], ["Encumbered (variant)", "STR × 5 lb"]]} col={C.purple} />
           <DataTable title="Falling Damage" headers={["Höhe", "Schaden"]} rows={[["10 ft", "1d6"], ["20 ft", "2d6"], ["50 ft", "5d6"], ["100 ft", "10d6"], ["200+ ft", "20d6 (Max)"]]} col={C.redBright} />
-          <DataTable title="XP für nächstes Level" headers={["Lv", "XP"]} rows={[["1→2", "300"], ["2→3", "600"], ["3→4", "1.800"], ["4→5", "3.800"], ["5→6", "7.500"], ["10→11", "85.000"], ["15→16", "195.000"], ["19→20", "305.000"]]} col={C.purple} />
+          <DataTable title="XP-Schwellen (PHB 2024)" headers={["Level", "XP gesamt"]} rows={[
+            ["1", "0"],
+            ["2", "300"],
+            ["3", "900"],
+            ["4", "2.700"],
+            ["5", "6.500"],
+            ["6", "14.000"],
+            ["7", "23.000"],
+            ["8", "34.000"],
+            ["9", "48.000"],
+            ["10", "64.000"],
+            ["11", "85.000"],
+            ["12", "100.000"],
+            ["13", "120.000"],
+            ["14", "140.000"],
+            ["15", "165.000"],
+            ["16", "195.000"],
+            ["17", "225.000"],
+            ["18", "265.000"],
+            ["19", "305.000"],
+            ["20", "355.000"],
+          ]} col={C.purple} />
           <DataTable title="Coin Values" headers={["Münze", "Wert"]} rows={[["1 PP", "10 GP"], ["1 GP", "10 SP"], ["1 EP", "5 SP"], ["1 SP", "10 CP"]]} col={C.gold} />
         </div>
       )}
