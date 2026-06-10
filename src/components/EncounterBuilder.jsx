@@ -3,6 +3,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useCombatArchive } from "../hooks/useCombatArchive.js";
+import { useI18n } from "../i18n/index.js";
 
 /**
  * Encounter Builder — DM-Mode Tool für Encounter-Design mit CR-Budget
@@ -54,6 +55,7 @@ const XP_THRESHOLDS = [
 const getThreshold = (level) => XP_THRESHOLDS.find(t => t.lv === level) || XP_THRESHOLDS[0];
 
 export default function EncounterBuilder() {
+  const { t } = useI18n();
   const [partyLevel, setPartyLevel] = usePersist("eb_party_level", 1);
   const [partySize, setPartySize] = usePersist("eb_party_size", 4);
   const [difficulty, setDifficulty] = useState("moderate"); // easy | moderate | hard
@@ -132,29 +134,29 @@ export default function EncounterBuilder() {
       {/* Header */}
       <div style={{ ...sx.card, background: `linear-gradient(135deg,${C.purpleBright}10,rgba(0,0,0,0.2))`, borderLeft: `3px solid ${C.purpleBright}` }}>
         <div style={{ fontFamily: FH, fontSize: 14, color: C.purpleBright, fontWeight: 700, letterSpacing: 0.5, marginBottom: 8 }}>
-          🎲 ENCOUNTER BUILDER · PHB 2024 / DMG 2024
+          {t("encounter.title", "🎲 ENCOUNTER BUILDER · PHB 2024 / DMG 2024")}
         </div>
 
         {/* Party setup */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 8, marginBottom: 12 }}>
           <div>
-            <label style={sx.lbl}>Party-Level</label>
+            <label style={sx.lbl}>{t("encounter.party_level", "Party-Level")}</label>
             <input type="number" min={1} max={20} value={partyLevel}
               onChange={e => setPartyLevel(Math.max(1, Math.min(20, parseInt(e.target.value) || 1)))}
               style={sx.inp} />
           </div>
           <div>
-            <label style={sx.lbl}>Party-Größe</label>
+            <label style={sx.lbl}>{t("encounter.party_size", "Party-Größe")}</label>
             <input type="number" min={1} max={10} value={partySize}
               onChange={e => setPartySize(Math.max(1, Math.min(10, parseInt(e.target.value) || 4)))}
               style={sx.inp} />
           </div>
           <div>
-            <label style={sx.lbl}>Schwierigkeit</label>
+            <label style={sx.lbl}>{t("encounter.difficulty", "Schwierigkeit")}</label>
             <select value={difficulty} onChange={e => setDifficulty(e.target.value)} style={sx.sel}>
-              <option value="easy">Leicht (Easy)</option>
-              <option value="moderate">Mittel (Moderate)</option>
-              <option value="hard">Schwer (Hard)</option>
+              <option value="easy">{t("encounter.easy", "Leicht")}</option>
+              <option value="moderate">{t("encounter.moderate", "Mittel")}</option>
+              <option value="hard">{t("encounter.hard", "Schwer")}</option>
             </select>
           </div>
         </div>
@@ -170,7 +172,7 @@ export default function EncounterBuilder() {
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
             <div style={{ fontFamily: FH, fontSize: 13, color: budgetColor, fontWeight: 700, letterSpacing: 0.4 }}>
-              XP-BUDGET
+              {t("encounter.xp_budget", "XP-BUDGET")}
             </div>
             <div style={{ fontFamily: FH, fontSize: 18, color: budgetColor, fontWeight: 700 }}>
               {encounterXp} / {budgetTotal} <span style={{ fontSize: 11, opacity: 0.7 }}>XP</span>
@@ -201,11 +203,10 @@ export default function EncounterBuilder() {
         }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>🎯</div>
           <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 6 }}>
-            Bereit für Encounter-Design
+            {t("encounter.empty_state_title", "Bereit für Encounter-Design")}
           </div>
           <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>
-            Wähle unten Monster aus, um sie zum Encounter hinzuzufügen.<br />
-            Die <b>XP-Budget-Bar</b> oben zeigt live ob das Encounter zur Schwierigkeit passt.
+            {t("encounter.empty_state_desc", "Wähle unten Monster aus, um sie zum Encounter hinzuzufügen.")}
           </div>
         </div>
       )}
@@ -275,12 +276,12 @@ export default function EncounterBuilder() {
       {/* Monster Picker */}
       <div style={{ ...sx.card }}>
         <div style={{ fontFamily: FH, fontSize: 13, color: C.gold, fontWeight: 700, marginBottom: 8 }}>
-          Monster hinzufügen
+          {t("encounter.add_monsters", "Monster hinzufügen")}
         </div>
         <input
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder="🔍 Monster suchen…"
+          placeholder={t("ui.search_placeholder", "🔍 Suchen…")}
           style={{ ...sx.inp, marginBottom: 8 }}
         />
         <div style={{ maxHeight: 400, overflowY: "auto", display: "flex", flexDirection: "column", gap: 4 }}>
@@ -309,7 +310,7 @@ export default function EncounterBuilder() {
         <div style={{ ...sx.card, borderLeft: `3px solid ${C.red}` }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: showArchive ? 8 : 0 }}>
             <div style={{ fontFamily: FH, fontSize: 13, color: C.red, fontWeight: 700 }}>
-              📜 KAMPF-ARCHIV ({archives.length} gespeichert)
+              {t("encounter.combat_archive", "📜 KAMPF-ARCHIV")} ({archives.length})
             </div>
             <button
               onClick={() => setShowArchive(!showArchive)}
@@ -356,7 +357,7 @@ export default function EncounterBuilder() {
       {savedEncounters.length > 0 && (
         <div style={{ ...sx.card, borderLeft: `3px solid ${C.tealBright}` }}>
           <div style={{ fontFamily: FH, fontSize: 13, color: C.tealBright, fontWeight: 700, marginBottom: 8 }}>
-            💾 GESPEICHERTE ENCOUNTER ({savedEncounters.length})
+            {t("encounter.saved_encounters", "💾 GESPEICHERTE BEGEGNUNGEN")} ({savedEncounters.length})
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {savedEncounters.map(enc => (

@@ -3,6 +3,7 @@ import { C, sx, SC, ABS, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { modStr } from "../utils/helpers.js";
 import { MONSTERS } from "../data/monsters.js";
+import { useI18n } from "../i18n/index.js";
 
 /**
  * Bestiary — Monster lookup + custom-monster CRUD
@@ -24,6 +25,7 @@ import { MONSTERS } from "../data/monsters.js";
  *   - Custom monsters are always visible (user added them themselves)
  */
 export default function Bestiary() {
+  const { t, lang } = useI18n();
   const [custom, setCustom] = usePersist("bestiary_v4", []);
   const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
   const [encountered, setEncountered] = usePersist("encountered_monsters_v1", []);
@@ -117,11 +119,11 @@ export default function Bestiary() {
         {/* CR-Filter (4 Stufen für DM-Encounter-Design) */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 3, marginBottom: 6 }}>
           {[
-            { id: "All",      label: "Alle",   col: C.textDim },
-            { id: "weak",     label: "<1",     col: "#40a060" },
-            { id: "moderate", label: "1-4",    col: C.gold },
-            { id: "deadly",   label: "5-10",   col: C.red },
-            { id: "boss",     label: "11+",    col: "#c020c0" },
+            { id: "All",      label: t("bestiary.cr_filter_all", "Alle"),       col: C.textDim },
+            { id: "weak",     label: t("bestiary.cr_filter_weak", "<1"),        col: "#40a060" },
+            { id: "moderate", label: t("bestiary.cr_filter_moderate", "1-4"),   col: C.gold },
+            { id: "deadly",   label: t("bestiary.cr_filter_deadly", "5-10"),    col: C.red },
+            { id: "boss",     label: t("bestiary.cr_filter_boss", "11+"),       col: "#c020c0" },
           ].map(opt => (
             <button key={opt.id} onClick={() => setCrFilter(opt.id)} title={`CR ${opt.label}`}
               style={{
@@ -383,7 +385,7 @@ export default function Bestiary() {
 
             {/* DM-Notizen (Phase 4) — nur im DM-Mode (viewMode = full) */}
             {viewMode === "full" && (
-              <Sect title="🎲 DM-Notizen (privat)">
+              <Sect title={t("bestiary.dm_notes_title", "🎲 DM-Notizen (privat)")}>
                 <div style={{
                   background: `${C.purpleBright}08`,
                   border: `1px solid ${C.purpleBright}33`,
@@ -393,7 +395,7 @@ export default function Bestiary() {
                   <textarea
                     value={dmNotes[sel.id] || ""}
                     onChange={e => setDmNotes(p => ({ ...p, [sel.id]: e.target.value }))}
-                    placeholder="Eigene DM-Notizen für Encounter-Planung… (z.B. 'Schwächt sich nach Stunning Strike', 'Hat Schwertkönig-Schwert im Hort', 'Verwende für Boss-Encounter Sitzung 5')"
+                    placeholder={t("bestiary.dm_notes_placeholder", "Eigene DM-Notizen…")}
                     style={{
                       ...sx.ta,
                       minHeight: 80,

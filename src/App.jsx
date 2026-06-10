@@ -28,22 +28,23 @@ const WorldbuildingPage = lazy(() => import("./components/Worldbuilding/Worldbui
 
 // ── Tab definitions with mode classification ─────────────────────────────────
 // mode: "player" | "dm" | "both"
+// labelKey: i18n key, label: fallback (DE) for non-React contexts
 const ALL_TABS = [
-  { id: "overview",       label: "Übersicht",    icon: "🗺️", mode: "player" },
-  { id: "char",           label: "Charakter",    icon: "📜", mode: "player" },
-  { id: "companions",     label: "Begleiter",    icon: "🐾", mode: "player" },
-  { id: "proficiencies",  label: "Proficiencies",icon: "🎓", mode: "player" },
-  { id: "inventar",       label: "Inventar",     icon: "🎒", mode: "player" },
-  { id: "world",          label: "Weltenbau",    icon: "🌍", mode: "player" },
-  { id: "quickref",       label: "Schnellreferenz", icon: "📋", mode: "player" },
-  { id: "combat",         label: "Kampf",        icon: "⚔️", mode: "dm" },
-  { id: "bestiary",       label: "Bestiary",     icon: "🐉", mode: "dm" },
-  { id: "encounter",      label: "Encounter",    icon: "🎲", mode: "dm" },
-  { id: "klassen",        label: "Klassen",      icon: "⚔️", mode: "dm" },
-  { id: "voelker",        label: "Völker",       icon: "🧬", mode: "dm" },
-  { id: "notes",          label: "Notizen",      icon: "📝", mode: "both" },
-  { id: "npcs",           label: "NPCs",         icon: "👥", mode: "both" },
-  { id: "dice",           label: "Würfel",       icon: "🎲", mode: "both" },
+  { id: "overview",       labelKey: "tab.overview",      label: "Übersicht",       icon: "🗺️", mode: "player" },
+  { id: "char",           labelKey: "tab.character",     label: "Charakter",       icon: "📜", mode: "player" },
+  { id: "companions",     labelKey: "tab.companions",    label: "Begleiter",       icon: "🐾", mode: "player" },
+  { id: "proficiencies",  labelKey: "tab.proficiencies", label: "Übungsbonus",     icon: "🎓", mode: "player" },
+  { id: "inventar",       labelKey: "tab.inventory",     label: "Inventar",        icon: "🎒", mode: "player" },
+  { id: "world",          labelKey: "tab.world",         label: "Weltenbau",       icon: "🌍", mode: "player" },
+  { id: "quickref",       labelKey: "tab.quickref",      label: "Schnellreferenz", icon: "📋", mode: "player" },
+  { id: "combat",         labelKey: "tab.combat",        label: "Kampf",           icon: "⚔️", mode: "dm" },
+  { id: "bestiary",       labelKey: "tab.bestiary",      label: "Bestiarium",      icon: "🐉", mode: "dm" },
+  { id: "encounter",      labelKey: "tab.encounter",     label: "Begegnung",       icon: "🎲", mode: "dm" },
+  { id: "klassen",        labelKey: "tab.classes",       label: "Klassen",         icon: "⚔️", mode: "dm" },
+  { id: "voelker",        labelKey: "tab.species",       label: "Völker",          icon: "🧬", mode: "dm" },
+  { id: "notes",          labelKey: "tab.notes",         label: "Notizen",         icon: "📝", mode: "both" },
+  { id: "npcs",           labelKey: "tab.npcs",          label: "NPCs",            icon: "👥", mode: "both" },
+  { id: "dice",           labelKey: "tab.dice",          label: "Würfel",          icon: "🎲", mode: "both" },
 ];
 
 const tabsForMode = (mode) =>
@@ -52,8 +53,7 @@ const tabsForMode = (mode) =>
 // Reference dropdown (Desktop) — DM-only
 const REF_TABS = ALL_TABS.filter(t => ["bestiary","klassen","voelker"].includes(t.id));
 // Character group dropdown (Desktop) — Player-only
-const CHAR_GROUP = ALL_TABS.filter(t => ["char","companions","proficiencies"].includes(t.id))
-  .map(t => t.id === "proficiencies" ? { ...t, label: "Übungsbonus" } : t);
+const CHAR_GROUP = ALL_TABS.filter(td => ["char","companions","proficiencies"].includes(td.id));
 
 const Loader = () => (
   <div style={{
@@ -130,6 +130,7 @@ const snb = (active) => ({
 function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, setSlots, setCustom, autoUsed, setAutoUsed, mode }) {
   const { active: char, setActive: setChar, aid } = useChar();
   const { classes } = useMulticlass(aid, char, null);
+  const { t } = useI18n();
   const isDM = mode === "dm";
   // Don't return early — render placeholder even without char (for DM-only setups)
 
@@ -162,7 +163,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
       <div data-no-print style={{ background: "linear-gradient(180deg,#1c1826 0%,#16121e 100%)", borderBottom: `1px solid rgba(201,168,76,0.15)`, padding: "0 14px", flexShrink: 0 }}>
         <div style={{ display:"flex", alignItems:"center", height: 44 }}>
           <div style={{ fontFamily: FH, fontSize: 12, color: C.textDim, fontStyle: "italic" }}>
-            {isDM ? "🎲 DM-Modus aktiv — kein Charakter erforderlich" : "Kein Charakter gewählt"}
+            {isDM ? t("ui.dm_no_character_needed") : t("ui.no_character")}
           </div>
         </div>
       </div>
@@ -210,10 +211,10 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                   boxShadow: char.inspiration ? `0 0 8px ${C.gold}66` : "none",
                   transition: "all .2s",
                 }}>
-                {char.inspiration ? "✦" : "✧"} Heroic Inspiration
+                {char.inspiration ? "✦" : "✧"} {t("header.heroic_inspiration")}
               </button>
-              <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 Kurze Rast</button>
-              <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px" }}>🌟 Lange Rast</button>
+              <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 {t("header.short_rest")}</button>
+              <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px" }}>🌟 {t("header.long_rest")}</button>
             </>
           )}
         </div>
@@ -222,31 +223,31 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
       {restBanner && (
         <div style={{ background: restBanner==="long" ? `${C.purple}22` : `${C.teal}22`, border:`1px solid ${restBanner==="long" ? C.purpleBright : C.tealBright}44`, borderRadius:10, padding:"10px 14px", marginTop:10, display:"flex", alignItems:"center", gap:12, flexWrap:"wrap" }}>
           <span style={{ color: restBanner==="long" ? C.purpleBright : C.tealBright, fontSize:13, fontWeight:600, fontFamily:FH }}>
-            {restBanner==="long" ? "◆ LANGE RAST" : "◆ KURZE RAST"}
+            {restBanner==="long" ? t("rest.long_active") : t("rest.short_active")}
           </span>
           {restBanner==="short" && (
             <span style={{ display:"flex", alignItems:"center", gap:8 }}>
-              <span style={lbl}>HP heilen:</span>
+              <span style={lbl}>{t("rest.heal_hp")}</span>
               <input value={restHpInput} onChange={e => setRestHpInput(e.target.value)} type="number" autoFocus
                 style={{ ...sx.inp, width:70, fontSize:14, textAlign:"center" }} />
             </span>
           )}
           {restBanner==="long" && (
             <div style={{ fontSize:12, color:C.text, display:"flex", flexDirection:"column", gap:3, flex:1, minWidth:160 }}>
-              <span>Volle HP · Alle Slots · Ressourcen zurück · Exhaustion -1</span>
+              <span>{t("rest.long_effects")}</span>
               {grantsHeroicInspirationOnLR(char) && (
                 <span style={{ color:C.gold, fontSize:11, fontWeight:700 }}>
-                  ✦ Heroic Inspiration (Mensch: Resourceful)
+                  {t("rest.heroic_inspiration_grant")}
                 </span>
               )}
               {getMasteryCount(char.klass, char.level) > 0 && (
                 <span style={{ color:C.redBright, fontSize:11, fontStyle:"italic" }}>
-                  🗡️ Weapon Mastery Swap erlaubt — ggf. im Charakter-Tab tauschen
+                  {t("rest.mastery_swap")}
                 </span>
               )}
             </div>
           )}
-          <button onClick={confirmRest} style={sx.btn(restBanner==="long" ? C.purpleBright : C.tealBright)}>Bestätigen</button>
+          <button onClick={confirmRest} style={sx.btn(restBanner==="long" ? C.purpleBright : C.tealBright)}>{t("action.confirm")}</button>
           <button onClick={() => setRestBanner(null)} style={{ background:"none", border:"none", color:C.textDim, fontSize:18, cursor:"pointer" }}>✕</button>
         </div>
       )}
@@ -256,43 +257,43 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
 
 // ── Mobile nav groups (mode-aware) ────────────────────────────────────────────
 const MOBILE_NAV_PLAYER = [
-  { id: "overview",   label: "Übersicht", icon: "🗺️" },
+  { id: "overview",   labelKey: "tab.overview", label: "Übersicht", icon: "🗺️" },
   {
-    id: "char-group", label: "Charakter", icon: "📜",
+    id: "char-group", labelKey: "tab.character", label: "Charakter", icon: "📜",
     groupIds: ["char", "companions", "proficiencies"],
     children: [
-      { id: "char",          label: "Charakter",    icon: "📜" },
-      { id: "companions",    label: "Begleiter",    icon: "🐾" },
-      { id: "proficiencies", label: "Übungsbonus",  icon: "🎓" },
+      { id: "char",          labelKey: "tab.character",     label: "Charakter",   icon: "📜" },
+      { id: "companions",    labelKey: "tab.companions",    label: "Begleiter",   icon: "🐾" },
+      { id: "proficiencies", labelKey: "tab.proficiencies", label: "Übungsbonus", icon: "🎓" },
     ],
   },
-  { id: "inventar", label: "Inventar", icon: "🎒" },
-  { id: "world",    label: "Welt",     icon: "🌍" },
+  { id: "inventar", labelKey: "tab.inventory", label: "Inventar", icon: "🎒" },
+  { id: "world",    labelKey: "tab.world",     label: "Welt",     icon: "🌍" },
   {
-    id: "more", label: "Mehr", icon: "⋯",
+    id: "more", labelKey: "ui.more", label: "Mehr", icon: "⋯",
     groupIds: ["dice", "notes", "npcs", "quickref"],
     children: [
-      { id: "dice",     label: "Würfel",     icon: "🎲" },
-      { id: "notes",    label: "Notizen",    icon: "📝" },
-      { id: "npcs",     label: "NPCs",       icon: "👥" },
-      { id: "quickref", label: "Schnellref", icon: "📋" },
+      { id: "dice",     labelKey: "tab.dice",     label: "Würfel",     icon: "🎲" },
+      { id: "notes",    labelKey: "tab.notes",    label: "Notizen",    icon: "📝" },
+      { id: "npcs",     labelKey: "tab.npcs",     label: "NPCs",       icon: "👥" },
+      { id: "quickref", labelKey: "tab.quickref", label: "Schnellref", icon: "📋" },
     ],
   },
 ];
 
 const MOBILE_NAV_DM = [
-  { id: "combat",   label: "Kampf",    icon: "⚔️" },
-  { id: "bestiary", label: "Bestiary", icon: "🐉" },
-  { id: "encounter", label: "Encounter", icon: "🎲" },
-  { id: "npcs",     label: "NPCs",     icon: "👥" },
+  { id: "combat",   labelKey: "tab.combat",   label: "Kampf",    icon: "⚔️" },
+  { id: "bestiary", labelKey: "tab.bestiary", label: "Bestiarium", icon: "🐉" },
+  { id: "encounter", labelKey: "tab.encounter", label: "Begegnung", icon: "🎲" },
+  { id: "npcs",     labelKey: "tab.npcs",     label: "NPCs",     icon: "👥" },
   {
-    id: "more", label: "Mehr", icon: "⋯",
+    id: "more", labelKey: "ui.more", label: "Mehr", icon: "⋯",
     groupIds: ["klassen", "voelker", "notes", "dice"],
     children: [
-      { id: "klassen", label: "Klassen", icon: "⚔️" },
-      { id: "voelker", label: "Völker",  icon: "🧬" },
-      { id: "notes",   label: "Notizen", icon: "📝" },
-      { id: "dice",    label: "Würfel",  icon: "🎲" },
+      { id: "klassen", labelKey: "tab.classes", label: "Klassen", icon: "⚔️" },
+      { id: "voelker", labelKey: "tab.species", label: "Völker",  icon: "🧬" },
+      { id: "notes",   labelKey: "tab.notes",   label: "Notizen", icon: "📝" },
+      { id: "dice",    labelKey: "tab.dice",    label: "Würfel",  icon: "🎲" },
     ],
   },
 ];
@@ -586,9 +587,9 @@ function AppInner() {
 
         {/* Nav */}
         <nav style={{ flex:1, padding:"8px 4px", display:"flex", flexDirection:"column", gap:2, overflowY:"auto" }}>
-          {sidebarTopTabs.map(t => (
-            <button key={t.id} title={t.label} onClick={() => setTab(t.id)} style={snb(tab===t.id)}>
-              {t.icon}
+          {sidebarTopTabs.map(td => (
+            <button key={td.id} title={td.labelKey ? t(td.labelKey, td.label) : td.label} onClick={() => setTab(td.id)} style={snb(tab===td.id)}>
+              {td.icon}
             </button>
           ))}
           <div style={{ marginTop:4, display:"flex", flexDirection:"column", gap:2 }}>
@@ -668,11 +669,11 @@ function AppInner() {
       {/* Charakter dropdown popover */}
       {charOpen && !isDM && (
         <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:charPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.gold}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
-          {CHAR_GROUP.map(t => (
-            <button key={t.id} onClick={() => { setTab(t.id); setCharOpen(false); }}
-              style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===t.id?`${C.gold}22`:"transparent", border:"none", borderRadius:7, color:tab===t.id?C.gold:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
-              <span style={{ fontSize:15 }}>{t.icon}</span>
-              {t.label}
+          {CHAR_GROUP.map(td => (
+            <button key={td.id} onClick={() => { setTab(td.id); setCharOpen(false); }}
+              style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===td.id?`${C.gold}22`:"transparent", border:"none", borderRadius:7, color:tab===td.id?C.gold:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
+              <span style={{ fontSize:15 }}>{td.icon}</span>
+              {td.labelKey ? t(td.labelKey, td.label) : td.label}
             </button>
           ))}
         </div>
@@ -681,11 +682,11 @@ function AppInner() {
       {/* Referenz dropdown popover (DM-only) */}
       {refOpen && isDM && (
         <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:refPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.purple}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
-          {REF_TABS.map(t => (
-            <button key={t.id} onClick={() => { setTab(t.id); setRefOpen(false); }}
-              style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===t.id?`${C.purple}33`:"transparent", border:"none", borderRadius:7, color:tab===t.id?C.purpleBright:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
-              <span style={{ fontSize:15 }}>{t.icon}</span>
-              {t.label}
+          {REF_TABS.map(td => (
+            <button key={td.id} onClick={() => { setTab(td.id); setRefOpen(false); }}
+              style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===td.id?`${C.purple}33`:"transparent", border:"none", borderRadius:7, color:tab===td.id?C.purpleBright:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
+              <span style={{ fontSize:15 }}>{td.icon}</span>
+              {td.labelKey ? t(td.labelKey, td.label) : td.label}
             </button>
           ))}
         </div>
@@ -718,10 +719,10 @@ function AppInner() {
           {content}
           {tab === "char" && active && !isDM && (
             <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
-              <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>Charakter speichern</div>
+              <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>{t("save.title", lang === "de" ? "Charakter speichern" : "Save Character")}</div>
               <div style={{ display:"flex", gap:8 }}>
-                <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ JSON exportieren</button>
-                <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 PDF drucken</button>
+                <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ {lang === "de" ? "JSON exportieren" : "Export JSON"}</button>
+                <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 {lang === "de" ? "PDF drucken" : "Print PDF"}</button>
               </div>
             </div>
           )}
@@ -757,7 +758,7 @@ function AppInner() {
                       transition: "all .15s",
                     }}>
                     <span style={{ fontSize:22 }}>{child.icon}</span>
-                    <span style={{ fontSize:10, fontFamily:FH, letterSpacing:0.4, textAlign:"center", lineHeight:1.2 }}>{child.label}</span>
+                    <span style={{ fontSize:10, fontFamily:FH, letterSpacing:0.4, textAlign:"center", lineHeight:1.2 }}>{child.labelKey ? t(child.labelKey, child.label) : child.label}</span>
                   </button>
                 );
               })}
@@ -862,7 +863,7 @@ function AppInner() {
                 {item.icon}
               </span>
               <span style={{ fontSize:8, letterSpacing:0.3, lineHeight:1 }}>
-                {item.label}{isGroup && <span style={{ fontSize:7, opacity:0.6 }}> {isMenuOpen ? "▴" : "▾"}</span>}
+                {item.labelKey ? t(item.labelKey, item.label) : item.label}{isGroup && <span style={{ fontSize:7, opacity:0.6 }}> {isMenuOpen ? "▴" : "▾"}</span>}
               </span>
             </button>
           );

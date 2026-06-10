@@ -89,6 +89,8 @@ const TRANSLATIONS = {
     "ui.search_placeholder": "🔍 Suchen…",
     "ui.no_character": "Kein Charakter gewählt",
     "ui.dm_no_character_needed": "🎲 DM-Modus aktiv — kein Charakter erforderlich",
+    "ui.more": "Mehr",
+    "ui.short_ref": "Schnellref",
 
     // ── Encounter Builder ────────────────────────────────────────────────
     "encounter.title": "🎲 ENCOUNTER BUILDER · PHB 2024 / DMG 2024",
@@ -177,6 +179,8 @@ const TRANSLATIONS = {
     "ui.search_placeholder": "🔍 Search…",
     "ui.no_character": "No character selected",
     "ui.dm_no_character_needed": "🎲 DM mode active — no character required",
+    "ui.more": "More",
+    "ui.short_ref": "Quick Ref",
 
     // ── Encounter Builder ────────────────────────────────────────────────
     "encounter.title": "🎲 ENCOUNTER BUILDER · PHB 2024 / DMG 2024",
