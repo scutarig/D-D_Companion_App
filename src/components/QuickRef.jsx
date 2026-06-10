@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { CONDITIONS } from "../data/conditions.js";
+import { useI18n } from "../i18n/index.js";
 
 // ─── PHB 2024 Schnellreferenz ────────────────────────────────────────────────
 // Quelle: D&D Player's Handbook 2024 (Wizards of the Coast)
@@ -9,16 +10,16 @@ import { CONDITIONS } from "../data/conditions.js";
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SECTIONS = [
-  { id: "conditions", label: "⚡ Zustände" },
-  { id: "actions", label: "🎯 Aktionen" },
-  { id: "combat", label: "⚔️ Kampf" },
-  { id: "mastery", label: "🗡️ Mastery" },
-  { id: "weapons", label: "🪓 Waffen-Props" },
-  { id: "movement", label: "💨 Bewegung" },
-  { id: "resting", label: "🌙 Rasten" },
-  { id: "magic", label: "🔮 Magie" },
-  { id: "checks", label: "🎲 Checks" },
-  { id: "tables", label: "📊 Tabellen" },
+  { id: "conditions", labelKey: "quickref.conditions", label: "⚡ Zustände" },
+  { id: "actions",    labelKey: "quickref.actions",    label: "🎯 Aktionen" },
+  { id: "combat",     labelKey: "quickref.combat",     label: "⚔️ Kampf" },
+  { id: "mastery",    labelKey: "quickref.mastery",    label: "🗡️ Meisterschaft" },
+  { id: "weapons",    labelKey: "quickref.weapons",    label: "🪓 Waffen-Props" },
+  { id: "movement",   labelKey: "quickref.movement",   label: "💨 Bewegung" },
+  { id: "resting",    labelKey: "quickref.resting",    label: "🌙 Rasten" },
+  { id: "magic",      labelKey: "quickref.magic",      label: "🔮 Magie" },
+  { id: "checks",     labelKey: "quickref.checks",     label: "🎲 Proben" },
+  { id: "tables",     labelKey: "quickref.tables",     label: "📊 Tabellen" },
 ];
 
 const RULES = {
@@ -149,6 +150,7 @@ const DataTable = ({ title, headers, rows, col }) => (
 );
 
 export default function QuickRef() {
+  const { t } = useI18n();
   const [section, setSection] = useState("conditions");
 
   return (
@@ -163,11 +165,11 @@ export default function QuickRef() {
         display: "flex", alignItems: "center", gap: 8,
       }}>
         <span style={{ fontSize: 14 }}>📖</span>
-        <span><b>Schnellreferenz nach PHB 2024</b> · Conditions, Actions, Mastery Properties, Weapon Properties, Rules Glossary</span>
+        <span>{t("quickref.banner", "Schnellreferenz nach PHB 2024 · Zustände, Aktionen, Meisterschaft, Waffen-Eigenschaften, Regel-Glossar")}</span>
       </div>
 
       <div style={{ display: "flex", gap: 5, marginBottom: 14, flexWrap: "wrap" }}>
-        {SECTIONS.map(s => <button key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.label}</button>)}
+        {SECTIONS.map(s => <button key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.labelKey ? t(s.labelKey, s.label) : s.label}</button>)}
       </div>
 
       {/* CONDITIONS */}
@@ -190,10 +192,15 @@ export default function QuickRef() {
           {["Aktion", "Bonus", "Reaktion"].map(typ => {
             const col = ACTIONCOLS[typ];
             const items = ACTIONS_2024.filter(a => a.typ === typ);
+            const sectionLabel = typ === "Aktion"
+              ? t("quickref.actions_section", "Aktionen")
+              : typ === "Bonus"
+                ? t("quickref.bonus_section", "Bonus-Aktionen")
+                : t("quickref.reactions_section", "Reaktionen");
             return (
               <div key={typ} style={{ marginBottom: 14 }}>
                 <div style={{ fontFamily: FH, fontSize: 13, color: col, fontWeight: 700, marginBottom: 8, borderBottom: `1px solid ${col}30`, paddingBottom: 4 }}>
-                  {typ === "Aktion" ? "⚔️" : typ === "Bonus" ? "⚡" : "🛡️"} {typ}en ({items.length})
+                  {typ === "Aktion" ? "⚔️" : typ === "Bonus" ? "⚡" : "🛡️"} {sectionLabel} ({items.length})
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 6 }}>
                   {items.map((a, i) => (
@@ -225,7 +232,7 @@ export default function QuickRef() {
             borderLeft: `3px solid ${C.amberBright}`, borderRadius: 6,
             padding: "8px 12px", marginBottom: 10, fontSize: 12, color: C.text, lineHeight: 1.5,
           }}>
-            <b style={{ color: C.amberBright }}>🆕 PHB 2024 Reform:</b> Jede Waffe hat eine <b>Mastery Property</b>, die freigeschaltet wird durch Klassen-Feature (Barbarian, Fighter, Paladin, Ranger, Rogue Lv1). Du kannst eine bestimmte Anzahl Waffen-Masteries gleichzeitig nutzen.
+            <b style={{ color: C.amberBright }}>🆕</b> {t("quickref.mastery_intro", "PHB 2024 Reform: Jede Waffe hat eine Meisterschafts-Eigenschaft.")}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 8 }}>
             {MASTERIES.map(m => (

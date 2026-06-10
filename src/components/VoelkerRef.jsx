@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useIsMobile } from "../hooks/useIsMobile.js";
 import { DND_RACES, RACES_FULL } from "../data/races.js";
+import { useI18n } from "../i18n/index.js";
 
 const RACE_COL = {
   Mensch:"#c9a84c", Aasimar:"#fde68a", Dragonborn:"#ef4444",
@@ -29,6 +30,7 @@ const fullByName = Object.fromEntries(RACES_FULL.map(r => [r.name, r]));
 const fullById = Object.fromEntries(RACES_FULL.map(r => [r.id, r]));
 
 export default function VoelkerRef() {
+  const { t } = useI18n();
   const mob = useIsMobile(900);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
@@ -60,14 +62,14 @@ export default function VoelkerRef() {
     <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
       {/* ── Left: list ── */}
       <div style={{width:mob?"100%":220,flexShrink:0}}>
-        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="🔍 Volk suchen…" style={{...sx.inp,marginBottom:6}}/>
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={t("ref.search_species", "🔍 Volk suchen…")} style={{...sx.inp,marginBottom:6}}/>
 
         {/* Edition filter */}
         <div style={{display:"flex",gap:4,marginBottom:6}}>
           {[
-            { id:"all", label:"Alle" },
-            { id:"2024", label:"PHB 2024" },
-            { id:"2014", label:"Legacy" },
+            { id:"all",  label: t("ref.edition_all", "Alle") },
+            { id:"2024", label: t("ref.edition_2024", "PHB 2024") },
+            { id:"2014", label: t("ref.edition_legacy", "Legacy") },
           ].map(opt => (
             <button key={opt.id} onClick={() => setEditionFilter(opt.id)}
               style={{
@@ -84,7 +86,7 @@ export default function VoelkerRef() {
         </div>
 
         <div style={{fontSize:10,color:C.textDim,fontFamily:FH,letterSpacing:1,marginBottom:6,paddingBottom:6,borderBottom:`1px solid ${C.border}`}}>
-          {DND_RACES.length} VÖLKER · {count2024} auf PHB 2024
+          {DND_RACES.length} {t("ref.species_count", "VÖLKER")} · {count2024} {t("ref.on_phb_2024", "auf PHB 2024")}
         </div>
         <div style={{maxHeight:mob?"none":"58vh",overflowY:"auto"}}>
           {filtered.map(r=>{
@@ -132,13 +134,13 @@ export default function VoelkerRef() {
             </div>
 
             {/* Description */}
-            <Sect title="Über das Volk">
+            <Sect title={t("ref.about_species", "Über das Volk")}>
               <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{full?.description || sel.desc}</div>
             </Sect>
 
             {/* 2024 Structured Traits */}
             {full?.traits && full.traits.length > 0 && (
-              <Sect title={`Rassen-Merkmale (${full.traits.length})`}>
+              <Sect title={`${t("ref.species_traits", "Rassen-Merkmale")} (${full.traits.length})`}>
                 <div style={{display:"flex",flexDirection:"column",gap:6}}>
                   {full.traits.map((t,i)=>(
                     <div key={i} style={{background:"rgba(255,255,255,0.03)",borderRadius:6,padding:"8px 11px",borderLeft:`3px solid ${col}`}}>
@@ -152,7 +154,7 @@ export default function VoelkerRef() {
 
             {/* 2024 Features (z.B. Lv3 Aasimar Celestial Revelation) */}
             {full?.features && full.features.length > 0 && (
-              <Sect title={`Level-Features (${full.features.length})`}>
+              <Sect title={`${t("ref.species_features", "Level-Merkmale")} (${full.features.length})`}>
                 <div style={{display:"flex",flexDirection:"column",gap:6}}>
                   {full.features.map((f,i)=>(
                     <div key={i} style={{background:`${col}11`,borderRadius:6,padding:"8px 11px",borderLeft:`3px solid ${col}`,border:`1px solid ${col}33`}}>
@@ -166,7 +168,7 @@ export default function VoelkerRef() {
 
             {/* 2024 Lineages */}
             {full?.lineages && full.lineages.length > 0 && (
-              <Sect title={`Lineages (${full.lineages.length})`}>
+              <Sect title={`${t("ref.species_lineages", "Lineages")} (${full.lineages.length})`}>
                 <div style={{display:"flex",flexDirection:"column",gap:5}}>
                   {full.lineages.map((l)=>(
                     <div key={l.id} style={{background:"rgba(255,255,255,0.02)",borderRadius:6,padding:"7px 11px",borderLeft:`3px solid ${col}88`}}>
@@ -180,17 +182,17 @@ export default function VoelkerRef() {
 
             {/* Legacy Traits (string list — for 2014 entries without RACES_FULL) */}
             {!full && sel.traits && (
-              <Sect title={`Rassen-Merkmale (${sel.traits.length})`}>
+              <Sect title={`${t("ref.species_traits", "Rassen-Merkmale")} (${sel.traits.length})`}>
                 <div style={{display:"flex",flexDirection:"column",gap:4}}>
-                  {sel.traits.map((t,i)=>(
+                  {sel.traits.map((trait,i)=>(
                     <div key={i} style={{display:"flex",gap:8,background:"rgba(255,255,255,0.03)",borderRadius:6,padding:"7px 10px",borderLeft:`3px solid ${col}`}}>
                       <span style={{color:col,fontSize:12,minWidth:14,flexShrink:0}}>▸</span>
-                      <span style={{fontSize:13,color:C.text,lineHeight:1.5}}>{t}</span>
+                      <span style={{fontSize:13,color:C.text,lineHeight:1.5}}>{trait}</span>
                     </div>
                   ))}
                 </div>
                 <div style={{marginTop:8,padding:"6px 10px",background:`${C.amberBright}11`,border:`1px solid ${C.amberBright}33`,borderRadius:6,fontSize:10,color:C.amberBright,fontStyle:"italic"}}>
-                  ⚠️ Legacy 2014 — keine strukturierten 2024-Daten. Siehe PHB 2024 Species für ersatzweise Optionen.
+                  {t("ref.species_legacy_warning", "⚠️ Legacy 2014 — keine strukturierten 2024-Daten.")}
                 </div>
               </Sect>
             )}
@@ -198,14 +200,14 @@ export default function VoelkerRef() {
         ) : (
           <div style={{...sx.card,color:C.textDim,textAlign:"center",fontStyle:"italic",padding:40}}>
             <div style={{fontSize:36,marginBottom:10}}>🧬</div>
-            Volk auswählen ({count2024} auf PHB 2024 verfügbar)
+            {t("ref.choose_species", "Volk auswählen")} ({count2024} {t("ref.on_phb_2024", "auf PHB 2024")})
             <div style={{display:"flex",flexWrap:"wrap",gap:5,justifyContent:"center",marginTop:14}}>
               {DND_RACES.filter(r => r.edition === "2024").map(r=>(
                 <span key={r.name} onClick={()=>setSel(r)} style={{...sx.tag(RACE_COL[r.name]||C.purple),cursor:"pointer",fontFamily:FH,fontSize:11}}>{RACE_ICON[r.name]||"🧬"} {r.name}</span>
               ))}
             </div>
             <div style={{marginTop:14,fontSize:10,color:C.textDim,fontStyle:"italic"}}>
-              2024-Reform: Keine ASI an Species — Boni kommen vom Background!
+              {t("ref.species_asi_hint", "2024-Reform: Keine ASI an Species — Boni kommen vom Background!")}
             </div>
           </div>
         )}

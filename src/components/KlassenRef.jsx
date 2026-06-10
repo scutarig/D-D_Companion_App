@@ -2,10 +2,12 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useIsMobile } from "../hooks/useIsMobile.js";
 import { D3_KLASSEN, is2024Class } from "../data/classes.js";
+import { useI18n } from "../i18n/index.js";
 
 const CL_COL = { Barbar:"#dc2626",Barde:"#a78bfa",Druide:"#4ade80",Hexenmeister:"#9d174d",Kämpfer:"#0d9488",Kleriker:"#f59e0b",Magier:"#60a5fa",Mönch:"#fb923c",Paladin:"#fde68a",Schurke:"#9ca3af",Waldläufer:"#22c55e",Zauberer:"#e879f9",Magieschmied:"#38bdf8" };
 
 export default function KlassenRef() {
+  const { t } = useI18n();
   const mob = useIsMobile(900);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
@@ -33,9 +35,9 @@ export default function KlassenRef() {
     <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
       {/* ── Left: list ── */}
       <div style={{width:mob?"100%":220,flexShrink:0}}>
-        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="🔍 Klasse suchen…" style={{...sx.inp,marginBottom:6}}/>
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={t("ref.search_class", "🔍 Klasse suchen…")} style={{...sx.inp,marginBottom:6}}/>
         <div style={{fontSize:10,color:C.textDim,fontFamily:FH,letterSpacing:1,marginBottom:6,paddingBottom:6,borderBottom:`1px solid ${C.border}`}}>
-          {D3_KLASSEN.length} KLASSEN · {D3_KLASSEN.filter(is2024Class).length} auf PHB 2024
+          {D3_KLASSEN.length} {t("ref.classes_count", "KLASSEN")} · {D3_KLASSEN.filter(is2024Class).length} {t("ref.on_phb_2024", "auf PHB 2024")}
         </div>
         <div style={{maxHeight:mob?"none":"62vh",overflowY:"auto"}}>
           {filtered.map(k=>{
@@ -97,13 +99,13 @@ export default function KlassenRef() {
 
             {/* Description */}
             {sel.desc && (
-              <Sect title="About the Class">
+              <Sect title={t("ref.about_class", "Über die Klasse")}>
                 <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{sel.desc}</div>
               </Sect>
             )}
 
             {/* Skills + Tools (2024 schema uses skills.count/choices) */}
-            <Sect title="Skills & Tools">
+            <Sect title={t("ref.skills_tools", "Fertigkeiten & Werkzeuge")}>
               <div style={{display:"flex",flexDirection:"column",gap:4}}>
                 {typeof sel.skills === "object" && sel.skills.count ? (
                   <div style={{fontSize:12,color:C.textBright}}>
@@ -119,7 +121,7 @@ export default function KlassenRef() {
 
             {/* Starting Equipment (2024 only) */}
             {is2024 && sel.startingEquipment && (
-              <Sect title="Starting Equipment">
+              <Sect title={t("ref.starting_equipment", "Startausrüstung")}>
                 <div style={{display:"flex",flexDirection:"column",gap:4}}>
                   {Object.entries(sel.startingEquipment).map(([k,v]) => (
                     <div key={k} style={{fontSize:12,color:C.text}}>
@@ -141,7 +143,7 @@ export default function KlassenRef() {
 
             {/* Legacy archetypes */}
             {!is2024 && sel.archetypes && (
-              <Sect title={`Archetypen (${sel.archetypes.length})`}>
+              <Sect title={`${t("ref.archetypes", "Archetypen")} (${sel.archetypes.length})`}>
                 <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
                   {sel.archetypes.map(a=><Tag key={a} label={a} color={CL_COL[sel.name]||C.purple}/>)}
                 </div>
@@ -150,7 +152,7 @@ export default function KlassenRef() {
 
             {/* 2024 Full Progression Table */}
             {is2024 && sel.progressionRows && (
-              <Sect title="Class Progression (Level 1-20)">
+              <Sect title={t("ref.class_progression", "Klassen-Progression (Level 1-20)")}>
                 <div style={{overflowX:"auto"}}>
                   <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
                     <thead>
@@ -176,7 +178,7 @@ export default function KlassenRef() {
 
             {/* 2024 Features by Level */}
             {is2024 && sel.featuresByLevel && (
-              <Sect title="Class Features (Detail)">
+              <Sect title={t("ref.class_features_detail", "Klassen-Merkmale (Detail)")}>
                 <div style={{display:"flex",flexDirection:"column",gap:8}}>
                   {Object.entries(sel.featuresByLevel)
                     .map(([lv,feats])=>[Number(lv),feats])
@@ -200,7 +202,7 @@ export default function KlassenRef() {
 
             {/* Legacy table */}
             {!is2024 && sel.table && (
-              <Sect title="Merkmale (Auszug · 2014 Schema)">
+              <Sect title={t("ref.features_excerpt", "Merkmale (Auszug · 2014 Schema)")}>
                 <div style={{overflowX:"auto"}}>
                   <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
                     <thead><tr>{sel.tableHead.map(h=><th key={h} style={{textAlign:"left",padding:"4px 7px",color:col,fontFamily:FH,fontSize:10,borderBottom:`1px solid ${C.border}`}}>{h}</th>)}</tr></thead>
@@ -208,7 +210,7 @@ export default function KlassenRef() {
                   </table>
                 </div>
                 <div style={{marginTop:8,padding:"6px 10px",background:`${C.amberBright}11`,border:`1px solid ${C.amberBright}33`,borderRadius:6,fontSize:10,color:C.amberBright,fontStyle:"italic"}}>
-                  ⚠️ Diese Klasse ist noch auf 2014-Schema. PHB-2024-Refresh folgt in Phase 2.
+                  {t("ref.legacy_warning", "⚠️ Diese Klasse ist noch auf 2014-Schema.")}
                 </div>
               </Sect>
             )}
@@ -216,7 +218,7 @@ export default function KlassenRef() {
         ) : (
           <div style={{...sx.card,color:C.textDim,textAlign:"center",fontStyle:"italic",padding:40}}>
             <div style={{fontSize:36,marginBottom:10}}>⚔️</div>
-            Klasse auswählen ({D3_KLASSEN.length} verfügbar)
+            {t("ref.choose_class", "Klasse auswählen")} ({D3_KLASSEN.length})
             <div style={{display:"flex",flexWrap:"wrap",gap:5,justifyContent:"center",marginTop:14}}>
               {D3_KLASSEN.map(k=><span key={k.id} onClick={()=>setSel(k)} style={{...sx.tag(CL_COL[k.name]||C.purple),cursor:"pointer",fontFamily:FH,fontSize:11}}>{k.icon} {k.name}{is2024Class(k)?" ✦":""}</span>)}
             </div>
