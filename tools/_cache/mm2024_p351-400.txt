@@ -1,0 +1,4834 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 351 ---]
+BADGER
+TinyBeast, u·naligned
+AC17
+Initiative +0 (l0)
+HP
+ 5 (l d4 +3)
+Speed20ft., Burrow 5 ft.
+MODSAVE
+MODSAVEMODSAVE
+STR10+O+ODEX11
++O+OCON16+3 +3
+INT2 - 4-4Wis
+12+l+lCHA5-3 -3
+ARCHELON
+Skills Perception+3
+Resistances Poison
+SensesDarkvision30ft.; Passive Perception13
+ARCHELON
+Languages None
+Huge Beast(Dinosaur)1 Unaligne d
+CR 0(XPl0;PB+2)
+AC17lnitiative+3
+(13)
+ACTIONS
+HP 90 (12dl2 +12)
+Speed20ft., Swim 80 ft.
+Bite.
+ Melee AttackRoll:+2,reach 5 ft.Hit:l Piercing
+MODSAVEMODSAVEMODSAVE
+damage.
+STR78+4 +4DEX
+16+3 +3CON73+l+7
+INT
+4-3 -3Wis14 +2 +2 CHA6-2 -2
+BAT
+SkillsSteaIth+5
+TinyBeastUnaligned
+SensesPassive Perception121
+Languages None
+AC12lnitiative+2(12)
+CR4(XP7,l 00;PB+2)
+HP l (l d4 - l)
+.Speed5 ft.,Fly30 ft.
+TRAITS
+MODSAVEMODSAVEMODSAVE
+Amphibious. The archelon can breathe air and water.
+STR2 - 4 - 4DEX15CON
++2 +28 -1 -1
+INT2-4 -4-WIS12+l +l CHA4-3 -3
+ACTIONS
+Multiattack. The archelon makes two Bite attacks.
+SensesBlindsight 60 ft.; Passive Perception
+11
+LanguagesNone
+Bite. MeleeAttack
+Ro/1:+6,reach5ft.Hit:74(3d6+4)
+CR0(XPl0;PB+2)
+Piercing damage.
+ACTIONS
+Bite. Melee AttackRoll:+4, reach 5 ft.Hit:
+l Piercing
+BABOON
+damage.
+Small Beast, Unaligned
+AC12
+Initiative +2 (12)
+HP
+ 3 (7d6)
+BLACK BEAR
+Speed 30 ft., Climb 
+30 ft.
+Medium
+Beast Unaligned
+1 
+MODSAVEMODSAVE 
+MODSAVE
+AC11Initiative
+ +l (11)
+STR8 - 7 - 7
+DEX14+2 +2 CON77+O +O
+HP19(3d8 +
+6)
+I NT 4 - 3-3
+Wis12+7+l CHA6-2 -2
+Speed 30 ft., Climb 30 
+ft., Swim 30 ft.
+MODSAVEMODSAVEMODSAVE
+Senses Passive Perception17
+STR
+15+2 +2D EX12+l +l CON14
+Languages +2 +2
+None ,
+CR O(XP 70;PB+2)
+INT 2 -4-4Wis12CHA7-2- 2
++l +l 
+TRAITS
+SkillsPerception+5.
+SensesDarkvision 60 ft.; Passive Perception15
+Pack Tactics.
+The baboon has Advantage on an attack
+Languages
+ None
+roll against a creature if at least one 
+of the baboon's
+CR l /2(XPl 00;PB+2)
+alliesiswithin 5 feet of the creature and the 
+ally doesn't
+have the Incapacitated condition.
+ACTIONS
+Multiattack.
+ACTIONS The bear makes two Rend attacks.
+w
+~
+a:
+Q_
+Bite. Melee Attack Roll: +l, reach 5 ft. Hit:
+ l (l d4 - l)Rend. Melee Attack Roll: +4, reach 5 ft. Hit:
+_J 5 (l d6 + 2)
+a:
+0..
+Piercing damage.
+<CSlashing damage.
+\
+A P PENDIX A JANIMALS 
+349
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 352 ---]
+(
+BOAR
+BLOODHAWK
+Medium BeastUnaligned
+SmallBeast,Unaligned
+1 
+(l0)
+ Initiative+O
+AC11
+Initiative+2(12)
+AC12
+4)
+HP 73(2d8 +
+HP7 (2d6)
+40 ft.
+Speed
+Fly60 ft.
+Speedl Oft.,
+MODSAVE
+MODSAVEMODSAVE
+MODSAVE
+SAVE
+MODSAVEMOD
+CON14+2 +2
++l+lDEX11 +0+O
+STR73
+14+2 +2CON10+0+O
+STR 6 - 2 - 2DEX
+-3
+w,s9 - l - 7CHA5-3 
+INT2-4- 4
+- 3
+74+2 +2CHA5-3
+INT3 - 4 - 4w,s
+SensesPassive Perception 9
+SkillsPerception +6
+LanguagesNone
+SensesPassive Perception16
+50;PB+2)
+CRl/4(XP
+Languages None
+(XP25;PB+2)
+CR1/8
+TRAITS
+TRAITS
+Fury.While Bloodied, the boar has Advantage
+Bloodied
+roll
+an attackon attack rolls.
+Pack Tactics. The hawk has Advantage on 
+is
+ofthe hawk's allies
+against a creature if at least one
+ACTIONS
+allydoesn't have
+within 5 feet of the creature and the
++3,reach 5 ft.Hit:4 (ld6 + l)
+Gore.MeleeAttackRoll:
+the Incapacitated condition.
+isa Medium or smaller
+Piercing damage.Ifthe target
+I O N S
+ACT
+creature and the boar moved 20+ feet straight toward
+ft.Hit:4 (l d4 +2)itimmediately before the hit , the target takes an extra 3
+MeleeAttackRoll:+4, reach 5 
+Beak.
+(l d6) Piercing damage and has the Prone condition.
+2)Piercing damage if the
+Piercing damage, or 6 (7d8 +
+isBloodied.
+target
+BROWN BEAR
+LargeBeast, Unaligned
+Initiative+l (l l)
+AC11
+HP22 (3d70 +6)
+30 ft.
+Speed40 ft ., Climb 
+MODSAVE
+MOD SAVE MODSAVE
++7CON15+2 +2
+STR17 +3 +3DEX12+l
+ +l +lCHA7-2- 2
+INT2 - 4 - 4 Wis 13
+SkillsPerception+3
+13
+rkvision 60 ft.; Passive Perception
+Senses Da
+LanguagesNone
+CRl(XP200;PB+2)
+ACTIO NS
+ The bear makes one Bite attack and one
+Multiattack.
+Claw attack.
+7 (ld8 +3)
+AttackRoll:+5, reach 5 ft.Hit:
+Bite. Melee 
+Piercing damage.
+5 (ld4 +3)
+AttackRoll:+5, reach 5 ft.Hit:
+Claw. Melee 
+If the targetisa Large or smaller
+Slashing damage. 
+ithas the Prone condition.
+creature,
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 353 ---]
+CO
+NSTRICTOR
+SNAKE
+CAMEL
+--
+CONSTRICTORSNAKE
+LargeBeast,Unaligned
+AC13
+Initiative+2(12)
+HP13(2dl0 +2)
+CAMEL
+Speed 30 ft., Swim30ft.
+MODSAVEMODSAVEMODSAVE
+LargeBeast,Unaligned
+ST R75+2 +2DEX74+2
+ +2CON72+l +l
+AC10lnitiativ
+e-1(9)
+INTl-5- 5 Wis70
++0 +0CHA3-4 -4
+HP17(2dl0+6)
+Speed 50 ft.
+SkillsPerception +2,Stea lt h +4
+MOD SAVEMOD SAVEMODSAVE
+SensesBlindsight10ft.; Passive Perception12
+STR75+2+2DEX8 -7 -7CON77+3 
++5
+_Languages None
+INT 2 - 4 - 4 Wis77
++0 +0CHA5-3 -3
+CRl /4(X
+P 50;PB+2)
+SensesDarkvision 60 ft .; Passive Perception l 0
+ACTI O N S
+Languages None
+Bite. Melee AttackRoll:+4, reach 5 ft.
+Hit:6 (l d8 +2)
+CRl/8(XP25;PB+2)
+Piercing damage.
+ACTION S
+Constrict. Strength Saving Throw:DC12,one Medium
+Bite. Melee Attackor smaller creature 
+Roll:+4, reach 5 ft.Hit:4 (l d4 +2)the snake can see within 5 feet.Fail-
+Bludgeoning damage.
+ure:7 (3d4) Bludgeoning damage, and the target has
+the Grappled condition (escape
+DC72).
+CAT
+CRAB
+TinyBeast, Unaligned
+TinyBeast, Unaligned
+AC72Initiative
+ +2(12)
+HP2 (ld 4)
+AC11Initiative
+ +0 (l0)
+Speed 40 ft., Climb 40 ft.
+HP3 (ld 4 + l)
+MODSAVEMODSAVEMODSAVE
+Speed 20 ft., Swim 20 ft.
+STR 3-4 -4DEX
+15+2+4CON70+0 +0
+MODSAVEMODSAVEMODSAVE
+STR 6-2 -2 DEX11+0 +0CON12+l +l
+INT 3-4 -4
+W is12+l +lCHA7-2 -2
+INT1-5 -5Wis 8 -1 -1CHA2 - 4
+-4
+Skills Pe rce pt ion +3,Stealth +4
+Senses
+ Darkvision 60 ft.; PassivePerception13
+Skills Stealth +2
+Languages None
+Senses Blindsight 30 ft .;Passive Perception 9
+CRO(XPlO;PB+2)
+Languages None
+0
+CR0(XP 10; PB +2)
+u
+w
+I
+TR A ITS
+u
+<(
+Q_
+TRAITS
+0
+Jumper.
+a::: The cat's ju mp distanceisdetermined using its
+0
+z
+<(
+Dexterity rather than its Strength.
+Amphibious. The crab can breathe air and water.
+w
+_J
+<(
+w
+z
+A CTIONS
+ACT IO NS
+\.)
+z
+w
+a:::
+Scratch. Melee Attack Roll: +4, reach 5 ft. Hit:
+ l Slash-Claw. Melee Attack Roll: +2\ reach 5 ft. Hit: l Bludgeon-
+<(
+_J
+'
+0
+Q_ing damage.
+ing damage.
+APPENDIX 
+A I ANIMALS ~ 351
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 354 ---]
+\
+1
+OU R G oos' P R OSC RIPT IO N S AR E CL E A R . 1 W O N T O RD E R
+MY W A RRI O R S T O FETC H THE H EA D O F THE CR O CO D I L E
+TH OUS AN D TEETH- N O M A TT ER H O W M A N Y IT DEV O U R S .
+You A DV ENT URER S, O N TH E OTHER HAN D ...
+- Q U E E N O THO KEN T , Ll "I AR DFOLK SO V E RE I G N
+DIRE WOLF
+CROCODILE
+Large Beast, Unaligned
+AC 12 Initiative +0 (l 0)
+DIRE WOLF
+HP 13 (2d 10 + 2)
+Large Beast, Unaligned
+Speed 20 ft., Swim 30 ft.
+Initiative +2 (12)
+MOD SAVE MOD SAVE MOD SAVEAC 14 
+HP 22 (3d10 + 6)
+STR 15 +2 +2 D EX 10 +0 +0 CON 13 +1 +3
+Speed 50 ft.
+INT 2 -4 - 4 Wis 10 +0 +0 CH A 5 -3 -3
+MOD SAVEMOD SAVE
+MO D SAVE
+Skills Stea Ith +2
+STR 17 +3 +3DEX 15 +2 +2Co N 15 +2 +2
+Senses Passive Perception 10
+INT 3 - 4 - 4Wis 12 +1 +1CH A 7 -2 -2
+Languages None
+CR 1/2 (XP 100; PB +2)Skills Perception +5, Stealth +4
+Senses Darkvision 60 ft.; Passive Perception 15
+TRAITS
+Languages None
+CR 1 (XP 200; PB +2)
+Hold Breath. The crocodile can hold its breath for 1 hour.
+ACTIONSTRAITS
+Bite. Melee Attack Roll: +4, reach 5 ft. Hit: 6 (1 d8 + 2)Pack Tactics. The wolf has Advantage on an attack roll
+against a creature if at least one of the wolf's allies is
+Piercing damage. If the target is a Medium or smaller
+within 5 feet of the creature and the ally doesn't have
+creature, it has the Grappled condition (escape DC 12).
+the Incapacitated condition.
+While Grappled, the target has the Restrained condition.
+ACTIONS
+Bite. Melee Attack Roll: +5, reach 5 ft. Hit: 8 (ldl0 + 3)
+DEER
+Piercing damage. If the target is a Large or smaller crea-
+Medium Beast, Unaligned
+ture, it has the Prone condition.
+AC 13 Initiative +3 (13)
+HP 4 (ld8)
+Speed 50 ft.
+DRAFT HORSE
+MOD SAVE MOD SAVE MOD SAVE.
+Large Beast, Unaligned
+STR 11 +0 +0 DEX 16 +3 +3 CON 11 +0 +0
+AClOIn itiative +0 (10)
+IN T 2 - 4 -4 Wis 14 +2 +2 CH A 5 -3 -3
+HP 15 (2dl 0 + 4)
+Skills Perception +4
+Speed 40 ft.
+Senses Darkvision 60 ft.; Passive Perception 14
+MOD SAVE MOD SAVE MOD SAVE
+Languages None
+STR 18 +4 +4 DEX 10 +0 +0 CON 15 +2 +2
+CR O (XP 10; PB +2)
+IN T 2 -4 - 4 Wis 11 +0 +0 CH A 7 -2 -2
+TRAITS
+Senses Passive Perception 10
+Agile. The deer doesn't provoke an Opportunity Attack
+Languages None
+when it moves out of an enemy's reach.CR 1/4 (XP 50; PB +2)
+0
+0
+ACTIONS
+<l'.
+0
+z
+0...
+Ram. Melee Attack Roll: +2, reach 5 ft. Hit: 2 (ld4) Blud-Hooves. Melee Attack Roll: +6, reach 5 ft. Hit: 6 (1 d4
+<l'.
+cZ
+0
+geoning damage.+ 4) Bludgeoning damage. l(])
+'-
+APPENDIX A I AN I MALS
+352
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 355 ---]
+FANTASTICANIMALS
+The followingstatblocksinthis appendix repre-
+sentfantastical versionsofreal-world animals:
+Blood Hawk: Excessively aggressive hawklike
+ELEPHANT
+gems
+avians known for stealing 
+ Winged, venomous snakes often
+Flying Snake:
+messengers
+trained to serve as 
+thataid heroes
+Giant Eagle: Mighty eagles
+ofthe forest
+GiantElk:Mystical guardians
+Giant Fire Beetle: Glowing, cave-dwelling beetles
+Giant Owl: Avian sages and soothsayers
+ Vicious vultures that serve villains
+Giant Vulture:
+EAGLE
+Small Beast) Unaligned
+ELK
++2 (12)
+AC72Initiative
+HP4(ld6+l)
+LargeBeast, Unaligned
+Speed l Oft.,Fly60 ft .
+ACl 0 Initiative +0 (l0)
+MODSAVEMODSAVEMODSAVE
+(2dl0)
+HP77
+STR 6 - 2 - 2DEX75+2 +2CON72+l +l
+Speed50ft.
+- 4 Wis74+2 +2CHA7 - 2 - 2
+INT2 - 4 
+MODSAVE
+MODSAVEMODSAVE
++0 +0CON77 +0 +0
+STR76 +3 +3DEX70
+Skills Percept ion +6
+.,
++0CHA6-2 -2
+INT 2-4- 4 W is 70 +0 
+Senses Passive Perception l~
+Languages None
++2
+SkillsPerception
+CR0(XP 70;PB+2)
+·sensesDarkvision 60 ft.; Passive Perception72
+Languages None
+A CTION S
+CRl /4(XP50;PB+2)
+Roll:+4, reach 5 feet.Hit:4 (l d4
+Talons. MeleeAttack
++2)Slashing damage.
+I O N S
+ACT
+Roll:+5,reach 5 ft.Hit:6 (l d6 +3)
+Ram. MeleeAttack
+Ifthe targetisa Large or smaller
+Bludgeoning damage.
+ELEPHANT
+elk moved 20+ feet straight towardit
+creature and the 
+Huge Beast, Unalignedan extra 3
+immediately before the hit, the target takes 
+(l d6) Bludgeoning damage and has the Prone condition.
+AC12 Initiative - l(9)
+HP 76(8dl 2 +24)
+Speed 40 ft.
+FLYING SNAKE
+MODSAVEMODSAVEMODSAVE
+DEX9 - l - 7CON77 +3+3
+STR 22 +6 +6
+TinyMonstrosity, Unaligned
+6 - 2-2
+INT3-4- 4 Wis77+0 +0CHA
+(12)
+AC 14 Initiative+2 
+HP5 (2d4)
+Passive Perception l 0
+Senses
+Fly60 ft. , Swim30 ft.
+Speed 30 ft.,
+ None
+Languages
+MODSAVE
+MODSAVEMODSAVE
+CR 4(XP7,700;PB+2)
+ +2CON77 +0 +0
+STR 4 -3 -3D EX75+2
+ACTIONS
+-3
+INT 2 - 4 - 4 Wis72+l +lCHA5 - 3
+ The elephant makes two Gore attacks.
+Multiattack.
+Senses Blindsight70ft_;·Passive Perception77
+Hit:15(2d8 +6)
+Gore. Melee AttackRoll:+8, reach 5 ft.
+Languages None
+If the targetisa Huge or smaller crea-PB+2)
+Piercing damage. CR l /8(XP 25;
+ture and the elephant moved 20+ feet straight toward
+T RAI TS
+it immediately before the hit, the target has the Prone
+At-
+condition.Flyby. The snake doesn't provoke an Opportunity
+an enemy's reach.
+tack whenitflies out of 
+BONUS ACTIONS
+A CTIONS
+ Dexterity Saving Throw: DC 16, one creature
+Trample.
+z
+<(
+I
+Hit: l Piercing .
+ Pr-one condition. Failure: 77Bite. Melee Attack Roll: +4, reach 5 ft. 
+within 5 feet that has the
+~
+z
+0
+ Half damage.damage plus 5 (2d4) Poison damage. l
+(-2dl 0 + 6) Bludgeoning damage. Success:
+ A I ANIMALS,6... 353
+APPENDIX
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 356 ---]
+GIANTAPE
+Unaligned
+HugeBeast,
+Initiative+5(15)
+AC12
+HP168(l6dl2+64)
+Speed 40 ft., Climb 40 ft.
+MODSAVE
+MODSAVE
+MOD SAVE
++4 +4
++6 DEX14 +2 +2CON18
+STR23 +6 
+CHA7-2 -2
+Wis 12+1+1
+INT5-3- 3 
+SkillsAthletics+9,Perception +4, Survival +4
+Senses Passiv'e Perception14
+Languages None
++3)
+CR7(XP2,900;PB
+ACTIONS
+Multiattack. The ape makes two Fist attacks.
+22 (3dl 0
+Fist.MeleeAttackRoll:+9,reach l Oft.Hit:
++6)Bludgeoning damage.
+Toss(Recharge6).The ape hurls a boulder at a
+Boulder
+itcan see within 90 feet. Dexterity SavingThrow:
+point
+17,each creatureina 5-foot-radius Sphere centered
+DC
+24(7d6) Bludgeoning damage.
+on that point.Failure:
+Ifthe targetisa Large or smaller creature,ithas the
+Prone condition.Success: Half damage only.
+BONus ACTIONS
+The ape jumps up to 30 feetbyspending 10 feet
+TinyBeast, UnalignedLeap.
+of movement.
+e+l (l l)
+ACllInitiativ
+HPl (l d4 - l)
+Speed 20 ft., Swim 20 ft.
+GIANTBADGER
+MODSAVEMODSAVEMODSAVE
+CON8- l-l
+STRl-5 -5 DEX13+l +l 
+MediumBeas~,Unaligned
+-4 -4
+INT -5- 5 Wis 8 - l - lCHA3
+l
++O(l 0)
+AC13Initiative
+HP15(2d8+6)
+ Perception +l, Stealth+3
+Skills
+Speed 30 ft., Burrow 10 ft .
+Senses Darkvision 30 ft.; Passive Perception l l
+MODSAVEM ODSAVE
+MODSAVE
+None
+Languages 
++3
+STR13 +l +lDEX10+O +OCON17+3
+PB+2)
+CRO(XP 10;
+)
+INT 2 - 4-4Wis 12 +l +l CHA 5 -3 - 3
+TR AITS
+Skills Perception+3
+Amphibious. The frog can breathe air and water.
+Resistances Poison
+isupto lOfeet13
+Standing Leap. The frog's Long JumpSenses Darkvision 60 ft.; Passive Perception
+Languages None
+and its High Jumpisup to 5 feet with or without a run-
+CRl/4(XP 50;PB+2)
+ning start.
+u
+A CTIO N S
+A CTIONSL/)
+:J
+_J
+w
+ Hit: 6 (2d4 + l)
+Roll: +3, reach 5 ft. Hit: l PiercingBite. Melee Attack Roll: +3, reach 5 ft.
+Bite. Melee Attack 0
+Piercing damage.
+damage.
+'-
+APPENDIX A I ANIMALS
+354
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 357 ---]
+t
+WE SK IRT ED T HE COAS T LI NE S O F SE V E RA L ISL A N DS,
+SAILI N G SO UTH BY W EST U N TIL W E RE A CHED A SMALL
+PE N I N SU L /\ C U T O FF FR O M THE MA I N I SL AN D BY A
+MASS I VE STO NE WAL L. WE WERE W ELL RE C E IVED BY TH E
+PE O PLE OF T A NAR OA, THE SMA L L V IL LAGE THA T GU A R D S
+TH I S W A LL . T H E V I LLAGERS HAYE N O NAM E F O R THE
+L A RGE I SLAN D OTHE R T HA N THE lsLE OF DREAD .
+- RORY BARBAR OSA , LOG O F T H E GAL LIVANT
+GIANT Bo AR
+GIANT CENTIPEDE
+Small Beast, Un aligned
+GIANT BAT
+AC 74 Initiative +2 (12)
+Large Beast, Unaii~d
+HP 9 (2d6 + 2)
+AC 13 - Initiative +3 (13)
+Speed 30 ft., Climb 30 ft .
+HP 22 (4dl 0)
+MOD SAVE MOD SAVE
+MOD SAVE 
+Speed l Oft., Fly 60 ft.
+STR 5 -3 - 3 DEX 74 +2 +2 CON 72 +1 +l
+MOD SAVEMO D SAVEMOD_ SAVE
+INT l -5 -5 Wis 7 -2 -2 CHA 3- 4 - 4
+DEX 76 +3 +3CON 77 +O +O
+STR 75 +2 +2
+Senses Blindsight 30 ft.; Passive Perception 8
+INT 2 - 4 - 4Wis 72 +7 +7CHA 6 -2 - 2
+Languages None
+Senses Blin ds ight 120 ft.; Pas sive Perception 11
+• CR 1/4 (XP 50; PB +2)
+Languages None
+CR 1/4 (XP 50; PB +2)
+A CT IO N S
+Bite. Melee Attack Roll: +4, reach 5 ft. Hit: 4 (l d4 + 2)
+A CTIO N S
+Piercing damage, and the target has the Poisoned con-
+Bite. Me lee Attack Roll: +5, reach 5 ft. Hit: 6 (l d6 + 3)
+dition until the start of the centipede's next turn.
+Piercing damage.
+GIANT CONSTRICTOR SNAKE
+.,GIANT BOAR
+Huge Beast, Unaligned
+I
+Large Beast, Unaligne d
+AC 12 Initiative +2 (12)
+AC 13 Initiative +O (l 0)
+HP 60 (8dl2 + 8)
+HP 42 (Sdl O + 15)
+Speed 30 ft., Swim 30 ft.
+Speed 40 ft.
+MOD SAVE MOD SAVE MOD SAVE
+MOD SAVE MOD SAVE MOD SAVE
+STR 19 +4 +4 DEX 74 +2 +2 CON 12 +l +l
+17 DEX 70 
+STR +3 +5 +O +O CON 16 +3 +3
+INT l - 5 - 5 Wis 70 +0 +0 CHA 3 -4 - 4
+INT 2 -4 -4 Wis 7 - 2 - 2 CHA 5 -3 -3
+"
+Skills Perception +2
+Senses Passive Perception 8
+Senses Blindsight 10 ft.; Passive Perception 12
+Languages None
+Languages None
+CR 2 (XP 450; PB +2)
+CR 2 (XP 450; PB +2)
+TRAITS
+AC T IO N S
+Bloodied Fury. The boar has Advantage on melee attack
+Multiattack. The snake makes one Bite attack and uses
+rolls while it is Bloodied.
+Constrict.
+Bite. Melee Attack Roll: +6, reach l Oft. Hit: 11 (2d6 + 4)
+ACTI O NS
+Piercing damage.
+Gore. Melee Attack Roll: +5, reach 5 ft. Hit: l O (2d6
++ 3) Piercing damage. If the target is a Large or smallerConstrict. Strength Sa11ing Throw: DC 74, one Large or
+UJ
+z
+creature and the boar moved 20+ feet straight towardsmaller creature the snake can see within 10 feet. Fail-
+\.J
+z
+UJ
+Ci'.'.
+it immediately before the hit, the target takes an extra 7
+ure: 13 (2d8 + 4) Bludgeoning damage, and the target
+<r:
+_J
+0
+1 
+0...(2d6) Piercing damage and has the Prone condition.has the Grappled condition (escape DC14).
+APPENDIX A I ANIM ~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 358 ---]
+GIANTCRAB
+Medium Beast, Unaligned
+AC15Initiative
++1(11)
+HP13(3d8)
+Speed30ft., 
+Swim 30ft.
+MODSAVEMODSAVE
+MODSAVE
+STR13+1 +1DEX13+1 +1CON
+11+O +O
+GIANT
+EAGLE
+INT
+1-5-5Wis 9-1 -1CHA3-4 -4
+LargeCelestia( Neutra l Good
+Ski lls Stealth
++3
+AC13
+Initiative+3 (13)
+Senses Blindsight 30 ft.; Passive Perception 9
+HP 26
+(4d10 +4)
+Languages
+ None
+Speed10ft.,Fly80 ft.
+CR1/8(25XP;PB+2)
+MODSAVEMODSAVEMODSAVE
+TRAITSSTR16 +3+3DEX17+3+3CON13+1
++1
+INT8 - 1 - 1Wis14
++2 +2CHA 10+O +O
+Amphibious. The crab can breathe air and water.
+Sk
+ills Perception +6
+ACTIONS
+Resistances Necrotic, Radiant
+Claw. MeleeAttackRoll:+3,reach 5 
+ft.Hit:4 (ld6 +1)
+SensesPassive Perception
+16
+Bludgeoning damage.Ifthe target
+isa Medium or
+Languages
+Celestial; understands Common and
+smaller creature,ithas the Grappled condition (escape
+~rimordial
+(Auran) but can't speak them
+DC11)from one of two claws.
+CR 1(XP200;PB+2)
+ACTIONS
+GIANT
+CROCODILE
+Multiattack.
+ The eagle makes two Rend attacks.
+Huge
+Beast, Unaligned
+Rend. MeleeAttack
+Roll:+5,reach 5 ft.Hit:5 (l d4 +3)
+AC14Initiative-1(9)
+Slashing damage plus 3 (l d6) Radiant damage.
+HP85(9dl 2 +27)
+Speed 30 ft., Swim 50 ft.
+MODSAVEMODSAVE
+MODSAVE
+GIANTELK
+STRDEX
+21+S+59 -1 -1CON17 +3 +3
+HugeCelestial, Neutral Good
+INT2-4- 4Wis10+O+OCHA7-2
+ -2
+AC14Initiative +6(16)
+Skills Stealth
++5
+HP 42(5d12 +10)
+SensesPassive Perception l 0
+Speed 60 ft.
+Languages
+ None
+MODSAVEMODSAVEMODSAVE
+CR
+5(XP1,800;PB+3)
+STR19+4
++6DEX18+4+6CON14 +2 +2
+INT7-2 -2
+Wis14+2 +2CHA 10+O+0
+TRAITS
+Ski lls Perception +4
+Hold Breath. The crocodile can hold its breath for l hour.
+Resistances
+ Necrotic, Radiant
+ACTIONS
+Senses Darkvision 90 ft.; Passive Perception14
+Languages Celestial; understands Common, Elvish, 
+and
+Multiattack. The crocodile makes one Bite attack and
+Sylvan but can't speak them
+oneTailattack.
+CR2(XP450;PB+2)
+Bite. Melee AttackRoll:+8, reach 5 ft.
+Hit:21(3d10
++5)Piercing damage. 
+If the targetisa Large or smaller
+ACTIONS
+creature, it has the Grappled condition (escape
+DC15).
+Ram. Melee AttackRoll:+6, reach l O ft. Hit:11
+(2d 6
+While Grappled, the target has the Restrained condition
++.4) Bludgeoning damage plus 5 (2d4) Radiant damage.
+and can't be targetedbythe crocodile's Tail.
+If the targetisa Huge ,or smaller creature and the elk
+I
+>-
+I
+Tail. Me lee AttackRoll:+8, reach l Oft.
+ Hit: 18 (3d8 +5)<I:
+. moved 20+ feet straight toward it immediately before
+2
+z
+Bludgeoning damage. 
+If the target is a Large or smallerw
+the hit, the target takes an extra 5 (2d4) Bludgeoning
+CY.
+CY.
+<{
+creature, it has the Prone condition.
+damage and has the Prone condition. 
+?::
+'-
+I
+APPENDIX
+ A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 359 ---]
+G 1t1 NT Go AT
+GIANT FIRE BEETLE
+Small Beast, Unaligned
+AC 13 Initiative +0 (l 0)
+HP 4 (ld6+l)
+Speed 30 ft., Climb 30 ft.
+MOD SAVE MOD SAVE MOD SAVE
+STR 8 -l - l DEX 10 +0 +0 CON 12 +l +l
+INT l -5 -5 Wis 7 - 2 -2 CHA 3 -4 - 4
+Resistances Fire
+Senses Blindsight 30 ft.; Passive Perception 8
+Languages None
+CR 0 (XP l 0; PB +2)
+GIANT GOAT
+TR A ITS
+Large Beast, Unaligned
+Illumination. The beetle sheds Bright Light in a 10-foot
+radius and Dim Light for an additional 10 feet.
+AC 11 Initiative +l (l l)
+HP 19 (3dl0 + 3)
+A CT IO N S
+Speed 40 ft., Climb 30 ft.
+Bite. Melee Attack Roll:+ l, reach 5 ft. Hit: 1 Fi re damage.
+MOD SAVEMOD SAVE
+MOD SAVE 
+CoN 12
+STR 17 +3 +5 DEX 13 +l +l +l +l
+-2 -2
+INT 3 - 4 - 4 Wis 12 +l +l CHA 6
+GIANT FROG
+Ski lls Perception +3
+Medium Beast, Unaligned
+Senses Darkvision 60 ft.; Passive Perception 13
+AC ll Initiative+ l (l l)
+Languages None
+HP 18 (4d8)
+·CR l/2 (XP 100; PB +2)
+Speed 30 ft., Swim 30 ft.
+A CT I O NS
+MOD SAVE MOD SAVEMOD SAVE
+12 DEX 13 CON ll
+STR +l +l +l +l +0 +0
+Ram. Melee Attack Roll: +5, reach 5 ft. Hit: 6 (ld6 + 3)
+-4 -4 - 4 -4Bludgeoning damage. If the target is a Large or smaller
+INT 2 Wis 10 +0 +0 CHA 3
+creature and the goat moved 20+ feet straight toward it
+Skills Perception +2, Stealth +4
+immediately before the hit, the target takes an extra 5
+Senses Darkvision 30 ft.; Passive Perception 12
+(2d4) Bludgeoning damage and has the Prone condition.
+Languages None
+CR l /4 (XP 50; PB +2)
+GIANT HYENA
+TRAIT S
+Large Beast, Unaligned
+Amphibious. The frog can breathe air and water.
+AC 12 Initiative +2 (12)
+Standing Leap. The frog's Long Jump is up to 20 feet
+HP 45 (6dl0 + 12)
+and its High Jump is up to 10 feet with or without a
+Speed 50 ft.
+running start.
+MOD SAVE MOD SAVE MOD SAVE
+A CTIO NS
+STR 16 +3 +3 DEX 14 +2 +2 CON 14 +2 +2
+Bite. Melee Attack Roll: +4, reach 5 ft. Hit: 5 (l d6 + 2)INT 2 - 4 - 4 Wis 12 +l +l CHA 7 -2 -2
+Piercing damage. If the target is a Medium or smaller
+Skills Perception +3
+creature, it has the Grappled condition (escape DC 11).
+Senses Darkv ision 60 ft.; Passive Perception 13
+Swallow. The frog swallows a Small or smaller target it
+Languages None
+is grappling. While swallowed, the target isn't Grappled
+CR l (XP 200; PB +2)
+but has the Blinded and Restrained conditions, and it
+A CT I O N S
+has Total Cover against attacks and other effects out-
+side the frog. While swallowing the target, the frog can't
+Bite. Melee Attack Roll: +5, reach 5 ft. Hit: l 0 (2d6 + 3)
+use Bite, and if the frog dies, the swallowed target is no
+Piercing damage.
+longer Restrained and can escape from the corpse using
+B O N us A CTIO N S
+5 feet of movement, exiting with the Prone condition ...
+,~
+At the end of the frog's next turn, the swallowed targetRampage (1/Day). Immediately after dealing damage
+:,c
+l/)
+CY
+takes 5 (2d4) Acid damage. -lf that damage doesn't kill it,to a creature that was already Bloodied, the hyena can
+:::i
+0
+z
+1
+the frog disgorges it, causing it to exit Prone.move up to half its Speed, and it makes one Bite attack.
+0...
+\.
+APPENDIX A I ANIM ~ 357
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 360 ---]
+GIANTLIZARD
+Large
+Beast, Unaligned
+GIANTOWL
+AC12Initiative+l(11)LargeCelestial,Neutral
+HP19-(3dl0 +3)
+AC12 
+lnitiative+2 (12)
+Speed 40 ft.,Climb40ft.
+HP19(3d10 +3)
+MODSAVE MODSAV EMODSAVE
+Speed5 ft., Fly 60 ft.
+STR
+15+2 +2DEX12+l+3CON13+l+l
+MODSAVE
+MODSAVEMODSAVE
+INT2-4 -4Wis 10+0 +0CHA5-3 -3
+STR13+1+1DEX15CON
++2 +212+1+1
+INT10+0 +0 w,s
+14+2 +4CHA10+0 +0
+SensesDarkvision 60 ft.; Passive Perception 10
+LanguagesNone
+Skills Perception +6, Stealth 
++6
+CR1/4 (XP 50;PB
++2)
+Resistances Necrotic, Radiant 
+SensesDarkvision 120 ft.; Passive Perception
+16
+TRAITS
+LanguagesCelestial; understands
+Common,Elvish, and
+Spider Climb. The lizard can
+climb difficultsurfaces,
+Sylvanbut can't speakthem
+includingalong ceilings ,without
+needingtomakean
+CR1/4(XP 50;PB+2)
+ability check.
+TRAITS
+ACTIONS
+Flyby.The owldoesn'tprovoke
+anOpportunityAttack
+Bite.MeleeAttackRoll:+4, reach 5ft.Hit:6(ld8+2)
+whenitfliesoutofanenemy's reach.
+Piercing damage.
+ACTIONS
+Talons. MeleeAttackRoll:
++4, reach 5 ft.Hit:7(1dl0
+GIANTOCTOPUS
++2)Slashing damage.
+LargeBeast, 
+Unaligned
+Spellcasting. The owl casts oneofthe followingspells,
+requiring no spellcomponentsand using
+AC11Initiative+1(11)Wisdomas
+HP45(7dl0+7)the spellcasting modifier:
+Speed 10 ft., Swim 60 ft.
+AtWill: DetectE1JilandGood,DetectMagic
+MODSAVEMODSAVE
+MODSAVE
+1/Day:Clair1Joyance
+STR17+3 +3DEX13 +1+lCON13 
++1+1
+INT5-3 -3
+Wis 10+0 +0CHA4-3 -3
+GIANTRAT
+SkillsPerception +4, Stealth +5
+Senses Darkvision 60 ft.; Passive Perception
+14Small Beast, Unaligned
+Languages
+None
+AC 13Initiative +3 
+(13)
+CR1 (XP 200;PB+2)
+HP 7 (2d6)
+Speed 30 ft., Climb 
+30 ft.
+TRAITS
+M O D SAVEMOD SAVE
+MODSAVE
+Water Breathing. The octopus 
+can breathe only under-
+STR7-2 -2
+DEX16 +3 +5CON11
+ +0 +0
+water. It can hold its breathfor1 hour 
+outside water.
+INT2-4 -4
+Wis 10CHA4-3 -3
+ +0 +0
+ACTIONS
+Skills Perception +2
+Tentacles.
+ Melee AttackRoll:+5, reach 10 ft.Hit:10
+Senses Darkvision 60 ft.; Passive Perception
+12
+(2d6 +3)Bludge,oning damage.Ifthe 
+target is a Me-
+Languages
+ None
+dium or 
+smaller creature, it has the Grappled condition
+CR1/8 (XP 25;PB+2)
+(escape DC 13)from all eight tentacles. While Grap-
+TRAITS
+pled, the target has the Restrained condition.
+Pack Tactics.
+ The rat has Advantage on an attack roll
+REACTIONS
+against a creatureifat least oneofthe rat's allies is
+InkCloud (1/Day).Trigger:The octopus takes damage
+within 5 feet
+ofthe creature and the ally doesn't have
+while underwater. Response: The octopus releases ink
+the Incapacitated condition.
+that fills a 10-foot Cube centered on itself, and the oc-
+0
+::i
+ACTIONS
+:,,'.
+topus moves up to its Swim Speed. The Cube 
+is Heavily
+z
+<!'.
+I
+Obscured for 1 minute or until ,a strong current 
+or simi-
+Bite. Melee Attack Roll: +5, reach 5 feet .
+ Hit: 5 (ld4 +3)
+~
+z
+lar effect disperses the ink.
+0
+Piercing damage.
+,.
+APPENDIX A I 
+ANIMALS
+/
+~----:::,,,
+-=-----~z,.....~-r-
+~--------
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 361 ---]
+r
+i
+GIANT SHARK
+Huge Beast, Unaligned
+AC 13 Initiative +3 (13)
+HP 92 (8dl2+40)
+GIANT SCORPION
+Speed 5 ft., Swim 60 ft.
+MO D SAVE MOD SAVE
+MOD SAVE
+Large Beast, Unaligned
+DEX 11 +0 +0 CON 21 +5 +5
+STR 23 +6 +6 
+AC 15Initiative +l (ll)
+Wis 10 +0 +0 CHA 5 -3 -3
+I NT l -5 -5 
+HP 52 (7dl0 + 14)
+Speed 40 ft.
+Skills Perception +3
+MOD SAVEMOD SAVE MOD SAVE
+Senses Blindsight 60 ft.; Passive Perception 13
+DEX 13 +l +l CON 15 +2 +2
+STR 16 +3 +3 
+Languages None
+Wis 9 - 7 - l CHA 3 - 4 - 4
+INT l -5 - 5 
+CR 5 (XP 1,800; PB +3)
+Senses Blindsight 60 ft.; Passive Perception 9
+T RAITS
+Languages None
+Water Breathing. The shark can breathe only
+CR 3 (XP 700; PB +2)
+underwater.
+A CTIO NS
+A CT I O N S
+Multiattack. The scorpion makes two Claw attacks and
+Multiattack. The shark makes two Bite attacks.
+one Sting attack.
+Bite. Melee Attack Roll: +9 (with Advantage if the target
+Claw. Melee Attack Roll: +S, reach 5 ft. Hit: 6 (ld6 + 3)
+doesn't have all its Hit Points), reach 5 ft. Hit: 22 (3dl0
+Bludgeoning damage. If the target is a Large or smaller
++ 6) Piercing damage.
+creature, it has the Grappled condition (escape DC 13)
+from one of two claws.
+Sting. Melee Attack Roll: +S, reach 5 ft. Hit: 7 (l d8 + 3)
+GIANT SPIDER
+Piercing damage plus 11 (2dl0) Poison damage.
+Large Beast, Unaligned
+AC 14 Initiative +3 (13)
+HP 26 (4d l 0 + 4)
+GIANT SEAHORSE
+Speed 30 ft., Climb 30 ft.
+Large Beast, Unaligned
+MO D SAVE MOD SAVEMOD SAVE
+AC 14 In itiative +l (11)
+STR 14 +2 +2DEX 76 +3 +3CON 12 +l +7
+HP 16 (3d l 0)
+CHA 4 -3 -3
+INT 2 -4 -4Wis 11 +0 +0
+Speed 5 ft., Swim 40 ft.
+Ski lls Perception +4, Stea lth +7
+MOD SAVE MOD SAVE MOD SAVE
+Senses Da rkvision 60 ft.; Passive Percept ion 14
+STR 15 +2 +2 DEX 12 +l +l CON 11 +0 +0
+Languages None
+INT 2 -4 - 4 Wis 12 +l +l CHA 5 -3 -3
+CR l (XP 200; PB +2)
+Senses Pass ive Perception l l
+TR A ITS
+Languages None
+CR l /2 (XP l 00; PB +2)
+Spider Climb. The spider can climb difficult surfaces,
+including along ceilings, without needing to make an
+T RA ITS
+ability check.
+Water Breathing. The seahorse can breathe only
+Web Walker. The spider ignores movement restrictions
+underwater.
+caused by webs, and it knows the location of any other
+creature in contact with the same web.
+A CTI O NS
+Ram. Melee Attack Roll: +4, reach 5 ft. Hit: 9 (2d6 + 2)
+A CT I O N S
+Bludgeoning damage, or 11 (2d8 + 2) Bludgeoning
+Bite. Melee Attack Roll: +5, reach 5 ft. Hit: 7 (ld8 + 3)
+damage if the seahorse moved 20+ feet straight toward
+.\
+Piercing damage plus 7 (2d6) Poison damage.
+the target immediately before the hit. r
+Web (Recharge 5-6). Dexterity Saving Throw: DC 13,
+B O N US A CTIONS
+one creature the spider can see within 60 feet. Failure:
+Bubble Dash. While underwater, the seahorse movesThe target has the Restrained condition until the web is
+destroyed (AC 10; HP 5; Vulnerability to Fire damage;
+up to half its Swim Speed without provoking Opportu-
+Immunity to Poison and Psychic damage).
+nity Attacks.
+I.
+APPENDIX A I ANIMALS 6_ 359
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 362 ---]
+7
+GIANTSQUID
+GIANT
+WEASEL
+I I /
+I
+BEWARET H EFURRED G IAN
+TSNAKESO FTHEYATIL
+MOUNTAINS .THEIRP E L T S M I G
+HTB EWAR M ,BUTTHEIR
+B I T E SAREDEAD
+LY .
+-BANNI KVOR
+L , AGENTOFT H E
+MARGRAV
+E O FTHEMARCHOFB I SS E L
+GIANT
+SQUI D
+GIANT TOAD
+Huge
+Beast, Unaligned
+LargeBeast,
+Unaligned
+AC 12 
+Initiative +2 (12)
+HP 120AC11
+(l6dl2+ 16)Initiative + 1(11)
+Speed 5 ft., Swim 80 ft.
+HP39(6d l 0 +6)
+Speed
+MODSAVE 30 f t., Swi m 30ft.
+MODSAVEMODSAVE
+MOD
+STR 23 + 6 +9DEX14 +2SAVEMODSAVE
+ +5CON12+l +lMODSAVE
+ST R15+2
+ +2DEX13+l +lCON
+13 +l+l
+INT5 - 3 - 3
+Wis 11 +0+0CHA4 - 3 - 3
+ 
+INT 2-4 -4
+Wis10CHA3-4
++0+0 - 4
+Skills Percept ion +6 
+Senses
+ Darkvision 120 ft.; Passive PerceptionSenses Darkvisi o n 60 ft.; Passive Percepti o n l 0
+16
+Languag
+esNoneLanguages N o ne
+CR
+ 6 (XP 2,300;PB+3)CR1 (XP 200; PB +2)
+'
+TRAITSTRAITS
+Water Breathing.Amphibious.
+ The squid can breathe only The toad can breathe air and water.
+underwater.
+Standing
+Leap.The toad's Long Jump
+isupto20 feet
+"I 
+and its High Jump is up to10 
+feet with or withouta
+ACTIO N S
+running start.
+Multiattack. The squid makes one Bite attack and one
+Tentacle attack.
+A CTIONS
+Bite. Melee AttackRoll:+9, reach 5 ft.Bite. Melee AttackRoll:+4, reach 5 ft.
+Hit:28 (4d l 0 +6)Hit:5(1d6 +2)
+Piercing damage.
+Piercing damage plus 5 (2d4) Poison damage.
+Ifthe
+targetisa Medium or smaller creature, it has 
+the Grap-
+Tentacle.
+ Melee AttackRoll:+9, reach15
+ft.Hit: 19 (3d8
+pled condition (escape DC 12).
++6)Bludgeoning damage.
+Ifthe target 
+is a Huge or
+smaller creature,
+ithas the Grappled condition Swallow. The toad swallows· a Medium 
+(escapeor smaller target
+DC 16) 
+from oneoftwotentacles, and the squid canitis grappling. While swallowed, the target 
+isn't Grap-
+pull the target up to 10 feet straight toward itself.pled but 
+has the Blinded and Restrained conditions,
+>-
+<(
+3
+0
+and it has Total Cover against attacks and 
+other effects
+.....J
+.....J
+REACTI O NS
+0
+o_utside the toad. 
+In addition, the target takes 10 (3d6)I
+z
+<(
+Ink Cloud (1/Day).Trigger:
+The squid takes damage
+Acid damage at the end
+ofeachofthe toad's turns. The
+3
+0
+c,::
+while underwater. Response:
+ The squid releases ink that
+toad can have only one target swallowed at a time, and
+0
+u
+w
+fills a 15-foot Cube centered on itself, and the squid
+I
+it can't use Bite while it has a swallowed target.
+Ifthe
+u
+<(
+CL
+moves up to its Swim Speed. The Cube 
+is Heavily Ob-
+.toad dies, a swallowed creature 
+is no longer Restrained
+0
+0::
+0
+scured for l minute or until a strong current or similar
+and can escape 
+from the corpse using 5 feetz
+ofmove-
+<(
+::J
+effect disperses the ink.
+ment, exiting with the Prone condition.
+ 
+\
+<(
+~
+.APPENDIX
+ A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 363 ---]
+GIANT VENOMOUS SNAKE
+Medium Beast, Unaligned
+AC 14 Initiative +4 (14)
+HP 11 (2d 8 + 2)
+Speed 40 ft., Swim 40 ft.
+GiANT WASP
+MOD SAVEM OD SAVEM OD SAV E
+Medium Beast, Unaligned
+STR 10 +0 +0DEX 18 +4 +4
+CON 13 +l +l
+AC 13 Initiative +2 (12)
+IN T 2 - 4 - 4 CHA 3 - 4 -4
+Wi s 10 +0 +0 
+HP 22 (5d8)
+Skills Percept ion +2
+Speed l 0 ft., Fly 50 ft.
+Sen ses Blindsight 10 ft.; Passive Perception 12
+MOD SAVE MOD SAVE MOD SAVE
+Languages None
+STR 10 +0 +0 DEX 14 +2 +2 CON 10 +0 +0
+CR 1/4 (XP 50; PB +2)
+INT l -5 - 5 Wis 10 +0 +0 CHA 3 -4 - 4
+A CT IO N S
+Senses Passive Perception l 0
+Bite. Melee Attack Roll: +6, reach 10 ft. Hit: 6 (ld4 + 4)
+Languages None
+r
+CR 1/2 (XP l 00; PB +2)
+Piercing damage plus 4 (ld8) Poison damage.
+TRAIT S
+Flyby. The wasp doesn't provoke an Opportunity Attack
+GIANT VULTURE
+when it flies out of an enemy's reach.
+Large Monstrosity, Neutral E1Ji!
+ACT I ONS
+AC l 0 Initiative +0 (l 0)
+HP 25 (3dl0 + 9)
+Sting. Melee Attack Roll: +4, reach 5 ft. Hit: 5 (l d6 + 2)
+Speed l 0 ft., Fly 60 ft.
+Piercing damage plus 5 (2d4) Poison damage.
+MOD SAVE M OD SAVE 
+MOD SAVE
+STR 15 +2 +2 DEX 10 +0 +0 CON 16 +3 +3
+IN T 6 -2 - 2 Wis 12 +l +l CHA 7 -2 -2
+GIANT WEASEL
+Medium Beast, Unaligned
+Skills Perception +3
+Resistances Necrotic
+AC 13 Initiative +3 (13)
+Senses Darkvision 60 ft.; Passive Perception 13
+HP 9 (2d8)
+Languages Un derstan ds Common but can't speak
+Speed 40 ft. , Climb 30 ft.
+CR l (XP 200 ; PB +2)
+MOD SAVE MOD SAVE MOD SAVE
+STR 11 +0 +0 DEX 17 +3 +3 CON 10 +0 +0
+TRAITS
+INT 4 -3 -3 Wis 12 +l +l CHA 5 -3 -3
+Pack Tactics. The vulture has Advantage on an attack
+roll against a creature if at least one of the vulture's
+Skills Acro batics +5, Percepti on +3 , Stealth +S
+allies is within 5 feet of the creature and the ally doesn't
+Senses Darkvis ion 60 ft .; Pass ive Pe rception 13
+have the Incapacitated condition.Languages None
+. CR 1/8 (XP 25 ; PB +2)
+A CT IO N S
+u
+A CTI O N S
+Vl
+Gouge. Melee Attack Roll: +4, reach 5 ft. Hit: 9 (2d6 + 2)
+:::i
+_J
+w
+Piercing damage, and the target has the Poisoned con-
+Bite. Melee Attack Roll: +5, reach 5 ft. Hit: 5 (l d4 + 3) .
+0
+Cl'.'.
+<(
+dition until the end of its next turn.
+0Piercing damage.
+APPENDIX A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 364 ---]
+GIANTWOLF
+S P IDER
+l7AWK
+WOLFSPIDER
+GIANT
+Unaligned
+MediumBeast,
+HAWK
+Initiative +3(13)
+AC13
+HPll(2d8+2)
+Tiny Beast) Unaligned
+Speed 40 ft., Climb 40 ft .
+Initiative+3 (13)
+AC13
+MODSAVE
+MO DSAVEMODSAVE
+HPl(ld4 - l)
++3 +3CON13 +l+l
+STR12+l +lDEX16
+Speedl Oft., Fly60 ft.
+CHA4-3- 3
+3 - 4 - 4 Wis12+l+l
+INT
+MODSAVEMODSAVE
+MODSAVE
++3CON8 - l - l
+STR5 - 3 - 3DEX16+3
++3,Stealt h +7
+SkillsPerception
+6-2 -2
+- 4-4Wis 14+2 +2CHA
+INT2 
+ft.;
+Blindsight l Oft., Darkvision 60 
+Senses
+13
+Passive Perception
+Skills Perce ption +6
+s None
+Language
+SensesPassivePerception16
++2)
+CRl/4(XP50;PB
+ None
+Languages
++2)
+CRO(XP10;PB
+ITS
+TR A
+~
+ The spider can climb difficult surfaces,
+Spider Climb.
+A CTI O NS
+..
+an
+including along ceilings, without needing to make 
+Hit:l Slash-
+AttackRoll:+5,reach 5 ft.
+Talons.Melee
+ability check.
+ing damage.
+ACTIO N S
+5(ld4 +3)
+AttackRoll:+5,reach 5 ft.Hit:
+Bite.Me lee
+HIPPOPOTAMUS
+Piercing damage plus 5 (2d4) Poison damage.
+LargeBeast, Unaligned
+Initiative-2(8)
+AC14 
+GOAT
+22)
+HP82 (lldlO +
+ft.
+Speed 30 ft., Swim 30 
+Medi um Beast, Unaligned
+MODSAVE
+MODSAVEMODSAVE
+Initiative+O(l 0)
+ACl 0 
+ +2
+DEX 7-2 -2CON15+2
+STR21+S+7
+ (ld8)
+HP4
+-3
+12+l +lCHA4 - 3 
+INT2-4- 4 Wis
+Speed 40 ft., Climb 30 ft.
+SAVEMODSAVE
+MO DSAVEMOD
+SkillsPerception +3
++O +O
++O+2DEX 10+O+0CONll
+STRll
+sesPassive Perceptio n13
+Sen
+2 - 4 - 4+O +OCHA5 -3 - 3
+INTWis10
+None
+Languages 
+2)
+CR4(XPl ,l 00; PB +
+Skills Perception+2
+12
+Senses Darkvision 60 ft.; Passive Perception
+TR AITS
+I
+Languages None
+\.J
+2
+ am us can hoIdits breath for
+f-:ioldBreath. The hip po pot
+_J
+O(XP 10;PB+2)
+CRw
+I
+10 minutes.
+w
+z
+z
+<(
+A CTIO N S
+N
+::i
+A CTI O NS
+V1
+ Hit: l Bludgeon-
+ Melee AttackRoll:+2, reach 5 ft.\.]
+Ram.
+a:
+Multiattack. The hippopotamus makes two Bite attacks.
+0
+ing damage, or 2 (ld4) Bludgeoning damage if the goat\.]
+w
+_J
+w
+ Hit: 16 (2dl O + 5)
+ Melee Attack Roll: +7, reach 5 ft.
+Bite.
+moved 20+ feet straight toward the target immediately
+I
+u
+ 2
+Piercing damage.
+before the hit.
+\..
+APPENDIX A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 365 ---]
+HYENA
+HUNTER SHARK
+Me dium Beast, Un aligned
+Large Beast, Unaligned
+AC 11Initiative +l (11)
+HP S(ld8+1)
+AC 12 Initiative +2 (12)
+Speed 50 ft.
+, HP 45 (6dl O + 12)
+Speed 5 ft., Swim 40 ft.MOO SAVEM OD SAV E MOO SAVE
+STR 11 +O +O DEX 13 +l +l CON 12 +l +l
+M OD SAVEMOD SAVEMOO SAVE
+STR 18 +4 +4DEX 14 +2 +2CoN 15 +2 +2
+IN T 2 -4 - 4 w,s 12 +l +l CHA 5 -3 -3
+INT l - 5 - 5Wis 10 +O ,+OCHA 4 -3 -3
+" '
+Skills Perception +3
+Skills Perception +2Senses Darkv ision 60 ft. ; Passive Perception 13
+Senses Blindsight 60 ft.; Passive Perception 12Languages None
+Langu ages NoneCR O (XP 10; PB +2)
+CR 2 (XP 450; PB +2)
+T RAIT S
+T RA ITS
+Pack Tactics. The hyena has Advantage on an attack roll
+Water Breathing. The shark can breathe onlyagainst a creature if at least one of the hyena's allies is
+underwater.
+within 5 feet of the creature and the ally doesn't have
+the Incapacitated condition.
+A CTIONS
+z
+0
+0
+A CT IO NS
+<(
+__J
+Bite. Melee Attack Roll: +6 (with Advantage if the target
+<(
+z
+doesn't have all its Hit Points), reach 5 ft. Hit: 14 (3d6
+Bite. Melee Attack Roll: +2, reach 5 ft. Hit: 3 (ld6) Pierc-
+CY
+w
+~
+:,,:+ 4) Piercing damage.
+ing damage.
+,____
+APPENDIX A I ANIMALS A 363
+~~-,--------
+~ ------------..-/--=--1/
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 366 ---]
+LION
+Large Beast, Unaligned
+AC 12Initiative +2 (12)
+HP 22 (4dl0)
+Speed 50 ft.
+MOD SAVE MOD SAVE MOD SAVE
+STR 17 +3 +3 DEX 15 +2 +2 CON 11 +0 +0
+INT 3 -4 - 4 Wis 12 +7 +7 ,CHA 8 -7 - 7
+Skills Perception +3, Stealth +4
+LION
+Senses Darkvision 60 ft.; Passive Perception 13
+Languages None
+CR 7 (XP 200; PB +2)
+TR AITS
+JACKAL
+Pack Tactics. The lion has Advantage on an attack roll
+Small Beast, Unaligned
+against a creature if at least one of the lion's allies is
+AC 12 Initiative +2 (12)
+within 5 feet of the creature and the ally doesn't have
+HP 3 (l d 6) _
+the Incapacitated condition.
+Speed 40 ft.
+Running Leap. With a 10-foot running start, the lion
+MOD SAVE MOD SAVEMOD SAVE
+STR 8 -1 - l DEX 15 +2 +2CON 11 +0 +0can Long Jump up to 25 feet.
+INT 3 - 4 - 4 Wis 12 +l +lCHA 6 -2 - 2
+A CT I ONS
+Skills Perception +5, Stealth +4
+Multiattack. The lion makes two Rend attacks. It can
+Senses Darkvision 90 ft.; Passive Perception 15
+replace one attack with a use of Roar.
+Languages None
+Rend. Melee Attack Roll: +5, reach 5 ft. Hit: 7 (l d8 + 3)
+CR O (XP 10; PB +2)
+Slashing damage .
+A CT IO NS
+Roar. Wisdom Saving Throw: DC 11 , one creature within
+Bite. Melee Attack Roll: +l, reach 5 ft. Hit: l (ld4- l)
+15 feet. Failure: The target has the Frightened condition
+Piercing damage.
+until the start of the lion's next turn.
+LIZARD
+KILLER WHALE
+Tiny Beast, Unaligned
+Huge Beast, Unaligned
+AC 70 Initiative +0 (7 0)
+AC 12 Initiative +2 (12)
+HP 2(7d 4)
+HP 90 (12dl2 + 72)
+Speed 20 ft., Climb 20 ft.
+Speed 5 ft., Swim 60 ft.
+MOD SAVE MOD SAVE MOD SAVE
+MOD SAVE MOD SAVE . MOD SAV E
+STR 2 -4 - 4 DEX 11 +0 +0 CON 10 +0 +0
+STR 19 +4 +4 DEX 14 +2 +2 ~ CON 73 +l +l
+I NT l -5 - 5 Wis 8 - 1 - 7 CHA 3 - 4 - 4
+I NT 3 -4 - 4 Wis 12 +l +7 CH A 7 -2 -2
+Skills Percept ion +3 , Stea lt h +4Senses Da rkvision 30 ft.; Passive Perception 9
+Languages None •
+Senses Blindsight 720 ft .; Passive Perception 13
+CR O (XP 10; PB +2)
+Languages No ne
+CR 3 (XP 700 ; PB +2)
+TRAI TS
+TRAIT S
+Spider Climb. The lizard can climb difficult surfaces,
+Hold Breath. The whale can hold its breath for
+including along ceilings, without needing to make an
+30 minutes.
+ability check.
+A CT I O NSA CTI O NS
+z
+<(
+I
+Bite. Melee Attack Roll: +6, reach 5 ft. Hit: 27 (5d6 + 4)
+Bite. Melee Attack Roll: +2, reach 5 ft. Hit: 7 Piercing
+~
+z
+0
+Piercing damage.damage .
+364 /2 APPENDIX A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 367 ---]
+OCTOPUS
+MULE
+Medium Beast, Unaligned
+AC 10 Initiative +0 (10)
+HP 11 (2d8 + 2)
+Speed 40 ft.
+MOD SAVE M OD SAV E M OD SAVE
+STR 14 +2 +4 DEX 10 +0 +0 CON 13 +1 +1
+INT 2 -4 -4 Wis 10 +0 +0 CHA 5 -3 -3
+MAMMOTH
+Senses Passive Perception 10
+Huge Beast, Unaligned
+Languages N one
+CR 1/8 (XP 25; PB +2)
+AC 13lnitiative+2 (12)
+HP 126 (lld12 + 55)
+TRAI TS
+Speed 50 ft.
+Beast of Burden. The mule counts as one size larger for
+MOD SAVE MOD SAVE
+MOD SAVE
+the purpose of determining its carrying capacity.
+STR 24 +7 +1 0 DEX 9 - 1 -1 CoN 21 +5 +8
+INT 3 -4 - 4 Wis 11 +0 +0 CHA 6 - 2 -2
+A CTIO N S
+Hooves. Melee Attack Roll: +4, reach 5 ft. Hit: 4 (1 d4
+Senses Passive Perception 10
+Languages None
++ 2) Bludgeoning damage.
+CR 6 (XP 2,300; PB +3)
+A CTIO NS
+.OCTOPUS
+Multiattack. The mammoth makes two Gore attacks.
+Small Beast, Unaligned
+Gore. MeleeAttack Roll:+10, reach 10ft. Hit: 18 (2d10
+AC 12 Initiative +2 (12)
++ 7) Piercing damage. If the target is a Huge or smaller
+HP 3 (ld6)
+creature and the mammoth moved 2_0+ feet straight
+Speed 5 ft., Sw im 30 ft.
+toward it immediately before the hit, the target has the
+MO D SAVEMOD SAVEMO D SAVE
+Prone condition.
+STR 4 -3 -3DEX 15 +2 +2CON 11 +0 +0
+INT 3 -4 -4Wis 10 +0 +0CH A 4 - 3 -3
+B O N us A CTIO NS
+Trample. Dexterity Saving Throw: DC 18, one creature
+Skills Percept ion +2, Stealth +6
+within 5 feet that has the Prone condition. Failure: 29
+Senses Darkvision 30 ft.; Passive Perception 12
+(4d10 + 7) Bludgeoning damage. Success: Half damage.
+Languages N on e
+CR O (XP 10; PB +2)
+1
+TRAI TS
+MASTIFF
+Compression. The octopus can move through a space
+Medium Beast, Unaligned
+as narrow as 1 inch without expending extra move-
+AC 12 Initiative +2 (12) .
+ment to do so.
+HP 5(1d8+1)
+Water Breathing. The octopus can breathe only
+Speed 40 ft.
+underwater.
+M O D SAVE MOD SAVE MOD SAVE
+STR 13 +1 +1 DEX 14 +2 +2 CON 12 +1 +1
+A CTIO N S
+IN T 3 - 4 -4 W is 12 +1 +3 CHA 7 - 2 -2
+Tentacles. Melee Attack Roll: +4, reach 5 ft. Hit: 1 Blud-
+geoning damage.
+Skills Perception +5 ,
+Senses Darkvision 60 ft.; Passive Perception 15
+RE ACTIO N S
+Languages N one
+CR 1/8 (XP 25; PB +2)Ink Cloud (1/Day). Trigger: A creature ends its turn
+within 5 feet of the octopus while underwater. Response:
+0
+u
+w
+A CT I O N S
+I
+The octopus releases ink that fills a 5-foot Cube cen-
+u
+<t
+(l._
+Bite. Melee Attack Roll: +3, reach 5 ft. Hit: 4 (1 d6 + 1)tered on itself, and the octopus moves up to its Swim
+0
+a:
+0
+z
+Piercing damage. If the target is a Medium or smallerSpeed. The Cube is Heavily Obscured for 1 minute o r.
+<{
+w
+_J
+creature, it has the Prone condition.until a strong current or similar effect disperses the ink.
+<{
+'-
+APPENDIX A I AN IM ALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 368 ---]
+1 U S E D T O .JUS TSWIMAROUN DTHELAKEA N DEATFISH,
+GIF TSAID1 MUSTDO
+BUTTHE H UMANWHOGAVEMET H IS
+IGHTEN
+MYP ARTT OHEL P T H E F R OSTMAIDEN. No w 1FR
+1
+N THAVET OBEA
+OFFF I SHERFOLKANDW HATNOTSO1DO
+STUPIDBEASTAGAI N .
+STE ROFMAEROUALDON ,
+-THEM O N
+A WAKEN EDPLESIOSAURUS
+OwL
+PIRANHA
+OWL
+TinyBeast, Unaligned
+Beast, Unaligned
+Tiny
+Init iative+3 (13)
+AC13
+Initiative + l(11)
+AC11
+HP l (l d4 - l)
+HP 1 (ld4 - l)
+Speed 5 ft. , Swim 40 ft.
+ 
+Speed 5 ft. ,Fly60 ft.
+\.
+MODSAVE
+MODSAVE 
+M ODSAVEMODSAVE
+MODSAVEM ODSAVE
+STR 2-4- 4DEX16+3+3CON9 - 1 -1
+13+l+lCON8-1-1
+STR 3-4- 4DEX
+INTl - 5 - 5 Wis 7-2 -2 CHA2 - 4 - 4
+CHA7-2- 2
+INT2-4- 4 Wis 12 +l +l
+Senses Darkvision 60 ft.;Pas sive Perception 8
+SkillsPerceptio·n +5,Stealth+5
+Languages None
+Senses Darkvision 120 ft .; Passive Perception15
+CR0(XP10;PB+2)
+Languages None
+CR 0(XP 10;PB+2)
+TRAITS
+T RAITS
+Water Breathing. The piranha can breathe only
+Flyby.Theowldoesn't provoke an Opportunity Attackunderwater.
+whenitflies outofan enemy's reach.
+A CTI O N S
+A CTI O NS
+Bite.MeleeAttackRoll:+5(with Advantage if the target
+Roll:+3, reach 5 ft.Hit: l Slash-ft.Hit:l Piere-
+Talons.MeleeAttackdoesn't haveallits HitPoints), reach 5 
+• ing damage.
+ing damage.
+PLESIOSAURUS
+PANTHER
+LargeBeast (Dinosaur), Unaligned
+Medium Beast, Unaligned
+AC13Initiative +2(12)
+Initiative +3(13)
+AC13
+(8dl 0 + 24)
+HP68
+HP13(3d8)
+Speed 20 ft., Swim 40 ft.
+Speed 50 ft.,Climb 40 ft.
+MODSAVEMODSAVEMODSAVE
+MODSAVE
+MODSAVEMODSAVE 
+STR18+4 +4DEX15+2+2CON16 +3 +3
++2 +2DEX16 +3 +3CON10+0 +0
+STR14 
+INT2-4 -4Wis12+l +lCHA5 - 3 - 3
++2 +2CHA 7-2- 2
+INT3-4 -4Wis 14
+Skills Pe rce ption +3, Ste alth +4
+Skills Perception +4, Stea lt h +7
+Senses Passive Perception13
+Senses Darkvision 60 ft.; Passive Perception 14
+Languages Non e
+Langu ages None
+CR 2(XP 450;PB+2)
+CR 1/4(XP 50;PB+2)
+TRAITS
+ACTIO NS
+3)Hold Breath. The plesiosaurus can hold its breath
+Rend. Melee AttackRoll:+5, reach 5 ft. Hit: 6 (l d6 +
+for 1 hour.
+Slashing damage .
+ACTI O NS
+T IO NS
+BONUS AC 
+z
+<(
+I
+ MeleeAttack Ro/1:+6, reach 10ft. Hit:11(2d6+4) .f-
+Bite.
+Nimble Escape. The panther takes the Disengage or
+<(
+z
+0
+Piercing damage.
+Hide action.
+366 /2 APPENDIX A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 369 ---]
+PTERANODON
+Medium Beast (Dinosaur) 1 Unaligned
+AC 13 Initiative +2 (12)
+H P 13 (3d8)
+Speed l 0 ft ., Fly 60 ft .
+MOO SAVE MOO SAVE
+MOD SAVE 
+STR 12 +l +l DEX 75 +2 +2 CON 70 +0 +0
+POLAR BEAR
+INT 2 -4 - 4 Wis 9 - l -1 CHA 5 -3 - 3
+Large Beast, Unaligned
+AC 12 In itiative +2 (12)
+Skills Pe rception +l
+HP 42 (5dl0+ 15)
+Senses Passive Perception 11
+Speed 40 ft ., Swim 40 ft.
+Languages None
+MOO SAVE MOO SAVE MOO SAVE
+·cR 1/4 (X P 50; PB +2)
+STR 20 +5 +5 D EX 14 +2 +2 CON 16 +3 +3
+TR A ITS
+INT 2 - 4 - 4 Wis 13 +l +l CHA 7 -2 -2
+Flyby. The pteranodon doesn't provoke an Opportunity
+Skills Perception +5, Stealth +4
+Attack when it flies out of an enemy's reach .
+Resistances Cold
+Senses Darkvision 60 ft.; Passive Perception 15
+A CTI O N S
+Languages None
+Bite. Melee Attack Roll: +4, reach 5 ft. Hit: 6 (l d8 + 2)
+CR 2 (XP 450; PB +2)
+Piercing damage.
+ACTIONS
+Multiattack. The bear makes two Rend attacks.
+RAT
+Rend. Melee Attack Roll: +7, reach 5 ft. Hit: 9 (l d8 + 5)
+Tiny Beast, Unalign ed
+Slashing damage .
+AC 10 Initiative +0 (10)
+HP l (ld4 - l)
+Speed 20 ft. , Climb 20 ft.
+PONY .
+MOD SAVE MOD SAYE MOD SAYE
+Medium Beast, Unaligned
+STR 2 -4 -4 DEX 11 +0 +0 CON 9 - 1 -1
+AC 10 Initiative +0 (10)
+INT 2 -4 -4 Wis 70 +0 +0 CHA 4 - 3 - 3
+HP 11 (2d 8 + 2)
+Ski lls Perception +2
+Speed 40 ft.
+Senses Darkvision 30 ft.·; Passive Perception 12
+MOD SAVEMOO SAVEMOO SAVE
+Lang·uages None
+STR 15 +2 +4DEX 10 +0 +0CON 13 +l +l
+CR O (XP 10; PB +2) -
+INT 2 - 4 - 4CHA 7 - 2 -2
+Wis 11 +0 +0
+TR A ITS
+Senses Passive Perception l 0
+Languages NoneAgile. The rat doesn't provoke an Opportunity Attack
+CR l /8 (XP 25; PB +2)
+when it moves out of an enemy's reach.
+z
+0
+0
+A CTIO N SAC TIO NS
+<(
+_,
+<(
+z
+Bite. Melee Attack Roll: +2, reach 5 ft. Hit: l Piercing .
+Hooves. Melee Attack Roll: +4, reach 5 ft. Hit: 4 (l d4
+Q:'.
+w
+~
++ 2) Bludgeoning damage.damage.
+~
+APPENDIX A I ANIMALS 6 ,367
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 370 ---]
+OH , I G OT R I D O F THAT WA N D OF W O N DER YE A RS A GO.
+1
+THE LAST TH I N G THE Ivv MANSION S HERB GAR D ENS NEED
+15 A N OTHER RHIN OC EROS .
+-PENELOPE l7 ARPELL
+RH I N OCEROS
+RAVEN
+Tiny Beast, Unaligned
+AC 12 In it iative +2 (12)
+HP 2 (ld4)
+Speed l Oft., Fly 50 ft .
+MOD SAVEMOD SAVEMOD SAVE
+CON 10 +O +O
+STR 2 -4 - 4DEX 14 +2 +2
+INT 5 -3 -3Wis 13 +l +lCHA 6 -2 - 2
+..
+Ski lls Perception +3
+Sen ses Passive Perception 13
+Languages None
+RHINOCEROS
+CR O (XP l O; PB +2)
+Large Beast, Unaligned -
+TRA IT S
+AC 13 Initiative -1 (9)
+Mimicry. The raven can mimic simple sounds it has
+HP 45 (6dl0 + 12)
+heard, such as a whisper or chitter. A hearer can dis-
+Speed 40 ft.
+cern the sounds are imitations with a successful DC l 0
+MOD SAVEMOD SAVE MOD SAVE
+Wisdom (Insight) check.
+STR 21 +5 +5 DEX 8 -1 - 1 CON 15 +2 +2
+A CTIO NSINT 2 -4 - 4 
+Wis 12 +l +l CHA 6 -2 -2
+Beak. Melee Attack Roll: +4, reach 5 ft. Hit: 1 Piercing
+Senses Pa ssive Perception 11
+damage.
+Languages None
+CR 2 (XP 450; PB +2)
+1
+A CTI O NS
+REEF SHARK
+Gore. Melee Attack Roll: +7, reach 5 ft. Hit: 14 (2d8 + 5)
+Medium Beast, Unaligned
+Piercing damage. If target is a Large or smaller creature
+AC 12 Initiative +2 (12)
+and the rhinoceros moved 20+ feet straight toward it
+HP 22 (4d8 + 4)
+immediately before the hit, the target takes an extra 9
+Speed 5 ft., Swim 30 ft.
+(2d8) Piercing damage and has the Prone condition.
+MOD SAVEMOD SAVEMOD SAVE
+STR 14 +2 +2DEX 15 +2 +2CON 13 +l +l
+INT l -5 -5Wis 10 +O +0CHA 4 -3 -3
+RIDING HORSE
+Skills Perception +2
+Large Beast, Una ligned
+Senses Blindsight 30 ft.; Passive Perception 12
+AC 11 . Initiative + 1 (11)
+Languages None
+HP 13 (2d l 0+2)
+CR l /2 (XP l 00; PB +2)
+Speed 60 ft.
+MOD SAVE MOD SAVEMOD SAVE
+TR A IT S
+STR 16 +3 +3 DEX 13 +l +1CON 12 +l +l
+Pack Tactics. The shark has Advantage on an attack roll
+IN T 2 - 4 - 4 Wis 11 +O +0CHA 7 -2 - 2
+against a creature if at least one of the shark's allies is
+within 5 feet of the creature and the ally doesn't have
+Senses Passive Perception 10
+the Incapacitated condition.
+Languages None
+CR l /4 (XP 50; PB +2)
+Water Breathing. The shark can breathe only underwater.
+LU
+z
+A CTIONS
+A CTI O NS
+lJ
+z
+LU
+Bite. Melee Attack Roll: +4, reach 5 ft. Hit: 7 (2d4 + 2)Hooves. Melee Attack Roll: +5, reach 5 ft. Hit: 7 (ld8D:'.
+<(
+_J
+0
+Piercing damage.+ 3) Bludgeoning damage.
+CL
+APPENDIX A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 371 ---]
+SCORPIO N
+SEAHORSE
+Tiny Beast, Unaligned
+AC 12 Initiative +l (l l)
+HP l (l d4 - l )
+Speed 5 ft. , Swim 20 ft.
+SABER-TOOTHED TIGER
+MOD SAVE MOD SAVE MOD SAVE
+Large Beast, Unaligned
+STR l -5 -5 DEX 12 +l +l CON 8 --1 - l
+AC 73 Initiative +3 (73)
+INT l -5 -5 Wis 70 +0 +0 CHA 2 -4 -4
+HP 52 (7dl0 + 74)
+Skills Perception +2, Stealth +5
+Speed 40 ft.
+Senses Passive Perception 12
+MOD SAVE MOD SAVE MOD SAVE
+Languages None
+STR 78 +4 +6 DEX 77 +3 +5 CON 75 +2 +2
+CR 0 (XP 0; PB +2)
+INT 3 -4 - 4 Wis 72 +l +l CHA 8 -7 - 7
+TR A ITS
+Skills Perception +5 ; Stealth +7
+Water Breathing. The seahorse can breathe only
+Senses Darkvision 60 ft.; Passive Perception 15
+underwater.
+Languages None
+CR 2 (XP 450; PB +2)
+• A CTIONS
+TRAITS
+Bubble Dash. While underwater, the seahorse moves
+up to its Swim Speed without provoking Opportu-
+Running Leap. With a 70-foot running start, the tiger
+can Long Jump up to 25 feet.nity Attacks.
+A CT IONS
+Multiattack. The tiger makes two Rend attacks.
+SPIDER
+Rend. Melee Attack Roll: +6 reach 5 ft. Hit: l l (2d6 + 4)Tiny Beast, Unaligned
+1 
+Slashing damage .
+AC 12 Initiative +2 (12)
+HP l (ld 4 - l)
+BO N U S A CTIO NS
+Speed 20 ft., Climb 20 ft.
+Nimble Escape. The tiger takes the Disengage or
+MOD SAVEMOD SAVEMOD SAVE
+Hide action.
+STR 2 -4 -4DEX 74 +2 +2CON 8 -1 -7
+I NT l -5 -5Wis 70 +0 +0CHA 2 - 4 - 4
+Skills Steal th +4
+SCORPION
+Senses Darkvision 30 ft .; Passive Perception l 0
+Tiny Beast, Unaligned
+Languages None
+AC ll Initiative +0 (l 0)
+CR O (XP 70 ; PB +2)
+HP l (ld4 - l)
+Speed 70 ft.
+TR A ITS
+MOD SAVE MOD SAVEMOD SAVE
+Spider Climb. The spider can climb difficult surfaces,
+STR 2 -4 - 4 DEX l l +0 +0CON 8 -7 - l
+including along ceili~gs, without needing to make an
+I NT l -5 -5 Wis 8 - l - lCHA 2 -4 -4
+ability check.
+. Web Walker. The spider ignores movement restrictions
+Senses Blindsight 70 ft.; Passive Perception 9
+Languages Nonecaused by webs, and the spider knows the location of
+CR O (XP 70 ; PB +2)
+any other creature in contact with the same web.
+-
+\.J
+er:
+A CTIONSA CT I O N S
+0
+\.J
+LLJ
+__J
+LLJ
+Sting. Melee Attack Roll: +2., reach 5 ft. Hit: l PiercingBite. Melee Attack Roll: +4, reach 5 ft. Hit: l Piercing .
+I
+u
+damage plus 3 (l d6) Poison damage.damage plus 2 (ld4) Poison damage.
+2
+AJ>PENDIX A / ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 372 ---]
+SWARMOFBATS
+SWARMOF PIRANHAS
+Large
+Swarm ofTin yBeasts,Unaligned
+Medium Swarm 
+ofTiny Beasts, Unaligned
+AC 12
+Initiative +2 (12)
+AC13
+Init iative+3(13)
+HP11(2d10)
+HP28(8d8 ·_8)
+Speed 5 ft.,Fly30ft.
+Speed 5 ft., Swim 40
+ft.
+MOD SAVEMODSAVEMOD
+SAVE
+MODSAVEMODSAVE 
+MODSAVE
+STR 5-3 -3 
+DEX15+2 +2C O N10+0
+ +0
+STR
+13+ 1 + 1DEX16 +3+3 C O N 9 - 1 - 1
+INT2
+-4 -4Wis12+1C H A 4
++1-3 -3
+INT 1-5
+- 5 Wis 7-2 -2C H A 2 - 4
+-4
+Resistances Bludgeoning, Piercing, Slashing
+Resistances Bludgeoning, Piercing, Slashing
+Immunities Charmed, Frightened, Grappled , Paralyzed,
+Immunities Charmed, Frightened, Grappled, Paralyzed,
+Petrified, Prone, Restrained, Stunned
+Petrified, Prone, Restrained, Stunned
+Senses Blindsight 60 ft.; Passive Perception
+11
+Senses Darkvision 60 ft.; Passive Perception 8
+LanguagesNone
+LanguagesNone
+CR 1/4(XP 50;
+PB+2)
+CR 1 (XP 200;PB
++2)
+TRAITS
+TRAITS
+Swarm. The swarm can occupy 
+another creature's
+Swarm. The swarm can occupy 
+another creature's space
+space and vice versa, and the swarm can move
+through
+and vice versa, and the swarm can 
+move 
+throughany
+any
+openinglarge enoughfora Tiny bat. The swarm
+opening large enoughfor
+a Tiny piranha. The swarm
+can't
+regainHitPointsorgain Temporary
+HitPoints.
+can't regainHitPointsor
+gain TemporaryHitPoints.
+Water Breathing.
+ The swarm can breathe only
+ACTIONS
+underwater.
+Bites.Melee
+AttackRoll:+4, reach 5 ft.Hit:
+5 (2d4)
+Piercing damage, or 2
+(ld4)Piercing damage
+ifthe
+ACTIONS
+swarmis
+Bloodied.
+Bites. MeleeAttack
+Roll:+5 (with Advantageifthe 
+target
+doesn'thave all its
+HitPoints), reach 5 ft.Hit:8 (2d4
++
+3)Piercing damage,or5(ld4+
+3)Piercing damageif
+SWARM 
+OF INSECTS
+the swarm
+isBloodied.
+Medium Swarm ofTiny 
+Beasts, Unaligned
+AC11
+In itiative+1(11)
+SWARM 
+OF RATS
+H P19
+(3d8 +6)
+Speed 20 ft., 
+Climb orFly 20 ft.(DM'schoice)
+Medium Swarm
+ofTiny Beasts, Unaligned
+MODSAVE
+MODSAVEMOD
+SAVE
+AC 10 
+Initiative+0(10)
+STR 3-4 -4DEX13
++1 +1C O N14+2 +2
+HP14
+(4d8 -4)
+INT1-5 -5Wis 7
+-2 -2 CHA1-5 -5
+Speed 30 ft., 
+Climb 30 ft.
+MODSAVE
+MODSAVE M O D
+ SAVE
+Resistances Bludgeoning, Piercing, Slashing
+STR
+ 9 -1 -1DEX11 +0 +2
+CON9 - 1 -1
+Immun ities Charmed, Frightened, Grappled, Paralyzed,
+INT2-4- 4
+ Wis 10+0 +0 C H A 3-4
+Petrified, Prone, Restrained, Stunned- 4
+Senses
+ Blindsight 30 ft.; Passive Perception 8
+Resistances
+ Bludgeoning, Piercing, Slashing
+Languages None
+Imm 
+unities Charmed, Frightened, Grappled, Paralyzed,
+CR1/2(XP 100;PB+2)
+Petrified, Prone, Restrained, Stunned
+Senses
+ Darkvision 30 ft.; Passive Perception 10
+TRAITS
+Languages
+ None
+Spider Climb.Ifthe swarm has a 
+Climb Speed, the
+CR 1/4 (XP 50;PB+2)
+swarm can climb difficult 
+surfaces, including along ceil-
+ings,withoutneeding 
+to make an ability check.
+TRAITS
+Swarm. The swarm can occupy another creature's
+Swarm. The swarm can occupy 
+another creature's
+space and vice versa, and the swarm can move 
+through
+space and vice versa, and the swarm can move 
+through
+any opening large enough 
+for a Tiny insect. The swarm
+any opening 
+large enough for a Tiny rat. The swarm
+can't regainHitPoints or 
+gain TemporaryHitPoints.
+can't regainHitPoints 
+or gain TemporaryHitPoints.
+ACTIONS
+ACTIONS
+Bites. Me lee Attack
+Roll:+3, reach 5 ft. Hit: 6 (2d4 + 
+1)Bites. Melee 
+AttackRoll:+2, reach 5 ft. Hit:
+ 5 (2d4)
+Poison damage, or 3 
+(ld4 + 1) Poison damage
+ifthePiercing damage, or 2
+(1d4) Piercing damage
+ifthe
+swarm is Bloodied.
+swarm is Bloodied.
+ 
+l
+370 /\ APPENDIX 
+A I ANIMALS
+/,
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 373 ---]
+l7E R E YES ARE E V ERYW HER E- FL E C K S O F C A R B O NA D O ,
+PO O L S OF MID NI GHT . T H E R AV EN Q U EE N W ATCHES .
+...
+-EvE RN IG HT G RAF FI T I
+SWARM OF VENOMOUS SNAKES
+Medium Swarm ofTiny Beasts, Unaligned
+AC 14 Init iative +4 (14)
+HP 36 (8d8)
+Speed 30 ft., Swim 30 ft.
+MOD SAVEMOD SAVE
+MOD SAVE
+STR 8 - l - lDEX 18 +4 +4CON ll +0 +0
+I NT l -5 -5CHA 3 -4 - 4
+Wis 10 +0 +0
+Resistances Bludgeoning, Piercing, Slashing
+Immunities Charmed, Frightened, Grappled, Paralyzed,
+Petrified, Prone, Restrained, Stunned
+Senses Blindsight 10 ft.; Passive Perception 10
+Languages None
+CR 2 (XP 450; PB +2)
+S W AR M OF R AVENS
+TRAIT S
+Swarm. The swarm can occupy another creature's
+SWARM OF RAVENS
+• space and vice versa, and the swarm can move through
+Medium Swarm of Tiny Beasts, Unalignedany opening large enough for a Tiny snake. The swarm
+can't regain Hit Points or gain Temporary Hit Points.
+AC 12 Initiative +2 (12)
+HP ll (2d8 + 2)
+A CTIONS
+Speed l 0 ft., Fly 50 ft.
+Bites. Melee Attack Roll: +6, reach 5 ft. Hit: 8 (ld8 + 4)
+MOD SAVEMOD SAVEMOD SAVE
+Piercing damage-or 6 (l d4 + 4) Piercing damage if the
+S T R 6 -2 -2
+DEX 14 +2 +2CON 12 +l +l
+swarm is Bloodied-plus 10 (3d6) Poison damage.
+IN T 5 -3 - 3CHA 6 -2 -2
+Wis 12 +l +l
+I
+lSkills Perception +5 ..
+Resistances Bludgeoning, Piercing, Slashing
+TIGER
+Immunities Charmed, Frightened, Grappled, Paralyzed,
+Large Beast, Unaligned
+Petrified, Prone, Restrained, Stunned
+AC 13 Initiat ive +3 (J 3)
+Senses Passive Perception 15
+HP 30 (4dl0 + 8)
+Langu ages None
+Speed 40 ft.
+CR l /4 (XP 50; PB +2)
+MOD SAVEMOD SAVE
+MOD SAVE
+T RA ITS-CON 14 +2 +2
+STR 17 +3 +3DEX 16 +3 +3
+CHA 8 - l - l
+INT 3 - 4 - 4Wis 12 +l +l
+Swarm. The swarm can occupy another creature's
+space and vice versa, and the swarm can move through
+Ski ll s Perception +3, Stealth +7
+any opening large enough for a Tiny raven. The swarm
+Senses Darkvision 60 ft.; Passive Perception 13
+can't regain Hit Points or gain Temporary Hit Points.
+Languages None •
+'-
+CR l (XP 200; PB +2)
+ACTIO N S 
+Beaks. Melee Attack Roll: +4, reach 5 ft. Hit: 5 (l d6 + 2)
+ACTIONS
+Piercing damage, or 2 (ld4) Piercing damage if the
+Rend. Melee Attack Roll: +5, reach 5 ft. Hit: l 0 (2d6
+swarm is Bloodied.
++ 3) Slashing damage. If the target is a Large or smaller
+Cacophony (Recharge 6). Wisdom Saving Throw: DC
+creature, it has the Prone condition.
+>-
+<(
+10, one creature in the swarm's space. Failure: The
+3
+0
+__,
+__,
+B oN us A CTIO N S
+target has the Deafened condition until the start of the
+0
+I
+z
+Nimble Escape. The tiger takes the Disengage or
+swarm's next turn. While Deafened, the target also has
+<(
+3
+0
+Disadvantage on ability checks and attack rolls.Hide action.
+Ct'.
+l
+i'
+APPENDIX A I AN:Il:MA~ 371
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 374 ---]
+-TRICERATOPSVENOMOUSSNAKE
+UnalignedTinyBeast,Una!tgned
+HugeBeast(Dinosaur),
+Initiative+2(12)
+Initiative - 7(9)AC12
+AC74
+HP 5(2d4)
+HP774(72d72 +36)
+Speed 30ft., Swim30ft.
+Speed50ft.
+MODSAVEMODSAVE
+MODSAVE
+SAVEMODSAVEMODSAVE
+MOD
+CON77
+-4-4DEX15+2+O+O
++3+3STR2+2 
+DEX 9-7 -7CON77
+STR22 +6+6 
+-4 -4
+- 5 10CHA3
+INT1 - 5 Wis+O+0 
+Wis77+O+0CHA5-3 -3
+INT2 - 4 - 4 
+SensesBlindsight10ft.; Pas sive Perception10
+SensesPassive Perception 70
+LanguagesNone
+LanguagesNone
+CR1/8(XP25;PB+2)
+PB+3)
+CR5(XP1,800;
+ACTION S
+ACTIONS
+leeAttackRoll:+4, reach 5 ft.Hit:4(1d4 +2)
+Bite.Me 
+Multiattack. The triceratops makes two Gore attacks.
+Piercing damage plus 3 (ld6) Poison damage.
+AttackRoll:+9,reach 5 ft.Hit:19(2d72
+Gore.Melee
+Ifthe targetisHuge or smaller
++6)Piercing damage.
+it
+and the triceratops moved 20+ feet straight toward
+VULTURE
+an extra 9
+immediately before the hit, the target takes 
+ Unaligned
+Medium Beast
+(2d8) Piercing damage and has the Prone condition.
+1
+(10)
+AC10Initiative +0
+HP 5(1d8 +1)
+REX
+TYRANNOSAURUS
+Speed10ft.,Fly50ft.
+MODSAVEMODSAVE MODSAVE
+ur),Unaligned
+HugeBeast(Dinosa
++7+1
+STR 7 - 2 - 2 DEX10+0+OCON 13
+Initiative+3(13)
+AC13
+ 2 - 4 - 4 Wis12+l +lCHA4 - 3-3
+INT
+HP136(13dl2+52)
+Speed 50ft.
+ion+3
+SkillsPercept
+MODSAVEMODSAVE
+MODSAVE
+SensesPassive Perception13
+25 +7+10DEX10+O+0CON 19+4 +4
+STR
+Languages None
+-4- 4 Wis 12+l+4CHA9 - 1 -1
+INT 2
+CRO(XP1O;PB+2)
+SkillsPerception +4
+TRAITS
+SensesPassive Perception 74
+PackTactics. The vulture has Advantage on an attack
+Languages None
+rollagainst a creature if at least one of the vulture's
+3,900;PB+3)
+CR8(XP
+1
+ t
+alliesiswithin 5 feet of the creature and theallydoesn
+have the Incapacitated condition.
+ACTION S
+ The tyrannosaurus makes one Bite attack
+Multiattack.
+A CTI O NS
+and oneTailattack.
+Beak. MeleeAttackRoll:+2,reach 5 ft.Hit:2(7d4)
+10ft.Hit:33(4d72
+Bite. MeleeAttackRoll:+10, reach
+Piercing damage.
+Ifthe targetisa Large or smaller
++7)Piercing damage.
+ithas the Grappled condition (escapeDC17).
+creature,
+While Grappled, the target has the Restrained condition
+and can't be targetedbythe tyrannosaurus's Tail.
+Attack Roll:+10, reach15ft.Hit: 25(4d8
+Tail.Melee 
+If the targetisa Huge or
++7)Bludgeoning damage. 
+smaller creature,ithas the Prone condition.
+w
+~
+iY
+0..
+__J
+0::
+0..
+4:
+TYR/\NNOSAURUS REX.
+APPENDIX A I ANIMALS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 375 ---]
+WARHORSE
+WOLF
+LargeBeast, Unaligned
+Medium Beast, Unaligned
+AC11InitiativeAC 
++l(11)12Initiative+2 (12)
+HP 19(3dl0 +3)
+HP11(2d8 +2)
+Speed 60 ft.
+Speed 40 ft. 
+-
+MODSAVEMODSAVEMODSAVEMODSAVEMODSAVEMODSAVE
+STR18+4 +4DEX12+l +lCON13+l +lSTR14 +2+2DEX15+2 +2CON12+1+l
+INT2 - 4 - 4 Wis12+l+3CHA7 - 2INT 3-4-4Wis12+l+lCHA6-2 
+-2-2
+SensesPassive Perception
+11SkillsPerception+5,Stealth +4
+SensesDarkvision 60 ft.; Passive Perception
+LanguagesNone15
+CR1/2(XP100;PB+2)LanguagesNone
+CR1/4(XP50;PB+2)
+ACTIONS
+TRAIT S
+Hooves.
+MeleeAttackRoll:+6, reach 5 ft.Hit:9 (2d4 +4)
+Pack 
+Tactics. The wolf has Advantage on attack rolls
+Bludgeoning damage.Ifthe targetisa Large or smaller
+against a creature if at least one
+ofthe wolf's alliesis
+creature and the horse moved 20+ feet straight toward
+within 5 feet
+itimmediately before theofthe creature and theallydoesn't have
+ hit, the target takesanextra 5
+the Incapacitated condition.
+(2d4) Bludgeoning damage and has the Prone condition.
+ACTIONS
+Bite. Melee Attack
+Roll:+4, reach 5 ft.Hit:5(1d6 +2)
+WEASEL
+Piercing damage.Ifthe target
+isa Medium or smaller
+TinyBeast,Unali
+gned
+creature,ithas the Prone condition.
+AC13
+Initiative+3 (13)
+HP1(1d4 -1)
+Speed30 ft., Climb 30 ft .
+MO DSAVEMOD
+SAVEMODSAVE
+STR3 - 4 - 4DEX16+3 +3CON8
+-1 -1
+INT2 - 4 - 4 Wis 12
++l +lCHA 3 - 4 - 4
+SkillsAcrobatics +5, Perception +3, Stealt h +5
+SensesDarkvision 60 ft.; Passive Perception13
+Languages None
+CRO(XP10;PB+2)
+ACTIONS
+Bite. Melee AttackRoll:+5, reach 5 ft.Hit:1 Piercing
+damage.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 376 ---]
+B
+APPENDIX
+PROVIDES CONVERSIONSFOR 
+HIS APPENDIX
+2014 Stat Block 2025 Equivalent
+thathave changed between the 
+statblocks
+GiantPoisonous SnakeGiantVenomousSnake
+and thisbook, as well
+2014 Monster Manual
+1 
+Gnoll Warrior
+Gnoll 
+habitat,creature
+as listsofmonsters organized by
+Goblin Warrior
+Goblin 
+ 
+type, group,andChallenge Rating.
+G rickAncient
+Crick Alpha
+MONSTER CONVERSIONS
+Gynosphinx SphinxofLore
+ either ap- Ogre
+Every monsterin 2014 Monster ManualHa If-Ogre (Ogri IIon)Ogrillon
+has a CR-appropriate replace- 
+pears in this bookor
+ Ha If-Dragon
+Half-Red Dragon Veteran
+publishedprior to this
+ment. If you're using material 
+Hobgoblin HobgoblinWarrior
+block herein, 
+book and areunable to locate astat
+l<oboldWarrior
+Kobold 
+tofindthe
+consultthe StatBlock Conversions table
+Lizardfol k Scout
+ 
+equivalentstatblock you should use.
+Lizardfolk Geomancer
+Lizardfolk Shaman 
+STATBLOCKCONVERSIONS
+Lizardfolk Sovereign
+Lizardl(ing/Queen
+2025 Equivalent
+2014 Stat Block 
+Skirmisher
+Merfolk'Merfolk
+Aarakocra - AarakocraSkirmisher
+Minotaur MinotaurofBaphomet
+Acolyte Priest Acolyte
+Monodrone Madron Monodrone
+ Dracolich 
+AdultBlue Dracolich
+Ore Tough
+AndrosphinxSphinxofValor 
+OreEyeofGruumshCultistFanatic
+Azer Azer Sentinel 
+Ore WarChiefTough Boss
+ Warrior
+BugbearBugbear
+Berserker
+Orog
+Bullywug Bullywug Warrior
+PentadroneModronPentadrone
+ 
+Centaur Centaur Trooper
+Poisonous SnakeVenomousSnake
+Cult FanaticFanatic
+Cultist
+MadronQuadrone
+Quadrone
+Cyclops Cyclops Sentry
+Spore ServantMyconidSpore Servant
+Quaggoth
+DeepGnomeScout
+Piranha
+Quipper
+ 
+DrowPriest Acolyte
+ AnimatedRugof
+RugofSmothering
+DrowEliteWarrior Gladiator 
+Smothering_
+Deceiver 
+DrowMage Bandit 
+Sahuagin SahuaginWarrior
+DrowPriestessofLolth Fiend Cultist 
+ Sahuagin Priest
+Sahuagin Priestess
+Duergar Spy 
+Shrieker Shrieker Fungus
+Duodron·e 
+Duodrone Madron 
+SwarmofPoisonous SwarmofVenomous
+ Adult Snakes
+Faerie Dragon(ifgreen,Faerie DragonSnakes
+violet) 
+blue, indigo, or 
+SwarmofQuippersSwarmofPiranhas
+Faerie Dragon(ifred, Faerie Dragon Youth 
+Thri-kreen Thri-kreen Marauder
+orange,oryellow)
+Thug Tough
+Fire Snake Salamander Fire Snake 
+Tribal Warrior Warrior Infantry
+ Flying Sword 
+Flying SwordAnimated 
+ Tridrone
+Tri droneModron 
+ 
+Gas Spore _Gas Spore Fungus 
+·veteran 
+Warrior Veteran
+Young Red Shadow Dragon Shadow Dragon
+ 
+Yuan-ti PurebloodYuan-ti Infiltrator
+\.
+B I MONSTER LISTS
+APPENDIX 
+ 
+374
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 377 ---]
+CRMonsters
+MONSTERSBYHABITAT
+9AbominableYeti
+The following tables organize themonster 
+stat
+blocks in this book by habitat. These tables omit
+11Remorhaz,Roe
+monstersthatdon't inhabitnaturalhabitats,
+suchas
+13AdultWhiteDragon
+manyCelestialsandFiends.
+20Ancient WhiteDragon
+ANYHABITATMONSTERS
+COASTALMONSTERS
+CRMonsters
+CRMonsters
+OCommoner,Crawling Claw,
+Homunculus
+0Crab, Eagle, Hawk, Lizard
+1/8 Bandit, Cultist, Guard, Noble,Warrior Infantry
+1/8Blood Hawk,GiantCrab, Kobold Warrior,Merfolk
+1/4Priest Acolyte
+Skirmisher,VenomousSnake
+1/2 Performer, Scout, Tough
+Giant Lizard, Giant Venomous Snake, 
+1/4GiantWolf~pider,
+l Empyrean Iota, Imp, Pirate , Spy
+Kuo-toa, Pseudodragon, Pteranodon, Winged Kobold
+2 Bandit Captain, Berserker,
+CultistFanatic, Druid, Mage
+Crocodile, Sahuagin
+Warrior
+l/2
+Apprentice, Priest
+Giant
+lEagle,GiantToad, Harpy, Kuo-toaWhip
+3 Knight, Scout Captain, Swarm
+ofCrawling Claws,
+2Bronze Dragon
+Wyrmling, Griffon, Merrow,Plesio-
+WarriorVeteran
+saurus, Sahuagin Priest,SeaHag, SwarmofVenomous
+4 Banshee, Guard Captain,Helmed Horror,Tough Boss
+Snakes
+5 
+Cambion, FleshGolem,Gladiator,Half-Dragon
+3Blue DragonWyrmling,l(uo-toa
+Monitor,Manticore
+6 Mage,PerformerMaestro, Pirate Captain
+4Chuul
+7 Bandit Deceiver
+5GiantCrocodile, Sahuagin Baron, Water Elemental
+8
+AberrantCultist, Assassin, Berserker Commander,
+• 6
+Cyclops Sentry, l(uo-toa Archpriest,Merfolk
+Death Cultist, Elemental Cultist, Fiend
+Cultist
+Wavebender
+70Cultist 
+Hierophant, NobleProdigy,PerformerLegend,
+8Hydra, Young Bronze Dragon
+Spy Master, Stone Golem, Warrior Commander
+9Young Blue Dragon
+11Bandit Crime Lord, Death KnightAspirant
+10
+Cyclops Oracle
+12Archmage, Archpriest, PirateAdmiral, Questing 
+!(night
+11Djinni, Marid,Roe
+16IronGolem
+13Storm Giant
+17Death Knight, Dracolich
+15AdultBronze Dragon
+18Demilich
+J
+16AdultBlue Dragon
+21Arch-hag, Lich
+17Dragon Turtle
+23BlobofAnnihilation,Empyrean
+22
+AncientBronze Dragon
+25Colossus
+23
+AncientBlue Dragon
+ARCTIC MONSTERS
+DESERT
+MONSTERS
+CRMonsters
+CRMonsters
+0 Hawk, 
+Owl
+0 Cat, Hyena, Jackal, Lizard, Scorpion, Spider, Vulture
+Blood Hawk, Kobold Warrior
+1/8 
+Camel, Flying Snake, Kobold Warrior, 
+l/8 Mule, Stirge_,
+1/4 Axe Beak, Giant Owl, Winged Kobold
+Venomous Snake
+Ice
+1/2 Mephit
+Constrictor Snake, Giant Lizard, Giant Venomous Snake,
+1/4 
+l Brown Bear, 
+Ogrillon Ogre
+GiantWolfSpider, Pseudodragon, Winged Kobold
+2 
+Griffon, Ogre, Polar Bear, Saber-Toothed Tiger, White
+Dust Mephit, 
+l/2 Gnoll Warrior, Hobgoblin Warrior,
+Qragon Wyrmling
+Jackalwere, SwarmofInsects
+3 Manticore, Winter Wolf, Yeti
+l Brass Dragon Wyrmling, Death Dog, 
+Giant Hyena,
+5 Giant Axe Beak, Troll, Werebear, Young Remorhaz
+Giant Spider, Giant Vulture, Lion, Ogrillon 
+Ogre, Sphinx
+6 Mammoth, Young White DragonofWonder, Thri-kreen Marauder, Yuan-ti Infiltrator
+8 Frost Giant
+2 Giant Constrictor Snake, Gnoll Pack Lord, Ogre, Swarm
+ofStirges, SwarmofVenomous
+ Snake~
+APPENDIX B 
+MONSTER Ll~ A 375
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 378 ---]
+Monsters
+CR
+CRMonsters
+Revenant,Shambling
+Wonderbringer,
+Gorgon,Pixie
+5
+HobgoblinCap-
+GiantScorpion,
+Wyrmling, 
+3 Blue Dragon 
+Unicorn,Werebear
+Mound, Troll,
+Wight, Yuan-ti Malison
+Phase Spider, 
+tain ,Mummy,
+-
+ 
+HobgoblinWarlord, Satyr Revelmaster
+6 Drider,
+Lamia , Weretiger
+ofYeenoghu,
+GnollFang
+4 Couatl,
+Grick
+GiantApe , Graveyard Revenant, 
+Centaur Warden,
+7 
+Elemental, Fire Elemental
+5Air
+, Tree Blight, Yuan-ti
+PrimevalOwlbear
+Ancient, Oni,
+Medusa, Young
+HobgoblinWarlord, 
+Cyclops Sentry,
+6 
+Abomination
+Brass Dragon
+Young Green Dragon
+Gnoll Demoniac,
+8
+Yuan-tiAbomination
+7 
+Treant
+BrazenGorgon,
+9 
+Psion
+ofSecrets, Thri-kreen
+Sphinx
+8Gnoll Demoniac,
+Revenant , Young
+Haunting
+10 Dire Worg, Guardian Naga ,
+9 Young Blue Dragon
+Gold Dragon
+70Cyclops Oracle , Guardian Naga
+AdultGreen Dragon
+15
+SphinxofLore
+ Efreeti, Roe, 
+l l
+GulthiasBlight
+16
+Brass Dragon
+73AdultI
+Dragon
+17AdultGold
+Worm
+Lord, Purple
+15Mummy
+Green Dragon
+22Ancient
+AdultBlue Dragon
+76
+Gold Dragon
+24Ancient
+SphinxofValor
+17
+Brass Dragon
+20Ancient
+MONSTERS
+GRASSLAND 
+Blue Drag~n
+23Ancient
+CRMonsters
+,
+Vulture 
+Hawk, Hyena, Jackal, 
+Deer, Eagle, Goat,
+0 Cat, 
+MONSTERS
+FOREST
+Weasel
+Monsters
+CR
+Min-
+Weasel,Goblin
+Giant
+Hawk, Flying Snake,
+1/8 Blood 
+Awakened Shrub, Baboon, Badger, Bat, Cat, Deer, Frog,
+0 
+VenomousSnake
+ion, Pony, Stirge,
+Owl,Rat, Spider, Weasel
+Hawk, Hyena, Lizard,
+Giant
+Snake,
+Giant Venomous
+1/4 Axe Beak , Boar, Elk ,
+Rat,GiantWeasel,
+Giant
+Hawk, Flying Snake,
+1/8 Blood 
+Warrior, Panther, Pteranodon,
+WolfSpider,Goblin
+,Mastiff, Stirge, Twig
+KoboldWarrior
+Minion,
+Goblin
+Horse,Wolf
+Riding 
+Snake
+Venomous
+Blight,
+Gnoll Warrior,
+Goat,GiantWasp, 
+Giant
+l/2Cockatrice ,
+GiantBadger,
+Snake, Elk,
+Constrictor
+l/4Blink Dog, Boar,
+ofInsects, Worg
+Warrior, Jackalwere, Swarm
+Hobgoblin
+Giant Owl, Giant
+GiantLizard, 
+Bat,GiantFrog,
+Giant
+Giant
+GiantHyena,
+GiantEagle,
+l Bugbear Warrior,
+Warrior,
+Goblin
+GiantWolfSpider,
+Snake,
+Venomous 
+Ogre,
+Lion,Ogrillon
+Boss,Hippogriff,
+Vulture, Goblin 
+Needle Blight, Panther, Pixie, Pseudodragon ,
+Kenku, 
+Tiger
+Scarecrow, Thri-kreen Marauder, 
+Winged Kobold ,
+ofRats, 
+ofBats , Swarm
+Sprite, Swarm
+2 Allosa urus, Ankheg, Bulette Pup, Centaur Trooper,
+Wolf
+Ogre,
+Griffon,
+Elk, Gnoll Pack Lord ,
+Boar, Giant 
+Giant
+Warrior,Hobgoblin
+Wasp, Gnoll 
+Giant 
+l/2Ape, Black Bear, 
+ofVen-
+Stirges, Swarm
+of
+Pegasus , Rhinoceros , Swarm
+Worg
+ofInsects, Vine Blight, 
+Warrior, Satyr, Swarm
+Snakes
+omous
+lBrown Bear, Bugbear Warrior, Dire Wolf, Dryad, Faerie
+Goblin Hexer, Gold
+Ankylosaurus, Bugbear Stalker, 
+3 
+Toad,
+Spider, Giant 
+Hyena, Giant 
+Giant 
+Dragon Youth, 
+Captain, Manticore,
+Hobgoblin
+Dragon Wyrmling, 
+ Y~an-ti
+Ogre , Tiger,
+Harpy,Ogrillon 
+Goblin Boss, 
+Phase Spider
+r
+I nfi ltrato 
+,Hippopota-
+ofYeenoghu 
+Gnoll Fang 
+4Couatl,. Elephant, 
+2Ankheg, Awakened Tree, Centaur Trooper, Ettercap,
+mus, Were boar, Weretiger
+Constrictor
+Giant Boar, Giant 
+Adult, 
+Faerie Dragon
+Gorgon, Triceratops
+Giant Axe Beak, 
+5Bulette, 
+Pack Lord, Green Dragon
+Giant Elk , Gnoll 
+Snake, 
+Warlord
+Hobgoblin 
+, Cyclops Sentry, 
+6Chimera 
+Grick, Lizardfolk Geomancer, Ogre, Pega-
+Wyrmling, 
+Snakes,
+ofVenomous 
+Stirges, SwarmWarden
+sus, Swarmof7Centaur 
+Will -o'-Wisp
+Wererat, 
+8Cockatrice Regent, Gnoll Demoniac, Thri-kreen Psion,
+Rex
+3Bugbear Stalker, Displacer Beast, Goblin Hexer, GoldTyrannosaurus 
+Captain,
+Hobgoblin 
+Wyrmling, Green Hag, 
+Dragon 
+Brazen Gorgon
+9
+Werewolf, Yuan-ti Malison
+Owlbear, Phase Spider, 
+70Cyclops Oracle, Dire Worg, Young Gold Dragon
+Liz-
+, Hippopotamus, 
+ofYeenoghu 
+4Couatl, Gnoll Fang 
+Gold Dragon
+17Adult 
+ardfolk Sovereign , Wereboar, Weretiger
+24Ancient Gold Dragon
+\.
+ APPENDIX B / MONSTER LISTS
+376 ~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 379 ---]
+HILLMONSTERS
+CRMonsters
+CRMonsters 
+Hound, HobgoblinCaptain,Manticore
+3 Basilisk, -Hell
+Raven, Vul- 
+0 Owl,
+Baboon, Eagle, Goat, Hawk, Hyena,
+RedDragonWyrmling
+4 Aarakocra Aeromancer, Ettin,
+ 
+ture, Weasel
+ Troll"'
+AirElemental, Bulette, Earth Elemental,
+5
+Minion,Kobold 
+Blood Hawk,GiantWeasel,Goblin
+1/8
+Chimera, Cyclops Sentry, Galeb
+6AzerPyromancer, 
+Snake 
+Warrior, Mastiff, Mule, Stirge,Venomous
+Warlo rd, Wyvern
+Duhr,Hobgoblin
+Venomous 
+Axe Beak, Boar, Elk,Giant Owl, Giant 
+1/4
+Giant
+7 Stone
+Warrior, Panther, 
+Snake,GiantWolfSpider,Goblin
+Giant
+8 Frost
+Wolf
+ofRavens,WingedKobold,
+Pseudodragon, Swarm
+Cloud Giant, Fire Giant, Young Silver Dragon
+9 
+Warrior, Swarm 
+Goat,GnollWarrior,Hobgoblin
+1/2Giant
+10Cyclops Oracle, YoungRedDragon
+ofInsects,Worg
+11Roe
+DragonWyrmling,Dire Wolf,
+1 Brown Bear,Copper
+Silver Dragon
+16Adult
+GiantVulture,GoblinBoss,
+Giant Eagle,GiantHyena,
+AdultRedDragon
+17
+OgrillonOgre
+Harpy,Hippogriff, Lion,
+/,
+23AncientSilver Dragon
+GiantBoar,GiantElk,GnollPack Lord,
+2 Bulette Pup,
+Griffon,Ogre, Pegasus, Peryton, Saber-Toothed Tiger,
+24AncientRedDragon
+ofVenomousSnakes
+SwarmofStirges, Swarm
+SWAMpMONSTERS
+HobgoblinCaptain,Manti-
+3GoblinHexer, Green Hag,
+CRMonsters
+Werewolf
+core, Phase Spider,
+0 Frog, Lizard, Rat, Raven, Spider
+Wyrmling,
+4 Gnoll FangofYeenoghu,RedDragon
+Ettin, 
+Wereboar
+VenomousSnake
+GiantRat, Kobold Warrior, Stirge,
+1/8
+Gorgon, HillGiant, Troll,
+5 Bulette,GiantAxe Beak, 
+ConstrictorSnake,GiantFrog,Giant
+Bullywug Warrior,
+1/4
+ 
+Were bearof
+Snake,Mud Mephit,Swarm
+Lizard,Giant Venomous
+Winged Kobold
+ Rats, SwarmofRavens, 
+HobgoblinWar-
+6 Chimera, Cyclops Sentry, Galeb Duhr,
+lord, Wyvern 
+ofInsects
+Crocodile, Swarm
+1/2 
+Copper Dragon 
+7 Stone Giant, Young 
+GiantToad, Lacedon Ghoul,
+1 Ghoul, GiantSpider,
+Infiltrator
+OgrillonOgre, Yuan-ti
+8 GnollDemoniac 
+Ghast, GiantConstrictor
+2 Black DragonWyrmling,
+Gorgon 
+9 Brazen 
+ofStirges,
+Snake, Lizardfolk Geomancer, Ogre, Swarm
+ 
+10RedDragon
+Cyclops Oracle, Dire Worg, Young
+Snakes,Will-o'-Wisp
+SwarmofVenomous 
+11 Roe 
+Wight,Yuan-ti Malison
+3 Green Hag,Mummy, 
+14AdultCopper Dragon 
+Bog Sage, Chuul,Hippopotamus, Lizardfolk
+4 Bullywug 
+ 
+17Adu It RedDragon
+Sovereign
+Dragon 
+21Ancient Copper 
+Troll,
+Crocodile, Revenant, Shambling Mound,
+5 Giant 
+RedDragon 
+24Ancient
+Water Elemental
+6 Ghast Gravecaller
+MOUNTAINMONSTERS
+7 Graveyard Revenant, Young Black Dragon, Yuan-ti
+Monsters 
+CR
+Abomination
+0 Bat, Eagle, Goat, Hawk 
+8 Hydra
+ 
+Blood Hawk, l(obold Warrior, Stirge
+1/8 
+10HauntingRevenant
+Giant Bat, Pseudodragon, Pter-
+ Aarakocra Skirmisher, 
+1/4
+14AdultBlack Dragon
+Winged l<obold
+anodon, SwarmofBats , 
+15Lord
+Mummy
+Warrior
+Giant Goat, Hobgoblin 
+1/2 
+•
+21Ancient Black Dragon 
+Lion, Ogrillon Ogre
+l Giant Eagle, Harpy, Hippogriff, 
+2 Griffon, Ogre , Peryton ,
+Azer Sentinel, Bulette Pup, 
+Swarm
+Wyrmling, 
+Saber-Toothed Tiger, Silver Dragon 
+ofStirges
+ 
+APPENDIX B I MONSTER LISTS
+377
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 380 ---]
+UNDERDARK
+MONSTERS
+CRMonsters
+CRMonsters
+l/4Constrictor
+Snake
+O Bat,GiantFire Beetle, Lizard,
+Myconid Sprout, Rat,
+l/2GiantSeahorse, Reef Shark, Sahuagin
+Warrior
+Shrieker Fungus, Spider
+lGiant Octopus,SwarmofPiranhas
+l/8Flumph,GiantRat,Goblin
+Minion,Kobold Warrior,
+2Giant ConstrictorSnake,
+HunterShark,Merrow,Plesio-
+Stirge
+saurus, Sahuagin Priest,
+SeaHag
+GiantBat,GiantCentipede,GiantLizard,
+l/4Goblin
+3Killer Whale
+Warrior,Grimlock, Kuo-toa, Skeleton, Swarm
+ofBats,
+4Archelon
+SwarmofRats, Troglodyte,
+VioletFungus,WingedKo-
+5GiantShark, Sahuagin Baron, Water 
+Elemental
+bold,Zombie
+Giant
+6Squid,MerfolkWavebender
+Darkmantle, Gas Spore Fungus, Gray Ooze,
+l/2Hobgob-
+10Aboleth
+lin Warrior,
+Myconid Adult,Piercer, Rust Monster,
+Shadow, Swarm
+ofInsects, Warhorse SkeletonllMarid
+l Bugbear Warrior,13Storm Giant
+Ghoul,GiantSpider,GiantToad,
+"
+GoblinBoss, l<uo-toa 
+Whip, LacedonGhoul, Myconid
+17Dragon 
+Turtle
+Spore Servant,
+OgrillonOgre, Psychic Gray Ooze,
+23Kraken
+Salamander Fire Snake, Specter
+2 Carrion Crawler, Gargoyle, 
+Gelatinous Cube, Ghast,
+URBAN
+MONSTERS
+Gibbering Mouther,
+Grick,IntellectDevourer,Mimic,
+CRMonsters
+MinotaurSkeleton,
+MyconidSovereign,Nothic,Ochre
+O Bat, Cat, Goat, Rat, Raven, 
+Spider
+Jelly, Ogre, Ogre 
+Zombie,Poltergeist,Quaggoth,
+l/8GiantRat, Kobold Warrior,
+Mastiff,Mule, Pony, Stirge
+SwarmofStirges
+l/4Animated Broom, Animated
+Flying Sword,DraftHorse,
+3 
+Basilisk, Bugbear Stalker, Doppelganger, 
+Flaming
+GiantCentipede,
+ l<enku, Pseudodragon, Riding Horse,
+Skeleton,
+GoblinHexer, Grell, HellHound, 
+Hobgoblin
+Skeleton, Swarmof
+Bats, SwarmofRats, Swarmof
+Captain,HookHorror,Kuo-toa
+Monitor,Minotaurof
+Ravens, 
+Winged Kobold,Zombie
+Baphomet,-Phase Spider,
+Quaggoth Thonot,Spectator,
+l/2Crocodile,
+GiantWasp, Shadow, Swarm
+ofInsects,
+Vampire Familiar, Water Weird,
+Wight
+Warhorse, Warhorse Skeleton
+4 Black Pudding, Bone Naga, Chuul, Ettin, Flameskull,
+lAnimated Armor, Ghoul, 
+GiantSpider, Lacedon Ghoul,
+Ghost, Juvenile Shadow Dragon
+Specter, Yuan-tiInfiltrator
+5 Beholder Zombie,
+Earth Elemental,Otyugh,Roper, Sal-
+2
+AnimatedRugofSmothering, Carrion Crawler, Gar-
+amander, Troll,
+UmberHulk, Vampire Spawn, Wraith,
+goyle, Ghast,
+Mimic, MinotaurSkeleton, 
+Ogre Zombie,
+Xorn
+Poltergeist, Silver DragonWyrmling,
+SwarmofStirges,
+6 Cyclops Sentry, Drider, 
+Ghast Gravecaller,
+Hobgoblin
+Wererat, Will-o'-Wisp
+Warlord, l<uo-toa Arch 
+priest
+3 Doppelganger, Flaming Skeleton, Phase Spider, Vam-
+7 Grick Ancient,
+MindFlayer, Stone Giant,VioletFungus
+pire Familiar, Water Weird,Wight,
+Yuan-ti Malison
+Necrohulk
+4 Couatl, Ghost, Incubus, Succubus
+8 Cloaker, Fomorian, Spirit 
+Naga, VampireNightbringer
+5 Beholder Zombie, 
+Revenant, Vampire Spawn
+9
+FireGiant
+I
+6 Ghast Gravecaller, Invisible Stalker
+l 0 Aboleth, 
+Cyclops Oracle
+7 Graveyard Revenant, Oni, Shield Guardian, Yuan-ti
+llBehir, Dao,MindFlayer 
+Arcanist
+Abomination
+13Beholder, Shadow Dragon, Vampire
+8Vampire
+ Nightbringer
+14 Death Tyrant
+9 Clay Golem, Young Silver Dragon
+15Purple Worm, 
+Salamander Inferno Master, Vampire
+10Haunting
+Revenant
+Umbral Lord
+13Rakshasa, Vampire
+15Vampire Umbral Lord
+UNDERWATER MONSTERS
+16Adult Silver Dragon
+CR Monsters
+23Ancient 
+Silver Dragon
+O 
+Crab, Octopus, Piranha, Seahorse
+30 Tarrasque
+l/8 
+Giant Crab, Merfolk Skirmis _her
+APPENDIX 
+B I MONSTER LISTS
+378
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 381 ---]
+Mastiff
+CONSTRUCT
+MONSTERSBY
+Mule Armor
+Animated
+TYPE 
+CREATURE 
+OctopusBroom
+Animated
+the monsterstatblocksOwl Flying Sword
+The following list organizesAnimated
+ 
+in this book bycreaturetype.
+PantherAnimatedRugof
+PiranhaSmothering
+ 
+Brown Bear
+ABERRATION
+Plesiosaurus BrazenGorgon
+~
+Camel
+Aboleth
+Polar Bear ClayGolem
+Cat 
+Beholder
+Pony Colussus
+ConstrictorSnake
+Blue Slaad
+PteranodonFleshGolem
+Crab 
+Chuul
+RatGorgon
+Crocodile 
+Cloaker
+RavenHelmedHorror
+Deer 
+Darkmantle
+Reef SharkHomunculus
+DireWolf
+Death Slaad 
+ Golem
+RhinocerosIron
+DraftHorse 
+Flumph 
+Duodrone
+RidingHorseModron 
+,
+.,
+Eagle 
+GibberingMouther
+TigerModron Monodrone
+Saber-Toothed
+Elephant
+GithyankiDracomancer
+Pentadrone
+ScorpionMadron
+Elk 
+Githyanki l<night 
+SeahorseMadron Quadrone
+Frog
+G ithyankiSoldier
+SpiderMadronTridrone
+ 
+GiantApe
+GithzeraiMonk
+ 
+SwarmofBatsScarecrow
+GiantBadger
+GithzeraiPsion
+Insects 
+SwarmofShield Guardian
+Bat
+Giant
+Zerth 
+G ithzerai
+ofPiranhas 
+SwarmStoneGolem
+Boar
+Giant
+Gray Slaad
+SwarmofRats
+GiantCentipede 
+DRAGON
+Green Slaad
+Ravens
+Swarmof
+Giant ConstrictorSnake
+Grell(all)
+Black dragons 
+ofVenomousSnakes 
+Swarm
+Crab
+Giant
+Grick (all)
+Blue dragons 
+Tiger
+Crocodile 
+Giant
+ 
+Grick AncientBrassdragons(all)
+Triceratops 
+Fire Beetle
+Giant
+(all)
+GrimlockBronze dragons 
+TyrannosaurusRex
+"
+GiantFrog
+ 
+IntellectDevourerCopper dragons (all)
+VenomousSnake
+'
+Giant Goat 
+l<uo-toaDragon Turtle
+Vulture
+GiantHyena
+ 
+l<uo-toaArchpriestFaerie DragonAdult
+Warhorse
+ 
+GiantLizard
+l<uo-toaMonitorFaerie Dragon Youth
+Weasel 
+GiantOctopus
+Whip dragons (all)
+l<uo-toaGold 
+Wolf
+Rat 
+Giant
+dragons (all)
+MindFlayerGreen 
+Giant Scorpion
+Arcanist CELESTIALago n
+MindFlayerHaIf-Dr
+Seahorse
+Giant
+AnimalLord Shadow Dragon
+NothicJuvenile 
+ 
+GiantShark
+Couatl Warrior
+ Kobold
+Otyugh
+Giant Spider 
+ 
+PiercerDevaPseudodragon
+GiantSquid 
+ 
+Red SlaadEmpyreanRed dragons (all)
+Toad 
+Giant
+Empyrean Iota 
+RoperShadow Dragon
+Giant Venomous Snake
+ GiantEagle dragons (all)
+Slaad TadpoleSilver 
+Wasp
+Giant
+GiantElkdragons (all)
+Spectator White 
+Giant Weasel
+Giant Owl Winged Kobold
+ 
+BEAST
+GiantWolfSpider 
+Guardian Naga 
+Wyvern
+Allosaurus 
+Goat 
+Pegasus
+Ankylosaurus ELEMENTAL
+Hawk 
+Planetar
+Aarakocra Aeromancer
+Ape
+Hippopotamus
+ 
+Solar
+Arch el onAarakocra Skirmisher
+ 
+HunterShark
+Lore 
+Sphinxof
+Baboon Air Elemental
+Hyena 
+ofSecrets 
+Sphinx
+Badger Azer Pyromancer
+Jackal 
+ofValor 
+Sphinx
+Bat Azer Sentinel
+ 
+Killer Whale
+SphinxofWonder 
+...
+Black Bear Dao
+Lion 
+Unicorn
+Blood Hawk Djinni
+Lizard 
+Boar 
+Mammoth
+B  
+APPENDIX I MONSTER LISTS
+379
+6 
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 382 ---]
+U ltrolothPirate Captain
+Dust Mephit
+FIEND
+Priest
+Earth ElementalVrock
+Arcanaloth
+YochlolPriest Acolyte
+Efreeti
+Bal or
+Questing Knight
+Elemental Cataclysm
+Barbed Devil
+GIANT
+Scout
+Fire Elemental
+Barlgura
+Cloud Giant
+Scout Captain
+Galeb Duhr
+Bearded Devil
+Cyclops Oracle
+Spy
+Gargoyle
+Bone Devil
+Cyclops Sentry
+Spy Master
+Ice Mephit
+Cambion
+Ettin
+Tough
+Invisible Stalker
+Chain Devil
+Fire Giant
+Tough Boss
+Lizardfolk Geomancer
+Chasme
+Fomorian
+Vampire Familiar
+Lizardfolk Sovereign
+Dretch
+Frost Giant
+Warrior Commander
+Magma Mephit
+Empyrean
+Hill Giant
+Warrior Infantry
+Magmin
+Empyrean Iota
+Ogre
+Warrior Veteran
+Marid
+Erinyes
+Ogrillon Ogre
+Merfol,k Skirmisher
+Glabrezu
+MONSTROSITY
+Stone Giant
+M erfol k Wavebender
+Gnoll Demoniac
+Storm GiantAbominable Yeti
+Mud Mephit
+Gnoll Fang of Yeenoghu
+TrollAnkheg
+Salamander
+Gnoll Pack Lord
+Troll LimbAxe Beak
+Salamander Fire Snake
+G noll Warrior
+Basilisk
+Salamander Inferno Master
+Goristro
+HUMANOID
+Behir
+Smoke Mephit
+Hell Hound
+Aberrant Cultist
+Bulette
+Steam Mephit
+Hezrou
+Archmage
+Bulette Pup
+Water Elemental
+Horned Devil
+Arch priest
+Carrion Crawler
+Water Weird
+Ice Devil
+Assassin
+Chimera
+Xorn
+Imp
+Bandit
+Cockatrice
+Incubus
+Bandit Captain
+FEYCockatrice Regent
+Jackalwere
+Bandit Crime Lord
+Arch-hagDeath Dog
+Lamia
+Bandit Deceiver
+Blink DogDisplacer Beast
+Larva
+Berserker
+Bugbear StalkerDoppelganger
+Lemure
+Berserker Commander
+Bugbear WarriorDrider
+Manes
+Commoner
+Bullywug Bog SageEttercap
+Manes Vaporspawn
+Cultist
+Bullywug WarriorFlying Snake
+Marilith
+Cultist Fanatic
+Centaur TrooperGiant Axe Beak
+Mezzoloth
+Cultist Hierophant
+Centaur WardenGiant Vulture
+Nalfeshnee
+Death Cultist
+Dire WorgGriffon
+Night Hag
+Druid
+Harpy
+Dryad
+Nightmare
+Elemental Cultist
+Hippogriff
+Goblin Boss
+Nycaloth
+Fiend Cultist
+Goblin HexerHook Horror
+Oni
+Gladiator
+Goblin MinionHydra
+Pit Fiend
+Guard
+l(enku
+Goblin Warrior
+Quasit
+Guard Captain
+Green Hagl<raken
+Rakshasa
+Knight
+Hobgoblin CaptainManticore
+Sahuagin Baron
+Mage
+Hobgoblin WarlordMedusa
+Sahuagin Priest
+Mage Apprentice
+Hobgoblin WarriorMerror
+Sahuagin Warrior
+Noble
+PixieMimic
+Shadow Demon
+Noble Prodigy
+Pixie WonderbringerMinotaur of Baphomet
+Spined Devil
+Performer
+SatyrOwl bear
+Spirit Naga
+Performer Legend
+Satyr Revel masterPeryton
+Succubus
+Performer Maestro
+Sea HagPhase Spider
+Swarm of Dretches
+Pirate
+SpritePrimeval Owlbear
+Swarm of Larvae
+Pirate Admiral
+Worg
+Swarm of Lemures
+\.
+380 A APPENDIX B I MONSTER LISTS
+/ ~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 383 ---]
+Purple Worm 
+Tree Blight 
+MONSTERS BY GROUP
+Quaggoth Twig Blight 
+The following lists present stat blocks that share de-
+Quaggoth Thonot Vine Blight 
+scriptive tags or that are part of a group that's not
+Remorhaz Violet Fungus 
+reflected by their name.
+Roe Violet Fungus Necrohulk
+DRAGONS CHROMATIC
+ANGELS 
+7 
+Rust Monster 
+UN DEAD 
+Deva Black dragons (all)
+Sti rge
+Banshee 
+Planetar Blue dragons (all)
+Swarm of Stirges
+~
+Beholder Zombie 
+Solar Green dragons (all)
+Tarrasque
+Bone Naga 
+Red dragons (all) -
+Thri-kreen Marauder 
+BEHOLDERS 
+Crawling Claw
+White dragons (all)
+Thri-kreen Psion 
+Beholder
+Death Knight
+Troglodyte 
+DRAGONS METALLIC
+Death Tyrant 
+7 
+Death Knight Aspirant
+Umber Hulk 
+SpectatorBrass dragons (all)
+Death Tyrant
+Were bear 
+Bronze dragons (all)
+Zombie Beholder 
+Demilich
+Wereboar
+4-
+--
+,
+Copper dragons (all)
+Dracolich
+Wererat
+DEMONS
+Gold dragons (all)
+Flameskull 
+Weretiger
+Balor 
+Silver dragons (all)
+Flaming Skeleton
+Werewolf 
+Barlgura
+Ghast 
+Winter Wolf 
+• Chasme GEN I ES
+Ghast Gravecaller 
+Yeti
+Dretches (all) Dao
+Ghost 
+Young Remorhaz · 
+Glabrezu Djinni
+Ghoul 
+Yuan-ti Abomination 
+Efreeti
+Goristro
+Graveyard Reven ant 
+Yuan-ti Infiltrator 
+HezrouMarid
+Haunting Revenant 
+Yuan-ti Malison 
+·Manes (all)
+Lacedon Ghoul 
+GOBLINOIDS
+Marilith
+OOZE Lich 
+Bugbears (all)
+Nalfeshnee
+Black Pudding Minotaur Skeleton 
+Goblins (all)
+Quasit 
+Blob of Annihilation Mummy 
+Hobgoblins (all)
+Shadow Demon
+Gelatinous Cube Mummy Lord 
+Vrock 
+LYCANTHROPES
+Ogre Zombie 
+Gray Ooze 
+Yochlol 
+Were bear
+Poltergeist
+Ochre Jelly 
+Wereboar
+Psychic Gray Ooze Reven ant 
+DEVI LS 
+Wererat
+Shadow 
+Barbed Devil
+PLANT 
+Weretiger
+Skeleton 
+Bearded Devil
+Awakened Shrub 
+Werewolf
+Specter
+Bone Devil
+Awakened Tree 
+Swarm of Crawling Claws 
+Chain Devil 
+-
+TITANS 
+Gas Spore Fungus 
+Vampire 
+Eri nyes 
+Blob of Annihilation
+Gulthias Blight 
+I 
+Vampire Nightbringer 
+Horned Devil 
+Colossus
+Myconid Adult 
+Vampire Spawn 
+Ice Devil 
+Elemental Cataclysm
+Myconid Sovereign 
+Vampire Umbral Lord 
+Imp 
+Empyreans (all)
+Myconid Spore Servant 
+Warhorse Skeleton 
+Lemures (all) 
+Kraken
+Myconid Sprout 
+Wight 
+Pit Fiend 
+Tarrasque
+Needle Blight 
+Will-o'-Wisp 
+Spined Devil
+Shamling Mound 
+Wraith 
+YUGOL0THS
+Shrieker Fungus 
+DINOSAURS 
+Zombie 
+Arcanoloth
+Treant 
+Allosaurus 
+Mezzoloth 
+•
+Ankylosaurus 
+Nycaloth
+Archelon 
+Ultroloth
+Plesiosaurus
+Pteranodon
+Triceratops
+Tyrannosaurus Rex
+APPENDIX B I MONSTER LISTS A 381
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 384 ---]
+Dire Wolf
+, Steam Mephit 
+MONSTERS BY 
+Swarm of Bats Dryad
+CHALLENGE RATING 
+Swarm of Rats Empyrean Iota
+Swarm of Ravens Faerie Dragon Youth
+The following list organizes the monster stat blocks 
+in this book by Challenge Rating. Troglodyte Ghoul
+Violet Fungus Giant Eagle
+Mastiff 
+CR o 
+Giant Hyena
+Winged l<obold 
+Merfol k Skirmisher 
+Awakened Shrub 
+Wolf Giant Octopus ~
+Madron Monodrone 
+Baboon 
+Zombie Giant Spider
+Mule 
+Badger 
+Giant Toad
+Noble 
+Bat 
+CR 1/2 
+Giant Vulture
+Pony 
+Cat 
+Ape 
+Goblin Boss
+Slaad Tadpole 
+Commoner 
+Black Bear 
+I
+Harpy
+Stirge 
+Crab 
+Cockatrice 
+Hippogriff
+Twig Blight 
+Crawling Claw 
+Crocodile 
+Imp
+Venomous Snake 
+Deer 
+Darkmantle 
+l<uo-toa Whip
+Warrior Infantry 
+Eagle · 
+Dust Mephit 
+Lacedon Ghoul
+Frog 
+Gas Spore Fungus 
+Lion
+CR 1/4 
+Giant Fire Beetle 
+Giant Goat 
+Manes Vaporspawn
+Aarakocra Skirmisher 
+Goat
+Giant Seahorse 
+Madron Quadrone
+Animated Broom
+Hawk 
+Giant Wasp 
+Myconid Spore Servant
+Animated Flying Sword
+Homunculus 
+Gnoll Warrior 
+Ogrillon Ogre
+Axe Beak
+Hyena 
+Gray Ooze 
+Pirate
+Blink Dog 
+Jackal 
+Hobgoblin Warrior 
+Psychic Gray Ooze
+Boar 
+Larva 
+Ice Mephit
+Quasit
+Bullywug Warrior 
+Lemure 
+Jackalwere 
+Salamander Fire Snake
+Constrictor Snake
+Lizard 
+Magma Mephit 
+Scarecrow
+Draft Horse 
+Myconid Sprout 
+Magmin 
+Specter
+Dretch 
+• 
+Octopus
+Madron Tridrone 
+Sphinx of Wonder
+Elk
+Owl
+Myconid Adult 
+Spy
+Giant Badger 
+Piranha 
+Performer 
+Swarm of Larvae
+Giant Bat 
+Rat
+Piercer 
+Swarm of Piranhas
+Giant Centipede 
+Raven 
+Reef Shark 
+Thri-kreen Marauder
+Giant Frog 
+Scorpion 
+Rust Monster 
+Tiger
+Giant Lizard \
+Seahorse 
+Sahuagin Warrior 
+Yuan-ti Inn ltrator
+Giant Owl
+Shrieker Fungus 
+Satyr
+Giant Venomous Snake
+Spider 
+Scout CR 2
+Giant Wolf Spider 
+Vulture 
+Shadow Allosaurus
+Goblin Warrior 
+Weasel 
+Swarm of Insects Animated Rug of
+Grim lock 
+Tough Smothering
+l<enku 
+CR 1/8 
+Troll Limb Ankheg
+l<uo-toa 
+Bandit 
+Vine Blight Awakened Tree
+Madron Duodrone 
+Blood Hawk 
+Warhorse Azer Sentinel
+Mud Mephit 
+Camel 
+Warhorse Skeleton • Bandit Captain
+Needle Blight 
+Cultist 
+Worg Berserker
+Panther 
+Flu mph 
+Black Dragon Wyrmling
+Pixie 
+Flying Snake 
+CR, 
+Bronze Dragon Wyrmling
+Priest Acolyte 
+Giant Crab 
+Animated Armor 
+Bulette Pup
+Pseudodragon 
+Giant Rat 
+Brass Dragon Wyrmling 
+Carrion Crawler
+Pteranodon 
+Giant Weasel 
+Brown Bear 
+Centaur Trooper
+Riding Horse 
+Goblin Minion 
+Bugbear Warrior 
+Cultist Fanatic
+Skeleton 
+Guard 
+Copper Dragon Wyrmling 
+Druid
+Smoke Mephit 
+l<obold Warrior 
+Death Dog 
+Ettercap
+Man·es Sprite
+APPENDIX B I MONSTER LISTS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 385 ---]
+Faerie DragonAdult
+FlamingSkeleton
+ Lizardfolk 
+Sovereign 
+GalebDuhr
+Gargoyle
+GiantScorpion
+RedDragonWyrmling
+GhastGravecaller
+Gelatinous
+Cube Githyanki 
+Soldier Shadow
+Demon 
+GiantSquid
+Ghast
+ Goblin
+Hexer 
+Succubus G ithzerai
+Zerth
+Giant
+Boar
+GoldDragonWyrmlingSwarm
+ofDretchesHobgoblin
+Warlord
+GiantConstrictorSnake Green
+HagTough Boss
+ Invisible Stalker
+Giant
+Elk 
+Grell Were 
+boar l<uo-toaArchpriest
+'-
+GibberingMouther
+HellHound
+Weretiger Mage
+GithzeraiMonk
+HobgoblinCaptain
+Mammoth
+CR5
+GnollPack Lord
+HookHorror
+Medusa
+Air
+Elemental
+Green Dragon
+WyrmlingKiller Whale
+MerfolkWavebender
+Barbed Devil
+Grick 
+Knight
+Performer Maestro
+Barlgura
+ 
+GriffonKuo-toa
+Monitor
+Pirate Captain
+BeholderZombie
+Hunter
+SharkManticore
+Satyr Revelmaster
+Bulette 
+IntellectDevourer
+MinotaurofBaphomet
+Vrock
+Cambion
+LizardfolkGeomancer
+Mummy
+Wyvern
+Earth Elemental
+ 
+Mag~ ApprenticeNightmare
+Young 
+Brass Dragon
+Fire Elemental 
+Merrow
+Owlbear
+YoungWhiteDragon
+FleshGolem
+Mimic
+Phase Spider 
+GiantAxe Beak
+CR7
+MinotaurSkeleton
+Quaggoth
+Thonot
+GiantCrocodile 
+BanditDeceiver
+ModronPentadrone 
+Scout Captain
+GiantShark 
+Blue Slaad
+MyconidSovereign
+Spectator 
+Gladiator 
+Centaur Warden
+Nothic
+SwarmofCrawling Claws
+Gorgon 
+GiantApe
+OchreJelly 
+SwarmofLemures 
+-
+HaIf-Drago n 
+Graveyard Revenant
+Ogre 
+Vampire Familiar 
+Hill Giant
+G rickAncient
+OgreZombie 
+WarriorVeteran
+Mezzoloth
+MindFlayer
+Pegasus 
+Water Weird
+NightHagOni
+Peryton
+Werewolf 
+Otyugh
+PrimevalOwlbear
+Plesiosau rus
+Wight
+PixieWonderbringer
+Shield Guardian
+Polar Bear
+WinterWolf
+RedSlaad 
+StoneGiant
+Poltergeist 
+Yeti
+Revenant
+Tree Blight
+Priest 
+Yuan-ti Malison
+Roper
+VioletFungusNecrohulk
+Quaggoth
+CR4 Sahuagin Baron 
+Young Black Dragon
+Rhinoceros
+Aarakocra Aeromancer 
+Salamander 
+Young Copper Dragon
+Saber-Toothed Tiger
+Archelon 
+ShamblingMound
+Yuan-tiAbomination
+Sah uagi n Priest 
+Banshee 
+Triceratops
+SeaHag
+CR8
+Black Pudding 
+Troll
+Silver DragonWyrmling
+Aberrant Cultist
+Bone Naga
+Umber Hulk
+Spined Devil 
+Assassin
+Bullywug Bog Sage
+ Unicorn
+SwarmofStirges 
+BerserkerCommander
+Chuul 
+Vampire Spawn
+ 
+SwarmofVenomous Snakes 
+Chain Devil
+Couatl 
+Water Elemental 
+Wererat 
+Cloaker
+Elephant 
+Were bear 
+White 
+DragonWyrmling
+Cockatrice Regent
+1Ettin 
+Wraith 
+Will-0
+-Wisp 
+Death Cultist
+Flameskull
+ 
+Xorn 
+Elemental Cultist
+CR3 Ghost 
+Young Remorhaz
+ 
+Fiend Cultist
+Ankylosaurus
+ 
+Gnoll Fang ofYeenoghu
+CR6 
+Fomorian
+Basilisk 
+Guard Captain
+Azer Pyromancer
+ Frost 
+Giant
+Bearded Devil 
+Helmed Horror
+Chas me 
+Githyanki l<night
+Blue Dragon Wyrmling
+ Hippopotamus
+Chimera
+ Gnoll Demoniac
+Bugbear Stalker 
+Incubus 
+Cyclops Sentry
+ Green Slaad
+Displacer Beast 
+Juvenile Shadow Dragon
+ 
+Drider
+ Hezrou
+Doppelganger
+ Lamia 
+'
+APPENDI X
+ B I MONSTER LI, 383
+~'--s
+_________ 
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 386 ---]
+WarriorCommanderAdultSilver Dragon
+YochlolGithyankiDracomancer
+YoungGoldDragonGulthias Blight
+YoungRedDragonIronGolem
+'Marilith
+CR11
+Planetar
+Lord
+Bandit Crime
+BehirCR17
+AdultGold Dragon
+Dao
+AdultRedDragon
+Death!(night Aspirant
+Death!(night
+Djinni
+Dracolich
+Efreeti
+DragonTurtle
+HornedDevil
+Goristro
+Marid
+SphinxofValor
+MindFlayerArcanist
+Remorhaz
+CR18
+Roe
+Demilich
+SphinxofLore
+CR19
+CR12
+Balor
+Arcanaloth
+Archmage
+CR20
+Archpriest
+AncientBrass Dragon
+Eri nyes
+Ancient WhiteDragon
+Githzerai Psion
+AnimalLord
+PirateAdmiral
+Pit Fiend
+Questing!(night
+CR21
+CR13
+AncientBlack Dragon
+AdultBrass Dragon
+Ancient Copper Dragon
+Adult WhiteDragon
+Arch-hag
+Beholder
+Lich
+Nalfeshnee
+Solar
+Rakshasa
+Shadow Dragon
+CR22
+Storm Giant
+AncientBronze Dragon
+Ultroloth
+AncientGreen Dragon
+ Nycaloth
+Hydra
+Vampire
+Elemental Cataclysm
+ofSecrets Treant
+Sphinx
+ Young Blue Dragon
+Spirit Naga
+CR14
+CR 23
+Thri-kreen Psion Young Silver Dragon
+AdultBlack Dragon
+AncientBlue Dragon
+TyrannosaurusRex
+Adult Copper Dragon
+Ancient Silver Dragon
+CR10
+VampireNightbringer 
+Death TyrantAnnihilation
+Blobof
+Aboleth
+Young Bronze Dragon
+Ice Devil
+\Empyrean
+Cultist Hierophant
+Young Green Dragon
+l<raken
+Cyclops Oracle
+CR 15
+Death Slaad
+CR9 
+Adult Bronze Dragon
+CR24
+Deva
+Abominable Yeti 
+Adult Green Dragon
+Ancient Gold Dragon
+Bone Devil Dire Worg
+_MummyLordAncientRed Dragon
+Brazen Gorgon Guardian Naga
+Purple Worm
+Clay Golem Haunting Revenant
+CR 25
+Salamander Inferno Master
+Cloud Giant Noble Prodigy
+Colossus
+Vampire Umbral Lord
+Fire Giant Performer Legend
+u
+CR30
+Glabrezu Spy MasterCR16z
+<(
+>-
+Tarrasque
+0
+ Stone GolemAdult Blue Dragon
+Gray Slaad
+ MONSTER LISTS
+APPE·NDIX B I
+
+[--- Page 387 ---]
+
+
+[--- Page 388 ---]
+
+

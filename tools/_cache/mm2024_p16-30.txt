@@ -1,0 +1,1887 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 16 ---]
+ANIMALLORD
+Immortal Regentofthe Wild
+Habitat:
+ Planar (Beastlands); Treasure: Relics
+Animal lordsare the immortal
+spiritsoflegendary
+animals.Theyserve as
+thedivineprotectorsof
+animals
+of theirkind, andtheyappear as hybrids
+ofhumanoids and theanimalstheydefend.They
+frequently change into giant, idealized versionsof
+theanimalsthey'reassociatedwith-albeitwith
+glowing eyes.Whencontendingwithpeople,
+they
+sometimes appear as humanlike beingswithsubtle,
+animal-like features. Nomatter theirappearance,
+animal lords exhibitthe instincts and predilections
+oftheanimalstheyrepresent, tempered 
+bytheirin-
+tellect and experience.
+Most animal 
+lords maketheirhomesintheBeast-
+lands,but theyoccasionallyjourneytotheFeywild
+or otheridyllic realms.They rarelytravelto theMa-
+terial Plane,makingexceptions 
+only whena world
+facesenvironmental disasterordrovesof
+animals
+are otherwise in jeopardy.
+Among thebest-known animal 
+lords are those
+thatrepresentcats, hawks, lizards, 
+and wolves,but
+.
+animal lords exist for beasts
+ofall types. Some an-
+imal lords even embody creaturesthatarerare or
+extinct on Material Plane worlds, like megafauna
+ordinosaurs. Usingtheir
+divine might, animal lords
+can summon spectral 
+animals, channel spiritual
+energy, and exhibit powers associated
+withone
+of threebroad groups: foragers, hunters,
+orsages.
+These powers are tied toananimal lord's person-
+ality and traits associatedwith the creatureit re-
+sembles. Roll onorchoose results from 
+the relevant
+Animal Lord Appearances table to inspire
+what
+creaturean animal lord resembles.
+FORAGER ANIMAL LORD APPEARANCES
+ldlO Bestial Shape 
+ldlO Bestial Shape
+7 Bear 
+6 Rabbit
+2 
+Bee 7 Rooster
+3 Bison 
+8 Sloth
+4 
+Capybara 9 
+Stag
+5 
+Carp70Vulture
+HUNTER 
+ANIMAL LORD APPEARANCES
+ldlO 
+Bestial Shape ldlO 
+Bestial Shape
+1
+WHILElDONTDENY THECOMPLIMENT,lASSURE Y O U ,I'M7 Alligator
+ 6 Mongoose
+,, "
+MOREAKINTOAGOO THANAPRETTY KITTY.
+2 Badger 7 
+Praying mantis
+<(
+-BROTHEROF SHADOWS,CAT LORDz
+::;
+3 Bat 8 Shark
+_J
+:::i
+LL
+f--
+:::i
+4 Cat
+ 9 Snake
+_J
+<(
+CY
+w
+_J
+5 Hawk70
+Wolf
+<(
+>
+\.
+___/
+ANIMAL LORD
+-------z~~.,-~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 17 ---]
+SAGEANIMALLORDAPPEARANCES
+ldlO Bestial Shape
+ldlO Bestial Shape 
+6Owl
+l Coyote 
+2 Crow 7 Salmon
+You CALLYOUR SELFH UNTER,B U T YOURFEA R MAKES YOU
+ Spider
+3 Elephant 8
+LIKEPREY.
+S MELL
+,,
+9Turtle
+4 Lizard 
+FLORD
+- WINDAND MooN,WOL
+10 Whale
+5Mouse
+ANIMALLORD
+Celestial,Neutral
+Medium 
+ft.Hit:
+RadiantRay.Ranged AttackRoll:+12, range 120 
+AC 19Initiative +19 (29)
+6)Radiant damage .
+HP323 (34d8+170)20 (4d6 +
+Speed 60 ft., Fly 60ft. (hover), Swim 60ft.
+Animal Spirit. The animal lord conjuresananimalspirit
+MO DSAVEMODSAVE
+MODSAVE
+ Dexterity
+thatstrikes at a creature and then disappears.
+25+7 +7CON 20 +5+ll
+STR24 +7 +7 D EX
+DC 20, one creature the animal lord can
+SavingThrow:
+Wis23+6+12CHA 22 +6 +6
+INT19+4+4
++6)Radiant dam-
+seewithin120 feet.Failure:28(4dl0
+age.Success:Halfdamage.FailureorSuccess:Oneof
+Perception +18,
+Skills Acrobatics +13,Athletics +13,
+thefollowingeffects occurs:
+Stealth +13
+Resistances Cold, Fire, Necrotic, Psychic, Radiant
+Fortify (Forager Only). The animal lord gains 20 Tempo-
+I<
+Immunities Charmed, Frightened, Stunned
+raryHitPoints.
+28
+Senses Truesight 120 ft.; Passive Perception 
+asPrey (Hunter Only). The animal lord has
+Marked
+Languages All
+target until the
+. Advantage on attack rolls against the 
+CR 20 (XP 25,000;PB+6)
+turn.
+startofthe animal lord's next 
+Pesky Swarm (Sage Only). The target has Disadvantage
+TRAITS
+the endofits
+on attack rolls and ability checks until 
+Animal Lordship. An animal lord represents a Forager,
+next turn.
+Hunter,orSage(DM'schoice), which determines cer-
+ofthefollowing
+Spellcasting. The animal lord casts one
+tain traits in this stat block.
+spells, requiring no Material components and using
+.
+Ifthe animal lord fails a
+Legendary Resistance (4/Day).
+_masthe spellcasting ability (spell save DC 20):
+Wisdo
+succeed instead.
+saving throw,itcan ~hooseto
+At Will: AnimalFriendship,AnimalMessenger,Speak
+Lordly Presence. Wisdom SavingThrow:DC 20, any en-
+with Animals
+emythatstarts its turn in a 30-foot Emanation originat-
+2/DayEach: Awaken, Greater Restoration
+ingfromthe animal lord.Failure:The target suffers one
+1/DayEach (Sage Only): Animal Shapes, Sunburst
+effects:
+ofthe following 
+BONUS ACTIONS
+The target has the Charmed
+Captivated (Forager Only). 
+Shape-Shift. The animal lord shape-shifts into a Huge
+turn. While
+condition until the endofits next 
+orsmaller versionofthe animalitrepresents or a Me-
+condition.
+Charmed, the target has the Incapacitated 
+orSmall Humanoid, or itreturns to its true form .
+dium 
+Fearful (Hunter Only). The target has the ~rightened
+other than its size, are the same in
+Its game statistics, 
+turn.
+condition until the endofits next 
+equipment it is wearingor carrying isn't
+each form. Any 
+O (3d6) Psychic
+Mired (Sage Only). The target takes l 
+transformed.
+damage, and the target is magically bewildered until
+the endofits next turn. While bewildered, the target
+LEGENDARYACTIONS
+subtracts l d4 from its saving throws.
+Legendar y ActionUses: 3. Immediatelyafter anoth er
+ The animal lord has Advantage on animallord can expend ause to ta ke
+Magic Resistance.creature's turn, th e
+/
+lordregainsall
+oneof the fo llowing actions.The anima l
+magical effects.
+saving throws against spells and other 
+turns.
+expended uses at the startofeachofits 
+ACTIONS
+to its Speed
+Feral Strike. The animal lord moves up 
+Multiattack. The animal lord makes two attacks, using
+without provoking Opportunity Attacks, and it makes
+or Radiant Ray in any combination, and uses Ani-
+Rend one Rend attack.
+mal Spirit.
+Radiant Strike. The animal lord makes one Radiant
+ reach 5 ft. Hit: 14 (2d6
+Rend. MeleeAttack Roll:+l3,
+Ray attack.
++ 7) Slashing damage plus 7 (2d6) Force damage.
+L L ORD/\15
+ANIMA 
+- -----------------==~c...--~~ s::.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 18 ---]
+ANIMATED
+OBJECTS
+Mundane Objects
+CometoLife
+ANIMATED ARMOR
+Habitat: Urban; Treasure:
+ None
+Animatedsuits
+of armormight move
+withsteady
+Magic
+canmanipulatemundane
+items, compelling
+deliberateness
+or awkward
+gaits.They're
+often
+them to perform
+simple tasks. 
+Suchanimateobjects
+"
+constructedfrom
+plate armor,making
+themeasy to
+might
+beunassuming
+toolsordecorations
+thatcan
+mistake for soldiers
+orhelmedhorrors.
+Othertypes
+defendtheircreator. 
+These objects follow simple
+of armor oreven
+metalstatuarymight 
+also become
+instructions 
+from whatever
+forceormagic-user 
+cre-
+animated
+armor.
+ated them. If leftunattended,
+theymight 
+defendan
+areafor agesorrepeat
+ataskuntilthey 
+wearout.
+ANIMATEDBROOM
+Roll 
+onorchoose aresult 
+from the Animated
+Animated brooms
+keeptheir surroundings
+tidy and
+Object Catalysts table
+toinspirewhat sort
+ofmagic
+defendthem when
+necessary.Launching into
+the
+motivates
+an ambulatory
+item.
+air,these brooms
+dartabout,attacking
+foes from
+unexpectedangles.
+ANIMATEDOBJECTOtherflying objects, like ani-
+CATALYSTS
+matedtoolsor
+staffs,mightalso use 
+thisstatblock.
+ldl0The Object 
+Was AnimatedBy
+...
+l A Celestialor
+Fiend using theobject 
+topro-
+ANIMATED 
+FLYINGSWORD
+tect ortorment
+amortal.
+Animatedflying 
+swords move asifwielded
+by un-
+2 A
+combinationofmagic 
+and technology, such
+seenwarriors.Whether
+an animated
+blade is newly
+as
+alchemyoralien science.
+forged
+ora constellation
+ofbrokenfragments,
+the
+object behavesthe
+same.Otherweapons 
+3 from the
+The essenceofsomeone 
+transformed
+by a
+Player's Handbook
+canalso beanimated 
+anduse
+supernatural trickster.
+game statistics similar 
+to those here.
+4Feyaspart
+oftheirgamesorwiles.
+5 Happenstance,ANIMATED
+with the item gaining Rua
+a sem- OFSMOTHERING
+blance
+oflife after a hundred 
+yearsofuse.
+Animated rugsofsmothering 
+might attack 
+any
+6 
+A magic-user in need
+ofa guardian or servant.creaturethatstepson 
+them,or theymight be
+passed off as superficially similar magic items, 
+such
+7 The song
+ofa magicalinstrument.
+as Carpets
+ofFlying,and attack 
+those who speak a
+8 Aspiritpossessing 
+the object.
+supposed command 
+word. Deadly tapestries, 
+furs,
+9 Wild
+magic, a spellthat went
+awry,ora
+andsimilar items also use 
+this stat
+block.
+chaotic 
+Artifact.
+10 The willofa 
+powerful psychic being.
+ANIMATED BROOM
+SmallConstruct, Unaligned
+ANIMATED ARMOR
+AC15
+In itiative +5 (
+15)
+HP14
+(4d6)
+Medium Construct, Unaligned
+Speed 5 ft.,
+Fly50 ft. (hover)
+AC18
+Initiative +2 
+(12)
+MODSAVE
+MODSAVE
+MODSAVE
+HP33(6d8 +6)
+STR 10 
++0 +0DEX17 +3
+ +3 C O N10 +0 
++0
+Speed
+25ft.
+INT1-5 
+-5W is 5 - 3 - 3
+ C H A 1-5 -5
+MODSAVE
+MODSAVE
+MODSAVE
+ST R 14 +2 +2
+DEX11+0 +0CON
+13+l+l
+Immunities Poison, Psychic; Charmed, Deafened,
+INT
+1 -5 - 5 Wis
+ 3 - 4 - 4 C H A 
+1 -5 - 5
+Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
+Senses Blindsight 60 ft.; Passive Perception 7
+Imm unities
+ Poison, Psychic; Charmed, Deafened,
+Languages None
+Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
+CR1/4 (XP 50;PB
++2) -
+Senses Blindsight 60 ft.; Passive Perception 6
+Languages None
+T RAIT S
+CR1 (XP 200;PB
++2)
+Flyby.The broom doesn't 
+provoke 
+an Opportunity At-
+tack when it flies 
+outofan enemy's reach .
+ACTIONS
+Multiattack.
+ The armor makes two 
+Slam attacks.
+ACTI O NS
+Slam.
+ Melee AttackRoll:+4, reach 5 ft.
+ Hit: 5(1
+d6 + 2)Slam.
+ Melee AttackRoll:+5, reach 5 ft.
+ Hit: 5(1d4 +
+3)
+Bludgeoning damage.
+Bludgeoning damage.
+ANIMATED OBJECTS
+16
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 19 ---]
+••
+ANIMATEDRueOFSMOTHERING
+•
+LargeConstruct, Unaligned
+1
+L Y I N NEX.TTOTHECHESTWERETHEBONES O FCAP'N
+1
+S T Y
+ScoRN BLADEHIMSELF, STILLCLUTCHINHISRU
+AC12Initiative +4(14)
+•S WORD.IMAGIN EMYSURPRISE WHENTHEBLADE FLEW
+HP27(5dl0)
+FRO M H I SBONYGRASP.'STILLGOTTHESCAR.
+eed10 ft.
+•Sp
+ROGUE
+-LEVITYQUICKSTITCH,
+MODSAVEMODSAVE
+MODSAVE
+DEX14+2 +2CON10+O+0
+STR17 +3 +3
+3-4 -4CHA1 - 5 - 5
+INT 1-5 -5Wis 
+ANIMATEDFLYING SWORD
+nities Poison, Psychic; Charmed, Deafened ,
+Immu 
+Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
+SmallConstruct, Unaligned
+Senses Blindsight 60 ft.; Passive Perception 6
+AC17Initiative +4(14).
+ None
+Languages
+HP 14(4d6)
+CR2(XP450;PB+2)
+Speed 5 ft.,Fly50 ft. (hover)
+MODSAVEMODSAVE
+MODSAVE
+ACTIONS
+12+1 +1DEX15+2+4CON11+O +O
+STR
+reach 5 ft.Hit: 10 (2d6
+Smother. Melee AttackRoll:+5, 
+INT1-5 -5Wis 5 -3 -3CHA1-5 -5
++3)Bludgeoning damage.Ifthe targetisa Medium or
+itthe Grappled con-
+smaller creature, the rug can give
+ies Poison, Psychic; Charmed, Deafened,
+Immunit 
+DC 13)instead of dealing damage. Until
+dition (escape
+ Petrified, Poisoned
+Exhaustion, Frightened, Paralyzed,
+Re-
+the grapple ends, the target has the Blinded and
+Senses Blindsight 60 ft.; Passive Perception 7
+issuffocating, and takes 10 (2d6 +
+strained conditions,
+Languages None
+3)Bludgeoning damage at the start of each of its turns.
+50;PB+2)
+CR1/4(XP 
+uThe rug can smother only one creature at a time.
+z
+ACTIONS
+2
+While grappling the target, the rug can't take this ac-
+0
+0
+it takes (round down),
+zSlash. Melee Attack Roll: +4, reach 5 ft. Hit: 6(1d8 +2)tion, the rug halves the damage 
+0
+2
+Slashing damage.and the target takes the same amount of damage.
+V7
+~
+ANIM ATED OBJE0TS
+27
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 20 ---]
+ANKHEG
+Burrowing Insectile Predator
+Habitat: Forest, Grassland; Treasure: None
+ankhegsburrowcloseto thesur-
+Oversize insects, 
+labyrinths.
+face,creatingsprawlingunderground
+forth todissolveand
+From these tunnels,they burst 
+usingtheiracid-dripping
+devoursmallercreatures
+mandiblesandspraysofdigestive enzymes.
+baneoffarmers whose grazing
+Ankhegs are the
+preyforthesemonsters.Many
+livestock are easy
+but those in placeswithample
+ankhegshuntalone,
+in nestsofseveral dozen and
+food might collect 
+Ankhegnestscanbe chal-
+threatenwhole towns.
+tunnels are
+lenging to wipeoutunlessthemonsters' 
+clearedout and theireggs destroyed.
+ANKHEG
+cylindrical and are
+Ankheg tunnels are roughly 
+Unaligned
+litteredwith theremainsofankhegs' mealsLargeMonstrosity) 
+often 
+treasures. Rollon orchoose a
+and subterranean 
+AC 14Initiative +0(l0)
+Anlcheg Tunnel Discoveries tableto
+result fromthe
+HP45(6dl0+12)
+be.found inanankheg's tunnel.
+inspirewhatmight 
+Speed 30 ft., Burrow 10 ft.
+MODSAVEMODSAVEMODSAVE
+ANKHEG TUNNELDISCOVERIES
+17+3 +3DEX11+O+OCON14+2 +2
+STR
+ld8Inside the Ankheg TunnelIs...
+13+l +lCHA6-2 -2
+INTl-5 -5Wis
+lAnother tunnel (either naturalorofworked
+Senses Darkvision 60 ft., Tremorsense 60 ft.;
+stone)thatextendsinto the Underdark.
+11
+Passive Perception
+by the tunnel.
+2 A buried ruinorgrave exposed 
+ None
+Languages
+450;PB+2)
+CR2 (XP 
+3 A clusterof ld4fresh ankheg eggsthatcan be
+broken and usedasvialsofAcid.
+TRAITS
+A dead ankheg and evidenceofa deadlier sub-
+4 
+through solid rock
+Tunneler.The ankheg can burrow 
+terranean predator.
+0-foot-diameter
+athalfits Burrow Speed and leaves a l 
+a Shield.
+5 A pieceofankheg carapace usableas
+tunnel in its wake.
+puddleofacid.
+6 A pouch with 2d6 GP near a 
+ACTIONS
+7 A stray farm or woodland animal.
+Bite. Melee Attack Roll: +5 (with Advantageifthe target
+by the ankheg), reach 5 ft. Hit: 10 (2d6 +3)
+8 A viciously mauled scarecrow.i_s Grappled 
+(ld6) Acid damage.Ifth~ tar-
+Slashing damage plus 3 
+g~t is a Large or smaller creature, it has the Grappled
+condition (escape DC 13).
+,_..THOUGHT H E YFEEDO N THINGSU NDER THESOIL,
+<(
+>
+<(
+ MEAT-YOURC ATTLE,YOURDOGS,
+ANKHEGS PR EFERLIVE
+u
+12,
+Acid Spray (Recharge 6). Dexterity Saving Throw: DC 
+0
+u
+OR YOU.
+z
+ Fail-w
+each creature in a 30-foot-long, 5-foot-wide Line.
+L
+JENKI N S, S A G E O FKlRW A K
+-rEIL
+0
+ Success: Half d~mage.0
+ure: 14 (4d6) Acid damage.
+_____/
+18 j\ ANKHEG
+---------~?__,~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 21 ---]
+ARCANALOTH
+Yugoloth of Magical Manipulation
+Habitat: Planar (Lower Planes); Treasure: Arcana
+While all yugoloths are fiendish manifestations of
+wickedness and greed, arcanaloths bend their con-
+siderable intellects toward hoarding and exploiting
+secrets. They then deploy these secrets to ensnare
+countless victims and lesser villains, beguiling foes
+with false promises and powerful magic.
+Arcanaloths possess considerable spellcasting
+prowess and frequently disguise themselves with
+magic. While they prefer to let magical servants
+or other yugoloths do their fighting for them, ar-
+canaloths can defend themselves with arcane might,
+banishing opponents into the pages of their magic
+tomes.
+ARCANALOTH
+Medium Fiend (Yugo/0th), Neutral E1Ji!
+AC 17 Initiative +5 (15)
+HP 175 (27d8 + 54)
+Speed 30 ft., Fly 30 ft. (hover)
+Fiendish Burst. Melee or Ranged Attack Roll: +9, reach 5
+MOD SAVEMOD SAVEMOD SAVE
+ft. or range 120 ft. Hit: 31 (4dl2 + 5) Necrotic damage.
+STR 17 +3 +3DEX 12 +l +SCON 14 +2 +6
+Banishing Claw (Requires Soul Tome). Melee Attack Roll:
+INT 20 +5 +9Wis 16 +3 +7CHA 17 +3 +3
++9, reach 5 ft. Hit: 70 (2d4 + 5) Slashing damage plus
+19 (3d12) Psychic damage. If the target is a creature,
+Ski lls Arcana +9, Deception +7, Insight +7, Perception +7
+it is subjected to the following effect. Charisma Saving
+Resistances Cold, Fire, Lightning
+Throw: DC 17. Failure: The target is trapped in a demi-
+Immunities Acid, Poison; Charmed, Poisoned
+Senses Truesight 120 ft.; Passive Perception 17plane inside the Soul Tome. While trapped there, the
+Languages All; telepathy 120 ft.target has the Incapacitated condition. At the end of
+CR 12 (XP 8,400; PB ,.+4)
+each of its turns, the target repeats the save, escaping
+the tome on a success. When the target escapes, it
+TRAITS
+appears in the space it left or, if that space is occupied,
+Fiendish Restoration. If the arcanaloth dies outside
+the nearest unoccupied space.
+Gehenna, its body dissolves into ichor, and it gains a
+If the target fails three of these saves while in the
+new body instantly and revives with all its Hit Points
+demiplane, it becomes bound to the tome and can es-
+in Gehenna.
+cape only if the tome is reduced to 0 Hit Points.
+Magic Resistance. The arcanaloth has Advantage on
+Spellcasting. The arcanaloth casts one of the following
+saving throws against spells and other magical effects.
+spells, requiring no Material components and using In-
+telligence as the spellcasting ability (spell save DC 17):
+Soul Tome. The arcanaloth has a magic tome. While
+holding or carrying the tome, the arcanaloth can use its
+At Will: Alter Self, Detect Magic, Identify, Mage Hand,
+Banishing Claw action.
+Prestidigitation
+The tome has AC 17; HP 35; and Immunity to Ne-
+1/Day Each: Contact Other Plane, Detect Thoughts, Di-
+crotic, Poison, and Psychic damage. The tome regains
+mension Door, Mind Blank
+all its Hit Points at the end of every turn, but it turns to
+BONUS ACTIONS
+dust if reduced to 0 Hit Points or when the arcanaloth
+dies. If the tome is destroyed, the arcanaloth can create
+Teleport. The arcanaloth teleports up to 30 feet to an
+a new one when it finishes a Short or Long Rest.
+unoccupied space it can see.
+Vl
+<(
+,z
+ACTIONS
+REACTIONS
+<C
+lJ
+~
+u
+Multiattack. The arcanaloth makes three Fiendish
+Counterspe/1. The arcanaloth casts Counterspe/1 in re-
+n:::
+~
+CL
+Burst attacks. It can replace one attack with a Banishingsponse to that spell's trigger, using the same spellcast-
+z
+I
+0
+Claw attack.ing ability as Spellcasting.
+~ ~ ------~-A_R_c_.A_ N_A_L_OTH t\_ 19
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 22 ---]
+l7 E H _I p E O P LE W HO KNOW T OO M U C H G R O W O L D B E FOR E
+•••
+TH EIR TIME . ASK M E YOUR QUES T IONS , B U T B E CERT A I N•
+T H AT E VE RY SECR E T HAS I T S C O ST.
+ARCH - HAG
+- BABA Y AGA , M O THER O F W ITC H E S
+Hag of Forbidden Secrets and Magical Malice
+Habitat: Any; Treasure: Arcana
+Every arch-hag has a unique weakness tied to a
+Immortal and unpredictable, arch-hags hoard se-
+fateful encounter the hag had in the past or some-
+crets and strike magical bargains, altering fate to
+thing that embodies the antithesis of the hag's
+indulge their fickle whims. These timeless schem-
+magic. A hag goes out of its way to keep this vulner-
+ers pursue the secrets of the multiverse and work
+ability secret. Although an arch-hag isn't physically
+strange magic in pursuit of their inscrutable goals.
+harmed by its weakness, it can be destroyed only
+Arch-hags are unpredictable, self-interested, and
+whlle its weakness is nearby. Roll on or choose a re-
+greedy, with bizarre fascinations and affectations.
+sult from the Arch-hag Anathemas table to inspire
+Nevertheless, they often make deals to further their
+an arch-hag's weakness.
+plots. These hags are fonts of secret knowledge,
+particularly lore regarding forbidden magic and
+ARCH-HAG ANATHEMAS
+multiversal secrets. They might share their knowl-
+edge, but their secrets always have a price. In tradeldlO The Arch-hag's Weakness Is ...
+for their secrets, arch-hags might request peculiar
+l The bones of the arch-hag's first love.
+errands, valuable magic items, or preternatural cur-
+2 A devil's tear.
+rency, like one's memories, a year of one's life, or the
+3 An egg with a miniature castle inside.
+ability to cry.
+Most arch-hags avoid battle, but if forced to fight,
+4 A flower that blooms only when time stops.
+they unleash dangerous magic, such as spectral
+5 A gift from the hag's twin.
+claws, arcing lightning, and mind-bending spells. An
+6 The multiverse's worst pun.
+arch-hag can curse other magic-users, confound-
+7 One of the hag's missing teeth.
+ing the spellcasters' incantations and forcing the
+spellcasters to say the opposite of what they mean.
+8 Snow from the top of Mount Celestia.
+u
+V1
+Even if an arch-hag is brought low, its preparations
+:=i
+__J
+9 A star pulled from the sky.
+w
+-
+a~low it to magically slip away and begin plotting its
+0
+-
+Cl'.'.'.
+10 A thread from the Lady of Pain'$ robes.<(
+revenge.
+0
+~
+ARCH - HAG
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 23 ---]
+take
+ability checkstheymakewhen they
+from any
+ARCH-HAGLAIRS
+Influence action.
+the
+Magic.Wheneveracreature other
+such as aMeddlesome 
+creates a magical home, 
+Each arch-hag 
+Rest
+hagorits allies finishes a Long 
+cloud,thanthe 
+mansionatop astorm
+hidden demiplane, a
+lair,the nexttimethat
+whilewithin1 mileof the
+Yaga-ahut
+thecaseof thearch-hagBaba
+or-in
+a spell slot, it also casts
+creaturecasts a spell using 
+these lairs
+chicken legs. The interiorsof
+atopgiant
+The spell usesthe
+Confusioncenteredonitself. 
+features.
+changeorexhibit bewildering 
+frequently 
+anddoesn'trequire
+creature'sspellcasting ability
+anarch-hag's lair is altered
+The regioncontaining
+Concentration.
+thefollowing effects:
+byits presence,creating
+ormoves its lair else-
+Ifthearch-hag is destroyed
+Creatures(excludingthehag and
+Lapsus Linguae.
+where, theseeffects end immediately.
+1 mileofthelairsubtractldlO
+its allies)within
+ARCH-HAG
+LargeFey,Neutralf[)fl
+reach
+Me leeorRanged AttackRoll:+ 14,
+SpectralClaw.
+16(26)
+AC20 Initiative+
+ 17(3d6 +7)Force damage.
+10ft.orrange 60 ft.Hit:
+(29dl0+174)
+HP333
+ithas the
+Ifthe targetisa Largeorsmaller creature,
+Speed 40 ft.
+MODSAVEMODSAVE
+MODSAVEProne condition .
+15 +2 +9CON23+6 +6
+STR24 +7+7DEX
+DC 22, each
+Wave.Dexterity SavingThrow:
+Crackling
+25 +7 +7
+ +4Wis 19 +4+11 CHA
+INT19+4
+Cone.Failure:32(Sd12) Lightning
+creature in a60-foot
+The
+Halfdamage.FailureorSuccess:
+damage.Success:
++21
+14,Perception +11,Persuasion
+Skills Deception +
+ofthe hag's next turn. The
+targetiscursed until the end
+Resistances Cold, Fire, Psychic
+target can't take Reactions until the curse ends.
+ Charmed, Exhaustion, Frightened
+Immunities
+21
+ Truesight 60 ft.; Passive Perception
+Senses
+followingspells,
+ The hag casts oneofthe
+Spellcasting.
+Languages All
+components and using Charisma
+requiring no Material 
+PB+7)
+Challenge21(XP 33,000,or41,000 in lair;
+save DC 22):
+asthe spellcasting ability (spell 
+Door,DispelMagic,
+At Will: Detect Thoughts, Dimension
+TRAITS
+Hypnotic Pattern
+twohag
+Magic.While within30 feetofat least
+Coven 
+MassSuggestion, Modify Memory,
+2/DayEach:
+ofthe following spells,
+allies, the hag can cast one
+PlaneShift
+, using the spell's .
+requiring no Material components 
+asthe spell-
+normal casting time, and using Intelligence
+ACTIONS
+BONUS 
+ Augury,Find Familiar,
+casting ability (spell. save DC 19):
+ Each creature cursedbythe hag and
+Witch Strike.
+Scrying,orUnseen Servant. The
+Identify, Locate Object, 
+14(4d6) Lightning damage.
+within 60 feetofittakes
+trait to
+hagmustfinish a Long Rest before using this
+cast that spell again.
+REACTIONS
+Lair).If
+or 5/Dayin
+Legendary Resistance (4/Day, 
+ The hag casts Counterspell in response
+Tongue Twister.
+tosuc-
+itcan choose
+the hag fails a saving throw,
+ trigger, using the same spellcasting abil-
+to thatspell1s
+ceed in stead.it
+Ifthe target fails its saving throw,
+ityasSpellcasting.
+ofits next turn. Until the curse
+iscursed until the end
+ The hag has Advantage on saving
+Magic Resistance.
+can't cast spells with a Verbal com-
+ends, the target 
+other magical effects.
+throws against spells and 
+of
+itspeaks, it says the opposite
+ponent, and when
+HitPoints,it
+Escape. When the hag drops to O
+Spiteful 
+what itmeans.
+its anathema(athing
+ifitiswithin 30 feetof
+dies only
+hated thing). Oth-LEGENDARYACTIONS
+DM choosesasthe hag's most 
+the 
+to lHitPoint and teleports to
+erwise, the hag drops ionUses: 3 (4in Lair).Immediately after
+Legendary Act
+1
+to take
+ures turn, the hag can expend ause 
+anothercreat
+to the plane
+it can't return 
+a harmless demiplane, and 
+ Thehag regains allexpended
+oneof the follo wingC}ctions.
+away, each
+it left for 2d6 days. When the hag teleports 
+ts turns.
+uses at the start oj each of i
+ofthe space it leftis cursed.
+creature within 60 feet
+Swipe. The hag makes one Spectral Claw attack.
+Hag's 
+Until the curse ends, a creature has Disadvantage on
+ability checks and saving throws, and the hag knows its
+to cast
+Magic. The hag uses Spellcasting 
+Malicious 
+location anywhere in the multiverse.
+ The hag can't take
+Door or Hypnotic Pattern.
+• Dimension 
+ofits next turn .
+this action again until the start
+ACTIONS
+two Spectral Claw attacks
+Multiattack. The hag makes 
+and uses Crackling Wave.
+-HAG 6._ ~ I
+AROH 
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 24 ---]
+ASSASSIN
+Medium or Small Humanoid, Neutral
+AC 16 Initiative+ l 0 (20)
+HP 97 (1 Sd8 + 30)
+Speed 30 ft.
+MOD SAVE MOD SAVE MOD SAVE
+STR 11 DEX 18 CoN 14
++0 +0 +4 +7 +2+2
+Wis 11 CHA 10
+INT 16 +3 +6 +0 +0 +0+0
+Ski lls Acrobatics +7, Percept ion +6 , St ealt h + 10
+Resistances Poison
+ASSASSIN
+Gear Light Crossbow, Shortsword , Studded Leather
+Contract I(iller
+Armor
+Habitat: Any; Treasure: Implements, Individual
+Senses Passive Perception 16
+Languages Common, Thieves' Can t
+Assassins are professi9nal killers sk.illed at stealth-
+CR 8 (XP 3,900; PB +3)
+ily approaching their victims and striking unseen.
+Most assassins kill for a reason, perhaps hiring
+TRAITS
+themselves out to wealthy patrons or slaying for an
+Evasion. If the assassin is subjected to an effect that
+unscrupulous cause. They use poisons and other
+allows it to make a Dexterity saving throw to take only
+deadly tools, and they might carry equipment to
+half damage, the assassin instead takes no damage if it
+help them break into secure areas or avoid capture.
+succeeds on the save and only half damage if it fails. It
+Many assassins adhere to a professional code or
+can't use this trait if it has the Incapacitated condition.
+exhibit some signature quirk. Roll on or choose a
+result from the Assassin Modus Operandi table to
+A CTIO NS
+inspire an assassin's distinctive habits.
+Multiattack. The assassin makes three attacks, using
+Shortsword or Light Crossbow in any combination.
+ASSASSIN MODUS OPERANDI
+Shortsword. Melee Attack Roll: +7, reach 5 ft. Hit: 7 (1 d6
+ld6 The Assassin Is Infamous For ...
++ 4) Piercing damage plus 17 (Sd6) Poison damage,
+1 Arranging their victims in artful tableaux.
+and the target has the Poisoned condition until the
+1
+2 Hiding within large objects, such as suits of
+start of the assassin's next turn.
+armor or hollow furnishings.
+Light Crossbow. Ranged Attack Roll: +7, range 80/320 ft.
+3 Leaving behind a signature item, such as a
+Hit: 8 (ld8 + 4) Piercing damage plus 21 (6d6) Poi-
+calling card, flower, seashell, or tooth.
+son damage.
+4Posing as celebrities, holy people, or servants.
+l/1
+UJ
+BONUS A CTIONS
+N
+UJ
+5Taking trophies from their victims.z
+w
+,
+Cunning Action. The assassin takes the Dash, Disen-2
+0
+:,,::
+6Using poison with a distinctive color or smell.
+gage, or Hide action.
+>
+~~ /2 ASSAS-SIN
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 25 ---]
+AWAKENED PLANTS
+Vegetation Given Magical Life
+ Forest; Treasure:None
+Habitat:
+Magiccaninvest plantswithmobility, sapience,and
+ Awakenor theinfluence
+even a voice. Spells such as
+mightbring mundane
+of otherplanesofexistence 
+remarkable plants
+vegetation to life, whileother
+mightnaturallyhave these features.
+AWAKENED SHRUB
+anysort ofsmall plant,
+Awakenedshrubs canbe
+Theyoften
+from forest bushes to clustered flowers.
+appear nearawakenedtrees orin regions imbued
+withprimal magic. Some have whimsical appear-
+ancesorfoliage resemblingrudimentaryfacial
+otherslook like animatetopiary
+features, while
+creatures.
+AWAKENEDTREE
+Some awakened trees standin still, meditative
+easy to mis-
+states for long periods, making them
+regions
+take for normal plants, while others patrol 
+of naturalpower. Awakened trees are sometimes
+to life by influences fromtheFeywild,
+brought 
+themcolorful and endlessly blooming,
+which make
+coversthem with
+orby Shadowfell energy, which 
+or makes them look lifeless.
+grotesque burls 
+JUST B E C AUSE WEPROT E C T THEF O R ESTDOESN'TM EAN
+S S .
+I T ' S DE F E NSELE
+- R 1v ERGLEA M , P IX.I E
+AWAKENED TREE
+AWAKENED SHRUB
+Huge Plant Neutral
+SmallPlant, Neutra l
+1 
+(8)
+AC13In iti ative-2
+9lnitiative-l(9)
+AC
+14)
+HP 59 (7dl 2 +
+HP 10(3d6)
+/
+Speed 20 ft.
+Speed 20ft.
+SAVEMODSAVEMODSAVE
+MODSAVEMODSAVEMOD
+MODSAVE
+STR19+4 +4DEX6 - 2-2 CON15+2 +2
+STR 3-4- 4DEX8 -1 - lCONll+O+0
+7-2 -2
+CHA6-2 -2INT10+O +OWis 10+O +OCHA
+INT10+O +OWis 10+O +O
+VulnerabilitiesFi re
+VulnerabilitiesFire
+Resistances Bludgeoning, Piercing
+Resistances Piercing
+Senses Passive Perception 10
+Senses Passive Perception 10
+Languages Common plus one other language
+Languages Common plus one other language
+CR 2 (XP 450;PB+2)
+CR O(XP10; PB+2)
+:J
+t;
+ACTIONS
+ACTIONS
+w
+lJ
+z
+<(
+0...
+Slam. Melee Attack Roll: +6, reach 10 ft. Hit: 14 (3d6 .
+Attack Roll:+1,-reach 5 ft. Hit: 1 Slash-
+Rake. Melee 
+:,,<'.
+u
++ 4) Bludgeoning damage.
+ing damage.
+>
+ PLA NTS
+AWA K ENED
+-----------.-::~:.....-
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 26 ---]
+AXE
+BEAKS
+Flightless 
+Avian Predators
+Habitat: 
+Arctic, Grassland,Hill;
+Treasure: None
+Axe beaks are 
+flightless, birdlike
+creatures with
+distinctive axe-shaped beaks. Swift 
+predators,
+they
+chase downprey
+and usetheirbeaks 
+to hack
+throughfoliage
+protecting their
+quarry. Axe beaks
+live in varied environments. 
+Colorfully plumed axe
+beaks race across tropical plains, while axe beaks
+with snowy
+feathershunt the 
+tundra.
+Axe beaks 
+are difficult to train,
+but those hatched
+andraised in 
+captivity can
+become reliable mounts.
+AXEBEAK
+Alone
+orin small groups, axe beaks 
+stalk prey
+to
+feed
+theirflocks.Whenworking
+together, axe beaks
+userudimentary
+tactics,
+withsome distracting
+threats
+while others strike 
+vulnerabletargets or
+rush 
+youngaxe beaks to 
+safety.
+r
+GIANT 
+AXE BEAK
+Giant axe beaks typically dwell in secluded, prime-
+val realms, such as isolated islands
+or underground
+wildernesses. 
+They often compete
+withdinosaurs
+and other
+giant beasts for territory.
+GIANT
+AXE BEAK
+HugeMonstrosity, Unaligned
+THETHING
+' SGOTAN AXEFORAFACE
+A N D AGIANT,ANGRY
+AC 15
+Initiative
+ +5(15)
+ROOSTER
+FOREVERYTHINGE LSE-
+O F C OURSE1WANTTO
+HP 84 (8dl 2 +
+32)
+RIDEI T_/
+Speed50ft.
+-BATLEY 5U MMERFOOT,
+ADVENTURER
+MODSA
+VEMODSAVE
+ MODSAVE
+STR21+5 +5
+DE X14+2+2 
+CON 19+4 +4
+INT3-4
+- 4 Wis12+l +l
+CHA5 -3 - 3
+AXE BEAK
+Skills
+ Perception +4
+Large
+Monstrosity, Unaligned
+Senses Passive Perception
+14
+ACLanguages
+11 None
+Initiative +1 (
+11)
+HP19(3dl0 +CR5(XP1,800;
+3)PB+3)
+Speed 50 ft.
+ACTIO
+N S
+MODSAVE
+MODSAVE 
+MODSAVE
+STR14
++2+2DEX12
++l+l CoN12 Multiattack. The axe beak makes one Sharpened Beak
++l +l
+attack and one Talons attack.
+INT 2 - 4-4w,s10 
++0+0CHA5 - 3 - 3
+Sharpened 
+Beak. Melee AttackRoll:
++8, reach 10 ft.Hit:
+Senses Passive Perception 
+10
+18 (2dl2 +
+5)Slashing damage, and a creature within
+Langu ages None
+5 feet of the target (axe beak's choice) takes 6 (ldl2)
+CR
+1/4(XP 50;PB+2)
+Slashing damage.
+ACTIONS
+UJ
+Talons. Melee 
+AttackRoll:+8 , reach 5 ft.
+ Hit: 14 (2d8
+z
+0
+Beak. f-
+Melee Attack Roll: +4, reach 5 ft.
+ Hit: 6(1d8 +
+2)+5)Piercing damage. 
+If the target 
+is a Large or smaller
+l/1
+X
+uJ
+Slashing damage._J
+creature, 
+it has the Prone condition.
+<t:
+\.
+j
+AXE BEAKS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 27 ---]
+AZERS
+Fiery Smiths of Living Metal
+Habitat: Mountain, Planar (Elemental Plane of Fire);
+Treasure: Armaments, Individual
+Azers are living bronze folk who work the primal
+elements of creation to craft weapons and magical
+wonders among the multiverse's mightiest infernos.
+AZER PYROMANCER
+Azer pyromancers conjure flames from the Ele-
+mental Plane of Fire to defend themselves and stoke
+magical forges.
+AZER SENTINEL
+Azer sentinels defend their communities' smiths and
+channel their flames through their weapons.
+AZER PYROMANCER
+Medium Elementa( Lawful Neutral
+AC 18 Initiative +2 (12)
+HP 97 (l 3d8 + 39)
+Speed 30 ft.
+MOD SAVEMOD SAVEM OD SAVE
+STR 15 +2 +2DEX 14 +2 +2CoN 16 +3 +6
+INT 12 +l +lWis 18 +4 +7CHA 13 +l +l
+Skills Arcana +4, Perception +7
+Immunities Fire, Poison; Poisoned
+Senses Passive Perception 17
+AZER SENTINEL
+Languages Primordial (lgnan)
+CR 6 (XP 2,300; PB +3)
+Medium Elemental, Lawful Neutral
+AC17Initiative+l (11)
+TRAITS
+HP 39 (6d8 + 12)
+Fire Aura. At the end of each of the azer's turns, each
+Speed 30 ft.
+creature of the azer's choice in a 5-foot Emanation
+MOD SAVEMOD SAVE MOD SAVE
+originating from the azer takes 11 (2dl0) Fire damage
+STR 17 +3 +3 D EX 12 +l +l CON 15 +2 +4
+unless the azer has the Incapacitated condition.
+Wis 13 +l +l CHA 10 +O +O
+INT 12 +l +l 
+Illumination. The azer sheds Bright Light in a 10-foot
+Immunities Fire, Poison; Poisoned
+radius and Dim Light for an additional 10 feet.
+ISenses Passive Perception 11
+ACTIONS
+Languages Primordial (lgnan)
+CR 2 (XP 450; PB +2)
+Multiattack. The azer makes two Flame Burst attacks.
+0
+Flame Burst. Melee or Ranged Attack Roll: +7, reach 5 ft.
+TRAITS
+or range 120 ft. Hit: 15 (2dl0 + 4) Fire damage.
+Fire Aura. At the end of each of the azer's turns, each
+Spellcasting. The azer casts one of the following spells,creature of the azer's choice in a 5-foot Emanation orig-
+requiring no Material components and using Wisdom
+inating from the azer takes 5 (ldlO) Fire damage unless
+as the spellcasting ability (spell save DC 15):the azer has the Incapacitated condition.
+At Will: Elementalism, Mage Hand- Illumination. The azer sheds Bright Light in a 10-foot
+1/Day: Fireballradius and Dim Light for an additional 10 feet.-
+REACTIONSACTIONS
+Cr:'.
+w
+1-
+zHellish Rebuke (2/Day). The azer casts Hellish RebukeBurning Hammer. Melee Attack Roll: +5, reach 5 ft.
+w
+0..
+Cr:'.
+in response to that spell's trigger, using the same spell-Hit: 8 (ldlO + 3) Bludgeoning damage plus 3 (ld6)
+<t:
+u
+<t:
+::,:::casting ability as Spellcasting.Fire damage.
+AZERS
+25
+~----~~ 
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 28 ---]
+BALOR
+DemonofOverwhelming Rage
+ Planar (Abyss);Treasure:Armaments
+Habitat:
+furyand hatred.
+embody demons'ruinous
+Balors 
+demonic warlords
+winged terrors, these 
+Towering, 
+inwavesof
+with wrath, theirrageerupting 
+seethe
+swordof
+and as a pairofvicious weapons: a 
+fire 
+oflashing flames. A
+and a whip
+crackling lightning 
+ofits demise,
+furypersists until the moment
+balor's
+act ofvengeance
+which point itexplodes-alast 
+at 
+and evil
+slew it. Demon lords 
+against those who 
+making balors com-
+gods harness balors' rage by 
+orguardians ofgrave secrets.
+manders ofarmies
+BALOR
+geFiend(Demon), ChaoticElli!
+Hu
+the balor fails a saving
+If
+ve+14(24)Legendary Resistance (3/Day).
+AC 19Initiati
+throw, it can choosetosucceed instead.
+ 300 (24dl2 + 144)
+HP
+eed 40 ft., Fly 80 ft.
+Sp
+Magic Resistance. The balor has Advantage on saving
+SAVE
+MODSAVEMOD
+MODSAVE
+against spells and other magical effects.
+throws 
+ +12
+DEX15+2 +2CON22 + 6
+STR26+8 +8
+ACTIONS
+CHA22 + 6 +6
+20 +5 +5 Wis16 +3 +9
+INT
+attack
+Whip 
+Multiattack. The balor makes one Flame 
+Skills Perception +9
+and one Lightning Blade attack.
+ Cold, Lightning
+Resistances
+Hit: 18
+ Fire, Poison; Charmed, Frightened, Poisoned Melee Attack Roll:+ 14, reach 30 ft.
+ImmunitiesFlame Whip.
+19
+Truesight 120 ft.; Passive PerceptionIf
+Senses17(5d6) Fire damage.
+(3d6 +8)Force damage plus
+Languages Abyssal; telepathy 120 ft.
+a Huge or smaller creature, the balor pulls
+the target is 
+19(XP 22,000;PB+6)
+CR
+to25feet straight toward itself, and the
+the target up 
+target has the Prone condition.
+TRAITS
+Hit:
+ Melee AttackRoll:+ 14, reach l 0 ft.
+Lightning Blade.
+it dies.Dex-
+Death Throes. The balor explodes when 
+(4dl0) Lightning
+21(3d8 + 8) Force damage plus 22 
+Sa11ingThrow:DC 20, each creature in a 30-foot
+terity
+damage, and the target -can't take Reactions until the
+Failure:31(9d6)
+originating from the balor.
+Emanation 
+startofthe balor's next turn.
+ Success:Half
+31(9d6) Force damage.
+Fire damage plus
+Ifthe balor dies outside the
+damage.Failure or Success:
+BONUS ACTIONS
+-
+0
+it gains a new body instantly, reviving with all its
+Abyss, 
+w
+a willing demon
+ The balor teleports itself or 
+Teleport.>
+Ct::
+Hit Points somewhere in the Abyss.::i
+to an unoccupied
+10 feetofitself up to 60 feet 
+within ~
+I
+u
+ofthe balor's turns, each
+Fire Aura. At the endofeach
+space the balor can see.I
+f-
+n:::
+<(
+creature in a 5-foot Emanatioh originating from the ba-
+I
+0
+Vl
+(3d8) Fi re damage.
+lor takes 13 
+26 A BALOR
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 29 ---]
+BANDITS
+Criminals and Scoundrels
+Habitat:Any;Treasure:Any
+BANDITCAPTAIN
+thethreat ofviolenceto takewhat
+Bandits use
+Humanoid, Neutral
+MediumorSt'Ylall
+members,
+theywant. Such criminals include gang 
++3 (13)
+AC15Initiative
+notall
+desperadoes, and lawless mercenaries. Yet
+HP52(8d8 +16)
+bandits are motivafed by greed. Some are driven
+Speed 30 ft.
+ofcrime by unjust laws, desperation,or the
+to lives
+MODSAVEMODSAVE
+MODSAVE
+threats ofmerciless leaders.
++2+4DEX16+3+5CON14+2 +2
+STR15
+ +2
+I N T14 +2 +2Wis11+O+2CHA14 +2
+BANDIT
+Skills Athletics +4, Deception +4
+orSma ll Humanoid, Neutra l
+Medium
+Gear Pistol, Scimitar, Studded Leather Armor
+(11)
+AC12Initiat ive+l
+10
+Senses Passive Perception 
+HP l l (2d 8 +2)
+Common, Thieves' Cant
+Lan guages 
+Speed 30 ft.
+CR2(XP450;PB+2)
+MODSAVEMODSAVEMODSAVE
+STR 11+O +ODEX12 +l +lCON12+l +lACTIONS
++OWis 10+O +OCHA10+O +O
+INT10+O
+ .makes two attacks, using
+Multiattack. The bandit
+Scimitar and Pistolinany combination.
+Gear Leather Armor, Light Crossbow, Scimitar
+ Melee Atta~kRoll:+5, reach 5 ft.Hit:6 (ld6
+s Passive Perception 10Scimitar.
+Sense
+Languages Common, Thieves' Cant+3)Slashing damage.
+CR l/8(XP 25;PB+2)
++5, range 30/90 ft.Hit:8
+- Pistol. Ranged AttackRoll:
+(ldlO +3)Piercing damage.
+ACTIONS
+Scimitar. Melee AttackRoll:+3, reach 5 ft. Hit: 4 (l d6
+REACTIONS
+z
+0
+0
++ l) Slashing damage.
+<t:
+_JParry. Trigger: The banditishit by a melee attack roll
+<(
+z
+-
+range 80/320 ft.while holding a weapon. Response: The bandit adds 2 to
+Light Crossbow. Ranged Attack Roll: +3, 
+Q:'.
+w
+I-
+<(
+it to miss.
+Hit: 5 (l d8 + l) Piercing damage.its AC against that attack, possibly causing 
+::e::
+'
+BAND I TS ~ 27
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 30 ---]
+Bandit Motiva-
+on orchoose aresult from the
+Roll
+behinda
+to determinethecircumstances 
+tions table
+BANDIT
+bandit's crimes.
+whotypi-
+areinexperienced ne'er-do-wells
+Bandits
+BANDIT MOTIVATIONSbandits.
+the ordersofhigher-ranking
+cally follow
+1d6 The Bandit ...
+CAPTAIN
+BANDIT 
+l Fights only oppressors.
+scoundrels and
+captains commandgangsof
+Bandit 
+was discarded bytheirna-
+2Isan ex-soldierwho
+heists.Othersserve as
+conduct straightforward
+promised.
+andnowtakeswhatthey were 
+tion
+moreinfluential criminals.
+guards andmuscle for
+viewsnonmembersasfoes.
+3Isin a gangthat
+BANDIT DECEIVER
+serves a villainous leader.
+4Hesitantly
+todisguisetheiractivi-
+Bandit deceivers use magic
+worksforagovernmentora regional
+5 Secretly 
+tiesorcreate flashy distractions.
+rulertosow chaos.
+whatthey needtosurvive.
+6 TakesCRIMELORD
+BANDIT 
+organi-
+manipulateshadowy
+Bandit crime lords 
+overany
+.and prioritizetheir ownsurvival 
+zations 
+ESTHEW O RLD, D O N ' T YOUKNOW?ONE
+1AM HEWHO RUL
+single lackeyorplot.
+LITTLE PIECE ATATIM E .
+- J A R L AXLE
+CRIMELORD
+BANDIT 
+Humanoid,Neu tral
+Medium or Small
+Initiative +9 (19)
+AC17
+DECEIVER
+BANDIT
+HP169 (26d8 +52)
+Humanoid,Neutral
+Medium or Small
+Speed 30 ft.
+MODSAVE
+MODSAVE
+MODSAVE
+Initiative +6 (16)
+AC16
+CoN14
+DEX20 +9 +2+6
+STR10+0 +0+5 
+HP130 (20d8 + 40)
+Wis 14 CHA15+2
+INT18+2 +2+2
+eed 30 ft.+4 +4 
+Sp
+SAVE
+MOD SAVEMOD
+MO DSAVE
+13
+ 10, Stealth +
+Skills Acrobatics +9, Perception +
+ CON14
+- 1 - 1DEX16+6+2 +2
+STR8 +3 
+Armor
+Gear Pistols (2), Scimitar, Studded Leather
+12
+w,sCHA 16+3
+INT 17 +l+1 +3 
++3 + 6
+SensesPassive Perception20
+Thieves' Cant
+LanguagesCommon, 
+Perception +4, Stealth +9
+SkillsAcrobatics +6,
+CR11(XP 7,200;PB+4)
+Gear Daggers (6), Wand
+14
+SensesPassive Perception
+TRAITS
+Thieves' Cant
+LanguagesCommon, 
+issubjectedtoaneffectthat
+Evasion.Ifthe bandit
+CR 7 (XP 2,900;PB+3)
+throw totake only
+allowsit tomake a Dexterity saving 
+ACTIONS
+ifit
+halfdamage, the bandit instead takes no damage
+damageifitfails. It
+half
+succeeds on the save and only
+Multiattack. The bandit makes three Dagger attacks.
+can't use this traitifithas the Incapacitated condition.
+or
+Ranged AttackRoll:+6, reach 5 ft. 
+Dagger. Meleeor
+ dama·ge plus l 0
+Hit:8 (2d4 +3)Piercing
+range 20/60 ft.
+ACTION S
+(3d6) Poison damage.
+ The bandit makes three attacks, using
+Multiattack.
+4-6). Constitution Saving
+BlindingFlash(Recharge Scimitar or Pistol in any combination.
+Throw: DC 14, each creature in a 10-foot-radius Sphere
+(2d6
+AttackRoll:+9, reach 5 ft.Hit: 12
+Scimitar. Melee 
+see within 120 feet.
+centered on a point the bandit can 
+14(4d6) Poison damage.
++5)Slashing damage plus
+Failure: 13(3d6 +3)Radiant damage, and the target
+Hit:
+Roll:+9, range 30/90 ft.
+Pistol. Ranged Attack
+ofthe bandit's
+start
+has the Blinded condition until the 
+5)Piercing damage plus 14 (4d6) Poi-
+10(ldl0+
+Halfdamage only.
+next turn. Success:
+son damage.
+ofthe following
+ The bandit casts one
+Spellcasting.
+as the spellcasting abilityBONUS ACTIONS
+?pells, using Intelligence 
+(spell save DC 14):
+itself Advantage on the
+Deadly Aim. The bandit gives 
+If
+next attack roll it makes during the current turn.
+Mage Hand, Minor Illusion
+At Will: Disguise Self, 
+that attack hits, the target takes an extra 28 (8d6) Poi-
+ (level· 4 version), Mage Armor
+1/Day Each: Hold Person
+son damage.
+(included in AC), Major Image
+BANDITS
+

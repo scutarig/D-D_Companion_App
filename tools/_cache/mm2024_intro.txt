@@ -1,0 +1,2196 @@
+[--- Page 1 ---]
+
+
+[--- Page 2 ---]
+
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 3 ---]
+-
+z
+w
+~
+Cl::'.
+<l'.
+<l'.
+0
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 4 ---]
+CREDITS
+Polar Engine,AprilPrime, Arash Radkia,
+ Jeremy Crawford,F.Wesley SchneiderAnna Podedworna, 
+Lead Designers:
+Chris Rahn, Jason Rainville, Joshua Raphael,AdamRex,Aaron J.
+Designers: Makenzie DeArmas,ChristopherPerkins, Ben Petrisor
+Riley, Cyprien Rousson, Bram Sels, Cynthia Sheppard, Bryan Sola,
+JeremyCrawford(lead),ChristopherPerkins
+Rules Developers: 
+ St1sak,
+AnnieStegg,MattStewart, Alex Stone, Crystal Sully, Taras
+MicheleCarter,AdrianNg
+Editors: Judy Bauer (lead), Janica Carter,
+John Tedrick,ViktorTitov, Brian Valenzuela, Brian Valeza, Svetlin
+ Ben Petrisor (lead), Makenzie DeArmas,
+Playtest Analysts:
+Zug
+Velinov,l<evWalker, BenWootten,ZuzannaWuzyk,Mark 
+Ron Lundeen -
+Concept Art Director: JoshHerman
+Galluzzi (lead), Bree Heiss, JoshHerman,!(ate
+Art Directors: Fury 
+AndrewBaker, Michael Broussard,
+Concept Artists: Carlo Arrelano,
+Irwin,Emi Tanji
+John Grella,JaxJacson, Alex l<onstad, l<aterina Ladon ,SimonLee,
+MattCole, Trish Yochum
+Graphic Designers: Trystan Falcone (lead),
+AntonioManzanedo,MattMillard,Aaron Miller, Sean Murray,
+Cover Illustrators: Tyler Jacobson,OlenaRichards
+Stephen Oakley, AlexanderOstrowski,Anna Podedworna,Noor
+JoyAng, Carlo Arellano, Daren
+Interior Illustrators:Hazem Ameen,
+Rahman, Jason Rainville, Chase Stone, Crystal Sully, Justin Sweet ,
+Mark
+Bader, Cristi Balanescu, HelgeC.Balzer, Luca Bancone,
+John Tedrick,Campbell White,Bryan Wynia
+OlivierBernard, Alex Brock,
+Behm, Eric Belisle, Steven Belledin,
+Tomhave
+Consultants: Basheer Gouse, Pam Punzalan, Jonathan
+MichaelBroussard,KaiCarpenter,DomenicoCava,Sidharth
+Additional Consultation:JayJani,RayWinninger
+Yongjae Choi, Chris Cold, Daarken, l<ent Davis,Nikki
+Chaturvedi, 
+Dillon, SimonDominic,Jesper Ejsing,
+Dawes, Axel Defois, Julie
+Bruggeman,
+Producers: Dan Tovar (lead), Bill Benham, Siera 
+AuroreFolny, Fury Galluzzi, John Patrick Ganas, Caroline Gariba,
+Robert Hawkey
+Giorgi, IlseGort,Lars Grant-West, John
+Justin Gerard,Michele
+Print Operations Engineers: Basil Hale,ScottWest
+NilsHamm,Patrik Hell, SuzanneHelmigh,
+Grella, Johan Grenier,
+Imaging Technicians: Daniel Corona, Meagan l<enreck, Paolo
+BjornHurri,Izzy, Dario
+RowanHolloway, AlexandreHonore,
+Vacala, KevinYee
+ l<ovacs, Jonathan
+Jelusic,Mathiasl<ollros,Yigitl<oroglu, Vance
+ JeffersonDunlap
+Prepress Specialist:
+TitusLunter, Richard
+Kuo, Andrey Kuzinskiy, Katerina Ladon,
+SlawomirManiak,
+Luong, ValeraLutfullina,Warren Mahy,
+Based on the Monster Manual (2014)by
+AndrewMar, LorenzoMastroianni,
+AntonioJoseManzanedo,
+ChristopherPerkins (lead), Jeremy Crawford , Peter Lee,
+Viko Menezes, Robson Michel, Aaron Miller,Maxime Minard,
+MikeMearls, RobertJ.Schwalb,MattSernett, Chris Sims,
+RiccardoMoscatello,Martin Mottet,JodieMuir,
+CaioMonteiro,
+RodneyThompson,Steve Townshend, JamesWyatt
+HinchelOr, DavidAudenNash,NestorOssandon
+Sean Murray,
+Building on the original game createdby
+Leal, AlexanderOstrowski, AlejandroPacheco, Vicki Pangestu,
+Arnesonandthen developedbymany
+Gary Gygax and Dave
+Anna Pavleeva, Borja Pindado, Pindurski, Andrea Piparo,
+others overthepast 50 years
+ONTHE ALT-COVER
+ONTHE COVER
+Got somethingon your mind? Amindflayer offers oneofits brain-
+On this cover by Tyler Jacobson, adventurers Vajra Safahr andMinsc
+ofhorrors . Willconsuming broodasan alternative in this aberrant illustrationby
+test their mettleagainst a beholder and its horde
+Olena Richards.
+they prove themselves heroesorlunch?
+620D37ll00200lEN
+ISBN: 978-0-7869-6954-8
+First Printing: February 2025
+UK
+CE 
+987654327CA
+ter's Guide, all
+Eberron , Greyhawk, Spelljammer, Player's Handbook , Monster Manual , Dungeon Mas 
+DUNGEONS & DRAGONS , D&D, Wizards o f the Coast, the dragon ampersand, 
+other cou ntries .
+World's Greatest Roleplaying Game are t rademarksofWizardsofthe Coast in the USA and 
+other Wizardsofthe Coastproductnames, their respective logos , and The 
+ofAmerica. Any reproduc-
+ofWizardsofthe Coast . This materia l is protected under the copyright lawsofthe United States
+All characters and their distinctive likenesses are property
+herein is prohibited withoutthe express written permissionofWizardsofthe Coast.
+tion or unauthorized useofthe material or artwork contained 
+by : Hasbro SA , Rue Emile-Boechat31, 2800 Delemont . CH .
+©2025 Wizardsofthe Coast LLC, PO Bo x 707, Renton , WA 98057-0707, USA. Manufactured 
+Printed in Belg i um. 
+240, ]101 EEAmsterdam, NL. Hasbro UK Ltd.,PO Box 43 Newport , NP19 4YH, UK .
+Represented by : Hasbro, De Entree
+ FABRIQUE AUX BELGIUM.
+ l livre. lmporte au Canada par Wizards of the Coast LLC, PO Box 707, Renton, WA 98057-0707, USA.
+)eu en anglais. CONTENU:
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 5 ---]
+0
+97GithyankiDracomancer......135
+Deva.................................................
+:.352 Githyanld Knight.........'...........135
+Dire Wolf..................................
+CONTENTS
+134
+335GithyanJciWarrior.................
+DireWorg...................................
+......374
+Use aMonster.........5App.B:MonsterLists
+Howto
+98GithzeraiMonk.......................136
+Displacer Beast............................
+........374
+Overview...............5MonsterConversions
+StatBlock137
+99GithzeraiPsion..........................
+Djinni...............................................
+Entries........................5Monsters by
+Monster.........................137
+...........................100GithzeraiZerth
+Doppelganger
+375
+aStatBlock................6Habitat................................. 
+Parts of138
+102Glabrezu......................................
+Dracolich.................................... 
+aMonster.................8Monsters by
+Running...................................... 139
+352Gladiator
+DraftHorse................................
+379
+CreatureType..................
+Demoniac........................ 141
+........................... 103Gnoll
+Dragon Turtle
+10
+MonstersAtoZ....................
+............381
+MonstersbyGroup
+........141
+104GnollFangofYeenoghu
+Dretch..........................................
+App.A:Animals.................348
+Monstersby
+PackLord.......................140
+Drider........................................... 105Gnoll
+ChallengeRating.............382
+140
+Druid............................................106GnollWarrior...........................
+362
+Dryad........................................... 107Goat...............................................
+143
+Mephit..............................206Goblin Boss ................................ 
+Dust 
+143
+353GoblinHexer............................. 
+Eagle .............................................
+BLOCKS
+INDEXOF STAT
+Mjruon.......................... 142
+Elemental.. .....................108Goblin
+Earth
+........................ 142
+..........................................109GoblinWarrior
+347Efreeti
+Aeromancer........... 10Beholder Zombie.....................
+Aarakocra 
+.......144
+Elemental Cataclysm.............. 111 GoldDragonWyrmling
+37 
+Skirmisher............. 10Berserker.......................................
+Aarakocra 
+87 .........................................148
+ElementalCultist.. ......................Gorgon
+............37 
+Cultist.........................86BerserkerCommander
+Aberrant
+353Goristro.......................................150
+Elephant......................................
+ 349 
+Aboleth........................................... 12BlackBear..................................
+353 Graveyard Revenant..............260
+Elle..................................................
+DragonWyrmling.........38
+AbominableYeti ......................340Black
+Gray Ooze.................................... 151
+Empyrean.................................... 113
+Pudding..............................42
+AdultBlackDragon...................39Black
+..................................286
+Empyrean lota........................... 112Gray Slaad
+46
+AdultBlueDragon.....................49Blinl< Dog .......................................
+DragonWyrmling......152
+Erinyes.......................................... 114Green 
+................. 4 7
+BrassDragon...................55Blobof Annihilation
+Adult
+Hag..................................156
+Ettercap........................................ 115Green 
+...............................350
+Dragon...............59BloodHawk
+Adult Bronze 
+286
+Ettjn............................................... 116Green Slaad................................
+...........48 
+............... 79 BlueDragonWyrmling
+Adult Copper Dragon
+157
+Dragon Adult............... 117 Grell .............................................. 
+285Faerie
+GoldDragon................. 145 Blue Slaad ...................................
+Adult
+158
+DragonYouth.............. 117Grick.............................................
+350Faerie
+GreenDragon.............. 153Boar...............................................
+Adult 
+158
+Cultist.................................87GrickAncient...........................
+Fiend
+RedDragon...................255Bone Devil.. ................................... 52
+Adult
+........................... 118 Griffon .......................................... 159
+53Fire Elemental
+SilverDragon...............279Bone N aga .....................................
+Adult
+160
+Giant.................................... 119Grimlock.....................................
+.........54Fire 
+AdultWhjteDragon..............329BrassDragon WyrmJing
+..................................120 Guard............................................ 162
+......................... 149Flameskull
+AirElemental.. ............................. 13Brazen Gorgon
+Skeleton....................283 Guard Captain........................... 162
+WyrmJing.....58Flaming
+Allosaurus..................................348BronzeDragon 
+Golem ................................ 121GuardianN aga .......................... 161
+................................350Flesh
+AncientBlackDragon..............40Brown Bear
+122 GulthlasBlight ............................45
+.......................... 62Flumph........................................
+AncientBlueDragon................50BugbearStalker
+.............................353Half-Dragon................................ 163
+ ........................ 62Flying Snake
+AncientBrassDragon..............56BugbearWarrior
+123...........................................164
+Fomorian....................................Harpy
+Bronze Dragon..........60Bulette............................................. 63
+Ancient 
+354 Revenant................260
+63Frog...............................................Haunting 
+..........80BulettePup................................... 
+Ancient Copper Dragon
+124362
+FrostGiant.................................Hawl< ............................................
+Dragon.............146BullywugBog Sage ....................64
+AncientGold
+ 
+GalebDuhr................................ 127HellHound.................................. 165
+Dragon..........154 BullywugWarrior.....................64
+Ancient Green 
+ 166
+ Ga.rgoyle......................................128HelmedHorror.......................... 
+Dragon..............256 Cambion......................................... 65
+AncientRed
+Spore Fungus................... 125Hezrou.......................................... 167
+..........280 Gas
+AncientSilverDragonCamel. ........................................... 351
+Cube...................... 129 HillGiant....................................168
+.........330 .........................66 Gelatinous 
+AncientWhiteDragonCarrionCrawler
+............................................130Hippogriff...............'..................... 169
+ .................................................351Ghast
+Animal Lord................................. 15Cat
+Gravecaller...................130 Hippopotamus..........................362
+Trooper.........................67Ghast 
+AnimatedArmor........................ 16Centaur 
+............................................. 131 HobgoblinCaptain.................. 171
+......... 16.........................67 Ghost
+AnimatedBroom..............:Centaur Warden
+................. 171
+............................................. 132 HobgoblinWarlord
+ .................................68Ghoul
+AnimatedFlying Sword.......... 17ChainDevil..
+Ape ....................................354HobgoblinWarrior.................. 170
+69Giant 
+AnimatedRugChasme........................................... 
+Axe Beak...........................24Homunculus............................... 172
+70 Giant
+ofSmothering......................... 17Chimera..........................................
+Badger.............................354HookHorror.............................. 173
+71Giant 
+Anl<heg ........................................... 18 ChuuJ ...............................................
+355Devil.. ............................ 174
+GiantBat .....................................Horned
+Ankylosaurus...........................348Clay Golem .................................... 72
+355Shark............................363
+73Giant Boar..................................Hunter 
+Ape ................................................ 348 Cloal<er ........................................... 
+355 ............................................. 175
+Giant Centipede.......................Hydra
+.................................... 19 Cloud Giant................................... 74
+Arcanaloth
+ 363
+GiantConstrictor Snake......355Hyena...........................................
+.....................................349 Cockatrice..................................... 75
+Archelon
+356
+Giant Crab..................................Ice Devil ....................................... 176
+........................................ 21Cockatrice Regent ..................... 75
+Arch-hag
+356Mephit..................................206
+Giant Crocodile ........................Ice
+................................... 199 Colossus ......................................... 76
+Archmage
+356.................................................177
+77 GiantEagle .................................lmp
+..................................248 Commoner.....................................
+Arch priest
+356 ......................................... 178
+GiantEll<.....................................Incubus
+Assassin..........................................22Constrictor Snake.................. 351
+357 ................... 179
+..... 78Giant FireBeetle ......................Intellect Devourer
+AwakenedShrub........................23 Copper Dragon Wyrmling
+357Stalker.......................180
+82 Giant Frog..................................Invisible
+Awakened Tree ...........................23 Couatl..............................................
+357 Golem .................................. 181
+ Giant Goat ..................................Iron
+Ax.e Beal< ........................................24Crab ............................................... 351
+357364
+83 Giant Hyena ...............................Jacl<al ............................................
+Azer Pyromancer...................... 25 Crawling Claw .............................
+Lizard..............................358 Jackal were................................... 182
+............................... 25 Crocodile ....................................352 Giant 
+Azer Sentinel
+Octopus..........................358 Juvenile Shadow Dragon......275
+349 Cultist..............................................84Giant 
+Baboon .........................................
+ 
+85 Giant Owl ...................................358Kenku........................................... 183
+Badger ..........................................349 Cultist Fanatic .............................
+Whale..............................364
+85 Giant Rat .....................................358IGUer
+Balor................................................ 26 Cultist Hierophant.................... 
+ !(night..........................................184
+88 Giant Scorpion ......................... 359
+Bandit .............................................. 27 Cyclops Oracle ............................
+ Warrior....................... 185
+88 Giant Seahorse ......................... 359Kobold
+Bandit Captain ............................ 27 CyclopsSentry............................
+359  .......................................... 187
+28 89 Giant Shark. ............................... l(ral<en
+Bandit Crime Lord ..................... Dao ...................................................
+359 Kuo-toa ......................................... 189
+28 90 Giant Spider ............................... 
+Bandit Deceiver .......................... Dark.mantle ...................................
+360 Kuo-toa Archpriest ................. 191
+29 86 , Giant Squid ................................
+Banshee .......................................... Death Cultist ................................ 
+360 Kuo-toa Monitor ..................... 190
+30  Giant Toad ..................................
+Barbed Devil.. ...............................Death Dog...................................... 91
+ Kuo-toa Whip ........................... 190
+92 Giant Venomous Snake ........ 361
+Barlgura ......................................... 31 Death Knight ............................... 
+ Lacedon Ghoul .......................... 132
+93 Giant Vulture ............................ 361
+Basilisk............................................. 32 Death l(night Aspirant ............ 
+  ............................................ 192
+Giant Wasp ................................ 361Lamja
+349 - Death Slaad ................................ 287 
+Bat .................................................. 
+ i............................... 193
+Giant Weasel ............................. 361 Larva ............
+Devil .............................. 33 Death Tyrant ................................ 95 
+Bearded 
+........ 1............................... 194
+Giant Wolf Spider ................... 362 Lemure 
+34 352 
+Behir ................................................ Deer............................................... 
+Gibbering Mouther ................ 133 Lich ............................................... 196
+ 96 
+Beholder ......................................... 36Demilich ......................................... 
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 6 ---]
+Lion ...............................................
+364
+Pseudodragon...........................249Tarrasque...................................305
+Weasel..........................................373
+Lizard...........................................
+364
+Psychic Gray Ooze.................. 151Thri-kreenMarauder............306
+Werebear....................................324
+LizardfolkGeomancer..........197
+Pteranodon................................367Thri-kreenPsion .....................306 
+Wereboar....................................325
+Lizardfolk Sovereign............. 197
+Purple Worm............................250Tiger.............................................. 371
+Wererat.......................................325
+Mage.............................................199
+Quaggoth.................................... 251Tough............................................307 
+Weretiger....................................326
+MageApprentice..................... 198
+QuaggothThonot................... 251ToughBoss .................................307
+Werewolf....................................327
+Magma Mephit.........................207 
+Quasit...........................................252Treant...........................................308 
+WhiteDragonWyrmling....328
+Magmin.......................................200
+QuestingKnight......................184TreeBlight .....................................44
+Wight...........................................332
+Mammoth...................................365
+ Rakshasa.....................................253,.Triceratops.................................372Will-o'-Wisp ..............................
+333
+Manes........................................... 201
+ Rat.................................................367Troglodyte..................................309
+WingedKobold ........................ 185
+Manes Vaporspawn............... 201
+Raven............................................368Troll ................................................310WinterWolf..............................
+334
+Manticore...................................
+202RedDragonWyrmling.........254Troll Limb ....................................310
+Wolf...............................................373
+Marid............................................203RedSlaad....................................285Twig Blight ....................................43 
+Worg.............................................335
+Marilith.......................................204ReefShark..................................368TyrannosaurusRex ................
+372Wraith..........................................336
+Mastiff.........................................365 Remorhaz...................................Ultroloth...................................... 311
+258Wyvern.......................................337
+Medusa........................................205 Revenant.....................................UmberHull< ................................
+259 312Xorn..............................................338
+Merfolk Skirmisher...............209Rhinoceros.................................Unicorn........................................ 313
+368 Yeti ................................................ 339
+Merfoll<Wavebender............209Riding Horse.............................368Vampire........................................ 317 
+Yochlol ......................................... 341
+Merrow......................................... 210
+ Roe ................................................. 261Vampire Familiar..................... 314YoungBlackDragon
+.................38
+Mezzoloth................................... 211
+Roper............................................262VampireNightbringer............ 316YoungBlueDragon
+...................48
+Mimic............................................ 212
+ RustMonster............................263VampireSpawn......................... 315Young BrassDragon
+.................54
+Mind Flayer................................ 214
+Saber-Toothed Tiger..............369VampireUmbra.ILord............ 318YoungBronze Dragon
+.............58
+MindFlayerArcanist............. 214
+Sahuagin Baron.......................265Venomous Snake.....................372 YoungCopper Dragon
+............. 78
+Minotaurof
+Baphomet.......... 215SahuaginPriest........................265Vine Blight ....................................44YoungGoldDragon
+................144
+MinotaurSkeleton
+.................283 SahuaginWarrior...................264VioletFungus...........................126 
+YoungGreen Dragon.............. 152
+MadronDuodrone
+.................. 217Salamander................................267VioletFungus Necrohulk
+....126 YoungRedDragon..................254
+MadronMonodrone
+............... 216SalamanderFireVrocl< ............................................. 319
+Snal<e........266YoungRemorhaz.....................258
+ModronPentadrone
+............... 218Salamander
+Vulture........................................372 Young SilverDragon.............278
+Modron Quadrone
+.................. 218InfernoMaster.....................267
+Warhorse....................................373 YoungWhiteDragon............328
+MadronTridrone
+..................... 217Satyr.............................................268WarhorseSkeleton
+.................282Yuan-tiAbomination.............345
+MudMephit..
+ .............................207SatyrRevelmaster..................268WarriorCommander
+.............. 321 Yuan-tiInfiltrator...................342
+Mule..............................................
+365Scarecrow..................................269Warrior Infantry
+.....................320Yuan-tiMalison(Type1) .....343
+Mummy........................................ 219
+Scorpion......................................369
+WarriorVeteran......................320Yuan-tiMalison(Type 2).....343
+Mummy Lord............................ 221
+Scout.............................................270WaterElemental..
+....................322 Yuan-tiMalison(Type 3).....344
+Myconid Adult.........................223
+ Scout Captain...........................270
+WaterWeird..............................323Zombie .........................................
+346
+Myconid Sovereign................223
+SeaHag.........................................271
+Myconid Spore
+Servant.......223 Seahorse......................................
+369
+MyconidSproutWHAT'SNEWIN THE2025VERSION?
+.......................222 
+Shadow........................................272
+Nalfeshnee.................................224
+Shadow Demon........................273
+Thisisthe2025version
+ofthe fifth editionMonster
+Needle Blight ................................43 
+Shadow Dragon....................... 275
+Manual.
+Ifyou've read the2014version, muchof
+NightHag....................................225 
+ShamblingMound..................276
+Nightmare..................................226
+ShieldGuardian.......................277
+this book will feel familiar, since the 
+fundamental
+Noble .............................................227
+Shrieker Fungus...................... 125
+rules and variety
+ofmonsters are the same. Much
+NobleProdigy...........................227
+SilverDragonWyrmling.....278
+of
+the book contains new or redesigned elements,
+Nothic..........................................
+228
+Skeleton.......................................282
+NycaJoth ......................................229
+Slaad Tadpole ............................284
+and the monsters herein replace versions 
+from
+OchreJelly..................................230
+Smoke Mephlt..........................208
+older books. Here are highlights:
+Octopus.......................................365 
+Solar..............................................288
+Ogre............................................... 231
+Spectator....................................289
+More Monsters.
+ Thenumberofmonsters has in-
+OgreZombie .............................346 
+Specter.........................................290
+creased to more than 500 stat blocks.
+Ogrillon Ogre............................ 231
+Sphinx ofLore..........................
+293
+Oni ................................................. 232New Monsters. Dozensofnew monsters, includ-
+Sphinx of Secrets....................292
+Otyugh........................................
+233 Sphinx ofValor ........................
+294
+ing more high-level threats, are ready
+tochal-
+Owl ................................................
+366 Sphinx of Wonder................... 291
+lenge charactersofall levels.
+Owlbear.......................................
+234Spider...........................................
+369
+Panther........................................366 Refined Rules. Every stat block has been updated
+Spined Devil ..............................296
+Pegasus ........................................ 235 
+SpiritN aga ...............:.................297
+for easeofuse and game balance.
+Performer...................................236 
+Sprite ............................................298
+Enhanced Stat Blocks. New stat block design and
+PerformerLegend ...................237 
+Spy ................................................. 295
+Performer Maestro................237 language prioritize details vital during play.
+SpyMaster................................. 295
+Peryton........................................238 Steam Mephit...........................
+208
+Versatile Groups. Nonplayer characters now ap-
+Phase Spider .............................. 239 Stirge ............................................
+299
+pear alongside other monsters and can represent
+Piercer..........................................240
+Stone Giant ................................300
+Piranha........................................366 individualsofany Humanoid species.
+Stone Golem .............................. 301
+Pirate............................................ 241
+Storm Giant ...............................302
+Improved Organizatio~.
+ Monsters are now orga-
+Pirate Admiral.. ........................
+242 Succubus ..............................·
+.......303
+nized alphabetically 
+by their name. Variations on
+Pirate Captain ..........................
+242 Swarm ofBats ..........................370
+Pit Fiend ......................................
+243 Swarm of Crawling Claws ......83the same monster are grouped together.
+Pix.ie ..............................................244 
+Swarm of Dretches ................. 104
+Expanded Lists.
+ Appendix B collects and expands
+Pix.ieWonderbringer
+.............244 Swarm of Insects ..................... 370
+listsofmonster 
+details that appeared in the 2014
+Planetar....................................... 245 
+Swarm of Larvae ..................... 193
+Plesiosaurus .............................. Dungeon Master's Guide.
+366 Swarm of Lemures ................. 194
+Polar Bear ................................... 
+367 Swarm of Piranhas ................. 370
+Every monster in the 
+2014 Monster Manual ap-
+Poltergeist .................................. 
+246 Swarm of Rats .......................... 370
+Pony .............................................. 367 Swarm of Ravens ...............
+..... 371
+pears in this book or has a CR-appropriate replace-
+Priest ............................................ 248 Swarm of Stirges ..................... 
+299
+ment detailed in appendix B.
+Priest Acolyte ........................... 247 Swarm of
+Primeval Owlbear ................... 234 
+Venomous Snakes ............... 371
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 7 ---]
+-----✓
+~INTRODUCTION
+IN
+ISAFONTOFADVENTURE.
+VERYMONSTER
+FAMILIAR
+VAMPIRE 
+&DRAGONSmon-
+-..;.;....-.Jthisbestiary ofDUNGEONS 
+---~--
+0
+fl)il
+thewhimsical,Medium or Small Humanoid, Neutral
+sters, you'll discovertheweird,
+l - 
+Chooseyourfavor-
+themajestic,and themacabre. 
++5(15)
+AC15Initiative
+D&D play.
+andmakethempartof your
+ites,
+HP65(10d8 + 20)
+(2024)andDun-
+Alongwith thePlayer's Handbook
+Speed30ft., Climb30ft.
+ (2024),theMonster Manual is
+geon Master's Guide
+MODSAVEMODSAVE
+MODSAVE
+and requires thosebooks.
+partofD&D'sfoundation
+16CoN15+2
+17DEX+3+5 +2 
+STR+3 +3
+forDungeon Masters(DMs)
+Thisbookisintended
+CHA1 4
+Wis10 +2 +2 +2
+INT10+0 +0 +0
+for monsters: allsorts
+andprovides game statistics 
+by
+friendor foe-controlledSkills Perception +4, Persuasion +4 , Stealth +7
+ofcreatures-whether
+Resistances Necrotic
+appearinstatblocks.The
+theDM.Those statistics
+from its vampire master)
+Immunities Charmed (except 
+sections alphabetically,
+book presentsthemonsters'
+Gear Daggers (10)
+A. Seetheindex
+animalsgathered in appendix
+with
+0
+14
+Senses Darkvision 60 ft.; Passive Perception
+particularmonster.
+ifyouneed assistancefinding a
+ Common plus one other language
+Languages
+refer tothemonstersin
+Official D&Dadventures 
++2)
+CR3 (XP 700;PB
+may use thesemonsters-along
+thisbook,and you
+monster customization anden-
+with therulesfor
+TRAITS
+theDungeon Master'sGuide-to
+counterbuilding in
+•Vampiric Connection. While the familiar and its vampire
+for
+appendixB 
+buildyour ownadventures. Consult 
+ofexistence, the vampire
+master are on the same plane
+your adventurebuilding.
+monsterliststhatwill help
+with the familiar telepathically, and
+can communicate 
+through the familiar's senses.
+the vampire can perceive 
+IEW
+STATBLOCK OVERV
+rules
+astatblockthatcontains the 
+Amonster hasACTIONS
+thegame.Statblocksaredi-
+necessary touse it in
+Umbral Dag-
+ The familiar makestwo
+Multiattack.
+thefollowingparts, which correspond
+vided into
+ger attacks.
+Familiar:
+examplestatblock, Vampire 
+with the
+ MeleeorRanged AttackRoll:+5, reach
+Umbra/ Dagger.
+mon-
+ The nameofthe 
+Nameand General Details.
+Piercing damage 0
+range 20/60 ft.Hit:5(ld4+3)
+5 ft. or 
+by its size, creature type (along
+sterisfollowed Ifthe targetisreduced
+plus 7 (3d4) Necrotic damage.
+tags), and alignment.to 0HitPointsbythis attack, the target becomes Stable
+withany descriptive 
+for1 hour. While it has
+but has the Poisoned condition 
+Class,HitPoints, Speed,
+8 Combat Highlights.Armor
+the Paralyzed
+has 
+the Poisoned condition, the target 
+T and Initiative are provided here.
+condition.
+1
+scores, ability 
+ Ability Scores. A monster's ability 
+C)
+are listed here.
+T modifiers, and saving throws 
+BONUS ACTIONS
+Senses, Languages,
+•OtherDetails. The monster's 
+or Disen-
+ The familiar takes the Dash 
+Deathless Agility.
+Additional details ap-
+andCRentries appear here. 
+gage action.
+suchasskill proficiencies,
+pear in some monsters, 
+and Gear.Ifa monster
+Resistances, Immunities, 
+for them don'tappear.
+lacks those details, entries
+that are active at all
+0 Traits. Monster characteristics 
+during certain situations appear here.
+T times or 
+MONSTER ENTRIES
+ The monster can take the actions here in
+0 Actions.
+sections
+of the book is composed of monster 
+Most 
+Player's Handbook.
+T addition to those in the 
+a section's title.
+have the following parts after 
+that 
+monster's
+ This section provides a 
+f)Bonus Actions.
+HABITAT
+ Bonus Actions,ifany.
+T
+.
+ These sections
+• Reactions and Legendary Actions.
+entry notes where the monster
+A monster's habitat 
+any.
+ifof monsters organized by
+provide Reactions and L,egendary Actions,typically dwells. Lists 
+B.
+habitat appear in appendix 
+monster doesn't include these parts.
+. The example 
+\.
+MONSTER 
+INTRODUCTION I HOW TO USE A 
+5
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 8 ---]
+The game
+includesthefollowingcreaturetypes,
+TREASURE
+whichhave norulesof theirown:
+Amonster'streasureentryspecifieswhether
+the
+Aberrations
+areutterlyalien beings,suchas abo-
+monster hoardstreasureandthe type of 
+treasureit
+leths, beholders, flumphs,
+and mindflayers.
+prefers. These preferencesaredetailed as follows:
+Beastsarenon-Humanoidnaturalcreatures,
+like
+Any.The monster'streasure hoard caninclude
+horsesandwolves, as well asmost 
+giantanimals.
+monetary treasureand any landsofmagic items...
+Celestialsaremagicalcreatures, such
+as angelsand
+Individual.Themonsterdoesn't have a
+treasure
+pegasi,withtiesto the
+Upper Planes.
+hoard,butitmightkeep
+monetarytreasure.
+Constructs aremagically
+created creaturessuchas
+Treasure Theme (Arcana, 
+Armaments, Imple-
+homunculi, modrons, 
+andshieldguardians.
+ments,or Relics).The monster's
+treasure hoard
+Dragonsarescaly beings
+ofancientorigin,suchas
+features
+magic itemswith thenoted theme. The
+reddragons 
+and wyverns.
+Dungeon Master's Guide
+ detailstreasurehoardsap-
+Elementalsarebeings
+from theElemental Planes,
+propriatefor each theme.
+such
+asefreet and waterelementals.
+None.Themonsterdoesn't
+care about treasure.
+Feyarecreaturestied
+totheFeywildor theforces
+Any treasure the monster 
+hasis incidental.
+of nature,suchasdryads,
+goblins,andpixies.
+Any treasureamonster hasis in additionFiends
+toequip-are creaturestiedtoterrifyingLower
+mentlisted intheGearPlanes,
+entry ofitsstatblock.suchas balorsandhell hounds.
+TheDungeon Master's Guide
+ providesmoreinfor-Giantsare toweringbeingswithhumanlikeshapes,
+mation 
+on monster treasure.like cyclopes, fire giants,andtrolls.
+Humanoidsarepeople definedby theirrolesand
+NARRATIVEDESCRIPTION
+professions,suchas mages, pirates,and warriors.
+Theyinclude membersof variedspecies.
+After
+amonster'sintroductoryinformationcome
+Monstrosities areunnaturalcreatures with
+detailsthatapply
+to the monster whereverit might
+strangeorigins,suchas mimicsandowlbears.
+be found inthe
+multiverse. Customize thesedetails
+Oozes aregelatinouscreatures, including black
+howeverisappropriate 
+to youradventures.
+puddings ~nd blobsof
+annihilation.
+SPECIAL LAIRS
+Plantsare sentient vegetation 
+and fungal monsters,
+suchas myconids, shambling 
+mounds, and treants.
+Somemonsters alter theregionsaround their
+lairs.
+Undeadare
+spiritsand the reanimateddead,suchas
+For sucha monster, regional effects
+aredetailed in
+ghosts, vampires, 
+andzombies.
+a lair section. The monster's
+statblockmightalso
+include ways inwhich the monsterismore powerful
+DESCRIPTIVETAGS
+while in its lair.
+Amonstermight have oneormore tags in parenthe-
+ses following its type. Such tags provide additional
+STAT BLOCKS
+categorization andhave no rulesof theirown,but
+Eachentryincludesatleast onestat
+block.Stat
+certaingame effects might refer to them. 
+Listsof
+blocksare explored 
+in the nextsection.
+monster groups related by descriptive tags 
+appear
+in appendixB.
+PARTS OFASTATBLOCK
+ALIGNMENT
+The rules 
+for astatblock are detailed intherules
+glossary of thePlayer's Handbook
+ and in this section.
+The alignment specified 
+in a monster'sstatblock is
+a defa ult suggestion 
+of how to roleplaythemonster,
+SIZE
+inspired by its traditional 
+role in the gameorreal-
+A monster is Tiny, Small, Medium, Large, Huge,
+world folk.lore. Change 
+a monster's alignment to
+or Gargantuan. If 
+size options are presented, yousuit your storytelling 
+needs. The Neutral alignment,
+choose the creature's size from those 
+options. Seein particular, is an invitation 
+for you to consider
+the Player's Handbook
+ for information on size.whether an individual leans
+toward one of the other
+alignments.
+CREATURE TYPE
+The
+ Player's Handbook describes the nine align-
+ments and unaligned creatures.
+Each monster has 
+a tag thatidentifies the type of
+creature it is. 
+Certain spells, magic items, class fea-
+ARMOR CLASS
+tures, and other effects in 
+the game interact in spe-
+cial ways with creatures of 
+a particular type. Lists
+A monster's Armor Class (AC) includes its natural
+of monsters organized by 
+creature type appear in
+armor, Dexterity, gear, and other defenses. See the
+appendix B.
+Player's Handbook for information on Armor 
+Class.
+6 A INTRODUCTION I HOW TO USE A MONSTER
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 9 ---]
+SKILLS
+INITIATIVE
+skill profi-
+specifies amonster's
+InitiativeTheSkillsentry
+specifiesthemonster's
+TheInitiativeentry
+thatisvery
+For example, amonster
+scoreciencies,ifany. 
+bythemonster'sInitiative 
+modifier followed
+Wis-
+havebonuses to
+and stealthy might
+rolltoperceptive 
+modifierwhen you
+parentheses.Usethe
+in
+(Stealth) checks. A
+and Dexterity
+Initia-dom(Perception)
+Initiative. Amonster's
+determineamonster's
+ability
+ofamonster's relevant
+bonusisthe sum
+Dexteritymod-skill
+toits
+tive modifier istypically equal
+Bonus.Othermodifiers
+andits Proficiency 
+modifiers, "modifier
+have additional 
+ifier,butsomemonsters
+mightapply.
+tothatnumber.
+Proficiency Bonus, applied
+suchas 
+monster'sInitiative,
+don'twanttoroll a
+If you 
+ANDVULNERABILITIES
+RESISTANCES 
+in
+themonster'sInitiative
+Initiativescoreas
+usethe
+inthePlayer'sandVul-
+furtherdetailedlist amonster'sResistances
+combat. Initiative isThese entries
+ for
+any. SeethePlayer's Handbook
+Handbook.nerabilities,if
+moreinformation.
+HITPOINTS
+IMMUNITIES
+are presentedas anumber
+Hit Points
+Amonster's 
+Hit
+where themonster'sifany. If
+byparentheses,themonster's Immunities, 
+followedThisentrylists
+withany contribu-Immunities,
+areprovided, alonghas damage and condition 
+PointDicethe monster
+usethe numberconditions.
+itsConstitution. Eitherarelisted beforethe
+tion fromthedamagetypes 
+orrollthedie expres-
+Hit Points for details.
+forthemonster'sSeethePlayer's Handbook
+themonster's Hit
+sionin parentheses to determine
+GEAR
+don't use both.
+Points randomly; 
+determinesthedie used
+size typically 
+Amonster's
+If
+theirequipment.
+have proficiencywith 
+Monsters
+shownintheHit Dice
+its Hit Points, as
+to calculate 
+awayor
+thatcanbe given
+has equipment
+amonster
+bySize table.
+The
+listed inthe Gear entry.
+theitems are
+retrieved,
+statblockmightinclude special flourishes
+,monster's
+DICEBYSIZE
+HIT
+the
+usesanitem,and
+when the monster
+thathappen 
+ HPper Dierulesfor
+ Hit DieAveragePlayer's Handbook
+Monster Sizestatblock might ignore
+retrievable
+by someone else, a
+thatitem.Whenused 
+2½
+d4 
+Tiny 
+any
+ rules,ignoring 
+item uses its Player's Handbook
+3½
+Small d6 
+the statblock.
+special flourishesin
+ d8 4½
+Medium
+ofa
+doesn't necessarily list all
+The Gearentry
+that
+example, amonster
+ 5½monster's equipment. For 
+ dlO
+Large
+tobe dressed appropri-
+wearsclothes is assumed 
+dl26½
+Huge
+aren't in this entry.
+ately,and those clothes
+ 10½
+ d20
+Gargantuan
+entryis
+outsidethe Gear
+Equipment mentioned 
+specialized,
+highly 
+considered tobesupernatural or
+by
+modifier is multiplied 
+A monster's Constitution
+monsteris defeated.
+it is unusablewhen the 
+and 
+result
+it possesses,and the 
+the number ofHit Dice 
+For example,ifamonster
+toits Hit Points. 
+is added 
+AND RANGED ATTACKS
+AMMUNITION
+Hit
+(+1 modifier) and 2d8 
+aConstitution of12 
+has 
+ammunition to make
+thatrequires 
+Amonster 
+11).
+has 2d8+ 2 Hit Points (average
+Dice, it 
+ammunition.
+attacks carries the necessary 
+ranged 
+Player's Handbook.
+Hit Points, seethe
+For more on
+ITEMS
+OTHER
+EQUIPPINGAMONSTER WITH
+SPEED
+gear how-
+withadditional 
+You may equip monsters 
+monster's Speed. Some
+entryspecifies a 
+The Speedof the
+the equipment chapter 
+ever you like, using 
+following speeds:
+or more of the
+monsters have one how
+for inspiration. You decide
+Player's Handbook 
+and these
+Burrow, Climb, Fly, Swim. Rules for Speed 
+is recoverable after
+a monster's equipment 
+much of 
+ Handbook.
+appear in thePlayer's
+speci"als speeds equip-
+whether any of that
+creatureis slain and 
+the 
+is still usable. _
+ment 
+SCORES
+ABILITY 
+combat-oriented
+of giving a monster 
+Beware 
+with cor-the monster's
+six ability scores along those might alter 
+Every monster has _ magic items, since 
+throwmonster a magic
+and saving If you do give a 
+responding ability score modifiers Challenge Rating. 
+magic
+Attunement with 
+ability scoresthe monster can have 
+modifiers. For more information on item, 
+ A monster
+see the Player's Handbook.noted in the Player's Handbook.
+and saving throws, items as 
+is considered
+tag after its creature type 
+with a class 
+ . .
+that class for Attunement purposes
+a member of 
+MONSTER 
+ I HOW TO USE A 
+INTRODUCTION
+7
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 10 ---]
+RUNNING
+AMONSTER
+EXPERIENCEPOINTS
+BYCHALLENGE RATING
+Toensure
+amonsteractsin
+accordance with
+CRXP
+ CR 
+XP
+its Challenge Rating, follow
+theserules during
+0 0 or 10 
+14 11,500
+combat:
+2515
+1/813,000
+Special Abilities.
+Ifthe monster
+has a special abil-
+so
+1/41615,000
+ity
+thatdeals a lotofdamage
+but has a limited
+100
+1/21718,000
+number 
+ofuses, such as a recharging breath
+weapon or a spell
+itcancastonly once 
+per day,
+l 200
+1820,000
+haveitusethat
+special ability as quickly and as
+2 
+4501922,000
+often as possible.
+3 700 
+20 25,000
+Multiattack. Ifthe monster
+has M ultiattack, have
+4
+ituse Multi attack on any 1,1002133,000
+ofitsturns
+inwhich
+it's not usingone
+ofits more powerful abilities.
+5 1,800 22 
+41,000
+Bonus Actions, Reactions, Legendary Actions.
+ If
+2,300
+6 2350,000
+the monsterhas Bonus Actions, Reactions, or
+7 2,900 
+24 62,000
+Legendary Actions
+initsstatblock, make sure
+it
+uses
+themas often asit3,900
+can.8 2575,000
+9 5,000 
+26 90,000
+SENSES
+10 5,90027 
+l 05,000
+TheSenses
+entryspecifies amonster's
+Passive Per-
+117,200
+ 28 120,000
+ceptionscore, 
+as well asanyspecial 
+sensesthemon-
+128,400 29
+ 135,000
+sterpossesses. Passive
+Perception and
+special senses
+13l 0,000
+ 30 155,000
+aredescribed
+in thePlayer's Handbook.
+LANGUAGES
+P~OFICIENCY
+ BONUS
+Amonster's Proficiency 
+Bonus (PB) is
+determined
+Thisentry
+listslanguagesthat
+the monster can
+use
+byits CR, as
+shown inthe
+Proficiency Bonusby
+to communicate. 
+Sometimes
+amonster can under-
+Challenge 
+Ratingtable,
+andis reflected in 
+saving
+stand
+alanguagebutcan't communicate
+with
+it,
+throws,
+skills,andother
+statisticswherethe
+mon-
+which
+isnoted initsentry.
+"None"indicates
+thata
+ster's exceptional 
+aptitudeis a factor.
+creaturedoesn't comprehend 
+anylanguage.
+PROFICIENCY 
+BONUSBYCHALLENGE 
+TELEPATHYRATING
+Telepathyis a magical 
+abilitythatallows a
+creature
+CR
+PB
+CRPB
+to communicate mentally
+with another creature
+0-4
++2 17-20
+ +6
+withina specified 
+range. SeethePlayer's Handbook
+5-8
++321-24
++7
+formore 
+information.
+9-12
+25-28
++4
++8
+CHALLENGE RATING
+13-16
++529-30
++9
+Challenge 
+Ratingis defined
+in thePlayer's Hand-
+book, 
+while guidance 
+on usingCRto plan potential
+TRAITS
+combat encounters
+is
+in theDungeon Master's Guide.
+A
+monster's traits, ifany,
+are featuresthat 
+areac-
+Lists
+of monsters organized by
+Challenge 
+Rating
+tive
+atall timesor in certain 
+situations.
+appear 
+in appendixB.
+ACTIONS
+EXPERIENCE 
+POINTS
+Amonster can take the 
+The number ofExperience Points actions in this section 
+(XP) aor
+monster
+take one of the 
+isworthis based actions availableto
+onits CR, as detailed allcreatures,as
+in theEx-
+described in the
+perience Points Player's Handbook.
+by Challenge Rating 
+table. XP is
+awarded 
+for defeating 
+the monster in combat 
+or
+ATTACK NOTATION
+otherwise neutralizing 
+it.
+The entry
+for a monster's attack
+identifieswhether
+Unless a 
+rule says otherwise, 
+a monster sum-
+the attack
+is a meleeora ranged attack 
+and then
+moned by 
+a spell or another 
+magical ability isworth
+provides the attack 
+roll's bonus, its 
+reach or range,
+the XP 
+noted in its stat block.
+and what 
+happens on a hit. An attack 
+is against one
+target unless 
+its entry says otherwise. For details 
+on
+different kinds 
+of attacks, see 
+the Player's Handbook.
+8 _6 
+INTRODUCTION I 
+HOW TO USE A MONSTER
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 11 ---]
+Magicaction
+effectsthatoccurotherwise;themonster must take the
+Hit.Anydamage dealtor other
+oneachofitsturnsandmaintain Concentration to
+as aresultof an attack hittingatarget aredescribed
+Handbook.
+castthespell, as described inthePlayer's 
+the"Hit:"notation.
+after
+a
+Miss. Ifan attackhasaneffectthatoccurson
+ACTION
+BONUS
+thatinformationfollowsthe"Miss:"notation.
+miss,
+orMiss.Ifan attackhasaneffectthatoccurs
+HitBonus Action options,theyare
+If amonsterhas
+of whetherit hitsormisses itstarget,
+regardlessPlayer's Handbook for
+listed inthissection. Seethe
+followsthe"Hit orMiss:"notation.
+thatinformation
+detailsonBonus Actions.
+THROW EFFECT NOTATION
+SAVING
+REACTIONS
+Ifaneffect forces a saving throw,theeffect identi-
+Ifthe monsterhas Reaction options,those arelisted
+thekindofsaverequiredandthenprovidesthe
+fies
+inthis section alongwiththeirtriggers. Seethe
+descriptionofwhichcreaturesmake
+save's DC, a 
+Player's Handbook for detailsonReactions.
+save,andanexplanationof whathappens ona
+the
+failedorsuccessful save.
+ACTIONS
+LEGENDARY
+"Half damage only"ona successful .save means
+those
+Ifthe monsterhasLegendaryAction options,
+the targettakeshalfasmuch damage (rounddown)
+arelisted inthissection. ALegendary Actionisan
+targetsthatfailthesave, while alsoignoringall
+as
+actionthatamonster can takeimmediately after
+effect.
+-other parts of the
+turn.Onlyoneofthese actions
+anothercreature's
+only afteranothercrea-
+canbetaken atatime and 
+NOTATION
+DAMAGE
+ends.The monster can't takea Legend-
+ture'sturn
+statblock usually providesbothanumber and
+A
+ifit has theIncapacitated conditionoris
+aryAction
+a die expression for each instanceofdamage. For
+actions.
+otherwiseunable to take
+on
+example,an attackmight deal 4 (ld4 + 2) damage
+hasa limitednumber of Legendary
+The monster 
+a hit. You decidewhether tousethe number orthe
+is specifiedinthe
+Action uses,andthatnumber
+use both.
+die expression in parentheses; don't 
+whenever
+'statblock. Themonsterexpends one use
+MULTIATTACK
+andit regainsall ex-
+ittakesaLegendaryAction,
+oneattack
+Somecreatures canmake morethan
+pendeduses atthestartofeachofitsturns.
+Suchcreatures
+when they take the Attackaction. 
+LIMITEDUSAGE
+"Actions" section
+havethe Multiattackentryinthe
+a
+of their statblock. Thisentrydetailsthe attacks
+restrictions on the
+Someparts ofastatblock have 
+creature canmake, as well asanyadditional abilities
+Here are the
+number oftimesthey canbe used. 
+itcanuse, aspart of the Attackaction.
+thatusage is limited:
+most common ways
+SPELLCASTING,
+meansthe statblockpartcan
+X/Day. Thisnotation 
+statblock listsused acertain number oftimes (represented
+If amonster can cast anyspells, itsbe 
+spellcastingX) andthatamonster mustfinish a Long Rest
+thespells and providesthemonster's by
+uses. For example, a Reaction
+ability, spell save DC (ifanyspellsrequirea savingto regain expended 
+Reaction can be
+and spellattack bonus (ifanyspells requirethatincludes "1/Day" means the
+throw), 
+finish a
+roll). Unless noted otherwise, a spelloftakenonceandthatthe monster must
+an attack
+level 1or higher is always cast at its lowest possibleLong Rest to take it again.
+notation means amonster
+level and can't be cast at a higher level.Recharge X-Y. This 
+rules orrestric-blockpartonce. Atthestartof
+A monster's spell can have special can use the stat
+theInvisi-turns,roll ld6. If theroll is
+tions. For example, a green slaad can cast each of the monster's 
+the notation
+bility spell,but the spell has a "self only" restriction,within the number range given in
+theslaad. X-Y), the monster regains the use
+which means thespell affects only (represented by
+traitnotesalso recharges when the mon-
+Spell Components. The Spellcastingof that part, which 
+the needLong Rest. For example,
+whether the monster's spellcasting ignores ster finishes a Short or 
+spell compo-in an action means a monster can
+for certain spell components. If any "Recharge5-6"
+start of each of
+nents are required, describe the monster's use oftake the action once. Then, at the 
+signalac-
+Verbal, Somatic, or Material components to the monster's turns, it regains the use of that
+monster
+to characters thatit is casting a spell. A tion if it rolls a 5 or 6 on ld6.
+ This nota-
+that requires Material components has them.Recharge after a Short or Long Rest.
+use the stat block part
+Casting Timesof1+Minutes. If a spell has a castingtion means the monster can 
+Long Rest to
+time of 1 minute or more yet is listed in a spellcast-once and must then finish a Short or 
+ing action, the monster doesn't cast the spell in justuse it again.
+action unless the action's description states
+C?ne
+HOW TO USE A MONSTER6._ 9
+IN TRODU0TION / 
+------,------------2/
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 12 ---]
+I
+AARAKOCRA
+Winged GuardiansoftheSky
+Habitat: Mountain, Planar (Elemental Plane
+ofAir);
+Treasure:Implements, Individual
+Aarakocra arebirdlilze folk
+who soartheskiesof,,
+countless 
+worldsand theendlessexpansesof the
+Elemental 
+PlaneofAir.Theyoften resemble avians
+common to
+thelandswhere theydwell; some resem-
+blehawksorcondors, whileothers appearsimilarto
+hummingbirds
+orarchaeopteryxes.Inmanylands,
+aarakocra
+tellof theirancientheroics resistingthe
+wicked Queen
+ofChaos alongsidethemysterious
+WindDukes
+ofAaqa.
+AARAKOCRA AEROMANCER
+Aarakocra aeromancers controlmagicalwinds 
+from
+theendlessstormsof theElemental PlaneofAir.
+AARAKOCRA 
+SKIRMISHER
+Aarakocraskirmishers are adept at
+fighting aerial
+foes amidtheclouds.Theyoftenattack
+land-bound
+threats withdiving strikes fromabove.
+AARAKOCRAAEROMANCER
+Medium Elementa l, Neutra l
+AC16Initiat
+ive+3 (13)
+H P66(l2d8 +12)
+Speed 20 ft.,Fly50ft .
+MODSAVE MOD SAVE
+MOD SAVE
+STR
+70+O +ODEX 16+3CoN 12
++5 +l+l
+AARAKOCRASKIRMISHER
+INT73Wis 17
++l+1+3+5CHA 12+l+l
+Medium Elemental, Neutra l
+Skills Arcana+3,Nature+5,Perception+7
+AC12Initiative+2(12)
+SensesPassive Perception17
+HP11(2d8 +2)
+Langu agesAarakocra, Primordial (Auran)
+Speed 20 ft.,Fly50 ft.
+CR4(XP1,700;PB+2)
+MODSAVEMO DSAVEMO DSAVE
+STR
+70+0 +0 DEX 14+2 +2CON12+l+l
+ACTIONS
+INTll+O+0 Wis12+l +lCHA ll+0
++O
+Multiattack. The aarakocra makes two Wind Staff 
+at-
+Skills Perception+S
+tacks, anditcan use Spellcasting to cast
+ GustofWind.
+Senses Passive Perception15
+Wind Staff. Melee orRanged Attack
+Roll:+5, reach 5 ft.
+Languages Aarakocra, Primordial (Auran)
+or range 120 ft.Hit:7 (ld8 +
+3)Bludgeoning damage
+CR
+1/4(XP50;PB+2)
+plusll(2dl0) Lightning damage.
+ACTIONS
+Spellcasting. The aarakocra casts one of the following
+Talons. Melee Attack
+spells, requiringnoRoll:+4, reach5ft. Hit:4(1d4 +2)
+Material componentsandusing
+Wisdom as the spellcasting ability (spell saveSlashing damage, or 9 (3d4 +2)Slashing damage if the
+DC 13):
+aarakocra moved 30+ feet straight toward the target
+At Will: Elementalism, Gust 
+ofWind, Mage Hand, Message
+immediately before the hit.
+1/Day: Lightning Bolt
+Windjavelin.
+ Melee or Ranged AttackRoll:+4, reach
+REACTIONS
+5 ft. or range 30/120 ft. Hit: 5 (ld6 +2)Piercing dam-
+0::
+w
+_J
+Feather 
+Fall (1/Day). The aarakocra casts FeatherFall
+age plus 2 (l d4) Thunder damage. Hit or Miss: The_J
+2
+inresponse to that spell's trigger, using the same spell-
+z
+javelin magically returns to the aarakocra's hand imme-
+0
+0::
+<{
+casting ability as Spellcasting.
+diately after a ranged attack.
+<{
+...
+AARAKOCRA
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 13 ---]
+• •
+•
+ABOLETH
+Ageless Alien Mastermind
+THI N G S ,
+''THELIES W ECALLREAS O NAREFRAGILE
+B u T I N
+LE ANDRAWONTHE SHORE SOF EONS.
+VULNERAB
+ Treasure: Relics
+Habitat: Underdark, Underwater;
+ROI L SEAS O F
+DREAM-VAULTS OFDREADANCIENTS
+THE
+dream ofdead empires
+In aquatic abysses, aboleths
+AND,ANDTHEEBB
+TERRIF YINGTRU TH.OURAGEISANISL
+WAVE."
+I MORDIAL TIDESAVOWSTHESTYGIAN
+O FPR
+and orchestrate plotsthatunfold across ages. These
+physically and men-
+elusive, amphibious immortals 
+-SEEINGWoRM
+-EvARD,51GHSoFTHEALL
+and transformcrea-
+tally overwhelm their victims 
+infection, reshaping
+tures witha slimy,aberrant
+thewaves.
+otherbeings to servethem beneath 
+ABOLETH SCHEMES
+intellects and have
+Aboleths possess terrifying 
+SeeksTo...
+1d6 The Aboleth 
+creatures possess ·perfect
+alien mindsets. These 
+that lead
+Accomplish incomprehensible plans 
+1 
+and incomprehensible
+memoriesofproto-worlds 
+it to act in seemingly random ways.
+Their
+dominions from the multiverse's earliest eons. 
+unfathomable. Abo-
+secrets are innumerable and 
+by kidnapping people
+2 Learn moreofthe world 
+leths lurk in places awash in primordial mysteries:
+their minds.
+and consuming 
+the ruins of aquatic empires, hidden magical nex-
+itasa
+3 Manipulate innocents into worshiping 
+of existence. In
+places between planes 
+uses, or weak 
+ telepathy from hiding.
+god by using-its
+dream of epochs past, collect
+these lairs, aboleths 
+to the distant past or future, re-
+4 Open a gate 
+L
+throngs of psychically dominated servants, con-
+from another time.
+leasing an invasion 
+of unwitting victims, and prepare
+sume the minds 
+return to power.
+for their 
+or another
+Rouse a dragon turtle, a kraken, 
+5 
+and methods are often mys-
+Aboleths' alien goals 
+sea monster to flood a coastal city.
+or choose a result
+terious to other creatures. Roll on 
+6 Trick treasure hunters into recovering relics
+from the Aboleth Schemes table to inspire an abo-
+from its long-fallen empire.
+leth's schemes.
+AB OLET I-:I
+--------------~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 14 ---]
+ABOLETHLAIRS
+Aboleths usually dwell
+insubmergedruinsandcav-
+erns.Theykeep air-filled spaces for
+their terrestrial
+servants and toholdtreasures
+thatwould be dam- J
+Psionic Projection.
+While inits lair,theaboleth
+agedbywater.
+cancast Project 
+Image,requiringno spell compo-
+The region
+containinganaboleth's lair 
+iswarped
+nents
+andusing Intelligence asthe
+spellcasting
+by it,creating
+thefollowing effects:
+ability (spell save 
+DC 16).Whencasting
+thespell
+thisway,
+thespell's range is 1 mile,
+and theaboleth
+Foul Water.Water
+sourceswithin1 mileof the
+lair
+canuse its 
+telepathy asifitwere in
+theillusion's
+aresupernaturally
+fouled.Creatures other
+than
+space.
+theabolethandits ·alliesthat
+drinksuchwater
+mustsucceedona DC15Constitution 
+saving
+Iftheaboleth diesormoves its lair elsewhere, 
+these
+throworhavethePoisoned condition for 1 hour.
+effects end immediately.
+ABOLETH
+LargeAberration, Lawfu l
+ElJil
+AC17
+Initiative+7 (17)
+ACTIONS
+HP 150 (20d10 + 40)
+Multiattack.
+ The aboleth makestwoTentacle attacks
+Speed 10 ft., Swim 40 ft.
+and uses either Consume
+Memories or Dominate 
+Mind
+MODSAV
+EMODSAVE
+MODSAVE
+ifavailable.
+STR21+5 +5
+DEX9 -1+3CON15
++2 +6
+Te!Jtacle.
+MeleeAttackRoll:+9, reach15
+ft.Hit: 12(2d 6
+INT
+18+4 +8w,s15+2 +6
+CHA78+4 +4
++5)Bludgeoning damage.Ifthe 
+targetisa Largeor
+SkillsHistory+12, Perception + l
+ 0
+smaller creature,ithas 
+the Grappledcondition(escape
+SensesDarkvision 120 ft.; Passive Perception 20
+DC74)fromoneoffour
+tentacles.
+LanguagesDeep Speech; telepathy 
+720ft.
+Consume Memories.
+ IntelligenceSa1JingThrow:DC 16,
+CR70(XP 5,900,
+or7,200 in lair;PB+4)
+one creature within
+30 feetthatisCharmedorGrap-
+TRAITS
+pled bythe aboleth.
+Failure:10 (3d6) Psychic damage.
+Success:Halfdamage.
+Failureor Success: The aboleth
+Amphibious.
+ The aboleth can breathe air and water.
+gains the target's memories
+ifthe target is aHumanoid
+Eldritch Restoration.Ifaestroyed, the aboleth gains a
+andisreduced to 0
+HitPointsbythis action.
+new body inSdl0
+days, reviving with all itsHitPoints in
+Dominate
+Mind(2/Day). WisdomSa1Jing
+Throw:DC 16,
+the Far Realmor another 
+location chosenbythe OM.
+one creature the aboleth can see
+within
+30 feet.Failure:
+Legendary Resistance (3/Day, 
+or 4/DayinLair).
+If
+The target 
+has the Charmed condition until the 
+aboleth
+the aboleth fails a saving throw, 
+it can choose 
+to suc-
+dies
+orison a different planeof
+existencefromthe
+ceed in stead.
+target. While Charmed, the target acts
+asanallytothe
+Mucus Cloud. While aboleth and
+underwater, the abolethissur-isunder its control while 
+within 60 feetof
+rounded it. In addition, the aboleth and the target can
+by mucus. ConstitutionSa1JingThrow
+: DC74,communi-
+each creature in a cate telepathically 
+5-foot Emanation originating fromwith each other 
+over any distance.
+the aboleth at the end
+ofthe aboleth's turn.Failure:The target repeats the save whenever 
+Theit takes damage
+targetis cursed. as
+Until the curse ends, the target's skinwellasafter every 24 hours it 
+spends at least 7 mile
+becomes slimy, the target can breathe air and water,away 
+from the aboleth, ending the effect on
+itselfon
+andit can't regainHitPoints unlessa success .
+itis underwater.
+While the cursed creature 
+is outside a bodyofwater,
+LEGENDARYACTIONS
+the creature takes 6
+(1dl2)Acid damage at the end
+of
+Legendary Action U
+ses:3 (4inLair). Immediate ly after
+every 10 minutes unless 
+moisture
+is applied to its skin
+another creature's turn, the 
+aho leth can expend ause
+ to
+before those minutes 
+have passed.
+take one of the f
+ollo wing actions.The aboleth 
+regainsall
+expended uses at the start of
+ eachofits turns. •
+Probing Telepathy.
+Ifa creature the aboleth can see
+communicates telepathically 
+with the aboleth, the abo-
+Lash. The aboleth makes one Tentacle attack.
+leth learns the creature's greatest desires.
+Psychic Drain.
+Ifthe aboleth has at least one creature
+Charmed 
+or Grappled, it uses Consume Memories and
+regains 5 (ldl0) Hit Points.
+..
+A BOLETH
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 15 ---]
+W I THSTANDTHE STORM'SSCREAM?THE
+WHATC/\N
+1
+WANTO FSWEE TBREATH?AIRIS
+LIGHTNINGSSPEAR?THE
+SPE C T I T SPOWER.
+THEM IGHTIEST O FELEMENTS-RE
+BREE-z.Es ,RULERO F□-.JINN
+- 1--iusAM,SoNOFTHE
+AIRELEMENTAL
+Elemental, Neutra l
+Large
+A I RELEMENTAL
+Initiative + 5 (15)
+AC15
+90 (12dl0 + 24)
+HP 
+Primal SpiritofWind and Storm
+Speed l 0 ft., Fly 90 ft. (hover)
+ Desert, Mountain, Planar (Elemental
+Habitat:
+MODSAVE
+MODSAVEMODSAVE
+ Treasure: None
+PlaneofAir);
+20 +5+SCON14 +2 +2
+STR14+2 +2DEX
+of
+from theElemental Plane
+Energetic spirits -2
+Wis 10 +0 +0CHA6 - 2
+INT6-2 -2
+clouds and winds into
+Air, air elementalsgather
+Slashin g
+ Bludgeoning, Lightning, Piercing,
+Resistances
+withindistinct limbs and
+ever-changing bodi_es
+Immuniti es Poison, Thunder; Exhaustion, Grappled,
+home plane, these ele-
+vague features. Beyondtheir 
+Paralyzed, Petrified, Poisoned, Prone, Rest rained,
+conjure them,
+who 
+mentals might serve magic-users 
+Unconscious
+ofunbri-
+aroundnexuses
+or theymight congregate
+ 0
+nses Da rkvision 60ft.; Passive Perception l
+Se
+mountain
+planar energy, such as wind-scoured 
+dled 
+Primordial (Auran)
+Languages 
+air elementals
+orendless storms. In battle, 
+peaks
+CR 5 (X P 1,800; PB +3)
+withpowerful gusts or transform
+batterenemies
+into whirlwinds to fling away foes.
+TRAITS
+Air elementals often have distinctive composi-
+Air Form. The elemental can enter a creature's space
+the Air Ele-
+on orchoose a result from 
+tions. Roll 
+a spaceasnarrow
+through 
+and stop there. It can move 
+the elemental's
+Compositions table to inspire 
+mental 
+do so.
+withoutexpending extra movement to 
+asl inch
+appearance.
+ACTIONS
+ ELEMENTALCOMPOSITIONS
+AIR
+Thunderous
+ The elemental makes two 
+Multiattack.
+ ...
+The Air Elemental'sBodyFeatures
+ld6 
+Slam attacks.
+orcirrus clouds.
+l Cumulus 
+Melee AttackRoll:+8, reach l O ft.
+Thunderous Slam. 
+A mixtureofvibrantly colored gases.
+2 
+Hit: 14 (2d8 + 5)Thunder damage.
+3 A pungent, sour-looking miasma
+ DC
+4-6).Strength Saving Throw:
+Whirlwind (Recharge
+smaller creature in the elemental's
+13, one Medium or 
+that resemble animals
+4 Shifting cloud clusters 
++ 2) Thunder damage, and the
+space.Failure: 24 (4dl0 
+and simple shapes.
+20 feet straight away from the
+0target is pushed up to 
+_J
+mass.
+misty 
+5 Sinister features obscured in a 
+0
+u
+,
+ Success: Half
+elemental and has the Prone condition.
+l/)
+a:
+Swirling storm clouds.
+6 
+I
+damage only.
+u
+ 
+AIR ELEMENTAL
+13
+

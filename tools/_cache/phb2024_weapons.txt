@@ -1,0 +1,724 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 213 ---]
+MASTERYPROPERTIES
+IMPROVISED WEAPONS
+If you Eachweapon has
+use anobject-suchas a tableleg,fryingamasteryproperty, which is us-
+pan, orbottle-asa makeshift weapon, seeableonlyby acharacter
+ "Im·whohasafeatur e, suchas
+provised Weapons"inthe rules glossary.AlsoseeWeapon Mastery,thatunlock
+s t h epropertyforthe
+those rules ifyouwield a weaponinanunusualcharacter.The proper ties a r e defined below.
+way
+, such as using a Ranged weapon to make a
+CLEAVE
+melee attack.
+If you hit acreature with
+a meleeattackroll using
+this weapon,youcan
+makeameleeattackrollwith
+Light weapon, and you don't add
+yourability mod·
+the weapon againsta
+secondcreaturewithin 5 feet
+if1er tothe extraattack's damage unless
+thatmodi·
+ofthe first
+thatis alsowithinyourreach.Ona hit,
+fier is negative. For example, you can attack 
+with a
+thesecondcreaturetakesthe weapon's da mage,
+Shortswordin one 
+hand and a Dagger in theother
+butdon't addyourabilitymodifiertothatdamage
+usingthe Attack action and a Bonus Action,
+butyou
+unlessthatmodifier isnegative
+. Youcanmake this
+don't addyourStrength
+orDexterity modifier to the
+extra attack
+only onceperturn.
+damage rollofthe 
+Bonus Action unlessthatmodi-
+fier is negative.
+GRAZE
+Ifyour attackrollwith thisweapon
+missesacrea-
+LOADING
+ture, you
+candealdamage tothatcreatureequal to
+You can fire only one pieceofammunition from a
+the ability modifier you used tomake
+Loading weapon when you use an action, a Bonusthe attackroll.
+This damage isthesame
+Action,ora Reactiontypedealt by the weapon,
+tofire it, regardlessofthe
+and the damagecanbeincreased onlybyincreasing
+numberofattacks you can normally make.
+theability modifier.
+RANGE
+NICK
+A Range weapon has a range in parentheses after
+When
+theAmmunitionor Thrownproperty. The rangeyou makethe extra attackof theLightprop·
+liststwonumbers. The first is erty, youcan make it aspart ofthe 
+the weapon's normalAttackactionin-
+range in feet,and thesecondisthe weapon's longsteadofas a Bonus Action . Youcan make this extra
+range.Whenattacking a target attackonly onceper turn.
+beyond normal
+range, you have Disadvantage on the attack 
+roll.
+PUSH
+Youcan'tattack
+atargetbeyond the long range.
+If you hit acreature with this weapon, you
+canpush
+REACH
+thecreatureup to 10 feetstraight away from your-
+A Reach weapon adds 5 feet to your reach when youself if it is Large
+orsmaller.
+attack 
+withit, as well as when determining your
+SAP
+reach forOpportunity
+Attacks with it.
+If you hit acreature with this weapon,that creature
+THROWN
+has Disadvantage
+onitsnext attackrollbefore the
+If a weapon has 
+the Thrownproperty, you canstart of your 
+nextturn.
+throwthe weapon 
+to make a ranged attack, and
+SLOW
+you can draw thatweapon aspart of 
+the attack. If
+If you hit acreature with this weapon 
+anddeal
+the weapon is a Melee weapon, use 
+the same ability
+damagetoit, you can reduce its Speed by 
+10 feet un-
+modifier for the attack and damage rolls 
+that you
+til thestart of your next turn.Ifthe creature
+ishit
+use for a melee attack with that weapon.
+more than once by weaponsthathave this property,
+Two-HANDED
+the Speed reduction doesn't exceed 10 feet.
+A Two-Handed weapon requires two hands when
+TOPPLE
+you attack with it.
+If you hit a creature with this weapon, you can
+VERSATILE
+force the creature to make a Constitution 
+saving
+A Versatile weapon can be used 
+with one or twothrow (DC 8 plus the abili t y 
+modifier used to make
+hands. A damage value in parentheses appears 
+withthe attack roll and 
+your Proficienc y Bonus).Ona
+the property. The weapon deals that damage whenfailed save, 
+the creature has the P, one condition.
+used with two hands to make a melee attack.
+VEX
+If you hit a creature with t his ver,pon a nd deal
+damage to the creature, you
+ h ave Ad •1:rntage on
+your next attack roll against t ha! crc.:·t ure before
+the end of your next 
+turn .
+CH APT ER 6
+ I EQUI PME NT
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 214 ---]
+WEAPONS
+Dam age Properties 
+Name Mastery Weight 
+Cost
+Simple Melee We apons
+ld4 Bludgeoning Light 
+Club Slow 
+2 lb. l SP
+ld4 Piercing 
+Finesse, Light, Thrown (Range 20/60) 
+Dagger 
+Nick 
+1 lb. 2GP
+ld8 Bludgeoning Two-Handed 
+Greatclub 
+Push 10 lb. 2 SP
+ld6 Slash ing 
+Light, Thrown (Range 20/60) 
+Handaxe 
+Vex 2 lb. 
+5 GP
+l d6 Piercing 
+Thrown (Range 30/120) 
+Javelin Slow 2 lb. 
+5 SP
+l d4 Bludgeon ing 
+Light, Thrown (Range 20/60) 
+Light Hammer 
+Nick 
+2 lb. 2GP
+l d6 Bl udgeon ing 
+Mace 
+Sap 4 lb. 5 GP
+ld6 Bludgeoning Versatile (l d8) 
+Quarterstaff 
+Topple 4 lb. 
+2 SP
+ld4 Slashing Light 
+Sickle Nick 
+2 lb. 1 GP
+ld6 Piercing 
+Thrown (Range 20/60), Versatile (ld8) 
+Spear 
+Sap 3 lb. 1 GP
+Simple Ranged Weapons
+ld4 Piercing 
+Finesse, Thrown (Range 20/60) 
+Dart Vex 1/4 lb. 5 CP
+1d8 Piercing 
+Light Crossbow Ammunition (Range 80/320; Bolt), Loading, 
+Slow 
+5 lb. 25 GP
+Two-Handed
+ld6 Piercing 
+Ammunition (Range 80/320; Arrow), Two-Handed 
+Shortbow Vex 
+2 lb. 25 GP
+ld4 Bludgeoning 
+Ammunition (Range 30/120; Bullet) 
+Sling Slow 1 SP
+Martial Melee Weapons
+ld8 Slashing Versatile (ldl0) 
+Battleaxe Topple 4 lb. 10 GP
+ld8 Bludgeoning 
+Flail Sap 2 lb. 10 GP
+ldlO Slashing Heavy, Reach, Two-Handed 
+Graze 
+Glaive 6 lb. 20 GP
+ldl2 Slashing Heavy, Two-Handed 
+Cleave 7 lb. 30 GP
+Greataxe 
+2d6 Slash ing 
+Heavy, Two-Handed 
+Greatsword Graze 6 lb. SOGP
+ldl0 Slashing Heavy, Reach, Two-Handed 
+Halberd Cleave 6 lb. 20 GP
+ldl0 Piercing Heavy, Reach, Two-Handed (unless mounted) 
+Topple 6 lb. 10 GP
+Lance 
+ld8 Slashing Versatile (ldl0) 
+Sap 3 lb. 15 GP
+Longsword 
+2d6 Bludgeoning Heavy, Two-Handed Topple 10 lb. 10 GP
+Maul 
+ld8 Piercing 4 lb. 15 GP
+Morningstar Sap 
+ldl0 Piercing Heavy, Reach, Two-Handed 5 GP
+Push 18 lb. 
+Pike 
+ld8 Piercing Finesse Vex 2 lb. 25 GP
+Rapier 
+Finesse, Light 316. 25 GP
+ld6 Slashing Nick 
+Scimitar 
+ld6 Piercing Finesse, Light Vex 2 lb. 10 GP
+Shortsword 
+4 lb. 5 GP
+ld8 Piercing Thrown (Range 20/60), Versatile (ldl0) Topple 
+Trident 
+Versatile (ldl0) 5 lb. 15 GP
+Warhammer ld8 Bludgeoning Push 
+1d8 Piercing Versatile (1 dl 0) Sap 2 lb. 5 GP
+War Pick 
+ld4 Slashing Finesse, Reach Slow 3 lb. 2 GP
+Whip 
+Martial Ranged Weapons
+Ammunition (Range 25/100; Needle), Loading Vex 1 lb. 10 GP
+Blowgun 1 Piercing 
+Ammunition (Range 30/120; Bolt), Light, Loading Vex 3 lb. 75 GP
+Hand Crossbow ld6 Piercing 
+ldlO Piercing Ammunition (Range 100/400; Bolt), Heavy, Load- Push 18 lb. 50GP
+Heavy Crossbow 
+ing, Two-Handed
+Longbow ld8 Piercing Ammunition (Range 150/600; Arrow), Heavy, Slow 216. 50GP
+Two-Handed
+Ammunition (Range 40/120; Bullet), Loading, Slow 10 lb. 500GP
+Musket ldl2 Piercing 
+Two-Handed
+Ammunition (Range 30/90; Bullet), Loading Vex 
+Pistol 1d10 Piercing 3 lb. 250 GP
+2 15
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 215 ---]
+WEAPONS
+L •
+,r SIMPLE ME LEE WEAPONS
+I!
+1
+:I
+i
+i
+Ii
+l
+LIGH T ii llMMER
+I
+2 GP
+i
+CLUB
+, I
+1 SP
+! !
+S GP
+Q UIIRTE R STIIFF
+2 SP
+D 11c;c;e R
+2 GP
+S GP
+J /IV ELI N
+S r>E IIR
+5 SP
+1GP
+SIMPLE RANGED WEAPONS
+('
+/
+216 CHAPTER 6 I EQUIPMENT
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 216 ---]
+M E LEE WEAPONS
+LONGSWORD
+15GP
+M/IUL
+10 GP
+B 11T TL E /I X.E
+10 GP
+5HORTSWORD
+MORN l NGSTAR
+10GP
+15GP
+S C.IMITI\A:
+li 11LBERD
+20 GP
+3 0 GP
+GREATSWORO
+50 GP
+WI\RHI\MMER
+15 GP
+TRIDENT
+5 GP
+LI\NC E
+10 GP
+2GP
+MARTIAL RANGED WEAPONS
+LONGBOW
+50 GP
+BLOWGUN
+10 GP
+~ -- ·- g- ! PIST O L
+_________,_...,..:,:,:,:::::.# ~ ______i_s_o _G_P____-,[..,,,
+CHAPTER 6 I EQUIPMENT 
+217
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 217 ---]
+ARMOR
+SHIELDS
+LIGHTARMOR
+STUDDED LEATHER
+ARMOR
+PADDEDLEATHERARMOR
+ARMOR
+10GP'45GP
+5GP
+SCALE
+MAIL
+50GP
+H1DEARMOR
+10GP
+HI\LFPLI\TE
+ARMOR
+750 GP
+CHI\IN
+ SHIRT
+50GP
+BREI\STPLI\TE
+'4ooGP
+IHEAVYARMOR
+PLATE ARMOR
+1,500 GP
+(HI\INMAIL
+75
+GP
+SPLINT
+ ARMOR
+200 GP
+218 CHAPTER 6 I EQUIPMENT
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 218 ---]
+ARMOR
+Armor Armor Class (AC)
+Strength 
+Stealth 
+Weight Cost
+Light Armor (1 Minute to Don or Doff)
+Padded Armor 11 + Dex modifier
+Disadvantage 
+816. 5 GP
+11 + Dex modifier
+Leather Arm or
+10 lb. 10 GP
+12 + Dex modifier
+Studded Leather Arm o r
+13 lb. 
+45 GP
+Medium Armor (5 Minutes to Don and 1 Minute to Dolf)
+Hide Armor 12 + Dex mod ifier (max 2)
+1216. 10 GP
+Cha in Shirt 13 + Dex modifier (max 2)
+20 lb. 50 GP
+14 + Dex mod ifie r (max 2)
+Sca le Mail
+Disadvantage 45 lb. 
+50 GP
+14 + Dex modifier (max 2)
+Breastp late
+20 lb. 400GP
+15 + Dex modifier (max 2)
+Half Plate Armor
+Disadvantage 
+40 lb. 750 GP
+Heavy Armor (70 Minutes to Don and 5 Minutes to Dolf)
+Ring Mail 14
+Disadvantage 
+40 lb. 30 GP
+Chain Mail 16 Str 13 
+Disadvantage 55 lb. 
+75 GP
+17
+Splint Armor
+Str 15Disadvantage
+60 lb.200GP
+18
+Plate ArmorStr 15
+Disadvantage
+65 lb.1,500 GP
+Shield
++2
+Shield616.
+10 GP
+LI GHT, MEDIUM, OR HEAVY ARMOR
+ARMOR
+If you wear Light, Medium, or Heavy ar mor an d
+The Armo r table lists the game's ma in ar mor. The
+lack training with it, you have Disadvantage on any
+table includes the cost and weight of ar mor, as well
+D20 Test that involves Strength or Dexterity, and
+as the following details:
+you can't cast spells.
+Category. Ever y t ype of armor fa lls into a category:
+SHIELD
+Light, Medium, or Heavy. T he category deter-
+You gain the Ar mor Class benefit of a Shield only if
+mines how long it takes to don or doff t he armor
+you have training with it.
+(as shown in the table).
+Armor Class {AC). T he table's Armor Class column
+ONE ATA TIME
+tells you what y our base AC is when you wear a
+A creature can wear only one suit of armor at a
+type of armor. For example, if you wear Leather
+time and wield only one Shield at a time.
+Armor, your base AC is 11 plus your Dexterity
+mod ifier, whereas you r AC is 16 in Chain Mail.
+VAR IA NT: EQUIPM ENT SIZES
+Strength. If the table shows a Strength score in the
+Strength column fo r an a r mor ty pe, that armorIn most campaigns, you can use or wear any
+reduces the wearer's speed by 10 fe et un less theequipment that you find on your adventures,
+wearer has a Streng t h score equal to or higherwithin the bounds of common sense. For ex-
+ample, an ore adventurer won't fit in a halfling's
+than the listed score.
+Stealth. If the table shows "Disadvantage" in the
+Leather Armor, and a cloud giant's robe would be
+Stealth column for a n armor type, the wearer hasfar too large for a gnome.
+Disadvantage on Dexterity (Stealth) checks.The OM can impose more realism. For example,
+a suit of Plate Armor made for one human might
+AR M OR T R A IN ING
+not fit another one without significant alterations,
+- - -----------
+and a guard's uniform might be visibly ill-fitting
+Anyone can do n armor or hold a Shield, but only
+when an adventurer tries to wear it as a disguise.
+those with t raining can use them effectively, as ex-
+Using this variant, when adventurers find ar-
+plained below. A character's class and other features
+mor, clothing, and similar items that are made to
+deter mine t h e cha racter's armor training. Amon-
+be worn, they might need to visit a smith, a tailor,
+ster has trai ni n g· w ith any armor in its stat block.
+a leatherworker, or a similar expert to make the
+item wearable. The cost for such work is ld4 x 10
+percent of the market price of the item.
+CHAPTE R 6 I EQUIPM EN T 219
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 219 ---]
+TOOLS
+A tool helpsyoumake specialized ability checks,
+craft certainitems,orboth. A tool's description
+includesthetool'scost andweight, as well asthe
+following entries:
+Ability. This
+entryliststheabilitytousewhen
+making an
+ability checkwith thetool.
+Utilize. Thisentrylists things youcando withthe
+toolwhen you taketheUtilize action. You can do
+oneofthose thingseach time you take the action.
+CARPENT ER'STOOLS(8GP)
+Thisentryalso providestheDCforthe
+action.
+Ability:Strength Weight: 6lb.
+Craft.Thisentry
+listswhat,ifanything, you can
+Utilize: Seal or pryopenadoor or container(DC 20)
+craft with thetool. For crafting rules, see "Craft-
+Craft:Club, Greatclub,Quarterstaff, Barrel , Chest,
+ingEquipment" later in the chapter.
+Ladder, Pole, Portab leRam, Torch
+Variants.Thisentryappearsifthe tool has vari
+-
+ants,which arelisted. Each requires a separate
+proficiency.
+CARTOGRAPH ER' STOOLS(15
+GP)
+Ability:Wisdom
+ Weight: 6lb.
+TOOLPROFICIENCY
+Utilize: Draft a mapofa small area (DC 15)
+Ifyouhave proficiencywitha tool, addyour Pro-
+Craft:Map
+ficiency Bonus
+to anyability check you makethat
+usesthetool.If youhave proficiency in a skill that's
+usedwith thatcheck, you have Advantage on the
+COBBLER'STOOLS(5GP)
+checktoo.
+Ability:Dexterity Weight: 5 lb.
+Your features mightgive you proficiencywitha
+Utilize:
+ Modifyfootwear to give Advantage on the
+tool. Amonster hasproficiency
+with anytool in its
+wearer's next Dexterity (Acrobatics) check 
+(DC 10)
+statblock.
+Craft:
+Climber'sKit
+ARTISAN'S TOOLS
+Artisan's Toolsareeach focused on crafting itemsCOOK'SU TENSILS(1GP)
+and pursuinga trade. Eachofthese tools requires a
+Ability:Wisdom Weight: 8 lb.
+separateproficiency.
+Utilize: Improve food 's flavor (DC 10), or detect
+spoiled or poisoned food (DC 
+15)
+~ ---------------ic-·--=-•
+Craft:Rations
+A LC
+HEMIST' SSUPPLIES(50GP)
+~-
+Ability: Intelligence
+Weight:8 lb.
+Utilize: Identify a substance
+(DC 15), or start a fireG LASSB LOWER' sTOOLS(30GP)
+(DC 15)
+Ability:Intell igence Weight: 5 lb.
+Craft: Acid , Alchemist's F
+ire,Component Pouch, Oil,
+Utilize: Discernwh at a glass object held in the past24
+Pape
+r,Perfumehours
+(DC 15)
+Craft: Glass Bottle, Magnifyin g Gla
+ss , Spyglass, Vial
+--·-------- - ~ -
+BREWER'SSUPPLIES(20GP)
+Ability: Intelligence JEWELER'S TOOLS (25GP)
+Weight: 9lb.
+Utilize: Detect poisoned drink 
+(DC 15), or identifyal-Ability: Intelligence Weight: 2 lb.
+cohol (DC 10)Utilize: Discern a gem's va lue (DC 15)
+Craft: AntitoxinCraft:Arca ne Focus, Ho ly Symbol
+-_,,,,,.::-=--
+LEATHERWO RKER
+CALLIGRAPHER'S SUPPLIES 'sToo u ; (5 GP)
+(10GP)
+Ability: Dexterity Weight: 5 lb.
+Ability: Dexterity Weight: 5 lb.
+Utilize: Add a design to a leathe r item (DC 10)
+Utilize:Write text with impressiveflou rish es that
+C
+Craft: Slin g, Whip, Hide Armor, Leat he r Armor, Stud-:•
+guard against forgery (DC 15)
+ded Leather Armor, Backpack, Cross bow Bolt Case,
+Craft: 
+Ink, Spell Scroll
+Map or ScrollCase, Pa rch ment, Po uch, Qu iver, Wa-
+te rski n
+2~0 CHAPTER 6 I EQUIPMENT
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 220 ---]
+OTHERTOOLS
+MASON' S T:.> O L S (10
+ GP~
+These tools support adventure andotherpursuits.
+'l't Stre ngth Weight: 8 lb.
+Ab11y:.
+•1·ch·sel a symbol or hole
+instone (DC10)
+1
+Ut11ze:
+Craft:Block and Tackle
+DISGUISEKIT (25 GP)
+Ability:CharismaWeight:3 lb.
+Utilize:Apply makeup(DC10)
+PAINTER' SSUPPLIES
+(10 _GP)
+Craft:Costume
+Ability:Wisdom .W~1ght:5 lb. .
+Utilize: Paint a recognizable imageofsomething
+you've seen (DC l 0)
+FORGERY
+KIT(15GP)
+Craft:Druidic Focus ,HolySymbol
+Ability:DexterityWeight:5 lb.
+Utilize: Mimic10or fewer words
+ofsomeone else's
+handwriting(DC 15),or dupl icate awaxseal(DC 20)
+POTTER' STOOLS(10GP)
+Ability:
+Intell igenceWe~ght:_3 lb. .
+Utilize: Discernwhata ceramic obJect held
+inthe past
+GAMINGSET(VARIES)
+24hours (DC 15)
+Ability:Wisdom
+Weight:-
+Craft:Jug,Lamp
+Utilize:Discern whether someone
+ischeating (DC 10),
+or win the game(DC 20)
+Variants:Dice(lSP),dragonchess(lGP), playing
+S M ITH'STOOLS(20 GP)
+cards(5SP),three-dragon ante (l
+GP)
+Ability:Strength Weight: 8 lb.
+Utilize: Pry open adoor orcontainer (DC20)
+Craft:Any Melee weapon (except Club, Greatclub,
+HERBALISMKIT(5GP)
+Quarterst aff, and Whip) , Med ium armor (except
+Ability:Intelligence
+Weight:3 lb.
+Hide) , Heavy armor, Ball Bearings, Bucket, Caltrops,
+Utilize:Identify a plant(DCl0)
+Chain, Crowbar, Firearm Bullets, Grappling Hook,
+Craft:Antitoxin, Candle, Healer's Kit, PotionofHealing
+Iron Pot, Iron Spikes, Sling Bullets
+-·
+. .~..--· 
+•---
+MUSICAL INSTRUMENT(VARIES)
+TINKER ' STOOLS(50 GP)
+Ability:CharismaWeight:Varies
+Ability:DexterityWeight:10lb.
+Utilize:Playa known tune(DC 10), or improvi
+sea
+Utilize: Ass emble a Tiny item composed
+ofscrap,
+song(DC15)
+wh ich falls apart in l minute (DC
+ 20)
+Variants: Bagpipes(30GP,6 lb.), drum(6 GP, 3 lb.),
+Craft:Musket, Pistol, Bell, Bullseye Lantern,Flask,
+dulcimer(25 GP,10lb.), flute(2 GP,l lb.), horn(3
+Hooded Lantern ,HuntingTrap, Lock, Manacles,
+GP,216.),lute(35 GP,216.), lyre(30GP,216.), pan
+Mirror, Shovel, Signal Whistle, Tinderbox
+flute(12GP,2 lb.), shawm(2GP,l lb.), viol (30GP,
+l lb.)
+W EAVER' STOOLS(1GP)
+Ability: Dexterity Weight: 5 lb.
+NAV IGATOR'S TOOLS
+ (25 GP)
+Utilize: Mend a tear in clothing (DC 10), or sew a Tiny
+Ability: Wisdom 
+Weight: 2 lb.
+design (DC 10)
+Utilize: Plot a course (DC 10), or determine position
+Craft: Padded Armor, Basket, Bedroll , Blanket, Fine
+bystargazing (
+DCl5)
+Clothes , Net, Robe, Rope , Sack
+, String, Tent, Travel-
+er's Clothes
+POISONER'SKIT(50GP)
+Ability:Intelligence Weight: 2 lb.
+WooocARVER'sTooLs(1GP)
+Utilize:
+ Detect a poisoned object (DC 10)
+Ability: Dexteri ty Weight:
+ 5 lb.
+Craft:Basic
+Poison
+Utilize:Carve a pattern in wood (DC 10)
+Craft: Club, Greatcl ub, Qua rterstaff, Ranged weapons
+(except Pisto l, Mus ket, and Sling) , Arcane Focus, 
+Ar-
+THIEV ES ' TOOLS (25GP)
+rows, Bol t s, Dr•.1idic Focus, Ink Pen , Needles
+Ability: Dexterity Weight: l lb.
+Utilize: Pick a lock (DC l 5) , or disarm a trap (DC l 5)
+CHAPTER 6 I EQU I PMENT 221
+

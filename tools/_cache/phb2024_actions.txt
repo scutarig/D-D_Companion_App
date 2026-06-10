@@ -1,0 +1,1005 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 14 ---]
+Actionscancome up inothersituations, too:ina
+A C 'T'1C}NS
+socialinteraction,youcantrytoInfluence acrea-
+Whenyo u do somethingotherthanmovingor
+ture orusethe Searchactiontoread thecreature's
+communicating, youtypically takeanaction.The
+bodylanguage,butyoucan't doboth at thesame
+Actiontableliststhegame'smainactions,whichare
+time.And whenyou're exploringadungeon,you
+defined inmorede t ail inthe rules glossary.
+can't simultaneouslyusethe Searchactiontolook
+fortraps andusethe
+Helpactionto aidanother
+ACTIONS
+character who'strying
+to openastuck door(with
+ActionSummary
+theUtilizeaction).
+Attack Attack with a weapon 
+or an Unarmed
+BONUS 
+ACTIONS
+Strike.
+Variousclass features, spells,andotherabilities let
+Dash For the restofthe turn, give yourself
+you takeanadditional action onyourturncalled a
+extra movement equal to your Speed .
+Bonus Action.The CunningAction feature, for ex-
+Disengage Your movement doesn 't provokeOppor-
+ample, allows a Rogueto takea Bonus Action. You
+tunity Attacks for the restofthe turn .
+can takea BonusAction only whena special ability,
+Dodge
+ Untilthe startofyour next turn, attacka spell,oranotherfeatureofthe game statesthat
+youcandosomethingas a Bonus 
+rolls against you have Disadvantage, andAction. Youother-
+wise
+don't havea Bonus Action totake.
+you make Dexterity saving throws with
+You
+cantake only oneBonusAction onyour turn,
+Advantage.Youlose this benefit if you
+so youmustchoosewhichBonus Action to useif
+have the Incapacitated cond ition or if
+you havemorethanoneavailable.
+your Speedis0.
+Youchoosewhentotakea Bonus 
+Actionduring
+Help Help another 
+creature's ability check or
+yourturn
+unlesstheBonus Action'stimingis spec-
+attack roll , or administer first aid .
+if1ed.Anything thatdeprivesyouofyourabilityto
+take actions
+Hide Make a Dexterity (Stealth) check.alsoprevents you fromtakinga Bonus
+Action.
+Influence Make a Charisma (Deception, Intimi-
+dation, Performance, or Persuasion) or
+REACTIONS
+Wisdom (Animal Handling) check to
+Certainspecial abilities, spells,andsituationsallow
+alter a creature's attitude.
+you to takea special actioncalled a Reaction. A
+Magic Cast a spell, use a magic item, or use a
+Reaction isan instant response to atriggerofsome
+magical feature.
+kind,which can occur on yourturn 
+oron someone
+Ready Prepare to take an actionelse's.The OpportunityAttack, describedlater in
+inresponse to
+this chapter, 
+isthe most common typeofReaction.
+a trigger you define.
+Whenyou takea Reaction, youcan't take
+another
+Search Make a Wisdom (Insight, Medicine,
+one until thestart of your next turn. If the reaction
+Perception, or Survival) check.
+interrupts another creature's 
+turn, that creature
+Study Make an Intelligence (Arcana, History,
+can continueitsturnright after theReaction.
+Investigation, Nature, or Religion) check.
+In termsoftiming, a Reaction takes place immedi-
+ately afteritstrigger unlesstheReaction's descrip-
+Utilize Use a nonmagical object.
+tion says otherwise.
+Playercharacters and monsters 
+can also do things
+notcovered by these actions. Many class features
+WHAT WOULDYOUR CHARACTERDo?
+and otherabilities provide additional action options,
+Ask yourself as you play, "What would my char-
+and you can improviseotheractions.When you de-
+acter do?" Playing a role involves some amount
+scribe an action not detailed elsewhere in the rules,
+of getting into another person's head and under-
+the Dungeon Master tells you whether that action
+standing what motivates them and how those
+is possible and what kindof D20 Test you need to
+motivations translate into action.InD&D, those
+make, if any.
+actions unfold against the backdrop of a fantastic
+world fullof situations we can only imagine. How
+ONE THING ATATIME
+does your character react to those situations?
+The game uses actions to govern how much you 
+can
+This advice comes with one important caveat:
+do at one 
+time. You can take only one action at a
+avoid character choices that ruin the fun of the
+time. This principle is most important in combat, as
+other players and the OM. Choose actions that
+explained in "Combat" later in this chapter.
+delight you and your friends.
+CHAPTER 1 I P L AY I N G T HE GAME 15
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 15 ---]
+threats of imprisonment. A 
+stubborn merchant
+SOCIAL INTERACTION
+refuses to help if the characters badger her. A vain
+During their adventures, player characters meet
+dragon laps up flattery.
+many different people and face some monsters that
+When interacting with an NPC, payattentionto
+would rather talk than fight. 
+In those situations, it's
+the DM's portrayalofthe NPC's personality. You
+time for social interaction, which takes many forms.
+might be able to learn an NPC's goals and thenuse
+For example, you might try to convince a burglar
+that information to influence the NPC.
+to confess to wrongdoing or try to flatter a guard.
+If you offer NPCs something they want orplay
+The Dungeon Master assumes the roles of any non-
+on their sympathies, fears,orgoals, you can form
+player characters who are participating.
+friendships , ward off violence,or learn a key piece
+An NPC's attitude toward your character is
+of information. On the other hand, if you insult a
+Friendly, Indifferent, or Hostile, as defined in the
+proud warrior orspeak illofa noble's allies,
+your
+rules glossary. Friendly NPCs are predisposed to
+efforts to convinceordeceive will likely fail.
+help, and Hostile ones are inclined to hinder.
+Social interactions progress in two ways: through
+ABILITY CHECKS
+roleplaying and ability checks.
+Ability checks can be key in determining the out-
+come of a social interaction. Your roleplayingef-
+ROLEPLAYING
+forts can alter an NPC's attitude, but there might
+Roleplaying is, literally, the act of playing out a role.
+still be an element 
+of chance if the DM wants dice to
+In this case, it's you as a player determining how
+play a role in determining an NPC's response to you.
+your character thinks, acts, and talks. Roleplaying is
+In such situations, the DM will typically ask you to
+part of every aspect of the game, and it comes to the
+take the Influence action.
+fore during social interactions.
+Pay attention to your skill proficiencies when
+As you roleplay, consider whether you prefer an
+thinking of how you will interact with an NPC; use
+active approach or a descriptive approach, each of
+an approach that relies on 
+your group's skill profi-
+which is described in "Social Interaction Example."
+ciencies. For example, if the group needs to trick a
+The DM uses an NPC's personality and your char-
+guard into letting them into a castle, the Rogue who
+acter's actions and attitudes to determine how an
+is proficient in Deception should lead the discussion.
+NPC reacts. A cowardly bandit might buckle under
+16 CHAPTER 1 I PLAYING THE GAME
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 16 ---]
+SOC IA L I NTERACTION EXAMPLE
+In this scene, players engage in a social interaction
+encounter. You and your group determine how
+similar scenes play out in your adventures.
+Four adventurers-Shreeve, Mirabella, Auro, and
+Gareth-have traveled to the Blood on the Vine tavern
+Active Roleplaying. Notice throughout the
+in the grim village of Barovia.
+example how Russell and Amy actively role-
+play their characters' behavior. In this active
+Jared (as OM): This tavern might have been finely
+approach, they speak with their characters'
+appointed once, but it has grown shoddy with the
+voices, like an actor taking on a role. The
+passage of years. A blazing fire in the hearth barely
+players might even echo their characters'
+gives any warmth to the room . You see a man
+body language. They still need to describe
+behind the counter, methodically cleaning glasses.things that can 't reasonably be acted out.
+Three older women huddle together at one table.
+And a handsome young man sits by himself at
+a corner table, sipping a glass of wine. He looks
+up as you enter, but the other people ignore you .
+Descriptive Roleplaying. Notice how Phillip
+"Welcome to Barovia," he says. He holds a coindescribes his character's words and action.
+Drawing on his mental image of his char-
+toward the bartender: "A pitcher for the visitors."
+acter, he says what his character does and
+The glint of silver catches the server's attention .
+how the character does it. If this approach is
+Maeve (as Mirabella): "Thank you , friend . May we
+most comfortable for you, keep these things
+know to whom we're indebted?"
+in mind:
+Jared: "I am lsmark Kolyanovich, though around
+• Describe your character's emotions and
+here, I am often called lsmark the Lesser."
+attitude.
+Russell (as Shreeve): "That's unfortunate."
+• Focus on your character's intent and how
+Jared: "Indeed. I hope one day to live up to my fa-
+others might perceive it.
+ther's example and rid myself of that title. And so,
+• Provide as much embellishment as you
+my new friends, who are you?"
+feel comfortable with .
+Amy (as Auro): "I'm Auro."
+Don't worry about getting things exactly
+Russell: "Shreeve."
+right. Focus on what your character would
+Phillip (as Gareth): "My name is Gareth."
+do, and describe what you see in your mind.
+Maeve (as Mirabella): "I'm called Mirabella. You said
+your name was Kolyanovich. Are you related to
+Kolyan lndirovich, the burgomaster of this town?"
+o~;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;::;;;===~
+Jared: He looks a little surprised. He says, "Kolyan
+Ability Checks. Phillip's character, Gareth,
+lndirovich is my esteemed father, yes."
+makes a Wisdom (Insight) check to deter-
+Maeve: "Then he's the one who summoned us!" I
+mine whether he reads lsmark's unspoken
+show him the letter that drew us here.
+cues. Wisdom is the ability that measures
+Phillip: I watch his reaction as he reads it.
+perceptiveness and intuition. Insight reflects
+I Jared: He reaches for the letter but pulls back before
+a character's skill at reading other people's
+touching it. "That seal-it's not my father's ."
+moods and intentions. The OM set the DC
+Gareth, make a Wisdom (Insight) check.
+at 15, which Gareth beats. With a successful
+Phillip: Gareth got 18.
+T
+Wisdom (Insight) check, Gareth gleans in-
+Jared: You notice that lsmark is trying to conceal his
+formation that wasn't obvious, so it wasn't
+terror. He's afraid to even touch the letter's seal.
+part of the DM 's earlier narration. For more
+Phillip: I ask him what 's frightening him.
+information, see "Ability Scores" and "Profi-
+Russell: "Yeah, whose seal is it?"ciency" earlier in this chapter and the Search
+action in the rules glossary.
+Jared: "The Devil Strahd."
+Amy: "Sounds like a pleasant fellow."
+Jared: "No! He is the vampire lord of Castle Raven -
+loft and a plague to my sister. You must help her!"
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 17 ---]
+Jared: "You are too kind! First , I need your help
+Amy: "So Strahd wrote this letter, pretending to be
+the burgomaster, imploring us to come to Baroviatransporting lreena to the town ofVallaki."
+and rescue lreena Kolyana from a deadly afflictionMaeve: "Where's Vallaki?"
+... which is him? Why would he do that?"Jared: "It lies to the northwest, in the heart of the
+Russell: "Why would he want us to come here?"valley. As the raven Aies, it is less than ten miles,
+Maeve: "Clearly, he doesn't think we're a threat."but the road winds among the hills and woods,
+Amy: "Well, he hasn't met us yet!"and the journey takes at least five hours at speed."
+Jared: "He's toying with you. He delights in the de-Russell: "And why there?"
+struction of all things good, like my dear sister."Jared: "The town lies beyond the view of Castle
+Phillip: Gareth draws closer and compassionately
+Ravenloft, so I hope it's beyond Strahd's spies.
+asks lsmark whether his sister has been bitten by
+And I have heard that Vallaki is well defended , with
+the vampire.
+a wooden palisade and iron gates."
+Jared: Please make a Charisma (Persuasion) check to
+Russell: "As if such defenses would stop a vampire."
+see how well he responds to your pastoral manner.Jared: "Indeed. But if moving her there can keep him
+You have Advantage because he's Friendly.
+away from her for even a few days, we have time
+Phillip: Oh, good thing. My first roll was a 7, but with
+for the second part of our task."
+Advantage ... ugh, not much better. Well, 10 plus
+Russell: "A part where you help us?"
+5 is 15.
+Jared: "Yes, when I help you face the vampire!"
+Jared: lsmark leans toward you, Gareth, with a suspi-
+f.),,.;;;;;.======;;;;;;;;;;;;;;=~
+cious glance at the other people in the tavern, like
+he's worried they're eavesdropping. He whispers,
+Influencing NPCs. Gareth takes the Influence
+"The Devil Strahd desires to make lreena his latest
+action (see the rules glossary), which charac-
+ters can take to influence an NPC. It's easier
+plaything. Twice he has visited her in the night,
+to influence an N PC who's already disposed
+using his devilry to secure an invitation into the
+to help you, as lsmark is here. lsmark's
+house-for he can't enter where he isn't invited.
+Friendly attitude gives Phillip Advantage on
+Twice he has bitten her, yet she clings to life. But I
+the roll. In this case, Advantage made the
+fear she won't survive another visit!"
+difference between success and failure. 
+0
+Russell: "All right, lsmark. You bought us drinks
+and told us about the Devil Strahd and your sister.
+How can we help?"
+dl r.HAPT11111 I PLAYING THE GAME
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 18 ---]
+EXPLORl'
+::..TION
+Exploration involves delving into places
+thatare
+dang
+erous and fullofmystery. The rules in this
+section 
+detai l someofthe waysadventurers interact
+with the
+environmentin such places.
+ADVENTURING EQUIPMENT
+"------------
+Asadventurersexplore,their equipment can 
+help
+them in many ways. For example, they 
+can reach
+out-of-the-way places with a Ladder, perceive things
+they wouldn't otherwise notice with a Torch
+or
+anotherlight source, bypass locked doors 
+and con-
+tainers with 
+Thieves' Tools, and create obstacles for
+pursuers with 
+Caltrops.
+Seechapter6 for rules on many itemsthat 
+are
+useful on adventures. The items in
+thatchapter's
+"Tools" and "Adventuring Gear" sections
+arees-
+pecially useful. The weapons inthat chaptercan
+also be used for morethanbattle; you could use a
+Quarter
+staff, for example, to push a sinister-looking
+buttonthatyou're reluctant to touch .
+VISIONANDLIGHT
+Someadventuringtasks-suchas noticing danger,
+hitting anenemy, and targeting certainspells-are
+affected by sight, so effects
+thatobscure vision can
+hinder you, as explained below.
+OBSCURE DAREAS
+An area might be LightlyorHeavily Obscured. In
+a Lightly Obscured
+area-suchasan area with Dim
+Light, patchy fog,or
+moderate foliage-you have
+Disadvantage on Wisdom (Perception) checks
+that
+rely on sight.
+A Heavily Obscuredarea-suchas an area with
+SPECIAL SENSES
+Darkness, heavy fog,
+ordense foliage-is opaque.
+Somecreatureshave special senses
+thathelp them
+You have the Blinded condition (see the rules glos-
+perceive things in
+sary) whencertainsituations. The rules glos-
+tryingto see something there.
+sarydefines the following special senses:
+LIGHT
+Blindsight
+Tremorsense
+The presence
+orabsenceoflight determines the cat-
+Darkvision
+Truesight
+egory 
+ofillumination in an area, as defined below.
+Bright Light. Bright Light lets most creatures see
+HIDING
+normally. Even gloomy days provide Bright Light,
+Adventurers and monsters often hide, whether 
+as do torches, lanterns, fires, to
+and other sources of
+spy on one another, sneak past 
+illumination a guardian,orset
+within a specific radius.
+an 
+ambush. The Dungeon Master decides when cir-
+Dim Light. Dim Light, also called shadows, creates
+cumstances are appropriate for hiding.
+a Lightly Obscured area. An area When you
+of Dim Light is
+tryto hide, you take the Hide action.
+usually a boundary between Bright Light and sur-
+rounding Darkness. The soft light 
+of twilight and
+INTERACTING WITH OBJECTS
+dawn also counts as Dim Light. A full moon might
+bathe the land in Dim Light.
+Interacting with objects is often simple to resolve.
+Darkness. Darkness creates a Heavily ObscuredThe 
+player tells the OM that their character is do-
+area. Characters face Darkness outdoors at nighting something, such as moving a lever 
+or opening a
+{even most moonlit nights), within the confines door, and the OM describes 
+ofwhat happens. Some-
+an unlit dungeon, 
+or in an area of magical Darkness.times, however, rules govern what you can do with
+an object, as detailed in the following sections.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 19 ---]
+MARCHING
+WHATIsANOBJECT?ORDER
+For the purpose
+ofthe rules,an
+object is a discrete,The adventurers should establish a marching
+inanimate item like a window, door, sword, book,
+order while they travel , whether indoors or ou
+t-
+table, chair,
+orstone. It isn't a building
+ordoors. A marching order makes
+a vehicle,
+iteasier to de-
+which 
+are composedof
+many objects.termine which characters are affected
+by
+traps ,
+which ones can 
+spot hidden enemies, and which
+nME-LIMITED
+OBJECT
+INTERACTIONS
+ones are the closest to those enemies if a fight
+When time is short, such as in combat, interactions
+breaks out.Youcan change your marching order
+with objects are limited: one free interaction
+per
+outside combat and record the order any way you
+turn. That interaction must
+occur during
+a crea-
+like:writeitdown, for example, or arrange minia-
+ture's movementor
+action. Any additional inter-
+tures to show
+it.
+actions require the 
+Utilize action, as explained in
+"Combat" later in this chapter.
+TRAVELPACE
+FINDING 
+HIDDEN
+OBJECTSWhile traveling outside combat, a
+group 
+canmove
+When your character
+searches for hidden things,at a Fast, Normal,
+orSlow pace, as
+shown onthe
+such as a secret 
+doororTravel Pace table.
+a trap, theDM typicallyThetable
+states how far the
+asks you to make a Wisdom (Perception) check,
+partycan move in a period
+oftime;if riding 
+horses
+provided you describe 
+the character or othermounts
+searching in, the group can
+move twicethat
+the hidden object's vicinity. On a success, you find
+distance for 1 hour, 
+after 
+which themounts 
+need
+theobject,other important a
+details,orShortorLong Rest before
+both.they can
+moveatthat
+If you describe 
+your character increased pace again (see
+searching nowherechapter
+6 for a selection
+near
+a hidden object, a Wisdom (Perception) checkof
+mounts for sale).
+TheDungeon Master's Guide
+has
+won't reveal the object, no 
+matter rulesthataffect which pace 
+the check's total.you 
+can choose in
+cer-
+tain typesof terrain
+.
+CARRYING
+OBJECTS
+You can usually
+carryyour gear 
+and treasure with-
+TRAVELPACE
+out worrying about 
+the 
+weightofthose objects.
+Distance Traveled Per ...
+If youtryto haul an unusually heavy object
+ora
+Pace
+Minute
+ Hour 
+massive number of Day
+lighter objects, the 
+DM might re-
+quire you to abide by 
+the rules for Fast 
+carrying capacity400 feet 
+4 miles 
+30 miles
+in the rules glossary.
+Normal
+ 300 feet 
+3 miles
+24miles
+Slow
+BREAKING OBJECTS 200 feet
+ 2 miles
+18miles
+As an action, you can automatically 
+break
+oroth-
+Each travel pace has a game effect, as defined below.
+erwise destroy a fragile, nonmagical object, such as
+Fast. Traveling 
+at a Fast pace imposes 
+Disadvan-
+a glass container
+ora piece 
+of paper. If youtry
+to
+tage 
+on a traveler's Wisdom 
+(Perception
+or Sur-
+damage something more resilient, 
+the DM might use
+vival) and Dexterity (Stealth) checks.
+the rules on breaking objects in 
+the rules glossary.
+Normal.
+ Travelingata Normal pace imposes Dis-
+advantage on Dexterity (Stealth} checks.
+HAZARDS
+Slow. Traveling
+ata Slow pace
+grants Advantage
+Monsters are the main perils characters face, but
+on Wisdom (Perception
+orSurvival} checks.
+other 
+dangers await. The rules glossary defines the
+following hazards:
+VEHICLES
+Travelers in wagons, carriages,
+or other
+land vehi-
+BurningFalling
+Suffocation
+cles choose a pace as normal. 
+Characters 
+in a water-
+DehydrationMalnutrition
+borne vessel are limited to 
+the speed
+of the vessel,
+and they don't choose a travel pace. 
+Depending on
+TRAVEL
+the vessel and 
+the sizeof the crew, ships 
+might be
+During an adventure, the characters might travel
+able to travel for up to 24 
+hours per 
+day. Chapter 6
+long distances on trips 
+that could take hours 
+or
+includes vehicles for sale.
+days. The DM can summarize this travel without
+calculating exact distances 
+or travel times, 
+or the
+EXPLORATION EXAMPLE
+DM 
+might have you use the travel pace rules below.
+This scene finds 
+the player 
+characters investigating
+Ifyou need to know how fast you can move when
+a mysterious and potentially dangerous location.
+every second matters, see the movement rules in
+They're moving through the environment and inter-
+"Combat" later in this chapter.
+acting with things they find there.
+20 CHAPTER l
+ I PLAYING THE GAME
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 20 ---]
+The charac t ers are exploring Castle Raven/oft, and th e
+OM describes the room th e characters have entered.
+Everyone Is Accounted For. Exploration is
+open-ended; the players don 't take turns
+Jared (as OM): A blazing hearth fire fills this room
+moving around the dungeon the way they do
+with warm light. Firelight glints off a poker beside
+in combat. But the OM frequently checks in
+the fireplace , and the wal ls are lined with ancient
+to make sure it 's clear where everyone is and
+books . A huge painting hangs above the mantel-
+what they 're doing.
+piece in a gilded frame. The firelight illuminates
+the portrait-an exact likeness of lreena Kolyana .
+Phillip (as Gareth): How old does the painting look?
+Maeve (as Mirabella): I'm going to check the books!
+Teamwork Matters. The player characters
+Jared: OK , I'll get to those in a second. Russell and
+are working toward a common goal. They
+Amy, what are your characters doing?
+move together through the dungeon and
+Russell (as Shreeve): I stand near the door, swordcooperate to overcome its challenges. When
+the characters enter the room, they explore
+drawn , ready for danger. This place is creepy!
+different parts of the room. When Auro finds
+Amy (as Auro): I go near the fireplace . A warm fire
+a secret door behind the fireplace later in the
+sounds nice. But I'm also alert for danger.
+example, they come together again to exam-
+Jared: Got it. OK, Phillip, please make an ln_tel~igence
+ine it, and Gareth figures out how to bypass
+I 
+(History) check as Gareth looks at the painting.
+the fire . It might seem like Russell's charac-
+' Phillip: I don't have proficiency in History, but here
+ter wasn't doing much , but Shreeve was pro-
+I goes. I got-oh! A 20! For a total of ... 20.
+tecting the group by guarding the door.
+Jared: Two things leap out at Gareth about the paint-
+ing. First, the woman's clothes look old-fashioned.
+Second, the paint is flaking in places, and theOo-i=========~
+whole thing is covered by a thin layer of soot.
+Worth Rolling with or without Proficiency.
+You'd say this painting is a few centuries old.
+You usually have a chance of success on
+Phillip: So maybe an ancestor of lreena's? Unless
+an ability check even if you don't have pro-
+she's already a vampire and this "bitten by Strahd"
+ficiency in a relevant skill. In the example,
+thing is a ruse.
+Phill ip gets a 20 without proficiency. The d20
+§Jared: Who knows? Now, Mi rabella's looking at the
+brings many surprises to the game-sur-
+u
+z
+prises that the DM then interprets.
+books?
+r
+Q,
+Maeve: Yeah, I pull one off the shelf at random .
+C H APTER l I PLAY ING THE GAME
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 21 ---]
+o &~=;;;;;;;;;;;;;;=;;;;;:;;;;:;;;;
+Jared:It's a book written in Common called;;;;;;;;;;;;;;;;:;;;;:;:;~
+ Onthe
+Habitations
+ofthe Divine in the Celestial and Infer-
+Finding Hidden Objects.
+ Adven t ure environ-
+i
+nal Realms.
+mentsarefu ll of secrets : tra ps, concealedI
+• i
+Russell: 
+Did you just make thatup?
+doors , loose floorboards , and hidde n trea -
+Jared:I'll never tell.As
+you flip through the book, 
+yousures.Characters
+often use W isdom
+checks
+notice it's very academic, almost impenetrable.
+to find things-see
+th eSearch acti o n in th e
+i,j
+Maeve: OK, I put that one back and pull out another.
+rule s glossary-
+ butsom eti mes t hey
+stum -
+j!
+Jared:AreShreeve bleonthemaccidentally,
+and Auro doing anythingasAuro did here.
+else?
+jAmy:I grab the poker and poke at logs 
+in the fire.
+~=======
+===J
+OJared:Assoon
+asyouliftthe poker, you hear a grind-
+e~~;:;;;:;;;;;;;;;;:;;;:;;;;;;;;;;;;;;;;;;;;;;:;;;;;;;;;;;;;:;;;:;;;;;;;;;;;;;;;;;;;;;;:;;:;:;;;;:;;;;;;;;;;;;;;;;:
+;;:;:;;;;:;;;;;;;;;;;;;;;;::2
+_~
+ing sound,andthe back
+ofthe fireplace slides to
+the side, revealing a room behind it!
+Casting Spells.
+I  Many cha racte rs have the
+Amy:" Uh, folks? I found something!"
+Canabi lity to
+Iseecast spells , whichhave a huge
+vari-
+anything in the room beyond?ety
+ofeffects . Some spells are mostly useful
+Jared:in combat,bydeal ing da m
+Pastthe flames and smoke, youageor impo
+seea glim-sing
+conditions . Other spells have util i
+mering pile
+ofcoinsheaped near a chest.ty in ex-
+ploration .Ifyou 'replaying a spellcaster, 
+Amy:look
+Anybodyhavea quick
+wayto put out a fire?
+for a mixofcombat-effective and utilitarian
+Phillip: Andyoulaughed at me for preparing
+ Create
+spells to help deal wit h vari
+ed
+challenges .
+orDestroy Water!
+ I clutch my Holy Symbol and
+cast the spell, drenching the fireplace.
+l
+Jared:What does the spell's description
+say?
+-IJ~:;;;;;;;;;;;:;;;;;;;;;;;:;;;;;;;;;;;:;;;;;;;;;;;;;;:;;;;;;;;:;;;;;;;;;;;:;;;;;;;;;;;:;;;;;;;;;;;~;;;;;;;;;;;:;;;;;;;;;;;;;;;;;;;:,
+;:=;i
+Phillip: It 
+causes l 0 gallonsofwater to
+rain down in
+Know Your Spells!
+ Have your Player's
+a 30-foot Cube, extinguishing flames there.Hand-
+book open to the description
+ofa spe ll
+Jared:
+Great! That puts out the fire. Without the light
+I 
+before you castit. Don 't expect the OM
+to
+from the hearth, you 
+'reback to the magic glow
+know how your spell works , and 
+be readyto
+of
+Shreeve's sword, which casts your shadows
+answer any questions about it.
+into the room beyond. But you
+can 
+see, through
+cloudsoflingering smoke, a closed chest on the
+floor, surrounded
+bypiles
+ofcoins. There are twoo~;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;~;;;;;;;;;;;;;;:;;:;;;;;;;;;;:;
+~
+torch sconces on the far wall-
+ one holding
+an
+Vision and Light.
+ The OM determ ines 
+what
+unlit torch with
+anintricate metal 
+base, the other
+the adventurers can perceive, which means
+empty. A skeleton in broken plate armor
+islying
+being awareof
+light sou rces-likethe leap-
+against that wall, with one hand at its t hroat and
+ing flames in the fireplace and
+Shreeve 's
+the other holding the matching torch from the
+glowing sword -
+aswellasobscuring factors
+empty sconce.
+like smoke and fog.
+See"Vision and Light"
+Amy:I check out the chest!
+earl ier in th is chapter for more 
+informat
+ion .
+Jared:And the rest
+ofyou?
+Phillip: Gareth enters and looks at the skeleton .
+Q,rF;:;;;;;;;;;;;:;;:;;;;;;;;;;;:;;;;;;;;:;;;;;;;;:;;;;;;;;;;;:;;;;;:;;;;:;;;:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Maeve:I keep watch on this side~
+of
+the fireplace.
+Russell:
+ I'm still backbythe first door.
+Saving Throws. A saving throw is used 
+to see
+Jared:Amy, the chest seems expertly made, with
+whether a creature avoi
+ds or resists some-
+elegant fittings and clawed feet.
+thing. When the chest releases toxic gas ,
+Amy:
+I try to open it.Isit
+locked?
+Phillip's and Amy's characters make Con -
+Jared:It's not locked and opens easil
+y-and
+itre-
+stitution saving throws . Constitution is one
+leases a cloudofsweet-smelling 
+gas.ofthe six abilities
+that measure creatures'
+Amy:Oh, no.capabilities , and 
+it has to do with health and
+stamina. When they fail their saves, the gas
+Jared:Oh, yes. I need Auro and Gareth to make Con-
+causes them to have the Paralyzed condi-
+stitution saving throws.
+tion . 
+See "Conditions" later in this chapter
+Amy: Sorry, Phillip! I got 
+an 8.
+for more information.
+Phillip: And a 5 for Gareth.
+Jared:As you draw this gas into your lungs, you feel
+a ch ill
+grip you, and your bodies 
+stiffen. Youboth
+have the Paralyzed condition!
+22 CHAPTER I 
+I PLAYIN G THE CAME
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 22 ---]
+INITIATIVE
+COMBAT
+Initiative determinesthe order of turns
+during
+Adventurers encounter
+many dangerous monsters
+combat.When
+combat starts,every participant
+and nefarious villains. In those moments, combat
+rolls Initiative;theymake a Dexterity check
+that
+often breaks out.
+determinestheir
+place intheInitiative order. The
+OM rolls for monsters. For a group ofidentical crea-
+THE
+ORDEROFCOMBAT
+tures, theOM makes a single roll, so each 
+member
+A typical combat encounteris a clash between two
+ofthe grouphasthe same Initiative.
+sides: a flurryof
+weapon swings, feints, parries,
+Surprise.
+ If acombatantis surprised by combat
+footwork, and spellcasting. The 
+game organizes
+starting, that combatant
+has Disadvantage on their
+combat into a cycleof rounds and turns. A round
+Initiative roll. For example,if an ambusher
+starts
+represents about 
+6 seconds in the game world.
+combat while hidden from a foe who isunaware
+During a round, each 
+participant in a battle takes a
+thatcombat
+isstarting,thatfoe is surprised.
+turn. The order of turns
+is determined at the begin-
+Initiative Order. A combatant's check 
+total is
+ningofcombat when everyone rolls Initiative. Once
+called their Initiative count,orInitiative for 
+short.
+everyone has taken a turn, the fight continues to
+The OM ranks the combatants, from highest 
+to
+the next round if neither side is defeated.
+lowest Initiative. 
+This is the order in which they act
+during 
+each round. The Initiativeorderremains the
+COMBAT STEPBYSTEP
+same from 
+round to round.
+Combat unfolds in these steps:
+Ties. If a tie occurs, 
+the DM decides the order
+1:Establish Positions. The Dungeon 
+Master deter-
+among 
+tied monsters, and the players decide the
+mines where all the characters 
+and monsters are
+order 
+among tied characters. The DM decides the
+located. Given the adventurers' marching order
+order 
+if the tie is between a monster and a player
+or their stated positions in 
+the room or other lo-
+character.
+cation, the 
+DM figures out where the adversaries
+YOURTuRN
+are-howfar away and in what direction.
+On your turn, you can move a distance up to 
+2: Roll Initiative. Everyone involved in the combatyour
+Speed and take one action. You decide 
+encounter rolls Initiative, determining the whether to
+order
+move first or take your action first.
+of combatants' turns.
+The main actions you can take are 
+3: Take Turns. Each participant in the battle takeslisted in "Ac-
+a turn in Initiative order. When tions" earlier in this chapter. A character's features
+everyone in-
+volved in the combat has had a and a monster's stat block also provide action op-
+turn, the round
+ends. Repeat this step until the fighting stops.tions. "Movement and Position" later in this chapter
+gives the rules for movement.
+C H APTE R l I P L AY I NG T H E GA M E 
+23
+

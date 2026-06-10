@@ -1,0 +1,1101 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 235 ---]
+REACTIONANDBONUSA C TION' J>.(,
+MagicItems.GERS
+ Spell Scrollsandsomeothermagic
+A spell
+items contain spellsthathas acasting timeofa Reacti o n iscast
+thatcan be castwithouta
+spell slot. The descriptionofsuch an item specifiesinresponseto atriggerthatis defin ed inth
+e spell's
+how many times a spell CastingTimeentry. Somespellsthath ave 
+can be cast from it.a casting
+timeofa Bonus Actionarealso
+castin responseto a
+USINGAHIGHER-LEVELSPELLSLOT
+triggerdefined inthespell.
+Whenaspelkastercasts a spell using a slot
+thatis
+LONGER
+ofa higher levelthanthespell, CASTINGTIMES
+the spell takes on
+thehigher level forthatcasting. For instance,Certainspells-including
+ifaa spellcastasaRitual-
+Wizardcasts Magic Missile using a level 2 slot,
+thatrequire moretimetocast:minutesoreven hours.
+Magic Missile is level 2. Effectively, 
+the spell expandsWhileyoucasta spellwithacastingtime
+of1
+tofill the slot it isputinto.minuteormore,youmust 
+taketheMagic action
+Some spells, such as Magic Missile and Cure
+on eachof your turns, and youmust maintainCon-
+Wounds, have more powerful effects when cast
+atacentration(seethe rules glossary) while you
+do so.
+higher level, as detailed in a spell's description.
+If your Concentration
+isbroken,thespell fails,but
+you don't expend a spell slot. Tocast thespell again,
+SCHOOL OF
+MAGIC
+youmuststartover.
+Each spell belongs to a schoolofmagic. The schools
+R ANGE
+arelisted in the SchoolsofMagic table. These cate-
+gories help describe spells 
+but have no rulesoftheir
+Aspell's range indicateshow far from 
+thespell-
+own, although someotherrules refer to them.
+caster thespell's effectcanoriginate,and thespell's
+description specifieswhich
+part oftheeffect is lim-
+SCHOOLSOFMAGIC
+ited by the range.
+School Typical EffectsA range usually 
+takes oneof thefollowing forms:
+Abjuration Prevents or reverses harmful effects
+Distance. The range
+isexpressedin feet.
+Touch. The spell's effectoriginates
+Conjuration Transports creatures or objectson something
+the spellcaster must touch, as defined inthe
+spell.
+Divination Reveals information
+Self. The 
+spell iscastonthe spellcasteroremanates
+Enchantment Influences minds
+from them, as specified in thespell.
+Evocation Channels energy to create effects
+If a spell has movable effects,they aren'trestricted
+that are often destructive
+by its range unless
+thespell'sdescription says
+Illusion
+ Deceives the mind or senses
+otherwise.
+Necromancy Manipulateslifeand death
+COMPONENTS
+Transmutation Transforms creatures or objects
+Aspell's components
+are physical r equi rements the
+spellcaster must meet to 
+castthespell. Each spell's
+CLASS SPELL LISTS
+description ind icates w heth
+er it r equires Verbal
+If a spell is on a class's spell list, the class's name
+(V), Somatic(S),or Materia l (M) components.
+If
+appears in parentheses after the spell's school of
+the spellcaster can't provide oneor moreof
+a spell's
+magic. Some features add a spell to a character's
+components, the spellcaster can'tcastthe spell.
+spell list even if the characterisn't a memberofa
+class in 
+the parentheses.VERBAL(V)
+A Verbal component 
+is t hechantingofesot er ic
+CASTING TIME
+words that sound like 
+nonsense to the uni n itiated.
+Most spells require The words must be uttered 
+the Magic action to cast, butin a normal speaking
+some spells require a Bonus Action, a Reaction,voice. The words themselves
+or1aren't the source ofthe
+spell's power; rather, the particular 
+minuteormore. Aspell's Casting Time entry speci-combinat ion of
+sounds, with specific pitch and res
+fies whichofthose is required.onance, sets the
+threads 
+of magic in motion. Thu s, a creature who is
+ONESPELL WITH 
+A SPELL SLOT PERTURN
+gagged 
+or in an area ofmagical silence can't cast a
+On a turn, you can expend only one spell slot to cast
+spell with a Verbal component.
+a spell. This rule means you can't, for example, cast
+SOMATIC (S)
+a spell with a spell slot using the Magic action and
+A Somatic component is a force ful gesticulation
+another one using a Bonus Action on the same turn.
+or an intricate set of gestures. A spcllcas
+ter must
+use at least one of their ha nds
+ !.( 1 :;~rfnrm these
+movements.
+236 
+CH APTER 7 I S P ELLS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 236 ---]
+isa particular material
+A Material component
+isthe length of time the spell per-
+A spell's duration
+used in a spell's casting, as specified in parentheses
+sists after itiscast. A duration typically takes oneof
+inthe Components entry. These materials aren't
+the following forms:
+consumed by the spell unless the spell's description
+states otherwise. The spellcaster must have a handConcentration. A duration that requires Concen-
+free to access them ,butit can be the same handtration follows the Concentration rules (see the
+rules glossary).
+used to perform Somatic components, if any.
+Instantaneous. An instantaneous duration means
+If a spell doesn't consume its materials and doesn't
+them, a spellcaster can use a Com-the spell's magic appears only for a moment and
+specify a cost for 
+then disappears.
+ponent Pouch (see chapter 6) instead of providing
+Time Span. A duration that provides a time span
+the materials specified in the spell, or the spellcaster
+specifies how long the spell lasts in rounds, min-
+can substitute a Spellcasting Focus if the caster
+Touseutes, hours, or the like. For example, a Duration
+has a featu rethatallowsthatsubstitution.
+minute," meaning the spell ends
+must have a hand free toentry might say"1
+a Component Pouch, you 
+after 1 minute has passed. While a time-span spell
+reach into it, and to use a Spellcasting Focus, you
+that you castisongoing, you can dismiss it (no ac-
+must hold it unless its description says otherwise
+tion required) if you don't have the Incapacitated
+(see chapter 6 for descriptions).
+condition.
+CREATING VERBALCOMPONENTS
+EFFECTS
+If you 'd liketo say a spell 's Verbal component,
+The effects of a spell are detailed after its duration
+make
+you may makeup the words. However you 
+entry. Those details present exactly what the spell
+them, the goalisto create something that's easy
+does, which ignores mundane physical laws; any
+l
+to say and that doesn 't mean anythinginthe rea
+outcomes beyond those effects are under the DM's
+world. Conside r th is method: take the name of
+purview. Whatever the effects, they typically deal
+th e spell,keep onlyone instance of each of its
+with targets, saving throws, attack rolls, or all
+lette rs, and rear ran ge the remaining letters into
+three, each of which is detailed below.
+ I from
+words. For exa mple, remove the second
+Fireball and rea rra nge the remaining letters to
+T ARGETS
+create BerFifCiorFe/ Bira.
+or
+A typical spell requires the caster to pick one 
+more targets to be affected by the spell's magic. A
+spelJ's description says whether the spell targets
+creatures, objects, or something else.
+CHAPT ER 7 I SPELLS 237
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 237 ---]
+the save and
+whathappens onasuccessorfailure.
+A Clear Path to the Target.Totarget something
+Here's how to calculatethe
+with a spell, a caster must have a clear path to it, soDC foryourspells:
+it can't be behind Total Cover.
+Spell saveDC=
+8 + your spellcasting ability modifier
+Targeting Yourself. If a spell targets a creature
++ your Proficiency Bonus
+of your choice, you can choose yourself unless the
+creature must be Hostile or specifically a creature
+ATTACK ROLLS
+other than you.
+Some spells requirethe caster 
+to make anattackroll
+AreasofEffect. Some spells, such as
+ Thunderwave,
+to determinewhether thespell hits atarget
+. Here's
+cover an area called an area of effect, which
+isde-
+how to calculate the attackmodifier foryourspells:
+fined in the rules glossary. The area determines
+Spell attack modifier=
+ your spellcasting ability
+what the spell targets. The description of a spell
+modifier+ your Proficiency Bonus
+specifies whether it has an area of effect, which
+is
+typically one of these shapes: Cone, Cube, Cylinder,
+COMBINING SPELL EFFECTS
+Emanation, Line, or Sphere.
+The effectsofdifferent spells addtogetherwhile
+AwarenessofBeing Targeted.
+ Unless a spell has a
+their durations overlap. In contrast, the effectsof
+perceptible effect, a creature doesn't know it was
+the same spell cast multiple times
+don'tcombine.
+targeted by the spell. An effect like lightning 
+is ob-
+Instead, the most 
+potenteffect-suchasthehigh-
+vious, but a more subtle effect, such as an attempt
+estbonus-from
+those castings applies while their
+to read thoughts, goes unnoticed unless a spell's
+durations overlap. The most recent effect applies if
+description says otherwise.
+the castings are equally potent and their durations
+Invalid Targets.
+ If you cast a spell on someone
+overlap. For example, if two Clerics cast
+Blesson the
+or something that can't be affected by it, nothing
+same target, that target gains 
+the spell's benefit only
+happens to that target, but if you used a spell slot to
+once; the target doesn't receive 
+two bonus dice. But
+cast the spell, the slot is still expended.
+if the durations of the spells overlap, 
+the effect con-
+If the spell normally has no effect on a target 
+that
+tinues until the duration 
+ofthe secondBless ends.
+succeeds on a saving throw, the invalid target ap-
+pears to have succeeded on its saving throw, even
+IDENTIFYING ANONGOING$~ELL
+though it didn't attempt one (giving no hint that the
+Youcan try to identi
+fya no n-ir.stantaneous spell
+creature is an invalid target). Otherwise, you per-
+byits observable effect s if itsd;.:r;}t:o n is ongoing.
+ceive that 
+the spell did nothing to the target.
+Toidentify it, you must taketr1, ~,tJd y action and
+SAVING THROWS
+succeed on a DC 
+15lntellige:1,:·: •:-;r:an a) check.
+... ..... . •··• ------
+Many spells specify that a target makes a saving
+throw to avoid some or all of a spell's effects. The
+spell specifies the ability that the target uses for
+238 CHAPTER 7 I SPE LLS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 238 ---]
+SPELL0ESCRI PTIONS
+ALTERSELF
+The spells ~representedinalphabeticalorder.
+Level 2 Transmutation (Sorcerer, Wizard)
+Casting Time: Action
+ACID SPLASH
+Range:Self
+Evocation Cantrip (Sorcerer, Wizard)
+Components:
+ V, S
+Duration: Concentration, up to 1 hour
+Casting Time: Action
+Range:60feet
+Youalter your physical form. Choose oneofthe
+Components:V,S
+following options. Its effects last fortheduration,
+Duration:Instantaneous
+during which you can take a Magic action 
+to replace
+the option you chose with a different one.
+Youcreateanacidic bubbleatapoint withinrange,
+Aquatic Adaptation.
+where it explodes ina 5-foot-radius Sphere. Each You sprout gills andgrow
+webs between your fingers.Youcan breathe under-
+creatureinthatSphere mustsucceedona Dexterity
+water and gain a Swim Speed equal toyourSpeed.
+savingthrow ortake ld6Acid damage.
+Change Appearance.You alteryourappearance.
+Cantrip Upgrade.Thedamageincreases by ld6
+Youdecide what you look like, including
+whenyour
+you reachlevels 5 (2d6),11(3d6), and17(4d6).
+height, weight, facial features, soundofyourvoice,
+r,
+hair length, coloration, andotherdistinguishing
+characteristics. You can make yourself 
+appear as
+AID
+Level 2a member of another species, though noneof your
+Abjuration(Bard, Cleric, Druid, Paladin, Ranger)
+statistics change.Youcan't appear as acreatureofa
+Casting Time: Action
+different size, and your basic shape stays the same;
+Range: 30 feet
+if you're bipedal, you can't use this spelltobecome
+Components: V, S, M(astripofwhite cloth)
+quadrupedal, for instance. For the duration,
+you can
+Duration: 8 hours
+take a Magic action to change your appearance in
+Choose uptothree creatureswithinrange. Eachthis way again.
+target's Hit Point maximum and currentHit PointsNatural Weapons. You grow claws (Slashing),
+increaseby5 forthe duration
+.fangs (Piercing), horns (Piercing),orhooves (Blud-
+Using a Higher-Level Spell Slot. Each target's Hit
+geoning). When you use your Unarmed Strike to
+Pointsincrease by5 for each spell slot level above 2.deal damage with that new growth, it dealsld6
+damage of the type in parentheses insteadofdeal-
+ing the normal damage for your Unarmed Strike,
+ALAR M
+and you use your spellcasting ability modifier 
+for
+Level 1 Abjuration (Ranger, Wizard)
+the attack and damage rolls rather than
+using
+Strength.
+Casting Time: 1 minute or Ritual
+Range: 30 feet
+Components:
+V,S, M(abell and silver wire)
+ANIMAL FRIENDSHIP
+Duration: 8 hours
+Level 1 Enchantment (Bard, Druid, Ranger)
+You setan alarm against intrusion. Choose a door,
+Casting Time: Action
+a window, oran area within
+range thatis no larger
+Range: 30feet
+t han a20-foot Cube. Until the 
+spell ends, an alarm
+Components:V,S,M(amorsel of food)
+alerts you wheneveracreaturetouches 
+or enters
+Duration:24hours
+the wa rded a rea.
+Whenyou cast the spell, you can
+designate creatur es
+thatwon't set off the alarm. YouTarget a Beast that you can see within range. The
+also choosewhether the alarm is audible or mental:target must succeed on a Wisdom saving throw or
+have the Charmed condition for the duration.Ifyou
+Audible Alarm .
+The alarm produces the sound of
+or one of your allies deals damage to the target, the
+a ha ndbell for 10 seconds within 60 feet of the
+spells ends.
+war dedarea.
+Using a Higher-Level Spell Slot.
+ You can target one
+Mental Ala rm . Y
+ou are alerted by a mental ping
+additional Beast for each spell slot level above1.
+if youare within 1 mile of the warded area. This
+ping awa kcr.~:you if you're asleep.
+C H A PT ER 7 I SP ELLS 239
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 239 ---]
+ANIMATEDEAD
+ANIMAL
+MESSENGER
+Level
+ 3 Necrnmancy (Cleric,Wizard)
+Level 2 Enchantment (Bard,
+ Druid, Ranger)
+Casting Time:
+ l minute
+Casting Time: Action or
+Ritual
+Range:
+ l O feet
+Range: 30 
+feet
+Components:
+Components:V,S,M(adropofblood, a piece
+V,S,M(amorsel of food)of
+flesh, and a pinch
+ofbone dust)
+Duration: 24 hours
+Duration:
+ Instantaneous
+A Tiny Beastofyour
+choicethatyou can see within
+range mustsucceed on a Charisma saving throw,Choose a pile
+orofbonesoracorpseofaMedium
+or
+itattempts todeliver a message for you (ifSmall 
+the tar-Humanoidwithin range.The target
+becomes
+get's Challenge Rating isn't 0, it automatically suc-
+an Undeadcreature:aSkeleton
+ifyou chosebones
+ceeds). You specify a location you have visited 
+ora Zombieifyou choseacorpse
+and a(seeappendixB
+recipient
+whomatches a general description, such asforthestatblocks).
+"a person dressed intheuniformofOneachof your turns,
+the town guard"youcan takea Bonus
+or"a red-haireddwarfwearing Action
+a pointed hat." Youtomentallycommandany creature
+you
+also communicate a message
+ofup to twenty-fivemadewiththis spellifthecreature
+iswithin60
+words. The Beast travels for the duration 
+towardfeetofyou (if you
+controlmultiplecreatures,you
+thespecified location, covering about 25 miles per
+can commandanyofthem at the 
+sametime, issu-
+24hoursor 50miles if theBeast 
+canfly.ingthe samecommand to 
+eachone). You decide
+When theBeast arrives, it delivers 
+your messagewhataction
+thecreaturewilltake and where
+itwill
+to the creature 
+thatyou described, mimickingyour
+moveonitsnextturn, oryou
+canissue ageneral
+communication.
+Ifthe Beast doesn't reach its desti-
+command, 
+such as toguardachamberorcorridor.
+nation before the spell ends, the message 
+is lost, and
+Ifyou issue no commands,thecreature
+takes the
+the 
+Beastreturnsto where you cast the spell.
+Dodge action
+andmovesonly toavoidharm.
+Once
+Using a Higher-Level Spell Slot.
+ The spell's dura-
+givenanorder,the creature 
+continues tofollow it
+tion increases
+by48hours for each spell slot level
+until its task is complete.
+above 2.
+Thecreatureisunder 
+yourcontrol for24hours,
+after which it stops 
+obeyingany command
+you've
+given it. Tomaintain control
+ofthe creaturefor an-
+ANIMALSHAPES
+other24hours, you must cast this
+spellon thecrea-
+Level 8 Transmutation (Druid)
+tureagain before
+thecurrent 24-hourperiod
+ends.
+Casting Time: ActionThis useofthe spell
+reassertsyour control overup
+Range: 30 feetto four creatures you haveanimated 
+with thisspell
+rather than 
+Components:V,Sanimating anew creature.
+Duration:Using a Higher-Level Spell Slot.
+24 hours Youanimate or
+reassert control over 
+two additional Undead crea-
+Choose any number
+ofwilling creatures thatyou
+tures for each spell slot level above 
+3. Eachofthe
+can see within range. Each target shape-shifts into
+creatures must come from a different 
+corpse orpile
+a Largeorsmaller Beastof your 
+choice that has a
+ofbones.
+Challenge Rating of 4orlower. You 
+can choose a
+different form for each 
+target. On later turns, 
+you
+can take 
+a Magic action to transform the targets
+ANIMATE OBJECTS
+again.
+Level 5 Transmutation (Bard, Sorcerer, Wizard)
+A target's 
+game statistics are replaced by the
+Casting Time: Action
+chosen Beast's statistics, but the target 
+retains its
+Range:
+120 feet
+creature 
+type; Hit Points; Hit Point Dice; alignment;
+Components:V,S
+ability 
+to communicate; and Intelligence, Wisdom,
+Duration: Concentration, up to l minute
+and Charisma scores. The target's actions are lim-
+ited by the Beast form's anatomy, and it can't cast
+Objects animate at your com mand. 
+Choose a num-
+spells. The target's equipment melds into the new
+ber of nonmagical objects wit hin ra nge
+that aren't
+form, and the target 
+can't use any of that equipment
+being worn or carried,aren't 
+fixed to a surface, and
+while in that form.
+aren't Gargantuan. The 
+maximum nu mber of ob-
+The target gains a number 
+of Temporary Hitjects is equal to 
+your spellcasti.ng::ibility modifier;
+Points equal to the 
+Beast form's Hit Points. Thefor this number, a Mediu m o
+ • ma Her ta rget counts
+transformation lasts for the duration for each tar-as one object, a La rge 
+target cou ,t., as two, and 
+a
+get, until the target has no Temporary Hit Points, or
+Huge target counts as three.
+until the target leaves the form as a Bonus Action.
+240 CHAPTER 7 I SP EL LS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 240 ---]
+this spellifthe creatureiswithin500feetofyou (if
+you control multiple creatures, you
+can command
+ABR/\"tlERAFFECTEDBYTHE
+anyofthem at the same time, issuing the 
+same
+Sr>ELL/lNIM/ll'EOBJECTS
+command to each one).Ifyou issue 
+no commands,
+the creature takes the Dodge action and moves 
+only
+to avoid harm.Whenthecreaturedrops to O Hit
+~oints, it reverts to its object form, 
+and any remain-
+mg damage carries over tothatform.
+Using a Higher-Level Spell Slot. The creature's
+Slam damage increases byld4(Medium
+orsmaller),
+ld6 (Large), or ld12 (Huge) for each spell slot level
+above5.
+ANTILIFE
+SHELL
+Level 5 Abjuration (Druid)
+Casting Time: Action
+Range:
+ Self
+Components:V,S
+Duration: Concentration,upto 1 hour
+An aura extends from you in a 10-foot Emanation
+for the duration. The aura prevents 
+creaturesother
+than Constructs and Undead from passingorreach-
+ing through it. An affected creature can cast 
+spells
+or 
+make attacks with RangedorReach weapons
+IANIMATEDOBJECT
+through the barrier.
+Huge or Smaller Construct, Unaligned
+Ifyou move so that an affected creatureisforced
+to pass through the barrier, the spell ends.
+AC15
+HP10(Med ium o r smaller), 20 (Large) , 40 (Huge)
+Speed 30 ft .
+ANTIMAGICFIELD
+MODSAVEMODSAVEMODSAVE
+Level 8 Abjuration (Cleric, Wizard)
+DEX10 +0
+STR16+3+3 +0CON10+0 +0
+Casting Time: Action
+Wis 3-4-4 CHA
+INT3 - 4 - 41 -5 -5
+Range: Self
+Immunities Poison, Psychic; Charmed, Exhaustion,
+Components:V,
+S,M (iron filings)
+Frightened , Paralyzed , Po isoned
+Duration: Concentration, up to 1 hour
+Senses Blindsight 30 ft., Passive Percepti
+on 6
+An aura of antimagic surrounds you in 10-foot Em-
+Languages Und erstands the languages you know
+anation.Noone can cast spells, take Magic actions,
+CR None(XPO;PBequals your Proficiency Bonus)
+or create other magical effects inside 
+the aura, and
+ACTIONS
+those things can't target or otherwise affect
+ any-
+thing inside it. Magical propertiesofmagic items
+Slam. MeleeAttackRoll: Bonus equals your spellattack
+don't work inside the aura or on anything inside it.
+mod ifier, 
+reach 5 ft . Hit: Force damage equal to ld4 + 3
+Areas of effect created by spells or other magic
+(Med ium or smaller) , 2d6 + 3
+ + your spellcasting ability
+can't extend into the aura, and no one can teleport
+mod ifier (Large) , or 2dl2 + 3 + your spellcasting ability
+into or out of it or use planar travel there. Portals
+modifier (Huge).
+close temporarily while in the aura.
+Ongoing spells, except those cast by an Artifact or
+Each target 
+a n imates, sprouts legs, and becomes
+a deity, are suppressed in the area. While an effect
+a Cons
+truct t hat usesthe Animated Object stat
+is suppressed, it doesn't function, but the time it
+block; thi s cr eat ur e is under your control until the
+spends suppressed counts against its du ration.
+spell ends orun til it is r educed to O Hit Points. Each
+Dispel Magic has no effect on the aura, and the au-
+creatu re you ma ke w ith this spell is an ally to you
+ras created by different
+ Antimagic Field spells don't
+and your all ie . In combat, it shares your Initiative
+nullify each other.
+count and tak•;s its turn immediately after yours.
+Until the sp •IIends, you can take a Bonus Action
+to mentall . • c, •n mand any creature you made with
+CHAPT ER 7 I SPELLS 241
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 241 ---]
+ARCANEGATE
+ANTIPATHY/SYMPATHY
+Level 6 Conjuration (Sorcerer, Warlocl<,Wiuird)
+Level 8 Enchantment (Bard, Druid, Wizard)
+Casting Time: Action
+Casting Time: 
+l hour
+Range:500feet
+Range:60 feet
+Components: V, S
+Components:V,S, M(amix of vinegar and honey)
+Duration: Concentration , up to 10minutes
+Duration: 10 days
+Youcreatelinkedteleportation portals.Choose
+two
+As you cast thespell, choose whether 
+it creates an-
+Large, unoccupied spacesonthe ground that
+you
+tipathyorsympathy, and target one 
+creatureorob-
+cansee, one spacewithin range and theotherone
+ject that
+is Hugeorsmaller. Then specify a kindof
+within10 feetofyou. Acircular portalopensin
+creature, 
+such as red dragons, goblins,orvampires.
+eachofthose spacesand remains
+fortheduration.
+Acreatureofthe chosen kind makes a Wisdom
+The portals are two-dimensional 
+glowingrings
+savingthrowwhen it comes within 120 feetof the
+filledwithmistthatblocks sight.Theyhoverinches
+target. Your choiceofantipathyorsympathy deter-
+fromtheground andare perpendiculartoit.
+mineswhathappens to a creature when it failsthat
+A
+portalisopenon only oneside(you choose
+save:
+which).Anythingentering the open
+sideofaportal
+Antipathy. The creaturehas the Frightened condi-
+exits fromthe opensideof theotherportalasif the
+tion. The Frightened 
+creature must use its move-
+two were adjacenttoeach other.As aBonus 
+Action
+ment onitsturnsto get as far away as possible
+you can changethefacingofthe open
+sides. '
+from the target, moving by the safest route.
+Sympathy.The creaturehas the Charmed condi-
+_,,....
+tion. The Charmed creaturemust use its move-
+ARCANELOCK
+ment on itsturnsto
+get as close as possible to the
+Level 2 Abjuration (Wizard)
+target, moving bythesafest route.Ifthe creature
+Casting Time: Action
+is within 5 feetofthetarget, the 
+creature can't
+Range:Touch
+willingly move away. If the target damages the
+Components:V,S,M (golddustworth 25+GP,which
+Charmed 
+creature,thatcreature can make a Wis-
+the spell consumes)
+dom savingthrowto end the effect, as described
+Duration: Until dispelled
+below.
+Ending the Effect.Ifthe FrightenedorCharmedYou touch a closed door, window, gate, container,
+creature ends itsturnmorethan120 feet awayorhatch and magically lock itforthe duration. This
+from the target,the lock can't be 
+creature makes a Wisdom sav-unlocked byany nonmagical means.
+ing throw. On a successful save, the You and any creatures 
+creature is noyou designatewhen you cast
+longer affected by the target. A creature thatsuc-the spell can open andclosethe object despite
+the
+cessfully saves against this effect is immune to it forlock. You can alsosetapassword that, whenspoken
+1 minute, after which it 
+can be affected again.within 5 feetof theobject,unlocks it for 1minute.
+ARCANE EYEARCANE 
+VIGOR
+Level 4 Divination (Wizard)
+Level 2 Abjuration (Sorcerer, W izard)
+Casting Time: ActionCasting 
+Time: BonusAction
+Range: 30 feetRange: Self
+Components:V,S,M(aComponent: V, S
+bit of bat fur)
+Duration: Concentration, up to 1 hourDuration: Instantaneous
+You create an Invisible, invulnerable eye withinYou tap into your life force to heal 
+yourself. Roll one
+range thathovers for the duration. You mentallyor two of your unexpended Hit Point
+Dice,and re-
+receive visual information from gain a number of 
+the eye, which canHit Points equa l to the rail's total
+see in every direction. It also has Darkvision with aplus your spellcasting ability mod ifier. Those dice
+are then expended.
+range of 30feet.
+As a Bonus Action, you can move the eye up to Using a Higher-Level Spell Slot. Th~ number of un-
+30
+expended Hit Dice you can re i i r , :reas
+feet in any direction. A solid barrier blocks the eye'ses by one for
+each spell slot level above 2.
+movement, but the eye can pass through an opening
+as small as 1 inch in diameter.
+24,2 CHAPTE R 7 I SPELLS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 242 ---]
+and can't take Reactions until the start of its next
+turn. On a successful save, a target takes half as
+ARMOR OF AGATHYS
+much damage only.
+Level I Abjuration (Warlock)
+Using a Higher-Level Spell Slot. The damage in-
+Casting Time: Bonus Action
+creases by ld6 for each spell slot level above 1.
+Range: Self
+Components: V, S, M (a shard of blue glass)
+Duration: l hour
+ASTRAL PROJECTION
+Level 9 Necromancy (Cleric, Warlock, Wizard)
+Protective magical frost surrounds you. You gain 5
+Temporary Hit Points. If a creature hits you with a
+Casting Time: 1 hour
+melee attack roll before the spell ends, the creature
+Range: 10 feet
+takes 5 Cold damage. The spell ends early if you
+Components: V, S, M (for each of the spell's targets,
+have no Temporary Hit Points.
+one jacinth worth 7,000+ GP and one silver bar
+Using a Higher-Level Spell Slot. The Temporary Hit
+worth 100+ GP, all of which the spell consumes)
+Points and the Cold damage both increase by 5 for
+Duration: Until dispelled
+each spell slot level above 1.
+You and up to eight willing creatures within range
+project your astral bodies into the Astral Plane (the
+spell ends instantly if you are already on that plane).
+ARM S OF H ADAR
+Each target's body is left behind in a state of sus-
+Level 1 Conjuration (Warlock)
+pended animation; it has the Unconscious condition,
+Casting Time: Action
+doesn't need food or air, and doesn't age.
+Range: Self
+A target's astral form resembles its body in almost
+Components: V, S
+every way, replicating its game statistics and pos-
+Duration: Instanta neous
+sessions. The principal difference is the addition of
+a silvery cord that trails from between the shoulder
+Invoking l·lat!c:r, you cause tendrils to erupt from
+yourself. Each <r eature in a 1O-foot Emanation orig-blades of the astral form. The cord fades from view
+after 1 foot. If the cord is cut-which happens only
+inating from ::, ,u makes a Strength saving throw.
+On a fail ed ~. ~1 •, ~· , a target takes 2d6 Necrotic damagewhen an effect states that it does so-the target's
+body and astral form both die.
+CH PTER 7 I SPELLS ~43
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 243 ---]
+Atarget's astralformcantravelthrough theAs-
+form leavesthat
+tralPlane.The moment an astral
+AURAOFPURITY
+plane,thetarget's body andpossessions travel along
+Level 4 Abjuration (Cleric, Paladin)
+thesilver cord,causingthe targettore-enterits
+Casting Time: Action
+body onthenew plane.
+ Self
+Range:
+Anydamageorothereffectsthatapply toanas-
+Components: V
+tralform have no effecton the target's bodyand
+ Concentration , up to 10 minutes
+Duration:
+vice versa.Ifa target's bodyorastral form drops to
+Thespell
+0 Hit Points,thespell ends forthattarget.
+An auraradiates from you in a 3O-foot Em anation
+targetsifyoutakea Magic action to
+ends for allthe youandyour
+forthe duration.Whileinthe aura, 
+dismiss it.damage andAdvan-
+allies have Resistance to Poison
+When thespell ends for atarget whoisn't dead,
+on savingthrowsto avoidorendeffectsthat
+tage
+the targetreappears in its body andexitsthe state
+theBlinded,Charmed,Deafened,Fright-
+include
+ofsuspended animation.
+orStunnedcondition.
+ened, Paralyzed, Poisoned,
+AUGURY
+AURAOFVITALITY
+Level 2 Divination (Cleric, Druid, Wizard)
+Level 3 Abjuration (Cleric, Druid, Paladin)
+Casting Time: 1 minute or Ritual
+Casting Time: Action
+Range: Self
+Range: Self
+Components:V,S,M (specially marked sticks, bones,
+Components: V
+cards, or other divinatory tokens worth 25+GP)
+Duration: Concentration , up to 1 minute
+Duration: Instantaneous
+An auraradiates from you in a 3O-footEmanation
+You receivean omen from an otherworldly entity
+the aura and at
+forthe duration.Whenyou create 
+ofa courseofactionthatyou
+about theresults
+thestartofeachof yourturnswhile it persists, you
+planto take within the next30minutes. TheDM
+restore 2d6Hit Pointsto onecreaturein it.
+can 
+fromtheOmens table.
+choosesthe omen 
+OMENS
+AWAKEN
+Level 5 Transmutation (Bard, Druid)
+Omen For Results ThatWill Be...
+ hours
+Casting Time: 8
+Weal Good
+Range:Touch
+Bad
+Woe
+Components:V,S,M (an agate worth 1,000+GP,
+Weal and woe Good and bad
+which the spell consumes)
+Indifference Neither good nor bad
+Duration: Instantaneous
+path-
+The spell doesn't account for circumstances, such asYou spend the casting time tracingmagical 
+a precious gemstone,and then touch
+otherspells,thatmight change the results.wayswithin
+the target. The target mustbeeithera Beastor
+If you cast thespell morethanonce before finish-
+Plant creature with anIntelligenceof3orlessora
+inga Long Rest, there is a cumulative 25 percent
+natural plantthatisn't acreature. The targetgains
+chance for each casting after the firstthatyou get
+anIntelligenceof10and the ability to speak one
+no answer.
+language you know. If the targetis anaturalplant,
+ability
+it becomes a Plant creature and gainsthe
+and so
+AURAOFLIFEto move its limbs, roots, vines, creepers, 
+toa human's. The
+(Cleric, Paladin)forth, and it gains senses similar 
+Level 4 Abjuration
+fortheawak-
+DMchooses statistics appropriate 
+Casting Time: Action
+ened Plant, such as the statistics for the Awakened
+Range: Self
+Shrub or Awakened Tree in the Monster Manual.
+Components: V
+The awakened target has the Charmed condition
+Duration: Concentration, up to 10 minutes
+for 30 days or until youor your allies deal damage
+An aura radiates from you in a 3O-foot Emanationto it. When that condition ends, t:1e awakened crea-
+duration. While in the aura, you and your you.
+for the ture chooses its attitude toward
+allies have Resistance to Necrotic damage, and your
+Hit Point maximums can't be reduced.If an ally
+with O Hit Points starts its turn in the aura, that
+ally regains 1 Hit Point.
+~44- CHAPTER 7 I SPELLS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 244 ---]
+tra~sported to a random location on a plane (DM's
+BANE
+cho1~e) associated with its creature type.
+Level 1 En chan t men t (Bard, Cleric, Warlock)
+Using a Higher-Level Spell Slot. You can target one
+casting Time: Actionadditional creature for each spell slot level above 4.
+Range: 30 fe et
+components: V, S, M (a drop of blood)
+BARKSK IN
+Duration: Co ncentration , up to l minute
+Level 2 Transmutation (Druid, Ranger)
+Up to th r ee creatu res of your choice that you can
+Casting Time: Bonus Action
+see within r a nge must each make a Charisma saving
+Range:Touch
+throw. Whenever a target that fails this save makes
+Component: V, S, M (a handful of bark)
+an attack roll or a saving throw before the spell
+Duration: l hour
+ends , the target must subtract ld4 from the attack
+roll or save.You touch a willing creature. Until the spell ends,
+Using a Higher-Level Spell Slot. You can target onethe target's skin assumes a bark-like appearance,
+additional creature for each spell slot level above 1.and the target has an Armor Class of 17 if its AC is
+lower than that.
+BANISHING SMITE
+BEACON OF HOPE
+Level 5 Conjuration (Paladin)
+Level 3 Abjuration (Cleric)
+Casting Time: Bonus Action, which you take immedi-
+Casting Time: Action
+ately after hitting a creature with a Melee weapon or
+Range: 30 feet
+an Unarmed Strike
+Components: V, S
+Range: Self
+Duration: Concentration, up to l minute
+Component: V
+Duration: Concentration, up to l minute
+Choose any number of creatures within range. For
+the duration, each target has Advantage on Wis-
+The target hit by the attack roll takes an extra SdlO
+dom saving throws and Death Saving Throws and
+Force dam age from the attack. If the attack reduces
+regains the maximum number of Hit Points possible
+the target to 50 Hit Points or fewer, the target must
+from any healing.
+succeed on a Charisma saving throw or be trans-
+ported to a harmless demiplane for the duration.
+While ther e, the target has the Incapacitated con-
+BEAST SENSE
+dition. When the spell ends, the target reappears in
+Level 2 Divination (Druid, Ranger)
+the space it left or in the nearest unoccupied space if
+Casting Time: Action or Ritual
+that space is occupied.
+Range:Touch
+Components: S
+BANISHMENTDuration: Concentration, up to 1 hour
+Level 4 Abjuration (Cleric, Paladin, Sorcerer, Warlock,
+You touch a willing Beast. For the duration, you can
+Wizard)
+perceive through the Beast's senses as well as your
+Casting Time: Action
+own. When perceiving through the Beast's senses,
+Range: 30 feet
+you benefit from any special senses it has.
+Components: V, S, M (a pentacle)
+Duration: Con ce nt ration, up to 1 minute
+BEFUDDLEMENT
+One creature t h a t you can see within range must
+Level 8 Enchantment (Bard, Druid, Warlock , Wizard)
+succeed on a Charisma saving throw or be trans-
+Casting Time: Action
+ported to a har mless demiplane for the duration.
+Range: l SO feet
+While t here, the target has the Incapacitated con-
+Components: V, S, M (a key ring with no keys)
+dition. When the spell ends, the target reappears in
+Duration: Instantaneous
+the space it le A· or in the nearest unoccupied space if
+that space is occupied.
+You blast the mind of a creature that you can see
+If t he target b a n Aberration, a Celestial, an Ele-
+within range. The target makes an Intelligence sav-
+mental, a Fey. o r a Fiend, the target doesn't return
+ing throw.
+if the spell lasts for 1 minute. The target is instead
+CHAPTER 7 I SPELLS 245
+
+file:///D:/89_Claude/Claude%20Code/DnD_APP/tools/pdf-extract.mjs:42
+await doc.destroy();
+          ^
+
+TypeError: doc.destroy is not a function
+    at file:///D:/89_Claude/Claude%20Code/DnD_APP/tools/pdf-extract.mjs:42:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.15.0

@@ -1,0 +1,1184 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 78 ---]
+I DCLASS FEATURES
+DRU
+AbilityWisdom
+~rimary
+As a Druid, you gainthefollowing classfeatures
+HitPoint DieD8 pe rDrui d levelwhenyou reachthespecifiedDruidlevels.These
+featuresarelisted inthe Druid Featurestable.
+Intelli ge nce and W isdom
+SavingThrow
+Proficiencies
+LEVEL1:SPELLCASTING
+2:Arcana ,Animal
+SkillProficienciesChoose
+You havelearnedtocastspellsthrough studying the
+Handling,Ins igh t ,Medicine ,
+mystical forcesof nature.Seechapter7 fortherules
+N ature,Perception, Religion,
+on spellcasting.The informationbelow detailshow
+orSurvivalyou use those ruleswithDruidspells, whichappear
+on the Druid spell listlaterintheclass's description.
+Weapon ProficienciesSimpleweapons
+Cantrips. Youknow two cantripsofyourchoice
+ToolProficienciesHerbalismKit
+fromtheDruid spell list. DruidcraftandProduce
+LightarmorandShields
+ArmorTraining
+Flame are recommended.
+Wheneveryou gain a Druid level, youcanreplace
+Starting EquipmentChoose A or 8: (A) Leather
+oneofyour cantripswithanothercantripofyour
+Armor,Shield, Sickle,Druidic
+from the Druid spell list.
+choice 
+Focus(Quarterstaff),Explor-
+you reach Druid levels 4and10, youlearn
+When
+er's Pack,HerbalismKit , and
+spell
+anothercan tripof yourchoice from the Druid 
+9 GP;or(B)SOGP
+list, asshownintheCan trips columnofthe Druid
+turestable.
+Fea
+The Druid Features table showshow
+Spell Slots.
+RUIDS BELONGTO ANCIENTORDERSTHAT
+yourlevel l+ spells.
+manyspell slots you haveto cast 
+I J ) call on theforcesofnature. Harnessing
+You regain all expended slotswhenyou finish a
+animals, plants, and the four
+_l:::::1/themagicof
+Long Rest.
+elements, Druids heal,transforminto animals, and
+1+.Youprepare thelistof
+Prepared SpellsofLevel
+wield elemental destruction.
+level 1+ spellsthatareavailable for youto cast with
+Reveringnatureabove all, individual Druids gain
+, choose four level 1 spells from
+this feature. Tostart
+nature,anaturedeity,orboth,
+theirmagic from 
+the Druid spell list. Animal Friendship, Cure Wounds,
+and theytypically unite with otherDruids to per-
+arerecommended.
+Faerie Fire,and Thunderwave
+thatmarkthe passageofthe seasons and
+form rites
+The number ofspellson yourlist increases as you
+other naturalcycles.
+Spells
+gain Druid levels, asshowninthe Prepared
+delicate ecological
+Druids a re concerned with the
+ofthe Druid Features table.Whenever that
+column
+thatsustains plant and animal life and with
+balance
+numberincreases, choose additional spells from the
+the need for people to live inharmony with nature.
+ofspellson your
+Druid spell list until the number
+sitesorwatch over re-
+Druids oftenguardsacred 
+list matches the number on thetable.The chosen
+nature, but when a signifi~ant
+gionsofunspoiled 
+spells must beofa level for which you have spell
+dangerarises, Druids take a more active role as ad-
+list
+slots. For example, if you're a level 3 Druid,your
+venturers who combat the threat.
+can include six spellsoflevels 1
+of prepared spells 
+combination.
+and 2 in any 
+DRUID ...
+BECOMINGA
+IfanotherDruid feature gives you spellsthat
+you always have prepared, those spells don't count
+As ALEVEL1CHARACTER
+against the number ofspells you can prepare with
+Core Druid Traits table.
+Gain all the traits in the 
+this feature, but those spells otherwise countas
+Gain the Druid's level 1 features, which are listed
+Druid spells for you.
+table.
+in the Druid Features 
+Changing Your Prepared Spells. Whenever you
+As AMULTICLASS CHARACTER
+listofpre-
+finish a Long Rest, you can change your
+• Gain the following traits from the Core Druid
+pared spells, replacing any of the spellswith other
+Traits table: Hit Point Die and training with Light
+Druid spells for which you have spell slots.
+armor and Shields.
+Spellcasting Ability. Wisdom is your spellcasting
+Gain the Druid's level 1 features, which are listed
+ability for your Druid spells.
+in the Druid Features table. See the multiclassing
+ You can use a Druidic Focus as
+Spellcasting Focus.
+rules in chapter 2 to determine your available
+a Spellcasting Focus for your Druid spells.
+spell slots.
+CHAPTER 3 I CHARACTER CLASSES
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 79 ---]
+DRUID
+FEATURES
+--SpellSlotsper
+SpeilLevel-
+Prepared
+Wild
+Proficiency
+LevelShape CantripsSpells
+Bonus Class Featuresl 2 
+ 3 4 5 6 
+7 8 9
+l +2 Spellcasting, Druidic,2 42----
+- -
+Primal
+Order
+2 +2 2 
+Wild Shape, 2 5 3 
+-
+ - - - -
+Wild Companion
+3+2Druid Subclass226
+4 2
+4+2Ability ScoreImprovement2
+374 3
+5+3Wild Resurgence
+23
+94 3 2
+6Subclass feature
++3
+33104 
+3 3
+7+3Elemental Fury
+3
+3114 3 
+3 l
+8+3Ability Score
+Improvement
+3312
+4 3 3 2
+9+4
+3314
+4 3 3 3 
+l
+10
++4Subclass feature
+3
+4154 
+3 3 3 2
+11+4
+34
+164 3 
+3 3 2 l
+12
++4Ability Score
+Improvement
+34
+164 3 3
+ 3 2
+l
+13
++5
+34
+174 3 
+3 3 2
+l l
+14
++5Subclass feature
+3417
+4 3 3 
+3 2
+l l
+15
++5Improved Elemental Fury
+3
+4
+184 3 3 3
+ 2
+l l l
+16
++5Ability Score 
+Improvement3
+418
+4 3 3 
+3 2
+l l l
+17
++6
+4
+419
+4 3 3 
+3 2
+l l l
+18
++6Beast Spells
+4
+4
+204 3 3
+ 3 3
+l l l
+19
++6Epic Boon
+44
+214 3 
+3 3 3
+2 l l
+20
++6Archdruid
+44
+224 3 
+3 3 3
+2 2 l
+LEVELl:DRUIDIC
+LEVEL
+2:WILD SHAPE
+Youknow Druidic, the secret language 
+of Dru-
+The power of nature 
+allows you to assume 
+the form
+ids. While learning this ancient tongue, you also
+of an animal. As a Bonus Action, 
+you shape-shift
+unlocked the magic 
+of communicating with ani-
+into a Beast form
+thatyou have 
+learned for 
+this fea-
+mals; you always have the
+ Speak with Animals
+ spell
+ture (see "Known Forms" below). You
+stayinthat
+prepared.
+form for a number 
+of hours equal to
+half yourDruid
+Youcan use Druidic to leave hidden messages.
+level 
+or until you use Wild Shape again, have 
+the In-
+Youand others who know Druidic automatically
+capacitated condition,
+ordie. Youcanalso leave 
+the
+spot such a message. Others spot the message's pres-
+form early as a Bonus Action.
+ence with
+ a successfulDC
+15Intelligence (Investiga-
+Number
+ofUses. You can use Wild Shape twice.
+tion) check but can't decipher it without magic.
+You regain one expended use 
+when you finish a
+Short Rest, and you regain all expended uses 
+when
+LEVEL
+1:PRIMAL ORDER
+you finish a Long Rest.
+You have dedicated
+ yourself to one of the following
+You gain additional uses when you 
+reach certain
+sacred roles of your choice.
+Druid levels, as shown in 
+the Wild Shape column 
+of
+Magician.
+ You know one extra cantrip from the
+the Druid Features table.
+Druid spell list. In addition, your mystical connec-
+Known Forms.
+ You know four Beast forms for this
+tion to nature gives you a bonus to your Intelligence
+feature, chosen from among Beast 
+stat blocks that
+(Arcana or Nature) checks. The bonus equals your
+have a maximum Challenge Rating 
+of 1/4 and that
+Wisdom modifier (minimum bonus of
++1).
+lack a Fly Speed (see appendix B for 
+stat block op-
+Warden.
+ Trained for battle, you gain proficiency
+tions). The Rat, Riding Horse, Spider,
+ and Wolf 
+are
+with Martial weapons 
+and training with 
+Medium
+recommended. Whenever you finish a Long Rest,
+armor.
+you can replace one of your known forms with an-
+other eligible form.
+CHAPTER 3 I CHARACTER CLASSES
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 80 ---]
+W hen you reach certa in Druid levels, your num-
+LEVEL 3: DRUID SUBCLASS
+ber of kn ow n forms and the maximum Challenge
+You gain a Druid subclass of your choice. The Circle
+Rat ing for those forms increases, as shown in the
+of the Land, Circle of the Moon, Circle of the Sea,
+Beast Shapes table. In addition, starting at level 8,
+and Circle of the Stars subclasses are detailed after
+you can adopt a form that has a Fly Speed.
+this class's description. A subclass is a specialization
+When choosing known forms, you may look in the
+that grants you features at certain Druid levels. For
+Monster Manual or elsewhere for eligible Beasts if
+the rest of your career, you gain each of your sub-
+the Dungeon Master permits you to do so.
+class's features that are of your Druid level or lower.
+BEAST SHAPESLEVEL 4: ABILITY SCORE IMPROVEMENT
+You gain the Ability Score Improvement feat (see
+Druid Known Max Fly
+chapter 5) or another feat of your choice for which
+Level Forms CR Speed
+you qualify. You gain this feature again at Druid
+2 4 No
+1/4 
+levels 8, 12, and 16.
+4 6 No
+1/2 
+LEVEL 5 : WILD RESURGENCE
+8 8 Yes
+Once on each of your turns, if you have no uses of
+Rules While Shape-Shifted. While in a form, you
+Wild Shape left, you can give yourself one use by
+retain your personality, memories, and ability toexpending a spell slot (no action required).
+speak, and the following rules apply:In addition, you can expend one use of Wild Shape
+(no action required) to give yourself a level 1 spell
+Temporary Hit Points. When you assume a Wild
+slot, but you can't do so again until you finish a
+Shape form, you gain a number of Temporary Hit
+Long Rest.
+Points equal to your Druid level.
+Game Statistics. Your game statistics are replaced
+LEVEL 7: ELEMENTAL FURY
+by the Beast's stat block, but you retain your crea-
+The might of the elements flows through you. You
+ture type; Hit Points; Hit Point Dice; Intelligence,
+gain one of the following options of your choice.
+Wisdom, and Charisma scores; class features;
+Potent Spellcasting. Add your Wisdom modifier to
+languages; and feats. You also retain your skill
+the damage you deal with any Druid cantrip.
+and saving throw proficiencies and use your Pro-
+Primal Strike. Once on each of your turns when
+ficiency Bonus for them, in addition to gaining the
+you hit a creature with an attack roll using a
+proficiencies of the creature. If a skill or saving
+weapon or a Beast form's attack in Wild Shape, you
+throw modifier in the Beast's stat block is higher
+can cause the target to take an extra ld8 Cold, Fire,
+than yours, use the one in the stat block.
+Lightning, or Thunder damage (choose when you
+No Spellcasting. You can't cast spells, but shape-
+hit).
+shifting doesn't break your Concentration or oth-
+LEVEL 15: IMPROVED ELEMENTAL FURY
+erwise interfere with a spell you've already cast.
+Objects. Your ability to handle objects is deter-The option you chose for Elemental Fury grows
+mined by the form's limbs rather than your own.more powerful, as detailed below.
+Potent Spellcasting. When you cast a Druid can-
+In addition, you choose whether your equipment
+falls in your space, merges into your new form, ortrip with a range of 10 feet or greater, the spell's
+is worn by it. Worn equipment functions as nor-range increases by 300 feet.
+mal, but the OM decides whether it's practical forPrimal Strike. The extra damage of your Primal
+the new form to wear a piece of equipment basedStrike increases to 2d8.
+on the creature's size and shape. Your equipment
+LEVEL 18: BEAST SPELLS
+doesn't change size or shape to match the new
+While using Wild Shape, you can cast spells in
+form, and any equipment that the new form can't
+Beast form, except for any spell that has a Material
+wear must either fall to the ground or merge with
+component with a cost specified or that consumes
+the form. Equipment that merges with the form
+its Material component.
+has no effect while you're in that form.
+LEVEL 19: EPIC BOON
+LEVEL 2: WILD COMPANION
+You gain an Epic Boon feat (see chapter 5) or an-
+You can summon a nature spirit that assumes an
+other feat of your choice for which you qualify.
+animal form to aid you. As a Magic action, you can
+Boon of Dimensional Travel is recommended.
+expend a spell slot or a use of Wild Shape to cast the
+Find Familiar spell without Material components.
+When you cast the spell in this way, the familiar is
+Fey and disappears when you finish a Long Rest.
+CHAPTER 3 I CHARACTER CLASSE S 8
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 81 ---]
+0
+o ·
+(ANTRIPS(LEVELODRUIDSPELLS)
+LEVEL20:ARCHDRUID
+The vitalityof nature 
+constantly blooms within Spell School Special
+you, granting you the following benefits. 
+Transmutatio n
+Druidcraft 
+Evergreen Wild Shape.
+ Whenever you roll Initia- 
+ElementalismTransmutation
+tive and have no usesofWild Shape left, you regain
+Guidance Divination 
+C
+one expended useofit.
+Nature Magician.
+ You can convert usesofWild 
+Mending 
+Transmutation
+Shape into a spell slot (no action required). Choose
+MessageTransmutation
+a number of your unexpended uses
+ofWild Shape
+PoisonSprayNecromancy
+and convert them into a single spell slot, with each
+use contributing 2 spell levels. For example, if youProduce Flame
+Conjuration
+convert two uses of Wild Shape, you produce a level
+ 
+Resistance Abjuration 
+C
+4 spell slot. Once you use this benefit, you can't do
+ 
+Shillelagh 
+Transmutatio n
+so again until you finish a Long Rest.
+Spare the DyingNecromancy
+Longevity. The primal magic
+thatyou wield causes
+you to age more slowly. For every ten years
+thatStarry 
+WispEvocation
+pass, your body ages only one year.
+ThornWhip
+Transmutation
+Thunderclap Evocation
+DRUID SPELL
+LIST
+This section presents the Druid spell list. The spells
+LEVEL 1DRUIDSPELLS
+are organized by spell level and then alphabetized,
+Spell 
+School Special
+and each spell's school of magic is listed. In 
+the Spe- 
+cial column, C means the spell requires Concentra-
+ 
+Animal Friendship Enchantmen t
+tion,
+ R means it's aRitual, and M means it requires a 
+Charm Person
+ Enchantm e nt
+specific Material component. 
+Create or Destroy 
+Water Transmutation
+~
+Cure Wounds 
+Abjuration
+82 CHAPTER 3 : CH ARACTER C LASSES
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 82 ---]
+LEVEL 3 DRUID SPELLS
+Spell School 
+Special 
+Spell 
+Detect Magic Divination C,R School 
+Special
+Detect Poison and Disease Aura of Vitality 
+Divination Abjuration C
+C, R 
+Call Lightning 
+Entangle Conjuration Conjuration C
+C 
+Conjure Animals 
+Faerie Fire Evocation Conjuration C
+C 
+Daylight 
+Fog Cloud Conjuration Evocation
+C 
+Dispel Magic 
+Good berry Abjuration
+Conjuration 
+Elemental Weapon 
+Healing Word Transmutation 
+Abjuration C
+Feign Death 
+Ice Knife Conjuration Necromancy R
+Meld into Stone 
+Transmutation R
+Jump Transmutation 
+Plant Growth 
+Longstrider Transmutation
+Transmutation 
+Protection from Energy Abjuration 
+Protection from Evil and Abjuration C
+C,M 
+Good 
+Revivify 
+Necromancy M
+Purify Food and Drink 
+Transmutation Sleet Storm 
+R Conjuration 
+C
+Speak with Animals 
+Divination Speak with Plants 
+R Transmutation
+Thunderwave Evocation Summon Fey 
+Conjuration 
+C, M
+Water Breathing 
+Transmutation R
+LEVEL 2 DRUID SPELLS 
+Water Walk Transmutation 
+R
+Spell School 
+Special 
+Wind Wall 
+Evocation 
+C
+Aid 
+Abjuration
+Animal Messenger 
+Enchantment R LEVEL 4 DRUID SPELLS
+Augury Divination Spell 
+R, M School Special
+Barkskin Blight 
+Transmutation Necromancy
+Beast Sense Charm Monster 
+Divination C,R Enchantment
+Continual Flame Evocation Confusion 
+M Enchantment C
+Darkvision Conjure Minor Elementals 
+Transmutation Conjuration C
+Enhance Ability Conjure Woodland Beings 
+Transmutation C Conjuration C
+Control Water 
+Enlarge/Reduce Transmutation Transmutation C
+C 
+Find Traps Divination Divination Divination R, M
+Flame Blade Dominate Beast 
+Evocation C Enchantment C
+Flaming Sphere Fire Shield 
+Evocation C Evocation
+Gust of Wind Evocation Fount of Moonlight Evocation 
+C C
+Heat Metal Freedom of Movement 
+Transmutation C Abjuration
+Hold Person Giant Insect 
+Enchantment Conjuration 
+C C
+Lesser Restoration Grasping Vine 
+Abjuration Conjuration C
+Locate Animals or Plants Hallucinatory Terrain 
+Divination R Illusion
+Locate Object Ice Storm 
+Divination C Evocation
+Moonbeam Locate Creature Divination 
+Evocation C C
+Pass without Trace Polymorph 
+Abjuration Transmutation 
+C C
+Protection from Poison Stone Shape 
+Abjuration Transmutation
+Spike Growth Stoneskin 
+Transmutation C Transmutation C,M
+Summon Beast Summon Elemental 
+Conjuration C,M Conjuration C, M
+Wall of Fire 
+Evocation 
+C
+CHAPTE R 3 i CHA RACTER CLA SSES 83
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 83 ---]
+LEVEL
+5DRUIDSPELLSSchool
+SpellSp
+ecial
+Special 
+School 
+SpellTransmutation
+Earthquake 
+ C
+C 
+Antilife ShellAbjuration 
+ Con 
+Incendiary Cloudjuration 
+ 
+C
+TransmutationM 
+ 
+Awaken 
+SunburstEvocation
+ 
+R 
+Commune with NatureDivination 
+ 
+Conjuration 
+Tsunami 
+C
+ConeEvocation
+ofCold
+LEVEL9DRUID
+SPELLS
+ConjureConjuration C
+Elemental 
+School
+Spell 
+Special
+Necromancy
+Contagion
+ForesightDivination
+Enchantment
+Geas 
+ShapechangeTransmutation
+  
+C, M
+Greater RestorationAbjuration M 
+ 
+Stormof
+Vengeance Conjuration 
+C
+InsectPlagueConjuration C 
+TrueResurrectionNecromancy
+MassCureAbjurationM
+Wounds 
+PlanarBinding Abjuration M
+DRUIDSUBCLASSES
+ReincarnateNecromancyM
+  
+A Druid subclass is a
+specializationthat 
+grantsyou
+Scrying Divination C,M
+featuresat certain 
+Druidlevels,as specified
+inthe
+TreeStrideConjuration
+  C 
+subclass. 
+Druids form loose
+associations,which 
+they
+WallofStone Evocation C 
+call circles.This section
+presentstheCircle
+ofthe
+Land, Circle
+oftheMoon, Circle
+oftheSea,and Cir
+-
+LEVEL 6DRUID
+SPELLS 
+cleof the Starssubclasses.
+Spell
+ SchoolSpecial
+CIRCLEOFTHE
+LAND
+Conjure
+FeyConjuration 
+C 
+Celebrate Connection 
+to the Natural World
+FindthePath
+DivinationC,M
+The Circle
+ofthe Land comprises mystics
+andsages
+Fleshto Stone 
+Transmutation C 
+who safeguard 
+ancient knowledge
+andrites.
+These
+HealAbjuration
+ 
+Druids 
+meetwithin sacredcircles
+oftreesorstand-
+Heroes'Feasting stones towhisper 
+Conjuration M primal secrets in Druidic.
+The
+circle's 
+wisest members preside as
+the chief priests
+Move EarthTransmutation
+ C 
+oftheir communities
+.
+Sunbeam Evocation
+ C
+LEVEL
+3:CIRCLEOF
+TransportviaPlantsTHE LANDSPELLS
+Conjuration
+Wheneveryou finish a
+LongRest,choose 
+one type
+WallofThorns 
+Conjuration C
+of
+land: arid, polar,temperate,
+ortropical.Consult
+WindWalk
+Transmutation 
+the
+table belowthat corresponds 
+to the chosen 
+type;
+you have
+thespells listed foryour
+Druidleveland
+LEVEL 7DRUIDSPELLS
+lower prepared.
+Spell
+School 
+Special
+ARID LAND
+FireStorm
+ Evocation
+DruidLevelCircle Spells
+MirageArcane Illusion
+ 
+3Blur,Burning Hands,
+FireBolt
+PlaneShift
+ Conjuration M
+ 
+5 Fireball
+Regenerate Transmutation
+ 
+7 Blight
+Reverse 
+Gravity Transmutation 
+C 
+9 WallofStone
+Symbol 
+Abjuration M 
+POLAR
+LAND
+LEVEL 8
+DRUIDSPELLS 
+Druid
+Level Circle Spells
+Spell School Special 
+3FogCloud, Hold Person, Ray
+ofFrost
+Animal ShapesTransmutation
+  
+5 Sleet Storm
+Antipathy/SympathyEnchantment 
+ 
+7
+IceStorm
+BefuddlementEnchantment 
+ 
+Cone 
+9 of Cold
+Control WeatherTransmutation C 
+ 
+84 CH APTEP.
+ 3 I C HARACTER CLASSES
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 84 ---]
+T E M PE RATE LAND
+D ruid Level Ci rcle Spells
+3 Mist y St ep, Shocking Grasp, Sleep
+5 Lightning Bolt
+7 Freedom of Mo vement
+9 Tree Stride
+TROPICAL LAND
+Druid Level Circle Spells
+3 Acid Splash, Ray of Sickness, Web
+5 Stinking Cloud
+7 Polymorph
+9 Insect Plague
+LEVEL 3 : LAND 'S AID
+As a Magic action, you can expend a use of your
+Wild Shape and choose a point within 60 feet of
+yourself. Vitality-giving flowers and life-draining
+thorns appear for a moment in a 10-foot-radius
+Sphere centered on that point. Each creature of
+your choice in the Sphere must make a Constitution
+saving throw against your spell save DC, taking 2d6
+Necrotic damage on a failed save or half as much
+damage on a successful one. One creature of your
+choice in that area regains 2d6 Hit Points.
+The damage and healing increase by ld6 when you
+reach Druid levels 10 (3d6) and 14 (4d6).
+LEVEL 6: NATURAL RECOVERY
+You can cast one of the level 1+ spells that you have
+prepared from your Circle Spells feature without
+expending a spell slot, and you must finish a Long
+Rest before you do so again.
+In addition, when you finish a Short Rest, you can
+choose expended spell slots to recover. The spell
+slots can have a combined level that is equal to or
+less than half your Druid level (round up), and none
+of them can be level 6+. For example, if you're a level
+6 Druid, you can recover up to three levels' worth
+of spell slots. You can recover a level 3 spell slot, a
+level 2 and a level 1 spell slot, or three level 1 spell
+slots. Once you recover spell slots with this feature,
+you can't do so again until you finish a Long Rest.
+LEVEL 10 : NATURE'S WARD
+You are immune to the Poisoned condition, and you
+have Resistance to a damage type associated with
+your current land choice in the Circle Spells feature,
+as shown in the Nature's Ward table.
+NATURE'S WARD
+Land Type Resistance Resistance
+Land Type 
+Fire 
+Arid Temperate Lightning
+Polar Cold 
+Tropical Poison
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 85 ---]
+LEVEL 14: NATURE'S SANCT UA RY
+As a Magic action, you can expend a u se o f yo ur
+Wild Shape and cause spectral trees a nd vi n es to
+appear in a 15-foot Cube on the ground within 120
+feet of yourself. They last there for 1 minute or until
+you have the Incapacitated condition or die . You
+and your allies have Half Cover while in that a rea
+and your allies gain the current Resist a nce of y ou~
+Nature's Ward while ther e.
+As a Bonus Action, you can move the Cube up to
+60 feet to ground within 120 feet of yourself.
+CIRCLE OF THE MOON
+Adopt Animal Forms to Guard the Wilds
+Druids of the Circle of the Moon draw on lun a r
+magic to transform themselves. Their o r der gathers
+under the moon to share news and per form rituals.
+Changeable as the moon, a Druid of this circle
+might prowl as a great cat one night, soar over the
+treetops as an eagle the next day, and then crash
+through undergrowth as a bear to drive off a tres-
+passing monster. The wild is in the Druid's blood .
+L EVEL 3: C I RCLE FORMS
+You can channel lunar magic when you assume a
+Wild Shape form , granting you the benefits below.
+Challenge Rating. The maximum Challenge Rating
+for the form equals your Druid level divided by 3
+(round down).
+Armor Class. Until you leave the form, your AC
+equals 13 plus your Wisdom modifier if that total is
+higher than the Beast's AC.
+Temporary Hit Points. You gain a number of Tem-
+porary Hit Points equal to three times your Druid
+level.
+L EVEL 3: CIRCLE O F THE MOON SP E LLS
+When you reach a Druid level specified in the Circle
+of the Moon Spells table, you ther eafter always have
+the listed spells prepared.
+In addition, you can cast the spells from this fea -
+ture while you're in a Wild Shape form .
+CIRCLE OF THE MOON SPELLS
+Druid Level Prepared Spells
+3 Cure Wounds, Moonbeam, Starry Wisp
+5 Conjure Animals
+7 Fount of Moonlight
+9 Mass Cure Wounds
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 86 ---]
+CIRCLEOFTHESEA
+Become One with Tides
+andStorms
+Druidsofthe Circleofthe Sea
+draw on the tem-
+pestuous forcesofoceans and storms. Some view
+themselves as embodimentsofnature's wrath,
+seek-
+ing vengeance against those who despoil 
+nature.
+Others seek mysticalunity with nature by attuning
+themselves to the ebb and flowofthe tides, follow-
+ing the rushof currentsand waves and listeningto
+the inscrutable whispers 
+and roarsofthewinds.
+LEVEL
+3 :CIRCLEOFTHESEASPELLS
+When
+you reach a Druid level specified in the Circle
+ofthe Sea Spells table, you 
+thereafter always have
+the listed spells prepared.
+CIRCLE OFTHE
+SEASPELLS
+DruidLevelPrepared Spells
+3FogCloud, GustofWind, RayofFrost,
+Shatter, Thunderwave
+5 Lightning Bolt, Water Breathing
+7Control Water,IceStorm
+LEVEL6:IMPROVEDCIRCLEFORMS
+9Conjure Elemental, Hold Monster
+While in a Wild Shape form, you gain the following
+benefits.
+LEVEL3:WRATH OFTHE SEA
+Lunar Radiance. Each
+of yourattacks in a Wild
+As a Bonus Action, you can expend a use
+of your
+Shape form can deal its normal damage typeorRa-
+Wild Shape to manifest a 5-foot Emanation
+that
+diant damage. You make this choice each time you
+takes the formofocean spraythat surrounds
+you
+hit with those attacks.
+for
+10minutes. It ends early if you dismiss it (no
+Increased Toughness.
+ You can add your Wisdom
+action required), manifest it again,
+orhave the Inca-
+modifier toyourConstitution saving throws.
+pacitated condition.
+When you manifest 
+the Emanation and as a Bonus
+LEVEL10:MOONLIGHTSTEP
+Action on your subsequent turns, you can choose
+You magicallytransportyourself, reappearing amid
+another creature you can see in the Emanation. The
+aburst ofmoonlight. As a Bonus Action, you tele-
+target must succeed on a Constitution saving
+throw
+portup to30feet to an unoccupied space you can
+against your spell saveDC
+ortake Cold damage and,
+see, and 
+you have Advantage on the next attack roll
+if the creature is Largeorsmaller, be pushed up to
+you make before 
+the endofthis turn.
+15
+feet away from you. To determine this damage,
+You can use this feature a number 
+of times equal
+roll a number 
+of d6s equal to your Wisdom modifier
+to your Wisdom modifier (minimum 
+of once), and
+(minimum 
+of one die).
+you regain all expended uses when you finish a
+Long Rest. You can also regain uses by expending
+LEVEL6:AQUATICAFFINITY
+a level2+spell slot for each use you 
+want to restore
+The sizeofthe Emanation created by your Wrath of
+(no action required).
+the Sea increases to 10 feet.
+In addition, you gain a Swim Speed equal to your
+LEVEL14:LUNARFORM
+Speed.
+The power of the moon suffuses you, granting you
+the following benefits.
+LEVEL 10: STORMBORN
+Improved Lunar Radiance. Once per turn, you can
+Your Wrath of the Sea confers two more benefits
+deal an extra 2d10 Radiant damage to a target you
+while active, as detailed below.
+hit with a Wild Shape form's attack.
+Flight. You gain a Fly Speed equal to your Speed.
+Sha red Moonlight.
+ Whenever you use Moonlight
+Resistance. You have Resistance to Cold, Light-
+Step, you can also teleport one willing creature.
+ning, and Thunder damage.
+That crea ture must be within 10 feet of you, and
+you teleport it to an unoccupied space you can see
+within 10 fe et of your destination space.
+C H A PTE R 3
+ I CHARACTER CLASS ES 87
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 87 ---]
+LEVEL 14: OCEANIC GIFT
+Instead of manifesting the Em a n a tion of W r ath of
+the Sea around yourself, you ca n m a ni fe st it a round
+one willing creature within 60 fe e t of you r self. That
+creature gains all the benefits of the Emana tion and
+uses your spell save DC and Wis dom modifie r for it.
+In addition, you can manifes t the Emanation
+around both the other creature and yourself if you
+expend two uses of your Wild Shape ins tead of one
+when manifesting it.
+CIRCLE OF THE STARS
+Harness Secrets Hidden in Constellations
+The Circle of the Stars has tracked heavenly pat-
+terns since time immemorial , discovering secrets
+hidden amid the constellations. By understanding
+these secrets, the Druids of this circle seek to har-
+ness the powers of the cosmos.
+LEVEL 3: STAR MAP
+You've created a star chart as part of your heavenly
+studies. It is a Tiny object, and you can use it as a
+Spellcasting Focus for your Druid spells. You deter-
+mine its form by rolling on the Star Map table or by
+choosing one.
+While holding the map, you have the Guidance and
+Guiding Bolt spells prepared , and you can cast Guid-
+ing Bolt without expending a spell slot. You can cast
+it in that way a number of times equal to your Wis-
+dom modifier (minimum of once), and you regain all
+expended uses when you finish a Long Rest.
+If you lose the map, you can perform a 1-hour
+ceremony to magically create a replacement. This
+ceremony can be performed during a Short or Long
+Rest, and it destroys the previous map.
+STAR MAP
+ld6 Map Form
+A scroll bearing depictions of constellations
+2 A stone tablet with fine holes drilled through it
+3 An owlbear hide tooled with stellar symbols
+4 A collection of maps bound in an ebony cover
+5 A crystal engraved with starry patterns
+6 A glass disk etched with constellations
+LEVE L 3: STA R RY F O RM
+As a Bonus Action , you can expend a use of your
+Wild Shape feature to take on a starry fo rm rather
+than shape-shifting.
+While in your starry form , you r eta in your game
+statistics, but your body becomes luminous, your
+joints gl immer like stars, and glowing lines connect
+them as on a star chart. This fo r m sh eds Bright
+Light in a 10-foot radius a nd Dim Light for a n addi-
+tional 10 feet. The form lasts for 10 m inutes. It ends
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 88 ---]
+ea rly if you dismiss it (no action required), have the
+Inca pacitated condition, or use this feature again.
+Whenever you assume your starry form, choose
+w hich of the following constellations glimmers on
+your body; your choice gives you certain benefits
+while in the form.
+Archer. A constellation of an archer appears on
+you. When you activate this form and as a Bonus
+Action on your subsequent turns while it lasts, you
+can make a ranged spell attack, hurling a luminous
+arrow that targets one creature within 60 feet of
+yourself. On a hit, the attack deals Radiant damage
+equal to ld8 plus your Wisdom modifier.
+Chalice. A constellation of a life-giving goblet
+appears on you . Whenever you cast a spell using
+a spell slot that restores Hit Points to a creature,
+you or another creature within 30 feet of you can
+regain Hit Points equal to ld8 plus your Wisdom
+modifier.
+Dragon. A constellation of a wise dragon ap-
+pears on you. When you make an Intelligence or a
+Wisdom check or a Constitution saving throw to
+maintain Concentration, you can treat a roll of 9 or
+lower on the d20 as a 10.
+L EVEL 6: COSMIC OMEN
+Whenever you finish a Long Rest, you can consult
+your Star Map for omens and roll a die. Until you
+finish your next Long Rest, you gain access to a spe-
+cial Reaction based on whether you rolled an even
+or an odd number on the die:
+Weal (Even). Whenever a creature you can see
+within 30 feet of you is about to make a D20 Test,
+you can take a Reaction to roll ld6 and add the
+number rolled to the total.
+Woe (Odd). Whenever a creature you can see
+within 30 feet of you is about to make a D20 Test,
+you can take a Reaction to roll ld6 and subtract
+the number rolled from the total.
+You can use this Reaction a number of times equal
+to your Wisdom modifier (minimum of once), and
+you regain all expended uses when you finish a
+Long Rest.
+L EV E L 10: TwINKLING CONSTELLATIONS
+The constellations of your Starry Form improve.
+The ld8 of the Archer and the Chalice becomes 2d8,
+and while the Dragon is active, you have a Fly Speed
+of 20 fe et and can hover.
+Moreover, at the start of each of your turns while
+in your Starry Form, you can change which constel-
+lation glimmers on your body.
+L EVEL 14 : F ULL OF STARS
+While in your Starry Form, you become partially
+incor por eal, giving you Resistance to Bludgeoning,
+Piercing, a nd Slashing damage.
+
+[--- Page 89 ---]
+
+

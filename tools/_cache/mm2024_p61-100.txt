@@ -1,0 +1,4295 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 61 ---]
+ADULT BRONZE DRAGON
+Huge Dragon (Metallic), Lawful Good
+AC 18 In itiative +10 (20)Repulsion Breath. Strength Saljing Throw: DC 19, each
+HP 212 (17d12 + 102)
+creature in a 30-foot Cone . Failure: The target is pushed
+Speed 40 ft. , Fly 80 ft. , Swim 40 ft.
+up to 60 feet straight away from the dragon and has the
+MOD SAVE 
+MOD SAVE MOD SAVE
+Prone condition.
+STR 25 +7 +7 DEX 10 +0 +5 CON 23 +6 +6
+Spellcasting. The dragon casts one of the following
+IN T 16 +3 +3 Wis 15 +2 +7 CHA 20 +5 +5
+spells 1 requiring no Material components and using
+Charisma as the spellcasting ability (spell save DC 17,
+Skills Insight +7, Percept ion +1 2, Stealth +5
++ 10 to hit with s pe II attacks):
+Immunities Lightning
+Senses Blindsight 60 ft., Darkvision 120 ft.;
+At Will: Detect Magic , Guiding Bolt (level 2 version),
+Passive Perception 22
+Shapechange (Beast or Humanoid form only, no
+Languages Common, Draconic
+Temporary Hit Points gained from the spell, and no
+CR 15 (XP 13,000, or 15,000 in lair; PB +5)
+L
+Concentration or Temporary Hit Points required to
+maintain the spell), Speak with Animals, Thaumaturgy
+T RAIT S
+1/Day Each: Detect Thoughts, Water Breathing
+Amphibious. The dragon can breathe air and water.
+L EG ENDARY A CT I O NS
+Legendary Resistance (3/Day, or 4/Day in Lair). If
+Legendary Action Uses: 3 (4 in Lair). Immediately after
+the dragon fails a saving throw, it can choose to suc-
+another creature's turn, the dragon can expend a use to
+ceed instead .
+take one of the following actions. The dragon regains all
+expended uses at the start_of each of its turns.
+A CTI O N S
+Guiding Light. The dragon uses Spellcasting to cast
+Multiattack. The dragon makes three Rend attacks. It
+Guiding Bolt (level 2 version).
+can replace one attack with a use of (A) Repulsion Breat h
+Pounce. The dragon moves up to half its Speed, and it
+or (B) Spellcasting to cast Guiding Bolt (level 2 version).
+- makes one Rend attack.
+Rend. Melee Attack Roll:+ 12, reach 10 ft. Hit: 16 (2d8
+Thunderclap. Constitution Saljing Throw: DC 17, each
++ 7) Slashing damage plus 5 (ldl0) Lightning damage.
+• creature in a 20-foot-radius Sphere centered on a point
+\.
+Lightning Breath (Recharge 5-6). Dexterity Saving
+I-
+Q:'.the dragon can see within 90 feet. Failure: 70 (3d6)
+<(
+Throw: DC 19, each creature in a 90 -foot-long, 5-foot-
+3
+LJJ
+Thunder damage, and the target has the Deafened con-
+f-
+l/)
+wide Line . Failure: 55 (l0dl0) Lightning damage. Suc-
+dition until the end of its next turn.
+~
+cess: Half damage.
+2
+I..
+BRONZE DRAGONS 
+59
+'""'"-
+~~-s--------
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 62 ---]
+BRONZEDRAGON
+YOUNG
+BRONZEDRAGONL 'A I RS
+dragons becomeexpertsin a
+Many young bronze
+type ofproblem, likedrivingoff piratesorprotect-
+or
+Bronze dragons usually maketheirhomesnear 
+ing communities fromstorms. Youngbronzedrag-
+under thesea.
+ons collect friendswithvariedexpertise, cultivating
+anadultorancientbronze
+The regioncontaining 
+ofexpertsthey canrely on.
+acommunity 
+creating the
+dragon's lairischanged byits presence,
+following effects:
+ADULTBRONZEDRAGON
+1 mileofthe
+BuoyingCurrents.Creatures within
+nearplacesthey
+Adultbronzedragons often dwell
+theextracost
+lairthatlack a Swim Speed ignore
+swork toward
+defendorwheretheyhelpother
+ofmovement while swimming.
+goals.Theymight becomepatrons ofwhole cities,
+dragon can
+Sun and Storms.Whilein its lair,the 
+flourish.
+advising leadersandhelping generations 
+castControlWeather,requiringno Material com-
+ponents and using thesame spellcasting ability as
+RAGON
+ANC IENTBRONZED
+its Spellcastingaction.Whencasting thespell this
+bronze dragons develop dramatic patinas
+Ancient 
+1
+way,thedragoncancontrol the weather within
+glimmering scales. These dragons striveto
+ontheir
+or
+mileofits lair, regardless if the dragonisinside
+orplanets from
+protectwhole regions, continents,
+outside.
+to planes-spanning ca-
+threats. Theyseek solutions
+Ifthedragondiesormoves its lair elsewhere, these
+ormultiversal perils and opposetheevilof
+lamities
+end immediately.
+dragons.effects 
+mighty chromatic
+ANCIENTBRONZE DRAGON
+Dragon(Metallic), LawfulGood
+Gargantuan
+ SavingThrow:DC 23, each
+Initiative +14 (24)Repulsion Breath. Strength
+AC 22 
+ispushed
+HP 444 (24d20 + 192)creature in a 30-foot Cone.Failure:The target
+ft..
+Speed 40 ft. , Fly 80 ft., Swim 40
+upto60 feet straight awayfromthe dragon and has the
+MODSAVEMODSAVEMODSAVE
+Prone condition.
+STR29+9 +9DEX10 +0 +7CON27+8 +8
+Spellcasting. The dragon casts oneofthe following
+CHA25 +7 +7
+INT18+4 +4Wis17+3+10
+spells, requiring no Material components and using
+DC 22,
+Charismaasthe spellcasting ability (spell save 
+17,Stealth +7
+SkillsInsight+l 0, Perception +
++14to hit with spell attacks):
+Immunities Lightning •
+ Blindsight 60 ft., Darkvision 120 ft.;
+Senses
+ DetectMagic,GuidingBolt(level 2 version),
+AtWill:
+PassivePerception 27
+ (Beastor Humanoid formonly, no
+Shapechange
+Languages Common, Draconic
+TemporaryHitPoints gainedfromthe spell, and no
+PB+7)
+CR 22 (XP 41,000, or 50,000 in lair;
+to
+Concentration or TemporaryHitPoints required
+maintain the spell), Speak with Animals, Thaumaturgy
+TRAITS
+Scrying,
+1/Day Each: Detect Thoughts, ControlWater, 
+Amphibious. The dragon can breathe air and water.
+Water Breathing
+Legendary Resistance (4/Day, or 5/DayinLair).If
+CTIONS
+LEGENDARYA
+can choose to suc-
+the dragon fails a saving throw,it
+Legendary ActionUses:3(4inLair).Immediately after
+ceed instead.
+expend ause to
+another creature's turn, the dragon can 
+oneofthe following actions. The dragon regainsall
+take 
+A CTIONS
+ the start ofeachofits turns.
+expended uses at
+ The dragon makes three Rend attacks.
+Multiattack.
+Guiding Light. The dragon uses Spellcasting to cast
+of(A) Repulsion
+It can replace one attack with a use
+Guiding Bolt (level 2 ver_sion) .
+or(B) Spellcasting to cast Guiding Bolt (level
+Breath 
+Pounce. The dragon moves up to half its Speed, and it
+2 version).
+makes one Rend attack.
+ 18 (2d8
+Rend. Melee Attack Roll:+16, reach15ft.Hit:
+Thunderclap. Constitution Saving Throw: DC 22, each
++ 9) Slashing damage plus 9 (2d8) Lightning damage.
+point
+creature in a 20-foot-radius Sphere centered on a 
+Lightning Breath (Recharge 5-6). Dexterity Saving
+f----
+within 120 feet.Failure: 13(3d8)
+the dragon can see D::'.
+<(
+ DC 23, each creature in a 120-foot-long, 10-foot-
+Throw:
+3
+w
+Thunder damage, and the target has the Deafened con-
+f----
+l/1
+82 (lSdl0) Lightning damage. Suc-
+wide Line. Failure: 
+ofits next turn.
+dition until the end
+~
+cess: Half damage.2
+L
+__,_,/
+BRONZE DRAGONS
+60
+-------z~JF-.,....~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 63 ---]
+ BRONI.E DRAGON U SES ITS
+AN/\NCIENT
+BRE/\TH TO PROTECT/\ COMMUN ITY
+REPULSION 
+ \YATER ELEMENT/\LS.
+FROM RAMP/\GING
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 64 ---]
+BUGBEARS
+Lurking Goblinoid Brutes
+Habitat:
+ Forest, Grassland , Planar (Feywild), Underdark;
+Treasure: Armaments, Individual
+Bugbears 
+embody fearof thewilds
+andthemenace
+of 
+naturalplaces. They're notoriously 
+stealthy,and
+foesthatventureintotheir 
+territoriesoften vanish
+withouta trace.
+BUGBEAR 
+STALKER
+Bugbear stalkers frequently 
+take theirvictims hos-
+I
+tage , relishingopportunities to 
+imprison andterror-
+izeothercreatures.
+BUGBEARWARRIOR
+Bugbear
+warriorsserve those who
+offerthem trea-
+sure, food,
+or thechance tohunt
+challengingprey.
+BUGBEAR 
+STALKER
+MediumFey(Gohlinoid), 
+ChaoticEvil
+AC15
+Initiative +2(12)
+HP
+ 65(10d8 +20)
+Speed
+30 ft .
+BUGBEARWARRIOR
+MODSAVE
+MODSAVEMOD
+SAVE
+STR 17+3 +3DEX
+14 +2+2C O N14+2+4
+Medium
+Fey(Goblinoid), ChaoticEvil
+INT11 +0 +0
+ Wis12+1+3CHA11
++0 +0
+AC 14 Initiative
++2 (12)
+HP33(6d8 +6)
+Skills Stealth +6, Survival +3
+Speed 30 ft. 
+Ge
+ar Chain Shirt, Javelins(6), Morningstar
+MO
+DSAVEMODSAVEMOD
+SAVE
+Senses Darkvision 60 ft.; Passive Perception
+11
+STR15+2+2DEX14
++2 +2C O N13+l+1
+Languages Common, Goblin
+1
+INT8 
+-1 - 1 Wis11+0 +0 C H A
+CR3(XP700;PB+2) 9-1-1
+Skills Stealth +6, Survival
++2
+T RAITS
+Gear Hide Armor, Light Hammers
+(3)
+Abduct. The bugbear needn't spend extra movement to
+Senses Darkvision 60 ft.; Passive Perception
+10
+move a creatureitisgrappling.
+Languages Common, Goblin
+CRl(XP200;PB
++2)
+A
+CTIONS
+Multiattack. The bugbear makes two Javelin or Morn-
+T RA ITS
+ingstar attacks.
+Abduct.
+ The bugbear needn't spend extra movement to
+Javelin. ·Melee or Ranged Attack
+Roll:+5, reach 10 ft. or
+move a creatureitisgrappling.
+range 30/120 ft.Hit: 13
+(3d6 +3)Piercing damage.
+A CT I O N S
+Morningstar. Melee Attack
+Roll: +5(with Advantage if
+Grab. 
+Melee AttackRoll:+4, reach 10 ft.
+ Hit: 9 (2d6
+the targetisGrappled
+bythe bugbear), reach 10 ft.
+ Hit:
++:2)Bludgeoning damage. If the target
+isa Medium
+12 (2d8 +3)Piercing damage.
+or smaller creature, 
+it has the Grappled condition_(es-
+BONUS ACTIONScapeDC 
+12).
+Quick Grapple. 
+Dexterity Saving Throw: DC 13, one
+Light Hammer.
+ Melee or Ranged Attack Roll:
+ +4 (with
+~
+Medium or smaller creature the bugbear can see within
+Advantage if the target 
+is Grappled<l'.
+bythe bugbear),
+V1
+:J
+V1
+10 feet. 
+Failure: The target has the Grappled condition
+reach 10 ft. or range 20/60 ft.
+ Hit: 9 (3d4 +2)Blud-
+V1
+<l'.
+0:::
+(escape DC 13).
+geoning damage.
+~
+~
+BUGBEARS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 65 ---]
+)
+BULETTES
+surface Land Sharks
+Ravenous, Sub
+None
+Habitat: Grassland,Hill,Mountain;Treasure:
+bulettesaresingle-minded
+Also called "land sharks," 
+andburst
+predatorsthat burrowunder, leap over,
+throughobstacles inpursuitoftheirquarry. They
+burrowrapidlyjustbelowground.Onsensing move-
+ment,they eruptfrombelow,attempting tocatch
+preyintheiroversize maws.
+BULETTE
+often
+Bulettesrangeunder vastterritories.They
+whole
+threatenanimal herds,andtheycanwipeout
+farmingcommunities.
+BULETTEPUP
+knownas pups.Theytravel in
+Juvenile bulettesare 
+usingtheirnumbers to bring down
+small groups, 
+foes.Their arrival frequently presagesthe
+larger 
+of anadult bulette.
+appearance
+BULETTE
+Large Monstros ity,Una/ igned
+Initiative +0(10)
+AC17
+HP94(9d10+45)
+Speed 40 ft., Burrow 40 ft.
+MODSAVEMODSAVE
+MODSAVE
+ +4 DEX11+0 +0 CON21+5 +5
+STR19+4
+Wis10+0 +0 CHA 5 -3 -3
+INT 2-4 -4
+SkillsPerception +6
+BULETTEPUP
+SensesDarkvision 60 ft., Tremorsense 120 ft.;
+Medium Monstrosity, Unaligned
+16
+Passive Perception
+Languages None
+Initiative-1
+AC76(9)
+CR5(XP1,800;PB+3)
+HP45(6d8 +18)
+Speed 30 ft., Burrow 20 ft.
+ACTIONS
+MODSAVEMODSAVEMODSAVE
+ The bulette makes two Bite attacks.
+Multiattack.
+DE X 8 -1 -1 CoN17+3 +3
+STR16 +3 +3
+w,s
+-3 -3
+INT2-4 -410 +0 CHA 4
++0
+AttackRoll: +7,reach 5 ft.Hit: 17(2d12 +4)
+Bite. Melee 
+Piercing damage.
+Skills Perception +4
+Deadly Leap. The bulette spends 5 feet of movement
+30 ft., Tremorsense 60 ft.;
+Senses Darkvision 
+15feet that contains one
+to jump to a space within14
+Passive Perception
+ Dexterity Saving
+or more Large or smaller creatures.Languages None
+inthe bulette's destinationCR2(XP450;PB+2)·
+Throw:DC15,each creature
+space.Failure: 19 (3d12) Bludgeoning damage, and the
+ACTIONS
+ Success: Half damage,
+target has the Prone condition .
++5, reach 5 ft. Hit: 74(2dl0 +3)
+Bite. Melee AttackRoll:
+and the target is pushed 5 feet straight away from
+Piercing damage.
+the bulette.
+0
+a:
+<l'.
+BoN~us ACTIONS
+zBONUS ACTIONS
+a:
+w
+!l)
+a:
+spending 10.
+Leap. The bulette jumps up to 30 feet by 
+wLeap. The bulette jumps up·to 30 feet by spending 10
+>
+_J
+feet of movement.
+feet of movement.
+0
+B_ U_ L_E_T_:,._____,E~
+-'----------"----------
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 66 ---]
+B U LLYWUGS
+I
+Amphibious Appreciators of Marsh and Muck
+Habitat: Swamp~ Treasure: Implements, Individual
+Fey embodiments of swamplands, bullywugs pro-
+tect the murky wilds and consider themselves
+cosmically favored for that role. These human-size,
+toad- or frog-like creatures have close relationships
+with the creatures of the swamp.
+BULLYWUG BOG SAGE
+Bullywug bog sages channel the magic of the
+swamp to sicken foes and speak with plants.
+B ULLYWUG W ARR I O R
+Bullywug warriors are adept at moving through
+swamps and ambushing trespassers. They often
+work alongside packs of trained giant frogs.
+BULLYWUG BOG SAGE
+•
+Medium Fey, Neutral
+•
+AC 16 Initiative +3 (13)
+HP 52 (8d8 + 16)
+Speed 30 ft., Swim 30 ft.
+MOD SAVE MOD SAVE 
+MOD SAVE
+STR 8 -1 - 1 DEX 16 +3 +3 CON 14 +2 +4
+INT 10 +0 +0 Wis 16 +3 +5 CHA 12 +l +l
+Skills Nature +4, Stealth +5
+BULLYWUG WARRIOR
+Gear Component Pouch
+Senses Passive Perception 13
+M ediu m Fey, Neutral
+Languages Bullywug, Common, Sylvan
+AC 15 Initiative +2 (12)
+CR 4 (XP 1,100; PB +2) .
+HP 11 (2d 8 + 2)
+Speed 30 ft., Swim 30 ft.
+TRAIT S
+MOD SAVEMOD SAVEMOD SAVE
+Amphibious. The bullywug can breathe air and water.
+STR 12 + l + lD EX 14 +2 +2CON 13 +l +l
+Speak with Frogs and Toads. The bullywug can com-
+IN T 7 -2 -2CHA 7 -2 -2
+Wis 10 +0 +0
+municate simple concepts to frogs and toads when it
+Skills St ea Ith +4
+speaks in Bullywug.
+Senses Passive Perception l 0
+A CT I ONS
+Languages Bullywug, Common
+CR l /4 (XP 50; PB +2)
+Multiattack. The bullywug makes two Bog Staff attacks.
+It can replace any attack with a use of Spellcasting to
+TRAITS
+cast Ray of Sickness.
+Amphibious. The bullywug can breathe air and water.
+Bog Staff. Melee Attack Roll: +5, reach 5 ft. Hit: 7 (l d8
+Speak with Frogs and Toads. The bullywug can com-
++ 3) Bludgeoning damage plus 10 (3d6) Poison damage.
+municate simple concepts to frogs and toads when it
+Spellcasting. The bullywug casts one of the following
+speaks in Bullywug.
+spells, using Wisdom as the spellcasting ability (spell
+save DC 13, +5 to hit with spell attacks):
+ACTI O NS
+At Will: Dancing Lights; Druidcraft, Ray of Sickness
+lnsectile Rapier. Melee Attack Roll: +4, reach 5 ft. -Hit: 6
+1/Day Each: Speak with Plants, Vitriolic Sphere(ld8 + 2) Piercing damage plus 2 (ld4) Poison damage.
+>--
+B O N US ACT IO NS<(
+BONUS ACT IONS
+er:
+er:
+:=i
+~
+Leap. The bullywug jumps up to 30 feet by spending 10
+Leap. The bullywug jumps up to 30 feet by spending 10
+z
+<(
+w
+feet of movement.feet of movement. l
+(/)
+\.
+64 h, BULLYWUGS
+~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 67 ---]
+'\
+CAMBION
+Mortal Infused with Fiendish Might
+Habitat: Any; Treasure: Relics
+l
+Cambions are former mortals corrupted by fiend-
+ish power or possessed by insidious forces. While
+CAMBION
+tieflings are free-willed individuals with a hint of
+j
+Medium Fiend, Neutra l f l)i/
+fiendish ancestry, cambions are inherently tied to or
+remade by the wicked magic of the Lower Planes.
+Initiative +4 (14)
+AC 19
+Many cambions serve the malevolent forces that
+H P 105 (14d8 + 42)
+are the source of their powers. Others seek to claim
+Speed 30 ft., Fly 60 ft .
+the might of whatever created them or to seize
+MOD SAVE MOD SAV E MOD SAVE
+otherworldly powers of their own. Among the most
+STR 18 +4 +7 DEX 18 +4 +4 CON 16 +3 +6
+notorious of such G_ambions is luz, a villain who be-
+INT 14 +2 +5 w,s 12 +l +l CHA 16 +3 +6
+came an evil demigod and whose villainous nation
+Skills Deception +6, Perception +4, Stealth +7
+threatens the Free City of Greyhawk on Oerth.
+Resistances Cold, Fire, Lightning, Poison
+Cambions come into being in disparate ways. Roll
+Immunities Poisoned
+on or choose a result from the Cambion Origins ta-
+Senses Darkvision 120 ft.; Passive Perception 14
+ble to determine the source of a cambion's fiendish
+Languages Abyssal, Common, Infernal
+might.
+CR 5 (XP 1,800; PB +3)
+CAMBI0N ORIGINS
+ACTIONS
+ld6 The Cambion Gained Its Power After ...
+Multiattack. The cambion makes two attacks, using
+l Being possessed by a fiendish being.
+Claw or Fire Ray in any combination.
+2 Being resurrected by an evil magic-user.
+Claw. Melee Attack Roll: +7, reach 5 ft. Hit: 8 (ld8 + 4)
+3• Lengthy exposure to a Lower Plane.
+Slashing damage plus 7-(2d6) Fire damage.
+4 Making a bargain with a Fiend.
+Fire Ray. Ranged Attack Roll: +7, range 120 ft. Hit: 13
+(3d6 + 3) Fire da~age.
+5 Suffering a god's curse.
+6 Taking part in fiendish rituals.Spellcasting. The cambion casts one of the following
+spells, requiring no Material components and using
+Charisma as the spellcasting ability (spell save DC 14):
+lT SEEMS TH/\T l MUS T D O EVERYTH I NG MY S E L F ,
+2/Day Each: Alter Self, Command (level 3 version),
+0
+er:SI N CE 1 HAVE O N LY FOOLS FO R SER VANT S. CL EAR L Y
+<(
+Detect Magic
+er:
+w
+DISAPPOINTMENT M U ST E VER BE THE PRICE O F D I VI N IT Y .
+lJ
+z1/Day Each: Dominate Person (level 8 version), Plane _
+t;;;
+-lu -i T HE E VIL , CAMB I ON D EM I GOD
+:::)
+Shift (self only)
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 68 ---]
+CARRIONCRAWLER
+LargeMonstrosity, Unaligned
+AC13Initiativ
+e+l(11)
+HP51(6dl0
++ 18)
+Speed 30 ft., Climb 
+30 ft.
+MODSAVEMODSAVEMOD
+SAVE
+STR14
++2 +2D EX13+1+ lCON16 +3
+ +3
+INTl-5- 5
+Wis 12+1+1C HA 5-3- 3
+Skills Perception +5
+CARRION
+CRAWLER
+Senses Darkvision 60 ft.; Passive Perception
+15
+Catacomb-Scouring Necrophage
+Languages None
+CR2 (XP 450;PB+2)
+Habitat:
+ Underdark, Urban; Treasure:
+ None
+Ravenous corpse eaters,
+carrioncrawlers 
+gravitate
+TRAITS
+towardplaces
+of slaughter and decay. In 
+such char-
+Spider 
+Climb. The carrion crawler can 
+climb difficult
+nel environs,
+theyfeast on the dead with 
+no qualms
+surfaces, including along ceilings,
+withoutneeding to
+about theirmeals' origins
+orfreshness.
+makeanability check.
+Carrion crawlers have segmented bodies like
+gigantic cutworms. From 
+beneath their multipartACTIONS
+maws protrude eight thin, lashing tentacles. Crea-
+Multiattack. The carrion cr_
+awler uses Paralyzing Tenta-
+tures struck by these 
+tentacles risk being paralyzed
+cles and makes one Bite attack.
+and consumed.
+Bite. Melee Attack
+Roll:_+4, reach 5 ft.Hit:7 (2d4 +
+2)
+Carrion crawlers 
+scour sewers, battlefields, ne-
+Piercing damage plus 3
+(ld6)Poison damage.
+cropolises, and fetid wildernesses for corpses, cling-
+ing to ceilings to ambush 
+smaller prey and to avoid
+Paralyzing Tentacles.
+ Dexterity Saving Throw: DC 12,
+competing hunters. They're 
+drawn to light and the
+one creature the carrion crawler can see 
+within 10 feet.
+scent of blood, recognizing 
+them as signs of food.
+Failure:The target has the Poisoned 
+condition and
+These scavengers avoid ingesting inorganic ma-
+repeats the save at the end
+ofeachofits turns, ending
+<i
+N
+terial. Crypts with 
+funeral armors sucked clean 
+ofthe effect on itself on a success. 
+After l minute, it suc-
+w
+....J
+<i
+>
+their corpses and eerily pristine catacombs are signs
+ceeds automatically. While Poisoned, the target has the
+z
+<i
+Ci:'.
+of infestation by carrion crawlers.
+Paralyzed condition. 
+,
+CD
+0ARR-ION CRAWLER
+66/
+~----
+_ __________,._/__,~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 69 ---]
+CENTAU R S
+Defenders of the Feywild
+Habitat: Forest, Grassland, Planar (Feywild);
+Treasure: Armaments, Individual
+Centaurs are defenders of forests, plains, and sites
+of primeval power. With upper bodies like humans'
+and the lower bodies of horses, centaurs charge into
+battle against those who would harm their allies.
+CENTAUR WARDEN
+Centaur wardens often lead groups of centaur
+troopers and act as intermediaries between Fey
+creatures and trespassers into their territories.
+CENTAUR TROOPER
+Centaur troopers are knight-like guardians. Many
+are suspicious of non-Fey creatures.
+CENTAUR WARDEN
+Large Fey, Neutral Good
+AC 16 lnitiative+2 (12)
+HP 105 (14dl0 + 28)
+Speed 50 ft.
+.CENTAUR TROOPER
+M OD SAVE MOD SAVEMOD SAVE
+Large Fey, Neutral Good
+STR 18 +4 +4 DEX 14 +2 +2CON 14 +2 +5
+AC 16 Initiative +2 (12)
+INT 9 - 1 - 1 Wis 18 +4 +7
+CHA 11 +0 +0
+HP 45 (6dl 0 + 12)
+Skill s Athletics +7, Nature +5, Perception +7
+Speed 50 ft.
+Senses Passive Perception 17
+MOD SAVE MOD SAVEMOD SAVE
+Languages Druidic, Elvish, Sylvan
+ST R 18 +4 +4 DEX 14 +2 +2
+CON 14 +2 +2
+CR 7 (XP 2,900; PB +3)
+IN T 9 -1 - 1 W is 13 +l +lCHA 11 +0 +0
+ACTIONS
+Skills Athletics +6, Perception +3
+Gear Breastplate, Longbow, Pike
+Multiattack. The centaur makes two attacks, using For-
+Senses Passive Perception 13
+est Staff or Sun Ray in any combination .
+Languages Elvish, Sylvan
+Forest Staff. Melee Attack Roll: +7, reach 5. Hit: 13
+CR 2 (XP 450; PB +2)
+(2d8 + 4) Bludgeoning damage plus 14 (4d6) Poi-
+son damage.
+A CT IONS
+Sun Ray. Ranged Attack Roll: +7, range 90 ft. Hit: 14 (3d6Multiattack. The centaur makes two attacks, using Pike
++ 4) Radiant damage, and the target has the Blindedor Longbow in any combination.
+condition until the start of the centaur's next turn.
+Pike. Melee Attack Roll: +6, reach 10 ft. Hit: 9 (ldl0 + 4)
+Spellcasting. The centaur casts one of the followingPiercing damage.
+spells, using Wisdom as the spellcasting ability (spell
+Longbow. Ranged Attack Roll: +4, range 150/600 ft. Hit:
+save DC 15):
+6 (ld8 + 2) Piercing damage.
+'
+At Will: Druidcraft, Speak with Animals
+BONUS ACT IONS -
+BONUS A CTIONS
+Trampling Charge (Recharge 5-6). The centaur moves
+Entangling Trail (Recharge 5-6). The centaur moves up
+up to its Speed without provoking Opportunity At-
+to its Speed without provoking Opportunity Attacks.
+tacks and can move through the spaces of Medium
+Each creature within 5 feet of the centaur as it moves is
+· or smaller creatures. Each creature whose space the
+targeted once by the following effect. Strength Saving
+centaur enters is targeted once by the following effect.
+LJJ
+_J
+Throw: DC 15. Failure: 11 (2d6 + 4) Bludgeoning dam-
+Strength Saving Throw: DC 14. Failure: 7 (ld6 + 4)
+L/1
+::i
+LJJ
+age, and the target has the Restrained condition untilBludgeoning damage, and the target has the Prone
+co
+u
+;:;:::
+the end of its next turn.condition . \
+w
+'
+CENTAURS A 67
+-----~--------=--<--::a.--7 • -........::::-.-
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 70 ---]
+DEVIL
+CHAIN
+DevilofPainand Control
+ Treasure:Implements
+Habitat: Planar (Nine Hells);
+Alsoknownas kytons, chaindevils considerthem-
+selves morbidartisans whouse deception, menace,
+andvicious metaltocoerce prisoners intobetraying
+themselves.Manyserve powerful devils,wrenching
+secrets from imprisoned souls using deadly, ani-
+devils
+mate chains. Leftto their owndevices,chain
+encourage ruthless individualsto pursueforbidden
+Nine
+magic, leadingtheirpupilsdown paths to the
+Hells.
+psychologicalthreatsandphysical
+Alongwith
+devil uses itsunnervinggazetomake
+harm,a chain 
+fearrather thanthe
+its victims perceivetheir worst
+result from the Chain
+monster. Rollon orchoose a
+Devil Masks tabletoinspire a chain devil's fearful
+appearance.
+CHAINDEVILMASKS
+ ...
+l d4Toa Viewer, the Chain Devil Looks Like
+l The corpseofa loved one.
+2 Adisapprovingdeity.
+3 A harshinstructor orsuperior.
+4 The viewer attheirlowestpointin life.
+CHAINDEVIL
+MediumFiend(Oei;i/), Lawf ul E1Jil
+Chain. MeleeAttackRoll:+7,reach 10 ft.Hit:11(2d6
+AC15Init iative+S(15)
+HP85(10d8+40)Ifthe targetis a Largeorsmaller
++4)Slashing damage.
+Speed 30 ft.condition (escape DC14)
+creature,ithas the Grappled 
+SAVEMODSAVE
+MODSAVEMOD
+it has the Restrained con-
+fromoneoftwochains, and 
++2+4 +7
+STR18+4 +4DEX15+2 CON18
+ u
+ditionuntil the grapple ends.
+INT11+0 +0 Wis 12+1+4 CHA14+2 +2
+ The devil conjures a fiery chain
+Conjure Infernal Chain.
+Throw:DC15,one
+tobind a creature. Dexterity Saving
+ing
+Resistances Bludgeoning, Cold, Piercing, Slas h
+Failure:9 (2d4
+creature the devil can see within 60 feet.
+Immunities Fire, Poison; Poisoned
++ 4) Fire damage, and the target has the Restrained
+ Darkvision 120 ft. (unimpededbymagical
+Senses
+ofthe devil's next turn, at which
+condition until the end
+Darkness); Passive Perception11
+isLarge or
+point the chain disappears.Ifthe target
+ Infernal; telepathy 120ft.
+Languages
+to 30 feet straight
+smaller, the devil moves the target up 
+CR 8 (XP 3,900;PB+3)
+toward itself. Success: The chain disappears .
+TS
+TRAI
+REACTION S
+outside the
+Diabolical Restoration.Ifthe devil dies 
+Gaze.Trigger:A creature the devil can see
+Unnerving 
+Nine Hells, its body disappears in sulfurous smoke,
+ofthe devil and can see the
+starts its turn within 30 feet
+and it gains a new body instantly, reviving with all its
+~evil. Response-Wisdom Saving Throw: DC 15, the trig-
+HitPoints somewhere in the Nine Hells.
+The target has the Frightened
+gering creature.Failure:
+ The devil has Advantage on saving
+Magic Resistance.
+ofits turn. Success: The target is
+c,ondition until the end
+0
+throws against spells and other magical effects.
+er:
+<!'.
+to this devil's Unnerving Gaze for 24 hours . 
+immune 
+(/)
+(/)
+"::J
+0
+A CTI O NS
+CY
+CD
+_J
+w
+<!'.
+two Chain attacks and
+Multiattack. The devil makes 
+I
+u
+2
+uses Conjure Infernal Chain.
+68 /2 CHArN DEVIL
+~--s= ---~~--~~--~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 71 ---]
+CHASME
+DemonofBetrayal and Sycophancy
+ Relics
+Habitat: Planar (Abyss); Treasure:
+theAbyss, chasmes resemble
+Flyingforthfrom 
+producing
+Theyincapacitate foesby 
+horse-size flies.
+I
+proboscises
+droning,thenusetheir
+a mind-numbing 
+life. IntheAbyss,mostchasmes
+to drainvictimsof
+demonsand
+obsequiously serve more powerful 
+demonic hordes.
+searchfor captives to press into 
+CHASME
+icfl)i/
+Large Fiend(Demon), Chaot
+Init iative +5 (15)
+AC15
+H P78(72dl0+12)
+Speed 20 ft., Fly 60ft.
+MODSAVE
+MODSAVEMODSAVE
+CON12+l+l
++2 +2DEX15+2 +5
+STR15
+70+0 +0
+ Wis 14 +2 + 5CHA
+INT77+0 +0
+Skills Perception +5
+esCold,Fi.re,Lightning
+Resistanc
+Immunit ies Poison; Poisoned
+70ft., Darkvision 720ft.;
+Senses Blindsight
+15
+Passive Perception
+LanguagesAbyssal; telepathy 120 ft.
+CR6 (XP 2,300;PB+3)
+TRAITS
+the
+Ifthe chasme dies outside 
+Demonic Restoration.
+into ichor, anditgains a new
+Abyss, its body dissolves 
+with all itsHitPoints some-
+body instantly, reviving 
+where in the Abyss.
+ The chasme has Advantage on sav-
+Magic Resistance.
+magical effects.
+against spells and other 
+ing throws 
+climb difficultsurfaces,
+Spider Climb. The chasme can 
+to makean
+along ceilings,withoutneeding 
+including 
+ability check.
+ACTIONS
+Hit:16
+ MeleeAttackRoll:+5, reach 5 ft.
+Proboscis.
+21(6d6) Necrotic
+(4d6 +2)Piercing damage plus
+Point max-
+Ifthe targetis a creature, itsHit
+damage.
+the Necrotic
+by anamountequal to 
+imumdecreases 
+damage taken.
+BONUS ACTIONS
+ DC 12, each creature
+ Constitution Saving Throw:
+Drone.
+the chasme
+30-foot Emanation originating from 
+in a 
+Failure:
+(demons automatically succeed on this save).
+condition and repeats
+The target has the Unconscious 
+ofits turns. The target suc-
+the save at the endofeach
+70 minutes orifit takes dam-
+lJceeds automatically after 
+z
+0
+::iit takes an action to
+or a creature within 5 feetof
+age 
+_J
+0
+D:'.
+ The target is
+of Holy Water on it. Success:
+empty a flask
+<(
+I
+u
+this chasme's Drone for 24 hours.
+immune to 
+a:
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 72 ---]
+CHIMERA
+LargeMonstrosity, Chaotic
+E1Jil
+AC14
+Initiative +O 
+(l0)
+HP114 (12d10 + 48)
+Speed 30 ft.,Fly60 ft.
+MODSAVEMODSAVE
+MODSAVE
+STR19+4
+ +4DEX11+0+OCON
+19+4 +4
+INT 3
+-4 -4Wis14 +2 +2CHA
+10+O +O
+CHIMERA
+SkillsPerception +8
+Multiheaded Ravager
+SensesDarkvision 60 
+ft.; Passive Perception18
+Habitat: 
+Grassland,Hill,Mountain; Treasure:
+AnyLanguages Understands Draconic but can't speak
+CR6(XP
+2,300;PB+3)
+Violent 
+and unpredictable, chimeras combine 
+the
+deadliest 
+traits oflions, rams, and red 
+dragons.
+ACTIONS
+With theirfearsome claws, 
+crushing horns, and
+Multiattack. The chimera makes one
+Ramattack, one
+fiery breath, chimeras 
+are tempests offerocity,
+Bite attack, and one Claw attack.
+Itcan replace the Claw
+driven by their threeheads' conflicting instincts.
+attack with a use 
+ofFire Breath if available.
+Their heads agree on little but their 
+desires to feed
+Bite. Melee AttackRoll:
+and to drive competitors from  +7,reach 5 ft.Hit:11(2d6 +4)
+the rugged territories
+Piercing damage, or18(4d6 +
+where these monsters make 4)Piercing damage if the
+their lairs.When they
+chimera had Advantage on the attack 
+spot prey, chimeras typically strafe foes roll.
+with their
+fire breath 
+before landing to attack with their 
+fangs,
+Claw. Melee Attack
+Ro/1:-+7,reach 5 ft.Hit:7 (ld6 +
+4)
+horns, and 
+claws.
+Slashing damage.
+ 
+Owing to their 
+draconic instincts, chimeras are
+'
+Ram. Melee AttackRoll: +7,reach 5 ft.
+Hit: 10 (ldJ2
+greedy creatures 
+that hoard treasures within 
+cav-
++4)Bludgeoning damage. 
+If the targetisa Medium or
+ernous lairs. They're undiscerning about 
+what they
+smaller creature, it has the Prone condition.
+collect, gathering shiny objects alongside trophies
+and bones from their recent kills. Brave souls seek-
+Fire Breath (Recharge 5-6).
+ Dexterity Saving
+ Throw: DC
+ing to distract or temporarily appease a chimera can
+15, each creature
+ina 15-foot Cone. Failure:
+31(7d8)
+>-
+N
+do so by offering it 
+treasure and food.
+Fire damage.
+ Success: Half damage.N
+70P-
+ CHIM-ERA
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 73 ---]
+E1Ji!
+LargeAberration, Chaotic
+Initiative+0 (l0)
+AC16
+HP76(9dl0 +27)
+Speed 30ft., Swim 30 f t .
+MODSAVE
+MODSAVEMODSAVE
+16 +3+3
++4 +4DEX 10 +0 +0CON
+STR19
+5 -3 - 3
+ - 3 Wis 11 +0 +0CHA
+INT5 -3
+Skills Perception +4
+Immun itiesPoison; Poisoned
+CHUUL
+14
+SensesDarkvision 60 ft.; Passive Perception
+but can't speak
+Understands Deep Speech
+Languages
+ofPrimeval Powers
+Chitinous Servant
+PB+2)
+CR4(XP1,100;
+ Relics
+ Treasure:
+Habitat: Coastal, Swamp, Underdark;
+T RAITS
+whenaboleths
+originated in forgotten ages
+Chuuls 
+beneath
+strangerbeings ruled alien empires 
+ The chuul can breathe air and water.and 
+Amphibious.
+'·
+the waves. The aboleths transformed numerous
+within120 feetof
+Sense Magic. The chuul senses magic 
+thatcouldventure
+predators into servants 
+deep-sea 
+the Detect Magic
+itself. Thistrait otherwise works like 
+magic and creatures
+beyond the seas to claim more 
+spell but isn't itselfmagical.
+of these
+to exploit. Chuuls are the most enduring 
+servants.
+A CT IO NSbizarre 
+carrying
+Many chuuls serve aboleth overlords, 
+twoPincer attacks and
+Multiattack. The chuul makes
+and primeval
+out their whims amid lightless seas 
+uses Paralyzing Tentacles.
+new aber:rant masters,
+swamps. Other chuuls ·obey 
+Oft. Hit: 9(l dl0
+Pincer. Melee Attack Roll: +6, reach l
+ mjnd flayers. Some
+such as beholders, grells, or
+Ifthe target is a Large or
++ 4) Bludgeoning damage.
+their .own drives, endlessly collecting
+chuuls follow 
+condition (escape
+smaller creature,ithas the Grappled 
+age-old
+ancient magic treasures or interpreting 
+from oneoftwo pincers. ,
+DC 14) 
+ends. Regardless of their agendas,
+. orders to bizarre 
+snare creatures in their massive pincers
+ Saving Throw: DC 13,chuuls 
+ Constitution
+Paralyzing Tentacles.
+paralytic
+foes helpless with their 
+ The targetbefore rendering 
+by the chuul. Failure:
+one creature Grappled 
+tentacles.
+has the Poisoned condition and repeats the save at the
+z
+u..J
+lie dormant in hidden
+onChuuls don't age and can 
+itself 
+endofeachofits turns, ending the effect on 
+r=::
+0
+0
+places for millennia before threats, ancient orders,
+a success. After l minute, it succeeds automatically.
+3
+z
+u..J
+or strange compulsions awaken them.
+While Poisoned, the target has the Paralyzed condition.
+co
+CHUUL A 71
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 74 ---]
+CLAY
+GOLEM
+Guardian
+ofHome and Heart
+Habitat:
+ Urban; Treasure: Relics
+Clay golemsare
+magical defenders made
+fromearth
+and clay toprotect
+placesorcommunities. 
+The
+materials used
+in creatingclay golems originate
+fromnear thelocation
+thegolemsprotect 
+andoften
+have special significance 
+totheircreators, 
+such as
+clay
+froma holy site
+orbricks from a magical ruin.
+Whilesome clay golems are 
+masterfully 
+sculpted
+to resemble living beings,
+othershave 
+only vaguely
+humanlike 
+forms.
+These golems 
+obeytheircreators' 
+orders and pro-
+tectwhat
+theirmakers value most. Some still follow
+these orders 
+long aftertheir
+creators' deaths. Roll
+onor
+choose a result from
+theClay Golem Orders
+table
+toinspirethe commands 
+a clay golem follows.
+CLAYGOLEM ORDERS
+ld4TheClayGolem Follows Orders
+To
+...
+l Blockthepath
+ofanyonewhoenters a site
+with
+a weapon drawn.
+2 Defend anymember
+oftheircreator's
+family
+or community 
+whoisthreatened 
+in its sight.
+3 
+Prevent any Fiend
+fromcrossing a bridge.
+4 Remove any
+who enter its creator's 
+workshop.
+CLAY
+GOLEM
+LargeConstruct, 
+Unalign ed
+AC
+14
+Initiative+3 (13)
+creatureitcan 
+see.Ifno creature is 
+near enough to
+HP 123(13dl0 
++52)
+move to and attack, the golem attacks 
+an object. Once
+Speed 30
+ft.
+the golem goes berserk, 
+it continues
+tobeberserk until
+MODSAV E
+MODSAVE
+MODSAVE
+itis destroyed
+or itis no longer Bloodied.
+ST R 20+S
++5DEX9 - 1 - 1
+CON18+4 +4
+Immutable
+Form.The golem can't 
+shape-shift.
+INT 3 - 4
+-4Wis 8 - 1 - 1
+CHAl - 5-5
+Magic Resistance.
+ The golem has Advantage on saving
+Resistances Bludgeoning, Piercing, Slashing
+throws against spells and 
+other 
+magical effects.
+Immunities Acid, Poison, Psychic; Charmed,
+A CT I O 
+NS
+Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
+Senses
+ Darkvision 60 ft.; Passive Perception 9
+Multiattack.
+ The golem makes
+twoSlam attacks, 
+or it
+Languages
+ Common plus one 
+other language
+makes three Slam attacks
+if 
+it used Hasten this turn.
+CR9 (XP 5,000;
+PB+4)
+t-
+Slam. Melee Attack 
+Rolf +9, reach 5 ft. Hit:
+ l O(l dl0
+TR AITS
++5)
+Bludgeoning damage plus 6
+(l dl2)Acid damage,
+a·nd the target'sHit
+Point maximum decreases 
+by an
+Acid Absorption.
+ Whenever the golem 
+is subjected 
+to
+amount 
+equal to the Acid damage taken.
+Acid damage, it 
+takes no damage and instead regains a
+numberof Hit Points equal 
+to the Acid damage dealt.
+B O N US A
+CTIONS
+a:::
+Berserk. Whenever the golem starts its 
+turn Bloodied,
+Hasten (Recharge 5-6).
+ 0
+The golem takes the Dash and
+_J
+LLJ
+roll l d6. On a 
+6, the golem goes berserk. On each
+ofI
+Disengage actions.
+u
+z
+its turns while berserk, the golem attacks the nearest
+I
+72,,6_
+ CLAY GOLE M
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 75 ---]
+.
+.. .
+CLOAKER
+Large Aberration, Chaotic Neutral
+r
+AC 14 Initiative +5 (15)
+HP 91 (l4dl0 + 14)
+Speed l Oft., Fly 40 ft.
+MOD SAVE MOD SAVE MOD SAVE
+STR 17 +3 +3 DEX 15 +2 +2 CON 12 +l +l
+INT 13 +l +l Wis 14 +2 +2 CHA 7 -2 -2
+Skills Stealth +5
+Immunities Frightened
+Senses Darkvision 120 ft.; Passive Perception 12
+Languages Deep Speech, Undercommon
+CR 8 (XP 3,900; PB +3)
+TRAI TS
+Light Sensitivity. While in Bright Light, the cloaker has
+Disadvantage on attack rolls.
+A CTIONS
+Multiattack. The cloaker makes one Attach attack and
+C LOAKER
+two Tail attacks.
+Haunter in the Dark
+Attach. Melee Attack Roll: +6, reach 5 ft. Hit: 13 (3d6
+Habitat: Underdark; Treasure: Implements
++ 3) Piercing damage. If the target is a Large or smaller
+Cloakers are mysterious Underdark predators,
+creature, the cloaker attaches to it. While the cloaker is
+named by adventurers for their resemblance to
+attached, the target has the Blinded condition, and the
+hanging cloaks when they cling to walls. What
+cloaker can't make Bite attacks against other targets.
+cloakers call themselves is un1<:nown, if they refer to
+In addition, the cloaker halves the damage it takes
+themselves at all. Though they're undeniably intelli-
+(round down), and the target takes the same amount
+gent, their behavior is often inscrutable.
+of damage.
+Cloakers sometimes gather in Underdark enclaves,
+The cloaker can detach itself by spending 5 feet of
+but they rarely build settlements or form social
+movement. The target or a creature within 5 feet of it
+structures. Most operate as solitary predators, lurk-
+can take an action to try to detach the cloaker, doing so
+ing in dismal subterranean reaches or abandoned
+by succeeding on a DC 14 Strength (Athletics) check.
+dungeons-sometimes for months at a time-as they
+Tail. Melee Attack Roll: +6, reach l O ft. Hit: 8 (l d l O + 3)
+wait for prey to pass. They use their mottled hides
+Slashing damage.
+to blend in with their surroundings. When unsus-
+pecting prey nears, cloal<:ers unfurl and attempt
+BON U S ACT IO NS
+to latch on and then smother their victims in their
+Phantasms (Recharge after a Short or Long Rest). The
+powerful wings.
+cloaker casts the Mi(ror Image spell, requiring no spell
+Cloakers delight in frightening foes. In addition
+components and using Wisdom as the spellcasting
+to their methods of ambush, cloakers can create
+ability. The spell ends early if the cloaker starts or ends
+illusory duplicates of themselves and emit surreal
+its turn in Bright Light.
+moans that non-cloakers find terrifying in unex-
+plainable, primal ways. Cloakers might antagonizeMoan. Wisdom Saving Throw: DC 13, each creature in a
+60-foot Emanation originating from the cloaker. Failure:
+explorers lost in the Underdark for days, terrorizing
+w
+and scattering them before attacking. They rarelyThe target has the Frightened condition until the end of
+z
+0
+f-
+Vl
+converse with other beings, except to whisper eeriethe cloaker's next turn. Success: The target is immune
+X
+w
+_j
+<(riddles to those they're about to consume.to this cloaker's Moan for the next 24 hours.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 76 ---]
+CLOUD GIANT
+Huge Giant, Neutral
+AC 14 Initiative +4 (14)
+HP 200 (1 6d12 + 96)
+Sp>eed 40 ft., Fly 20 ft. (hover)
+MOD SAVEMOD SAVEMOD SAVE
+STR 27 +8 +8DEX 10 +0 +0CON 22 + 6 +10
+INT 12 +1 +1Wis 16 +3 +7CHA 16 +3 +3
+Skil ls Ins ight +7, Percept ion +11
+Senses Passive Perception 21
+Languages Common, Giant
+CLOUD GIANT
+CR 9 (XP 5,000 ; PB +4)
+Giant of the Loftiest Heights
+ACTIONS
+Habitat: Mountain; Treasure: Arcana
+Multiattack. The giant makes two attacks, using Thun-
+Cloud giants use the power of the skies to observe
+derous Mace or Thundercloud in any combination. It
+and subtly influence the world. These giants resem-
+can replace one attack with a use of Spellcasting to cast
+ble humans with hair ranging from silver to blue
+Fog Cloud.
+and with skin in cloudlike shades from stark white
+Thunderous Mace. Melee Attack Roll:+ 12, reach 10 ft.
+to twilight hues. Curved canines grow in their up-
+Hit: 21 (3d8 + 8) Bludgeoning damage plus 7 (2d6)
+per jaws, extending past their lower lips. In battle,
+Thunder damage.
+they attack with weapons wreathed in storm clouds
+and throw roaring thunderheads.
+Thundercloud. Ranged Attack Roll:+12, range 240 ft.
+Most cloud giants inhabit citadels crowning tre-
+Hit: 18 (3d6 + 8) Thunder damage, and the target
+mendous mountains or magical palaces that drift
+has the Incapacitated condi_tion until the end of its
+amid the clouds. Many of these giants believe they
+next turn.
+possess similarly lofty status or purpose. Some view
+Spellcasting. The giant casts one of the following spells,
+themselves as godlike beings who can manipulate
+requiring no Material components and using Charisma
+and steal from terrestrial beings with impunity.
+~s the spellcasting ab_ility (spell save DC 15):
+Others claim their long lives and place among the
+clouds grant them unique perspectives, so they
+At Will: Detect Magic, Fog Cloud, Light
+chronicle what they witness in the world below
+1/Day Each: Control Weather, Gaseous Form, Telekinesis
+without interfering. In either case, cloud giants
+:,:'.'.
+B O N US A CTI ON S
+<(
+often possess fabulous magical treasures, either
+V)
+::J
+l/l
+claimed from across the world or created by (andMisty Step. The giant casts the Misty Step spell, using
+l/l
+<
+er:
+gigantically sized for) themselves.the same spellcasting ability as Spellcasting.
+~
+CLOlfD G I ANT
+74
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 77 ---]
+COCKATRICES
+Accursed Avians with the Power to Petrify
+Habitat: Grassland; Treasure: None
+Cockatrices combine the features of irate roosters
+and starving reptiles. They petrify those they bite,
+their slightest peck turning their prey to stone.
+COCKATRICE
+Cockatrices often try to claim eye-catching struc-
+tures-such as ruins and secluded farms-as roosts.
+COCKATRICE REGENT
+Bolder than their smaller cousins, cockatrice re-
+gents brim with unstable magical energy they use to
+restrain distant foes.
+COCKATRICE REGENT
+Large Monstrosity, Unaligned
+AC 15 Initiative +2 (12)
+HP 136 (l 6dl O + 48)
+Speed 30 ft., Fly 60 ft.
+MOD SAVEMOD SAVEMOD SAVE
+STR 19 +4 +4
+DEX 14 +2 +2CON 16 +3 +3
+INT 3 -4 - 4Wis 16 +3 +6CHA 5 - 3
+Im mu nities Petrined
+Senses Darkvision 120 ft.; Passive Perception 13
+Languages None
+CR 8 (XP 3,900; PB +3)
+COCKATRICE
+TRAITS
+Small Monstrosity, Unaligned
+Flyby. The cockatrice doesn't provoke an Opportunity
+Attack when it flies out of an enemy's reach.
+AC 11 Initi ative +l (11)
+HP 22 (5d6 + 5)
+ACTIONS
+Speed 20 ft., Fly 40 ft.
+Multiattack. The cockatrice makes one Petrifying Bite
+MOD SAVE MO D SAVE MOD SAVE
+attack and two Talons attacks.
+STR 6 -2 -2 DEX 12 +l +l CON 12 +l +l
+IN T 2 -4 - 4 Wis 13 +1 +1 C H A 5 -3 - 3
+Petrifying Bite. Melee Attack Roll: +7, reach 5 ft. Hit: 13
+(2d8 + 4) Piercing damage. If the target is a creature,
+\.
+Immunities Petrified
+it is subjected to the following effect. Constitution
+Senses Darkvision 60 ft.; Passive Perception 11
+Saving Throw: DC 14. First Failure: The target has the
+Languages None
+Restrained condition and repeats the save at the end of
+CR 1/2 (XP 700; PB +2)
+its next turn if it is still Restrained, ending the effect on
+itself on a success. Second Failure: The target has the
+ACTIONS
+Petrined condition instead of the Restrained condition.
+Petrifying Bite. Melee Attack Roll: +3, reach 5 ft. Hit: 3
+(ld4 + l) Piercing damage. If the target is a creature,
+Talons. Melee Attack Roll: +7, reach 5 ft. Hit: 18 (4d6
+- it is subjected to the following effect. Constitution
++ 4) Slashing damage.
+Saving Throw: DC 11. First Failure: The target has the
+REACTIONS
+Restrained condition. The target repeats the save at the
+Magical Backlash. Trigger: A creature within 120 feet of
+end of its next turn if it is still Restrained, ending the
+CY
+w
+the cockatrice deals damage to it. Response-Dexterity
+0effect on itself on a success. Second Failure: The target
+<t:
+co
+z
+Saving Throw: DC 14, the triggering creature. Failure: 13has the Petrified condition, instead of the Restrained -
+w
+~
+<t:
+0(3d6 + 3) Force damage.condition, for 24 hours. ~
+~~~--------o_o_c_K_ A_T_R_r, 7---5~-
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 78 ---]
+•
+COLOSSUS
+Gargantuan Construct (Titan), Unaligned
+AC 23 Initiative + 16 (26)
+HP 553 (27d20 + 270)
+Speed 60 ft.
+MOD SAVE
+MOD SAV E MOD SAVE
+CON 30 +10 +10
+STR 30 +10 +10 DEX ll +0 +8
+C H A 8 - l - l
+INT 3 -4 -4 Wis ll +0 +8
+Resistances Necrotic , Radiant
+Immunities Poison, Psychic; Charmed, Exhaustion,
+Frightened, Paralyzed, Petrified, Poisoned, Stunned,
+Unconscious
+Senses Truesight 300 ft.; Passive Perception 10
+Languages Understands Celestial and Common but
+can't speak
+CR 25 (XP 75,000; PB +8)
+TRAITS
+Immutable Form. The colossus can't shape-shift.
+Legendary Resistance (4/Day). If the colossus fails a
+saying throw, it can choose to succeed instead.
+Magic Resistance. The colossus has Advantage on sav-
+ing throws against spells and other magical effects.
+Siege Monster. The colossus deals double damage to
+objects and structures.
+A CT ION S
+Multiattack. The colossus makes three attacks, using
+Slam or Radiant Ray in any combination.
+Slam. Melee Attack Roll: +78, reach 20 ft. Hit: 32 (4dl0
++ l 0) Bludgeoning damage, and the colossus pushes
+the target up to 20 feet straight away from itself.
+Radiant Ray. Ranged Attack Roll:+ 18, range 300 ft. Hit:
+COLOSSUS
+22 (4dl 0) Radiant damage. If the target is a Large or
+Titanic Vessel of Divine Might
+smaller creature, it has the Prone condition.
+Habitat: Any; Treasure: Relics
+Divine Beam (Recharge 5-6). Dexterity Saving Throw:
+Colossi are massive Constructs created by the de-
+DC 26, each creature in a 300-foot-long, 10-foot-wide
+vout to reflect the nature of a deity, which could be
+Line. Failure: 65 (l0dl2) Radiant damage. Success: Half
+benevolent or wicked. Colossi thrum with incredi-
+damage. Failure or Success: A creature reduced to 0 Hit
+ble magic and work divine will on the land.
+Points by this beam disintegrates into dust, leaving be-
+Droves of faithful artisans craft a colossus in a
+hind any magic items it was wearing or carrying.
+shape to honor their deity, then call on that god
+LEG ENDA RY A CTION S
+to infuse the statue with life. This arduous pro-
+Legendary Action Uses : 3. Immediately after another
+cess might take decades and involve hundreds of
+~reature's turn, the colossus can expe nd a use to take one
+workers. If the god favors the creation, the mighty
+of the following actions. The colossus regains all expended
+crystal at the construct's heart pulses with divine
+uses at the start of each of its turns .
+'
+power, and the colossus rises to protect the faithful
+Smite. The colossus makes one Radiant Ray attack.
+0
+or enact the god's will.
+0:::
+<t
+z
+Stomp. The colossus moves up to half its Speed with-
+Most colossi were created in ages past and now
+2:
+out provoking Opportunity Attacks, and it can make
+lie dormant in secluded wilderness, awakening only
+one Slam attack at any point during that mpve.
+when disturbed or called on to serve once more.
+ooLo-ssus
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 79 ---]
+•
+COMMONER
+EverydayFolk
+ Treasure: IndividualCOMMONER
+Habitat: Any ;
+orSmall Humanoid Neutral
+Medium
+1 
+ofpeople who
+constitute the majority 
+Commoners 
+train-
+pursue magical talents,extraordinary 
+don't 
+Initiative +0 (l0)
+AClO 
+generous, help-
+a lifeofadventure. Some are 
+ing,or
+HP4 (ld8)
+in sharing
+others are more cautious 
+ful sorts, while Speed 30 ft.
+ofjobs andMODSAVE
+have. Use the following listSAVEMODSAVE
+what theyMOD
+~dventures:+0 +0CON10 +0 +0
+to introduce commoners inyourSTR10 +0 +0DEX10
+roles 
+10+0 +0
+ +0 +0 Wis10 +0 +0CHA
+INT10
+Patient
+ArtistFletcher 
+artist Pilgrim
+Baker Flimflam 
+Gear Club
+Resurrectionist
+Bartender Gossip 
+Senses Passive Perception l 0
+ Common •
+Languages
+Rioter
+BlacksmithHermit
+CR 0(XP 10;PB+2)
+Scribe
+Butcher Hooligan 
+HunterServant
+Captive
+TRAITS
+ Shepherd
+Carpenter Innkeeper
+has proficiency in one skillof
+Training. The commoner 
+ Laborer Student
+Castaway
+it makes
+the DM's choice and has Advantage whenever 
+ Lamplighter Tailor
+Cobbler
+skill.
+an ability check using that 
+ Mason Tanner
+Cook
+:,,:
+>-
+N
+:::J
+ACTIONS
+Merchant Town crier
+Dyer 
+3
+<(
+z
+Miner , Weaver
+Farmer 
+5 ft. Hit: 2 (ld4) Blud-
+ Melee Attack Roll: +2, reach 
+zClub.
+<(
+N
+:::J
+ Youngster
+Fisher Mud lark
+geoning damage.
+N
+,....,,.._
+ 
+COMMONER
+77
+~~~s------
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 80 ---]
+COPPERDR/\GON
+WYRMLING
+theirslowingbreath
+andphysicalattacks tosubdue
+antagonists.Onlyin casesofextreme
+periloremo-
+tion dotheyusetheirdeadly acid
+breath.
+Copper dragons typically live in 
+caverns amid
+picturesque hillsand 
+rockformations-particularly
+thosethatare prominent
+landmarks. These drag-
+ons collect gifts,though 
+theyhave littleinterestin
+treasure withoutmeaning, 
+nomatterhowvaluable
+it is. Tothem, thoughtfully
+givenpresents and the
+feelingsormemories
+theysymbolizearemoreim-
+pdrtant thanmasterpiecesormagical relics.
+COPPER DRAGON WYRMLING
+Copper dragon 
+wyrmlings ventureintotheworld
+COPPER DRAGONS
+seeking to make friendsanddiscover wonde1:'s.They
+DragonsofCuriosity and Community
+sometimes get into trouble,butthose whohelp
+Habitat:Hill;Treasure:them canbecometheirfriends for life.
+Arcana
+Relentlessly friendlyandcurious, most copper 
+drag-
+YOUNG COPPER 
+DRAGON
+ons view theworld as a placeofendlesswonder and
+Young copper dragons forgestrongconnections
+possibility. These gregarious dragons are fonts of
+withacommunity orgroupoffriends while flitting
+patience, hospitality,
+andhumor, andtheyseek to
+from one artistic fixation to
+thenext.
+improvethe 
+lives-or, atleast,themood-ofthose
+they interact with. If forcedtofight to defend them-
+YOUNG
+COPPERDRAGON
+selvesor theirfriends, these dragons favor using
+LargeDragon (Metallic) 
+, Chaotic Good
+COPPERDRAGON WYRMLING
+AC 17
+Initiative +4(14)
+HP119
+Medium(14d10 +42)
+Dragon(Metallic), Chaotic Good
+Speed40 ft., Climb 40 ft.,
+Fly80 ft.
+AC16
+Initiative+3"(13)
+MODSAVEMODSAVEMOD
+SAVE
+HP22(4d8+4).
+STR19+4 +4DEX12+l+4CON17 +3 +3
+Speed 30 
+ft., Climb30ft.,Fly60 ft.
+INT16 +3Wis13
++3+l +4CHA15+2 +2
+MODSAVE
+MO DSAVEMODSAVE
+- STR 75+2 +2DEX72+7+3CON
+73+7+1
+Skills
+Deception+5,Perception+7,Stealth +4
+INT74+2 +2Wis11+0+2CHA13+l +l
+ImmunitiesAcid
+SensesBlindsight 30 ft., Darkvision 120 ft.;
+Skills Perception +4, Stealth+3
+Passive Perception17
+Immunities Acid
+Languages Common, Draconic
+Senses Blindsight70ft., Darkvision 60 ft.;
+CR7(XP2,900;PB+3)
+Passive Perception14
+Languages Draconic
+ACTIONS
+CR7(XP200;PB+2)
+Multiattack. The dragon makes three Rend attacks.
+It
+ACTIONScan replace one attack with a use of Slowing Breath.
+Rend. Melee AttackRoll:+4, reach 5 ft.Hit:7(1dl 0 +2)
+Rend. MeleeAttackRo/1:+7,reach 10ft.Hit: 15
+(2d10
+Slashing damage.
++4)Slashing damage.
+Acid Breath (Recharge 5-6).
+ Dexterity Saving Throw: DCAcid Breath (Recharge 5-6).
+ Dexterity Saving Throw: DC
+11,each creatureina 20-foot-long, 5-foot-wide 
+Line.
+1~,each creatureina .40-foot-long, 5-foot-wide Line.
+Failure: 18 (4d8) Acid damage. Success:
+ Half damage.Failure:40 (9d8) 
+Acid damage. Success: Half damage.
+Slowing Breath. Constitution Saving 
+Throw: DC 11,eachSlowing Breath. 
+Constitution Saving Throw: DC 14, each
+creatureina 15-foot Cone. Failure:>
+ The target can't takecreatureina 30-foot Cone.
+ Failure: The target can't take
+0
+z
+_J
+Reactions; its Speedishalved; and 
+it can take eitherReactions; its Speed
+ishalved; and it can take either
+w
+>
+z
+an action or a Bonus Action
+ on -its turn, not both . This
+an action or a Bonus Action on its turn, not both. This
+_J
+~
+>
+effect lasts until the end of its next turn.effect lasts until the end of its next turn.
+ 
+V)
+\..
+78 ~ C O PPE-R D R AGONS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 81 ---]
+DRAGON
+ADULTCOPPER
+Good
+Huge Dragon(Metallic), Chaotic 
+either
+ishalved; anditcan take 
+itiat ive+11Reactions; its Speed
+AC 18In (21)
+Action on its turn notboth. This
++ 80)anactionora Bonus 
+HP 184(16dl2
+1
+40 ft., Fly 80 ft.
+Speed 40 ft. 1Climb effect lasts until the endofits next turn.
+ 
+,
+SAVE
+MOOSAVEMOOSAVEMOO
+following
+ The dragon casts oneofthe
+Spellcasting.
+D EX12CON21
+STR23+l+6 +5+5
++ 6 + 6 
+and using
+components
+spells, requiring no Material
+15CHA 18
+INT18Wis+2 +7 +4+4
++4 +4 
+asthe spellcasting ability (spell save DC 17):
+Charisma
+ rPercepti on +12,Stealth +6Mi-
+Skills Deception +9, DetectMagic,Mind Spike (level 4 version),
+At Will:
+ Acid
+Immunitiesor Humanoid form
+norIllusion,Shapechange (Beast
+1
+Senses Blindsight 60 ft., Darkvision 120 ft.;
+from the spell 1
+only 1 no TemporaryHitPoints gained
+Passive Perception 22
+HitPoints re-
+orTemporary
+and no Concentration
+Languages Common, Draconic
+spell)
+quiredtomaintain the 
+5)
+or 13,000 in lair; PB +
+CR14(XP 11,500, 
+ Major Image
+1/Day Each: Greater Restoration
+1
+T RAI TS
+L EGENDARYACTIONS
+Immediately after
+inLair).IfLegendary ActionUses:3(4 in Lair).
+or 4/Day
+Legendary Resistance (3/Day, 
+ canexpend auseto
+dragon
+another creature's turn, the 
+it can choqse to suc-
+the dragon fails a saving. throw, 
+dragon regains all
+oneofthe following actions.The 
+take 
+ceed instead.
+usesat the startofeachofitsturns.
+expended
+A CTION S
+DC17,one
+Magic. Charisma SavingThrow:
+Giggling 
+Failure:24
+within 90 feet.
+creature the dragon can see 
+It
+ The dragon makes three Rend attacks.
+Multiattack.
+Until the endofits next turn,
+(7d6) Psychic damage. 
+a useof(A) Slowing Breath
+can replace one attack with 
+it makes an ability check
+the target rollsld6whenever 
+ (level 4 version).
+to cast Mind Spike
+or (B) Spellcasting 
+from the
+number rolled 
+or attack roll and subtracts the 
+Roll:+ 11,reach 10 ft.Hit: 17(2dl 0
+_Rend. Melee Attack 
+or Success: The dragon can't take this
+D20 Test.Failure 
+(ld8) Acid damage.
++ 6) Slashing damage plus 4 
+ofits next turn.
+action again until the start
+ Saving Throw: DC
+ Dexterity
+Acid Breath (Recharge 5-6).
+to cast Mind
+Mind jolt. The dragon uses Spellcasting 
+an 60-foot-long, 5-foot-wide Line.
+18, each creature in 
+can't take this action
+Spike (level 4 version). The dragon 
+>
+ Success: Half damage.
+Failure: 54(l2d8) Acid damage.
+0
+z
+again until the startofits next turn.
+......J
+w
+>
+ Saving Throw: DC 18, each
+Slowing Breath. Constitution
+z
+ _it
+to half its Speed, and
+Pounce. The dragon moves up 
+......J
+1
+f-
+ t take
+ in a 60-foot Cone .' Failure: The target can
+~reature
+w
+>
+makes one Rend attack.
+l/1
+......._
+COPPER DRAGONS
+ ..--:::
+-------------
+~~'----
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 82 ---]
+COPPER DRAGON LAIRS
+I
+Copper dragons typically inhabit multichamber
+ADULT COPPER DRAGON
+caves and renovated ruins.
+Adult copper dragons use their influence to better
+The region containing an adult or ancient copper
+the world. With broad circles of friends, adult cop-
+dragon's lair is changed by its presence, creating the
+per dragons delight in introducing people to one an-
+following effects:
+other and helping people find places where they can
+Chatty Critters. Tiny Beasts magically gain the
+flourish. When disaster strikes, these dragons draw
+ability to speak and understand Draconic while
+on their family of contacts to offer support, right
+withln 6 miles of the lair.
+wrongs , and rebuild stronger than before.
+Giggle Fits. Whenever a creature other than the
+dragon and its allies is within 1 mile of the lair and
+AN C I ENT COPPER D RAGO N
+rolls a 1 on a D20 Test, it must succeed on a DC 15
+Ancient copper dragons use warmth and reliability
+Wisdom saving throw or have the Incapacitated
+to effect change over time. They open their cozy
+condition until the end of its next turn, as it is
+lairs to their friends as havens of learnjng and
+(
+wracked with laughter.
+laughter for the young and those in need. These
+dragons watch for and oppose future threats whileIf the dragon dies or moves its lair elsewhere, these
+fostering sanctuaries of simple goodness.
+effects end immediately.
+ANCIENT COPPER DRAGON
+Gargantuan Dragon (Metallic), Chaotic Good
+AC 21 Initiative + 15 (25)
+an action or a Bonus Action on its turn, not both. This
+HP 367 (2ld20 + 147)
+effect lasts until the end of its next turn .
+Speed 40 ft. , Climb 40 ft. , Fly 80 ft.
+Spellcasting. The dragon casts one of the following
+MOD SAVE
+MOD SAVE MOD SAVE
+spells, requiring no Material components and using
+STR 27 +8 +8
+DEX 12 +l +8 CON 25 +7 +7
+Charisma as the spellcasting ability (spell save DC 21) :
+IN T 20 +S +SWis 17 +3 +70 CHA 22 +6 +6
+At Will: Detect Magic , Mind Spike (level 5 version), Mi-
+Skills Deception + 13, Perception + 17, Stealth +8
+nor Illusion, Shapechange (Beast or Humanoid form
+Immunities Ac id
+only, no Temporary Hit Points gained from the spell,
+Senses Blindsight 60 ft., Darkvision 720 ft. ;
+and no Concentration or Temporary Hit Points re-
+Passive Perception 27
+quired to maintain the spell)
+Languages Common, Draconic1 
+1/Day Each: Greater Restoration, Major Image,
+CR 21 (XP 33 ,000, or 41 ,000 in lair; PB +7)
+Project Image
+TR A ITS
+LEGE N DARY A CTIO N S
+Legendary Resistance (4/Day, or 5/Day in Lair). If
+Legendary Action Uses: 3 (4 in Lair). Immediately after
+another creature's turn, the dragon can expend a use to
+the dragon fails a saving throw, it can choose to suc-
+take one of the following actions. The dragon regains all
+ceed instead .
+expended uses at the start of each of its turns.
+A CT IO NS
+Giggling Magic. Charisma Saving Throw: DC 21, one
+creature the dragon can see within 720 feet. Failure: 37
+Multiattack. The dragon makes three Rend attacks. It
+(9d6) Psychic damage. Until the end of its next turn,
+can replace one attack with a use of (A) Slowing Breath
+the target rolls ld8 whenever it makes an ability check
+or (B) Spellcasting to cast Mind Spike (level 5 version) .
+or attack roll and subtracts the number rolled from the
+Rend. Melee Attack Roll: +15, reach 15 ft. Hit : 19 (2dl 0
+D20 Test . Failure or Success: The dragon can't take this
++ 8) Slashing damage plus 9 (2d8) Acid damage.
+~ction again until th~ start of its next turn.
+I
+Acid Breath (Recharge 5-6). Dexterity Sa1Jing Throw: DC
+Mind jolt. The dragon uses Spellcasting to cast Mind
+22, each creature in an 90-foot-long, 70-foot-wide Line.
+Spike (level 5 version) . The dragon can 't take this action
+Failure: 63 (14d8) Acid damage. Success: Half damage.
+again until the start of its next turn.
+Slowing Breath. Constitution Sa1Jing Throw: DC 22, each
+Pounce. The dragon moves up to half its Speed, and it
+creature in a 90-foot Cone . Failure: The target can't take
+makes one Rend attack .
+Reactions; its Speed is halved; and it can take either
+COPPER DRAGONS
+80
+
+[--- Page 83 ---]
+
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 84 ---]
+Medi um Celestial, Lawful Good
+AC 19 Initiative +S (15)
+HP 60 (8d8 + 24)
+Speed 30 ft., Fly 90 ft .
+MOD SAVEMOD SAV E
+MO D SAVE
+DEX 20 +5 +5CON 17 +3 +5
+STR 16 +3 +3
+INT 18 +4 +4Wis 20 +5 +7C H A 18 +4 +4
+Resistances Bludgeon ing, Piercing, Slashing
+Immun ities Psychic, Radiant
+Senses Truesight 120 ft.; Passive Perception 15
+Languages All; telepathy 120 ft.
+CouATL
+CR 4 (XP 1,100; PB +2)
+Guardian Manifestation of the Divine
+TRAIT S
+Habitat: Desert, Forest, Grassland, Urban;
+Shielded Mind. The couatl's thoughts can't be read by
+Treasure: Relics
+any means, and other creatures can communicate with
+Embodiments of prophecy and protectors of divineit telepathically only if it allows them .
+secrets, couatls ensure fate unfolds as it should.
+A CTIO NS
+They resemble serpents with rainbow wings, and
+Bite. Melee Attack Roll: +7, reach 5 ft. Hit: 11 (l dl 2 + 5)
+each is a manifestation of a divine edict, a truth or
+Piercing damage, and the target has the Poisoned con-
+fate that a righteous god decrees must hold true for
+dition until the end of the couatl's next turn.
+all time. Most couatls appear in places of ancient
+power, where they guard hidden magic or ensure
+Constrict. Strength Salling Throw: DC 15, one Medium
+foretold acts do or don't come to pass. Rarely,
+or smaller creature the couatl can see within 5 feet. Fail-
+couatls watch over communities or travel lands in
+ure: 8 (ld6 + 5) Bludgeoning damage. The target has
+disguise, interpreting omens or manipulating f ac-
+the Grappled condition (escape pc 13), and it has the
+tors to set fate on its proper course.
+Restrained condition until the grapple ends.
+Motivated by eternal mandates, couatls some-
+Spellcasting. The couatl casts one of the following
+times behave in inscrutable or antagonistic ways.
+spells, requiring no spell components and using Wis-
+They are inflexible and uncompromising, as their
+dom as the spellcasting ability (spell save DC 15):
+existences are fundamentally tied to their divine
+directives, but they harm other creatures only when
+At Will: Detect Evil and Good, Detect Magic, Detect
+absolutely necessary to achieve divine goals.
+Thoughts, Shapechange (Beast or Humanoid form
+Each couatl goes through a period of renewal
+only, no Temporary Hit Points gained from the spell,
+at the end of an age. In a couatl's lifecycle, an age
+and no Concentration or Temporary Hit Points re-
+might correspond to a celestial calendar or some di-
+quired to maintain the spell)
+- vine chronology. Near the age's end, the couatl lays
+1/Day Each: Create Food and Water, Dream, Greater Res-
+a wondrous, rainbow-hued egg. When the age ends,
+toration, Scrying, Sleep
+the couatl dies. For a period-perhaps a single day,
+8.0NUS A CTIONS
+perhaps until an annual solar event-the couatl's
+>
+0
+work is unattended. Once this time passes, the sameDivine Aid (2/Day). The couatl casts Bless, Lesser Resto-
+I-
+~
+a'.:
+couatl that laid the egg hatches from it, fully grownration, or Sanctuary, requiring no spell components and
+0
+~
+and-renewed to serve for another age.using the same spellcasting ability as Spellcasting.
+>
+COUATL
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 85 ---]
+CRAWLING CLAWS
+Severed Appendages with Malicious Will
+Habitat: Any; Treasure: None
+Crawling claws are severed hands that move and
+act of their own murderous accord. These death-
+less appendages can spring to life from the severed
+limbs of killers and villains, and sinister magic-users
+might animate crawling claws as foul servants.
+Crawling claws appear in a variety of forms, from
+decaying human hands to the fresh appendages of
+animals or monsters.
+CRAWLING CLAW
+Lone crawling claws can continue killing sprees
+they perpetrated in life. Some recklessly attack the
+living, while others pursue specific victims. In rare
+cases, a crawling claw wreaks mayhem while the
+rest of its body still lives, with the original creature
+potentially unaware of its severed hand's crimes.
+SWARM OF CRAWLING CLAWS
+Swarms of crawling claws are typically animated
+by depraved necromancers. Occasionally, these
+grotesque swarms arise from mass graves or after
+tragedies, refusing to let their murderers escape
+their grasp.
+SWARM OF CRAWLING CLAWS
+Medium Swarm ofTiny Undead, Neutral E1Jil
+ls I T P O SS I B L E F O R ANY CREATURE , ANY LIVI N G BEI N G , TOAC 12 Initiat ive +2 (12)
+BE I NHER E NT LY E V I L ? SUCH AN ASSERT I O N MAY ITSELF
+HP 49 (lld8)
+FACI LI TAT E THE CO MM I TT I N G O F EVIL A CTS . BY DEFI N I NG
+Speed 30 ft., Climb 30 ft.
+A P ERS O N A S EVIL, W E GIV E T HEM FREE R EI N TO BEHAVE AS
+MO D SAVEMOD SAVEMOD SAVE
+THE Y W ILL, AB SOLV I N G T HEM F ROM THE WICKED NESS O F
+STR 14 +2 +2DEX 14 +2 +2CON 11 +O +0
+THEIR WO RDS AND THE EV IL O F T H EIR H AN DS.
+INT 5 -3 -3
+Wis 10 +O +OCHA 4 -3 -3
+- A N SOLM l7AAs , THE l soL ATION OF Ev 1L
+Resistances Bludgeoning, Piercing, Slashing
+Immunities Necrotic, Poison; Charmed, Exhaustion,
+Frightened, Grappled, Incapacitated, Paralyzed,
+CRAWLING CLAW
+Petrified, Poisoned, Prone, Restrained, Stunned
+Tiny Undead, Neutral E1JilSenses Blindsight 30 ft.; Passive Perception 10
+Langu ages Understands Common but can't speak
+AC 12 Initiative +2 (12) -
+CR 3 (XP 700; PB +2)
+HP 2 (ld4)
+Speed 20 ft., Climb 20 ft. 
+TRAITS
+T
+M OD SAVE 
+MOD SAVE MOD SAVE
+'
+Swarm. The swarm can occupy another creature's
+ST R 13 +1 +1 DEX 14 +2 +2 CON 11 +O +0
+space and vice versa, and the swarm can move through
+INT 5 -3 -3 
+Wis 10 +0 +0 CHA 4 -3 -3
+any opening large enough for a Tiny creature. The
+swarm can't regain Hit Points or gain Temporary
+Immun ities Necrotic, Poison; Charmed, Exhaustion,
+Hit Points.
+Frightened, Incapacitated, Poisoned
+Senses Blindsight 30 ft.; Passive Perception 10
+ACTIONS
+Languages Understands Common but can't speak
+CR O (XP 10; PB +2)Swarm of Grasping Hands. Me lee Attack Roll: +4, reach
+s
+w
+5 ft. Hit: 20 (4d8 + 2) Necrotic damage, or 11 (2d8 + 2)
+=i
+N
+ACTIONS
+z
+w
+Necrotic damage if the swarm is Bloodied. If the tar-
+_J
+<[_
+>
+Slam. Melee Attack Roll: +3; reach 5 ft. Hit: 2 Ne-
+get is a Medium or smaller creature, it has the Prone ·
+z
+<(
+0:::
+[]]crotic damage.
+condition .
+CRAWLING CLAWS L., 83
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 86 ---]
+CULTISTS
+CULT MEMBERS .
+Doomsayers and Fanatics
+Cults often form hierarchies around a charismatic
+or domineering leader. While cult members might
+Habitat: Any; Treasure: Individual, Relics
+work independently, they take their orders from su-
+Cultists use magic and extreme measures to spread
+periors with greater supernatural powers. Any cult
+radical beliefs. Some privately pursue esoteric se-
+might have the following sorts of members.
+crets, while others form shadowy cabals seeking to
+bring about terrifying ends. Cultists often follow
+CULTIST
+obscure mystical traditions or obsess over interpre-
+Cultists devote themselves to their faith's leaders
+tations of ancient prophecies. They might worship
+and otherworldly masters. While this zeal grants
+supernatural patrons-deities, otherworldly crea-
+cultists no magical powers, it gives them remarkable
+tures, manipulative alien minds, or stranger forces.
+resolve in the face of threats. Cultists perform much
+Roll on or choose a result from the Cultist Agendas
+of a cult's mundane work, which might include
+table to inspire what a cultist seeks to achieve.
+evangelism, criminal acts, or serving as sacrifices.
+CULTIST AGENDASCULTIST FANATIC
+Cultist fanatics lead small cults or cells within
+ld6 The Cultist Strives To ...
+larger cults. They're privy to more of a cult's mys-
+l Bring about the end of a dominant order, an
+teries than lower-ranking cultists are, granting
+age, or the world.
+them access to magical powers from their patrons.
+2 Burn away the comfortable lies of reality,
+CULTIST HIEROPHANT
+revealing forgotten or terrible trutbs.
+Cultist hierophants are leaders who oversee the
+3 Expand their faith though mind control or
+lives of their underlings, dictate the edicts of the
+supernatural coercion.
+cult, and interpret their patron's will. They possess
+4 Make global changes, like sinking the land or
+supernatural powers gained from the cult's patron,
+awakening volcanoes.
+supernatural sources, or the power of their own
+fanaticism. These leaders know their cult's deepest
+- 5 Remake life on a mass scale, altering other
+secrets and often control strange relics, mystical
+creatures' bodies or spiritual beings.
+sites, and monstrous servants.
+6 Summon their deity or its herald, weapon, or
+realm into their world.
+DREA D THAR l "I D UN, POWER OF T HE EL D ER ELEMENTAL
+EYE AND MAS T ER OF ALL DESTRUCTIVE FORCES , 1 AM THE
+OCCULT SYMBOLS
+CHAMP I ON OF ELE M E N T A L EV I L /\N D AM RE A DY TO C AR RY
+Cults often identify with symbols that exemplify
+OUT YOU R WISHES.
+their beliefs. Such symbols might mark objects im-
+- R I TES OF THE C U LT OF ELE MENTA L EV IL
+portant to the cult, as well as the dress and bodies
+of cultists themselves. These symbols might be
+broadly understandable, or they might have mean-
+ing only to cultists. Roll twice on or choose results
+CULTIST
+from the Cult Symbols table to inspire a cult's icons.
+Medium or Small Humanoid, Neutral
+•·'
+AC 12 Initiative +1 (11)
+CULT SYMBOLS
+HP 9 (2d8)
+ldlO The Symbol Is ... Depicted As ...
+Speed 30 ft .
+l An alchemical sign A calendar or map
+MOD SAVEMOD SAVEMOD SAVE
+STR 11 +0 +OD EX 12 +1 +1
+C ON 10 +0 +0
+2 An animal 
+A crest or as heraldry
+I NT 10 +0 +0Wis 11 +0 +2C HA 10 +0 +0
+3 A celestial body An elaborate diagram
+4 A deity's icon A metaphorical image
+Skills Deception +2, Religion +2
+Gear Leather Armor, Sickle
+5 An element 
+A mystical being
+Senses Passive Perception l 0
+6 An eye Part of an equation
+Languages Common
+7 A geometric shape 
+A repeating pattern
+CR 1/8 (XP 25; PB +2)
+8 
+A letter or number A series of scratches
+A CTIO N S
+9 Part of a monster l
+f:.. simple pictogram
+Ritual Sickle. Melee Attack Roll: +3, reach 5 ft. Hit: 3
+10 A skull A weapon or tool
+(ld4 + 1) Slashing damage plus 1 Necrotic ~damage.
+84 /2 CULTISTS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 87 ---]
+CULTISTHIEROPHANT
+FANATIC
+CULTIST 
+MediumorSmall Humanoid, Neutral
+MediumorSmall Humanoid, Neutral
++8 (18)
+AC16lnitiative 
+ 13Initiative +2 (12)
+AC
+HP144 (17d8 + 68)
+HP44 (8d8 +8)
+Speed 30ft.
+Speed 30ft.
+SAVEMODSAVE
+MODSAVEMOD
+SAVE
+SAVEMODSAVEMOD
+MOD18
+DEX18CON+4 +4
+STR14+2 +2+4+4
+12+1 +1
+11+0 +0DEX14 +2 +2CON
+STR
+Wis 16CHA20
+INT13+3 +7+5 +9
++1 +1 
+ +4CHA13+1 +1
+INT 10 +0 +0Wis14+2
+Skills Perception +7, Persuasion +9, Religion + 5
+Religion +2
+Deception +3, Persuasion +3,
+Skills
+Gear Breastplate, H oly Symbol
+ Holy Symbol, LeatherArmor
+Gear17
+SensesPassive Perception
+12
+SensesPassive PerceptionCommon
+Languages Celestial,
+LanguagesCommon
+CR10 (XP 5,900 ;PB+4)
+PB+2)
+CR2 (XP 450;
+N S
+ACTIO
+ACTIONS
+ The cultist makes three attacks, using Pact
+Multiattack.
+Roll:+4, reach 5 ft.Hit:6(1d8
+Pact Blade. Melee Attack
+.
+or RadiantRayin any combination 
+Blade 
+Necrotic damage.
++2)Slashing damage plus 7 (2d6) 
+ft.Hit:
+Blade. Melee AttackRoll:+9, reach 5 
+Pact 
+The cultist casts oneofthe following
+Spellcasting. 
+18(4d8) Radi-
+12 (2d6 +5)Slashing damage plus
+asthe spellcasting ability (spell
+spells, using Wisdom
+ant damage.
+12, +4 to hit with spell attacks):
+save DC 
+Roll:+9, range 120 ft.Hit:
+RadiantRay.Ranged Attack
+Will: Light, Thaumaturgy
+At 
+5)Radiant damage.
+31(4d12 +
+ Command
+2/Day:
+ The cultist casts oneofthe following
+Spellcasting.
+1/Day: Hold Person
+as the spellcasting ability (spell
+spells, using Charisma 
+save DC 17):
+N S
+BONus A CTIO
+>-
+z
+_J
+ (included in AC), Thaumaturgy
+ The cultist casts the SpiritualAt Will: Mage Armor
+Spiritual Weapon (2/Day).
+0
+Li...
+w
+De:of Radiance (level 7 ver-
+as1/Day Each:Jallarzi's Storm 
+ th~ same spellcasting ability 
+Weapon spell, using
+0
+De:
+::J
+sion), Mass Suggestion
+<(Spellcasting.
+CULTISTS A 85
+=-«?
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 88 ---]
+CULTISTS
+TYPESOF
+orim-
+undeadbeings, apocalyptic prophecies,
+mystical tradition,as Acererak,
+Cultscanorganizearound anywithpower over death,such
+mortals
+supernaturalbeings. Cult members
+but manyservel(yuss, Orcus, Vecna,orWee Jas.
+totheforcestheyworship.
+often have abilities tied
+CULTIST
+ELEMENTAL
+ABERRANT CULTISTharness destructivenatural
+Elemental cultists
+prove
+pursuemind-bending powers fromtheworldofcivilizationor
+Aberrantcultistsforcestocleanse
+cultists alignwithmonstersothers. Such
+alien forces.Aberrantthedominanceofone element over all 
+mind flayersorforcessuchElemental monstersor
+suchas abolethsandcultistsarealignedwith
+theElf Eater,asthePrincesofElemental
+as Cthulhu, Hadar, Ityak-Ortheelwickedimmortals such
+solar bodies,orentities
+Nyarlathotep, malicious EvilortheElder Elemental Eye.
+fromtheFar Realm.
+CULTIST
+FIEND 
+CULTISTorevil deities.They
+DEATH Fiend cultists worship fiends
+embracingorto summon
+Death cultists revel in nihilistic forces, oftenworktobring ruinto innocents
+orworld. Fiend cultists
+themaspaths toundeath, multiversal purity,theirsinisterpatronintothe
+powerfulsuchas archdevils
+entropic inevitability. These cultists serve might serve infamous powers
+such as
+lords,orfoulimmortals-beings
+and demon 
+Pazuzu, luz, Zariel,orZuggtmoy.
+Demogorgon, 
+ABERRAN T CULTIST
+il
+orSmall Humanoid, NeutralEtJ
+Medium
+DEATH CULTIST
+(17)
+- Initiative +7 
+AC14 
+oid,NeutralE1Jil
+MediumorSmall Human
+HP 137 (25d8 + 25)
+ft.tive +4 (14)
+Speed 30 AC77Initia
+SAVE
+MODSAVEMOD
+M O D SAVE
+H P727(l5d8+ 60)
+CoN12
+DEX19+l+l
+STR70+O +O+4 +4 Speed30 ft.
+MODSAVEMODSAVE
+MODSAVE
+CHA15 
+INT16 Wis18+4+7+2+2
++3+6 
+DEX12CON18+ 4+7
+STR19+l +l
++4 +4
++7,Religion +6
+Skills Arcana +6, Perception
+CHA 14
+72Wis16+6+2+2
+INT+l+1+3
+17
+SensesDarkvision 90 ft.; Passive Perception
+Deep Speech; telepathy30ft.
+LanguagesCommon, +4
+Skills Insight +6, Perception +6, Religion
++3)
+CR8 (XP 3,900;PB
+Gear SplintArmor
+16
+SensesPassive Perception
+ACTIONS
+LanguagesCommon
+.
+Tentacle Lash at-CR 8 (XP 3,900;PB+3)
+ The cultist makestwo
+Multiattack.
+Mind Rot.
+with a useof
+tacks. It can replace any attack 
+ACTIONS
+.Hit:7
+Melee AttackRoll:+7,reach lOft
+TentacleLash.
+The cultist makes three attacks, using
+Multiattack. 
+14(4d6) Psychic dam-
+(ld6+4)Slashing damage plus
+Rayin any combination.
+Dread Scythe or Deathly
+or smaller creature,ithas
+age.Ifthe target is a Large 
+J
+Roll:+7,reach 10 ft.Hit:
+Dread Scythe. Melee Attack
+14)from oneoftwo
+the Grappled condition (escape DC 
+11(2d10) Necrotic
+9(ldlO+ 4) Slashing damage plus
+condition until the
+tentacles, andithas the Restrained 
+HitPoints until the
+damage, and the target can't regain
+grapple ends.
+endofits next turn.
+Throw:DC 15, one creature
+Mind Rot. Wisdom Saving
+Roll:+6, range 120 ft.Hit:
+(6d8) Psy-DeathlyRay.Ranged Attack
+see within 90 feet.Failure:27 
+the cultist can 
+condition22 (4dl 0) Necrotic damage.
+chic damage, and the target has the Poisoned 
+Half
+ofthe cultist's next turn. Success:
+until the start
+cultist casts oneofthe following
+Spellcasting. The 
+damage only.
+the spellcasting ability (spell
+spells, using Wisdomas
+casts oneofthe followingsave DC 14):
+Spellcasting. The cultist 
+Wisdomasthe spellcasting ability (spell
+spells, using 
+with Dead, Thaumaturgy
+At Will: Speak 
+save DC 15):
+BONUS ACTIONS
+Illusion
+At Will: Detect Thoughts, Minor 
+ Throw: DC
+(Recharge 5-6). Wisdom Salling
+Spirit Wail 
+REACTIONS
+originating
+14, each creature in a 20-foot Emanation 
+ Failure: 14 (4d6) Psychic damage, and
+ Counterspell infrom the cultist.
+ The cultist casts
+Counterspe/1 (2/Day).
+the creature has the Frightened condition until the end
+response to that spell's trigger; using the same spell-
+ Half damage only. '
+of its next turn. Success:
+casting ability as Spellcasting.
+~
+86 Q CULTISTS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 89 ---]
+ELEMENTALCULTIST
+Evil
+MediumorSmall Humanoid, Chaotic
+ +4 (74)
+AC 16Initiative
+54)
+H P135(18d8 + 
+30ft.
+Speed
+SAVE
+MODSAVEMODSAVEMOD
+FIENDCULTIST
+DEX12CoN 16
+STR18 +1 +1+3 +6
++4 +4
+Evil-
+14Wis18CHA 12+1MediumorSmall Humanoid, Neutral
+INT+2 +2 +4 +7 +1
+AC 16Initiative +5 (15)
+Skill s Arcana +5, Perception+7,Religion +5
+ 127 (17d8 +51)
+HP
+Gear Chain Mail
+ 30 ft.
+Speed
+ Passive Perception17
+Senses
+MODSAVE
+MODSAVEMODSAVE
+Languages Common, Primordial
+STR19DEX15CoN 16
++4 +4+2+2+3+6
+CR8 (XP 3,900;PB+.3)
+CHA 10
+INT12Wis 18 +4+7+0 +0
++1 +1
+ACTI O N S
+ Perception+7,Religion + 4
+Skills
+Multiattack. The cultist makes three attacks, using Ele-
+east plate
+Gear Br
+mental Flail or Elemental Claw in any combination.
+by magica l
+Senses Darkvision 90 ft. (unimpeded 
+MeleeAttackRoll:+7,reach 5 ft.Hit:25
+Elemental Flail.Perception17
+Darkness); Passive
+bythe cultist: Acid,Common, Infernal
+(6d6 +4)damageofa type chosenLanguages Abyssal, 
+CR8 (XP 3,900;PB+3)
+Cold, Fire, Lightning, or Thunder.
+Claw. Ranged AttackRoll:+7,ran.ge 120ft.
+Elemental 
+ACTION S
+Hit:22 (4d10) damageofa type chosen by the cultist:
+Multiattack. The cultist makes three Pact Axe attacks.
+Acid, Cold, Fire, Lightning, or Thunder.Ifthe targetisa
+PactAxe. Melee AttackRoll:+7,reach 5 ft.Hit:10(1dl2
+Medium or smaller creature, the cultist moves the tar-
+ pl~s13(3d8) Fire damage.
+get up to10 feet straight toward or away from itself.+4)Slashing damage
+Spellcasting. The cultist casts oneofthe following
+Spellcasting. The cultist casts oneofthe following
+Wisdo~asthe spellcasting ability (spell
+Wisdomasthe spellcasting ability (spellspells, using
+spells, using 
+15, +7 to hit with spell attacks):
+save DC 
+save DC 15):
+Ray(level 5 version), Thaumaturgy
+At Will: Elementalism, Mage HandAt Will: Scorching
+ (level 6 version)
+2/Day: Fireball
+REACTION S
+RE ACT IONS
+Elemental Absorption(1/Day).Trigger: The cultist
+>-
+z
+_J
+ The cultist casts Hellish Rebuke in re-
+or Thunder damage.Hellish Rebuke.
+takes Acid, Cold, Fire, Lightning, 
+0
+LL
+1.1.J
+0::
+itself Resistance to that in-sponse to that spell's trigger, using the same spellcast-
+Response: The cultist gives 
+0
+0:::
+=i
+ \
+Hit Points.ing ability as Spellcasting.
+stance of damage and gains 10 Temporary 
+<t:
+\.
+OULTISTS
+-------------~'--'
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 90 ---]
+•
+CYCLOPES
+Monocular Servants
+ofDestiny
+1
+Habitat: Coastal, Desert, Grassland,Hill,
+Mountain,
+Underdark;Treasure:Armaments
+Cyclopes are gigantic, one-eyed descendants
+of the
+gods. Usingtheirmystical vision, cyclopes
+canwit-
+nesshow futureevents
+arelikelytooccur.
+CYCLOPSORACLE
+Cyclops oracles gazethrough 
+historyto learnhid-
+dentruths.Many share these secrets
+withthose
+whoaidthemincorrecting
+themistakesof thepast.
+CYCLOPS SENTRY
+Most
+cyclops sentries servetheirdivine progenitors
+and oppose 
+those whowouldtamper withfate.
+CYCLOPS ORACLE
+•Huge Giant, Chaotic Neutr
+al
+AC16Initiative+8(18)
+HP207 (18dl2 + 90)
+Speed 40 ft.
+MODSAVEMOD SAVEMOD
+SAVE
+STR
+22+6 +6DEX11+0+OCON20+5 
++9
+CYCLOPS SENTRY
+INT16+3 +3Wis18+4
++8CHA10+O +O
+Huge
+Giant, Chaotic Neutral
+SkillsHistory+ l l,Pe
+rception +12
+AC14Initiative
++O(l0)
+SensesTruesight 30 ft.; Passive Perception 
+22
+HP138(l2d l 2 + 60)
+Languages
+Giant _
+Speed 40 ft.
+CRl O(XP5,900;
+PB+4)
+MODSAVE
+MODSAVEMODSAVE
+STR22 +6 +6DEXll+O +O
+CON20+5+5
+ACTION S
+INT8 - 1 - 1
+Wis 6-2 -2CHA10+O
+ +O
+Multiattack. The cyclops makes three attacks, using
+SensesPass ivePerception 8
+Radiant Strike or Flash 
+of Lightinany combination.
+Languages Giant
+Radiant Strike.
+Me leeAttack Roll:+ l0,reach l Oft.Hit:
+CR6(XP2,300;PB
++3)
+22 (3dl0 +
+6)Radiant damage.
+A CTI O NS
+FlashofLight. Ranged Attack Roll:+ l0,range 120 ft.
+·Hit: 17(2dl O +
+6)Radiant damage, and the target has
+Multiattack. The cyclops makes two attacks, using
+Disadvantage on attack rolls until the end 
+of thecy-
+Greatclub or Rockinany combination.
+clops's next turn.
+Create/uh.
+ Melee AttackRoll:+9, reach l O ft. Hit: 16
+Spellcasting. The cyclops casts one 
+of the following
+(3d6 +6)Bludgeoning damage. If the targetisa Huge
+spells, requiring no Material components and using
+or smaller creature,ithas the Prone condition.
+Wisdom as the spellcasting ability (spell save
+DC16):
+Rock. Ranged AttackRoll:+9, range 30/120 ft.
+Hit: 22
+2/DayEach:ArcaneEye,Detect Magic, Locate Object
+(3dl O +6)Bludgeoning damage.
+1/Day: Legend
+Lore
+REA CTI O NS
+RE ACT IO N S
+Limited Foresight (Recharge 
+6). Trigger:A creature the
+Portent (Recharge 4-6).
+ Trigger: The cyclops or an ally
+cyclops can see makes an attack 
+roll against it.Re-
+it can see makes a D20 Test. Response: The cyclops rolls
+sponse: The cyclops imposes Disadvantage on the roll,
+z
+uJ
+l d20 and chooses whether to use that roll inplace of
+and the cyclops gains Advantage on attack rolls againstY'.
+er::
+<(
+<(
+the d20 rolled for the D20 Test.
+the target until the end of the cyclops's
+ nex~ turn.
+0
+CYCLOPES
+88
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 91 ---]
+DAO
+Genieofthe Earth
+ofEarth), Underdark;
+Habitat: Planar (Elemental Plane
+Treasure:Implements
+gemstones, dao embody
+Geniesofminerals and 
+innatemagic,theymove
+theresolveofrock. Using
+throughtheearthunimpeded, exploring depths
+E •
+inthetreasures of
+inaccessibletomost. Dao delight 
+crafted
+the earth,whether rawgemstones,jewelry
+frompuremetals,or wondrousfossils. In exchange
+revealunderground
+forsuch treasures,dao might 
+aspathsthrough theUnderdark,
+mysteries,such
+realms.
+buried ruins,orwholesubterranean
+theElemental Planeof Earthhome.
+Manydao call
+glitterwithtreasure.
+There,theycreate citiesthat
+expanse
+Among these realms isthelabyrinthine
+ortheSevenfold
+calledthe Great Dismal Delve
+the
+Mazework, which protects theCityofJewels,
+IronCrucible, andthe Strait ofMagnets.
+ONTHE ELEM ENTALPu\NEOFEARTH ,GALAXIESOF
+NESTWINKLEOVER VAULTSO FTREASURE. I F D A O
+GEMSTO
+ARETHERE,5 0 15WEALTH WORT HHUNTI NG.
+HUNTER
+- G U N DRENR ocKS E E KER,DWAR FTREASURE
+DAO
+Neutral
+LargeElemental(Genie),
+behalfofa non-genie creature who communi-
+Initiative + l(11)only on 
+AC 18
+(16dl0+112)Ifthe dao
+HP 200cates a wish in a way the dao can understand.
+Speed 30 ft., Burrow· 30 ft., Fly 30 ft. (hover)
+casts the spell for the creature, the dao suffers noneof
+MODSAVEMODSAVEMODSAVE
+itthree times,
+the spell's stress. Once the dao has cast
+STR23+6 +6DEX12+l+5CON24 +7 +7
+for365 days.
+the dao can't do so again
+Wis13+l+5CHA18+4 +4
+INT 12 +l+1
+ACTIONS
+"'\
+Immunities Petri fi ed
+Multiattack. The dao makes three Earthen Maul at-
+Senses Darkv ision 120 ft .; PassivePerception 11
+tacks ortwoEarth Burst attacks.
+Languages Primord ia l (Terran)
+0,reach 5 ft.Hit:20
+Earthen Maul. Melee Attack Roll:+l
+CR11(X P7,200;PB+4)
+(4d6 +6)Bludgeoning damage.Ifthe targetisa Large
+TR A ITScondition.
+or smaller creature,ithas the Prone 
+Earth Glide. The dao can burrow through nonmagical,
+Hit:
+Earth Burst. Ranged Attack Roll:+10, range 120 ft.
+unworked earth and stone. While doing so, the dao
+15(2d8 +6)Bludgeoning damage.Hit orMiss:Earth
+J
+it moves through.
+doesn't disturb the material 
+explodes from the target's space, creating the following
+ DC 16, each creature in
+effect. Dexterity Saving Throw:
+Elemental Restoration.Ifthe dao dies outside the Ele-
+and including the
+a 10-foot Emanation·originating from 
+into dirt, and
+mental PlaneofEarth, its body dissolves 
+target.Failure:10 (3d6) Thunder damage.
+Hit
+it gains a new body inld4days, reviving with all its
+ofEarth.
+Points somewhere on the Plane
+the following spells,
+Spellcasting. The dao casts oneof
+and using Charisma
+requiring no Material components 
+ The dao has Advantage on saving
+Magic Resistance.
+0
+a:
+<!
+as the spellcasting ability (spell save DC 16):
+l/1
+throws against spells and other magical effects.
+l/1
+=i
+0
+l 
+Cl'.'.
+Stone Shape
+At Will: DetectEviland Good, Detect Magic, 
+CD
+ofknowing
+Wishes. The dao has a 30 percent chance
+....J
+w
+Pass-
+<!1/Day Each: Gaseous Form, Invisibility, Move Earth, 
+the Wish spell.Ifthe dao kriows it, the dao can cast it
+I
+u
+wa/1, Plane Shift, Tongues, Wall of Stone
+2
+C
+~
+DAO A 89
+-~~-------------2__,1/,.......,,.........
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 92 ---]
+DARKMAN TLE
+Ceiling-Clinging Ambush Predator
+Habitat: Underdark; Treasure: None
+Unnatural subterranean hunters, darkmantles
+veil themselves in magical shadows and use their
+bizarre anatomies to disguise themselves as stalac-
+tites. When prey passes below, lurking darkmantles
+drop and unfurl their webbed tentacles, attempting
+to blind, suffocate, or crush their victims.
+Darkmantles share similarities with piercers and
+ropers and often hunt near those monsters. Scholars
+have attempted to establish a shared origin or life
+cycle between those creatures, but their efforts are
+thwarted by those monsters' supernatural physiolo-
+gies and deadly natures.
+DARK MANTL E
+Small Aberration, Unaligned
+AC 11 Initiative +3 (13)
+HP 22 (5d6 + 5)
+Speed 10 ft., Fly 30 ft.
+MOD SAVEMOD SAVEMOD SAVE
+STR 16 +3 +3DEX 12 +1 +1CON 13 +1 +1
+INT 2 - 4 - 4Wis 10 +O +OCHA 5 -3 - 3
+Ski lls Stealth +3
+Senses Blindsight 60 ft.; Passive Perception 10
+Languages None
+CR 1/2 (XP 100; PB +2)
+A CTIO N S
+Crush. Melee Attack Roll: +5, reach 5 ft. Hit: 6 (ld6 + 3)
+Bludgeoning damage, and the darkmantle attaches to
+the target. If the target is a Medium or smaller creature
+and the darkmantle had Advantage on the attack roll,
+it covers the target, which has the Blinded condition
+and is suffocating while the darkmantle is attached
+in this way.
+While attached to a target, the darkmantle can attack
+only the target but has Advantage on its attack rolls. Its
+Speed becomes 0, it can't benefit from any bonus to its
+Speed, and it moves with the target.
+A creature can take an _action to try to detach the
+darkmantle from itself, doing so with a successful DC
+1_3 Strength (Athletics) check. On its turn, the darkman-
+tle can detach itself by using 5 feet of movement. _
+Darkness Aura (1/Day). Magical Darkness fills a 15-foot
+:5
+w
+Emanation originating from the darkmantle. This effect
+=i
+N
+z
+1
+lasts while the darkmantle maintains Concentrationw
+0 U ST A SSUME THERE S N O SUC H TH I N G AS A STALA CTI TE .
+_j
+<(
+>
+on it, up to 10 minutes. Darkvision can't penetrate this
+z
+-5. WAKEMAN , UN0 E R DARK EXP L O RER<(
+Ct:
+area, and no light can illuminate it. ~[lJ
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 93 ---]
+DEATH DOG
+Two-Headed Spreader of Disease
+Habitat: Desert; Treasure: None
+Death dogs are plagues on the arid lands they in-
+habit. These vicious, two-headed canines ambush
+creatures they perceive as weaker than themselves,
+favoring the wounded or infirm. They attack reck-
+lessly, infecting as many creatures as possible with
+their diseased jaws. If driven off, death dogs linger
+close to their victims, letting infection weaken their
+prey before they attack again.
+Legends tie death dogs to malicious death gods,
+the underworld, and cursed rulers. These stories are
+based on the malady death dogs spread. Roll on or
+choose a result from the Death Dog Malady Symp-
+DEATH Doc
+toms table to inspire symptoms spread by a death
+Medium Monstrosit y, Neutra l E1Jil
+dog's bite. These symptoms are cosmetic and don't
+AC 12 Initiative +2 (12)
+alter the effects of the death dog's Bite action. The
+HP 39 (6d8 + 12)
+symptoms vanish when a creature no longer has the
+Speed 40 ft.
+Poisoned condition from a death dog's Bite.
+MOD SAVE MOD SAVE MOD SAVE
+STR 15 +2 +2 DEX 14 +2 +2 CON 14 +2 +2
+DEATH Doc MALADY SYMPTOMS
+INT 3 -4 -4 Wis 13 +1 +1 CHA 6 -2 -2
+ld6 The Death Dog's Malady Causes ...
+1 Marks from canine jaws to appear on the vie~
+Skills Perception +5, Stealth +4
+ti m's body, as if they were still being mauled.
+Immunities Blinded, Cha rmed, Deafened , Frightened,
+Stunned, Unconscious
+2 The victim's body to wither, as if constantly
+Senses Darkvision 120 ft.; Passive Perception 15
+exposed to desert heat.
+Languages None
+3 The victim to be distracted by distant howling
+CR 1 (XP 200; PB +2)
+or vague whispers only they can hear.
+ACT IO N S
+4 The victim's flesh to rot like a corpse.
+Multiattack. The death dog makes two Bite attacks.
+5 The victim to itch, as if they had fleas or sand
+Bite. Melee Attack Roll: +4, reach 5 ft. Hit: 4 (1 d4
+beneath their skin.
++ 2) Piercing damage. If the target is a creature, it is
+6 Wicked symbols to gradually appear on and
+subjected to the following effect. Constitution Saving
+spread across the victim's body.
+Throw: DC 12. First Failure: The target has the Poisoned
+condition. While Poisoned, the target's Hit Point max-
+. imum doesn't return to normal when finishing a Long
+A N O HIS SOR R O W S WI LL ST ALK YOUR L AND L I KE HU N GR Y
+Rest, and it repeats the save every 24 hours that elapse,
+DOGS U N TIL TH E S EAS T U RN TO SAN D AN D THE S U N BUR N S
+0:
+w
+ending the effect on itself on a success. Subsequent
+0
+TO C I NDERS .
+<(
+aJ
+zFailures: The Poisoned target7s Hit Point maximum de-
+uJ
+-TAB L ET FRAGMENT FROM THE BR IGHT D ESE RT
+Qc
+<(
+0creases by 5 (ldl0).
+DEATH DOG 6-_ 91
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 94 ---]
+DEATH KNIGHTS
+Haunted Commanders of Unliving Legions
+though their selfish souls eternally shackle them to
+Habitat: Any; Treasure: Armaments
+their fates. Others, like the infamous death knight
+Champions of evil, death knights are armor-clad,Lord Soth, brood in dismal ruins for centuries,
+skeletal warlords. Combining devastating martialrousing themselves to action only when something
+prowess and blasphemous magic, these undying ty-reignites their deathless evil.
+rants lead unholy legions against the living or brood
+DEATH KNIGHT ASPIRANT
+in cursed citadels. Every death knight is haunted
+by a legacy of tragedy and dishonor that drives it to
+When the leader of a villainous order rises as a
+commit greater evils.
+death knight, their wicked devotees might join them
+in their cursed existence as death knight aspirants.
+DEATH KNIGHT
+These followers bear a measure of their leader's
+Death knights are deadly combatants and domi-power and serve as they did in life, obediently fol-
+neering commanders with grim histories. Somelowing the death knight's decrees and heralding its
+strive to end the curses that doom them to undeath,terrible will.
+DEATH KNIGHT
+Medium or Sma ll Undead, Chaotic E1Jil
+AC 20 Initiative + 12 (22)Hellfire Orb (Recharge 5-6). Dexterity Saving Throw: DC
+HP 199 (2ld8 + 105)
+18, each creature in a 20-foot-radius Sphere centered
+Speed 30 ft.
+on a point the death knight can see within l20feet.
+MO D SAVEMO D SAVE
+MOD SAVE
+Failure: 35 (l0d6) Fire damage plus 35 (10d6) Necrotic
+STR 20 +5 +5DEX ll +0 +6
+CON 20 +5 +5
+damage. Success: Half damage.
+I NT 12 +l +lWis 16 +3 +9CHA 18 +4 +4
+Spellcasting. The death knight casts one of the follow-
+ing spells, requiring no Material components and using
+Imm unities Necrotic, Poison; Exhaustion, Frightened,
+Charisma as the spellcasting ability (spell save DC 18):
+Poisoned
+Senses Darkvision 120 ft.; Passive Perception 13
+At Will: Command, Phantom Steed
+Languages Abyssal, Common
+2/Day: Destructive Wave (Necrotic), Dispel Magic
+CR 17 (XP 18,000; PB +.6)
+REACTIO NS
+T RAITS
+Parry. Trigger: The death knight is hit by a melee attack
+Legendary Resistance (3/Day). If the death knight fails a
+roll while holding a weapon. Response: The death knight
+saving throw, it can choose to succeed instead.
+adds 6 to its AC against that attack, possibly causing
+it to miss.
+Magic Resistance. The death knight has Advantage on
+saving throws against spells and other magical effects.
+LEGENDARY ACTIONS
+Marshal Undead. Un dead creatures of the death
+Legendary Action Uses: 3. Immediately after another
+creature's turn, the death knight can expend a use to take
+knight's choice (excluding itself) in a 60-foot ~ma na-
+one of the following actions. The death knight regains all
+tion originating from it have Advantage on attack rolls
+expended uses at the start of each of its turns.
+and saving throws. It can't use this trait if it has the In-
+Dread Authority. The death knight uses Spellcasting to
+capacitated condition.
+cast Command. The death l~night can't take this action
+Undead Restoration. If the death knight is destroyed
+again until the start of its next turn.
+before it atones for its evil, it gains a new body in ldl0
+Fell Word. Constitution ?aving Throw: DC 18, one crea-
+days, reviving with all its Hit Points. The new body ap-
+ture the death knight can see within 120 feet. Failure: 17
+pears in a location significant to the death knight.
+(5d6) Necrotic damage, and the target's Hit Point max-
+ACTIONS
+imum decreases by an amount equal to the dam~ge
+Multiattack. The death knight makes three Dreadt~ken. Failure or Success: The death knight can't take
+Blade attacks.
+this action again until the start of its next turn.
+Dread Blade. Melee Attack Roll:+ l l, reach 5 ft. Hit:Lunge. The death knight moves up to half its Speed,
+12 (2d6 + 5) Slashing damage -plus 13 (3d8) Ne-and it makes one Dread Blade attack.
+crotic damage.
+L
+DEATH KNIGHTS
+92
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 95 ---]
+DEATHKNIGHTASPIRANT
+Chaotic fl)il
+MediumorSmall Undead, 
+Initiative+4(14)
+AC20 ACTIO N S
+HP 178 (21d8 + 84)
+ The aspirant makes three Dread
+Multiattack.
+Speed 30 ft.
+'Blade attacks.
+MODSAVEMODSAVE
+MODSAVE
+Roll:+9, reach 5 ft.Hit:
+Dread Blade.MeleeAttack
++0 +4CON18+4+4
+STR 20 + 5 +5DEX10
+14 (2d8 +5)Slashing damage plus 10 (3d6) Ne-
+ +3 +3
++0Wis12+1+SC HA 16
+INT10 +0 
+crotic damage.
+ N ecrotic, Poison; Exhaustion, Frightene d,
+Immunities
+Throw:DC
+(Recharge 5-6). Dexterity Saving
+Hellfire Orb 
+Poisoned
+15, each creature in a 20-foot-radius Sphere centered
+ Darkvision 120 ft.; Passive Perception 11
+Senses
+within 120 feetofitself.
+on apoint the aspirant can see 
+Languages Abyssal,Common
+27(6d6) Necrotic
+Failure:27(6d6) Fire damage plus
+CR11(XP 7,200;PB+4)
+--
+damage. Success:Halfd~mage.
+TR A IT S
+ofthe following
+Spellcasting. The aspirant casts one
+ The aspirant has Advantage on sav-asthe spellcasting ability (spell
+Magic Resistance.spells, using Charis~a
+other magical effects.
+ing throws against spells and save DC 15):
+ Undead creaturesofthe aspirant's
+Marshal Undead.At Will: Phantom Steed
+60-foot Emanation orig- Wave (Necrotic), Dispel Magic
+choice (excluding itself) in a 1/Day: Destructive
+it have Advantage on attack rolls and
+inating from 
+REACT I O N S
+. It can't use this traitifit has the Incapac-
+saving throws 
+~
+ The aspirant is hit by a melee attack roll
+Parry. Trigger:
+itated condition.
+u
+0
+c,::
+ Response: The aspirant adds .4
+while holding a weapon.
+DJ
+X
+w
+......J
+it to miss .
+to its AC against that attack, possibly causing 
+<(
+6._ 93
+DEATH KNIGHTS
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 96 ---]
+ACLUST E R O F
+TIN YLIGHTS D E SC E NDED
+F R O M ADARK
+C REVICEINT H E
+CEI L I N G . T HESEMOTE S C A
+STA N EERI E GLOW
+ON THE G R
+EAT, ALIE N SKULLTHATHU
+N GBENEATHTHEM.
+- J O URNALOFJAST US
+ l70LLOWQUILL,
+E
+XPLORE ROFLJN□ERMOUN
+TAIN
+DEATH TYRANT
+DEATH TYRANT
+L AIRS
+Beholder beyond Death
+Deathtyrants
+oftenlurkdeep in 
+theUnderdark, in
+Habitat:
+ Underdark; Treasure:
+Any
+the tunnel-mazes 
+they occupied 
+in lifeorinthelairs
+Adeathtyrant
+is a beholderth
+atpursuesaberrant
+ofenemy beholders
+theyconquered. These lairs 
+are
+goals b
+eyond its death. 
+Ten magical singularities- all
+devoid
+oflife, asdeath 
+tyrantschangetheir
+ser-
+that
+remainsofits magical eyes- 
+orbit its floating,
+vants into Undead h
+orrors.
+cyclopean skull, while
+the hateful gazeof
+its central
+The 
+region containing 
+a death tyrant's lair 
+is
+eye socket 
+stifles life and r aises
+thedead. •
+warped
+by itspresen ce, 
+creating thefollow
+ing
+Beholders typically
+transforminto death 
+tyrants
+effects:
+over years 
+when their dreams 
+fixate on death, 
+mor-
+Negative Energy 
+Suffusion.
+ Whenevera
+creature
+bid apotheoses,or journ
+eys to realms inhospit
+able
+w ithin 1 mile
+of the lair regains Hit Points 
+from
+to life. Some deat
+htyrantsrise from 
+the corpses of
+a spell, it subtracts 
+ldlO from the numb
+er of Hit
+slain beholders 
+or result from exposure 
+to strange
+Points regained.
+ _
+magic
+orUnderdarkradiation. Sometimes behold-
+Scopophobia. Creatures within 
+1 mile 
+of the lair
+ers purposefully pursue this und
+ead state,
+just as
+feel as if they're being 
+watched. Any 
+creature
+depraved magic-
+users pursu
+e lichdom, alt hou
+gh it is
+• (excluding the death 
+tyrant and its allies)
+ th~t
+rare, 
+as most beholders a
+lready believethemselves
+finishes a Short 
+Rest while within 1 mile 
+of the lair
+to 
+be perfect beings.
+·must
+ succeed on~DC 
+15 Wisdom saving throw 
+or
+No m atter how dea
+th tyrants come int
+o being,
+u
+gain no benefit z
+from that rest.
+bizarre impulses driv
+e their deathless existences.
+2
+0
+0
+Their motivations 
+tend to be .
+extreme or beyond 
+theIf the deat
+h tyrant dies or moves i
+ts lair elsewhere,
+z
+0
+2
+reason of 
+living creatures.
+these effects e
+nd immediately.
+V1
+DEATH TYRA
+N T
+/
+_________
+..,..~....,--~-~
+~------ 
+----------
+~7~
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 97 ---]
+DEATH TYRANT
+E1Jil
+LargeUndead(Beholder), Lawful
+ SavingThrow:DC17(the
+6:TelekineticRay.Strength
+Initiative +12(22)
+AC 19
+targetsucceeds automaticallyifitisGargantuan).
+HP195(26dl0 +52)
+upto30
+Speed 5 ft.,Fly40ft.(hover)Failure:The deathtyrantmoves thetarget
+MOD SAVEMODSAVEMODSAVE
+feet in anydirection.The target has the Restrained
+STR 18 +4 +4DEX74+2 +2CON14+2 +7tyrant'snext
+condition until the startofthe death
+turn oruntil the deathtyranthas the Incapacitated
+ +7CHA19+4 +4
+INT19+4 +4Wis75+2
+ fine control
+condition.The death tyrant can also exert
+Skills Perception+12
+a tool
+on objects with thisray,suchasmanipulating
+tion, Paralyzed,
+Immunities Poison; Charm ed, Exha us
+oropeningadoororcontainer.
+Petrified, Poisoned, Prone
+Throw:DC17(the target
+7:SleepRay.Wisdom Saving
+ Darkvision 120 ft.; Passive Perception 22
+Senses
+oranUn-
+succeeds automaticallyifitis aConstruct
+Undercommon
+Languages Deep Speech,
+has the Unconscious con-
+dead).Failure:The target 
+PB+5)
+CR14(XP 77,500,or13,000 in lair;
+ifthe target
+dition for1 minute. Theconditionends
+takes damageora creaturewithin5 feetofittakesan
+TRAITS
+to wake it.
+action 
+Legendary Resistance (3/Day,or4/DayinLair).Ifthe
+8:PetrificationRay.Constitution SavingThrow:DC17.
+deathtyrantfails a saving throw,itcan choosetosuc-
+First Failure:The target has the Restrainedcondition
+ceed in stead.
+and repeats the save at the endofits nextturnifit
+is still Restrained,ending theeffect onitselfon a
+A CTI O N S
+ SecondFailure:The target has the Petrified
+success.
+Multiattack. The death tyrant usesEyeRaysthree times.
+the Restrainedcondition.
+conditioninsteadof
+MeleeAttackRoll:+9, reach 5 feet.Hit:13(2d8
+Bite.
+Dexterity SavingThrow:DC17.
+9:DisintegrationRay.
++4)Piercing damage.
+targetisa non-
+Failure:36(8d8) Force damage.Ifthe 
+magicalobject ora creationofmagical force, a 10-
+shoots oneofthe
+EyeRays. The deathtyrant randomly 
+footCubeofitdisintegratesintodust.Success:Half
+itcan seewithin120
+followingmagical rays at a target 
+Failure orSuccess:Ifthe targetisa creature
+damage.
+has al-
+feetofitself(roll 1dlO;rerollifthe deathtyrant
+this damage reducesitto0HitPoints,itdisinte-
+and 
+ready usedthatrayduringthis turn):
+into dust.
+grates 
+DC17. Failure:
+l:CharmRay.Wisdom SavingThrow:
+Ray.Dexterity SavingThrow:DC77.Failure:
+10: Death
+13(3d8) Psychic damage, and the target has the
+(10dl0)Necrotic damage.Success:Halfdamage.
+55
+Charmedcondition for7 hour or untilittakes dam-
+Success: The target diesifthe ray reducesit
+Failure or
+age.Success:Halfdamage only.
+toOHitPoints.
+Constitution SavingThrow:DC17.
+2:ParalyzingRay.
+has the Paralyzed condition and
+Failure:The target 
+B O N US A CTION S
+ofits turns, end-
+repeats the save at the endofeach
+central eye
+Negative Energy Cone. The death tyrant's 
+L
+itselfon a success. After 7 minute,it
+ing the effect on
+1
+negative en-
+emitsanimperceptible, magical waveof
+succeeds automatically.
+area can't re-
+ergy in a 750-foot Cone. Creatures inthat
+'
+ SavingThrow:DC17. Failure:10
+3:FearRay.Wisdom
+tyrant's next
+gainHitPoints until the startofthe death 
+target has the Fright-
+(3d6) Psychic damage, and the 
+turn. An intact Humanoid corpse there instantly rises
+ened condition until the endofits next turn.Success:
+and takes
+asa Zombie under the death tyrant's control 
+Halfdamage only.
+its turn immediately aft~r the death tyrant on the same
+Throw:DC 17. Fail-
+4: SlowingRay.ConstitutionSa11ing
+initiative count.
+the
+ure:18 (4d8) Necrotic damage. Until the endof
+the target can't take Reactions; its
+target's next turn, LEG ENDARY ACTIONS
+it can take either an action or
+Speed is halved; and 
+Uses:3(4 in Lair).Immediately after
+Legendary Action
+can expend a
+another creature's turn, the death tyrant 
+on its turn, not both. Success:Half
+a Bonus Action 
+to take oneof the following actions. The death tyrant
+use 
+damage only.
+regains all expended uses at the start ofeach ofits turns.
+5:Enervation Ray. Constitution Saving Throw: DC17.
+Chomp. The death tyrant makes two Bite attacks.
+0) Poison damage, and the target has
+Failure: 16 (3d7 
+ofits next turn.
+the Poisoned condition until the end
+Glare. The death tyrant uses Eye Rays.
+Hit Points.
+While Poisoned, the target can't regain 
+Success: Half damage only.
+\
+r
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 98 ---]
+DE MILICH
+TinyUndead, 
+NeutralE1Jil
+AC 20
+Initiative +17(27)
+HP180 (72d4)
+Speed 5 ft.,Fly30ft . (hover)
+MODSAVE MODSAVE
+MOD SAVE
+STR l-5 -5DEX20+5+l lCON10+0 +6
+INT20+5+ll 
+Wis17+3+9CHA20+5+5
+Resistances
+ Bludgeoning, Piercing, Slashing
+Immunities Necrotic, Poison, Psychic; Charmed,
+Deafened, Exhaustion, Frightened, Paralyzed,
+Petrifi ed,Poison ed,Prone, Stunned
+Senses Truesight 120 ft.; Passive Perception
+13
+Languages
+ None
+CR18 (XP20,000, or 22,000
+inlair;PB+6)
+TRAITS
+Legendary Resistance (3/Day,
+ or 4/DayinLair).Ifthe
+demilich fails a saving throw,
+itcan choose to suc-
+ceed instead.
+Undead Restoration.
+Ifthe demilichisdestroyed,itre-
+forms and regains
+allits Hit Pointsinldl0days unless
+aWishspelliscast on its remains.
+A CTIONS
+Multiattack. The demilich makes three Necrotic
+DEMILICH
+Burst attacks.
+WhatLies beyond Lichdom
+Necrotic Burst.
+MeleeorRanged AttackRoll:+11,reach
+Habitat:5 ft. or range 120 ft.Hit:24(7d6) Necrotic damage.
+Any;Treasure: Arcana
+Howl (Recharge 5-6). Constitution SavingThrow:DC19,
+A demil.ich is a skull
+harboring the remnants ofa
+each creatureina 30-foot Emanation originating from
+lich's wicked essence.
+lfthe burden of immortality
+the demilich.
+Failure:70(20d6) Psychic damage.Failure
+overwhelms a lich, its 
+consciousnessturnsinward
+orSuccess: The target has the Frightened condition until
+as its
+body rotsaway. Butifitsremains aredis-
+the start of the demilich's next turn.
+turbed,
+a demilich rises. Demiliches usually appear
+as skullsadorned withgemsor arcanesigils.
+LE G EN DAR Y ACTIO N S
+Legendary ActionUses:3(4inLair).Immediately after
+D EMIL I CHLAIRS
+another creature's turn, the demilichcanexpend ause to
+Demiliches 
+jealouslyguard their deathtrap-ladentake 
+oneofthe following actions.Thedemilich regainsall
+expended
+ uses at the startofeachofitsturns.
+sanctums. 
+The most notorious of theseistheTomb
+of Horrors, lair
+of the infamous Acererak. •
+Energy Drain. Constitution SavingThrow:DC19,one
+The region containing 
+a demilich's lair istwisted
+creature the demilich can see within 120 feet.
+Failure:
+byits presence, 
+creating thefollowing effects:
+The target's Hit Point maximum decreasesby14 (4d6).
+Failure or Success: The demilich can't take this action
+Enervating Domain.Whenever
+acreature other
+again until the start of its next turn.
+than thedemilichor one
+ofits allies finishes a
+Long Restwithin1 mile of the
+lair, the creature
+Grave-DustFlight.The demilich flies
+ up to itsFly
+must succeed on a DC 20 Constitution saving
+•Speed, shedding grave dust. Each creature within 5
+throw or have its Hit Point maximum reduced by
+feet of the demilich as
+itmovesistargeted onceby
+ld4. This reduction lasts until the creature fin-
+the following effect.
+ Constitution Saving Throw: D~ 19.
+ishes a Long Rest outside 
+that area.
+Failure:The target has the Blinded condition until the
+Travel Ward. Creatures can't use teleportation or
+end of the demilich's next turn.
+ Failure or Success: The
+-
+N
+planar travel to enter or exit the lair.
+demilich can't take this action again until the start 
+of its
+N
+:::i
+_J
+_J
+next turn.
+<C
+If the demilich dies or moves.its lair elsewhere,
+LJ
+>-
+c::::
+:::)
+these effects end immediately.
+Necrosis. The demilich makes one Necrotic Burst attack.
+LL
+'-
+96 /2 DEMILICH
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 99 ---]
+D EVA
+World-Changing Angelic Messenger
+Habitat: Planar (Upper Planes); Treasure: Relics
+Devas are emissaries of divine will. These immortal
+messengers adopt the shapes of mystical beasts or
+idealized, winged mortals. As with all angels, their
+true forms are known only to the gods they serve.
+Rather than literal correspondence from a god, a
+deva conveys an allegory or quest to mortals, task-
+ing them with delivering something to its rightful
+place. While the angel might be called on in times of
+need, it encourages mortal heroism. Should a deva's
+chosen champions carry out their charge, they ex-
+perience a revelation or the world is changed in line
+with divine purpose. Roll on or choose a result from
+the Deva Messages table to inspire a deva's charge.
+DEVA MESSAGES
+ld6 The Deva Tasks a Mortal with Delivering ...
+l The corpse of a hero in need of redemption.
+2 The cure for a plague in a distant land.
+3 A holy coffer that must not be opened.
+4 A magic weapon usable only by a true hero.
+5 A seedling that wilts if exposed to anger.
+6 Someone from another world with a prophe-
+sied purpose but no memory.
+DEVA
+Medium Celestial (Angel) , Lawful Good
+AC 17 Initiative +4 (14)
+A CT IONS
+HP 229 (27d8 + 108)
+Multiattack. The deva makes two Holy Mace attacks.
+Speed 30 ft., Fly 90 ft. (hover)
+Holy Mace. Melee Attack Roll: +8, reach 5 ft. Hit: 7
+MOD SAV E MOD SAVE MOD SAVE
+(ld6 + 4) Bludgeoning damage plus 18 (4d8) Radi-
+STR 18 +4 +4 D EX 18 +4 +4 CON 18 +4 +4
+ant damage.
+INT 17 +3 +3 Wis 20 +5 +9 CHA 20 +5 +9
+Spellcasting. The deva casts one of the following spells,
+Skills Insight +9, Pe rception +9
+requiring no Material components and using Charisma
+Resistances Radiant
+as the spellcasting ability (spell save DC 17):
+Immunities Charmed, Exhaustion, Frightened
+Senses Darkvision 120 ft.; Passive Perception 19
+At Will: Detect E11il and G~od, Shapechange (Beast or
+Languages All; te lepat hy 120 ft.
+Humanoid form only, no Temporary Hit Points gained
+CR 10 (XP 5,900; PB + 4)
+from the spell, and no Concentration or Temporary
+Hit Points required to maintain the spell)
+TR A ITS
+1/Day Each: Commune, Raise Dead
+Exalted Restoration. If the deva dies outside Mount
+B O N US A CTIO NS
+Celestia, its body disappears, and it gains a new body
+instantly, reviving with all its Hit Points somewhere in
+Divine Aid (2/Day). The deva casts Cure Wounds, Lesser
+0
+z
+:s
+Mount Celestia.
+Restoration, or Remo11e Curse, using the same spellcast-
+_J
+UJ
+0:::
+<(
+ing ability as Spellcasting.
+0Magic Resistance. The deva has Advantage on saving
+_J
+0:::
+<(
+uthrows against spells and other magical effects.
+DEVA ~ 97
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 100 ---]
+pursueprey through
+Displacer beasts sometimes
+ofexistence. As a result,
+portals to otherplanes
+be found acrossthemultiverse,
+these predators can
+of theMaterialPlane, in
+particularlyontheworlds
+Feywild. These restless
+theShadowfell,andinthe
+naturalbalanceand
+hunters candestroya land's
+other creatures toextinction. As a result,
+drive
+viewdisplacer beasts as
+many druidcirclesandFey
+threats.
+deadly
+YOFADISPLACERBEAST15FIT
+THEM U R DEROUSFUR
+1
+MARES, O F WHICHl YEBEE NHAUNTED
+O N L YFORNIGH T
+I N G ONE'SAMBUSH.l'MCERTAIN
+SINCENARROWLYESCAP
+THATBEASTSTALKSMESTILL.
+T
+- JEN-A HB,NATURALIS
+ANDDISPLACERB E ASTSURVIVOR
+DISPLACER BEAST
+Monstrosity,LawfulE1Ji!
+Large
+.
+Initiative+4(14)
+AC13
+76(9dl 0 + 27)
+HP
+Speed40 ft.
+MODSAVE
+ SAVEMODSAVE
+MOD
+ +3 +3
+DEX15+2 +2CON16
+STR18+4 +4
+-1-1
++1C HA 8 
+INT6-2 -2Wis12+1
+11
+ Darkvisi~n 60 ft.; Passive Perception
+Senses
+1
+butcan t speak
+Languages Understands Sylvan
+700;PB+2)
+CR3(XP
+TRAITS
+issubjected toan
+Avoidance.Ifthe displacer beast
+throwto take only
+effectthatallowsit tomake a saving
+ifit succeeds
+it instead takes no damage
+halfdamage, 
+DISPLACER BEAST
+itfails.Itcan't use this
+on the save andhalfdamageif
+ Stalker
+Deceptive Feline
+condition.
+traitifithas the Incapacitated 
+ Forest; Treasure: None
+Habitat:
+ Attack rolls against the displacer beast
+Displacement.
+beast resembles a gaunt, six-legged pan-
+A displacer 
+an illusionthat
+itprojects
+have Disadvantage, since
+of
+barbed tentacle sprouting from each
+ther witha 
+trait
+it appeartobe near its actual location. This 
+makes 
+to
+predator uses innate magic 
+its shoulders. This 
+is suppressed while the displacer beast has the Incapac-
+it appears to be several feet away
+displace light so 
+condition.
+itated 
+location.
+from its actual 
+ACTIONS
+to feed but because
+Displacer beasts hunt not just 
+enjoy killing. Once displacer beasts begin
+they 
+Multiattack. The displacer beast makes one Rend at-
+deterred until either
+stalking prey, they can't be 
+tack and one Tentacle attack.
+While displacer beasts
+they or their quarryis slain. 
+ Hit: 9(1dl0
+Rend. Melee AttackRoll:+6, reach 5 feet.
+they might pursue
+commonly inhabit dense forests, 
+Iftarget is a Large or smaller
++ ' 4) Slashing damage.
+0
+great distances and even into cities
+travelers across 
+a::
+it has the Prone condition.w
+creature, 
+f-
+than mere animals,
+or dungeons. More cunning 
+z
+0
+2
+Roll: +6, reach 10 feet. Hit:11
+Tentacle. Melee Attack 
+or lie hidden for
+these predators might set ambushes 
+0
+<
+ ,
+(2d6 + 4) Piercing damage.u
+days to bring down their prey.
+98 D DISPLAOER BEAS T
+

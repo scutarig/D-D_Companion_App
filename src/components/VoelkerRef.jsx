@@ -108,7 +108,7 @@ export default function VoelkerRef() {
               </div>
             );
           })}
-          <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>{filtered.length} Völker</div>
+          <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>{filtered.length} {t("ref.species_count","Völker")}</div>
         </div>
       </div>
 
@@ -129,7 +129,7 @@ export default function VoelkerRef() {
                   <div style={{display:"flex",gap:6,marginTop:4,flexWrap:"wrap"}}>
                     <Tag label={`📏 ${sel.size}`} color={col}/>
                     <Tag label={`💨 ${sel.speed}ft`} color={col}/>
-                    {full?.languages && <Tag label={`💬 ${(lang === "en" && full.languagesEN ? full.languagesEN : full.languages).join(", ")}`} color={C.blue}/>}
+                    {full?.languages && <Tag label={`💬 ${((lang === "en" && full.languagesEN ? full.languagesEN : full.languages) || []).join(", ")}`} color={C.blue}/>}
                   </div>
                 </div>
               </div>

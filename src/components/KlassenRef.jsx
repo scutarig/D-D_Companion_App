@@ -57,7 +57,7 @@ export default function KlassenRef() {
               </div>
             );
           })}
-          <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>{filtered.length} Klassen</div>
+          <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>{filtered.length} {t("ref.classes_count","Klassen")}</div>
         </div>
       </div>
 

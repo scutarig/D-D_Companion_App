@@ -1,0 +1,640 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 100 ---]
+- I
+C O R E MONK T RAITS
+BECOMING A MONK ...
+Dexterity and Wisdom
+Primary Ability
+As A LEVEL 1 CHARACTER
+D8 per Monk level
+f Hit Point Die
+• Gain all the traits in the Core Monk Traits table.
+I
+Strength and Dexterity
+i ! Saving Throw• Gain the Monk's level 1 features, which are listed
+Proficienciesin the Monk Features table.
+Skill Proficiencies Choose 2: Acrobatics , Athlet-
+As A MULTICLASS CHARACTER
+ics , History, Insight, Religion,
+• Gain the Hit Point Die trait from the Core Monk
+or Stealth
+Traits table.
+Weapon Proficiencies Simple weapons and Martial
+• Gain the Monk's level 1 features, which are listed
+weapons that have the Light
+in the Monk Features table.
+property
+MONK CLASS FEATURES
+Choose one type of Artisan's
+Tool Proficiencies
+' As a Monk, you gain the following class features
+Tools or Musical Instrument
+' when you reach the specified Monk levels. These
+(see chapter 6)
+features are listed in the Monk Features table.
+None
+Armor Training
+LEVEL l : MARTIAL ARTS
+Choose A or B: (A) Spear, 5
+Starting Equipment
+Your practice of martial arts gives you mastery of
+Daggers, Artisan's Tools or
+combat styles that use your Unarmed Strike and
+Musical Instrument cho-
+Monk weapons, which are the following:
+sen for the tool proficiency
+Simple Melee weapons
+above, Explorer's Pack, and
+Martial Melee weapons that have the Light
+ll GP; or (B) SO GP
+property
+You gain the following benefits while you are un-
+ONKS USE RIGOROUS COMBAT TRAINING
+armed or wielding only Monk weapons and you
+aren't wearing armor or wielding a Shield.
+/ f I land mental discipline to align themselves
+)_, \ ., "'- with the multiverse and focus their inter-
+Bonus Unarmed Strike. You can make an Unarmed
+nal reservoirs of power. Different Monks conceptu-
+Strike as a Bonus Action.
+alize this power in various ways: as breath, energy,
+Martial Arts Die. You can roll ld6 in place of the
+life force, essence, or self, for example. Whethernormal damage of your Unarmed Strike or Monk
+channeled as a striking display of martial prowessweapons. This die changes as you gain Monk levels,
+or as a subtler manifestation of defense and speed,as shown in the Martial Arts column of the Monk
+this power infuses all that a Monk does.Features table.
+Monks focus their internal power to create ex-
+Dexterous Attacks. You can use your Dexterity
+traordinary, even supernatural, effects. They chan-
+modifier instead of your Strength modifier for the
+nel uncanny speed and strength into their attacks,
+attack and damage rolls of your Unarmed Strikes
+with or without the use of weapons. In a Monk's
+and Monk weapons. In addition, when you use the
+hands, even the most basic weapons can become so-
+Grapple or Shove option of your Unarmed Strike,
+phisticated implements of combat mastery.
+you can use your Dexterity modifier instead of your
+Many Monks find that a structured life of ascetic
+Strength modifier to determine the save DC.
+withdrawal helps them cultivate the physical and
+LEVEL l: UNARMORED DEFENSE
+mental focus they need to harness their power.
+While you aren't wearing armor or wielding a
+Other Monks believe that immersing themselves in
+Shield, your base Armor Class equals 10 plus your
+the vibrant confusion of life helps to fuel their de-
+Dexterity and Wisdom modifiers.
+termination and discipline.
+Monks generally view adventures as tests of their
+LEVEL 2: MoNK's Focus
+physical and mental development. They are driven
+Your focus and martial training allow you to har-
+by a desire to accomplish a greater mission than
+ness a well of extraordinary energy within yourself.
+merely slaying monsters and plundering treasure;
+This energy is represented by Focus Points. Your
+they strive to turn themselves into living weapons.
+Monk level determines the number of points you
+have, as shown in the Focus Points column of the
+Monk Features table.
+CHAPTE R 3 I CHARACT ER CL ASSES JOT
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 101 ---]
+MONKFEATURES
+Martial Focus 
+Unarmored
+Proficiency 
+Arts Points 
+Movement
+Class Features 
+Bonus 
+Level 
+ld6
+Martial Arts, Unarmored Defense
++2
+1
+ld62 
+Monk's Focus, Unarmored Movement,+10 ft .
+2+2
+Uncanny Metabolism
+ld63 
+Deflect Attacks, Monk Subclass+10 ft .
++2
+3
+ld64 
+Fall+10 ft.
+AbilityScore Improvement, Slow
++2
+4
+5 
+ld8
++10 ft.
+ExtraAttack, Stunning Strike
++3
+5
+ld86 
++15 ft.
+Empowered Strikes, Subclass feature
+6+3
+7 
+ld8
++15ft .
+Evasion
+7+3
+ld88 
++15ft.
+AbilityScore Improvement
+8 +3
+ld89 
+Acrobatic Movement+15ft .
++4
+9
+ld810 
++20 ft .
+Heightened Focus, Self-Restoration
+10+4 
+ldl011
++20 ft .
+11+4Subclass feature
+12
+ldl0+20 ft .
+AbilityScore Improvement
+12+4 
+ldl013 
++20 ft .
+13Deflect Energy
++5 
+ldl014
+Disciplined Survivor+25 ft .
+14+5
+ldl015
+Perfect Focus+25 ft.
+15+5
+ldl016 
+16AbilityScore Improvement+25 ft.
++5
+ldl217
+17 Subclass feature+25 ft.
++6
+ldl218 
+18Superior Defense+30 ft .
++6
+ldl219 
+19 EpicBoon+30 ft .
++6
+ldl220
+20 +6 Bodyand Mind+30 ft .
+You can expend these points to enhance or fuel2:UNCANNY METABOLISM
+LEVEL
+certain Monk features.Youstartknowing three
+Whenyou roll Initiative,you can regainall ex-
+such features: Flurry of Blows, Patient Defense, and
+pended Focus Points.When you do so, rollyour
+Stepofthe Wind, eachofwhich is detailed below.
+Martial Artsdie, and regainanumberofHit Points
+When you expend a Focus Point, it is unavailable
+equal toyour Monklevel plusthe numberrolled.
+of
+until you finish a Short orLong Rest, at the end
+Once you use this feature, you can'tuse it again
+which you regain all your expended points.
+until you finish a Long Rest.
+your
+Some featuresthatuse Focus Points require 
+LEVEL3:DEFLECTATTACKS
+target to make a saving throw. The save DC equals 8
+anditsdamagein-
+When an attack roll hits you 
+plus your Wisdom modifier and Proficiency Bonus.
+cludes Bludgeoning, Piercing,orSlashing damage,
+FlurryofBlows. You can expend 1 Focus Point to
+you can take a Reaction to reduce the attack's total
+make two Unarmed Strikes as a Bonus Action.
+damage against you.The reduction equals ldlO plus
+Patient Defense. You can take the Disengage ac-
+modifierand Monklevel.
+your Dexterity 
+tion as a Bonus Action. Alternatively,you can ex-
+to 0, you can expend 1
+If you reduce the damage 
+pend 1 Focus Point to take both the Disengage and
+Focus Point to redirect someof the attack's force.
+the Dodge actions as a Bonus Action.
+creature you can seewithin5
+If you do so, choose a 
+the Wind. You can take the Dash action
+Stepof
+feet of yourself if the attack was a meleeattackor a
+as a Bonus Action . Alternatively, you can expend 1
+creature you can see within 60 feet ofyourself that
+Focus Point to take both the Disengage and Dash
+the att ack w as a ranged
+isn't behind Total Cover if 
+actions as a Bonus Action, and your jump distance
+attack. That creature must succeed on a Dexterity
+is doubled for the turn.
+ wo rolls of
+saving throw or t ake damage equa l to I
+1
+LE :. L 2: U. rARM:ORED.i:.10'/EMENTrts die plus you r Dex ter ity modifier.
+your Martial A
+.
+The damage is the same type deal t by t he attack
+Your speed increases by 10 feet while you aren't
+wearing armor or wielding a Shield. This bonus
+increases when you reach certain Monk levels, as
+shown on the Monk Features table.
+10~ Cl l t\ !'TE R 3 j H ARACTER CLASS ES
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 102 ---]
+L ~- n .. 3: :tv1o:,· ;_, .~_' u P, Cl.ASS
+LEVEL 10: HEIGHTENED Focus
+Yo :. ga in a Mon k subclass of your choice. The
+Your Flurry of Blows, Patient Defense, and Step of
+Wa ;·r ior of Mercy, Warrior of Shadow, Warrior of
+the Wind gain the following benefits.
+the Elements, and Warrior of the Open Hand sub-
+Flurry of Blows. You can expend 1 Focus Point
+cla sses are detailed after this class's description. A
+to use Flurry of Blows and make three Unarmed
+subclass is a specialization that grants you features
+Strikes with it instead of two.
+at certain Monk levels. For the rest of your career,
+Patient Defense. When you expend a Focus Point
+you gain each of your subclass's features that are of
+to use Patient Defense, you gain a number of Tem-
+your Monk level or lower.
+porary Hit Points equal to two rolls of your Martial
+Arts die.
+LEVEL 4: ABILITY SCORE IMPROVEMENT
+Step of the Wind. When you expend a Focus Point
+You gain the Ability Score Improvement feat (see
+to use Step of the Wind, you can choose a willing
+chapter S) or another feat of your choice for which
+creature within 5 feet of yourself that is Large or
+you qualify. You gain this feature again at Monk
+smaller. You move the creature with you until the
+levels 8, 12, and 16.
+end of your turn. The creature's movement doesn't
+provoke Opportunity Attacks.
+LEVEL 4: SLOW FALL
+You can take a Reaction when you fall to reduce any
+LEVEL 10: SELF-RESTORATION
+damage you take from the fall by an amount equal
+Through sheer force of will, you can remove one
+to five times your Monk level.
+of the following conditions from yourself at the
+end of each of your turns: Charmed, Frightened, or
+LEVEL 5: EXTRA ATTACK
+Poisoned.
+You can attack twice instead of once whenever you
+In addition, forgoing food and drink doesn't give
+take the Attack action on your turn.
+you levels of Exhaustion.
+LEVEL 5: STUNNING STRIKE
+LEVEL 13: DEFLECT ENERGY
+Once per turn when you hit a creature with a Monk
+You can now use your Deflect Attacks feature
+weapon or an Unarmed Strike, you can expend 1
+against attacks that deal any damage type, not just
+Focus Point to attempt a stunning strike. The target
+Bludgeoning, Piercing, or Slashing.
+must make a Constitution saving throw. On a failed
+save, the target has the Stunned condition until the
+LEVEL 14: DISCIPLINED SURVIVOR
+start of your next turn. On a successful save, the
+Your physical and mental discipline grant you profi-
+target's Speed is halved until the start of your next
+ciency in all saving throws.
+turn, and the next attack roll made against the tar-
+Additionally, whenever you make a saving throw
+get before then has Advantage.
+and fail, you can expend 1 Focus Point to reroll it,
+and you must use the new roll.
+LEVEL 6: EMPOWERED STRIKES
+Whenever you deal damage with your Unarmed
+LEVEL 15: PERFECT Focus
+Strike, it can deal your choice of Force damage or
+When you roll Initiative and don't use Uncanny Me-
+its normal damage type.
+tabolism, you regain expended Focus Points until
+you have 4 if you have 3 or fewer.
+L EVEL 7: EVASION
+When you're subjected to an effect that allows you
+LEVEL 18: SUPERIOR DEFENSE
+to make a Dexterity saving throw to take only half
+At the start of your turn, you can expend 3 Focus
+damage, you instead take no damage if you succeed
+Points to bolster yourself against harm for 1 min-
+on the saving throw and only half damage if you
+ute or until you have the Incapacitated condition.
+fail.
+During that time, you have Resistance to all damage
+You don't benefit from this feature if you have the
+except Force damage.
+Incapacitated condition.
+LEVEL 19: EPIC BOON
+L EV EL 9: A CROBATI C MOVE M ENT
+You gain an Epic Boon feat (see chapter 5) or an-
+While you aren't wearing armor or wielding a
+other feat of your choice for which you qualify.
+Shield, you gain the ability to move along vertical
+Boon of Irresistible Offense is recommended.
+surfa ces and across liquids on your turn without
+LEVEL 20: BODY AND MIND
+falling during the movement.
+You have developed your body and mind to new
+heights. Your Dexterity and Wisdom scores increase
+by 4, to a maximum of 25.
+CHAPTER 3 I CHARACTER CLASSES 103
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 103 ---]
+MONK SUBCLASSES
+A Monk subclass is a specialization that grants you
+features at certain levels, as specified in the sub-
+class. This section presents the Warrior of Mercy,
+Warrior of Shadow, Warrior of the Elements, and
+Warrior of the Open Hand subclasses.
+WARRIOR O F MERCY
+Manipulate Forces of Life and Death
+Warriors of Mercy manipulate the life force of
+others. These Monks are wandering physicians,
+but they bring a swift end to their enemies. They
+often wear masks, presenting themselves as faceless
+bringers of life and death.
+L EVEL 3: HAND OF HARM
+Once per turn when you hit a creature with an
+Unarmed Strike and deal damage, you can expend 1
+Focus Point to deal extra Necrotic damage equal to
+one roll of your Martial Arts die plus your Wisdom
+modifier.
+LEVEL 3: HAND OF HEALING
+As a Magic action, you can expend 1 Focus Point to
+touch a creature and restore a number of Hit Points
+equal to a roll of your Martial Arts die plus your
+Wisdom modifier.
+When you use your Flurry of Blows, you can re-
+place one of the Unarmed Strikes with a use of this
+feature without expending a Focus Point for the
+healing.
+L EVEL 3: I M PL EME NTS OF MERCY
+You gain proficiency in the Insight and Medicine
+skills and proficiency'with the Herbalism Kit.
+L EV EL 6: P H YSIC I AN'S TOUCH
+Your Hand of Harm and Hand of Healing improve,
+as detailed below.
+Hand of Harm. When you use Hand of Harm on
+a creature, you can also give that creature the Poi-
+soned condition until the end of you r next turn.
+Hand of Healing. When you use Hand of Healing,
+you can also end one of the following conditions on
+the creature you heal: Blinded, Dea fen ed, Paralyzed,
+Poisoned, or Stunned.
+LEVEL 11: FLU RRY O F HEALING AND HA RM
+When you use Flurry of Blows, you can replace
+each of the Unarmed Strikes w ith a use of Hand of
+Healing without expending Focus Points for the
+healing.
+In addition, when you ma ke an Unarmed Strike
+with Flur ry of Blows and deal damage, you can use
+Hand of Harm with that strike withou1· expending
+a Focus Point for Hand of Harm. You ca n still use
+Hand of Harm only once per turn.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 104 ---]
+You ca n usethese benefits a totalnumber oftimes
+LEVEL17:CLOAKOFSHADOWS
+ toyourWisdommodifier (minimumofonce).
+equal
+As a Magic action while entirelywithinDim Light
+Youregain all expended useswhenyou finish a
+orDarkness, youcanexpend 3 Focus Pointsto
+Long Rest.
+shroud yourself withshadows for 1 minute,until
+you have the Incapacitated condition,oruntil you
+LEVEL17:HANDOFULTIMATEMERCY
+endyourturnin Bright Light. While shrouded by
+lifeenergyopensthedoorto the
+Yourmasteryof
+these shadows, you gain the following benefits.
+touch
+ultimate mercy. As a Magic action, you can 
+ You have the Invisible condition.
+Invisibility.
+past24
+the corpseofacreature thatdiedwithin the
+ You can movethroughoccu-
+Partially Incorporeal.
+hours and expend5 Focus Points. Thecreature then
+If you
+pied spaces asif theywere Difficult Terrain. 
+returnstolifewithanumberofHit Points equal
+endyourturnin such a space, youareshuntedto
+Wisdom modifier. If the creature
+to4dl0plusyour
+the last unoccupied space you were in.
+diedwithanyofthe following conditions, the crea-
+ofBlows
+Shadow Flurry. You can useyour Flurry
+turereviveswiththe conditions removed: Blinded,
+without expendinganyFocus Points.
+Stunned.
+Deafened, Paralyzed, Poisoned, and 
+Once you usethisfeature, you can't use it again
+untilyoufinish a Long Rest.
+WARRIOROF SHADOW
+Harness Shadow PowerforStealth and Subterfuge
+WarriorsofShadowpractice stealth andsubter-
+fuge,harnessingthe poweroftheShadowfell. They
+ableto draw gloomaround
+are athome in darkness, 
+themselves to hide, leap from shadow to shadow,
+and take ona wraithlike form.
+LEVEL3:SHADOW ARTS
+You havelearned to draw on the power of the
+Shadowfell,gaining the following benefits.
+ Youcan expend 1 Focus Point to cast
+Darkness.
+ spellwithoutspell components. You
+the Darkness
+can seewithin the spell's area when you cast it with
+this feature. While the spell persists, you can move
+itsarea ofDarkness to a space within60feetof
+start ofeachof your turns.
+yourself at the
+ You gain Darkvision with a rangeof
+Darkvision.
+you already have Darkvision, its range
+60feet. If 
+increases by60feet.
+know the Minor Illusion
+Shadowy Figments. You 
+spell. Wisdom isyourspellcasting ability for it.
+LEV E L 6: S HADOWSTEP
+While entirely within Dim LightorDarkness, you
+can use a Bonus Action to teleport up to60feet to
+thatis also in Dim
+an unoccupied space you can see 
+LightorDarkness. You then have Advantage on the
+next meleeattack you make before the end of the
+current t urn.
+LEVEL11:IMPROVED S H ADOW STEP
+You can draw on your Shadowfell connection to
+empower your teleportation. When you use your
+Shadow Step, you can expend 1 Focus Point to re-
+rement that you must start and end
+move the requ i
+in Dim Light or Darkness for that use of the feature.
+As pal't of this Bonus Action, you can make an Un-
+armed Strike immediately after you teleport.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 105 ---]
+WARRIOR OF THE ELEM E NTS
+Wield Strikes and Bursts of Elem ental Power
+Warriors of the Elements tap into the power of the
+Elemental Planes. Harnessing thei r supernatural
+focus, these Monks momentar ily tame the energy of
+the Elemental Chaos to empower themselves in and
+out of battle.
+LEVEL 3: ELEMENTALATTUNEMENT
+At the start of your turn, you can expend l Focus
+Point to imbue yourself with elemental energy. The
+energy lasts for 10 minutes or until you have the
+Incapacitated condition. You gain the following ben-
+efits while this feature is active.
+Reach. When you make an Unarmed Strike, your
+reach is 10 feet greater than normal, as elemental
+energy extends from you.
+Elemental Strikes. Whenever you hit with your
+Una r med Strike, you can cause it to deal your
+choice of Acid, Cold, Fire, Lightning, or Thunder
+damage rather than its normal damage type. When
+-you deal one of these types with it, you can also
+force the target to make a Strength saving throw.
+On a failed save, you can move the target up to 10
+feet toward or away from you, as elemental energy
+swirls around it.
+LEVEL 3: MANIPULATE ELEMENTS
+You know the Elementalism spell. Wisdom is your
+spellcasting ability for it.
+LEVEL 6: ELEMENTAL BURST
+As a Magic action, you can expend 2 Focus Points to
+cause elemental energy to burst in a 20-foot-radius
+Sphere centered on a point within 120 feet of your-
+self. Choose a damage type: Acid, Cold, Fire, Light-
+ning, or Thunder.
+Each creature in the Sphere must make a Dexter-
+ity saving throw. On a failed save, a creature takes
+damage of the chosen type equal to three rolls of
+your Martial Arts die. On a successful save, a crea-
+ture takes half as much damage.
+LEV E L 11: STRIDE OF THE ELEM E NTS
+While your Elemental Attunement is active, you
+also have a Fly Speed and a Swim Speed equal to
+your Speed.
+LEVEL 17: ELEMENTAL EPITO M E
+While your Elemental Attunemen t is ac tive, you
+also gain the following benefits.
+Damage Resistance. You gain Resista nce to one of
+the following damage types of you r choice: Acid,
+Cold, Fire, Lightning, or Thunder. At 1. 1, start of
+each of your turns, you can change t !, i:; ch oice.
+Destructive Stride. When you use you 1· Step of the
+Wind, your Speed increases by 20 fo t:t u nt il the end
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 106 ---]
+of t i ,e t ur n. For that duration, any creature of your
+When you end them, the target must make a Consti-
+choice takes dam age equal to one roll of your Mar-
+tution saving throw, taking 10d12 Force damage on
+tial Arts die when you enter a space within 5 feet
+a failed save or half as much damage on a successful
+of it. The da mage type is your choice of Acid, Cold,
+one.
+Fire, Lightning, or Thunder. A creature can take
+You can have only one creature under the effect
+this damage only once per turn.
+of this feature at a time. You can end the vibrations
+Empowered Strikes. Once on each of your turns,
+harmlessly (no action required).
+you can deal extra damage to a target equal to one
+roll of your Martial Arts die when you hit it with an
+Unarmed Strike. The extra damage is the same type
+dealt by that strike.
+WARRIOR OF THE OPEN HAND
+Mast-er Unarmed Combat Techniques
+Warriors of the Open Hand are masters of unarmed
+combat. They learn techniques to push and trip
+their opponents and manipulate their own energy
+to protect themselves from harm.
+LEVEL 3: OPEN HAND TECHNIQUE
+Whenever you hit a creature with an attack granted
+by your Flurry of Blows, you can impose one of the
+following effects on that target.
+Addle. The target can't make Opportunity Attacks
+until the start of its next turn.
+Push. The target must succeed on a Strength sav-
+ing throw or be pushed up to 15 feet away from you.
+Topple. The target must succeed on a Dexterity
+saving throw or have the Prone condition.
+LEVEL 6: WHOLENESS OF BODY
+You gain the ability to heal yourself. As a Bonus Ac-
+tion, you can roll your Martial Arts die. You regain
+a number of Hit Points equal to the number rolled
+plus your Wisdom modifier (minimum of 1 Hit Point
+regained).
+You can use this feature a number of times equal
+to your Wisdom modifier (minimum of once), and
+you regain all expended uses when you finish a
+Long Rest.
+LEVEL 11: FLEET STEP
+When you take a Bonus Action other than Step of
+the Wind, you can also use Step of the Wind imme-
+diately after that Bonus Action.
+LEV EL 17: QUIVERING PALM
+You gain the ability to set up lethal vibrations in
+someone's body. When you hit a creature with an
+Unarmed Str ike, you can expend 4 Focus Points to
+start th ese imperceptible vibrations, which last for
+a number of days equal to your Monk level. The
+vibration s ar e harmless unless you take an action
+to end t hem. Alternatively, when you take the At-
+tack action on your turn, you can forgo one of the
+()
+attack ~ to end the vibrations. To end them, you and
+the target rnust be on the same plane of existence.
+
+[--- Page 107 ---]
+
+

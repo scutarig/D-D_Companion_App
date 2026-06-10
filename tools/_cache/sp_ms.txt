@@ -1,0 +1,1967 @@
+[--- Page 295 ---]
+understand you . The suggestion must so •.!nd achiev-
+able and not involve a nything that w ou ld obviously
+MASS CURE WOUNDS
+deal damage to any of t he targets or their allies. For
+Level 5 Abjuration (Bard, C/er-ic, Druid)
+example, you could say, "Wa lk to the vill age dow n
+Casting Time: Actionthat road, and help t he vi llagers t here harves t crops
+Range: 60 feetuntil sunset." O r you could say, "Now is not t he time
+Components: V, S
+for violence. Dr op you r wea pons, and dance! Stop in
+Duration: Instantaneous
+an hour."
+Each ta rget must succeed on a Wisdom saving
+A wave of healing energy washes out from a point
+throw or have the Charmed condit io n for the du ra-
+you can see within range. Choose up to six crea-
+tion or until you or you r a llies deal da mage to the
+tures in a 30-foot-radius Sphere centered on that
+target. Each Cha r med ta rget pu rsu es the suggest ion
+point. Each target regains Hit Points equal to Sd8
+to the best of its ability. T he suggested ac tivity can
+plus your spellcasting ability modifier.
+continue for the entire duration, but if the sug-
+Using a Higher-Level Spell Slot. The healing in-
+gested activity can be completed in a shorter time,
+creases by ld8 for each spell slot level above 5.
+the spell ends for a target upon completing it.
+Using a Higher-Level Spell Slot. The duration is
+longer with a spell slot of level 7 (10 days), 8 (30
+MASS HEAL
+days), or 9 (366 days).
+Level 9 Abjuration (Cleric)
+Casting Time: Action
+.,..
+Range: 60 feet
+MAZE
+Components: V, S
+Level 8 Conjuration (Wizard)
+Duration: Instantaneous
+Casting Time: Action
+A flood of healing energy flows from you into
+Range: 60 feet
+creatures around you. You restore up to 700 Hit
+Components: V, S
+Points, divided as you choose among any number of
+Duration: Concentration, up to 10 minutes
+creatures that you can see within range. Creatures
+You banish a creature that you can see within range
+healed by this spell also have the Blinded, Deafened,
+into a labyrinthine demiplane . The target remains
+and Poisoned conditions removed from them.
+there for the duration or until it escapes the maze.
+The target can take a Study action to try to es-
+MASS HEALING WORD
+cape. When it does so, it makes a DC 20 Intelligence
+Level 3 Abjuration (Bard, Cleric)(Investigation) check. If it succeeds, it escapes, and
+the spell ends.
+Casting Time: Bonus Action
+When the spell ends, the target reappears in the
+Range: 60 feet
+space it left or, if that space is occupied, in the near-
+Components: V
+est unoccupied space.
+Duration: Instantaneous
+Up to six creatures of your choice that you can see
+within range regain Hit Points equal to 2d4 plusMELD INTO STONE
+your spellcasting ability modifier.
+Level 3 Transmutation (Cleric, Druid, Ranger)
+Using a Higher-Level Spell Slot. The healing in-
+Casting Time: Action or Ritual
+creases by 1d4 for each spell slot level above 3.
+Range:Touch
+Components: V, S
+Duration: 8 hours
+MASS SUGGESTIO N
+Level 6 Enchantment (Bard, Sorcerer, Wizard)You step into a stone object or surface large enough
+to fully contain your body, merging yourself and
+Casting Time: Action
+your equipment with the s tone for t he duration.
+Range: 60 feet
+You must touch the stone to clo so. Nothing of your
+Components: V, M (a snake's tongue)
+presence remains visible or ot herw ise detectable by
+Duration: 24 hours
+nonmagical senses.
+You suggest a course of activity-described in no
+While merged with t he s t. one:, :,rou can't see what
+more than 25 words-to twelve or fewer crea-
+occurs outside it, and any Vvi .,; tl,,: ;J (Perception)
+tures you can see within range that can hear and
+checks you make to hear sou ,;(.' · 0·1ts ide it are made
+?Oh CHAPTER 7 I SPE LLS
+
+[--- Page 296 ---]
+with Disadvantage. You remain awareofthe pas-
+target takes 4d4 Acid damage and 2d4 Acid damage
+sageoftime and can castspells on yourself while
+at the end of its next turn. On a miss, thearrow
+merged inthe stone. You can use 5 feet of move-
+splashes the target with acid for half as muchofthe
+ment to leavethe stone whereyou entered it, whichinitial damage only.
+the spell. Youotherwise can't move.
+ends Using a Higher-Level Spell Slot. The damage (both
+physical damage to the stone doesn't harm
+Minor initial and later) increases by ld4 for each spell slot
+but its partial destruction or a change in its
+you, level above 2.
+shape (to theextent thatyou no longer fit within it)
+p-----·------------
+expels youanddeals6d6Force damage to you. The
+MENDING
+stone's completedestruction(or transmutation into
+Transmutation Cantrip(Bard, Cleric,Druid, Sorcerer,
+a different substance) expels you and deals 50 Force
+Wizard)
+damage to you. Ifexpelled, you move into an unoc-
+cupied space closestto where you first entered and
+Casting Time:l minute
+have the Prone condition.
+Range:Touch
+Components:V,S,M (two lodestones)
+Duration:Instantaneous
+1
+M ELF SACID ARROW
+object
+This spell repairs a single break or tear in an 
+Level 2 Evocation (Wizard)
+you touch, such as a broken chain link, two halves
+Casting Time: Action
+or a leaking wineskin.
+of a broken key, a torn cloak, 
+Range: 90 fe et
+As long as the break or tear is no larger than 1 foot
+Components: V, S, M (powdered rhubarb leaf)
+in any dimension, you mend it, leaving no trace of
+Duration:Instantaneous
+the former damage.
+A shimmering green arrow streaks toward a targetThis spell can physically repair a magic item, but
+within rangrJ a nd bursts in a spray of acid. Make ait can't restore magic to such an object.
+ll a; ack against the target. On a hit, the
+ranged spe
+CHAPTER 7 I SPELLS 297
+
+[--- Page 297 ---]
+MINDSLIVER
+MESSAGE
+Enchantment Can trip (Sorcerer, Warlock ,Wizard)
+Transmutation Cantrip (Bard, Druid, Sorcerer, Wizard)
+Casting Time:
+ Action
+Casting Time: Action
+Range: 60 feet
+Range:120 feet
+Components: V
+Components:S,M(acopperwire)
+Duration: l round
+Duration: l round
+Youtryto temporarily 
+sliverthemindofonecrea-
+Youpoint toward a creature within range and
+tureyou can seewithinrange.The targetmust
+whisper a message. The target (and only the target)
+succeed onanIntelligencesavingthrow ortakeld6
+hears the message and can reply in a whisperthat
+Psychic damage
+andsubtract ld4fromthe nextsav-
+only you can hear.
+ingthrowit makes beforetheendofyournextturn.
+Youcan cast this spell through solid objects if you
+Cantrip Upgrade.The damage increases by ld6
+are familiar with the target and know it
+isbeyond
+when you reach levels 5 (2d6),
+the barrier. Magical silence; 1 foot11(3d6),and17(4d6).
+ofstone, metal,or
+wood;ora thin sheetoflead blocks the spell.
+MINDSPIKE
+METEORLevel 2 Divination (Sorcerer, Warlock, Wizard)
+SWARM
+Level 9 Evocation (Sorcerer, Wizard)
+Casting Time: Action
+Range: 120 feet
+Casting Time: Action
+Components: S
+Range: l mile
+Components:V,SDuration: Concentration, up to l hour
+Duration: Instantaneous
+Youdrive a spikeofpsionicenergy into themind of
+Blazing orbsoffire plummet to the ground at fouronecreatureyoucanseewithinrange.The target
+different points you can see within range. Eachmakes a Wisdom 
+saving throw,taking 3d8Psychic
+creature in a 4O-foot-radius Sphere centered ondamage on a failed saveor halfasmuch
+damage on
+eachofthose points makes a Dexterity saving
+a successful one. On a failed save,youalso always
+throw. A creature takes 2Od6 Fire damage and
+know thetarget's location untilthespell ends,but
+2Od6 Bludgeoning damage on a failed save or halfonly while the two of
+youare onthesameplane
+as much damage on a successful one. A creature inofexistence. While you have this knowledge, the
+the areaofmore than one fiery Sphere 
+is affectedtarget can't become hidden from you,and ifit has
+only once.
+the Invisible condition, it gains nobenefit from that
+A nonmagical object that isn't being worn or car-condition against you.
+ried also takes the damage if it's in the spell's area,Using a Higher-Level Spell Slot.
+The damage in-
+and the object starts burning if it's flammable.creases by ld8 for each spell slot level above 2.
+MINDBLANK
+MINORILLUSION
+Level 
+8 Abjuration (Bard, Wizard)Illusion Cantrip (Bard, Sorcerer, Warlock, Wizard)
+Casting Time: Action
+Casting Time: Action
+Range:Touch
+Range: 30 feet
+Components:V,SComponents:
+S,M(abit of fleece)
+Duration:24hoursDuration: l minute
+Until the spell ends, one willing creature you touch
+You create a soundoran imageofan object within
+has Immunity to Psychic damage and the Charmed
+range that lasts for the duration . See the descrip-
+condition. The target 
+is also unaffected by anythingtions below for the effectsofeach. The illusion ends
+that would sense its emotions or alignment, read itsif you cast this spell again.
+thoughts, or magically detect its location, and noIfa creature takes a 
+Studyr1ction to examine the
+spell-not even Wish-can gather information aboutsound or image, the creature ca n determine that it
+the target, observe it remotely, or control its mind.is an illusion with a successfo '.li;telligence (Investi-
+gation) check against you r sp~i!:;:-
+,ve DC.Ifa crea-
+ture discerns the illusion for v. k .t it is, the illusion
+becomes faint to the crea ·ui• ;-
+298 CHA PTER 7 I SPE LL S
+
+[--- Page 298 ---]
+Sound. If_.ro ucreate asound,its volume can
+Each time a creature hits you with anattackroll
+nge fro m a whisperto ascream.
+Itcanbe your
+during the spell's duration, roll a d6 for eachofyour
+ra I • • 1· • b • f
+·ce som
+eo ne e se s voice, a 10n s roar, a eatmg o
+VOi,
+remaining duplicates. If anyofthe d6s rolls a 3or
+drums, oranyothersoundyouchoose. The sound
+higher, oneofthe duplicatesishit insteadofyou,
+ontinues unabatedthroughouttheduration, or you
+and the duplicateisdestroyed. The duplicatesother-
+~anmake discrete sounds atdifferent times before
+wise ignore all other damage and effects. The spell
+the spell ends.
+ends when all three duplicates are destroyed.
+Image. Ifyoucreateanimageofanobject-such
+A creatureisunaffected by this spell
+ifit has the
+as a chair,muddy footprints,ora smallchest-it
+Blinded condition, Blindsight, or Truesight.
+must benolargerthana5-footCube. The image
+p---··-----
+can'tcreatesound, light, smell,orany othersensory
+effect. Physicalinteraction
+withtheimage reveals itMISLEAD
+to beanillusion,sincethingscanpass through it.
+Level5Illusion(Bard,Warlock, Wizard)
+------
+Casting Time: Action
+r,--
+Range:Self
+MIRAGEARCANE
+Components: S
+Level 7 Illusion (Bard, Druid, Wizard)
+Duration: Concentration, up to
+ l hour
+casting Time: 10 minutes
+Yougain the Invisible condition at the same time
+Range:Sight
+that an illusory double of you appears where you
+Components: V, S
+are standing. The double lasts for the duration,
+but
+Duration: 10 days
+the invisibility ends immediately after you make
+an
+Youmaketerrainin an areaup to 1 mile square
+attack roll, deal damage, or cast a spell.
+look,sound,smell,andeven feel like some other
+Asa Magic action, you can move the illusory
+sortof terrain. Openfieldsora road could be made
+double up to twice your Speed and make it gesture,
+to resemble aswamp
+, hill, crevasse,orsome other
+speak, and behave in whatever way you choose. It is
+roughorimpassable ter rain. Apond can be made to
+intangible and invulnerable.
+seem like agrassymeadow, a precipice like a gentle
+Youcan see through its eyes and hear through its
+slope,orarock-strewngully like a wide and smooth
+ears as if you were located where it 
+is.
+road.
+Similarly,
+you can alter theappearance ofstruc-
+turesoraddthem MISTYSTEP
+wherenone arepresent. The spell
+doesn't disguise,conceal
+,oradd creatures.Level2 Conjuration(Sorcerer,Warlock,Wizard)
+The illusion includes audible, visual, tactile, and
+Casting Time: Bonus Action
+olfactory elements, so itcan
+turnclear ground into
+Range: Self
+DifficultTerrain(or vice versa)
+orotherwise impede
+Components: V
+movementthrough the area. Any piece 
+of the illu-
+Duration:Instantaneous
+soryterrain(such as arock orstick)that
+is removed
+Briefly surrounded by silvery mist, you teleport up
+fromthespell'sareadisappears immediately.
+to 30 feet to an unoccupied space you can see.
+Creatures with Truesight cansee through the illu-
+sion tothe terrain's trueform ; however, all other 
+el-
+ements
+of theillusion remain, so while the creature
+MODI FYMEMORY
+is aware of 
+the illusion's presence, the creature can
+Level5 Enchantment(Bard, Wizard)
+still physicallyinteract with the illusion.
+Casting Time:Action
+Range:30feet
+MIRROR IMAGE
+Components:V,S
+Level 
+2 Illusion(Bard,Sorcerer, Warlock, Wizard)
+Duration:Concentration, up to l minute
+Casting Time: Acti on
+Youattempt to reshape another creature's mem-
+Range: Sel f
+ories. One creature that you can see within range
+Components: \/, S
+makes a Wisdom saving throw. If you are fighting
+Durat ion: l m inute
+the creature, it has Advantage on the save. On a
+failed save, the target has the Charmed condition
+Three illusor y duplicates of yourself appear in your
+for the duration. While Charmed in this way, the
+space. Untiltr, • spell ends, the duplicates move with
+target also has the Incapacitated condition and is
+you and mi mit you r actions, shifting position so it's
+unaware of its surroundings, though it can hear
+impossible to ~t-,:k which image is real.
+CHAPTER 7 I SPELLS 
+299
+
+[--- Page 299 ---]
+enters thespell'sarea orendsitsturnt here. A crea-
+you. If it takes any damageoristargeted byanother
+turemakes this save o
+nlyonceper turn.
+spell, this spell ends, and no memories are modified.
+Using a Higher-Level
+Spell Slot.Thedamage in-
+While this charm lasts, you can 
+affect the target's
+creasesbyldlO foreach spellslotlevel above 2.
+memoryofan eventthatit experienced within
+the
+last24
+hours andthatlasted no morethan10 min-
+utes. You can permanently eliminate all memory
+of
+MORDENKAINEN' SFAITHF U LHO
+UND
+the event, allow the target to recall 
+the event with
+Level 4 Conjuration (W izard)
+perfect clarity, change its memory
+ofthe event's de-
+tails,or
+create a memoryofsome other event.Casting Time:Action
+You must speak to the target to describe how its
+Range:30 feet
+memories are affected, and it must be able 
+tounder-Components: V, S, M(asilver wh ist
+le)
+standyour
+language for the modified memories to
+Duration: 8 hours
+take root. Its mind fills in any gaps in the detailsof
+You conjure a pha ntomwatchdoginanunoccupied
+yourdescription.Ifthe spell ends before you finish
+spacethatyoucansee within range.The hound
+describing the modified memories, the creature's
+remains forthedu rationoruntilthe twoof
+you are
+memory isn't altered. Otherwise, the modified mem-
+morethan300feet
+apartfrom eachother.
+ories take holdwhen the spell ends.
+No onebutyoucanseethehound, andit is in-
+A modified memory doesn't necessarily affect
+tangible and invulnerable
+.Whena Smallorlarger
+how acreaturebehaves, particularly if the mem-
+creaturecomeswithin30feetofitwithoutfirst
+orycontradicts the creature's natural inclinations,
+speaking the passwordthat
+you specify whenyou
+alignment,orbeliefs. An illogical modified memory,
+cast this spell, the houndstartsbarkingloudly. The
+such as a false memoryofhow much the creature
+hound has Truesi
+ghtwitharangeof 30feet.
+enjoyed swimming in acid, is dismissed as a bad
+At thestart ofeachof your turns, the houndat-
+dream. The DM might deem a modified memory too
+tempts to bite oneenemywithin5 feetofit.That
+nonsensical to affect a creature.
+enemy must succeedonaDexterity saving
+throwor
+A Remove CurseorGreater Restoration spell cast on
+take4d8Force damage.
+the target 
+restores the creature's true memory.
+Onyour laterturns,youcan takea Magic action
+Using a Higher-Level Spell Slot. You can alter the
+to move the houndupto30feet.
+target's memoriesofan eventthattook place up to 7
+days ago (level 6 spell slot),
+30days ago (level 7 spell
+slot), 365 days ago (level 8 spell slot),orany time in
+MORDENKAINEN'SMAGNIFICENTMANSION
+the creature's past (level 9 spell slot).
+Level 7 Conjuration (Bard, Wizard)
+Casting Time: l minute
+MOONBEAM
+Range:300 feet
+Level 2 Evocation (Druid)
+Components: V,S,M(aminiature door worth 15+GP)
+Duration:
+24hours
+Casting Time: Action
+Range:120 feet
+You conjure a shimmering 
+door in rangethatlasts
+Components:
+V,S,M(amoonseed leaf)
+for the duration. The door
+leadsto an extradimen-
+Duration: Concentration, up to l minute
+sional dwelling and is 5 feet 
+wideand10 feet tall.
+You 
+and any creature you designatewhen you cast
+A silvery beam of pale light shines down in a
+the spell can 
+enter the extradimensional dwelling
+5-foot-radius, 40-foot-high Cylinder centered on a
+as long as the 
+door remains open. Youcan openor
+point within range. Until the spell ends, Dim Light
+close it (no action required) 
+if you are within30
+fills the Cylinder, and you can take a Magic action
+feet of it. While closed, the door is imperceptible.
+on later 
+turns to move the Cylinder up to60feet.
+Beyond the door is a magnificent foyerwith
+When the Cylinder appears, each creature in it
+numerous chambers beyond. The dwelling's atmo-
+makes a Constitution saving throw. On a failed
+sphere is clean, fresh, and warm.
+save, a creature takes 2d10 Radiant damage, and if
+You can create any floor plan you like for 
+the
+the creature 
+is shape-shifted (as a result of the Poly-
+dwelling, but it can't exceed 50 c
+ontiguous 10-foot
+morph spell, for example), it reverts to its true form
+Cubes. The place is furnish ed a nd decorated as you
+and can't shape-shift until it leaves the Cylinder.
+choose. It contains sufficient fo ot!to serve a nine-
+On a successful save, a creature takes half as much
+course banquet for up to 100 people. Furnishings
+damage only. A creature also makes this save when
+and other objects created by
+ this spell dissipate into
+the spell's area moves into its space and when it
+smoke if removed from it.
+30 0 C H A PTER 7 I SPE LLS
+
+[--- Page 300 ---]
+A staffof100 near-transparentservants attends
+sort of
+When you cast the spell, you decide what
+all who enter. You determine the appearance of
+security the spell provides, choosing anyofthe fol-
+theirattire. They are invulner-
+theseservants and lowing properties:
+able and obeyyourcommands. Each servant can
+• Sound can't pass through the barrier at the edge
+perform tasksthata human could perform, but they
+of the warded area.
+can'tattackortake anyaction that would directly
+• The barrier of the warded area appears dark and
+the servants can fetch
+harmanother creature. Thus 
+foggy,preventing vision (including Darkvision)
+things, clean, mend, fold clothes, light fires, serve
+through it.
+food,pourwine, andso on. The servants can't leave
+• Sensors created by Divination spells can't appear
+the dwelling.
+inside the protected area or pass through the bar-
+When the spell ends, any creatures or objects left
+rier at its perimeter.
+inside the extradimensional space are expelled into
+• Creatures in the area can't be targeted by Divina-
+the unoccupied spaces nearest to the entrance.
+tion spells.
+-<:;:,--• Nothing can teleport into or out of the warded
+area.
+MORDE NKAINEN'SPRIVATE SANCTUM
+is blocked within the warded area.
+• Planar travel 
+Level 4 Abjuration (Wizard)
+Casting this spell on the same spot every day for
+Casting Time: 10 minutes
+365 days makes the spell last until dispelled.
+Range: 120 feet
+Using a Higher-LevelSpeUSlot. You can increase
+Components:V,S, M(athin sheetoflead)
+the size of the Cube by 100 feet for each spell slot
+Duration: 24 hou rs
+level above 4.
+You make an area wi thin range magically secure.
+The area is a ube that can be as small as 5 feet to
+as large as JO O fee t on each side. The spell lasts for
+ration.
+the du
+CHAPTER 7 I SPELLS 301
+
+[--- Page 301 ---]
+NONDETECTION
+MORDENKAINEN'SSWORD
+Level
+Level 7 Evocation (Bard, Wizard) 3 Abjuration (Bard , Ranger,
+Wizard)
+Casting Time: 
+Casting Time: ActionAction
+Range:Touch
+Range:90feet
+Components:V, S,
+M(aminiature sword worthComponents:V,S, M
+(apinchofdiamond dust worth
+25+ GP, which the spell consumes)
+250+ GP)
+Duration: Concentration,Duration:
+upto l minute 8 hours
+Youcreate a spectral sword
+thathovers withinFor the duration, y
+ou hide atargetthatyou touch
+range. It lasts for the duration.from Divination spells.
+Thetarget can
+be a willing
+When 
+thesword appears, you make a melee spellcreature,
+orit can be a place
+or anobject no larger
+attack against a target within 5 feet
+ofthe sword.than10 feet in any dimension.
+The targetcan't
+On a hit, the target takes Force damage equal to
+be targeted by any 
+Divination spellorperceived
+4d12 plus your spellcasting ability modifier.
+through magical
+scrying sensors.
+On yourlater turns, you can take a Bonus Action
+to move 
+the sword up to30feet to a spot you can
+NYSTUL
+see and repeat the attack against the same target or' SMAGICAURA
+a different one.Level 2 Illusion (Wizard)
+Casting Time: Action
+-----------
+:;:::,::=-'-
+-
+Range:Touch
+MOVE EARTH
+Components: V, 
+S, M(asmall squareofsilk)
+Level 6 Transmutation (Druid, Sorcerer, Wizard)
+Duration:
+24hours
+Casting Time:
+ Action
+With a touch, you place
+anillusionona willing
+Range: 120 feet
+creature 
+or an objectthatisn't being
+worn orcar-
+Components:
+V,S, M(aminiature shovel)
+ried. A creature 
+gains the Mask effect below, and an
+Duration: Concentration, up to 2 hours
+object gains the False Aura 
+effect below. The effect
+Choose an 
+areaofterrain no larger than
+40feet onlasts for the duration. If 
+you castthe
+spell on the
+a side within range. You 
+can reshape dirt, sand, or
+same target every day for
+30days,theillusion lasts
+clay in 
+the area in any manner you choose for the
+until dispelled.
+duration. You can raise
+orlower the area's eleva-
+Mask (Creature).
+ Choose acreature type other
+tion, create
+orfill in a trench, erect or flatten a wall,
+than 
+the target's actual type. Spells 
+andothermagi-
+orform a pillar. The extent 
+of any such changes
+cal effectstreat the target 
+asifit were 
+acreature of
+can't exceed half the area's largest dimension. For
+the chosen type.
+example, 
+if you affect a 40-foot square, you can
+FalseAura(Object).
+ You change the way thetarget
+create a pillar up to 20
+feet high, raiseorlower the
+appears to spells and magical effects
+thatdetect
+square's elevation by up 
+to 20feet, dig a trench up
+magical auras, such as
+ Detect Magic . You can make
+to20feet deep, and so on. It takes
+10minutes for
+a nonmagical object appear 
+magical, make a magic
+these changes to complete. Because the terrain's
+item appear nonmagical,
+orchange the object's aura
+transformation occurs slowly, creatures in the area
+so that it appears to belong 
+to a schoolofmagic you
+can't usually be trapped 
+or injured by the ground's
+choose.
+movement.
+At the end of every
+10minutes you spend concen-
+1
+trating on the spell, you can choose a new area OTILUKE
+SFREEZING SPHERE
+of
+terrain to affect within range.Level 6 Evocation (Sorcerer, Wizard)
+This spell can't manipulate natural stone 
+or stone
+Casting Time:
+ Action
+construction. Rocks and structures shift to accom-
+Range: 300 feet
+modate the new terrain. If the way you shape the
+Components:V,S, M(aminiature crystal sphere)
+terrain would make a 
+structure unstable, it might
+Duration: Instantaneous
+collapse.
+A frigid globe streaks from
+ yoi; to a point 
+of
+Similarly, this spell doesn't directly affect plant
+your choice within 
+range, wh1:n
+~;t explodes in a
+growth. The moved earth carries any plants along
+60-foot-radius Sphere. Each
+ cr('.atmein that area
+with it.
+makes a Constitution
+ saving '·hro
+w, taking 10d6
+Cold damage on failed
+ save o:
+l: .:J• as much damage
+on a successful one.
+CHAPTER 7
+ I SPE LLS
+302 
+
+[--- Page 302 ---]
+Ifthe g lc~,c s trikes abodyofwater,it freezes the
+water toa de p t h of 6 inches?veranarea30feet
+OTTO'SIRRESISTIBLEDANCE
+square.This ice lastsfor1mmute.Creatures that
+Level 6 Enchantment (Bard, Wizard)
+wereswimming onthe surfaceoffrozenwaterare
+CastingTime: Action
+trapped intheiceandh av etheRestrainedcondi-
+Range:30feet
+t ion. A trapped creaturecantakeanactiontomake
+Components:V
+a Strength(Athletics)checkagainstyourspell save
+Duration: Concentration, 
+up to l minute
+DCtobreakfree.
+Youcanrefrainfromfiringtheglobeaftercom-
+One creaturethatyou can seewithin rangemust
+pletingth
+e s pell'scasting.Ifyoudo so, a globe about
+make a Wisdom savingthrow. On a successful save,
+th e size of a s
+ling bullet,cooltothet ouch, appears
+the target dances comically untiltheendofitsnext
+in your h and.Atanytime, youoracreatureyou
+turn, during which it must spend all its movement
+give t he globetocanthrowtheglobe (to a rangeof
+to dance in place.
+40feet)orhurlitwitha sling(to the sling's normal
+On a failed save, the target 
+hasthe Charmed con-
+range). It sh attersonimpact, wit h t hesameeffect
+dition for the duration. While 
+Charmed,thetarget
+as anorma lcastingofthe spell. Youcanalsoset the
+dances comically, must use all its movement
+to
+globedownwithout shatteringit.After1 minute, if
+dance in place, and has Disadvantageon Dexterity
+t he globehasn'talready 
+shattered, it explodes.
+saving throws and attack rolls, andother creatures
+Using a Higher-Level Spell Slot.Thedamage in-
+have Advantage on attack rolls against it.Oneach
+creasesbyld6foreach
+spell slotlevel above 6.
+of its turns, the target can take
+anactiontocollect
+itself and repeat the save, ending 
+thespellon itself
+on a success.
+OTILUKE'SRESILIENTSPHERE
+Level 4 A b
+juration (Wizard)
+PASSWALL
+Casting Time: Action
+Level 5 Transmutation (Wizard)
+Range: 30 feet
+Components:V,S , M(aglasssphere)
+Casting Time: Action
+Duration:Concentration, up to l minute
+Range:30feet
+Components:V,S,M(apinchofsesame seeds)
+Ashimmering 
+sphereenclosesa Largeorsmaller
+Duration: l hour
+creatureorobjectwithinrange. An
+unwilling crea-
+tu remust succeed onaDexteritysaving throw or
+A passage appears 
+at a pointthatyoucanseeona
+be enclosed fortheduration.
+wooden, plaster,orstone surface (such as a wall,
+Nothing-notphysical objects, energy,orother
+ceiling,orfloor) within range 
+and lasts forthe dura-
+spelleffects-canpass throughthe barrier, inor out,
+tion. You choose the opening's dimensions: up to
+5
+thoughacreatureinthesphere canbr eathe there.
+feet wide, 8 feet tall, and20feet deep. The passage
+The
+sphereisimmunetoall damage, and a creature
+creates no instability in astructure surroundingit.
+or object insidecan'tbe damaged
+by attacks or ef-When the opening disappears, any
+creaturesor
+fectsoriginating fromoutside,nor
+can a creatureobjects still in the passage created by the spellare
+insidethe sphere damage anythingoutside it.
+safely ejected to an unoccupied space nearest to the
+The sphereisweightless and justlarge enough to
+surface on which you cast the spell.
+conta inthecreature orobjectinside. An enclosed
+creature can take an action to push against the
+sphPASSWITHOUT TRACE
+ere's wallsand thusrollthe sphere atup to half
+the cre Level 2 Abjuration (Druid, Ranger)
+atur e'sSpeed. Similarly, the globe can be
+pickedup
+an dmoved by othercreatures.
+Casting Time: Action
+A Disintegrate
+ spell targeting the globe destroys it
+Range:Self
+w ithout h a r m ing anythinginside.
+Components:V,S, M (ashes from burned mistletoe)
+Duration: Concentration, up to 1 hour
+You radiate a concealing aura in a 30-foot Emana-
+tion for the duration. While in the aura, you and
+each creature you choose have a+10bonus to Dex-
+terity (Stealth) checks and leave no tracks.
+CHAPTER 7 I SPELLS 303
+
+[--- Page 303 ---]
+PHANTASMAL FORCE
+Level 2 Illusion (Bard, Sorcerer, Wizard)
+Casting Time: Action
+Range: 60 feet
+Components: V, S, M (a bit of fleece)
+Duration: Concentration, up to l minute
+You attempt to craft an illusion in the mind of
+a creature you can see within range. The target
+makes an Intelligence saving throw. On a failed
+save, you create a phantasmal object, creature, or
+other phenomenon that is no larger than a 10-foot
+Cube and that is perceivable only to the target for
+the duration. The phantasm includes sound, tem-
+perature, and other stimuli.
+The target can take a Study action to examine the
+phantasm with an Intelligence (Investigation) check
+against your spell save DC. If the check succeeds,
+the target realizes that the phantasm is an illusion,
+and the spell ends.
+While affected by the spell, the target treats the
+p,..,,. NTOM Sn, e:o
+phantasm as if it were real and rationalizes any il-
+logical outcomes from interacting with it. For exam-
+ple, if the target steps through a phantasmal bridge
+PHANTOM STEED
+and survives the fall, it believes the bridge exists
+Level 3 Illusion (Wiz ard)
+and something else caused it to fall.
+An affected target can even take damage from
+Casting Time: l minute or Ritual
+the illusion if the phantasm represents a dangerousRange: 30 feet
+creature or hazard. On each of your turns, such aComponents: V, S
+phantasm can deal 2d8 Psychic damage to the tar-Duration: l hour
+get if it is in the phantasm's area or within 5 feet of
+A Large, quasi-real, horselike creature appears on
+the phantasm. The target perceives the damage as a
+the ground in an unoccupied space of your choice
+type appropriate to the illusion.
+within range. You decide the creature's appearance,
+and it is equipped with a saddle, bit, and bridle. Any
+of the equipment created by the spell vanishes in a
+PHANTASMAL KILLER
+puff of smoke if it is carried more than 10 feet away
+Level 4 Illusion (Bard, Wizard)
+from the steed.
+Casting Time: Action
+For the duration, you or a creature you choose
+Range: 120 feet
+can ride the steed. The steed uses the Riding Horse
+Components: V, S
+stat block (see appendix B), except it has a Speed of
+Duration: Concentration, up to l minute
+100 feet and can travel 13 miles in an hour. When
+the spell ends, the steed gradually fades, giving the
+You tap into the nightmares of a creature you can
+rider 1 minute to dismount. The spell ends early if
+see within range and create an illusion of its deepest
+the steed takes any damage.
+fears, visible only to that creature. The target makes
+a Wisdom saving throw. On a failed save, the target
+takes 4d10 Psychic damage and has Disadvantage
+PLANAR ALLY
+on ability checks and attack rolls for the duration.
+Level 6 Conjuration (Cleric)
+On a successful save, the target takes half as much
+damage, and the spell ends.Casting Time: 10 minutes
+For the duration, the target makes a Wisdom sav-Range: 60 feet
+ing throw at the end of each of its turns. On a failedComponents: V, S
+save, it takes the Psychic damage again. On a suc-Duration: Instantan eous
+cessful save, the spell ends.
+You beseech an otherworldl.' entity for aid. The
+Using a Higher-Level Spell Slot. The damage in-
+being must be known toy ,~1: a god, a demon prince,
+creases by ld10 for each spell slot level above 4.
+or some other being of cosmi r f0~.-,cr. T hat entity
+CHAPTER 7 I SPELLS
+
+[--- Page 304 ---]
+sends a Celestia l, a n Elemental, or a Fiend loyal to
+completion of the casting, the target must succeed
+it to aid yo u. making th e creature appear in an un-
+on a Charisma saving throw or be bound to serve
+occupied space within r a nge. If you know a specific
+you for the duration. If the creature was summoned
+creature's na me, you can speak that name when
+or created by another spell, that spell's duration is
+you cast this spell to request that creature, though
+extended to match the duration of this spell.
+you might get a different creature anyway (DM's
+A bound creature must follow your commands
+choice).
+to the best of its ability. You might command the
+When the creature appears, it is under no com-
+creature to accompany you on an adventure to
+pulsion to behave a particular way. You can ask it
+guard a location, or to deliver a message. If the
+to perform a service in exchange for payment, but
+creature is Hostile, it strives to twist your com-
+it isn't obliged to do so. The requested task could
+mands to achieve its own objectives. If the creature
+range from simple (fly us across the chasm, or help
+carries out your commands completely before the
+us fight a battle) to complex (spy on our enemies, or
+spell ends, it travels to you to report this fact if you
+protect us during our foray into the dungeon). You
+a:e on the same plane of existence. If you are on a
+must be able to communicate w ith the creature to
+d1ffere~t plane, it returns to the place where you
+bargain for its services.
+bound it and remains there until the spell ends.
+Payment can take a variety of forms. A Celestial
+Using a Higher-Level Spell Slot. The duration in-
+might require a sizable donation of gold or magic
+creases with a spell slot of level 6 (10 days), 7 (30
+items to an allied temple, while a Fiend might de-
+days), 8 (180 days), and 9 (366 days).
+mand a living sacrifice or a gift of treasure. Some
+creatures might exchange their service for a quest
+PLANE SHIFT
+undertaken by you.
+A task that can be measured in minutes requires
+Level 7 Conjuration (Cleric, Druid, Sorcerer, Warlock,
+a payment worth 100 GP per minute. A task mea-W izard)
+sured in hours requires 1,000 GP per hour. And
+Casting Time: Action
+a task measured in days (up to 10 days) requires
+Range: Touch
+10,000 GP per day. The OM can adjust these pay-
+Components: V, S, M (a forked, metal rod worth 250+
+ments based on the circumstances under which you
+GP and attuned to a plane of existence)
+cast the spell. If the task is aligned with the crea-
+Duration: Instantaneous
+ture's ethos, the payment might be halved or even
+You and up to eight willing creatures who link
+waived. Nonhazardous tasks typically require only
+hands in a circle are transported to a different plane
+half the suggested payment, while especially dan-
+of existence. You can specify a target destination in
+gerous tasks might require a greater gift. Creatures
+general terms, such as the City of Brass on the Ele-
+rarely accept tasks that seem suicidal.
+mental Plane of Fire or the palace of Dispater on the
+After the creature completes the task, or when the
+second level of the Nine Hells, and you appear in or
+agreed-upon duration of service expires, the crea-
+near that destination, as determined by the DM.
+ture returns to its home plane after reporting back
+Alternatively, if you know the sigil sequence of a
+to you if possible. If you are unable to agree on a
+teleportation circle on another plane of existence,
+price for the creature's service, the creature imme-
+this spell can take you to that circle. If the telepor-
+diately returns to its home plane.
+tation circle is too small to hold all the creatures
+you transported, they appear in the closest unoccu-
+pied spaces next to the circle.
+PLANAR BINDING
+Level 5 Abjuration (Bard, Cleric, Druid, Warlock,
+v-------------·-
+Wizard)
+PLANT GROWTH
+Casting Time: 1 hour
+Level .3 Transmutation (Bard, Druid, Ranger)
+Range: 60 feet
+Casting Time: Action (Overgrowth) or
+Components: V, S, M (a jewel worth 1,000+ GP, which
+8 hours (Enrichment)
+the spell con s umes)
+Range: 150 feet
+Duration: 24 hou rs
+Components: V, S
+You attempt to bind a Celestial, an Elemental, a
+Duration: Instantaneous
+Fey, or a Fiend to your service. The creature must
+This spell channels vitality into plants. The casting
+be within range for the entire casting of the spell.
+time you use determines whether the spell has the
+(Typically, the creature is first summoned into
+Overgrowth or the Enrichment effect below.
+the center of the inverted version of the Magic
+Overgrowth. Choose a point within range. All
+Circle spell to ·ap it while this spell is cast.) At the
+normal plants in a 100-foot-radius Sphere centered
+7 I SPELLS 305
+
+[--- Page 305 ---]
+onthat
+point become thick and overgrown. A crea-
+POWER WORDFORTIFY
+turemoving throughthat
+area must spend 4 feetof
+Level 7 Enchantment 
+movement for every 1 foot it moves.(Bard , C/e1·ic)
+Youcan exclude
+oneormore areas
+ofany size within the spell's area
+Casting Time:
+ Action
+from being affected.
+Range:60feet
+Enrichment. All plants in a half-mile radius cen-
+Component: V
+tered on a point within range become enriched for
+Duration: Instantaneous
+365 days. The plants yield twice the normal 
+amount
+You fortify up to sixcreatures
+you canseewithin
+offood when harvested. They can benefit from only
+range. The spell 
+bestows120TemporaryHitPoints,
+one Plant Growth
+ per year.
+which you divideamong 
+thespell's recipients.
+POISON
+SPRAY
+POWERWORD
+HEAL
+Necromancy Cantrip (Druid, Sorcerer, Warlock,
+Level 9 Enchantment(Bar·d,Cleric)
+Wizard)
+Casting Time: Action
+Casting Time: Action
+Range:
+ 60 feet
+Range: 30 feet
+Component: V
+Components:V,S
+Duration: Instantaneous
+Duration: Instantaneous
+You spray toxic mist at a A waveofhealing
+creature within range.energy washes over onecreature
+Make a ranged spell attack against the target. On ayou can seewithinrange.The target
+regainsall its
+hit, the target takes ld12 Poison damage.Hit Points.Ifthecreature
+has the Charmed,Fright-
+Cantrip Upgrade. ened, Paralyzed, Poisoned,
+The damage increases by ld12or Stunnedcondition,
+when you reach levels 5 (2d12),
+11(3d12), and17the condition ends.Ifthe
+creaturehasthe Prone
+(4dl2).condition, it 
+can use its Reactiontostandup.
+-
+POLYMORPH
+POWER 
+WORDKILL
+Level 4 Transmutation (Bard, Druid, Sorcerer, Wizard)
+Level 9 Enchantment (Bard, Sorcerer, Warlock, Wizard)
+Casting Time: Action
+Casting Time: Action
+Range:
+ 60 feet
+Range: 60 feet
+Components:V,S,M(acaterpillar cocoon)
+Component:
+ V
+Duration:
+ Concentration, up to l hour
+Duration: Instantaneous
+You attempt to transform a creature 
+that you canYou compel one
+creatureyoucanseewithin
+range
+see within range into a Beast. The target must suc-
+to die. If the target 
+has100Hit Pointsorfewer, it
+ceed on a Wisdom saving
+throw orshape-shift into
+dies. Otherwise, it takes 12d12 Psychic 
+damage.
+a Beast form for the duration. That form can be any
+Beast you choose that has a Challenge Rating equal
+to or less than 
+the target's (or the target's level ifPOWER WORDSTUN
+it doesn't have a Challenge Rating). The target's
+Level 8 Enchantment (Bard, Sorcerer, Warlock, Wizard)
+game statistics are replaced by 
+the stat block of the
+Casting Time: Action
+chosen Beast, but the target retains its alignment,
+Range: 60 feet
+personality, creature type, Hit Points, and Hit Point
+Components:
+ V
+Dice. See appendix B for a sample 
+of Beast stat
+Duration: Instantaneous
+blocks.
+You overwhelm the mind
+The target gains a number of Temporary Hitof onecreature you can
+see within range. If 
+Points equal to the Hit Points of the Beast form . Thethe targe t has 150 Hit Pointsor
+fewer, it has the Stunned 
+spell ends early on condition. Otherwise, its
+the target if it has no Temporary
+Speed is O
+Hit Points left. until the start of your next turn.
+The Stunned target 
+makes a Constitution saving
+The target is limited in the actions it can perform
+throw 
+at the end of each of its t uriis, ending the
+by the anatomy of its new form, and it can't speak
+condition on itself on a succes
+s.
+or cast spells.
+The target's gear melds into the new form. The
+creature can't use or otherwise benefit from any of
+that equipment.
+306 CHAPTER 7 
+I SPELLS
+
+[--- Page 306 ---]
+PRAYER or-HEALIN G
+Level 2 Abjuration (Cleric, Paladin)
+CastingTime: 10minutes
+Range: 30 feet
+components:V
+Duration:In st antaneous
+of yourchoice who remain
+Upto five cr eatures 
+spell'sentire casting gain the
+within range forthe
+benefits of aShortRestand also regain 2d8 Hit
+by this spell
+Points. A creaturecan'tbe affected 
+againuntilthatcreature fin ishes a Long Rest.
+Using a Higher-Level Spell Slot. The healing in-
+eachspell slot level above 2.
+creasesby ld8fo r
+PRESTIDIGITATION
+Transmuta tionCantrip (Bard, Sorcerer, Warlock,
+Wizard)
+Casting Time:Acti on
+A O WIIRFH/10/I NUNFORTUNIIT EENCOUNTER
+Range: l Ofeet
+WITHTHEINDIGORIIVOFPRISM/ITIC5PRIIY.
+Components: V, S
+Up tolhour
+Duration :
+RAYS
+PRISMATIC
+withinrange. Choose
+Youcreatea magical effect
+ld8Ray
+theopt ions below. If you cast this
+the effectfrom 
+FailedSave:12d6Firedamage. Successful
+Red.
+spell multiple times,you canhave up to three of its
+Save:Halfas muchdamage.
+at a time.
+non-instantaneouseffects active 
+ Youcreateaninstantaneous,
+Sensory Effect.Suc-
+2 Orange.Failed Save:12d6Acid damage.
+ks,
+harmlesssensoryeffect,suchas a shower of spar
+as muchdamage.
+cessful Save:Half
+oran odd odor.
+a puffofwind, faint musical notes,
+Lightningdamage.
+3Yellow.FailedSave:12d6 
+lightorsnuff out a
+Fire Play. Youinstantaneously
+: Half as muchdamage.
+Successful Save
+ora small campfire.
+candle, atorch,
+Save:12d6Poison damage.Suc-
+4 Green.Failed
+Clean or Soil. You instantaneously clean or soil an
+Save:Halfas much damage.
+cessful
+object nolargerthan1 cubic foot.
+,orflavor up to 1
+Minor Sensation. You chill,warm
+Colddamage.Success-
+5Blue.FailedSave:12d6 
+ 1 hour.
+cubic footofnonliving material for
+Save:Half as muchdamage.
+ful
+make a color, a small mark, or a
+Magic Mark. You 
+target has theRe-
+6 Indigo.FailedSave:The
+ora surface for 1 hour.
+symbolappear on anobject
+strained condition and makes a Constitution
+a nonmagical trinket
+Minor Creation. You create 
+of its turns.If
+saving throw at the end of each 
+can fit in your hand. It
+or an illusory imagethat
+itsuccessfully saves three times, the condition
+A trinket can
+lasts until the endof yournext turn. 
+ends.If itfailsthree times,ithas the Petrified
+worth.
+deal no dam ageand has no monetary 
+the
+conditionuntil itisfreedbyan effectlike
+ spell. The successes and
+Greater Restoration
+PRISMATICSPRAY
+beconsecutive; keep track of
+failures needn't
+Level 7 Evocation (Bard, Sorcerer, Wizard)
+kind.
+both untilthe target collects three of a 
+Casting Time: Action
+7Violet. FailedSa11e:The target has the Blinded
+Range: Self
+condition and makes a Wisdom saving throw
+ V, S
+Components:
+the start of your next turn. On a successful
+at 
+Duration: Instanta neous
+save, the condition ends. On a failed save, the
+Eight rays of light flash from you in a 60-foot Cone.condition ends, and the creature teleports to
+LJr e in the Cone makes a Dexterity saving
+Each creatanother plane of existence (DM's choice).
+throw. For -:a •:·h target, roll ld8 to determine which
+8 Special. The target is struck by two rays. Roll
+ affects it, consulting the Prismatic Rays
+color ray
+any 8.
+twice, rerolling 
+table.
+CHAPTER 7 I SPELLS 30 '7
+
+[--- Page 307 ---]
+PRISMATIC LAYERS
+Order Effects
+PR I SMATIC WAL L
+Red. Failed Save: 12d6 Fire dam age. Success-
+Level 9 Abjuration (Bard, Wizard)
+ful Save: Half as much damage. Additional
+Casting Time: Action
+Effects : Nonmagical ranged attacks can't
+Range: 60 feet
+pass through this layer, which is destroyed if
+Components: V, S
+it takes at least 25 Cold damage .
+Duration: 10 minutes
+2 Orange. Failed Sav e: 12d6 Acid damage .
+A shimmering, multicolored plane of light forms
+Successful Save: Half as much damage. Ad-
+a vertical opaque wall-up to 90 feet long, 30 feet
+high, and 1 inch thick-centered on a point w ithinditional Effects: Magical ranged attacks can 't
+range. Alternatively, you shape the wall into a globe
+pass through th is layer, wh ich is destroyed
+up to 30 feet in diameter centered on a point with in
+by a strong wind (such as the one created by
+range. The wall lasts for the duration. If you posi-
+Gust of Wind) .
+tion the wall in a space occupied by a creature, the
+3 Yellow. Failed Save: 12d6 Lightning damage.
+spell ends instantly without effect.
+Successful Save: Half as much damage. Addi-
+The wall sheds Bright Light within 100 feet and
+tional Effects: The layer is destroyed if it takes
+Dim Light for an additional 100 feet. You and crea-
+at least 60 Force damage.
+tur es you designate when you cast the spell can
+pass through and be near the wall without harm. If
+4 Green. Failed Save: 12d6 Poison damage .
+another creature that can see the wall moves within
+Su ccessful Save: Half as m uch damage . Ad-
+20 feet of it or starts its turn there, the creature
+ditional Effects: A Passwa/1 spell , or another
+must succeed on a Constitution saving throw or
+spell of equal or greater level that can open a
+have the Blinded condition fo r 1 minute.
+portal o n a solid surface, des t roys this layer.
+The wall consists of seven layers, each with a
+5 Blue. Failed Save: 12d6 Cold damage. Suc-
+different color. When a creature reaches into or
+cessful Save: Half as much damage . Addi-
+passes through the waJl, it does so one layer at a
+time through all the layers. Each layer forces t hetional Effect s: The layer is destroyed if it takes
+creature to make a Dexterity saving t hrow or be af-
+at least 25 Fire damage.
+fected by that layer's proper ties as described in the
+6 Indigo. Failed Save: The target has t he Re-
+Prismatic Layers table.
+strained condition a nd m akes a Constitu -
+The wall, which has AC 10, can be destroyed one
+tion saving throw at the end of each of its
+layer at a time, in order from red to violet, by means
+turns . If it success fu lly saves three ti mes ,
+specific to each layer. If a layer is destroyed, it is
+the condi ti on ends . If it fa ils t hree times , it
+gone for the duration. Antimagic Field has no effect
+has t he Petrified cond ition until it is freed by
+on t he wall, and Dispel Magic can affect only the vio-
+an effect like th e Greater Rest oration spe ll.
+let layer.
+The successes and fa ilures needn 't be con-
+secutive; keep trac k of bot h until t he target
+PRODUCE FLAME
+collects t hree of a kin d . Additional Effects:
+Conjuration Cantrip (Druid)
+Spe ll s can 't be cast th rough this layer, which
+Casting Time: Bonus Action
+is dest royed by Bright Lig ht shed by the Day-
+Range: Self
+light s pe ll.
+Components: V, S
+7 Violet. Failed Save: The t a rget has the
+Duration: 10 minutes
+Bli nded co nditio n and makes a Wisdom sav-
+A flickering flame appears in your hand and remains
+in g throw at the start of your next turn. On
+there for the duration. While there, the flame emits
+a successful save, the co nd itio n ends. On a
+no heat and ignites nothing, and it sheds Bright
+failed save, th e cond ition ends, a nd t he crea-
+Light in a 2O-foot radius and Dim Light for an addi-
+ture telepo rts to another plane of existence
+tional 20 feet. The spell ends if you cast it again.
+(DM's choice) . Additinnol Effects: This layer
+Until the spell ends, you can take a Magic action
+is destroyed by Disp el tv1ae,ic.
+to hurl fire at a creature or an object within 60 feet
+of you. Make a ranged spell attack. On a hit, the tar-
+get takes 1d8 Fire damage.
+Cantrip Upgrade. The damage increases by ld8
+when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).
+308 CHAPTER 7 I SPELLS
+
+[--- Page 308 ---]
+PROJECT IMAGE
+A S f' E LL C. /\S T E R C. O ULO U SE
+Level 7 Illusion (Bard, Wizard)
+PRO GRAMM ED J L tUSIO N TO C/\USE /\
+w/\TC.H 0O G T O A P PE/\ R /\NO K INDLY
+Casting Time: Action
+/IS K I N TR U D E R S TO LE/\ VE .
+Range: 500 miles
+Components: V, S, M (a statuette of yourself worth
+5+ GP)
+Duration: Concentration, up to l day
+You create an illusory copy of yourself that lasts for
+the duration. The copy can appear at any location
+within range that you have seen before, regardless
+of intervening obstacles. The illusion looks and
+sounds like you, but it is intangible. If the illusion
+takes any damage, it disappears, and the spell ends.
+You can see through the illusion's eyes and hear
+through its ears as if you were in its space. As a
+Magic action, you can move it up to 60 feet and
+make it gesture, speak, and behave in whatever way
+you choose. It mimics your mannerisms perfectly.
+Physical interaction with the image reveals it to be
+._,.. __ _
+--
+illusory, since things can pass through it. A creature
+that takes the Study action to examine the image
+PROGRAM MED I L LUSION
+can determine that it is an illusion with a successful
+Level 6 Jllusion (Bard, Wizard)
+Intelligence (Investigation) check against your spell
+Casting Time: Action
+save DC. If a creature discerns the illusion for what
+Range: 120 feet
+it is, the creature can see through the image, and
+Components: V, S, M (jade dust worth 25+ GP)
+any noise it makes sounds hollow to the creature.
+Duration: Until dispelled
+You create an illusion of an object, a creature, or
+PROTECTION FROM ENERGY
+some other visible phenomenon within range that
+Level 3 Abjuration (Cleric, Druid, Ranger, Sorcerer,
+activates when a specific trigger occurs. The illusion
+Wizard)
+is imperceptible until then. It must be no larger than
+a 30-foot Cube, and you decide when you cast theCasting Time: Action
+spell how the illusion behaves and what sounds itRange:Touch
+makes. This scripted performance can last up to 5Components: V, S
+Duration: Concentration, up to 1 hour
+minutes.
+When the trigger you specify occurs, the illusion
+For the duration, the willing creature you touch has
+springs into existence and performs in the manner
+Resistance to one damage type of your choice: Acid,
+you described. Once the illusion finishes perform-
+Cold, Fire, Lightning, or Thunder.
+ing, it disappears and remains dormant for 10 min-
+utes, after which the illusion can be activated again.
+The trigger can be as general or as detailed as you
+PROTECTION FROM EVIL A ND Goon
+like, though it must be based on visual or audible
+Level 1Abjuration (Cleric, Druid, Paladin, Warlock,
+phenomena that occur within 30 feet of the area.
+Wizard)
+For example, you could create an illusion of yourself
+Casting Time: Action
+to appear and wa rn off others who attempt to open
+Range:Touch
+a trapped doo r.
+Components: V, S, M (a flask of Holy Water worth 25+
+Physical interaction with the image reveals it to be
+GP, which the spell consumes)
+illusory, since things can pass through it. A creature
+Duration: Concentration up to 10 minutes
+that takes the Study action to examine the image
+can determine tha t it is an illusion with a successful
+Until the spell ends, one willing creature you touch
+Intelligence (Investigation) check against your spell
+is protected against creatures that are Aberrations,
+save DC. If a creat ure discerns the illusion for what
+Celestials, Elementals, Fey, Fiends, or Undead.
+,.
+it is, the creature can see through the image, and
+The protection grants several benefits. Creatures
+e
+any noise it: ma kes sounds hollow to the creature.
+of those types have Disadvantage on attack rolls
+..:
+CHAPTER 7 I SPELLS 309
+
+[--- Page 309 ---]
+against the target. The target also can't be pos-
+sessed by or gain the Charmed or Frightened condi-
+RAISE DEAD
+tions from them. If the target is already possessed,
+Level 5 Necromancy (Bard, Cleric, Paladin)
+Charmed, or Frightened by such a creature, the tar-
+Casting Time: l hour
+get has Advantage on any new saving throw against
+Range:Touch
+the relevant effect.
+Components: V, S, M (a diamond worth 500+ GP,
+. - ---------------:;;.=--
+which the spell consumes)
+Duration: Instantaneous
+PROTECTION FROM POISON
+Level 2 Abjuration (Cleric, Druid, Paladin, Ranger)
+With a touch, you revive a dead creature if it has
+been dead no longer than 10 days and it wasn't Un-
+Casting Time: Action
+dead when it died.
+Range:Touch
+The creature returns to life with 1 Hit Point. This
+Components: V, S
+spell also neutralizes any poisons that affected the
+Duration: l hour
+creature at the time of death.
+You touch a creature and end the Poisoned condi-
+This spell closes all mortal wounds, but it doesn't
+tion on it. For the duration, the target has Advan-
+restore missing body parts. If the creature is lacking
+tage on saving throws to avoid or end the Poisoned
+body parts or organs integral for its survival-its
+condition, and it has Resistance to Poison damage.
+head, for instance-the spell automatically fails.
+Coming back from the dead is an ordeal. The tar-
+get takes a - 4 penalty to D20 Tests. Every time the
+PURIFY FOOD AND D RINK
+target finishes a Long Res t, the penalty is reduced
+Level 1Transmutation (Cleric, Druid, Paladin)
+by 1 until it becomes 0.
+Casting Time: Action or Ritual
+Range: 10 feet
+Components: V, S
+Duration: Instantaneous
+You remove poison and rot from nonmagical food
+and drink in a 5-foot-radius Sphere centered on a
+point within range.
+110 CHAPTER 7 I SPELLS
+
+[--- Page 310 ---]
+:;.--
+RARY'S T l:: L E PATH IC B?ND
+RAY OF SICKNESS
+Level 5 Divinatio n (Bard, Wizard)
+Level 1 Necromancy (Sorcerer, Wizard)
+Casting Time: Action or Ritual
+Casting Time: Action
+Range: 30 feet
+Range: 60 feet
+Components: V, S , M (two eggs)
+Components: V, S
+Duration: l hour
+Duration: Instantaneous
+You forge a telepathic link among up to eight willing
+You shoot a greenish ray at a creature within range.
+creatures of your choice wit hin range, psychically
+Make a ranged spell attack against the target. On a
+linking each creature to all the others for the dura-
+hit, the target takes 2d8 Poison damage and has the
+tion. Creatures that can't communicate in any lan-
+Poisoned condition until the end of your next turn.
+uages aren't affected by this spell.
+Using a Higher-Level Spell Slot. The damage in-
+g Until the spell ends, the targets can communicate
+creases by ld8 for each spell slot level above 1.
+telepathically through the bond whether or not they
+share a language. The communication is possible
+over any distance, though it can't extend to otherREGENERATE
+planes of existence.
+Level 7 Transmutation (Bard, Cleric, Druid)
+Casting Time: l minute
+r-:-· --·
+Range:Touch
+R AY OF ENFEEBLEMENT
+Components: V, S, M (a prayer wheel)
+Level 2 Necromancy (Warlock, Wizard)
+Duration: l hour
+casting Time: Action
+A creature you touch regains 4d8 + 15 Hit Points.
+Range: 60 feet
+For the duration, the target regains 1 Hit Point at
+Components: V, S
+the start of each of its turns, and any severed body
+Duration: Concentration, up to l minute
+parts regrow after 2 minutes.
+A beam of enervating energy shoots from you
+toward a creature within range. The target must
+REINCARNATE
+make a Constitution saving throw. On a successful
+save, the target has Disadvantage on the next attackLevel 5 Necromancy (Druid)
+roll it makes until the start of your next turn.
+Casting Time: l hour
+On a failed save, the target has Disadvantage on
+Range:Touch
+Strength-based D20 Tests for the duration. During
+Components: V, S, M (rare oils worth 1,000+ GP,
+that time, it also subtracts ld8 from all its damage
+which the spell consumes)
+rolls. The target repeats the save at the end of each
+Duration: Instantaneous
+of its turns, ending the spell on a success.
+You touch a dead Humanoid or a piece of one. If
+the creature has been dead no longer than 10 days,
+the spell forms a new body for it and calls the soul
+RAY O F FROST
+to enter that body. Roll ldlO and consult the table
+Evocation Cantrip (Sorcerer, Wizard)
+below to determine the body's species, or the OM
+Casting Time: Action
+chooses another playable species.
+Range: 60 feet
+Components: V, S
+ldlO ldlO Species
+Species 
+Duration: In stantaneous
+l Aasimar 6 Goliath
+A frigid beam of blue-white light streaks toward a
+Dragonborn 7 Halfling
+2 
+creature with in ra nge. Make a ranged spell attack
+3 Dwarf 8 Human
+against the target. On a hit, it takes ld8 Cold dam-
+Ore
+4 Elf 9 
+age, and its Speed is reduced by 10 feet until the
+start of your next tu r n.
+5 Gnome 10 Tiefling
+Cantrip Upgrade. The damage increases by ld8
+The reincarnated creature makes any choices that
+when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).
+a species' description offers, and the creature recalls
+its former life. It retains the capabilities it had in its
+original form, except it loses the traits of its previ-
+ous species and gains the traits of its new one.
+CHAPTER 7 I SPELLS 311
+
+[--- Page 311 ---]
+REVERSE GRAVITY
+REMOVECURSE
+Level 7 Transmuta tion (Druid, S01-cerer,Wizard)
+Level 3 Abjuration (Cleric, Paladin, Warlock, Wizard)
+Casting Time:
+Action
+Casting Time: Action
+Range: 100 feet
+Range:Touch
+Components: V, S, M(alodes tone and ironfilings)
+Components:V,S
+Duration: Concentration , up to l minute
+Duration: Instantaneous
+This spell reversesgravityin a SO-foot-radius, 100-
+At your touch, all curses affecting one creature
+foot high Cylinder centered on apointw ithin range.
+orobject end. If the object
+isa cursed magic item,
+All creatures and objects in
+that areathataren't
+its curse remains, but the spell breaks its owner's
+anchored to thegroundfallupward andreach the
+Attunement to the object so it can be removedor
+topofthe Cylinder. Acreature 
+canmake a Dexter-
+discarded.
+ity savingthrowto grab a fixed object itcanreach,
+thus avoiding the fallupward.
+RESISTANCEIf a ceiling
+or an anchored object isencountered
+Abjuration Cantrip (Cleric, Druid)in this upward fall,creatures andobjects strike it
+justas they would during adownwardfall.If anaf-
+Casting Time: Action
+fected creatureorobject reachestheCylinder
+'s top
+Range:Touch
+without striking anything, it hoverstherefor the
+Component: V, S
+duration.Whenthe spell ends, affected objects and
+Duration:
+ Concentration, up to 1 minute
+creatures fall downward.
+Youtouch a willing creature and choose a damage
+type: Acid, Bludgeoning, Cold, Fire, Lightning,
+Ne-
+crotic, Piercing, Poison, Radiant, Slashing, or Thun-
+REVIVIFY
+der.When the creature takes damage of the chosen
+Level 3 Necromancy(Cleric, Druid, Paladin , Ranger)
+type before the spell ends, the creature reduces the
+Casting Time: Action
+total damage taken by ld4. A creature can benefit
+Range:Touch
+from this spell only once per turn.
+Components:V,S,M(adiamond worth 300+GP,
+which the spell consumes)
+Duration: Instantaneous
+RESURRECTION
+Level 7 Necromancy(Bard, Cleric)
+You touch a creaturethathas diedwithin thelast
+minute. That creature reviveswith1 Hit Point. This
+Casting Time: 1 hour
+spell can't revive a creaturethathas diedofold age,
+Range:Touch
+nor does it restore any missing bodyparts.
+Components:V,S, M(adiamond worth 1,000+GP,
+which the spell consumes)
+Duration:
+ Instantaneous
+ROPETRICK
+With a touch, you revive a dead creature that has
+Level 2 Transmutation (Wizard)
+been dead for no more than a century, didn't die of
+Casting Time: Action
+old age, and wasn't Undead when it died.
+Range:Touch
+The creature returns to life with all its Hit Points.
+Components: V, S, M(asegment of rope)
+This spell also neutralizes any poisons that affected
+Duration: l hour
+the creature at the time 
+of death. This spell closes
+all mortal wounds and restores any missing body
+You touch a rope. One endofit hovers upward until
+parts.
+the rope hangs perpendicular to the ground orthe
+Coming back from the dead is an ordeal. The tar-rope reaches a ceiling. At 
+the rope's upper end, an
+get takes a -4 penalty to
+ D20 Tests. Every time theInvisible 3-foot-by-5-foot portal opens to an extra-
+target finishes a Long Rest, the penalty is reduced
+dimensional space that lasts unt il t he spell ends.
+by 1 until it becomes 0.That space can be reached by climbing the rope,
+Casting this spell to revive a creature which can be pulled into or dropped 
+that hasout of it.
+been dead for 365 days or longer taxes you. UntilThe space can hold up to eight Medium or smaller
+you finish a Long Rest, you can't cast spells again,creatures. Attacks, spells, and1)th{'r effects can't
+pass into or out 
+and you have Disadvantage on D20 Tests.of the space, but c1·e2tures inside
+it can see through the po
+rtal. An ytn ing inside the
+space drops out when the!>1Y' ll (»-,:l.;.
+
+[--- Page 312 ---]
+SACREDFLAME
+SCORCHING RAY
+Evocation Cantrip (Cleric)
+Level2Evocation(Sorcerer,Wizard)
+Casting Time: ActionTime: Action
+Casting
+Range:60 feetRange: 120feet
+V,S
+Components:Components:V,S
+Instantaneous
+Duration:Duration: Instantaneous
+Flame-likeradiance descends onacreature that you
+Youhurl three fiery rays.Youcan hurl them at one
+can seewithin range. The target must succeed on
+target within range or at several. Make a ranged
+saving throw ortake ld8Radiant dam-
+a Dexterityspell attack for each ray. On a hit, the target takes
+Half Cover or
+age. Thetarget gains no benefit from 2d6 Fire damage.
+save.
+Three-Quarters Cover for this Usinga Higher-Level Spell Slot. You create one ad-
+Cantrip Upgrade.The damage increases by ld8ditional ray for each spell slot level above 2.
+when youreachlevels 5 (2d8),11(3d8), and17(4d8).
+SCRYING
+SANCTUARYLevel5 Divination(Bard, Cleric,Druid, Warlock,
+Wizard)
+Level 1Abjuration (Cleric)
+Casting Time: Bonus ActionCasting Time:10minutes
+Range:Self
+Range:30 feet
+V,S,M(afocus worth 1,000+GP,such
+Components:V,S, M(ashard of glass from a mirror)Components:
+as a crystal ball, mirror, or water-filled font)
+Duration: 1 min ute
+Duration: Concentration, up to 10 minutes
+Youward acreatu re within range. Until the spell
+t:-1re who targets the warded creatureYou can see and hear a creature you choose that is
+ends, any crea
+with an attack ro llor a damaging spell must succeedon the same plane of existence as you. The target
+either choose a newmakes a Wisdom saving throw, which is modified
+on a Wisdom s, ,ring throw or 
+ ttack or spell. This spell doesn't(see the tables below) by how well you know the
+target or lose t,1..
+target and the sort of physical connection you have
+protect the w ~ ·d d creature from areas of effect.
+The spell ends :{ !·he warded creature makes an at-
+tack roll, cast s :1 spell, or deals damage.
+CHAPTER 7 I SPE LLS
+
+[--- Page 313 ---]
+to it. The target doesn't know what it
+ismaking the
+save against, onlythatit feels uneasy.SEEMING
+Level 5 Illusion (Bard, So,·cerer,
+Wizard)
+SaveModifier
+YourKnowledge
+ofthe TargetIs...
+Casting Time:
+ Action
+Secondhand (heard+5
+ofthe target)
+Range: 30 feet
+Firsthand (met the target)
++0
+Components:V,S
+Duration: 8 hours
+Extensive (know the targetwell)
+-5
+You give an illusoryappearance 
+to eachcreatureof
+You
+Have the Target's ...Save
+Modifier
+yourchoicethat
+youcanseewithinrange. An un-
+Picture or other likeness
+-2
+willing
+target can make aCharisma saving
+throw,
+Garment or other possessionand if it succeeds, it is unaffected
+by thisspell.
+-4
+You can givethe 
+sameappearanceordifferent
+Bodypart,lockof
+hair, or bit ofnail-10
+ones to thetargets.Thespellcanchange 
+theap-
+On a successful save, the target isn't affected, and
+pearance
+ofthe targets' bodiesandequipment. 
+You
+you can't use this spell on it again for
+ 24 hours.can make eachcreatureseem 1 foot
+shorterortaller
+On a failed save, the spell creates an Invisible,
+and appear heavier
+orlighter. Atarget's newap-
+intangible sensor within 10 feetof the 
+target.Youpearance must have 
+the same basicarrangement of
+can see and hear through 
+the sensor as if you werelimbs as the target,
+but the extentofthe
+illusion is
+there. The sensor moves with the target, remaining
+otherwise up 
+to you.Thespell lasts fortheduration.
+within 10
+ feetofit for the duration. If something
+The changeswrought
+by this spell fail to hold up
+can see the sensor, it appears as a luminous orb
+to physical inspection. For example,
+ifyou use this
+about the sizeof your
+fist.spell to add a
+hatto acreature'soutfit, objects pass
+Insteadoftargeting a creature, you can 
+target athrough
+the hat.
+location you have seen.
+Whenyou do so, the sensor
+Acreaturethattakes
+the Study action toexamine
+appears atthat
+location and doesn't move.
+a target can make an Intelligence (Investigation)
+check against
+yourspell save DC.Ifit succeeds, it
+becomes 
+awarethat the targetis disguised.
+SEARING
+SMITE
+Level1 Evocation (Paladin)
+SENDING
+Casting Time:
+ Bonus Action , whichyoutake immedi-
+Level 3 Divination
+ (Bard, Cleric, Wizard)
+ately after hitting a target with a Melee weapon or
+an Unarmed Strike
+Casting Time: Action
+Range: Self
+Range:Unlimited
+Component: V
+Components:V,S,M(acopper wire)
+Duration: l minute
+Duration: Instantaneous
+As you hit the target, it takes an extra ld6 Fire dam-
+You send ashortmessage
+of25 wordsorfewer to
+age from the attack. At the
+start of eachofitsturns
+a creature you have 
+met or acreaturedescribed to
+until the spell ends, the target takes ld6 Fire dam-
+you by someone 
+who has met it. The target hears
+age and then makes a Constitution saving throw.
+the message in its mind, recognizes 
+you 
+asthe
+On a failed save, the spell continues. On a successful
+sender if it knows you, and can 
+answer in a like
+save, the spell ends.
+manner immediately. 
+The spell enables targets to
+Usinga Higher-Level Spell Slot.
+ All the damage in-
+understand the meaning of yourmessage.
+creases by ld6 for each spell slot level above
+1.You can send the message across 
+any distance and
+even to other 
+planes of existence,but if the target
+is on a different plane than you, there 
+is a 5 percent
+SEE I NVI SIBILITY
+chance that the message doesn't
+arrive. You know if
+Level 2 Divination (Bard, Sorcerer, Wizard)
+the delivery fails.
+Upon receiving 
+your message, a creature can
+Casting Time:
+ Action
+block your ability to reach it agai n
+ w ith this spell
+Range: 
+Self
+for 8 hours. If you t 
+ry to send 3nr,~her message
+Components:
+V,S, M(apinch of talc)
+during that time, you learn th.at
+•rou are blocked,
+Duration: l hour
+and the spell fails.
+For the duration, you see creatures and objects that
+have the Invisible condition as if they were visible,
+and you can see into the Ethereal Plane. Creatures
+and objects there appear ghostly.
+
+[--- Page 314 ---]
+SEQUESTER
+SHAPECHANGE
+Level 7 Transmutation (Wizard)
+Level 9Transmutation(Druid,Wizard)
+Casting Time: Action
+CastingTime:Action
+Range:Touch
+Range:Self
+Components: V, S, M (gem dust worth 5,000+GP,
+Components:V,S,M(ajade circlet worth 1,500+GP)
+which the spell consumes)
+Duration: Concentration,
+upto l hour
+Duration: Until dispelled
+Youshape-shift into another creature for the dura-
+With a touch,youmagically sequester an object or a
+tion or until you take a Magic action to shape-shift
+willingcreature. For theduration, the target has the
+into a different eligible form. The new form must be
+Invisible condition and can't be targeted 
+by Divina-of a creature that has a Challenge Rating no higher
+tion spells,
+detected by magic,orviewed remotelythan your level or Challenge Rating. 
+You must have
+with magic.seen the sort of creature before, and it can't
+ be a
+If thetargetis acreature, it enters a state of sus-
+Construct or an Undead.
+pendedanimation; it has theUnconscious condition,
+When you shape-shift, you gain a number of
+doesn't age,
+and doesn't need food, water, or air.Temporary Hit Points equal to the Hit Points of the
+You can set a condition for the spell to end early.form. The spell ends early if you have no Temporary
+The condition can 
+be anythingyou choose, but itHit Points left.
+must occurorbe visible within 1 mile of the target.Your game statistics are replaced by the stat block
+Examples include "after 1,000 years" 
+or "when theof the chosen form, but you retain your creature
+tarrasque awa kens."This spell also ends if the tar-type; alignment; personality; Intelligence, Wisdom,
+get takes any damagand Charisma scores; Hit Points; Hit Point Dice;
+e.
+proficiencies; and ability to communicate. If you
+have the Spellcasting feature, you retain it too.
+Upon shape-shifting, you determine whether your
+equipment drops to the ground or changes in size
+and shape to fit the new form while you're in it.
+OHAPTBll
+ 7 I SPELLS
+

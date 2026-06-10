@@ -1,0 +1,422 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 2 ---]
+1 '
+o.J_I,E1rrs
+C
+WelcometoAdventure..............................4Glamour..................................65....................176
+CollegeofCh. 4:Character Origins..
+WhatYou Need ................................................4 CollegeofLore..........................................66Origin Components...................................177
+Book...............................................5 ......................67
+Using T hi s CollegeofValor...................BackgroundDescriptions.......................177
+WorldsofAdventure ..................................... 5 Cleric.................................................................68Acolyte........................................................ 178
+Cleric Spell List... ......................................71Artisan........................................................ 178
+1:PlayingtheGame................. ............ 6
+Ch.
+Life Doma in ................................................73Charlatan...................................................179
+Playe r or DM ?................................................... 7
+LightDomain.............................................74Criminal.....................................................179
+..........................................8
+RhythmofPlay......
+................75
+TrickeryDomain......................Entertainer................................................180
+AnOngoing Ga m e..........................................8
+Domain...............................................76................................180
+Wa rFarmer.........................
+Dice ....................................................................... 9
+Druid .................................................................78 Guard........................................................... 181
+10
+T he Si x Abilities ............................................
+181
+DruidSpellList.........................................82Guide ............................................................ 
+................................................. 10
+D20Tes ts........
+..........................84......................................182
+Ci r cleoftheLand...........Hermit...................
+Ability Ch ecks........................................... 10
+Circleofthe Moon...................................86Merchant................................................... 182
+SavingThrows...........................................11
+CircleoftheSea ........................................87Noble ............................................................183
+....... 12
+At tackRolls.........................................
+............183
+CircleoftheSta rs ....................................88Sage..................................................
+12
+Advantage/Disadv antage ......................
+184
+Fighter...............................................................90Sailor...........................................................
+.............................................13
+Profic ie nc y .........
+..........................93..............................................184
+Battle M aster....................Scribe.............
+Ac tions..............................................................15
+96Soldier......................................................... 185
+Champion....................................................
+BonusActions............................................ 15
+Knight.........................................96 Wayfarer....................................................185
+Eldritch 
+Reactions...................................................... 15
+PsiWarrior..................................................98Species Descriptions................................. 186
+SocialInteraction..........................................16 
+Monk...............................................................100Aasima r ......................................................186
+Exploration.....................................................19
+Warrior ofMercy...................................104Dragonborn.............................................. 187
+Visiona ndLight....................................... 19
+Warrior ofShadow................................ 105Dwarf..........................................................188
+Hiding............................................................19
+Warriorofthe Elements.....................106Elf.................................................................. 189
+Interactingw it h Obj ects.......................19
+ofthe Open Hand.................107Gnome......................................................... 191
+Warrior
+20
+Hazards........................................................
+Goliath........................................................192
+Paladin............................................................108
+.........20
+Travel....................................................
+Halfling....................................................... 193
+PaladinSpell List .................................... 112 
+Combat.............................................................23
+Human........................................................194
+OathofDevotion....................................113
+TheOrder ofCombat ............................. 23
+...................................................... 195
+OathofGlory........................................... 114Orc..........
+Movement andPosition .........................24
+Oathofthe Ancients............................. 115Tiefling ........................................................ 196
+....................................25
+M aking an Attack
+............. 116
+OathofVengeance....................
+Ch.S:Feats...................................................198
+Ranged Att acks .........................................26
+Ranger.............................................................118
+FeatDescriptions.......................................199
+MeleeAttacks............................................26
+RangerSpell List.................................... 121
+Feats.................................................200
+Mounted Combat.....................................26Origin
+............................................. 122
+BeastMaster
+...27General Feats ...............................................202
+Underwate r Comba t ............................
+FeyWanderer..........................................124
+Fighting Style Feats.................................209
+Damage a nd Hea ling...................................27
+GloomStalker.......................................... 125
+Epic Boon Feats...........................................210
+s.....................................................2 7
+HitPoint
+Hunter......................................................... 127
+Damage Rolls..............................................27
+.............212
+Ch.6:Equipment.........................
+Rogue...............................................................128
+Critica l Hits................................................27
+Coins................................................................213
+Arcane Trickster.....................................132
+Saving Throws andDamage................28
+213
+Weapons........................................................
+Assass in ......................................................134
+Dam age Types ............................................28
+Properties.................................................. 213
+Soulknife.................................................... 135
+Resistance and Vulnerability ..............28
+Mastery Properties............................... 214
+Thief............................................................. 137
+Immunity.....................................................28
+Armor.............................................................. 219
+.......................................................... 138
+Sorcerer
+Healing..........................................................28
+Tools.................................................................220
+Meta m agicOptions...............................141
+Dropping toO Hit Points.......................28
+Adventuring Gear......................................222
+Lis t .................................142
+Sorcere r Spell
+Tempo raryHit Points............................. 29
+Mounts a nd Vehicles................................229
+AberrantSorcery...................................145
+.....29
+Conditions..................................................
+..............................230
+Services ............................
+Clockwork Sorcery............................... 146
+Magic Items..................................................232
+Ch. 2: Creating a Character........... ....... 32
+................................... 148
+Draconic Sorcery
+Crafting Equipment ..................................233
+Create YourCharacter........ .......................33
+Wild M agicSorcery.............................. 149
+..................................41
+Level Advancement...
+234
+Warlock.......................................................... 152Ch. 7:Spells.................................................
+Starting atHigher Levels..........................43
+Spells ..............................................235
+Eldritch Invocation Options..............155Gaining 
+Multiclassing..................................................44
+................................ 157Spells ............................................... 235
+WarlockSpell List..Casting
+Trinkets............................................................46
+Archfey Patron........................................159Spell Descriptions ...................................... 239
+Celestial Pat ron....................................... 160
+Ch.3:Character Classes.........................48
+App. A:The Multiverse ........................344
+....SOFiend Patron ............................................. 161
+Barbarian.....................................................
+TheM aterial Realms ...............................344
+......54Great Old One Patron...........................162
+Path of the Berserker ........................
+Transitive Planes .......................................344
+........ 55Wizard............................................................ 164
+Path of the Wild Heart... ................
+The Inner Planes........................................344
+56Wizard Spell List.................................... 168
+Path of the World Tree........................... 
+ .......................................344
+The Outer Planes
+57Abjurer........................................................ 172
+Path of the Zealot..................................... 
+App. B:Creature Stat Blocks ............. 346
+.....58.................................. 173
+Bard ...............................................................Diviner ......................
+Bard Spell List ...........................................62Evoker ......................................................... 174. C: Rules Glossary ......................... 360
+App
+College of Da nee ....................................... 64Illusionist ................................................... 175 
+lndex ............................................................... 378
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 3 ---]
+INTRODUCTION
+WELCOME TO
+ADVENT
+U
+THISSTORY
+BEGAN 50YEARSAGO,
+ANDYOU' REPARTO Fadventurermight come 
+to atragic end. Even so,
+the
+it.Inthe1970s.Gary Gygaxotheradventurers can 
+andDave Arneson created asearchforpowerful
+magicto
+revive
+theirfallen comrade,
+orthecharacter'splayer
+gameofmake-believe 
+that fused rules with storytelling.
+might 
+createanewcharacter
+tocarryon. No ma
+tter
+There"d
+ never beenanythinglike it: a game
+ in which each
+whathappens,if everyone has 
+agood time
+and cre-
+player made
+their own fantasy character
+andteamed up
+ates a memorable story,
+theyall win.
+withtheir
+ friends to go on quests.
+ One person servedasthe
+narratorand
+referee-the Dungeon
+Master-anddid every-
+WHATYou
+NEED
+thing they could to challenge 
+and delight
+ the other players.
+Here'swhatyou need to play 
+D&Dwith 
+oneormore
+That game was,
+ofcourse, thefirst
+versionofDungeons &
+friends(a
+typicalgrouphas five people):
+Dragons.
+andyou'renow reading its latest version.
+DungeonMaster.
+ One person takes 
+ontheroleof
+Over the decades, millions
+of
+people have playedD&D
+,
+the Dungeon
+Master(DM),thegame
+'s leadstory-
+and scoresofwriters. game designers. 
+and artists have
+teller
+andreferee.TheDM
+createsadventures
+for
+made their mark the 
+on it through its various editions. Whenplayers'characters, who 
+navigate itshazards
+anddecide which 
+ourteam released the current editionpaths to explore.
+ inTheDMalso
+ 2014, we were
+narrates 
+what theyexperience
+andplaysthe
+humbled by how many
+ofyou
+loved it. This revised ver-
+friends 
+and foesthey meet along 
+theway. Even
+sionofitisa salute to all
+ofyou-thoseofyou
+who've been
+though theDM challenges
+the adventurers, 
+the
+playing 
+D&Dforyears, thoseofyou
+who'vecontributed to
+DM always strives
+todelight
+the whole group.
+the game throughyour
+feedback, and thoseofyou
+who arePlayers.
+ Each player creates 
+anadventurer who
+about to experience the
+joyofplayingitforteams upwith the 
+thefirsttime.otherplayers'
+adventurers.
+As Workingtogether,the 
+a teenager, I met both Gary group might explore 
+and Dave. I even spentadark
+dungeon, a
+ruinedcity, ahaunted
+castle, a lost
+an entire day with Gary, 
+andwe did what all
+D&Dfans do:
+temple, a lava-filled
+mountain,
+or anotherlocation
+share stories about
+ouradventures in the
+ D&:D multiverse.
+described by 
+theDM.The adventurers
+also solve
+I inviteyou
+to embark on such adventures anew. Share 
+as
+puzzles,talk with 
+othercharacters, battle fantas-
+much laughter asyou
+canwithyourfriends.Use
+onry the
+tic monsters
+,anddiscover magic items
+andother
+rules that serve
+yourfun, and 
+alwaysfollowyourgrouptreasure-allwhile
+'ssupporting each other's 
+fun.
+bliss.So
+many people have been 
+enjoying the magicofD&:D
+You also need 
+these resources, either 
+in physical
+forhalfa century.
+ Let's keepitblazingfor
+another 50 years!
+formoron DnDBeyond.com:
+-Jeremy
+Crawford
+Player's Handbook.
+ This book isyour
+essential
+reference for the 
+game's rules,andit guides 
+you
+RE YOU READY 
+TO EMBARK ON FANTASY
+through making an adventurer 
+of your own.
+adventures with your
+ friends?DUNGEONS
+Dungeon Master's Guide
+andMonster Manual.
+The
+&
+ DRAGONS invites you 
+to play imaginary
+firstofthese books guides
+theOM
+through creat-
+adventurers who delve
+ into dungeons and 
+other
+ing and runningadventures, 
+and the second 
+holds
+perilous locations
+ together, face fearsome foes such
+hundreds of monsters to 
+fill those adventures.
+as dragons, and build friendships forged amid fan-
+tastical dangers.
+LEARNBY
+WATCHING
+Fueled by imagination
+ and rules, D&D invites
+A great way to learn the basics 
+of D&D
+ is to watch
+you to adopt a fantasy 
+persona-a mighty Fighter, a
+people play it. The Internet offers videos
+ofD&D
+cunning Rogue, a faithful
+ Cleric, a magical
+ Wizard,
+play that show off the tremendous range 
+of 
+possi-
+or something else-and 
+then solve problems, fight
+bilities the game offers. 
+As you watch, pay atten-
+monsters, and visit wondrous places.
+tion to the ways that some 
+players help make the
+There's no winning and losing in
+ D&D, at least
+game fun for everyone 
+in their group. The only
+not the way those terms are usually understood.
+audience you need to entertain when you're play-
+Together you and friends create an exciting
+ story
+ing D&D is yourself and your group.
+of adventurers who confront perils. Sometimes an
+INTRODUCTION
+ I WELCOME 
+TO ADVENTURE
+

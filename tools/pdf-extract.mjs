@@ -39,4 +39,4 @@ for (let p = start; p <= end && p <= doc.numPages; p++) {
   console.log("");
 }
 
-await doc.destroy();
+if (typeof doc.destroy === "function") await doc.destroy();

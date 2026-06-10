@@ -1,0 +1,1010 @@
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 68 ---]
+CORECLERIC TRAITS
+Primary AbilityWisdom
+As a Cleric, you gainthefollowing class features
+:1
+HitPoint DieD8 per Cleric levelwhen you reach the specified Cleric levels. These
+i
+features are listed in the Cleric Features table.'f
+Saving ThrowWisdomand Char isma
+I
+Proficiencies
+I
+LEVEL1:SPELLCASTING
+I
+I
+, Skill ProficienciesChoose 2: History, Insight,
+throughprayer and
+Youhave learned to cast spells
+t
+i
+I
+Medicine,Persuasion,or
+I 'meditation. See chapter 7 for the rules on spellcast-
+:
+Religion
+ing. The information below details how you use
+those rules with Cleric spells, which appear onthe
+Weapon ProficienciesSimpleweapons
+Cleric spell list later in the class's description.
+Armor TrainingLightandMediumarmor
+Cantrips. You knowthreecantripsofyourchoice
+andShields
+ and
+from the Cleric spell list. Guidance, Sacred Flame,
+Starting EquipmentChoose A or 8:(A)Chain
+ are recommended.
+Thaumaturgy
+Shirt, Shield, Mace,Holy
+you gain a Cleric level, you can replace
+Whenever 
+I
+Symbol, Priest 's Pack, and 7oneofyourcan tripswith anothercantripofyour
+:I
+; 1
+choice from the Cleric spell list.
+GP;or(B) 110 GP
+I I
+I i
+When you reach Cleric levels 4 and 10, you learn
+==========~,....
+~:-:::==========
+another cantripof yourchoice from the Cleric spell
+list, as shown inthe Cantrips columnofthe Cleric
+LERICS DRAWPOWERFROMTHEREALMS
+Features table.
+ofthegods and harness it to work miracles.
+ The Cleric Features table shows how
+Spell Slots.
+Blessed by a deity, a pantheon,or another
+yourlevel 1+ spells.
+many spell slots you have to cast
+out to the divine
+immortal entity, a Cleric can reach
+You regain all expended slots when you finish a
+magicoftheOuterPlanes- where godsdwell-and
+Long Rest.
+channel it to bolster people and battle foes.
+1+.You prepare the listof
+Prepared SpellsofLevel
+typ-
+Becausetheirpowerisa divine gift, Clerics
+level1+spellsthatare available for you to castwith
+ically associate themselveswithtemples dedicated
+this feature. Tostart, choose four level 1 spells from
+thatunlocked
+to the deityor otherimmortal force
+the Cleric spell list. Bless, Cure Wounds , Guiding Bolt,
+magic. Harnessing divine magic doesn't rely
+their
+arerecommended.
+and ShieldofFaith
+on specific training, yet Clerics might learn prayers
+The numberofspells on yourlist increases as you
+on power from the
+and ritesthathelp them draw 
+gain Cleric levels, as shown inthe Prepared Spells
+OuterPlanes.
+Whenever that
+columnofthe Cleric Features table.
+Not every member ofa templeor shrine is a
+increases, choose additional spells from the
+number
+of
+Cleric. Some priests are called to a simple life
+Cleric spell list until the numberofspells on your
+through
+temple service,carrying out their devotion 
+list matches the number on thetable. The chosen
+rituals, not through magic. Many mor -
+prayer and 
+spells must beofa level for which you have spell
+speak for the gods, but few can marshal
+tals claim to 
+yourlist
+slots. For example,ifyou're a level 3 Cleric,
+ofthose gods the way a Cleric can.
+the power 
+oflevels 1
+ofprepared spellscaninclude six spells
+and 2 in any combination.
+ACLERIC...
+BECOMING
+If anotherCleric feature gives you spellsthat
+As ALEVEL 1CHARACTER
+you always have prepared, those spells don't count
+• Gain all the traits in the Core Cleric Traits table.
+against the number ofspells you can prepare with
+the Cleric's level 1 features, which are listed
+• Gain 
+this feature, but those spells otherwise count as
+in the Cleric Features table.
+Cleric spells for you.
+Changing Your Prepared Spells. Whenever you
+As AMULTICLASS CHARACTER
+finish a Long Rest, you can change your listofpre-
+• Gain the following traits from the Core Cleric
+pared spells, replacing any of the spells there with
+and training with Light
+Traits table: Hit Point Die 
+!other Cleric spells for which you have spell slots.
+.iand Medium armor and Shields .
+your spellcasting
+Spellcasting Ability. Wisdom is 
+are listed
+Gain the Cleric's level 1 features, which 
+ability for your Cleric spells.
+in the Cleric Features table. See the multiclassing
+Spellcasting Focus. You can use a Holy Symbol as a
+rules in chapter 2 to determine your available
+Spellcasting Focus for your Cleric spells.
+spell slots.
+CHAPTER 3 I CHARACTER CLASSES 69
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 69 ---]
+CLERICFEATURES
+--Spell
+SlotsperSpel1...wel-
+Prepared
+Channel
+4 s 
+23 6 7 
+Proficiency l  8
+Spells 9
+Cantrips 
+Divinity
+Class Features
+Bonus 
+Level
+2
+4 
+3 
+Spellcasting, Divine
+Order
++2
+3
+5 
+3 
+2
+Channel Divinity 
++2
+2
+4 2
+6 
+3 
+2
+Cleric Subclass 
++2
+3
+3
+4 
+7 
+4 
+2
+Ability ScoreImprovement
++2
+4
+2
+4 3 
+9 
+4 
+2
+Sear Undead 
++3
+s
+3 3
+10 4 
+4 
+3
+Subclass feature
+ 
++3
+6
+3 l
+4 3 
+ll
+4
+3
+Blessed Strikes 
++3
+7
+43 3 2
+12 
+4
+3
+Ability Score
+Improvement
++3
+8
+3 l
+4 3 3 
+14
+4
+3
++4 
+9 
+3 3 2
+154 3 
+35
+Divine Intervention
+ 
+10+4 
+4 3 3 3 2 1
+16
+5
+3
++4 
+11
+2 
+4 3 3 3 1
+16
+35
+Ability Score Improvement 
++4
+12 
+33 2 1 
+174 3  1
+s
+3
+13 +5
+3 3 3 2 1 
+174 1
+s
+3
+Improved Blessed Strikes 
+14+S
+3 3 2 1 1
+184 3 
+5
+3
+15+5
+43 3 3 2 1 
+18 1 1
+35
+Ability Score Improvement 
+16 +5
+3 3 3 2 1 
+194 1 1
+351
+Subclass feature 
+17+6
+4 3 3 3 1 
+s203 1 1
+4
++6
+18
+33
+5214 3  3  2 1 1
+Epic Boon4
+19+6 
+422 4 3 3 3 3 2 2 1
+Greater Divine Intervention5 1
+20 +6 
+Ifa Channel Divinity effect
+requiresasaving
+L EVELl:DIVINE ORDER
+throw, theDC
+equals the spell save DCfrom this
+You
+have dedicated yourself to one of the following
+class's Spellcasting feature.
+sacred roles of your choice.
+Divine Spark. As a Magic action, 
+Protector.you point your
+ Trained for battle, you gain proficiency
+Holy Symbol at another 
+with Martial weapons and training with Heavycreature you canseewithin
+30 feet of yourself and focus divine
+energy atit.
+armor.
+Roll ld8 and add your Wisdom modifier. You
+Thaumaturge.Youknow one extra cantrip fromeither
+restore Hit Points to the creature 
+the Cleric spell list. In addition, your mystical con-equal tothattotal
+or force the creature to make a
+nection to the divine gives you a bonus to yourConstitution saving
+Intelligence (Arcana or Religion) checks. The bonusthrow. On a failed save, thecreature 
+takes Necrotic
+equals your Wisdom modifier (minimum or Radiant damage (your choice) 
+of+1).equal tothatto-
+tal. On a successful save, 
+thecreature takes halfas
+LEVEL 2:CHANNEL DIVINITY
+much damage (round down).
+Youcan channel divine energy directly from the
+You roll an 
+additional d8 when you reachCleric
+Outer Planes to fuel magical effects.
+Youstart with
+levels 7 (2d8),
+13(3d8}, and18 (4d8).
+two such effects: Divine Spark and Turn Undead,
+Turn Undead. As a Magic action, 
+you present your
+each of which is described below. Each time you use
+Holy Symbol and censure Undead 
+creatures. Each
+this class's Channel Divinity, choose which Channel
+Undead of your 
+choice within30feetof you must
+Divinity effect from this class to create. 
+You gain
+make a Wisdom saving throw.
+Ifthe creature
+fails
+additional effect options at higher Cleric levels.
+its save, it has the Frightened 
+and Incapacitated
+You can use this class's Channel Divinity twice.
+conditions for 1 minute. For 
+that duration, 
+it tries
+Youregain one of its expended uses when you finish
+to move as far from you as it 
+can on its turns. This
+a Short
+ Rest, and you regain all expended uses when
+effect ends early on the creature if 
+it takes any 
+dam-
+you finish a Long Rest. 
+You gain additional uses
+age, if you have the Incapacitated condition, 
+or if
+when you reach certain
+ Cleric levels, as shown
+ in
+you die.
+the Channel Divinity
+ column of the Cleric Features
+table.
+CHAPTER
+ 3 I CHARACTER CLASSES
+'JO
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 70 ---]
+L EVEL 3: C i.,_., ;;_;,: ~) UB CLASS
+LEVEL 19: EPIC BOON
+Yo u ga in a Ck1·ic s ubclass of your choice. The Life
+You gain an Epic Boon feat (see chapter 5) or an-
+Domain, Ligh t Dom ain , Trickery Domain, and War
+other feat of your choice for which you qualify.
+Doma in subclasses are detailed after this class's de-
+Boon of Fate is recommended.
+scriptio n . A subcl ass is a specialization that grants
+LEVEL 20: GREATER DIVINE INTERVENTION
+you fe atures at certain Cleric levels. For the rest of
+You can call on even more powerful divine inter-
+your career, you gain each of your subclass's fea-
+vention. When you use your Divine Intervention
+tu res that are of your Cleric level or lower.
+feature , you can choose Wish when you select a
+LEVEL 4 : ABI L ITY SCORE IMPROVEMENT
+spell. If you do so, you can't use Divine Intervention
+You ga in the Ability Score Improvement feat (see
+again until you finish 2d4 Long Rests.
+chapter 5) or another feat of your choice for which
+CLERIC SPELL LIST
+you qualify. You gain this feature again at Cleric
+levels 8 , 12, and 16.
+This section presents the Cleric spell list. The spells
+are organized by spell level and then alphabetized,
+LEVEL 5 : SEAR UNDEAD
+and each spell's school of magic is listed. In the Spe-
+Whenever you use Turn Undead, you can roll a
+cial column, C means the spell requires Concentra-
+number of d8s equal to your Wisdom modifier
+tion, R means it's a Ritual, and M means it requires a
+(minimum of ld8) and add the rolls together. Each
+specific Material component.
+Undead that fails its saving throw against that use
+of Turn Undead takes Radiant damage equal to the
+CANTRIPS (LEVEL O CLERIC SPELLS}
+roll's total. This damage doesn't end the turn effect.
+School 
+Spell Special
+LEVEL 7: BLESSED STRIKES
+Guidance Divination C
+Divine power infuses you in battle. You gain one of
+Light Evocation
+the following options of your choice (if you get ei-
+Mending Transmutation
+ther option from a Cleric subclass in an older book,
+Resistance Abjuration C
+use only the option you choose for this feature).
+Divine Strike. Once on each of your turns when
+Sacred Flame Evocation
+you hit a creature with an attack roll using a
+Necromancy
+Spare the Dying 
+weapon, you can cause the target to take an extra
+Thaumaturgy Transmutation
+ld8 Necrotic or Radiant damage (your choice).
+Potent Spellcasting. Add your Wisdom modifier toToll the Dead Necromancy
+the damage you deal with any Cleric cantrip.
+Evocation
+Word of Radiance 
+LEVEL 10: DIVINE INTERVENTION
+LEVEL 1 CLERIC SPELLS
+You can call on your deity or pantheon to inter-
+Spell School Special
+vene on your behalf. As a Magic action, choose any
+Cleric spell of level 5 or lower that doesn't require
+Bane Enchantment C
+a Reaction to cast. As part of the same action, you
+Bless Enchantment C,M
+cast that spell without expending a spell slot or
+Command Enchantment
+needing Material components. You can't use this
+Create or Destroy Water Transmutation
+feature again until you finish a Long Rest.
+Cure Wounds Abjuration
+LEVEL 14: IMPROVED BLESSED STRIKES
+Detect Evil and Good Divination 
+C
+The option you chose for Blessed Strikes grows
+more powerful.Detect Magic Divination C,R
+Divine Strike. The extra damage of your Divine
+Detect Poison and Disease Divination 
+C, R
+Strike increases to 2d8.
+Guiding Bolt Evocation
+Potent Spellcasting. When you cast a Cleric can-
+Healing Word Abjuration
+trip and deal damage to a creature with it, you
+can give vitality to yourself or another creature
+Inflict Wounds Necromancy
+within 60 feet of yourself, granting a number of
+Protection from Evil and Abjuration C,M
+Temporary Hit Points equal to twice your Wisdom
+Good
+modifier.
+Purify Food and Drink 
+Transmutation 
+R
+Sanctuary Abjuration
+Shield of Faith Abjuration 
+C
+C HAPTER 3 I C H ARACTER CLASSES 
+71
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 71 ---]
+LEVEL4CLERIC
+LEVEL2.CLERICSPELLS
+SPELLS
+School Special SpellSchool
+Spell 
+Special
+Aid Abjuration AuraofLifeAbjuration
+C
+AuguryDivination R, M AuraofPurityAb
+ j uration
+C
+Blindness/DeafnessTransmutationBanishment
+  Abjuration
+C
+Calm EmotionsEnchantmentC Control 
+  Water Transmu
+tati o n 
+C
+Continual Flame Evocation M Death Ward
+Abjuration
+Enhance Ability Transmutation C Divination 
+D ivination 
+R, M
+FindTrapsDivinationFreedom
+ ofMovement
+Abjuration
+Gentle Repose Necromancy R, M GuardianofFaith 
+Con j u ration
+Hold Person EnchantmentLocate Creature
+ C  D iv i
+nation
+C
+Lesser
+Restoration Abjuration Stone Shape
+Transmuta
+tion
+Locate Object Divination
+ C
+LEVEL5CLERIC
+SPELLS
+Prayer
+ofHealing Abjuration
+Spell
+School 
+Special
+Protection from Poison
+ Abjuration 
+CircleofPower
+Abjuration
+SilenceC
+ Illusion
+C,R
+Commune
+Divination
+R
+Spiritual Weapon
+ Evocation 
+C
+Contagion
+Necromancy
+Warding Bond 
+Abjuration M 
+Dispel
+EvilandGood
+Abjuration
+C
+ZoneofTruth 
+Enchantment 
+Flame Strike
+ 
+Evocation
+LEVEL3CLERICSPELLS
+Geas
+Enchantment
+Spell 
+School SpecialGreater Restoration
+ 
+Abjuration
+M
+Animate Dead
+ 
+Necromancy Hallow
+Abjuration
+M
+Aura
+ofVitality Abjuration
+ C 
+Insect Plague
+Conjuration
+C
+BeaconofHope 
+Abjuration C
+ Legend Lore
+Divination
+M
+Bestow Curse 
+Necromancy 
+C Mass Cure Wounds
+Abjuration
+Clairvoyance 
+Divination
+C,MPlanar Binding
+Abjuration
+M
+Create Food and 
+Water Conjuration 
+Raise Dead
+Necromancy
+M
+Daylight
+ Evocation
+ Scrying
+Divination
+C, M
+Dispel Magic 
+Abjuration
+SummonCelestial
+Conjuration
+C, M
+FeignDeath
+Necromancy
+ R
+LEVEL6CLERIC SPELLS
+GlyphofWarding 
+Abjuration M
+Spell
+ 
+School 
+Special
+Magic Circle
+ Abjuration 
+M 
+Blade Barrier 
+Evocation 
+C
+Mass Healing Word Abjuration
+ 
+Create Undead
+Necromancy
+M
+Meld into Stone
+ Transmutation 
+R 
+Find the PathDivination
+ C,M
+Protection from 
+Energy Abjuration C
+ 
+Forbiddance
+Abjuration
+R,M
+RemoveCurse 
+Abjuration 
+Harm
+Necromancy
+RevivifyNecromancy
+ M 
+Heal Abjuration
+SendingDivination 
+Heroes' Feast
+ Conjuration 
+M
+Speak
+with Dead Necromancy 
+Planar Ally 
+Conjuration
+Spirii Guardians
+ Conjuration C
+ 
+Sunbeam Evocation
+ C
+TonguesDivination 
+True Seeing Divination 
+M
+WaterWalk Transmutation R 
+WordofRecall Conjuration
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 72 ---]
+CLERICSUBCLASSES
+A Cleric subclassisa specialization
+that grants
+youfeaturesat certainCleric levels, as specified in
+thesubclass. Each Cleric subclass isnamed aftera
+domainofexistencethatis favoredbya god,pan-
+theon,orreligiousorder.This section presentsthe
+Life Domain, Light Domain,
+TrickeryDomain,and
+WarDomain subclasses.
+LIFEDOMAIN
+Soothe the Hurtsofthe World
+TheLife Domain 
+focuseson the positiveenergythat
+helpssustainall life in
+themultiverse. Clericswho
+tap into thisdomainaremastersofhealing,using
+thatlife force tocuremanyhurts.
+Existence itself relieson thepositiveenergyasso-
+ciatedwiththis domain, so a Clericofalmostany
+religioustradition might chooseit. This domainis
+particularlyassociatedwithagriculturaldeities,
+godsofhealingorendurance, and
+godsofhomeand
+community. Religiousordersofhealing also seek
+themagicofthis domain.
+LEVEL7
+CLERICSPELLS
+L EVEL 3 :DISCIPLEOFLIFE
+SpellSchoolSpecial
+Whena spellyou cast witha spell slotrestores Hit
+Conjure Celestial Conju ratio n
+CPointstoacreature,that creatureregains 
+addi-
+tional Hit Points
+on theturnyoucast thespell.The
+Divine WordEvocation
+additional Hit Points equal 2 plusthespell slot's
+Etherealness Conjuration
+level.
+FireStorm Evocation
+LEVEL3 :LIFE DOMAINSPELLS
+Plane
+Shift ConjurationM
+Yourconnection to thisdivine domain ensures you
+Power Word FortifyEnchantment
+always havecertainspells ready.Whenyou reach
+Regenerate Transmutation
+a Cleric level specified in
+theLife Domain Spells
+table, you thereafteralways havethelisted spells
+Resurrection NecromancyM
+prepared.
+Symbol AbjurationM
+L I FEDOMA I N S P ELL S
+LE V EL 8 C LER I C S PELLS
+Cleric Level PreparedSpells
+SpellSchoolSpecial
+3 Aid,Bless, CureWounds,
+AntimagicFieldAbjurationC
+LesserRestoration
+Control Weather Transmutation
+C
+5
+Mass HealingWord, Revivify
+Earthquake
+ TransmutationC
+7 AuraofLife,Death Ward
+Holy Aura AbjurationC,M
+9 Greater Restoration, 
+Mass CureWounds
+Sunburst 
+Evocation
+LEVEL3: PRESERVELIFE
+LE V EL
+ 9 CLERIC SPELLS
+As a Magic action, you present yourHoly Symbol
+SpellSchoolSpecialand expend a useofyourChannel Divinity to evoke
+healing energy that can restore a number of Hit
+Astral Projection NecromancyM
+Points equal to five times your Cleric level. Choose
+Gate 
+ConjurationC,M
+Bloodied creatures within 30 feet of yourself
+Mass Heal Abjuration
+(which can include you), and divide those Hit Points
+~
+Power Word Heal Enchantmentamong them. This feature can restore a creature to
+no more than half its Hit Point maximum.
+True Resurrection 
+NecromancyM
+CHAPTE R 3 I CHARACTER CLASSES 73
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 73 ---]
+LEVEL 6: BLESSED HEALERLIGHT DOMAIN
+The healing spells you cast on others heal you as
+Bring Light to Banish Darkness 
+-
+well. Immediately after you cast a spell with a spell
+The Light Domain emphasizes the divine p uwer to
+slot that restores Hit Points to one or more crea-
+bring about blazing fire and revelation. Clel'ics who
+tures other than yourself, you regain Hit Points
+wield this power are enlightened soul s infu sed with
+equal to 2 plus the spell slot's level.
+radiance and the power of their deiti es' discerning
+LEVEL 17: SUPREME HEALING
+vision, charged with chasing away lies and burning
+When you would normally roll one or more diceaway darkness.
+to restore Hit Points to a creature with a spell orThe Light Domain is associated with gods of
+Channel Divinity, don't roll those dice for the heal-
+truth, vigilance, beauty, insight, and renewal. Some
+ing; instead use the highest number possible for
+of these gods are identified with the sun or as chari-
+each die. For example, instead of restoring 2d6 Hit
+oteers who guide the sun across the sky. Others are
+Points to a creature with a spell, you restore 12.
+sentinels who pierce deception. Some a re deities of
+beauty and artistry who teach that art is a vehicle
+for the soul's improvement.
+LEVEL 3: LIGHT DOMAIN SPELLS
+Your connection to this divine domain ensures you
+always have certain spells ready. When you reach
+a Cleric level specified in the Light Domain Spells
+table, you thereafter always have the listed spells
+prepared.
+LIGHT DOMAIN SPELLS
+Cleric Level Prepared Spells
+3 Burning Hands, Faerie Fire , Scorching
+Ray, See Invisibility
+5 Daylight, Fireball
+7 Arcane Eye, Wall of Fire
+9 Flame Strike, Scrying
+LEVEL 3: RADIANCE OF THE DAWN
+As a Magic action, you present your Holy Symbol
+and expend a use of your Channel Divinity to emit
+a flash of light in a 30-foot Emanation originating
+from yourself. Any magical Darkness-such as that
+created by the Darkness spell-in that area is dis-
+pelled. Additionally, each creature of your choice in
+that area must make a Constitution saving throw,
+taking Radiant damage equal to 2d10 plus your
+Cleric level on a failed save or half as much damage
+on a successful one.
+LEVEL 3: WARDING FLARE
+When a creature that you can see within 30 feet
+of yourself makes an attack roll, you can take a Re-
+action to impose Disadvantage on the attack roll,
+causing light to flare before it hits or misses.
+You can use this feature a number of times equal
+to your Wisdom modifier (minimum of once). You
+regain all expended uses when you finish a Long
+Rest.
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 74 ---]
+: _,1: V EL 6: b i :C-t~ •:.:-,-.c: D W ARDING FLARE
+·r'ou regain all expended uses of your Warding Flare
+, ,hen you fini sh a Short or Long Rest.
+In addition , whenever you use Warding Flare, you
+can give the target of the triggering attack a num-
+ber of Temporary Hit Points equal to 2d6 plus your
+Wisdom modifier.
+LEVEL 17: CORONA OF LIGHT
+As a Magic action, you cause yourself to emit an
+aura of sunlight that lasts for 1 minute or until you
+dismiss it (no action required). You emit Bright
+Light in a 60-foot radius and Dim Light for an ad-
+ditional 30 feet. Your enemies in the Bright Light
+have Disadvantage on saving throws against your
+Radiance of the Dawn and any spell that deals Fire
+or Radiant damage.
+You can use this feature a number of times equal
+to your Wisdom modifier (minimum of once), and
+you regain all expended uses when you finish a
+Long Rest.
+TRICKERY DOMAIN
+Make Mischief and Challenge Authority
+The Trickery Domain offers magic of deception, il-
+lusion, and stealth. Clerics who wield this magic are
+a disruptive force in the world, puncturing pride,
+mocking tyrants, freeing captives, and flouting hol-
+low traditions. They prefer subterfuge and pranks
+to direct confrontation.
+Gods of trickery are mischief-makers and insti-
+gators who stand as a constant challenge to the
+accepted order among both gods and mortals.
+They embody the forces of change and social up-
+heaval, and they're patrons of thieves, scoundrels,
+gamblers, rebels, and liberators. Religious orders
+that operate in secret, especially those that seek to
+undermine oppressive governments or hierarchies,
+also draw on the power of the Trickery Domain.
+LEVEL 3: BLESSING OF THE TRICKSTER
+As a Magic action, you can choose yourself or a
+willing creature within 30 feet of yourself to have
+Advantage on Dexterity {Stealth) checks. This
+blessing lasts until you finish a Long Rest or you use
+this feature again.
+LEVEL 3: INVOKE DUPLICITY
+As a Bonus Action, you can expend one use of your
+Channel Divinity to create a perfect visual illusion
+of yourself in an unoccupied space you can see
+within 30 feet of yourself. The illusion is intangible
+and doesn't occupy its space. It lasts for 1 minute,
+but it ends early if you dismiss it (no action re-
+quired} or have the Incapacitated condition. The il-
+,,_
+lusion is animated and mimics your expressions and
+0
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 75 ---]
+gestures. While it persists, you ga in the foll ,,·. ;ng
+benefits.
+Cast Spells. You can cast spells as though o u
+were in the illusion's space, but yo u mus t use yo ur
+own senses.
+Distract. When both you and yo ur illu s ion are
+within S feet of a creature that can see the illusion
+you have Advantage on attack rolls aga inst that '
+creature, given how distracting the illusion is to the
+target.
+Move. As a Bonus Action, you ca n move the illu-
+sion up to 30 feet to an unoccupied space yo u can
+see that is within 120 feet of yourself.
+LEVEL 3: TRICKERY DOMAIN SP E L L S
+Your connection to this divine domain ensures you
+always have certain spells ready. When you reach a
+Cleric level specified in the Trickery Domain Spells
+table, you thereafter always have the listed spells
+prepared.
+TRICKERY DOMAIN SPELLS
+Cleric Level Prepared Spells
+3 Charm Person , Disguise Self, Invisibility,
+Pass without Trace
+5 Hypnotic Pattern , Nondete ction
+7 Confusion, Dimension Door
+9 Dominate Person, Modify Memory
+LEVEL 6: TRICKSTER'S TRANSPOSITION
+Whenever you take the Bonus Action to create or
+move the illusion of your Invoke Duplicity, you can
+teleport, swapping places with the illusion.
+LEVEL 17: IMPROVED DUPLICITY
+The illusion of your Invoke Duplicity has grown
+more powerful in the following ways.
+Shared Distraction. When you and your
+allies make attack rolls against a creature
+within 5 feet of the illusion, the attack rolls
+have Advantage.
+Healing Illusion. When the illusion
+ends, you or a creature of your choice
+within 5 feet of it regains a number of Hit
+Points equal to your Cleric level.
+WAR DOMAIN
+Inspire Valor and Smite Foes
+War has many manifestations. It can make
+heroes of ordinary people. It can be desperate and
+horrific, with acts of cruelty and cowardice eclips-
+ing instances of excellence and courage. Clerics
+
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+[--- Page 76 ---]
+\•; ho ta p into t h~ m agic of th e War Domain excel in
+ba tt le, inspir ing others to fight the good fight or of-
+fel' ing ac ts of vio len ce as prayers.
+Gods o f th e W a r Doma in watch over warriors and
+reward them for their great deeds. They include
+champions of honor and chivalry as well as gods of
+destruction and pillage. Other war gods take a more
+neutra l st a nce, promoting wa r in all its manifesta-
+tions and supporting warriors in any circumstance.
+LEVE L 3 : GUIDED STR I KE
+When you or a creature within 30 feet of you
+misses with an attack roll , you can expend one use
+of you r Channel Divinity and give that roll a +10 bo-
+nus, potentially causing it to hit. When you use this
+feature to benefit another creature's attack roll, you
+must take a Reaction to do so.
+LEV E L 3: WAR DOMAIN SPELLS
+Your connection to this divine domain ensures you
+always have certain spells ready. When you reach
+a Cleric level specified in the War Domain Spells
+table, you thereafter always have the listed spells
+prepa r ed.
+WAR DOMAIN SPELLS
+Cleric Level Prepared Spells
+3 Guiding Bolt, Magic Weapon, Shield of
+Faith, Spiritual Weapon
+5 Crusader's Mantle, Spirit Guardians
+7 Fire Shield, Freedom of Movement
+9 Hold Monster, Steel Wind Strike
+LEVEL 3: WAR PRIEST
+As a Bonus Action, you can make one attack with
+a weapon or an Unarmed Strike. You can use this
+Bonus Action a number of times equal to your Wis-
+dom modifier (minimum of once). You regain all ex-
+pended uses when you finish a Short or Long Rest.
+LEVEL 6: WAR Goo's BLESSING
+You can expend a use of your Channel Divinity to
+cast Shield of Faith or Spiritual Weapon rather than
+expending a spell slot. When you cast either spell
+in this way, the spell doesn't require Concentration.
+Instead the spell lasts for 1 minute, but it ends early
+if you cast that spell again, have the Incapacitated
+condition, or die.
+LEVEL 17: AVATAR OF BATTLE
+You gain Resistance to Bludgeoning, Piercing, and
+Slashing damage.
+
+[--- Page 77 ---]
+
+

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, SC, ABS, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
+import { useIsMobile } from "../hooks/useIsMobile.js";
 import { modStr } from "../utils/helpers.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useI18n } from "../i18n/index.js";
@@ -100,6 +101,7 @@ const pickMonsterField = (lang, en, de) => (lang === "de" ? (de || MONSTER_TEXT_
  */
 export default function Bestiary() {
   const { t, lang } = useI18n();
+  const mob = useIsMobile(900);
   const tMon = (en, de) => pickMonsterField(lang, en, de);
   const [custom, setCustom] = usePersist("bestiary_v4", []);
   const [viewMode, setViewMode] = usePersist("app_view_mode_v1", "full");
@@ -162,14 +164,14 @@ export default function Bestiary() {
   );
 
   return (
-    <div style={{display:"flex",gap:12}}>
+    <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
       {/* ── Left: list + mode toggle ── */}
-      <div style={{width:240,flexShrink:0}}>
+      <div style={{width:mob?"100%":240,flexShrink:0}}>
         {/* Spoiler-Hide Mode toggle */}
         <div style={{marginBottom:8,display:"flex",gap:4}}>
           <button
             onClick={() => setViewMode(isSpoilerMode ? "full" : "spoiler")}
-            title={isSpoilerMode ? "Zeige alle Monster (DM/Lookup)" : "Verstecke unbekannte Monster (Spoiler-Schutz)"}
+            title={isSpoilerMode ? t("bestiary.show_all","Zeige alle Monster (DM/Lookup)") : t("bestiary.hide_unknown","Verstecke unbekannte Monster (Spoiler-Schutz)")}
             style={{
               flex:1,
               padding:"6px 8px",
@@ -184,11 +186,11 @@ export default function Bestiary() {
               color: isSpoilerMode ? C.purpleBright : C.amberBright,
             }}
           >
-            {isSpoilerMode ? "🎲 Spoiler-Modus" : "📖 Vollansicht"}
+            {isSpoilerMode ? t("bestiary.spoiler_mode","🎲 Spoiler-Modus") : t("bestiary.full_view","📖 Vollansicht")}
           </button>
         </div>
 
-        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={isSpoilerMode ? "🔍 Monster suchen (Name)…" : "🔍 Monster suchen…"} style={{...sx.inp,marginBottom:6}}/>
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={isSpoilerMode ? t("bestiary.search_spoiler","🔍 Monster suchen (Name)…") : t("bestiary.search","🔍 Monster suchen…")} style={{...sx.inp,marginBottom:6}}/>
         <select value={tf} onChange={e=>setTf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{types.map(t=><option key={t}>{t}</option>)}</select>
 
         {/* CR-Filter (4 Stufen für DM-Encounter-Design) */}
@@ -214,9 +216,9 @@ export default function Bestiary() {
           ))}
         </div>
 
-        <button onClick={()=>setShowAdd(!showAdd)} style={{...sx.btn(C.green),width:"100%",marginBottom:8}}>+ Eigenes Monster</button>
+        <button onClick={()=>setShowAdd(!showAdd)} style={{...sx.btn(C.green),width:"100%",marginBottom:8}}>{t("bestiary.add_custom","+ Eigenes Monster")}</button>
 
-        <div style={{maxHeight:"62vh",overflowY:"auto"}}>
+        <div style={{maxHeight:mob?"none":"62vh",overflowY:"auto"}}>
           {/* Encountered + custom: full cards */}
           {visibleList.map(m=>(
             <div key={m.id} onClick={()=>{setSel(m);setShowAdd(false);}} style={{background:sel?.id===m.id?`${C.red}33`:C.surface,border:`1px solid ${sel?.id===m.id?C.red:C.border}`,borderRadius:4,padding:"7px 10px",cursor:"pointer",marginBottom:3}}>
@@ -271,7 +273,7 @@ export default function Bestiary() {
       </div>
 
       {/* ── Right: detail / add form ── */}
-      <div style={{flex:1,overflowY:"auto",maxHeight:"75vh"}}>
+      <div style={{flex:1,overflowY:"auto",maxHeight:mob?"none":"75vh"}}>
         {showAdd ? (
           <div style={sx.card}>
             <div style={sx.ct}>🐉 Neues Monster</div>
