@@ -101,7 +101,10 @@ export default function LevelUpAssistant({ char, setChar }) {
   const doLevelUp = () => {
     setDoneInfo({ reachedLevel: newLevel, hpGained: chosenHp, newPb: pb, oldPb: pbOld });
     setChar(prev => {
-      let next = { ...prev, level: newLevel, maxHp: prev.maxHp + chosenHp, hp: prev.hp + chosenHp, hd_used: Math.max(0, (prev.hd_used || 0) - 1) };
+      // hd_used bleibt unverändert beim Level-Up — der neue HD ist ein
+      // frischer zusätzlicher Trefferwürfel im Pool. Bug-Fix R5:
+      // vorher wurde hd_used um 1 reduziert (= effektiv 2 neue HDs).
+      let next = { ...prev, level: newLevel, maxHp: prev.maxHp + chosenHp, hp: prev.hp + chosenHp };
       // Apply ASI or Feat at ASI levels
       if (isAsi) {
         if (asiMode === "asi") {
@@ -196,10 +199,9 @@ export default function LevelUpAssistant({ char, setChar }) {
     isAsi && "⚔️ ASI oder Feat: 2 verschiedene Attribute +1 ODER 1 Feat wählen (wenn DM Feats erlaubt).",
     isAsi && "📐 Nach ASI: Alle abhängigen Werte neu berechnen (AC, HP, Angriffsboni, Rettungswürfe, Zaubersave-DC).",
     newPbFeature && `🎖️ PB steigt auf +${pb}: Alle Proficiency-abhängigen Boni aktualisieren (Angriffe, Skills, Rettungswürfe, Zaubersave-DC).`,
-    newLevel === 2 && char.klass === "Druide" && "🐻 Wähle deinen Druidenzirkel (Unterklasse).",
-    newLevel === 3 && ["Barbar","Barde","Kämpfer","Mönch","Paladin","Schurke","Waldläufer","Zauberer","Magieschmied"].includes(char.klass) && `🔱 Unterklasse wählen: ${char.klass} wählt auf Level 3 seinen Archetypen/Pfad.`,
-    newLevel === 1 && ["Hexenmeister","Kleriker"].includes(char.klass) && `🔱 Unterklasse bereits auf Level 1 wählen (${char.klass}).`,
-    newLevel === 2 && char.klass === "Magier" && "🔱 Arkane Tradition (Unterklasse) auf Level 2 wählen.",
+    // ── PHB 2024: ALLE Klassen wählen Subklasse auf Level 3 (vereinheitlicht) ──
+    // (Magieschmied bleibt Lv3 als 2014-Legacy)
+    newLevel === 3 && ["Barbar","Barde","Druide","Hexenmeister","Kämpfer","Kleriker","Magier","Mönch","Paladin","Schurke","Waldläufer","Zauberer","Magieschmied"].includes(char.klass) && `🔱 Unterklasse wählen: ${char.klass} wählt auf Level 3 seinen Archetypen/Pfad/Domäne/Schule. (PHB 2024)`,
     [5,11,20].includes(newLevel) && char.klass === "Kämpfer" && `⚔️ Extra-Angriff prüfen: Kämpfer hat auf Level ${newLevel} ${newLevel === 5 ? "2" : newLevel === 11 ? "3" : "4"} Angriffe pro Angriffsaktion.`,
     newLevel === 5 && ["Barbar","Paladin","Waldläufer","Mönch","Magieschmied"].includes(char.klass) && "⚔️ Extra-Angriff: Ab jetzt 2 Angriffe pro Angriffsaktion.",
     casterType && "📖 Neue Zauber auswählen und ins Zauberbuch / die Zauberliste eintragen.",
