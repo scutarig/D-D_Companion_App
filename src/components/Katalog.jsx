@@ -115,7 +115,7 @@ const RARS = ["Alle", "Common", "Uncommon", "Rare", "Very Rare", "Legendary"];
 const BLANK_FORM = { name:"", type:"Weapon", sub:"Simple Melee", dmg:"", ac:"", eff:"", wt:"", rar:"Common", notes:"" };
 
 export default function Katalog({ char, setChar }) {
-  const { lang } = useI18n();
+  const { t, lang } = useI18n();
   const inv    = char?.inventory || [];
   const setInv = fn => setChar && setChar(p => ({ ...p, inventory: typeof fn === "function" ? fn(p.inventory || []) : fn }));
 
@@ -165,14 +165,14 @@ export default function Katalog({ char, setChar }) {
     <div>
       {/* ── Toolbar ── */}
       <div style={{ display:"flex", gap:8, marginBottom:10, flexWrap:"wrap", alignItems:"center" }}>
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder="🔍 Suchen…"
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder={t("katalog.search","🔍 Suchen…")}
           style={{ ...sx.inp, flex:"1 1 160px", minWidth:120 }} />
         <select value={rar} onChange={e => setRar(e.target.value)} style={{ ...sx.sel, width:"auto" }}>
           {RARS.map(r => <option key={r}>{r}</option>)}
         </select>
         <button onClick={() => { setForm(BLANK_FORM); setEditId(null); setShowForm(p => !p); }}
           style={sx.btn(showForm ? C.textDim : C.green)}>
-          {showForm ? "✕ Abbrechen" : "+ Eigenes Item"}
+          {showForm ? "✕ " + t("katalog.cancel","Abbrechen") : t("katalog.add_custom","+ Eigenes Item")}
         </button>
       </div>
 
@@ -189,37 +189,37 @@ export default function Katalog({ char, setChar }) {
       {/* ── Custom item form ── */}
       {showForm && (
         <div style={{ ...sx.card, marginBottom:12 }}>
-          <div style={sx.ct}>{editId != null ? "✏️ Item bearbeiten" : "✏️ Eigenes Item erstellen"}</div>
+          <div style={sx.ct}>{editId != null ? (lang==="en"?"✏️ Edit item":"✏️ Item bearbeiten") : (lang==="en"?"✏️ Create custom item":"✏️ Eigenes Item erstellen")}</div>
           <div style={sx.g3}>
-            <div style={{ gridColumn:"1/3" }}><label style={sx.lbl}>Name</label><input value={form.name} onChange={e => setForm(p=>({...p,name:e.target.value}))} style={sx.inp} /></div>
-            <div><label style={sx.lbl}>Typ</label>
+            <div style={{ gridColumn:"1/3" }}><label style={sx.lbl}>{t("katalog.label_name","Name")}</label><input value={form.name} onChange={e => setForm(p=>({...p,name:e.target.value}))} style={sx.inp} /></div>
+            <div><label style={sx.lbl}>{t("katalog.label_type","Typ")}</label>
               <select value={form.type} onChange={e => setForm(p=>({...p,type:e.target.value}))} style={sx.sel}>
-                {["Weapon","Armor","Item"].map(t=><option key={t}>{t}</option>)}
+                {["Weapon","Armor","Item"].map(tp=><option key={tp}>{tp}</option>)}
               </select>
             </div>
-            <div><label style={sx.lbl}>Subtyp</label><input value={form.sub} onChange={e => setForm(p=>({...p,sub:e.target.value}))} style={sx.inp} placeholder="Simple Melee, Potion…" /></div>
-            <div><label style={sx.lbl}>Seltenheit</label>
+            <div><label style={sx.lbl}>{t("katalog.label_sub","Subtyp")}</label><input value={form.sub} onChange={e => setForm(p=>({...p,sub:e.target.value}))} style={sx.inp} placeholder="Simple Melee, Potion…" /></div>
+            <div><label style={sx.lbl}>{t("katalog.label_rar","Seltenheit")}</label>
               <select value={form.rar} onChange={e => setForm(p=>({...p,rar:e.target.value}))} style={sx.sel}>
                 {["Common","Uncommon","Rare","Very Rare","Legendary"].map(r=><option key={r}>{r}</option>)}
               </select>
             </div>
-            <div><label style={sx.lbl}>Schaden</label><input value={form.dmg} onChange={e => setForm(p=>({...p,dmg:e.target.value}))} style={sx.inp} placeholder="1d8 S" /></div>
-            <div><label style={sx.lbl}>AC</label><input value={form.ac} onChange={e => setForm(p=>({...p,ac:e.target.value}))} style={sx.inp} placeholder="AC 16" /></div>
-            <div><label style={sx.lbl}>Effekt</label><input value={form.eff} onChange={e => setForm(p=>({...p,eff:e.target.value}))} style={sx.inp} placeholder="2d4+2 HP" /></div>
-            <div><label style={sx.lbl}>Gewicht</label><input value={form.wt} onChange={e => setForm(p=>({...p,wt:e.target.value}))} style={sx.inp} placeholder="3 lb" /></div>
+            <div><label style={sx.lbl}>{t("katalog.label_dmg","Schaden")}</label><input value={form.dmg} onChange={e => setForm(p=>({...p,dmg:e.target.value}))} style={sx.inp} placeholder="1d8 S" /></div>
+            <div><label style={sx.lbl}>{t("katalog.label_ac","AC")}</label><input value={form.ac} onChange={e => setForm(p=>({...p,ac:e.target.value}))} style={sx.inp} placeholder="AC 16" /></div>
+            <div><label style={sx.lbl}>{t("katalog.label_eff","Effekt")}</label><input value={form.eff} onChange={e => setForm(p=>({...p,eff:e.target.value}))} style={sx.inp} placeholder="2d4+2 HP" /></div>
+            <div><label style={sx.lbl}>{t("katalog.label_wt","Gewicht")}</label><input value={form.wt} onChange={e => setForm(p=>({...p,wt:e.target.value}))} style={sx.inp} placeholder="3 lb" /></div>
           </div>
-          <div style={{marginTop:8}}><label style={sx.lbl}>Beschreibung / Notizen</label>
+          <div style={{marginTop:8}}><label style={sx.lbl}>{t("katalog.label_notes","Beschreibung / Notizen")}</label>
             <textarea value={form.notes} onChange={e => setForm(p=>({...p,notes:e.target.value}))} style={{...sx.ta,height:52}} />
           </div>
           <div style={{display:"flex",gap:8,marginTop:10}}>
-            <button onClick={saveCustom} style={sx.btn(C.green)}>Speichern</button>
-            <button onClick={() => {setShowForm(false);setEditId(null);setForm(BLANK_FORM);}} style={sx.btn(C.textDim)}>Abbrechen</button>
+            <button onClick={saveCustom} style={sx.btn(C.green)}>{t("katalog.save","Speichern")}</button>
+            <button onClick={() => {setShowForm(false);setEditId(null);setForm(BLANK_FORM);}} style={sx.btn(C.textDim)}>{t("katalog.cancel","Abbrechen")}</button>
           </div>
         </div>
       )}
 
       {/* ── Item count ── */}
-      <div style={{fontSize:11,color:C.textDim,marginBottom:8}}>{shown.length} Items</div>
+      <div style={{fontSize:11,color:C.textDim,marginBottom:8}}>{shown.length} {t("katalog.items_count","Items")}</div>
 
       {/* ── Item grid ── */}
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))", gap:6 }}>
@@ -352,18 +352,18 @@ export default function Katalog({ char, setChar }) {
                 return (
                   <button onClick={() => { addToInv(modal); setModal(null); }}
                     style={{...sx.btn(C.green),padding:"10px 20px",fontSize:13}}>
-                    {cnt > 0 ? `📦 Nochmal hinzufügen (${cnt}×)` : "📦 Zu Inventar"}
+                    {cnt > 0 ? (lang==="en"?`📦 Add again (${cnt}×)`:`📦 Nochmal hinzufügen (${cnt}×)`) : (lang==="en"?"📦 To Inventory":"📦 Zu Inventar")}
                   </button>
                 );
               })()}
               {modal.custom && (
                 <>
                   <button onClick={() => { setForm({name:modal.name,type:modal.type,sub:modal.sub||"",dmg:modal.dmg||"",ac:modal.ac||"",eff:modal.eff||"",wt:modal.wt||"",rar:modal.rar,notes:modal.notes||""}); setEditId(modal._cid); setShowForm(true); setModal(null); }}
-                    style={{...sx.bsm(C.gold),padding:"8px 14px"}}>✎ Bearbeiten</button>
-                  <button onClick={() => deleteCustom(modal._cid)} style={{...sx.bsm(C.red),padding:"8px 14px"}}>🗑 Löschen</button>
+                    style={{...sx.bsm(C.gold),padding:"8px 14px"}}>✎ {t("katalog.edit","Bearbeiten")}</button>
+                  <button onClick={() => deleteCustom(modal._cid)} style={{...sx.bsm(C.red),padding:"8px 14px"}}>🗑 {lang==="en"?"Delete":"Löschen"}</button>
                 </>
               )}
-              <button onClick={() => setModal(null)} style={{...sx.bsm(C.textDim),padding:"8px 14px"}}>Schließen</button>
+              <button onClick={() => setModal(null)} style={{...sx.bsm(C.textDim),padding:"8px 14px"}}>{lang==="en"?"Close":"Schließen"}</button>
             </div>
           </div>
         </div>

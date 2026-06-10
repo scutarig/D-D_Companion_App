@@ -373,7 +373,7 @@ export default function Bestiary() {
 
             {/* Legacy saves block (only if no saveBonuses but old saves field) */}
             {!sel.saveBonuses && sel.saves && Object.keys(sel.saves).length>0 && (
-              <Sect title="Rettungswürfe">
+              <Sect title={t("bestiary.saves","Rettungswürfe")}>
                 <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
                   {Object.entries(sel.saves).map(([ab,val])=>(
                     <Tag key={ab} label={`${ab} ${val}`} color={SC[ab]||C.purple}/>
@@ -384,7 +384,7 @@ export default function Bestiary() {
 
             {/* Skills */}
             {sel.skills && Object.keys(sel.skills).length>0 && (
-              <Sect title="Fertigkeiten">
+              <Sect title={t("bestiary.skills","Fertigkeiten")}>
                 <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
                   {Object.entries(sel.skills).map(([sk,val])=>(
                     <Tag key={sk} label={`${sk} ${val}`} color={C.teal}/>
@@ -395,7 +395,7 @@ export default function Bestiary() {
 
             {/* Gear (2024) */}
             {sel.gear?.length > 0 && (
-              <Sect title="Ausrüstung">
+              <Sect title={t("bestiary.equipment","Ausrüstung")}>
                 <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
                   {sel.gear.map(g => <Tag key={g} label={`⚔ ${g}`} color={C.amber}/>)}
                 </div>
@@ -404,7 +404,7 @@ export default function Bestiary() {
 
             {/* Resistances / Immunities / Vulnerabilities */}
             {((sel.resistances?.length>0)||(sel.immunities?.length>0)||(sel.vulnerabilities?.length>0)||(sel.condImmunities?.length>0)) && (
-              <Sect title="Resistenzen & Immunitäten">
+              <Sect title={t("bestiary.resistances","Resistenzen & Immunitäten")}>
                 {sel.vulnerabilities?.length>0 && <div style={{marginBottom:3}}><span style={{fontSize:11,color:C.amber,fontWeight:700}}>Verwundbar: </span>{sel.vulnerabilities.map(v=><Tag key={v} label={v} color={C.amber}/>)}</div>}
                 {sel.resistances?.length>0 && <div style={{marginBottom:3}}><span style={{fontSize:11,color:C.blue,fontWeight:700}}>Resistent: </span>{sel.resistances.map(r=><Tag key={r} label={r} color={C.blue}/>)}</div>}
                 {sel.immunities?.length>0 && <div style={{marginBottom:3}}><span style={{fontSize:11,color:C.green,fontWeight:700}}>Immun: </span>{sel.immunities.map(i=><Tag key={i} label={i} color={C.green}/>)}</div>}
@@ -413,7 +413,7 @@ export default function Bestiary() {
             )}
 
             {/* Senses & Languages */}
-            <Sect title="Sinne & Sprachen">
+            <Sect title={t("bestiary.senses_languages","Sinne & Sprachen")}>
               {sel.senses && <div style={{fontSize:13,color:C.text,marginBottom:3}}>👁 {sel.senses}</div>}
               {sel.languages && <div style={{fontSize:13,color:C.text}}>🗣 {sel.languages}</div>}
             </Sect>
