@@ -1,6 +1,7 @@
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
+import { t } from "../../i18n/index.js";
 import TurnOrderPanel from "./TurnOrderPanel.jsx";
 import ActiveFighterCard from "./ActiveFighterCard.jsx";
 import ActionEconomyBar from "./ActionEconomyBar.jsx";
@@ -19,7 +20,7 @@ export default function TurnManagerLandscape() {
   const isVictory = checkVictoryCondition();
 
   const handleEndTurn = () => endTurn();
-  const handleEndCombat = () => { if (confirm("Kampf beenden?")) endCombat(); };
+  const handleEndCombat = () => { if (confirm(t("combat.confirm_end","Kampf beenden?"))) endCombat(); };
 
   return (
     <div style={{

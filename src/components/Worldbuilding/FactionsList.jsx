@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
+import { t } from "../../i18n/index.js";
 
 // Reputation scale: -3..+3
 const REP_LABELS = {
@@ -62,7 +63,7 @@ export default function FactionsList() {
   };
 
   const deleteFaction = (id) => {
-    if (!confirm("Fraktion löschen?")) return;
+    if (!confirm(t("wb.confirm_delete_faction","Fraktion löschen?"))) return;
     setFactions(p => p.filter(f => f.id !== id));
     if (editing === id) { setEditing(null); setDraft(null); }
   };
@@ -71,7 +72,7 @@ export default function FactionsList() {
   const confirmRep = () => {
     if (!repPop) return;
     const { fid, delta } = repPop;
-    const ts = new Date().toLocaleString("de");
+    const ts = new Date().toLocaleString(undefined); // user's system locale (lang-aware fallback)
     setFactions(p => p.map(f => {
       if (f.id !== fid) return f;
       const newRep = Math.max(-3, Math.min(3, (f.reputation ?? 0) + delta));

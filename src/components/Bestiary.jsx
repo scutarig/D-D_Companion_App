@@ -311,7 +311,7 @@ export default function Bestiary() {
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:22,fontWeight:900,color:crC(sel.cr),fontFamily:FH}}>CR {sel.cr}</div>
-                {sel.xp && <div style={{fontSize:11,color:C.textDim}}>{sel.xp.toLocaleString("de")} XP{sel.pb?` · PB +${sel.pb}`:""}</div>}
+                {sel.xp && <div style={{fontSize:11,color:C.textDim}}>{sel.xp.toLocaleString(lang === "en" ? "en-US" : "de-DE")} XP{sel.pb?` · PB +${sel.pb}`:""}</div>}
                 {sel.custom&&<button onClick={()=>{setCustom(p=>p.filter(m=>m.id!==sel.id));setSel(null);}} style={{...sx.bsm(C.red),marginTop:4}}>🗑</button>}
                 {!sel.custom && isSpoilerMode && encountered.includes(sel.id) && (
                   <button onClick={()=>forgetEncountered(sel.id)} style={{...sx.bsm(C.textDim),marginTop:4,fontSize:10}} title="Aus 'Begegnet'-Liste entfernen">
@@ -486,7 +486,7 @@ export default function Bestiary() {
                         ✓ Lokal gespeichert · pro Monster
                       </div>
                       <button
-                        onClick={() => { if (window.confirm("Notiz löschen?")) setDmNotes(p => { const np = {...p}; delete np[sel.id]; return np; }); }}
+                        onClick={() => { if (window.confirm(t("bestiary.delete_note","Notiz löschen?"))) setDmNotes(p => { const np = {...p}; delete np[sel.id]; return np; }); }}
                         style={{ ...sx.bsm(C.red), fontSize:9, padding:"3px 7px" }}
                       >
                         🗑 Löschen

@@ -3,6 +3,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
 import { useCombatArchive } from "../../hooks/useCombatArchive.js";
+import { t } from "../../i18n/index.js";
 import TurnOrderPanel from "./TurnOrderPanel.jsx";
 import ActiveFighterCard from "./ActiveFighterCard.jsx";
 import ActionEconomyBar from "./ActionEconomyBar.jsx";
@@ -24,7 +25,7 @@ export default function TurnManagerMobile() {
   };
 
   const handleEndCombat = () => {
-    if (confirm("Kampf beenden?")) {
+    if (confirm(t("combat.confirm_end","Kampf beenden?"))) {
       endCombat();
     }
   };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
+import { t } from "../../i18n/index.js";
 
 export default function PresetManager({ onClose }) {
   const { state } = useCombat();
@@ -11,7 +12,7 @@ export default function PresetManager({ onClose }) {
 
   const handleSavePreset = () => {
     if (!newPresetName.trim()) {
-      alert("Preset-Name erforderlich!");
+      alert(t("combat.err_preset_name","Preset-Name erforderlich!"));
       return;
     }
     savePreset(newPresetName);
@@ -24,7 +25,7 @@ export default function PresetManager({ onClose }) {
   };
 
   const handleDeletePreset = (presetId) => {
-    if (confirm("Preset löschen?")) {
+    if (confirm(t("combat.confirm_delete_preset","Preset löschen?"))) {
       deletePreset(presetId);
     }
   };

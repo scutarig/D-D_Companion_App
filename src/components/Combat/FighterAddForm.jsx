@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useFighter } from "../../hooks/useFighter.js";
 import { MONSTERS as Bestiary } from "../../data/monsters.js";
+import { t } from "../../i18n/index.js";
 
 export default function FighterAddForm({ onClose }) {
   const { addFighter } = useFighter();
@@ -21,7 +22,7 @@ export default function FighterAddForm({ onClose }) {
   // Manual add
   const handleAddManual = () => {
     if (!formData.name.trim()) {
-      alert("Name erforderlich!");
+      alert(t("combat.err_name_required","Name erforderlich!"));
       return;
     }
     addFighter({
@@ -38,7 +39,7 @@ export default function FighterAddForm({ onClose }) {
   // Add from bestiary
   const handleAddFromBestiary = () => {
     if (!selectedMonster) {
-      alert("Monster auswählen!");
+      alert(t("combat.err_select_monster","Monster auswählen!"));
       return;
     }
     for (let i = 0; i < monsterCount; i++) {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
+import { t } from "../../i18n/index.js";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const STATUS = {
@@ -26,7 +27,7 @@ function newQuest() {
     locationId: "", npcIds: [],
     rewards: "", notes: "",
     steps: [],
-    createdAt: new Date().toLocaleDateString("de"),
+    createdAt: new Date().toLocaleDateString(undefined),
   };
 }
 
@@ -124,7 +125,7 @@ export default function QuestList() {
   };
 
   const deleteQuest = (id) => {
-    if (!window.confirm("Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)")) return;
+    if (!window.confirm(t("wb.confirm_delete_quest","Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)"))) return;
     setQuests(p => p.filter(q => q.id !== id));
     if (selId === id) setSelId(null);
     if (editing === id) { setEditing(null); setDraft(null); }

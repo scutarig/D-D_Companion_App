@@ -109,7 +109,7 @@ export default function EncounterBuilder() {
   };
 
   const clearEncounter = () => {
-    if (window.confirm("Encounter wirklich leeren?")) setEncounter([]);
+    if (window.confirm(t("encounter.confirm_clear","Encounter wirklich leeren?"))) setEncounter([]);
   };
 
   const saveEncounter = () => {
@@ -126,7 +126,7 @@ export default function EncounterBuilder() {
   };
 
   const deleteEncounter = (id) => {
-    if (window.confirm("Gespeicherten Encounter löschen?")) {
+    if (window.confirm(t("encounter.confirm_delete_saved","Gespeicherten Encounter löschen?"))) {
       setSavedEncounters(p => p.filter(e => e.id !== id));
     }
   };
@@ -345,7 +345,7 @@ export default function EncounterBuilder() {
                         {date} · {a.rounds} Runden · Spieler {survived}/{total} · Gegner besiegt {defeated}
                       </div>
                     </div>
-                    <button onClick={() => { if (window.confirm("Archiv-Eintrag löschen?")) deleteArchive(a.id); }}
+                    <button onClick={() => { if (window.confirm(t("encounter.confirm_delete_archive","Archiv-Eintrag löschen?"))) deleteArchive(a.id); }}
                       style={{ ...sx.bsm(C.red), fontSize: 10, padding: "2px 6px" }}>🗑</button>
                   </div>
                 );

@@ -258,6 +258,23 @@ const TRANSLATIONS = {
     "sheet.backstory": "Hintergrundgeschichte",
     "sheet.ph_backstory": "Woher komme ich? Was motiviert mich?",
 
+    // ── Combat (alerts/confirms) ─────────────────────────────────────────
+    "combat.err_name_required": "Name erforderlich!",
+    "combat.err_select_monster": "Monster auswählen!",
+    "combat.err_preset_name": "Preset-Name erforderlich!",
+    "combat.confirm_delete_preset": "Preset löschen?",
+    "combat.confirm_end": "Kampf beenden?",
+
+    // ── Worldbuilding (confirms) ─────────────────────────────────────────
+    "wb.confirm_delete_faction": "Fraktion löschen?",
+    "wb.confirm_delete_location": "Ort löschen?",
+    "wb.confirm_delete_quest": "Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)",
+
+    // ── EncounterBuilder (confirms) ──────────────────────────────────────
+    "encounter.confirm_clear": "Encounter wirklich leeren?",
+    "encounter.confirm_delete_saved": "Gespeicherten Encounter löschen?",
+    "encounter.confirm_delete_archive": "Archiv-Eintrag löschen?",
+
     // ── Save/Export ──────────────────────────────────────────────────────
     "save.title": "Charakter speichern",
     "save.export_json": "JSON exportieren",
@@ -571,6 +588,24 @@ const TRANSLATIONS = {
     "sheet.ph_features": "Class features, racial traits…",
     "sheet.backstory": "Backstory",
     "sheet.ph_backstory": "Where do I come from? What drives me?",
+
+    // ── Combat (alerts/confirms) ─────────────────────────────────────────
+    "combat.err_name_required": "Name required!",
+    "combat.err_select_monster": "Select a monster!",
+    "combat.err_preset_name": "Preset name required!",
+    "combat.confirm_delete_preset": "Delete preset?",
+    "combat.confirm_end": "End combat?",
+
+    // ── Worldbuilding (confirms) ─────────────────────────────────────────
+    "wb.confirm_delete_faction": "Delete faction?",
+    "wb.confirm_delete_location": "Delete location?",
+    "wb.confirm_delete_quest": "Delete quest?\n(This action cannot be undone.)",
+
+    // ── EncounterBuilder (confirms) ──────────────────────────────────────
+    "encounter.confirm_clear": "Really clear encounter?",
+    "encounter.confirm_delete_saved": "Delete saved encounter?",
+    "encounter.confirm_delete_archive": "Delete archive entry?",
+
 
     // ── Save/Export ──────────────────────────────────────────────────────
     "save.title": "Save Character",

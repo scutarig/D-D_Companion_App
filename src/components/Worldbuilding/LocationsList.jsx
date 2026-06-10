@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
+import { t } from "../../i18n/index.js";
 
 const TYPES = ["Stadt", "Dorf", "Dungeon", "Wildnis", "Tempel", "Festung", "Ruine", "Taverne", "Sonstiges"];
 
@@ -56,7 +57,7 @@ export default function LocationsList() {
   };
 
   const deleteLoc = (id) => {
-    if (!confirm("Ort löschen?")) return;
+    if (!confirm(t("wb.confirm_delete_location","Ort löschen?"))) return;
     setLocs(p => p.filter(l => l.id !== id));
     if (editing === id) { setEditing(null); setDraft(null); }
   };

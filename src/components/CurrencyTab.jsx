@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
+import { fmtTime, fmtNumber } from "../utils/locale.js";
 
 const CURR = [
   { id: "pp",       label: "Platin",   short: "PP", icon: "🪙", color: "#e2e8f0", gpVal: 10    },
@@ -30,7 +31,7 @@ export default function CurrencyTab() {
     const sign = dir === "add" ? 1 : -1;
     setChar(p => ({ ...p, [txCurr]: Math.max(0, (p[txCurr] || 0) + sign * n) }));
     const cur = CURR.find(c => c.id === txCurr);
-    setLog(l => [{ id: Date.now(), dir, amt: n, short: cur.short, color: cur.color, desc: txDesc, ts: new Date().toLocaleTimeString("de") }, ...l.slice(0, 29)]);
+    setLog(l => [{ id: Date.now(), dir, amt: n, short: cur.short, color: cur.color, desc: txDesc, ts: fmtTime(new Date()) }, ...l.slice(0, 29)]);
     setTxAmt(""); setTxDesc("");
   };
 
@@ -177,7 +178,7 @@ export default function CurrencyTab() {
                     <div style={{ fontSize: 18, marginBottom: 2 }}>{c.icon}</div>
                     <div style={{ fontFamily: FH, fontSize: 10, color: c.color, marginBottom: 4 }}>{c.short}</div>
                     <div style={{ fontSize: 18, fontWeight: 700, color: isFrom ? c.color : C.textBright }}>
-                      {result === Math.floor(result) ? result.toLocaleString("de") : result.toFixed(1)}
+                      {result === Math.floor(result) ? fmtNumber(result) : result.toFixed(1)}
                     </div>
                   </div>
                 );
