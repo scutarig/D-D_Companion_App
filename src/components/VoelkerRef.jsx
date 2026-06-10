@@ -30,7 +30,9 @@ const fullByName = Object.fromEntries(RACES_FULL.map(r => [r.name, r]));
 const fullById = Object.fromEntries(RACES_FULL.map(r => [r.id, r]));
 
 export default function VoelkerRef() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  // Helper to pick localized field
+  const pickL = (en, de) => (lang === "en" && en) ? en : de;
   const mob = useIsMobile(900);
   const [sel, setSel] = useState(null);
   const [search, setSearch] = useState("");
@@ -127,7 +129,7 @@ export default function VoelkerRef() {
                   <div style={{display:"flex",gap:6,marginTop:4,flexWrap:"wrap"}}>
                     <Tag label={`📏 ${sel.size}`} color={col}/>
                     <Tag label={`💨 ${sel.speed}ft`} color={col}/>
-                    {full?.languages && <Tag label={`💬 ${full.languages.join(", ")}`} color={C.blue}/>}
+                    {full?.languages && <Tag label={`💬 ${(lang === "en" && full.languagesEN ? full.languagesEN : full.languages).join(", ")}`} color={C.blue}/>}
                   </div>
                 </div>
               </div>
@@ -135,17 +137,17 @@ export default function VoelkerRef() {
 
             {/* Description */}
             <Sect title={t("ref.about_species", "Über das Volk")}>
-              <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{full?.description || sel.desc}</div>
+              <div style={{fontSize:13,color:C.text,lineHeight:1.7}}>{pickL(full?.descriptionEN, full?.description) || sel.desc}</div>
             </Sect>
 
             {/* 2024 Structured Traits */}
             {full?.traits && full.traits.length > 0 && (
               <Sect title={`${t("ref.species_traits", "Rassen-Merkmale")} (${full.traits.length})`}>
                 <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                  {full.traits.map((t,i)=>(
+                  {full.traits.map((trait,i)=>(
                     <div key={i} style={{background:"rgba(255,255,255,0.03)",borderRadius:6,padding:"8px 11px",borderLeft:`3px solid ${col}`}}>
-                      <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:3,fontFamily:FH,letterSpacing:0.3}}>{t.name}</div>
-                      <div style={{fontSize:11,color:C.textDim,lineHeight:1.5}}>{t.description}</div>
+                      <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:3,fontFamily:FH,letterSpacing:0.3}}>{pickL(trait.nameEN, trait.name)}</div>
+                      <div style={{fontSize:11,color:C.textDim,lineHeight:1.5}}>{pickL(trait.descriptionEN, trait.description)}</div>
                     </div>
                   ))}
                 </div>
@@ -158,8 +160,8 @@ export default function VoelkerRef() {
                 <div style={{display:"flex",flexDirection:"column",gap:6}}>
                   {full.features.map((f,i)=>(
                     <div key={i} style={{background:`${col}11`,borderRadius:6,padding:"8px 11px",borderLeft:`3px solid ${col}`,border:`1px solid ${col}33`}}>
-                      <div style={{fontSize:12,fontWeight:700,color:col,marginBottom:3,fontFamily:FH,letterSpacing:0.3}}>✦ {f.name}</div>
-                      <div style={{fontSize:11,color:C.text,lineHeight:1.5}}>{f.description}</div>
+                      <div style={{fontSize:12,fontWeight:700,color:col,marginBottom:3,fontFamily:FH,letterSpacing:0.3}}>✦ {pickL(f.nameEN, f.name)}</div>
+                      <div style={{fontSize:11,color:C.text,lineHeight:1.5}}>{pickL(f.descriptionEN, f.description)}</div>
                     </div>
                   ))}
                 </div>
@@ -172,8 +174,8 @@ export default function VoelkerRef() {
                 <div style={{display:"flex",flexDirection:"column",gap:5}}>
                   {full.lineages.map((l)=>(
                     <div key={l.id} style={{background:"rgba(255,255,255,0.02)",borderRadius:6,padding:"7px 11px",borderLeft:`3px solid ${col}88`}}>
-                      <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:2,fontFamily:FH}}>{l.name}</div>
-                      <div style={{fontSize:11,color:C.textDim,lineHeight:1.45}}>{l.description}</div>
+                      <div style={{fontSize:12,fontWeight:700,color:C.textBright,marginBottom:2,fontFamily:FH}}>{pickL(l.nameEN, l.name)}</div>
+                      <div style={{fontSize:11,color:C.textDim,lineHeight:1.45}}>{pickL(l.descriptionEN, l.description)}</div>
                     </div>
                   ))}
                 </div>
