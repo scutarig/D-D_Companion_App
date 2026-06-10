@@ -318,6 +318,11 @@ const TRANSLATIONS = {
     "inv.no_char": "Kein Charakter aktiv",
     "inv.no_char_hint": "Wechsle zum Charakter-Tab und wähle einen Charakter aus.",
 
+    // ── Audit-Fix-Keys (Welle 3 Polish) ──────────────────────────────────
+    "sheet.from_background": "aus Background",
+    "currency.total_wealth": "GESAMTVERMÖGEN",
+    "currency.optimize": "Münzen optimieren",
+
     // ── Save/Export ──────────────────────────────────────────────────────
     "save.title": "Charakter speichern",
     "save.export_json": "JSON exportieren",
@@ -691,6 +696,11 @@ const TRANSLATIONS = {
     "inv.catalog": "Catalog",
     "inv.no_char": "No active character",
     "inv.no_char_hint": "Switch to Character tab and select a character.",
+
+    // ── Audit-Fix-Keys (Wave 3 Polish) ───────────────────────────────────
+    "sheet.from_background": "from Background",
+    "currency.total_wealth": "TOTAL WEALTH",
+    "currency.optimize": "Optimize coins",
 
     // ── Save/Export ──────────────────────────────────────────────────────
     "save.title": "Save Character",

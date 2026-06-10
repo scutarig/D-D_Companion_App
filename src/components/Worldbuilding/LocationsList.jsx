@@ -75,7 +75,7 @@ export default function LocationsList() {
         />
         <select value={filterT} onChange={e => setFilterT(e.target.value)} style={{ ...sx.sel, minWidth:110 }}>
           <option value="">Alle Typen</option>
-          {TYPES.map(t => <option key={t} value={t}>{TYPE_ICON[t]} {t}</option>)}
+          {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {ty}</option>)}
         </select>
         <button onClick={startNew} style={sx.btn(C.teal)}>+ Ort</button>
       </div>
@@ -96,7 +96,7 @@ export default function LocationsList() {
               <div style={{ flex:1, minWidth:120 }}>
                 <label style={sx.lbl}>Typ</label>
                 <select value={draft.type} onChange={e => setDraft(p => ({ ...p, type: e.target.value }))} style={sx.sel}>
-                  {TYPES.map(t => <option key={t} value={t}>{TYPE_ICON[t]} {t}</option>)}
+                  {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {ty}</option>)}
                 </select>
               </div>
             </div>

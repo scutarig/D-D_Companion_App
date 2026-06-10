@@ -60,10 +60,10 @@ export default function CurrencyTab() {
       <div style={{ ...sx.card, background: "linear-gradient(135deg,rgba(225,227,120,0.08),rgba(0,0,0,0.2))" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
           <div>
-            <div style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1, marginBottom: 4 }}>GESAMTVERMÖGEN</div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: C.gold, fontFamily: FH }}>{totalGP.toLocaleString("de", { minimumFractionDigits: 0, maximumFractionDigits: 2 })} <span style={{ fontSize: 16 }}>GP</span></div>
+            <div style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1, marginBottom: 4 }}>{t("currency.total_wealth","GESAMTVERMÖGEN")}</div>
+            <div style={{ fontSize: 32, fontWeight: 900, color: C.gold, fontFamily: FH }}>{fmtNumber(totalGP, { minimumFractionDigits: 0, maximumFractionDigits: 2 })} <span style={{ fontSize: 16 }}>GP</span></div>
           </div>
-          <button onClick={autoConvert} style={{ ...sx.btn(C.teal), fontSize: 12 }}>⟳ Münzen optimieren</button>
+          <button onClick={autoConvert} style={{ ...sx.btn(C.teal), fontSize: 12 }}>⟳ {t("currency.optimize","Münzen optimieren")}</button>
         </div>
       </div>
 

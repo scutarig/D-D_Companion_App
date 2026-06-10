@@ -145,7 +145,7 @@ export default function CharSheet({ char, setChar, printMode = false }) {
                   <div style={{ fontSize: 17, fontWeight: 700, color: SC[ab], borderTop: `1px solid ${SC[ab]}25`, paddingTop: 4, marginTop: 2 }}>{modStr(val)}</div>
                   {bgBonus > 0 && (
                     <div
-                      title={`+${bgBonus} aus Background${char.background ? ` (${char.background})` : ""}`}
+                      title={`+${bgBonus} ${t("sheet.from_background","aus Background")}${char.background ? ` (${char.background})` : ""}`}
                       style={{
                         marginTop: 4, fontSize: 8, padding: "1px 5px", borderRadius: 6, fontWeight: 700,
                         background: `${C.amberBright}1f`, border: `1px solid ${C.amberBright}55`,

@@ -249,12 +249,18 @@ export default function CharActions({ char, setChar }) {
               {t("actions.empty_for_type","Keine {type}. Nutze 'Standard D&D' oder '+ Eigene Aktion'.").replace("{type}", pickTypeLabel(id))}
             </div>
           ) : (
-            grouped[id].map(action => (
+            grouped[id].map(action => {
+              // Gespeicherte Aktionen können EN-Felder enthalten (vom STD_ACTIONS template
+              // mit-kopiert beim addStd). Nutze die Helper für lang-aware Anzeige.
+              const aRange = pickRange(action);
+              const aDamage = pickDamage(action);
+              const aDesc = pickDesc(action);
+              return (
               <div key={action.id} style={{ background: `${color}0c`, border: `1px solid ${color}30`, borderLeft: `3px solid ${color}`, borderRadius: 10, padding: "10px 14px", marginBottom: 6 }}>
-                <div style={{ ...sx.jb, marginBottom: (action.toHit || action.damage || action.saveDC) ? 6 : 0 }}>
+                <div style={{ ...sx.jb, marginBottom: (action.toHit || aDamage || action.saveDC) ? 6 : 0 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                     <span style={{ fontFamily: FH, fontSize: 13, color: C.textBright, fontWeight: 700 }}>{action.name}</span>
-                    {action.range && action.range !== "—" && <span style={sx.tag(color)}>{action.range}</span>}
+                    {aRange && aRange !== "—" && <span style={sx.tag(color)}>{aRange}</span>}
                   </div>
                   <div style={{ display: "flex", gap: 4 }}>
                     <button onClick={() => openEdit(action)} style={sx.bsm(C.gold)}>✎</button>
@@ -266,14 +272,15 @@ export default function CharActions({ char, setChar }) {
                     <button onClick={() => del(action.id)} style={sx.bsm(C.red)}>✕</button>
                   </div>
                 </div>
-                {(action.toHit || action.damage || action.saveDC) && <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: action.description ? 5 : 0 }}>
+                {(action.toHit || aDamage || action.saveDC) && <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: aDesc ? 5 : 0 }}>
                   {action.toHit && <span style={sx.tag(color)}>🎯 {action.toHit}</span>}
-                  {action.damage && action.damage !== "—" && <span style={sx.tag(color)}>💥 {action.damage}</span>}
+                  {aDamage && aDamage !== "—" && <span style={sx.tag(color)}>💥 {aDamage}</span>}
                   {action.saveDC && <span style={sx.tag(color)}>⚡ {action.saveDC} {action.saveAbility}</span>}
                 </div>}
-                {action.description && <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{action.description}</div>}
+                {aDesc && <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{aDesc}</div>}
               </div>
-            ))
+              );
+            })
           )}
         </div>
       ))}
