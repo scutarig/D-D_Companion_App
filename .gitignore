@@ -6,3 +6,9 @@ dist/
 .env.local
 .cache/
 .vercel/
+
+# Source PDFs (referenced PHB/MM, not committed)
+*.pdf
+
+# Tool cache (PDF text extraction caches)
+tools/_cache/
