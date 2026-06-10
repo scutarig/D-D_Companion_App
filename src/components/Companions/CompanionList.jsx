@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import CompanionCard from "./CompanionCard.jsx";
 import CompanionForm from "./CompanionForm.jsx";
+import { COMPANION_TEMPLATES } from "../../data/companionTemplates.js";
 
 /**
  * CompanionList — Full CRUD list of companions
@@ -9,11 +10,17 @@ import CompanionForm from "./CompanionForm.jsx";
  */
 export default function CompanionList({ companions, add, update, remove, updateHp }) {
   const [showForm, setShowForm] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
   const [editTarget, setEditTarget] = useState(null); // companion to edit
 
   const handleAdd = (data) => {
     add(data);
     setShowForm(false);
+  };
+
+  const handleAddTemplate = (tpl) => {
+    add({ ...tpl.data });
+    setShowTemplates(false);
   };
 
   const handleUpdate = (data) => {
@@ -28,15 +35,58 @@ export default function CompanionList({ companions, add, update, remove, updateH
 
   return (
     <div>
-      {/* Add button */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+      {/* Add buttons */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
         <button
-          onClick={() => { setShowForm(true); setEditTarget(null); }}
-          style={{ ...sx.btn(C.green), flex: 1, padding: "11px", fontSize: 13, fontWeight: 700 }}
+          onClick={() => { setShowForm(true); setEditTarget(null); setShowTemplates(false); }}
+          style={{ ...sx.btn(C.green), flex: "1 1 200px", padding: "11px", fontSize: 13, fontWeight: 700 }}
         >
-          🐾 Begleiter hinzufügen
+          🐾 Eigener Begleiter
+        </button>
+        <button
+          onClick={() => { setShowTemplates(!showTemplates); setShowForm(false); setEditTarget(null); }}
+          style={{ ...sx.btn(showTemplates ? C.amber : C.purple), flex: "1 1 200px", padding: "11px", fontSize: 13, fontWeight: 700 }}
+        >
+          📖 PHB 2024 Templates
         </button>
       </div>
+
+      {/* Templates Picker */}
+      {showTemplates && (
+        <div style={{ ...sx.card, marginBottom: 12 }}>
+          <div style={sx.ct}>📖 PHB 2024 Standard-Begleiter</div>
+          <div style={{ fontSize: 11, color: C.textDim, marginBottom: 12, lineHeight: 1.5 }}>
+            Auswahl an Standard-Begleitern aus dem PHB 2024 (Find Familiar, Find Steed, Wild Companion, Primal Beast).
+            Klicke einen Eintrag um ihn deinem Charakter hinzuzufügen — danach beliebig anpassbar.
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {COMPANION_TEMPLATES.map(tpl => (
+              <div key={tpl.id} style={{
+                background: `${C.purple}08`, border: `1px solid ${C.purple}30`,
+                borderLeft: `3px solid ${C.purpleBright}`,
+                borderRadius: 8, padding: "10px 12px",
+                display: "flex", alignItems: "flex-start", gap: 10,
+              }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontFamily: FH, fontSize: 13, color: C.textBright, fontWeight: 700, marginBottom: 2 }}>
+                    {tpl.label}
+                  </div>
+                  <div style={{ fontSize: 10, color: C.purpleBright, marginBottom: 4 }}>
+                    {tpl.source}
+                  </div>
+                  <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.5 }}>{tpl.desc}</div>
+                </div>
+                <button
+                  onClick={() => handleAddTemplate(tpl)}
+                  style={{ ...sx.btn(C.green), fontSize: 11, padding: "6px 12px", flexShrink: 0 }}
+                >
+                  + Hinzufügen
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Empty state */}
       {companions.length === 0 && !showForm && (
