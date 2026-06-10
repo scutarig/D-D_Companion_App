@@ -129,7 +129,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const [tempHpInput, setTempHpInput] = useState("");
   const [infoModal, setInfoModal]   = useState(null);
   const [showCurrency, setShowCurrency] = useState(false);
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(900);
   const [eqModal,    setEqModal]    = useState(null);
   const [eqStep,     setEqStep]     = useState("pick");
   const [eqItem,     setEqItem]     = useState(null);

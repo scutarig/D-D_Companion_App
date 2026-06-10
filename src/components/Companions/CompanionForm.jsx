@@ -216,8 +216,8 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                   </select>
                 </div>
 
-                {/* HP / MaxHP / AC / Speed / CR */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr", gap: 8 }}>
+                {/* HP / MaxHP / AC / Speed / CR — responsive grid: ≥80px Mindestbreite */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(80px, 1fr))", gap: 8 }}>
                   {[
                     { key: "hp",    label: "HP",      note: "aktuell" },
                     { key: "maxHp", label: "Max HP",  note: "" },

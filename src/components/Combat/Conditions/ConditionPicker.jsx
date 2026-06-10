@@ -94,7 +94,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
               <div style={{ fontSize: 11, color: C.textDim, marginBottom: 10 }}>{cond.desc}</div>
 
               {/* Duration */}
-              <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
                 <span style={{ fontSize: 11, color: C.textDim }}>Dauer:</span>
                 <button
                   onClick={() => setDuration("permanent")}

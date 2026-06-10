@@ -287,7 +287,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                 autoFocus
               />
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 8, marginBottom: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(80px, 1fr))", gap: 8, marginBottom: 12 }}>
               {[
                 { key: "hp", label: "Max HP" },
                 { key: "ac", label: "Rüstung (AC)" },
@@ -421,7 +421,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                 autoFocus
               />
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))", gap: 8, marginBottom: 12 }}>
               {[{ key: "hp", label: "Max HP" }, { key: "ac", label: "Rüstung (AC)" }, { key: "initiativeBonus", label: "Init Bonus" }].map(({ key, label }) => (
                 <div key={key}>
                   <label style={sx.lbl}>{label}</label>
@@ -574,7 +574,7 @@ function FighterRow({ fighter, color, onRemove, onInitChange }) {
       <button
         onClick={onRemove}
         style={{
-          width: 30, height: 30, borderRadius: 6, border: `1px solid ${C.red}40`,
+          minWidth: 36, width: 36, height: 36, borderRadius: 6, border: `1px solid ${C.red}40`,
           background: `${C.red}12`, color: C.redBright, cursor: "pointer",
           fontSize: 14, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center",
         }}

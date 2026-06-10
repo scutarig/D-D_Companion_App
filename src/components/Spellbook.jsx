@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
+import { useIsMobile } from "../hooks/useIsMobile.js";
 import { SPELLS } from "../data/spells.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
@@ -12,6 +13,7 @@ const KLASS_TO_SPELL_TAG = {
 };
 
 export default function Spellbook({ charId }) {
+  const mob = useIsMobile(900);
   const [known, setKnown] = usePersist(`spells_known_${charId||"g"}`, []);
   const [prepared, setPrepared] = usePersist(`spells_prep_${charId||"g"}`, []);
   const { active, setActive } = useChar();
@@ -94,8 +96,8 @@ export default function Spellbook({ charId }) {
     });
   })();
   return (
-    <div style={{display:"flex",gap:12}}>
-      <div style={{width:255,flexShrink:0}}>
+    <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
+      <div style={{width:mob?"100%":255,flexShrink:0}}>
         <div style={{display:"flex",gap:3,marginBottom:8,flexWrap:"wrap"}}>
           <button onClick={() => setView("db")} style={sx.nb(view==="db")}>📚 Alle</button>
           <button onClick={() => setView("known")} style={{...sx.nb(view==="known"),display:"flex",alignItems:"center",gap:4}}>⭐ Bekannt <span style={{background:C.blue,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px"}}>{known.length}</span></button>
@@ -109,7 +111,7 @@ export default function Spellbook({ charId }) {
         <button onClick={() => setRitualOnly(p => !p)} style={{background:ritualOnly?`${C.amberBright}22`:"transparent",border:`1px solid ${ritualOnly?C.amberBright:C.border}`,borderRadius:5,color:ritualOnly?C.amberBright:C.textDim,fontSize:10,padding:"3px 10px",cursor:"pointer",fontFamily:FH,marginBottom:8,width:"100%",fontWeight:ritualOnly?700:400}}>
           ℛ {ritualOnly ? "Nur Rituale" : "Alle Zauber"}{ritualOnly && " ✓"}
         </button>
-        <div style={{maxHeight:"55vh",overflowY:"auto"}}>
+        <div style={{maxHeight:mob?"none":"55vh",overflowY:"auto"}}>
           {Object.keys(grps).sort((a,b)=>+a-+b).map(lv => (
             <div key={lv}>
               <div style={{fontSize:11,color:SPC[+lv]||C.textDim,fontFamily:FH,fontWeight:700,padding:"4px 0 2px",borderBottom:`1px solid ${C.border}`,marginBottom:3,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:4}}>

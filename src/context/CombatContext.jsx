@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useMemo } from "react";
 import { usePersist } from "../hooks/usePersist.js";
 import { createCombatState } from "../utils/combat.js";
 
@@ -45,7 +45,8 @@ export function CombatProvider({ children }) {
     _persist(next);
   }, [future, state, _persist]);
 
-  const value = {
+  // Memoize value to prevent unnecessary re-renders in all consumers
+  const value = useMemo(() => ({
     state,
     setState,
     isReady,
@@ -53,7 +54,7 @@ export function CombatProvider({ children }) {
     redo,
     canUndo: past.length > 0,
     canRedo: future.length > 0,
-  };
+  }), [state, setState, isReady, undo, redo, past.length, future.length]);
 
   return <CombatContext.Provider value={value}>{children}</CombatContext.Provider>;
 }

@@ -114,8 +114,8 @@ export default function FighterAddForm({ onClose }) {
             />
           </div>
 
-          <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-            <div style={{ flex: 1 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(80px, 1fr))", gap: 8, marginBottom: 8 }}>
+            <div>
               <label style={sx.lbl}>HP</label>
               <input
                 type="number"
@@ -124,7 +124,7 @@ export default function FighterAddForm({ onClose }) {
                 style={sx.inp}
               />
             </div>
-            <div style={{ flex: 1 }}>
+            <div>
               <label style={sx.lbl}>AC</label>
               <input
                 type="number"
@@ -133,7 +133,7 @@ export default function FighterAddForm({ onClose }) {
                 style={sx.inp}
               />
             </div>
-            <div style={{ flex: 1 }}>
+            <div>
               <label style={sx.lbl}>Init Bonus</label>
               <input
                 type="number"

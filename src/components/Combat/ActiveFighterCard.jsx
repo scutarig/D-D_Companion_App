@@ -9,18 +9,31 @@ import ConditionPicker from "./Conditions/ConditionPicker.jsx";
 
 // ── Hold-to-repeat button ─────────────────────────────────────────────────────
 const HoldBtn = ({ onClick, children, style, disabled = false }) => {
-  const handleMouseDown = () => {
+  const handleStart = (e) => {
     if (disabled) return;
+    e.preventDefault(); // Prevent double-fire on touch+mouse
     let presses = 0;
     let interval;
-    const onUp = () => { clearInterval(interval); document.removeEventListener("mouseup", onUp); };
+    const onEnd = () => {
+      clearInterval(interval);
+      document.removeEventListener("mouseup", onEnd);
+      document.removeEventListener("touchend", onEnd);
+      document.removeEventListener("touchcancel", onEnd);
+    };
     onClick?.(1);
     presses = 1;
     interval = setInterval(() => { presses++; onClick?.(presses); }, 150);
-    document.addEventListener("mouseup", onUp);
+    document.addEventListener("mouseup", onEnd);
+    document.addEventListener("touchend", onEnd);
+    document.addEventListener("touchcancel", onEnd);
   };
   return (
-    <button onMouseDown={handleMouseDown} style={{ ...style, cursor: disabled ? "not-allowed" : "pointer", opacity: disabled ? 0.5 : 1 }} disabled={disabled}>
+    <button
+      onMouseDown={handleStart}
+      onTouchStart={handleStart}
+      style={{ ...style, cursor: disabled ? "not-allowed" : "pointer", opacity: disabled ? 0.5 : 1 }}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
@@ -219,7 +232,7 @@ export default function ActiveFighterCard() {
               <div style={{ display: "flex", gap: 4 }}>
                 {[0, 1, 2].map((i) => (
                   <button key={i} onClick={() => addDeathSaveResult(fighter.id, "success")} style={{
-                    width: 24, height: 24, borderRadius: 4, border: `2px solid ${C.green}`,
+                    width: 32, height: 32, borderRadius: 4, border: `2px solid ${C.green}`,
                     background: i < fighter.deathSaves.suc ? C.green : "transparent", cursor: "pointer", padding: 0,
                   }} />
                 ))}
@@ -230,7 +243,7 @@ export default function ActiveFighterCard() {
               <div style={{ display: "flex", gap: 4 }}>
                 {[0, 1, 2].map((i) => (
                   <button key={i} onClick={() => addDeathSaveResult(fighter.id, "failure")} style={{
-                    width: 24, height: 24, borderRadius: 4, border: `2px solid ${C.red}`,
+                    width: 32, height: 32, borderRadius: 4, border: `2px solid ${C.red}`,
                     background: i < fighter.deathSaves.fail ? C.red : "transparent", cursor: "pointer", padding: 0,
                   }} />
                 ))}
