@@ -32,9 +32,13 @@ export default function CharSheet({ char, setChar, printMode = false }) {
 
   return (
     <div>
-      <div style={{ ...sx.card, background: "linear-gradient(135deg,rgba(124,58,237,0.08),rgba(0,0,0,0.2))" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 8, marginBottom: 14 }}>
-          <div><label style={sx.lbl}>Name</label><input value={char.name} onChange={e => u("name", e.target.value)} style={{ ...sx.inp, fontSize: 16, fontFamily: FH, color: C.gold, fontWeight: 700 }} /></div>
+      {/* ── Kompakter Header: Identity-Row (Name/Klasse/Level/PB) ── */}
+      <div style={{ ...sx.card, background: "linear-gradient(135deg,rgba(124,58,237,0.08),rgba(0,0,0,0.2))", marginBottom: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1.5fr 0.7fr 0.7fr", gap: 8, marginBottom: 12 }}>
+          <div>
+            <label style={sx.lbl}>Name</label>
+            <input value={char.name} onChange={e => u("name", e.target.value)} style={{ ...sx.inp, fontSize: 16, fontFamily: FH, color: C.gold, fontWeight: 700 }} />
+          </div>
           <div>
             <label style={sx.lbl}>Primärklasse</label>
             <div style={{ ...sx.inp, display: "flex", alignItems: "center", fontSize: 13, fontWeight: 700, color: C.gold, fontFamily: FH, cursor: "default", userSelect: "none", gap: 6 }}>
@@ -45,34 +49,49 @@ export default function CharSheet({ char, setChar, printMode = false }) {
                 </span>
               )}
             </div>
-            <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>via Klassen-Manager</div>
           </div>
-          <RaceSelector char={char} setChar={setChar} />
-          <BackgroundSelector char={char} setChar={setChar} />
           <div>
-            <label style={sx.lbl}>Level (gesamt)</label>
-            <div style={{ ...sx.inp, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 700, color: C.gold, fontFamily: FH, cursor: "default", userSelect: "none" }}>
+            <label style={sx.lbl}>Level</label>
+            <div style={{ ...sx.inp, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 700, color: C.gold, fontFamily: FH, cursor: "default", userSelect: "none" }}>
               {char.level}
             </div>
-            <div style={{ fontSize: 9, color: C.textDim, textAlign: "center", marginTop: 2 }}>PB +{pb}</div>
+          </div>
+          <div>
+            <label style={sx.lbl}>PB</label>
+            <div style={{ background: `${C.gold}12`, border: `1px solid ${C.gold}25`, borderRadius: 8, padding: "8px 0", textAlign: "center", fontSize: 22, fontWeight: 700, color: C.gold, fontFamily: FH }}>
+              +{pb}
+            </div>
           </div>
         </div>
+
+        {/* Combat-Stats-Row */}
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "stretch" }}>
           {[["❤️", "HP", "hp", 0, char.maxHp, C.red], ["💛", "Max HP", "maxHp", 1, 999, C.amber], ["💙", "Temp HP", "tempHp", 0, 999, C.blue], ["🛡️", "AC", "ac", 0, 30, C.teal], ["⚡", "Init", "initiative", -10, 20, C.green], ["💨", "Speed", "speed", 0, 120, C.purple]].map(([ic, l, f, mn, mx, col]) => (
-            <div key={f} style={{ background: `${col}12`, border: `1px solid ${col}25`, borderRadius: 10, padding: "8px 12px", textAlign: "center", minWidth: 70 }}>
+            <div key={f} style={{ background: `${col}12`, border: `1px solid ${col}25`, borderRadius: 10, padding: "8px 12px", textAlign: "center", minWidth: 70, flex: "1 1 70px" }}>
               <div style={{ fontSize: 10, color: col, fontFamily: FH, marginBottom: 2, letterSpacing: .5 }}>{ic} {l}</div>
-              <input type="number" min={mn} max={mx} value={char[f]} onChange={e => u(f, +e.target.value)} style={{ ...sx.inp, textAlign: "center", fontSize: 22, fontWeight: 700, color: C.textBright, padding: "2px 0", background: "transparent", border: "none", width: 68 }} />
+              <input type="number" min={mn} max={mx} value={char[f]} onChange={e => u(f, +e.target.value)} style={{ ...sx.inp, textAlign: "center", fontSize: 22, fontWeight: 700, color: C.textBright, padding: "2px 0", background: "transparent", border: "none", width: "100%", minWidth: 0 }} />
             </div>
           ))}
-          <div style={{ background: `${C.gold}12`, border: `1px solid ${C.gold}25`, borderRadius: 10, padding: "8px 14px", textAlign: "center", minWidth: 58 }}>
-            <div style={{ fontSize: 10, color: C.gold, fontFamily: FH, marginBottom: 2, letterSpacing: .5 }}>🎖️ PB</div>
-            <div style={{ fontSize: 22, fontWeight: 700, color: C.gold }}>+{pb}</div>
-          </div>
-          <button onClick={() => u("inspiration", !char.inspiration)} style={{ background: char.inspiration ? "linear-gradient(135deg,#f0c060,#d97706)" : "rgba(0,0,0,0.25)", border: `1px solid ${char.inspiration ? C.gold : C.border}`, borderRadius: 10, padding: "8px 14px", cursor: "pointer", textAlign: "center", minWidth: 88, boxShadow: char.inspiration ? "0 0 20px rgba(240,192,96,0.4)" : "none", transition: "all .3s" }}>
+          <button onClick={() => u("inspiration", !char.inspiration)} style={{ background: char.inspiration ? "linear-gradient(135deg,#f0c060,#d97706)" : "rgba(0,0,0,0.25)", border: `1px solid ${char.inspiration ? C.gold : C.border}`, borderRadius: 10, padding: "8px 14px", cursor: "pointer", textAlign: "center", minWidth: 88, flex: "1 1 88px", boxShadow: char.inspiration ? "0 0 20px rgba(240,192,96,0.4)" : "none", transition: "all .3s" }}>
             <div style={{ fontSize: 20 }}>{char.inspiration ? "✨" : "💫"}</div>
             <div style={{ fontSize: 9, fontFamily: FH, fontWeight: 700, color: char.inspiration ? "#000" : C.textDim, letterSpacing: .5, marginTop: 2 }}>INSPIRATION</div>
             <div style={{ fontSize: 8, color: char.inspiration ? "#00000099" : C.textDim }}>{char.inspiration ? "AKTIV" : "INAKTIV"}</div>
           </button>
+        </div>
+      </div>
+
+      {/* ── Volk + Hintergrund auf eigene Karte (2-Spalten-Grid) ── */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: 10,
+        marginBottom: 14,
+      }}>
+        <div style={{ ...sx.card, background: "linear-gradient(135deg,rgba(20,184,166,0.06),rgba(0,0,0,0.15))" }}>
+          <RaceSelector char={char} setChar={setChar} />
+        </div>
+        <div style={{ ...sx.card, background: "linear-gradient(135deg,rgba(245,158,11,0.06),rgba(0,0,0,0.15))" }}>
+          <BackgroundSelector char={char} setChar={setChar} />
         </div>
       </div>
 
