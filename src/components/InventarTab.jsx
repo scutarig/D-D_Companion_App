@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH, F } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
+import { useI18n } from "../i18n/index.js";
 import CharInventory from "./CharInventory.jsx";
 import Katalog from "./Katalog.jsx";
 
@@ -16,6 +17,7 @@ const lbl = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform:
 const ctStyle = { fontFamily: FH, fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" };
 
 function WealthWidget({ char, setChar }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const totalGP = CURR.reduce((s, c) => s + (char[c.id] || 0) * c.gpVal, 0);
   const totalWeight = (char.inventory || []).reduce(
@@ -31,7 +33,7 @@ function WealthWidget({ char, setChar }) {
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <span style={{ fontSize: 22 }}>💰</span>
           <div>
-            <div style={lbl}>Vermögen</div>
+            <div style={lbl}>{t("inv.wealth","Vermögen")}</div>
             <div style={{ fontSize: 22, fontWeight: 700, color: C.gold, fontFamily: FH, lineHeight: 1.1 }}>
               {totalGP % 1 === 0 ? totalGP : totalGP.toFixed(2)} <span style={{ fontSize: 14 }}>GP</span>
             </div>
@@ -40,7 +42,7 @@ function WealthWidget({ char, setChar }) {
 
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ textAlign: "right" }}>
-            <div style={lbl}>Gewicht</div>
+            <div style={lbl}>{t("inv.weight","Gewicht")}</div>
             <div style={{ fontSize: 18, fontWeight: 700, color: C.textBright, lineHeight: 1.1 }}>
               {totalWeight.toFixed(1)} <span style={{ fontSize: 12, color: C.textDim }}>lb</span>
             </div>
@@ -73,6 +75,7 @@ function WealthWidget({ char, setChar }) {
 }
 
 export default function InventarTab() {
+  const { t } = useI18n();
   const { active, setActive } = useChar();
   const [view, setView] = useState("char");
 
@@ -81,16 +84,16 @@ export default function InventarTab() {
       {active && <WealthWidget char={active} setChar={setActive} />}
 
       <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-        <button onClick={() => setView("char")} style={sx.nb(view === "char")}>🗡️ Ausrüstung & Rucksack</button>
-        <button onClick={() => setView("sammlung")} style={sx.nb(view === "sammlung")}>📚 Katalog</button>
+        <button onClick={() => setView("char")} style={sx.nb(view === "char")}>🗡️ {t("inv.equipment","Ausrüstung & Rucksack")}</button>
+        <button onClick={() => setView("sammlung")} style={sx.nb(view === "sammlung")}>📚 {t("inv.catalog","Katalog")}</button>
       </div>
 
       {view === "char" && active && <CharInventory char={active} setChar={setActive} />}
       {view === "char" && !active && (
         <div style={{ ...sx.card, textAlign: "center", color: C.textDim, padding: 48 }}>
           <div style={{ fontSize: 40, marginBottom: 10 }}>👤</div>
-          <div style={{ fontSize: 15 }}>Kein Charakter aktiv</div>
-          <div style={{ fontSize: 12, marginTop: 6 }}>Wechsle zum Charakter-Tab und wähle einen Charakter aus.</div>
+          <div style={{ fontSize: 15 }}>{t("inv.no_char","Kein Charakter aktiv")}</div>
+          <div style={{ fontSize: 12, marginTop: 6 }}>{t("inv.no_char_hint","Wechsle zum Charakter-Tab und wähle einen Charakter aus.")}</div>
         </div>
       )}
       {view === "sammlung" && <Katalog char={active} setChar={setActive} />}

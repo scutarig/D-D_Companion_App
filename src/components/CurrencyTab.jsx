@@ -2,17 +2,21 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
 import { fmtTime, fmtNumber } from "../utils/locale.js";
+import { useI18n } from "../i18n/index.js";
 
+// Currency-Daten mit DE/EN-Labels (PHB 2024-konform)
 const CURR = [
-  { id: "pp",       label: "Platin",   short: "PP", icon: "🪙", color: "#e2e8f0", gpVal: 10    },
-  { id: "gold",     label: "Gold",     short: "GP", icon: "💰", color: C.gold,    gpVal: 1     },
-  { id: "electrum", label: "Elektrum", short: "EP", icon: "🔵", color: "#67e8f9", gpVal: 0.5   },
-  { id: "silver",   label: "Silber",   short: "SP", icon: "⚪", color: "#94a3b8", gpVal: 0.1   },
-  { id: "copper",   label: "Kupfer",   short: "CP", icon: "🟤", color: "#b45309", gpVal: 0.01  },
+  { id: "pp",       labelDE: "Platin",   labelEN: "Platinum", short: "PP", icon: "🪙", color: "#e2e8f0", gpVal: 10    },
+  { id: "gold",     labelDE: "Gold",     labelEN: "Gold",     short: "GP", icon: "💰", color: C.gold,    gpVal: 1     },
+  { id: "electrum", labelDE: "Elektrum", labelEN: "Electrum", short: "EP", icon: "🔵", color: "#67e8f9", gpVal: 0.5   },
+  { id: "silver",   labelDE: "Silber",   labelEN: "Silver",   short: "SP", icon: "⚪", color: "#94a3b8", gpVal: 0.1   },
+  { id: "copper",   labelDE: "Kupfer",   labelEN: "Copper",   short: "CP", icon: "🟤", color: "#b45309", gpVal: 0.01  },
 ];
 
 export default function CurrencyTab() {
+  const { t, lang } = useI18n();
   const { active: char, setActive: setChar } = useChar();
+  const currLabel = (c) => lang === "en" ? c.labelEN : c.labelDE;
   const [txAmt, setTxAmt]   = useState("");
   const [txCurr, setTxCurr] = useState("gold");
   const [txDesc, setTxDesc] = useState("");
@@ -65,10 +69,10 @@ export default function CurrencyTab() {
 
       {/* ── Schnelle Transaktion ── */}
       <div style={sx.card}>
-        <div style={sx.ct}>⚡ Transaktion</div>
+        <div style={sx.ct}>⚡ {t("currency.transaction","Transaktion")}</div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "flex-end", marginBottom: 10 }}>
           <div style={{ flex: "0 0 100px" }}>
-            <label style={sx.lbl}>Betrag</label>
+            <label style={sx.lbl}>{t("currency.amount","Betrag")}</label>
             <input
               type="number" min={0} value={txAmt}
               onChange={e => setTxAmt(e.target.value)}
@@ -79,23 +83,23 @@ export default function CurrencyTab() {
             />
           </div>
           <div style={{ flex: "0 0 110px" }}>
-            <label style={sx.lbl}>Währung</label>
+            <label style={sx.lbl}>{t("currency.currency","Währung")}</label>
             <select value={txCurr} onChange={e => setTxCurr(e.target.value)} style={{ ...sx.sel, fontSize: 15, fontWeight: 700 }}>
               {CURR.map(c => <option key={c.id} value={c.id}>{c.icon} {c.short}</option>)}
             </select>
           </div>
           <div style={{ flex: 1, minWidth: 120 }}>
-            <label style={sx.lbl}>Notiz</label>
-            <input value={txDesc} onChange={e => setTxDesc(e.target.value)} onKeyDown={e => e.key === "Enter" && book("add")} style={sx.inp} placeholder="Beute, Sold, Kauf…" />
+            <label style={sx.lbl}>{t("currency.note","Notiz")}</label>
+            <input value={txDesc} onChange={e => setTxDesc(e.target.value)} onKeyDown={e => e.key === "Enter" && book("add")} style={sx.inp} placeholder={t("currency.ph_note","Beute, Sold, Kauf…")} />
           </div>
-          <button onClick={() => book("add")} style={{ ...sx.btn(C.green), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>+ Erhalten</button>
-          <button onClick={() => book("sub")} style={{ ...sx.btn(C.red), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>− Ausgeben</button>
+          <button onClick={() => book("add")} style={{ ...sx.btn(C.green), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>+ {t("currency.gain","Erhalten")}</button>
+          <button onClick={() => book("sub")} style={{ ...sx.btn(C.red), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>− {t("currency.spend","Ausgeben")}</button>
         </div>
 
         {/* Transaktionslog */}
         {log.length > 0 && (
           <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 10 }}>
-            <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: .8, marginBottom: 6 }}>VERLAUF</div>
+            <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: .8, marginBottom: 6 }}>{t("currency.history","VERLAUF")}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 3, maxHeight: 160, overflowY: "auto" }}>
               {log.map(e => (
                 <div key={e.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "5px 10px", background: "rgba(255,255,255,0.03)", borderRadius: 6, borderLeft: `3px solid ${e.dir === "add" ? C.greenBright : C.redBright}` }}>
@@ -111,7 +115,7 @@ export default function CurrencyTab() {
 
       {/* ── Geldbeutel ── */}
       <div style={sx.card}>
-        <div style={sx.ct}>👜 Geldbeutel</div>
+        <div style={sx.ct}>👜 {t("currency.purse","Geldbeutel")}</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 10 }}>
           {CURR.map(c => {
             const val = char[c.id] || 0;
@@ -121,7 +125,7 @@ export default function CurrencyTab() {
                   <span style={{ fontSize: 20 }}>{c.icon}</span>
                   <div>
                     <div style={{ fontFamily: FH, fontSize: 13, color: c.color, fontWeight: 700 }}>{c.short}</div>
-                    <div style={{ fontSize: 10, color: C.textDim }}>{c.label}</div>
+                    <div style={{ fontSize: 10, color: C.textDim }}>{currLabel(c)}</div>
                   </div>
                 </div>
 
@@ -155,17 +159,17 @@ export default function CurrencyTab() {
       <div style={sx.card}>
         <button onClick={() => setShowCalc(p => !p)} style={{ background: "none", border: "none", cursor: "pointer", width: "100%", textAlign: "left", padding: 0 }}>
           <div style={{ ...sx.ct, marginBottom: showCalc ? 12 : 0, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span>🔄 Währungsrechner</span>
+            <span>🔄 {t("currency.calculator","Währungsrechner")}</span>
             <span style={{ fontSize: 12, color: C.textDim }}>{showCalc ? "▲" : "▼"}</span>
           </div>
         </button>
         {showCalc && (
           <>
             <div style={{ display: "flex", gap: 10, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 12 }}>
-              <div><label style={sx.lbl}>Betrag</label><input type="number" min={0} value={calcAmt} onChange={e => setCalcAmt(Math.max(0, +e.target.value))} style={{ ...sx.inp, width: 90 }} /></div>
-              <div><label style={sx.lbl}>Von</label>
+              <div><label style={sx.lbl}>{t("currency.amount","Betrag")}</label><input type="number" min={0} value={calcAmt} onChange={e => setCalcAmt(Math.max(0, +e.target.value))} style={{ ...sx.inp, width: 90 }} /></div>
+              <div><label style={sx.lbl}>{t("currency.from","Von")}</label>
                 <select value={calcFrom} onChange={e => setCalcFrom(e.target.value)} style={{ ...sx.sel, width: 130 }}>
-                  {CURR.map(c => <option key={c.id} value={c.id}>{c.icon} {c.label}</option>)}
+                  {CURR.map(c => <option key={c.id} value={c.id}>{c.icon} {currLabel(c)}</option>)}
                 </select>
               </div>
             </div>
