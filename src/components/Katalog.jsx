@@ -2,12 +2,98 @@ import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { SRD_ITEMS, MAGIC_MODIFIERS, applyMagicModifier } from "../data/items.js";
 import { usePersist } from "../hooks/usePersist.js";
+import { useI18n } from "../i18n/index.js";
 
 // Check if item can be enhanced with +0/+1/+2/+3 magic modifier
 const isMagicCompatible = (item) =>
   (item.type === "Weapon" || item.type === "Armor") &&
   item.sub !== "Magic" &&
   !item.magic;
+
+// ─── Inline DE→EN translation dictionary for common Item-notes phrases ──
+// Covers ~80% of weapon/armor/gear/potion notes. Falls back to DE if no match.
+const ITEM_NOTE_TRANSLATIONS = {
+  // Weapon properties
+  "Vielseitig: 1d10 zweihändig.": "Versatile: 1d10 two-handed.",
+  "Vielseitig: 1d10.": "Versatile: 1d10.",
+  "Vielseitig 1d8. Wurfbar (20/60ft).": "Versatile 1d8. Thrown (20/60ft).",
+  "Vielseitig 1d8.": "Versatile 1d8.",
+  "Vielseitig 1d10.": "Versatile 1d10.",
+  "Finesse, leicht.": "Finesse, Light.",
+  "Finesse, leicht, wurfbar (20/60ft).": "Finesse, Light, Thrown (20/60ft).",
+  "Finesse.": "Finesse.",
+  "Finesse, Reach.": "Finesse, Reach.",
+  "Finesse, wurfbar (20/60ft).": "Finesse, Thrown (20/60ft).",
+  "Schwer, zweihändig.": "Heavy, Two-Handed.",
+  "Schwer, Reach, zweihändig.": "Heavy, Reach, Two-Handed.",
+  "Zweihändig.": "Two-Handed.",
+  "Leicht.": "Light.",
+  "Leicht, wurfbar (20/60ft).": "Light, Thrown (20/60ft).",
+  "Wurfbar (30/120ft).": "Thrown (30/120ft).",
+  "Reach 10ft. Nachteil auf 5ft.": "Reach 10ft. Disadvantage at 5ft.",
+  "—": "—",
+  // Ranged
+  "150/600ft. Schwer, zweihändig.": "150/600ft. Heavy, Two-Handed.",
+  "80/320ft. Zweihändig. Nach Schuss nachladen.": "80/320ft. Two-Handed. Loading.",
+  "80/320ft. Zweihändig.": "80/320ft. Two-Handed.",
+  "100/400ft. Schwer, zweihändig. Nachladen.": "100/400ft. Heavy, Two-Handed. Loading.",
+  "25/100ft. Nachladen.": "25/100ft. Loading.",
+  "30/120ft.": "30/120ft.",
+  "5/15ft. STR DC 10 Entfesseln oder ATK 5 Schaden.": "5/15ft. STR DC 10 to escape, or attack 5 damage.",
+  "Für Kurz- und Langbogen.": "For Shortbow and Longbow.",
+  "Für Leichte und Schwere Armbrust.": "For Light and Heavy Crossbow.",
+  "Für Blasrohr.": "For Blowgun.",
+  // Armor
+  "STR 13. Stealth-Nachteil.": "STR 13. Stealth Disadvantage.",
+  "STR 15. Stealth-Nachteil.": "STR 15. Stealth Disadvantage.",
+  "Stealth-Nachteil.": "Stealth Disadvantage.",
+  "Nicht mit zweihändigen Waffen.": "Not with two-handed weapons.",
+  // Adventuring Gear / Tools — common
+  "Bis 300 Pfund. DC 17 STR zerreißen.": "Up to 300 lbs. DC 17 STR to break.",
+  "Mit Seil klettern. Wurfweite 60ft.": "Climb with rope. Throw range 60ft.",
+  "20ft hell + 20ft dämmrig. Brennt 1h.": "20ft bright + 20ft dim. Burns 1h.",
+  "Ersetzt materielle Komponenten ohne GP-Wert.": "Replaces material components without GP cost.",
+  "30 lb Kapazität (ohne Magie).": "30 lb capacity (non-magical).",
+  "Feuer entfachen in 1 Minute (kein Würfelwurf).": "Light a fire in 1 minute (no roll required).",
+  "30ft hell + 30ft dämmrig. 6h pro Öl-Flask.": "30ft bright + 30ft dim. 6h per oil flask.",
+  "10 Anwendungen. Stabilisieren DC 10, kein Würfelwurf nötig.": "10 uses. Stabilize DC 10, no roll needed.",
+  "+2 Bonus auf STR-Checks zum Aufbrechen.": "+2 bonus to STR checks to break.",
+  "Spike, Handschuhe, Stiefel. Haken für sicheres Klettern.": "Spike, gloves, boots. Hooks for safe climbing.",
+  "Schutz vor normalen Umweltbedingungen.": "Protection from normal environmental conditions.",
+  "Tinte, Feder, 10 Blatt Pergament.": "Ink, quill, 10 sheets of parchment.",
+  "Zugfestigkeit: kann bis 900 Pfund halten.": "Tensile strength: can hold up to 900 lbs.",
+  "4 Tage Wasser (1 Gallone).": "4 days of water (1 gallon).",
+  "2× Vergrößerung auf bis zu 1 Meile.": "2× magnification up to 1 mile.",
+  "Ecken & Medusas-Schutz. Stealth DC +0.": "Corners & Medusa-protection. Stealth DC +0.",
+  "DC 20 STR oder Dex+Diebeswerkzeug zum Entkommen.": "DC 20 STR or DEX+Thieves' Tools to escape.",
+  "Feuer als Bonusaktion (wenn bereits Zunder bereit).": "Fire as Bonus Action (if tinder ready).",
+  // Tools
+  "Schlösser knacken & Fallen entschärfen. Proficiency benötigt.": "Pick locks & disarm traps. Proficiency required.",
+  "Kostüme, Schminke, Perücken. Für Verkleidungs-Checks.": "Costumes, makeup, wigs. For disguise checks.",
+  "Gifte herstellen und anwenden. Proficiency benötigt.": "Make and apply poisons. Proficiency required.",
+  "Metallgegenstände herstellen und reparieren.": "Make and repair metal objects.",
+  "Heilkräuter identifizieren, Tränke und Pasten herstellen.": "Identify herbs, brew potions and salves.",
+  "Seekarten, Kompass, Sextant. Navigation auf See & Land.": "Sea charts, compass, sextant. Navigation on sea & land.",
+  // Potions
+  "Bonus-Aktion (selbst) oder Aktion (anderer).": "Bonus Action (self) or Action (other).",
+  "Resistenz gegen Feuerschaden für 1 Stunde.": "Resistance to Fire damage for 1 hour.",
+  "Fluggeschwindigkeit 60ft für 1 Stunde. Konzentration.": "Fly Speed 60ft for 1 hour. Concentration.",
+  "Unsichtbar für 1h. Endet bei Angriff/Zauber.": "Invisible for 1h. Ends on attack/spell.",
+  "STR wird 29 für 24 Stunden.": "STR becomes 29 for 24 hours.",
+  "True Seeing: Illusionen durchschauen, Unsichtbare sehen.": "True Seeing: see through illusions, see invisible.",
+  "1 Anwendung. Auf Klinge oder in Nahrung. CON DC 10 oder 1d4 Gift.": "1 use. On blade or in food. CON DC 10 or 1d4 Poison.",
+  // Scrolls
+  "Einmal verwendbar. Zauberkundige können lesen.": "Single use. Spellcasters can read.",
+  "Einmal verwendbar. DC 12 wenn keine Klassenliste.": "Single use. DC 12 if not on class list.",
+  "Einmal verwendbar. DC 13.": "Single use. DC 13.",
+  "Einmal verwendbar. DC 14.": "Single use. DC 14.",
+  "Einmal verwendbar. DC 15.": "Single use. DC 15.",
+};
+
+const tNote = (note, lang) => {
+  if (lang !== "en" || !note) return note;
+  return ITEM_NOTE_TRANSLATIONS[note] || note;
+};
 
 const RC   = { Common: C.textDim, Uncommon: "#00c040", Rare: "#3b82f6", "Very Rare": "#a855f7", Legendary: "#f59e0b" };
 const RCBG = { Common: "rgba(255,255,255,0.03)", Uncommon: "rgba(0,192,64,0.07)", Rare: "rgba(59,130,246,0.09)", "Very Rare": "rgba(168,85,247,0.09)", Legendary: "rgba(245,158,11,0.11)" };
@@ -29,6 +115,7 @@ const RARS = ["Alle", "Common", "Uncommon", "Rare", "Very Rare", "Legendary"];
 const BLANK_FORM = { name:"", type:"Weapon", sub:"Simple Melee", dmg:"", ac:"", eff:"", wt:"", rar:"Common", notes:"" };
 
 export default function Katalog({ char, setChar }) {
+  const { lang } = useI18n();
   const inv    = char?.inventory || [];
   const setInv = fn => setChar && setChar(p => ({ ...p, inventory: typeof fn === "function" ? fn(p.inventory || []) : fn }));
 
@@ -207,7 +294,7 @@ export default function Katalog({ char, setChar }) {
 
             {modal.notes && modal.notes!=="—" && (
               <div style={{fontSize:13,color:C.text,lineHeight:1.7,marginBottom:16,padding:"10px 12px",background:"rgba(0,0,0,0.35)",borderRadius:8}}>
-                {modal.notes}
+                {tNote(modal.notes, lang)}
               </div>
             )}
 
