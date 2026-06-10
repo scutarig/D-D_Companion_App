@@ -14,7 +14,8 @@ import { getSubclassNames, getSubclassChoiceLevel } from "../../data/subclasses.
  */
 export default function SubclassSelector({ className, level, value, onChange }) {
   const choiceLevel = getSubclassChoiceLevel(className);
-  if (level < choiceLevel) return null;
+  // choiceLevel kann null sein wenn Klasse keine Subklassen hat
+  if (choiceLevel == null || level < choiceLevel) return null;
 
   const options = getSubclassNames(className);
   if (!options.length) return null;

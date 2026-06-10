@@ -97,7 +97,8 @@ export default function ActiveFighterCard() {
     setShowCustomHp(false);
   };
 
-  const conditionIds = fighter.conditions.map(getConditionId);
+  // Defensive: Legacy combat_v5 localStorage hatte u.U. keine conditions[]
+  const fighterConditions = fighter.conditions || [];
 
   return (
     <div style={{ ...sx.card, background: `${C.purple}08`, border: `2px solid ${C.purple}25` }}>
@@ -124,17 +125,17 @@ export default function ActiveFighterCard() {
           onClick={() => setShowConditionPicker(true)}
           style={{
             ...sx.bsm(C.amber), padding: "5px 10px", fontSize: 11,
-            background: fighter.conditions.length > 0 ? `${C.amber}22` : "transparent",
+            background: fighterConditions.length > 0 ? `${C.amber}22` : "transparent",
           }}
         >
-          ⚡ {fighter.conditions.length > 0 ? fighter.conditions.length : "+"}
+          ⚡ {fighterConditions.length > 0 ? fighterConditions.length : "+"}
         </button>
       </div>
 
       {/* ── CONDITIONS ROW ──────────────────────────────────────────────────── */}
-      {fighter.conditions.length > 0 && (
+      {fighterConditions.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: 12 }}>
-          {fighter.conditions.map((c, i) => (
+          {fighterConditions.map((c, i) => (
             <ConditionBadge
               key={i}
               conditionId={c}
@@ -233,7 +234,7 @@ export default function ActiveFighterCard() {
                 {[0, 1, 2].map((i) => (
                   <button key={i} onClick={() => addDeathSaveResult(fighter.id, "success")} style={{
                     width: 32, height: 32, borderRadius: 4, border: `2px solid ${C.green}`,
-                    background: i < fighter.deathSaves.suc ? C.green : "transparent", cursor: "pointer", padding: 0,
+                    background: i < (fighter.deathSaves?.suc ?? 0) ? C.green : "transparent", cursor: "pointer", padding: 0,
                   }} />
                 ))}
               </div>
@@ -244,14 +245,14 @@ export default function ActiveFighterCard() {
                 {[0, 1, 2].map((i) => (
                   <button key={i} onClick={() => addDeathSaveResult(fighter.id, "failure")} style={{
                     width: 32, height: 32, borderRadius: 4, border: `2px solid ${C.red}`,
-                    background: i < fighter.deathSaves.fail ? C.red : "transparent", cursor: "pointer", padding: 0,
+                    background: i < (fighter.deathSaves?.fail ?? 0) ? C.red : "transparent", cursor: "pointer", padding: 0,
                   }} />
                 ))}
               </div>
             </div>
           </div>
-          {fighter.deathSaves.suc >= 3 && <div style={{ marginTop: 6, fontSize: 11, color: C.greenBright, fontWeight: 700 }}>✓ Stabilized!</div>}
-          {fighter.deathSaves.fail >= 3 && <div style={{ marginTop: 6, fontSize: 11, color: C.redBright, fontWeight: 700 }}>✗ Dead</div>}
+          {(fighter.deathSaves?.suc ?? 0) >= 3 && <div style={{ marginTop: 6, fontSize: 11, color: C.greenBright, fontWeight: 700 }}>✓ Stabilized!</div>}
+          {(fighter.deathSaves?.fail ?? 0) >= 3 && <div style={{ marginTop: 6, fontSize: 11, color: C.redBright, fontWeight: 700 }}>✗ Dead</div>}
         </div>
       )}
 
@@ -259,10 +260,10 @@ export default function ActiveFighterCard() {
       <div style={{ background: C.surface, borderRadius: 6, padding: "6px 10px", border: `1px solid ${C.border}`, fontSize: 12, display: "flex", justifyContent: "space-between" }}>
         <span style={{ color: C.textDim, fontFamily: FH, letterSpacing: 0.5, fontSize: 10 }}>SPEED</span>
         <span style={{ color: C.tealBright, fontWeight: 700 }}>
-          {fighter.conditions.some((c) => {
+          {fighterConditions.some((c) => {
             const cond = getCondition(getConditionId(c));
-            return cond?.effects.speedZero;
-          }) ? <span style={{ color: C.redBright }}>0 ft (restricted)</span> : `${fighter.actions.movement ?? 30} ft`}
+            return cond?.effects?.speedZero;
+          }) ? <span style={{ color: C.redBright }}>0 ft (restricted)</span> : `${fighter.actions?.movement ?? 30} ft`}
         </span>
       </div>
 

@@ -1,126 +1,269 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 
 export default function Notes() {
   const CATS = [
-    {id:"all",label:"Alle",icon:"📋",color:C.textDim},
-    {id:"location",label:"Location",icon:"🗺️",color:C.greenBright},
-    {id:"story",label:"Story",icon:"📖",color:C.gold},
-    {id:"monster",label:"Monster",icon:"👹",color:C.redBright},
-    {id:"misc",label:"Sonstiges",icon:"📝",color:C.blueBright},
+    {id:"all",     label:"Alle",       icon:"📋", color:C.textDim},
+    {id:"location",label:"Location",   icon:"🗺️", color:C.greenBright},
+    {id:"story",   label:"Story",      icon:"📖", color:C.gold},
+    {id:"monster", label:"Monster",    icon:"🐉", color:C.redBright},
+    {id:"misc",    label:"Sonstiges",  icon:"📝", color:C.blueBright},
   ];
-  const CC = {location:C.greenBright,story:C.gold,monster:C.redBright,misc:C.blueBright};
-  const CI = {location:"🗺️",story:"📖",monster:"👹",misc:"📝"};
+  const CC = {location:C.greenBright, story:C.gold, monster:C.redBright, misc:C.blueBright};
+  const CI = {location:"🗺️", story:"📖", monster:"🐉", misc:"📝"};
+
   const [notes, setNotes] = usePersist("notes_v5", [
-    {id:2,title:"Dunkle Waldlichtung",content:"",cat:"location"},
-    {id:3,title:"Der verlorene Thron",content:"",cat:"story"},
+    {id:2, title:"Dunkle Waldlichtung", content:"", cat:"location"},
+    {id:3, title:"Der verlorene Thron", content:"", cat:"story"},
   ]);
   const [aid, setAid] = useState(null);
   const [catFilter, setCatFilter] = useState("all");
   const [search, setSearch] = useState("");
-
-  // Filter-Logik: Kategorie + Volltext-Suche (Titel + Content)
-  const q = search.trim().toLowerCase();
-  const filtered = notes.filter(n => {
-    if (catFilter !== "all" && n.cat !== catFilter) return false;
-    if (q) {
-      const inTitle = (n.title || "").toLowerCase().includes(q);
-      const inContent = (n.content || "").toLowerCase().includes(q);
-      if (!inTitle && !inContent) return false;
-    }
-    return true;
-  });
-  const cur = notes.find(n => n.id===aid) || (filtered[0]||notes[0]);
-  const addNote = cat => { const n={id:Date.now(),title:"Neue Notiz",content:"",cat}; setNotes(p=>[...p,n]); setAid(n.id); setCatFilter("all"); setSearch(""); };
-  const upd = (id,field,val) => setNotes(p => p.map(n => n.id===id?{...n,[field]:val}:n));
-  const delNote = () => { if(!cur)return; const rest=notes.filter(n=>n.id!==cur.id); setNotes(rest); setAid(rest[0]?.id||null); };
   const mob = useMobile();
+
+  // Migration alter "npc"-Notizen auf "monster" (npc-Cat hatte keine CC/CI → war Dead-Branch)
+  const normalizeCat = (c) => (c === "npc" ? "monster" : c);
+
+  // Filter: Kategorie + Suche (Titel + Inhalt, case-insensitive)
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return notes
+      .map(n => ({ ...n, cat: normalizeCat(n.cat) }))
+      .filter(n => {
+        if (catFilter !== "all" && n.cat !== catFilter) return false;
+        if (!q) return true;
+        return (n.title || "").toLowerCase().includes(q)
+            || (n.content || "").toLowerCase().includes(q);
+      });
+  }, [notes, catFilter, search]);
+
+  const cur = notes.find(n => n.id === aid) || (filtered[0] || notes[0]);
+
+  const addNote = (cat) => {
+    const n = { id: Date.now(), title: "Neue Notiz", content: "", cat };
+    setNotes(p => [...p, n]);
+    setAid(n.id);
+    setCatFilter("all");
+    setSearch("");
+  };
+  const upd = (id, field, val) =>
+    setNotes(p => p.map(n => n.id === id ? { ...n, [field]: val } : n));
+  const delNote = () => {
+    if (!cur) return;
+    const rest = notes.filter(n => n.id !== cur.id);
+    setNotes(rest);
+    setAid(rest[0]?.id || null);
+  };
+
+  // Highlight-Helper für Suche im Titel
+  const highlight = (text) => {
+    const q = search.trim();
+    if (!q || !text) return text;
+    const i = text.toLowerCase().indexOf(q.toLowerCase());
+    if (i < 0) return text;
+    return (
+      <>
+        {text.slice(0, i)}
+        <mark style={{ background: C.gold + "55", color: C.textBright, padding: "0 2px", borderRadius: 2 }}>
+          {text.slice(i, i + q.length)}
+        </mark>
+        {text.slice(i + q.length)}
+      </>
+    );
+  };
+
   return (
-    <div style={{display:"flex",gap:12,minHeight:"65vh",flexDirection:mob?"column":"row"}}>
-      <div style={{width:mob?"100%":215,flexShrink:0,display:"flex",flexDirection:"column",gap:6}}>
-        {/* Volltext-Suche */}
+    <div style={{display:"flex", gap:12, minHeight:"65vh", flexDirection:mob?"column":"row"}}>
+      <div style={{width:mob?"100%":230, flexShrink:0, display:"flex", flexDirection:"column", gap:6}}>
+
+        {/* ── Search ─────────────────────────────────────────────────── */}
         <div style={{ position: "relative" }}>
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="🔍 Titel & Inhalt suchen…"
-            style={{ ...sx.inp, paddingRight: search ? 30 : 10, fontSize: 13 }}
+            placeholder="🔍 Notiz suchen…"
+            style={{ ...sx.inp, paddingRight: search ? 32 : 10 }}
           />
           {search && (
             <button
               onClick={() => setSearch("")}
-              aria-label="Suche leeren"
+              title="Suche zurücksetzen"
               style={{
                 position: "absolute", right: 4, top: "50%", transform: "translateY(-50%)",
+                width: 26, height: 26, borderRadius: "50%",
                 background: "transparent", border: "none", color: C.textDim,
-                fontSize: 14, cursor: "pointer", padding: "4px 6px",
+                cursor: "pointer", fontSize: 14, lineHeight: 1,
+                display: "flex", alignItems: "center", justifyContent: "center",
               }}
             >✕</button>
           )}
         </div>
 
-        {/* Treffer-Anzeige bei aktiver Suche */}
-        {q && (
-          <div style={{
-            fontSize: 10, color: C.textDim, fontFamily: F,
-            padding: "2px 6px", borderRadius: 4,
-            background: filtered.length === 0 ? `${C.red}15` : `${C.teal}10`,
-            border: `1px solid ${filtered.length === 0 ? C.red+"30" : C.teal+"30"}`,
-          }}>
-            {filtered.length === 0
-              ? `Keine Treffer für "${search}"`
-              : `${filtered.length} Treffer${catFilter !== "all" ? ` in ${CATS.find(c=>c.id===catFilter)?.label}` : ""}`}
-          </div>
-        )}
-
-        <div style={{display:"flex",flexDirection:"column",gap:2}}>
-          {CATS.map(c => (
-            <button key={c.id} onClick={() => setCatFilter(c.id)} style={{background:catFilter===c.id?c.color+"33":C.surface,border:`1px solid ${catFilter===c.id?c.color:C.border}`,borderRadius:5,padding:"6px 10px",cursor:"pointer",textAlign:"left",color:catFilter===c.id?c.color:C.textDim,fontFamily:F,fontSize:12,fontWeight:catFilter===c.id?700:400,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-              <span>{c.icon} {c.label}</span>
-              <span style={{fontSize:10,background:catFilter===c.id?c.color+"44":"transparent",borderRadius:10,padding:"1px 6px"}}>{c.id==="all"?notes.length:notes.filter(n=>n.cat===c.id).length}</span>
-            </button>
-          ))}
-        </div>
-        <div style={{display:"flex",flexWrap:"wrap",gap:4,borderTop:`1px solid ${C.border}`,paddingTop:6}}>
-          {CATS.slice(1).map(c => (
-            <button key={c.id} onClick={() => addNote(c.id)} title={`Neue ${c.label}-Notiz`} style={{background:"transparent",border:`1px solid ${c.color}40`,borderRadius:12,padding:"2px 9px",cursor:"pointer",color:c.color,fontSize:11,lineHeight:1.4,fontFamily:F}}>+{c.icon}</button>
-          ))}
-          <span style={{fontSize:10,color:C.textDim,alignSelf:"center",marginLeft:2}}>Neue Notiz</span>
-        </div>
-        <div style={{flex:1,overflowY:"auto",maxHeight:"42vh",borderTop:`1px solid ${C.border}`,paddingTop:6}}>
-          {filtered.map(n => {
-            const col=CC[n.cat]||C.textDim; const icon=CI[n.cat]||"📝"; const active=cur?.id===n.id;
+        {/* ── Kategorie-Filter ──────────────────────────────────────── */}
+        <div style={{display:"flex", flexDirection:"column", gap:2}}>
+          {CATS.map(c => {
+            const count = c.id === "all"
+              ? filtered.length
+              : filtered.filter(n => n.cat === c.id).length;
+            const totalCount = c.id === "all"
+              ? notes.length
+              : notes.filter(n => normalizeCat(n.cat) === c.id).length;
+            const isFiltered = search.trim() !== "" && count !== totalCount;
             return (
-              <div key={n.id} onClick={() => setAid(n.id)} style={{background:active?col+"22":C.surface,border:`1px solid ${active?col:C.border}`,borderLeft:`3px solid ${col}`,borderRadius:5,padding:"7px 9px",cursor:"pointer",marginBottom:3,transition:"all .15s"}}>
-                <div style={{fontSize:12,color:active?col:C.textBright,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{icon} {n.title||"(kein Titel)"}</div>
-                <div style={{fontSize:10,color:C.textDim,marginTop:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{n.content.slice(0,34)||"(leer)"}{n.content.length>34?"...":""}</div>
+              <button
+                key={c.id}
+                onClick={() => setCatFilter(c.id)}
+                style={{
+                  background: catFilter === c.id ? c.color + "33" : C.surface,
+                  border: `1px solid ${catFilter === c.id ? c.color : C.border}`,
+                  borderRadius: 5, padding: "6px 10px", cursor: "pointer",
+                  textAlign: "left",
+                  color: catFilter === c.id ? c.color : C.textDim,
+                  fontFamily: F, fontSize: 12,
+                  fontWeight: catFilter === c.id ? 700 : 400,
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                }}
+              >
+                <span>{c.icon} {c.label}</span>
+                <span style={{
+                  fontSize: 10,
+                  background: catFilter === c.id ? c.color + "44" : "transparent",
+                  borderRadius: 10, padding: "1px 6px",
+                }}>
+                  {isFiltered ? `${count}/${totalCount}` : totalCount}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ── Add-Buttons ───────────────────────────────────────────── */}
+        <div style={{display:"flex", flexWrap:"wrap", gap:4, borderTop:`1px solid ${C.border}`, paddingTop:6}}>
+          {CATS.slice(1).map(c => (
+            <button
+              key={c.id}
+              onClick={() => addNote(c.id)}
+              title={`Neue ${c.label}-Notiz`}
+              style={{
+                background: "transparent",
+                border: `1px solid ${c.color}40`,
+                borderRadius: 12, padding: "2px 9px",
+                cursor: "pointer", color: c.color,
+                fontSize: 11, lineHeight: 1.4, fontFamily: F,
+              }}
+            >+{c.icon}</button>
+          ))}
+          <span style={{fontSize:10, color:C.textDim, alignSelf:"center", marginLeft:2}}>Neue Notiz</span>
+        </div>
+
+        {/* ── Liste ─────────────────────────────────────────────────── */}
+        <div style={{flex:1, overflowY:"auto", maxHeight:"42vh", borderTop:`1px solid ${C.border}`, paddingTop:6}}>
+          {filtered.map(n => {
+            const col = CC[n.cat] || C.textDim;
+            const icon = CI[n.cat] || "📝";
+            const active = cur?.id === n.id;
+            return (
+              <div
+                key={n.id}
+                onClick={() => setAid(n.id)}
+                style={{
+                  background: active ? col + "22" : C.surface,
+                  border: `1px solid ${active ? col : C.border}`,
+                  borderLeft: `3px solid ${col}`,
+                  borderRadius: 5, padding: "7px 9px",
+                  cursor: "pointer", marginBottom: 3,
+                  transition: "all .15s",
+                }}
+              >
+                <div style={{
+                  fontSize: 12, color: active ? col : C.textBright, fontWeight: 700,
+                  overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                }}>
+                  {icon} {n.title ? highlight(n.title) : "(kein Titel)"}
+                </div>
+                <div style={{
+                  fontSize: 10, color: C.textDim, marginTop: 2,
+                  overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                }}>
+                  {n.content.slice(0, 34) || "(leer)"}{n.content.length > 34 ? "..." : ""}
+                </div>
               </div>
             );
           })}
-          {filtered.length===0&&<div style={{fontSize:12,color:C.textDim,fontStyle:"italic",padding:"8px 4px"}}>Keine Eintraege.</div>}
+          {filtered.length === 0 && (
+            <div style={{fontSize:12, color:C.textDim, fontStyle:"italic", padding:"8px 4px"}}>
+              {search.trim()
+                ? `Keine Treffer für "${search}".`
+                : "Keine Einträge."}
+            </div>
+          )}
         </div>
-        {notes.length>0&&<button onClick={delNote} style={{...sx.bsm(C.red),width:"100%"}}>Notiz loeschen</button>}
+
+        {notes.length > 0 && (
+          <button onClick={delNote} style={{...sx.bsm(C.red), width:"100%"}}>Notiz löschen</button>
+        )}
       </div>
-      <div style={{flex:1,display:"flex",flexDirection:"column",gap:8}}>
+
+      {/* ── Detail-Pane ─────────────────────────────────────────────── */}
+      <div style={{flex:1, display:"flex", flexDirection:"column", gap:8}}>
         {cur ? (
           <>
-            <div style={{background:C.surface,borderRadius:8,border:`1px solid ${CC[cur.cat]||C.border}`,borderLeft:`4px solid ${CC[cur.cat]||C.gold}`,padding:"10px 14px",display:"flex",alignItems:"center",gap:10}}>
-              <span style={{fontSize:18}}>{CI[cur.cat]||"📝"}</span>
-              <input value={cur.title} onChange={e => upd(cur.id,"title",e.target.value)} style={{flex:1,background:"transparent",border:"none",outline:"none",color:CC[cur.cat]||C.gold,fontFamily:FH,fontSize:17,fontWeight:700}} placeholder="Titel eingeben..."/>
-              <select value={cur.cat} onChange={e => upd(cur.id,"cat",e.target.value)} style={{background:C.card,border:`1px solid ${CC[cur.cat]||C.border}`,borderRadius:4,color:CC[cur.cat]||C.textDim,fontFamily:F,fontSize:12,padding:"3px 8px",cursor:"pointer",outline:"none"}}>
+            <div style={{
+              background: C.surface, borderRadius: 8,
+              border: `1px solid ${CC[normalizeCat(cur.cat)] || C.border}`,
+              borderLeft: `4px solid ${CC[normalizeCat(cur.cat)] || C.gold}`,
+              padding: "10px 14px", display: "flex", alignItems: "center", gap: 10,
+            }}>
+              <span style={{fontSize:18}}>{CI[normalizeCat(cur.cat)] || "📝"}</span>
+              <input
+                value={cur.title}
+                onChange={e => upd(cur.id, "title", e.target.value)}
+                style={{
+                  flex: 1, background: "transparent", border: "none", outline: "none",
+                  color: CC[normalizeCat(cur.cat)] || C.gold,
+                  fontFamily: FH, fontSize: 17, fontWeight: 700,
+                }}
+                placeholder="Titel eingeben..."
+              />
+              <select
+                value={normalizeCat(cur.cat)}
+                onChange={e => upd(cur.id, "cat", e.target.value)}
+                style={{
+                  background: C.card,
+                  border: `1px solid ${CC[normalizeCat(cur.cat)] || C.border}`,
+                  borderRadius: 4,
+                  color: CC[normalizeCat(cur.cat)] || C.textDim,
+                  fontFamily: F, fontSize: 12, padding: "3px 8px",
+                  cursor: "pointer", outline: "none",
+                }}
+              >
                 <option value="location">Kategorie: Location</option>
                 <option value="story">Kategorie: Story</option>
                 <option value="monster">Kategorie: Monster</option>
                 <option value="misc">Kategorie: Sonstiges</option>
               </select>
             </div>
-            <textarea value={cur.content} onChange={e => upd(cur.id,"content",e.target.value)} style={{...sx.ta,flex:1,minHeight:400,lineHeight:1.9,fontSize:14,borderColor:CC[cur.cat]||C.border}} placeholder={cur.cat==="location"?"Beschreibung, Atmosphäre, NSCs vor Ort...":cur.cat==="story"?"Plotpunkte, Hinweise, offene Fragen...":cur.cat==="monster"?"Statblock-Notizen, Taktiken, Boss-Mechaniken, Loot-Drops...":"Freie Notizen..."}/>
+            <textarea
+              value={cur.content}
+              onChange={e => upd(cur.id, "content", e.target.value)}
+              style={{
+                ...sx.ta, flex: 1, minHeight: 400,
+                lineHeight: 1.9, fontSize: 14,
+                borderColor: CC[normalizeCat(cur.cat)] || C.border,
+              }}
+              placeholder={
+                normalizeCat(cur.cat) === "monster" ? "Name, Typ, CR, Taktik, Schwächen, Lore..." :
+                normalizeCat(cur.cat) === "location" ? "Beschreibung, Atmosphäre, NPCs vor Ort..." :
+                normalizeCat(cur.cat) === "story" ? "Plotpunkte, Hinweise, Twist-Ideen..." :
+                "Freie Notizen..."
+              }
+            />
           </>
         ) : (
-          <div style={{...sx.card,textAlign:"center",color:C.textDim,fontStyle:"italic",padding:40}}>
-            <div style={{fontSize:36,marginBottom:10}}>📝</div>
+          <div style={{...sx.card, textAlign:"center", color:C.textDim, fontStyle:"italic", padding:40}}>
+            <div style={{fontSize:36, marginBottom:10}}>📝</div>
             Wähle eine Notiz oder erstelle eine neue.
           </div>
         )}

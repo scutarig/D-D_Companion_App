@@ -75,7 +75,7 @@ export default function CharActions({ char, setChar }) {
     const existingNames = new Set(actions.map(a => a.name));
     const toAdd = STD_ACTIONS.filter(a => CORE_ACTION_NAMES.has(a.name) && !existingNames.has(a.name));
     if (toAdd.length === 0) return;
-    setActions(p => [...p, ...toAdd.map((a, i) => ({ ...a, id: Date.now() + i, saveDC: "", saveAbility: "STR" }))]);
+    setActions(p => [...p, ...toAdd.map(a => ({ ...a, id: Date.now() + Math.random(), saveDC: "", saveAbility: "STR" }))]);
   };
 
   // Bulk: Aktuelle gefilterte Aktionen vom Standard-Picker hinzufügen
@@ -83,7 +83,7 @@ export default function CharActions({ char, setChar }) {
     const existingNames = new Set(actions.filter(a => a.type === stdFilter).map(a => a.name));
     const toAdd = STD_ACTIONS.filter(a => a.type === stdFilter && !existingNames.has(a.name));
     if (toAdd.length === 0) return;
-    setActions(p => [...p, ...toAdd.map((a, i) => ({ ...a, id: Date.now() + i, saveDC: "", saveAbility: "STR" }))]);
+    setActions(p => [...p, ...toAdd.map(a => ({ ...a, id: Date.now() + Math.random(), saveDC: "", saveAbility: "STR" }))]);
   };
   const save = () => {
     if (!form.name) return;

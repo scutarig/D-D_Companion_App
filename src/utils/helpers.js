@@ -40,7 +40,8 @@ export const newChar = id => ({
   hp:10, maxHp:10, tempHp:0, ac:10, speed:30, initiative:0,
   hd:"W10", hd_used:0, deathSaves:{suc:0,fail:0},
   saves:{STR:false,DEX:false,CON:false,INT:false,WIS:false,CHA:false},
-  skills:{}, spellAbility:"INT", spellDC:8, spellAtk:0, inspiration:false,
+  // spellDC/spellAtk werden live aus PB + Mod berechnet (CharSheet.jsx, CombatInitiativeView)
+  skills:{}, spellAbility:"INT", inspiration:false,
   traits:"", ideals:"", bonds:"", flaws:"", equipment:"", features:"", backstory:"",
   inventory:[], actions:[], gold:0, silver:0, copper:0, electrum:0, platinum:0,
   // Auto-applied trait groups

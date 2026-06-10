@@ -191,7 +191,7 @@ export default function Bestiary() {
         </div>
 
         <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={isSpoilerMode ? t("bestiary.search_spoiler","🔍 Monster suchen (Name)…") : t("bestiary.search","🔍 Monster suchen…")} style={{...sx.inp,marginBottom:6}}/>
-        <select value={tf} onChange={e=>setTf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{types.map(t=><option key={t}>{t}</option>)}</select>
+        <select value={tf} onChange={e=>setTf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{types.map(typ=><option key={typ}>{typ}</option>)}</select>
 
         {/* CR-Filter (4 Stufen für DM-Encounter-Design) */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 3, marginBottom: 6 }}>

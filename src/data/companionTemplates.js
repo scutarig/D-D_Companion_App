@@ -165,5 +165,3 @@ export const COMPANION_TEMPLATES = [
   },
 ];
 
-export const getCompanionTemplate = (id) =>
-  COMPANION_TEMPLATES.find(t => t.id === id);

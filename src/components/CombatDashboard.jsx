@@ -143,13 +143,17 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const [concWarn,   setConcWarn]   = useState(null); // { spell, slotLv } pending cast
 
   // Auto-break concentration when unconscious or dead
+  // Deps via String-Hash, damit jeder Re-Mount des activeConditions-Arrays
+  // (neue Array-Ref bei usePersist-Reload) keinen Loop auslöst.
+  const conditionsHash = (char?.activeConditions || []).join(",");
   useEffect(() => {
     if (!char?.concentration) return;
-    const isUnconscious = (char.activeConditions || []).includes("unconscious");
-    if (char.hp === 0 || isUnconscious) {
+    const isUnconscious = (char?.activeConditions || []).includes("unconscious");
+    if (char?.hp === 0 || isUnconscious) {
       setChar(p => breakConcentration(p));
     }
-  }, [char?.hp, char?.activeConditions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [char?.hp, conditionsHash, char?.concentration]);
 
   // handleCast — checks concentration before spending slot
   const handleCast = (spell, slotLv) => {

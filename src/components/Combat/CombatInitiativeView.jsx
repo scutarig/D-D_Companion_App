@@ -63,8 +63,19 @@ export default function CombatInitiativeView({ onStartCombat }) {
         klass: char.klass,
         level: char.level,
         spellAbility: char.spellAbility || null,
-        spellDC: char.spellDC || null,
-        spellAtk: char.spellAtk || null,
+        // Live berechnet aus PB + Spell-Ability-Mod (statt stale char.spellDC/spellAtk)
+        spellDC: (() => {
+          const ab = (char.spellAbility || "INT").toLowerCase();
+          const mod = Math.floor(((char[ab] || 10) - 10) / 2);
+          const pb = char.level < 5 ? 2 : char.level < 9 ? 3 : char.level < 13 ? 4 : char.level < 17 ? 5 : 6;
+          return 8 + pb + mod;
+        })(),
+        spellAtk: (() => {
+          const ab = (char.spellAbility || "INT").toLowerCase();
+          const mod = Math.floor(((char[ab] || 10) - 10) / 2);
+          const pb = char.level < 5 ? 2 : char.level < 9 ? 3 : char.level < 13 ? 4 : char.level < 17 ? 5 : 6;
+          return pb + mod;
+        })(),
         // Phase 6: Ability scores & proficiencies
         abilityScores: {
           STR: char.str || 10,
@@ -169,7 +180,8 @@ export default function CombatInitiativeView({ onStartCombat }) {
 
   const players = state.fighters.filter((f) => f.isPlayer);
   const enemies = state.fighters.filter((f) => !f.isPlayer);
-  const allHaveInit = state.fighters.length > 0 && state.fighters.every((f) => f.initiative > 0);
+  // Init kann 0 oder negativ sein (DEX-Penalty). Wir prüfen ob ein Wert gesetzt ist.
+  const allHaveInit = state.fighters.length > 0 && state.fighters.every((f) => f.initiative != null && !Number.isNaN(f.initiative));
 
   return (
     <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 0 90px 0" }}>

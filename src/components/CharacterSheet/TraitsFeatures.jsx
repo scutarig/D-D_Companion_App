@@ -234,7 +234,7 @@ export default function TraitsFeatures({ char, setChar }) {
             <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 6 }}>
               {items.map(trait => (
                 <div key={trait.id} style={{ position: "relative" }}>
-                  <TraitFeatureCard trait={trait} accentColor={gs.color} />
+                  <TraitFeatureCard trait={trait} />
                   {trait.source === "Eigenes" && (
                     <button onClick={() => removeTrait(trait.id)} title="Entfernen" style={{
                       position: "absolute", top: 6, right: 6,
