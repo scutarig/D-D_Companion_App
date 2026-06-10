@@ -175,13 +175,13 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:6, height:44 }}>
         <div>
           <div style={{ fontFamily:FH, fontSize:14, fontWeight:700, color:C.gold, lineHeight:1.1 }}>{char.name}</div>
-          <div style={{ fontSize:9, color:C.textDim, marginTop:1, display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
+          <div style={{ fontSize:11, color:C.textDim, marginTop:1, display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
             <span>{char.race} · {char.klass} · Level {char.level}</span>
             {char.originFeat && (
               <span
                 title={`Origin Feat (von Background ${char.background || "—"})`}
                 style={{
-                  fontSize:9, padding:"1px 6px", borderRadius:6, fontWeight:700,
+                  fontSize:10, padding:"1px 6px", borderRadius:6, fontWeight:700,
                   background:`${C.amberBright}22`, border:`1px solid ${C.amberBright}55`,
                   color:C.amberBright, letterSpacing:0.3, cursor:"help",
                 }}
@@ -204,7 +204,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                 }
                 style={{
                   ...sx.bsm(C.gold),
-                  fontSize: 9, padding: "3px 7px", fontWeight: 700,
+                  fontSize: 11, padding: "4px 8px", fontWeight: 700,
                   background: char.inspiration ? `linear-gradient(135deg, ${C.gold}33, ${C.gold}11)` : "transparent",
                   border: `1px solid ${char.inspiration ? C.gold : C.border}`,
                   color: char.inspiration ? C.gold : C.textDim,
@@ -213,8 +213,8 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                 }}>
                 {char.inspiration ? "✦" : "✧"} {t("header.heroic_inspiration")}
               </button>
-              <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:9, padding:"3px 7px" }}>🌙 {t("header.short_rest")}</button>
-              <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:9, padding:"3px 7px" }}>🌟 {t("header.long_rest")}</button>
+              <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:11, padding:"4px 8px" }}>🌙 {t("header.short_rest")}</button>
+              <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:11, padding:"4px 8px" }}>🌟 {t("header.long_rest")}</button>
             </>
           )}
         </div>
@@ -361,8 +361,8 @@ function AppInner() {
           padding-bottom: 8px !important;
         }
         input, select, textarea {
-          min-height: 40px !important;
-          font-size: 15px !important;
+          min-height: 44px !important;
+          font-size: 16px !important; /* ≥16px prevents iOS auto-zoom */
         }
         /* Sidebar buttons get more breathing room */
         aside button {
@@ -372,15 +372,29 @@ function AppInner() {
         aside button[title*="Modus"] {
           min-height: 60px !important;
         }
+        /* Checkboxes scaled up for tablet touch */
+        input[type="checkbox"], input[type="radio"] {
+          min-height: auto !important;
+          transform: scale(1.4);
+          margin: 6px !important;
+        }
       }
 
-      /* ── Touch on Phones (<768px): keep compact but ≥40px ── */
+      /* ── Touch on Phones (<768px): WCAG-compliant 44px targets ── */
       @media (pointer: coarse) and (max-width: 767px) {
         button {
-          min-height: 40px !important;
+          min-height: 44px !important; /* WCAG AA target size */
         }
         nav button {
           min-height: 52px !important;
+        }
+        input, select, textarea {
+          font-size: 16px !important; /* ≥16px prevents iOS auto-zoom */
+        }
+        input[type="checkbox"], input[type="radio"] {
+          min-height: auto !important;
+          transform: scale(1.3);
+          margin: 4px !important;
         }
       }
 
@@ -422,6 +436,28 @@ function AppInner() {
 
   // Close mobile menu / dropdowns when mode changes
   useEffect(() => { setMobileMenu(null); setCharOpen(false); setRefOpen(false); }, [mode]);
+
+  // ── Global inputMode patch ──
+  // Auto-set inputmode="numeric" on all type="number" inputs so mobile
+  // keyboards show the numeric pad instead of full QWERTY.
+  // Cheaper than editing 21 files — observes DOM mutations & patches new inputs.
+  useEffect(() => {
+    const patch = (root) => {
+      root.querySelectorAll('input[type="number"]:not([inputmode])').forEach(el => {
+        el.setAttribute('inputmode', 'numeric');
+      });
+    };
+    patch(document.body);
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        for (const node of m.addedNodes) {
+          if (node.nodeType === 1) patch(node);
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
 
   // Lifted state — shared with CombatDashboard (per Charakter)
   const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
@@ -647,7 +683,7 @@ function AppInner() {
               color: isDM ? C.purpleBright : C.gold,
               fontFamily: FH,
               fontWeight: 700,
-              fontSize: 9,
+              fontSize: 11,
               letterSpacing: 0.6,
               cursor: "pointer",
               transition: "all .18s",
@@ -661,7 +697,7 @@ function AppInner() {
             }}
           >
             <span style={{ fontSize: 18, lineHeight: 1 }}>{isDM ? "🎲" : "👤"}</span>
-            <span style={{ fontSize: 8, lineHeight: 1 }}>{isDM ? "DM" : "PLAYER"}</span>
+            <span style={{ fontSize: 10, lineHeight: 1 }}>{isDM ? "DM" : "PLAYER"}</span>
           </button>
         </div>
       </aside>
@@ -862,8 +898,8 @@ function AppInner() {
               <span style={{ fontSize: isGroup && item.id === "more" ? 15 : 18, lineHeight:1 }}>
                 {item.icon}
               </span>
-              <span style={{ fontSize:8, letterSpacing:0.3, lineHeight:1 }}>
-                {item.labelKey ? t(item.labelKey, item.label) : item.label}{isGroup && <span style={{ fontSize:7, opacity:0.6 }}> {isMenuOpen ? "▴" : "▾"}</span>}
+              <span style={{ fontSize:10, letterSpacing:0.3, lineHeight:1.1 }}>
+                {item.labelKey ? t(item.labelKey, item.label) : item.label}{isGroup && <span style={{ fontSize:9, opacity:0.6 }}> {isMenuOpen ? "▴" : "▾"}</span>}
               </span>
             </button>
           );

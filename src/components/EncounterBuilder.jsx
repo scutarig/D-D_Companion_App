@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
+import { useIsMobile } from "../hooks/useIsMobile.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useCombatArchive } from "../hooks/useCombatArchive.js";
 import { useI18n } from "../i18n/index.js";
@@ -56,6 +57,7 @@ const getThreshold = (level) => XP_THRESHOLDS.find(t => t.lv === level) || XP_TH
 
 export default function EncounterBuilder() {
   const { t } = useI18n();
+  const mob = useIsMobile(900);
   const [partyLevel, setPartyLevel] = usePersist("eb_party_level", 1);
   const [partySize, setPartySize] = usePersist("eb_party_size", 4);
   const [difficulty, setDifficulty] = useState("moderate"); // easy | moderate | hard
@@ -284,7 +286,7 @@ export default function EncounterBuilder() {
           placeholder={t("ui.search_placeholder", "🔍 Suchen…")}
           style={{ ...sx.inp, marginBottom: 8 }}
         />
-        <div style={{ maxHeight: 400, overflowY: "auto", display: "flex", flexDirection: "column", gap: 4 }}>
+        <div style={{ maxHeight: mob ? "50vh" : 400, overflowY: "auto", display: "flex", flexDirection: "column", gap: 4 }}>
           {monsterChoices.slice(0, 80).map(m => (
             <div key={m.id} onClick={() => addMonster(m)} style={{
               display: "flex", alignItems: "center", gap: 8,
@@ -320,7 +322,7 @@ export default function EncounterBuilder() {
             </button>
           </div>
           {showArchive && (
-            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 8, maxHeight: 300, overflowY: "auto" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 8, maxHeight: mob ? "40vh" : 300, overflowY: "auto" }}>
               {archives.map(a => {
                 const survived = a.playersAlive || 0;
                 const total = a.playerCount || 0;

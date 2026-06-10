@@ -189,7 +189,7 @@ export default function CharSheet({ char, setChar, printMode = false }) {
                 <div key={f}>
                   <div style={{ fontSize: 13, color: col, marginBottom: 6, fontFamily: FH }}>{lbl}</div>
                   <div style={{ display: "flex", gap: 6 }}>
-                    {[0, 1, 2].map(i => <div key={i} onClick={() => setChar(p => { const ds = p.deathSaves || { suc: 0, fail: 0 }; return { ...p, deathSaves: { ...ds, [f]: i < (ds[f] || 0) ? i : (ds[f] || 0) + 1 } }; })} style={{ width: 24, height: 24, borderRadius: "50%", background: i < ((char.deathSaves || {})[f] || 0) ? col : "transparent", border: `2px solid ${col}`, cursor: "pointer" }} />)}
+                    {[0, 1, 2].map(i => <div key={i} role="button" tabIndex={0} onClick={() => setChar(p => { const ds = p.deathSaves || { suc: 0, fail: 0 }; return { ...p, deathSaves: { ...ds, [f]: i < (ds[f] || 0) ? i : (ds[f] || 0) + 1 } }; })} style={{ width: 32, height: 32, borderRadius: "50%", background: i < ((char.deathSaves || {})[f] || 0) ? col : "transparent", border: `2px solid ${col}`, cursor: "pointer", boxSizing: "border-box" }} />)}
                   </div>
                 </div>
               ))}

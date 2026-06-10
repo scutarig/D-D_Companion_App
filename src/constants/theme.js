@@ -175,7 +175,7 @@ export const sx = {
     borderRadius: 8,
     color: C.textBright,
     fontFamily: F,
-    fontSize: 14,
+    fontSize: 16, // ≥16px prevents iOS auto-zoom on focus
     padding: "8px 10px",
     width: "100%",
     outline: "none",
@@ -189,7 +189,7 @@ export const sx = {
     borderRadius: 8,
     color: C.textBright,
     fontFamily: F,
-    fontSize: 14,
+    fontSize: 16, // ≥16px prevents iOS auto-zoom on focus
     padding: "8px 10px",
     width: "100%",
     outline: "none",
@@ -202,7 +202,7 @@ export const sx = {
     borderRadius: 8,
     color: C.textBright,
     fontFamily: F,
-    fontSize: 14,
+    fontSize: 16, // ≥16px prevents iOS auto-zoom on focus
     padding: "8px 10px",
     width: "100%",
     outline: "none",
