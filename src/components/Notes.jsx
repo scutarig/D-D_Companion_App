@@ -2,22 +2,21 @@ import { useState, useMemo } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
+import { useI18n } from "../i18n/index.js";
 
 export default function Notes() {
+  const { t } = useI18n();
   const CATS = [
-    {id:"all",     label:"Alle",       icon:"📋", color:C.textDim},
-    {id:"location",label:"Location",   icon:"🗺️", color:C.greenBright},
-    {id:"story",   label:"Story",      icon:"📖", color:C.gold},
-    {id:"monster", label:"Monster",    icon:"🐉", color:C.redBright},
-    {id:"misc",    label:"Sonstiges",  icon:"📝", color:C.blueBright},
+    {id:"all",     label:t("notes.cat_all","Alle"),       icon:"📋", color:C.textDim},
+    {id:"location",label:t("notes.cat_location","Location"),   icon:"🗺️", color:C.greenBright},
+    {id:"story",   label:t("notes.cat_story","Story"),      icon:"📖", color:C.gold},
+    {id:"monster", label:t("notes.cat_monster","Monster"),    icon:"🐉", color:C.redBright},
+    {id:"misc",    label:t("notes.cat_misc","Sonstiges"),  icon:"📝", color:C.blueBright},
   ];
   const CC = {location:C.greenBright, story:C.gold, monster:C.redBright, misc:C.blueBright};
   const CI = {location:"🗺️", story:"📖", monster:"🐉", misc:"📝"};
 
-  const [notes, setNotes] = usePersist("notes_v5", [
-    {id:2, title:"Dunkle Waldlichtung", content:"", cat:"location"},
-    {id:3, title:"Der verlorene Thron", content:"", cat:"story"},
-  ]);
+  const [notes, setNotes] = usePersist("notes_v5", []);
   const [aid, setAid] = useState(null);
   const [catFilter, setCatFilter] = useState("all");
   const [search, setSearch] = useState("");
@@ -42,7 +41,7 @@ export default function Notes() {
   const cur = notes.find(n => n.id === aid) || (filtered[0] || notes[0]);
 
   const addNote = (cat) => {
-    const n = { id: Date.now(), title: "Neue Notiz", content: "", cat };
+    const n = { id: Date.now(), title: t("notes.new_note","Neue Notiz"), content: "", cat };
     setNotes(p => [...p, n]);
     setAid(n.id);
     setCatFilter("all");
@@ -83,13 +82,13 @@ export default function Notes() {
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="🔍 Notiz suchen…"
+            placeholder={t("notes.search_placeholder","🔍 Notiz suchen…")}
             style={{ ...sx.inp, paddingRight: search ? 32 : 10 }}
           />
           {search && (
             <button
               onClick={() => setSearch("")}
-              title="Suche zurücksetzen"
+              title={t("notes.clear_search","Suche zurücksetzen")}
               style={{
                 position: "absolute", right: 4, top: "50%", transform: "translateY(-50%)",
                 width: 26, height: 26, borderRadius: "50%",
@@ -145,7 +144,7 @@ export default function Notes() {
             <button
               key={c.id}
               onClick={() => addNote(c.id)}
-              title={`Neue ${c.label}-Notiz`}
+              title={t("notes.new_with_cat","Neue {cat}-Notiz").replace("{cat}", c.label)}
               style={{
                 background: "transparent",
                 border: `1px solid ${c.color}40`,
@@ -155,7 +154,7 @@ export default function Notes() {
               }}
             >+{c.icon}</button>
           ))}
-          <span style={{fontSize:10, color:C.textDim, alignSelf:"center", marginLeft:2}}>Neue Notiz</span>
+          <span style={{fontSize:10, color:C.textDim, alignSelf:"center", marginLeft:2}}>{t("notes.new_note","Neue Notiz")}</span>
         </div>
 
         {/* ── Liste ─────────────────────────────────────────────────── */}
@@ -181,13 +180,13 @@ export default function Notes() {
                   fontSize: 12, color: active ? col : C.textBright, fontWeight: 700,
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                 }}>
-                  {icon} {n.title ? highlight(n.title) : "(kein Titel)"}
+                  {icon} {n.title ? highlight(n.title) : t("notes.no_title","(kein Titel)")}
                 </div>
                 <div style={{
                   fontSize: 10, color: C.textDim, marginTop: 2,
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                 }}>
-                  {n.content.slice(0, 34) || "(leer)"}{n.content.length > 34 ? "..." : ""}
+                  {n.content.slice(0, 34) || t("notes.empty","(leer)")}{n.content.length > 34 ? "..." : ""}
                 </div>
               </div>
             );
@@ -195,14 +194,14 @@ export default function Notes() {
           {filtered.length === 0 && (
             <div style={{fontSize:12, color:C.textDim, fontStyle:"italic", padding:"8px 4px"}}>
               {search.trim()
-                ? `Keine Treffer für "${search}".`
-                : "Keine Einträge."}
+                ? t("notes.no_matches","Keine Treffer für \"{q}\".").replace("{q}", search)
+                : t("notes.no_entries","Keine Einträge.")}
             </div>
           )}
         </div>
 
         {notes.length > 0 && (
-          <button onClick={delNote} style={{...sx.bsm(C.red), width:"100%"}}>Notiz löschen</button>
+          <button onClick={delNote} style={{...sx.bsm(C.red), width:"100%"}}>{t("notes.delete","Notiz löschen")}</button>
         )}
       </div>
 
@@ -225,7 +224,7 @@ export default function Notes() {
                   color: CC[normalizeCat(cur.cat)] || C.gold,
                   fontFamily: FH, fontSize: 17, fontWeight: 700,
                 }}
-                placeholder="Titel eingeben..."
+                placeholder={t("notes.title_placeholder","Titel eingeben...")}
               />
               <select
                 value={normalizeCat(cur.cat)}
@@ -239,10 +238,10 @@ export default function Notes() {
                   cursor: "pointer", outline: "none",
                 }}
               >
-                <option value="location">Kategorie: Location</option>
-                <option value="story">Kategorie: Story</option>
-                <option value="monster">Kategorie: Monster</option>
-                <option value="misc">Kategorie: Sonstiges</option>
+                <option value="location">{t("notes.cat_prefix","Kategorie")}: {t("notes.cat_location","Location")}</option>
+                <option value="story">{t("notes.cat_prefix","Kategorie")}: {t("notes.cat_story","Story")}</option>
+                <option value="monster">{t("notes.cat_prefix","Kategorie")}: {t("notes.cat_monster","Monster")}</option>
+                <option value="misc">{t("notes.cat_prefix","Kategorie")}: {t("notes.cat_misc","Sonstiges")}</option>
               </select>
             </div>
             <textarea
@@ -254,17 +253,17 @@ export default function Notes() {
                 borderColor: CC[normalizeCat(cur.cat)] || C.border,
               }}
               placeholder={
-                normalizeCat(cur.cat) === "monster" ? "Name, Typ, CR, Taktik, Schwächen, Lore..." :
-                normalizeCat(cur.cat) === "location" ? "Beschreibung, Atmosphäre, NPCs vor Ort..." :
-                normalizeCat(cur.cat) === "story" ? "Plotpunkte, Hinweise, Twist-Ideen..." :
-                "Freie Notizen..."
+                normalizeCat(cur.cat) === "monster" ? t("notes.ph_monster","Name, Typ, CR, Taktik, Schwächen, Lore...") :
+                normalizeCat(cur.cat) === "location" ? t("notes.ph_location","Beschreibung, Atmosphäre, NPCs vor Ort...") :
+                normalizeCat(cur.cat) === "story" ? t("notes.ph_story","Plotpunkte, Hinweise, Twist-Ideen...") :
+                t("notes.ph_misc","Freie Notizen...")
               }
             />
           </>
         ) : (
           <div style={{...sx.card, textAlign:"center", color:C.textDim, fontStyle:"italic", padding:40}}>
             <div style={{fontSize:36, marginBottom:10}}>📝</div>
-            Wähle eine Notiz oder erstelle eine neue.
+            {t("notes.empty_state","Wähle eine Notiz oder erstelle eine neue.")}
           </div>
         )}
       </div>
