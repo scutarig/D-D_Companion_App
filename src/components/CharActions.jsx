@@ -7,30 +7,53 @@ const TYPES = [
   { id: "reaction", label: "Reaktion", icon: "🛡️", color: C.blue },
 ];
 
+// ─── PHB 2024 Standard Actions (Chapter 1, p.15) ───────────────────────────
+// Core-Aktionen für ALLE Charaktere (Klassenspezifische separat unten).
 const STD_ACTIONS = [
-  { type: "action", name: "Angriff", range: "5ft", toHit: "STR/DEX+PB", damage: "Waffe", description: "Einen Nahkampf- oder Fernkampfangriff mit einer Waffe ausfuehren." },
-  { type: "action", name: "Zaubern", range: "Variabel", toHit: "", damage: "Zauber", description: "Einen Zauber mit Casting Time 1 Aktion wirken." },
-  { type: "action", name: "Rennen (Dash)", range: "—", toHit: "", damage: "—", description: "Geschwindigkeit verdoppeln bis Ende des Zuges." },
-  { type: "action", name: "Ausweichen (Dodge)", range: "—", toHit: "", damage: "—", description: "Bis Beginn deines naechsten Zuges: Angriffe gegen dich haben Nachteil. DEX-Saves: Vorteil." },
-  { type: "action", name: "Helfen (Help)", range: "5ft", toHit: "", damage: "—", description: "Einem Verbundeten helfen: Vorteil auf naechste Faehigkeitsprobe oder Angriff gegen eine Kreatur in 5ft." },
-  { type: "action", name: "Verstecken (Hide)", range: "—", toHit: "", damage: "—", description: "Stealth-Check (gegen passive Perception der Feinde). Erfolg: du bist versteckt." },
-  { type: "action", name: "Bereit machen (Ready)", range: "—", toHit: "", damage: "—", description: "Aktion fuer spaeter vorbereiten (Reaktion). Trigger festlegen, Aktion und Concentration-Check beachten." },
-  { type: "action", name: "Suchen (Search)", range: "—", toHit: "", damage: "—", description: "Perception- oder Investigation-Check um etwas zu finden." },
-  { type: "action", name: "Objekt benutzen", range: "5ft", toHit: "", damage: "—", description: "Einen magischen Gegenstand oder eine Falle/Tuer/Mechanismus benutzen." },
-  { type: "action", name: "Greifen (Grapple)", range: "5ft", toHit: "STR(Athletics)", damage: "—", description: "Kreatur packen: Athletik-Check gegen Athletik/Akrobatik des Ziels. Erfolg: Kreatur Grappled (Speed 0)." },
-  { type: "action", name: "Stossen (Shove)", range: "5ft", toHit: "STR(Athletics)", damage: "—", description: "Kreatur umwerfen (Prone) oder 5ft wegstossen: Athletik gegen Athletik/Akrobatik." },
-  { type: "bonus", name: "Nebenhandangriff", range: "5ft", toHit: "STR/DEX", damage: "Nebenhand (kein Mod)", description: "Zwei-Waffen-Kampf: Wenn du mit leichter Waffe angegriffen hast, Nebenhandangriff ohne Schadens-Modifikator." },
-  { type: "bonus", name: "Bonus-Zaubern", range: "Variabel", toHit: "", damage: "Zauber", description: "Einen Zauber mit Casting Time 1 Bonus-Aktion wirken. Du kannst in dieser Runde keinen anderen Zauber (ausser Cantrips) wirken." },
-  { type: "bonus", name: "Zweiter Wind", range: "Self", toHit: "", damage: "1d10+Fighter-Lv", description: "(Kaempfer) 1× pro Kurze/Lange Rast: 1d10 + Fighter-Level HP heilen." },
-  { type: "bonus", name: "Verschlauerter Angriff (Cunning)", range: "—", toHit: "", damage: "—", description: "(Schurke) Bonus-Aktion: Dash, Disengage oder Hide." },
-  { type: "bonus", name: "Wildgestalt (Wild Shape)", range: "Self", toHit: "", damage: "—", description: "(Druide) In ein Tier verwandeln (CR-Grenze je nach Level). Bis Lange Rast: 2×." },
-  { type: "bonus", name: "Kriegsschrei (Battle Cry)", range: "30ft", toHit: "", damage: "—", description: "(Barbar) Rage einleiten: +2 Schadens-Bonus, Resistance B/P/S, Vorteil STR-Checks+Saves." },
-  { type: "reaction", name: "Gelegenheitsangriff", range: "5ft", toHit: "STR/DEX+PB", damage: "Waffe", description: "Wenn eine Kreatur deinen Nahkampfbereich verlaesst (ohne Disengage): 1 Nahkampfangriff als Reaktion." },
-  { type: "reaction", name: "Schild-Zauber (Shield)", range: "Self", toHit: "", damage: "—", description: "(Zauberer/Hexenmeister, Spell Slot 1) +5 AC bis Beginn deines naechsten Zuges. Auch gegen Magic Missile." },
-  { type: "reaction", name: "Gegenzauber (Counterspell)", range: "60ft", toHit: "", damage: "—", description: "(Spell Slot 3+) Zauber Lv 3: automatisch. Lv 4+: Spellcasting-Check DC 10+Lv." },
-  { type: "reaction", name: "Schutzzstil (Protection)", range: "5ft", toHit: "", damage: "—", description: "(Kaempfer, Protection-Stil, Schild) Angriff gegen benachbarte Kreatur: Angreifer hat Nachteil." },
-  { type: "reaction", name: "Waechter-Angriff (Sentinel)", range: "5ft", toHit: "STR/DEX+PB", damage: "Waffe", description: "(Feat) Wenn Kreatur in Reichweite eine andere angreift: Reaktions-Angriff." },
+  // ── Core Actions ───
+  { type: "action", name: "Attack", range: "5ft / Range", toHit: "STR/DEX+PB", damage: "Waffe", description: "Nahkampf- oder Fernkampfangriff mit Waffe. Extra-Angriffe ab Lv5+ (Klassen-Feature)." },
+  { type: "action", name: "Magic (Zaubern)", range: "Variabel", toHit: "", damage: "Zauber", description: "🆕 PHB 2024: Wirke Spell, nutze Magic Item oder magisches Klassenfeature. (Ehemals 'Cast a Spell')" },
+  { type: "action", name: "Dash", range: "—", toHit: "", damage: "—", description: "Rest des Zuges: Extra-Bewegung = deine Speed." },
+  { type: "action", name: "Disengage", range: "—", toHit: "", damage: "—", description: "Rest des Zuges: Bewegung provoziert keine Gelegenheitsangriffe (OAs)." },
+  { type: "action", name: "Dodge", range: "—", toHit: "", damage: "—", description: "Bis nächster Zug: Angriffe gegen dich = Nachteil + DEX-Saves = Vorteil. Verloren bei Incapacitated/Speed 0." },
+  { type: "action", name: "Help", range: "5ft", toHit: "", damage: "—", description: "Verbündeter erhält Vorteil auf nächste Probe ODER nächsten Angriff gegen Ziel in 5ft." },
+  { type: "action", name: "Hide", range: "—", toHit: "DEX(Stealth)", damage: "—", description: "DEX(Stealth)-Check. Erfolg: du hast Invisible-Condition gegen Wesen, die dich nicht sehen — bis Angriff oder Sicht." },
+  { type: "action", name: "Influence", range: "Variabel", toHit: "CHA-Check", damage: "—", description: "🆕 PHB 2024: CHA(Deception/Intimidation/Performance/Persuasion) oder WIS(Animal Handling)-Check, um NPC-Einstellung zu ändern (Friendly/Indifferent/Hostile)." },
+  { type: "action", name: "Ready", range: "—", toHit: "", damage: "—", description: "Bereite Aktion oder Bewegung + Trigger vor. Auslöser → Reaktion. Spell-ready braucht Concentration." },
+  { type: "action", name: "Search", range: "—", toHit: "WIS-Check", damage: "—", description: "WIS(Insight/Medicine/Perception/Survival)-Check, um etwas zu entdecken." },
+  { type: "action", name: "Study", range: "—", toHit: "INT-Check", damage: "—", description: "🆕 PHB 2024: INT(Arcana/History/Investigation/Nature/Religion)-Check, um Wesen/Objekt/Phänomen zu analysieren." },
+  { type: "action", name: "Utilize", range: "5ft", toHit: "", damage: "—", description: "🆕 PHB 2024: Nicht-magisches Objekt verwenden (Trank, Schalter, Tür, etc.) (Ehemals 'Use Object')." },
+
+  // ── Special Actions (als Teil von Attack) ───
+  { type: "action", name: "Grapple (Unarmed Strike)", range: "5ft", toHit: "STR-Athletik vs DEX-Save", damage: "—", description: "Unarmed Strike Special: bei Treffer → Target Grappled (Speed 0). Target kann mit Athletik/Akrobatik-Check entkommen." },
+  { type: "action", name: "Shove (Unarmed Strike)", range: "5ft", toHit: "STR-Athletik vs DEX-Save", damage: "—", description: "Unarmed Strike Special: bei Treffer → Target 5ft schieben ODER Prone." },
+
+  // ── Bonus Actions ───
+  { type: "bonus", name: "Off-Hand Attack", range: "5ft", toHit: "STR/DEX", damage: "Light Weapon (kein Mod)", description: "Nach Attack-Action mit Light Weapon: zweiter Angriff mit anderer Light-Waffe. Kein Schadens-Mod (außer negativ)." },
+  { type: "bonus", name: "Bonus-Action Spell", range: "Variabel", toHit: "", damage: "Zauber", description: "Spell mit Casting Time 1 Bonus Action. Dann auf gleicher Runde nur Cantrips (1-Action) wirkbar." },
+
+  // ── Reactions ───
+  { type: "reaction", name: "Opportunity Attack", range: "5ft", toHit: "STR/DEX+PB", damage: "Waffe", description: "Feind verlässt deinen Nahkampfbereich (ohne Disengage/Teleport): 1 Nahkampfangriff." },
+  { type: "reaction", name: "Readied Action", range: "—", toHit: "", damage: "—", description: "Trigger (durch Ready-Action) tritt ein: vorbereitete Aktion/Bewegung ausführen." },
+
+  // ── Klassenspezifische (optional, je nach Klasse) ───
+  { type: "bonus", name: "Second Wind (Kämpfer)", range: "Self", toHit: "", damage: "1d10+Fighter-Lv HP", description: "(Kämpfer Lv1) 1d10 + Kämpfer-Level HP heilen. 2/3/4 Nutzungen ab Lv1/5/10. Recharge: Kurze Rast." },
+  { type: "bonus", name: "Cunning Action (Schurke)", range: "—", toHit: "", damage: "—", description: "(Schurke Lv2) Bonus-Action: Dash, Disengage oder Hide." },
+  { type: "bonus", name: "Wild Shape (Druide)", range: "Self", toHit: "", damage: "—", description: "(Druide Lv2) In Beast-Form verwandeln. 2/3/4 Nutzungen je nach Level. Recharge: Kurze Rast." },
+  { type: "bonus", name: "Rage (Barbar)", range: "Self", toHit: "", damage: "+Rage Damage", description: "(Barbar Lv1) Bonus-Action: Kampfrausch aktivieren. +Rage-Damage auf STR-Attacks, Resistance B/P/S, Vorteil STR-Checks/Saves." },
+  { type: "reaction", name: "Shield (Zauber)", range: "Self", toHit: "", damage: "—", description: "(Slot 1) +5 AC bis Anfang nächster Zug. Auch gegen Magic Missile." },
+  { type: "reaction", name: "Counterspell (2024)", range: "60ft", toHit: "CON-Save vs deinem DC", damage: "—", description: "🆕 PHB 2024: Target macht CON-Save (vs deinem Spell-DC). Fehlschlag = Spell verfällt. Erfolg = Spell wirkt normal." },
+  { type: "reaction", name: "Sentinel (Feat)", range: "5ft", toHit: "STR/DEX+PB", damage: "Waffe", description: "(Feat) Wenn Kreatur in Reichweite eine andere angreift: Reaktions-Angriff." },
 ];
+
+// ── Core-Aktionen (für alle Klassen) — werden vom 'Alle hinzufügen'-Button gesetzt
+const CORE_ACTION_NAMES = new Set([
+  "Attack", "Magic (Zaubern)", "Dash", "Disengage", "Dodge", "Help", "Hide",
+  "Influence", "Ready", "Search", "Study", "Utilize",
+  "Grapple (Unarmed Strike)", "Shove (Unarmed Strike)",
+  "Off-Hand Attack", "Bonus-Action Spell",
+  "Opportunity Attack", "Readied Action",
+]);
 
 export default function CharActions({ char, setChar }) {
   const actions = char.actions || [];
@@ -45,7 +68,23 @@ export default function CharActions({ char, setChar }) {
 
   const openNew = () => { setForm(blank); setEditId(null); setShowForm(true); setShowStd(false); };
   const openEdit = a => { setForm({ ...a }); setEditId(a.id); setShowForm(true); setShowStd(false); };
-  const addStd = tmpl => { setActions(p => [...p, { ...tmpl, id: Date.now(), saveDC: "", saveAbility: "STR" }]); };
+  const addStd = tmpl => { setActions(p => [...p, { ...tmpl, id: Date.now() + Math.random(), saveDC: "", saveAbility: "STR" }]); };
+
+  // Bulk: Alle PHB-2024-Core-Aktionen hinzufügen (klassenspezifische ausgenommen)
+  const addAllCore = () => {
+    const existingNames = new Set(actions.map(a => a.name));
+    const toAdd = STD_ACTIONS.filter(a => CORE_ACTION_NAMES.has(a.name) && !existingNames.has(a.name));
+    if (toAdd.length === 0) return;
+    setActions(p => [...p, ...toAdd.map((a, i) => ({ ...a, id: Date.now() + i, saveDC: "", saveAbility: "STR" }))]);
+  };
+
+  // Bulk: Aktuelle gefilterte Aktionen vom Standard-Picker hinzufügen
+  const addAllOfType = () => {
+    const existingNames = new Set(actions.filter(a => a.type === stdFilter).map(a => a.name));
+    const toAdd = STD_ACTIONS.filter(a => a.type === stdFilter && !existingNames.has(a.name));
+    if (toAdd.length === 0) return;
+    setActions(p => [...p, ...toAdd.map((a, i) => ({ ...a, id: Date.now() + i, saveDC: "", saveAbility: "STR" }))]);
+  };
   const save = () => {
     if (!form.name) return;
     if (editId) setActions(p => p.map(a => a.id === editId ? { ...form, id: editId } : a));
@@ -68,9 +107,30 @@ export default function CharActions({ char, setChar }) {
       </div>
 
       {showStd && <div style={sx.card}>
-        <div style={sx.ct}>📖 Standard D&D 5e Aktionen hinzufuegen</div>
-        <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
+        <div style={sx.ct}>📖 PHB 2024 Standard-Aktionen hinzufügen</div>
+
+        {/* ── BULK-ADD-BUTTONS ──────────────────────────────────────── */}
+        <div style={{
+          background: `${C.greenBright}10`, border: `1px solid ${C.greenBright}40`,
+          borderLeft: `3px solid ${C.greenBright}`, borderRadius: 8,
+          padding: "10px 12px", marginBottom: 12,
+          display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap",
+        }}>
+          <div style={{ flex: "1 1 220px" }}>
+            <div style={{ fontFamily: FH, fontSize: 12, color: C.greenBright, fontWeight: 700, marginBottom: 2 }}>⚡ Quick-Setup</div>
+            <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4 }}>Lade alle PHB-2024 Core-Aktionen (Attack/Dash/Dodge/Help/Hide/Influence/Magic/Ready/Search/Study/Utilize + Grapple/Shove + Off-Hand + Bonus-Spell + OA + Ready-Reaction).</div>
+          </div>
+          <button onClick={addAllCore} style={{ ...sx.btn(C.greenBright), padding: "10px 16px", whiteSpace: "nowrap" }}>
+            ⚡ Alle Core-Aktionen
+          </button>
+        </div>
+
+        <div style={{ display: "flex", gap: 6, marginBottom: 10, alignItems: "center", flexWrap: "wrap" }}>
           {TYPES.map(t => <button key={t.id} onClick={() => setStdFilter(t.id)} style={{ ...sx.bsm(t.color), background: stdFilter === t.id ? `${t.color}30` : `${t.color}10`, border: `1px solid ${t.color}44`, fontWeight: stdFilter === t.id ? 700 : 400 }}>{t.icon} {t.label}</button>)}
+          <button onClick={addAllOfType} title={`Alle ${TYPES.find(t=>t.id===stdFilter)?.label}s der aktuellen Liste hinzufügen`} style={{
+            ...sx.bsm(C.teal), background: `${C.teal}18`, border: `1px solid ${C.teal}55`,
+            marginLeft: "auto", fontSize: 10, fontWeight: 700,
+          }}>+ Alle dieser Sorte</button>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {STD_ACTIONS.filter(a => a.type === stdFilter).map((a, i) => {
