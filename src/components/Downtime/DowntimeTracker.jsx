@@ -253,9 +253,18 @@ export default function DowntimeTracker() {
         return (
           <div style={{ position: "fixed", inset: 0, background: "#000a", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 200 }}
             onClick={() => setNewForm(null)}>
-            <div style={{ ...sx.card, width: "min(400px, 92vw)", maxHeight: "80vh", overflowY: "auto" }}
+            <div style={{ ...sx.card, width: "min(400px, 92vw)", maxHeight: "80vh", overflowY: "auto", position: "relative" }}
               onClick={e => e.stopPropagation()}>
-              <div style={{ fontFamily: FH, fontSize: 16, color: act?.color || C.purpleBright, fontWeight: 700, marginBottom: 12 }}>
+              <button onClick={() => setNewForm(null)}
+                aria-label="Schließen"
+                style={{
+                  position:"absolute", top:8, right:8, zIndex:10,
+                  width:32, height:32, borderRadius:"50%",
+                  background:"transparent", border:`1px solid ${C.border}`,
+                  color:C.textDim, fontSize:16, lineHeight:1, cursor:"pointer",
+                  display:"flex", alignItems:"center", justifyContent:"center",
+                }}>✕</button>
+              <div style={{ fontFamily: FH, fontSize: 16, color: act?.color || C.purpleBright, fontWeight: 700, marginBottom: 12, paddingRight: 32 }}>
                 {act?.icon} {act?.name} starten
               </div>
               <label style={sx.lbl}>Beschriftung</label>

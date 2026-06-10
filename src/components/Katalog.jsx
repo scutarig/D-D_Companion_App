@@ -270,7 +270,18 @@ export default function Katalog({ char, setChar }) {
               padding:"20px 18px 36px",
               boxShadow:`0 -8px 40px rgba(0,0,0,0.8), ${GLOW[modal.rar]}`,
               maxHeight:"80vh", overflowY:"auto",
+              position:"relative",
             }}>
+            {/* Close X (Touch-Discoverability) */}
+            <button onClick={() => setModal(null)}
+              aria-label={lang==="en"?"Close":"Schließen"}
+              style={{
+                position:"absolute", top:10, right:10, zIndex:10,
+                width:36, height:36, borderRadius:"50%",
+                background:"rgba(0,0,0,0.5)", border:`1px solid ${C.border}`,
+                color:C.textBright, fontSize:18, lineHeight:1, cursor:"pointer",
+                display:"flex", alignItems:"center", justifyContent:"center",
+              }}>✕</button>
             {/* Griff */}
             <div style={{width:40,height:4,background:C.border,borderRadius:2,margin:"0 auto 16px"}}/>
 

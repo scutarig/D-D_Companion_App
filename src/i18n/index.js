@@ -156,6 +156,14 @@ const TRANSLATIONS = {
     "katalog.magic_modifier": "Magischer Modifikator",
     "katalog.choose_plus": "+0/+1/+2/+3 wählen",
 
+    // ── Save/Export ──────────────────────────────────────────────────────
+    "save.title": "Charakter speichern",
+    "save.export_json": "JSON exportieren",
+    "save.export_pdf": "PDF drucken",
+    "save.dm_mode_active": "DM-MODUS AKTIV",
+    "save.player_mode_active": "SPIELER-MODUS AKTIV",
+    "save.switch": "Wechseln",
+
     // ── QuickRef ─────────────────────────────────────────────────────────
     "quickref.conditions": "⚡ Zustände",
     "quickref.actions": "🎯 Aktionen",
@@ -329,6 +337,14 @@ const TRANSLATIONS = {
     "katalog.add_to_inventory": "+ Inventory",
     "katalog.magic_modifier": "Magic Modifier",
     "katalog.choose_plus": "Choose +0/+1/+2/+3",
+
+    // ── Save/Export ──────────────────────────────────────────────────────
+    "save.title": "Save Character",
+    "save.export_json": "Export JSON",
+    "save.export_pdf": "Print PDF",
+    "save.dm_mode_active": "DM MODE ACTIVE",
+    "save.player_mode_active": "PLAYER MODE ACTIVE",
+    "save.switch": "Switch",
 
     // ── QuickRef ─────────────────────────────────────────────────────────
     "quickref.conditions": "⚡ Conditions",

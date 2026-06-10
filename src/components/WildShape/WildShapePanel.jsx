@@ -135,7 +135,7 @@ export default function WildShapePanel({ compact = false }) {
               </div>
             )}
             {/* Traits */}
-            {beast.traits.length > 0 && (
+            {beast.traits?.length > 0 && (
               <div style={{ marginBottom: 8 }}>
                 <div style={{ fontSize: 10, color: C.textDim, fontWeight: 700, marginBottom: 3 }}>EIGENSCHAFTEN</div>
                 {beast.traits.map((t, i) => <div key={i} style={{ fontSize: 11, color: C.text, marginBottom: 1 }}>• {t}</div>)}
@@ -253,7 +253,7 @@ export default function WildShapePanel({ compact = false }) {
           </div>
         )}
         {/* Traits */}
-        {beast.traits.length > 0 && (
+        {beast.traits?.length > 0 && (
           <div style={{ marginTop: 8, paddingTop: 8, borderTop: `1px solid ${C.border}` }}>
             <div style={{ fontSize: 10, color: C.textDim, fontWeight: 700, marginBottom: 3 }}>EIGENSCHAFTEN</div>
             {beast.traits.map((t, i) => <div key={i} style={{ fontSize: 10, color: C.text, marginBottom: 1 }}>• {t}</div>)}

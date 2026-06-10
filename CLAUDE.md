@@ -35,7 +35,7 @@ Static D&D 5e data lives in `src/data/` (spells, monsters, classes, races, items
 
 ### Layout
 
-`App.jsx` renders two layouts (desktop sidebar / mobile bottom-nav) based on `useIsMobile(768)`. All tab components are lazy-loaded via `React.lazy`. The active tab is persisted as `app_tab_v5`.
+`App.jsx` renders two layouts (desktop sidebar / mobile bottom-nav) based on `useIsMobile(900)`. The 900px breakpoint covers Samsung S7 FE portrait (~750-800px) and iPad portrait (~820px), so they get touch-friendly bottom-nav. Landscape tablets stay desktop. Must match `useLayout.js` threshold. All tab components are lazy-loaded via `React.lazy`. The active tab is persisted as `app_tab_v5`.
 
 ### Component structure
 

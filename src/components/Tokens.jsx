@@ -92,9 +92,11 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
                   {Array.from({ length: sl.tot }).map((_, i) => (
                     <div
                       key={i}
+                      role="button"
+                      tabIndex={0}
                       onClick={() => setSlotUsed(sl.lv, i < sl.used ? i : i + 1)}
                       style={{
-                        width: 30, height: 30, borderRadius: isPact ? 6 : "50%",
+                        width: 36, height: 36, borderRadius: isPact ? 6 : "50%",
                         cursor: "pointer",
                         background: i < sl.used ? "#1a1a1a" : SC[si] + "cc",
                         border: `2px solid ${i < sl.used ? C.border : SC[si]}`,

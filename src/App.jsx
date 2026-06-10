@@ -141,7 +141,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
     if (restBanner === "long") {
       setChar(p => applyLongRest(p));
       setSlots(p => p.map(s => ({ ...s, used: 0 })));
-      setCustom(p => p.map(t => ({ ...t, used: 0 })));
+      setCustom(p => p.map(tok => ({ ...tok, used: 0 })));
       // Long rest resets ALL class resources (long + short)
       const reset = {};
       autoResources.forEach(r => { reset[r.id] = 0; });
@@ -309,7 +309,7 @@ function AppInner() {
   const [charOpen, setCharOpen] = useState(false);
 
   // Auto-tab-switch when mode changes and current tab is invalid
-  const allowedTabIds = tabsForMode(mode).map(t => t.id);
+  const allowedTabIds = tabsForMode(mode).map(td => td.id);
   useEffect(() => {
     if (!allowedTabIds.includes(tab)) {
       setTab(mode === "dm" ? "combat" : "overview");
@@ -512,14 +512,14 @@ function AppInner() {
     const w = window.open("","_blank"); w.document.write(html); w.document.close(); setTimeout(()=>w.print(),300);
   };
 
-  const isRef = REF_TABS.some(t => t.id === tab);
-  const isCharGroup = CHAR_GROUP.some(t => t.id === tab);
+  const isRef = REF_TABS.some(td => td.id === tab);
+  const isCharGroup = CHAR_GROUP.some(td => td.id === tab);
 
   // Mode-filtered tabs for Desktop sidebar (top-level, excluding grouped ones)
   const SIDEBAR_TOP_PLAYER = ["overview", "inventar", "world", "quickref", "notes", "npcs", "dice"];
   const SIDEBAR_TOP_DM     = ["combat", "encounter", "npcs", "notes", "dice"];
   const sidebarTopIds = isDM ? SIDEBAR_TOP_DM : SIDEBAR_TOP_PLAYER;
-  const sidebarTopTabs = sidebarTopIds.map(id => ALL_TABS.find(t => t.id === id)).filter(Boolean);
+  const sidebarTopTabs = sidebarTopIds.map(id => ALL_TABS.find(td => td.id === id)).filter(Boolean);
 
   const content = (
     <Suspense fallback={<Loader />}>
@@ -755,10 +755,10 @@ function AppInner() {
           {content}
           {tab === "char" && active && !isDM && (
             <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
-              <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>{t("save.title", lang === "de" ? "Charakter speichern" : "Save Character")}</div>
+              <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>{t("save.title", "Charakter speichern")}</div>
               <div style={{ display:"flex", gap:8 }}>
-                <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ {lang === "de" ? "JSON exportieren" : "Export JSON"}</button>
-                <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 {lang === "de" ? "PDF drucken" : "Print PDF"}</button>
+                <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ {t("save.export_json", "JSON exportieren")}</button>
+                <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 {t("save.export_pdf", "PDF drucken")}</button>
               </div>
             </div>
           )}
@@ -853,8 +853,8 @@ function AppInner() {
           }}
         >
           <span style={{ fontSize: 16 }}>{isDM ? "🎲" : "👤"}</span>
-          <span>{isDM ? (lang === "de" ? "DM-MODUS AKTIV" : "DM MODE ACTIVE") : (lang === "de" ? "SPIELER-MODUS AKTIV" : "PLAYER MODE ACTIVE")}</span>
-          <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 4 }}>↻ {lang === "de" ? "Wechseln" : "Switch"}</span>
+          <span>{isDM ? t("save.dm_mode_active","DM-MODUS AKTIV") : t("save.player_mode_active","SPIELER-MODUS AKTIV")}</span>
+          <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 4 }}>↻ {t("save.switch","Wechseln")}</span>
         </button>
       </div>
 
