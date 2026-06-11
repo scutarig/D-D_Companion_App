@@ -7,6 +7,7 @@ import {
   SKILLS, SKILLS_BY_ABILITY, ABILITIES, abilityColor,
   skillModifier, abilityMod, fmtMod, getProfBonus,
 } from "../../../data/skills.js";
+import { useI18n } from "../../../i18n/index.js";
 import RollResult from "./RollResult.jsx";
 import TargetSelector from "./TargetSelector.jsx";
 
@@ -16,6 +17,7 @@ import TargetSelector from "./TargetSelector.jsx";
  *   onClose: () => void
  */
 export default function SkillCheckModal({ onClose }) {
+  const { t } = useI18n();
   const { state, setState } = useCombat();
 
   const [targetId, setTargetId] = useState(
@@ -140,14 +142,14 @@ export default function SkillCheckModal({ onClose }) {
             type="text"
             value={search}
             onChange={(e) => { setSearch(e.target.value); setActiveAbility(null); }}
-            placeholder="🔍 Skill suchen..."
+            placeholder={t("combat.skill_search","🔍 Skill suchen...")}
             style={{ ...sx.inp, fontSize: 12, marginBottom: 6 }}
           />
 
           <div style={{ maxHeight: 200, overflowY: "auto", borderRadius: 8, border: `1px solid ${C.border}` }}>
             {filtered.length === 0 ? (
               <div style={{ padding: "12px", fontSize: 12, color: C.textDim, textAlign: "center" }}>
-                Kein Skill gefunden
+                {t("combat.no_skill_found","Kein Skill gefunden")}
               </div>
             ) : (
               // Group by ability if no search query
@@ -271,15 +273,15 @@ export default function SkillCheckModal({ onClose }) {
               cursor: selectedSkill ? "pointer" : "not-allowed",
             }}
           >
-            🎲 {selectedSkill ? `${selectedSkill.name} würfeln (DC ${dcNum})` : "Skill auswählen"}
+            🎲 {selectedSkill ? `${selectedSkill.name} ${t("combat.skill_roll_action","würfeln")} (DC ${dcNum})` : t("combat.skill_select","Skill auswählen")}
           </button>
         ) : (
           <div>
             {result.roll1 !== undefined && (
               <div style={{ marginBottom: 6, fontSize: 12, color: C.textDim, textAlign: "center" }}>
-                Gewürfelt: {result.roll1} und {result.roll2} →{" "}
+                {t("combat.rolled_label","Gewürfelt:")} {result.roll1} {t("combat.and_word","und")} {result.roll2} →{" "}
                 <span style={{ color: C.gold, fontWeight: 700 }}>
-                  {result.advantage ? "höher gewählt" : "niedriger gewählt"}: {result.roll}
+                  {result.advantage ? t("combat.took_higher_short","höher gewählt") : t("combat.took_lower_short","niedriger gewählt")}: {result.roll}
                 </span>
               </div>
             )}
@@ -289,14 +291,14 @@ export default function SkillCheckModal({ onClose }) {
               total={result.total}
               label={`${selectedSkill.name} vs DC ${dcNum}`}
               highlight={highlight}
-              extra={result.success ? "✓ Geschafft!" : "✗ Misslungen!"}
+              extra={result.success ? t("combat.skill_succeeded","✓ Geschafft!") : t("combat.skill_failed","✗ Misslungen!")}
             />
             <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
               <button onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "9px", fontSize: 12 }}>
-                🎲 Nochmal
+                {t("combat.reroll_nochmal","🎲 Nochmal")}
               </button>
               <button onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "9px", fontSize: 12 }}>
-                Schließen
+                {t("combat.close_word","Schließen")}
               </button>
             </div>
           </div>

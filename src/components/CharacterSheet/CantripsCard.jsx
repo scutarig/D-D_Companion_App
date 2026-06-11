@@ -2,6 +2,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
 import { SPELLS } from "../../data/spells.js";
 import { getAllCantripLimits } from "../../data/spellPreparation.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * CantripsCard — 2024 PHB Cantrips Known Tracker
@@ -21,6 +22,7 @@ import { getAllCantripLimits } from "../../data/spellPreparation.js";
  * Levelup 1 Cantrip aus eigener Liste umwählen.
  */
 export default function CantripsCard({ char, classes }) {
+  const { t } = useI18n();
   const [known] = usePersist(`spells_known_${char.id || "g"}`, []);
   const limits = getAllCantripLimits(classes, char);
   if (limits.length === 0) return null;
@@ -48,7 +50,7 @@ export default function CantripsCard({ char, classes }) {
         fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700,
         marginBottom: 6, letterSpacing: 0.5,
       }}>
-        ✨ CANTRIPS (2024 PHB)
+        {t("char.cantrips_header","✨ CANTRIPS (2024 PHB)")}
       </div>
 
       <div style={{
@@ -56,7 +58,7 @@ export default function CantripsCard({ char, classes }) {
         background: `${C.amber}0d`, border: `1px solid ${C.amber}30`,
         borderRadius: 6, padding: "7px 10px", marginBottom: 10,
       }}>
-        2024: Cantrip-Anzahl steigt auf <b>Lv4</b> und <b>Lv10</b>. Cantrips können <b>NICHT täglich getauscht</b> werden — nur bei Levelup 1 Cantrip umwählen. Verwaltung im <b>Spellbook</b>-Tab.
+        {t("char.cantrips_intro","2024: Cantrip-Anzahl steigt auf Lv4 und Lv10. Cantrips können NICHT täglich getauscht werden — nur bei Levelup 1 Cantrip umwählen. Verwaltung im Spellbook-Tab.")}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -97,8 +99,8 @@ export default function CantripsCard({ char, classes }) {
                   <span style={{ fontSize: 11, color: barColor, fontWeight: 700 }}>
                     {count}/{l.limit}
                   </span>
-                  {isOver && <span style={{ fontSize: 9, color: C.redBright }}>⚠ Über Limit</span>}
-                  {isFull && !isOver && <span style={{ fontSize: 9, color: C.amberBright }}>✓ Voll</span>}
+                  {isOver && <span style={{ fontSize: 9, color: C.redBright }}>{t("char.over_limit","⚠ Über Limit")}</span>}
+                  {isFull && !isOver && <span style={{ fontSize: 9, color: C.amberBright }}>{t("char.full_tag","✓ Voll")}</span>}
                 </div>
               </div>
 
@@ -129,7 +131,7 @@ export default function CantripsCard({ char, classes }) {
               )}
               {count === 0 && (
                 <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic" }}>
-                  Noch keine Cantrips bekannt — wähle im Spellbook-Tab.
+                  {t("char.no_cantrips_known","Noch keine Cantrips bekannt — wähle im Spellbook-Tab.")}
                 </div>
               )}
             </div>

@@ -2,6 +2,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { ALL_VOELKER, DND_RACES } from "../../data/races.js";
 import { getRaceData, formatStatBonuses } from "../../utils/races.js";
 import { useRaceTraits } from "../../hooks/useRaceTraits.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * RaceSelector — Enhanced race dropdown with stat bonus preview + 2024 Lineage-Picker
@@ -11,6 +12,7 @@ import { useRaceTraits } from "../../hooks/useRaceTraits.js";
  * Wird in `char.lineage` (Lineage-ID) persistiert.
  */
 export default function RaceSelector({ char, setChar }) {
+  const { t } = useI18n();
   const { handleRaceChange } = useRaceTraits(setChar);
   const raceData = getRaceData(char.race);
   const bonusStr = raceData ? formatStatBonuses(raceData.statBonuses) : "";
@@ -42,14 +44,14 @@ export default function RaceSelector({ char, setChar }) {
 
   return (
     <div>
-      <label style={sx.lbl}>Volk / Species</label>
+      <label style={sx.lbl}>{t("char.species_label","Volk / Species")}</label>
       <select
         value={char.race}
         onChange={onChange}
         style={sx.sel}
       >
         {ALL_VOELKER.map(r => <option key={r}>{r}</option>)}
-        <option value="Eigenes">Eigenes...</option>
+        <option value="Eigenes">{t("char.custom_option","Eigenes...")}</option>
       </select>
 
       {char.race === "Eigenes" && (
@@ -57,7 +59,7 @@ export default function RaceSelector({ char, setChar }) {
           value={char.raceCustom || ""}
           onChange={e => setChar(p => ({ ...p, raceCustom: e.target.value }))}
           style={{ ...sx.inp, marginTop: 4 }}
-          placeholder="Eigenes Volk..."
+          placeholder={t("char.custom_placeholder","Eigenes Volk...")}
         />
       )}
 
@@ -78,8 +80,8 @@ export default function RaceSelector({ char, setChar }) {
               fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700,
               background: `${C.amberBright}1f`, border: `1px solid ${C.amberBright}55`,
               color: C.amberBright, letterSpacing: 0.3,
-            }} title="2014er Mechanik — nicht im 2024 PHB Core">
-              ⚠ Legacy 2014
+            }} title={t("char.legacy_2014_title","2014er Mechanik — nicht im 2024 PHB Core")}>
+              {t("char.legacy_2014_tag","⚠ Legacy 2014")}
             </span>
           )}
           {bonusStr && (
@@ -97,7 +99,7 @@ export default function RaceSelector({ char, setChar }) {
               background: `${C.gold}18`, border: `1px solid ${C.gold}44`,
               color: C.amberBright,
             }}>
-              {traitCount} Traits
+              {traitCount} {t("char.traits_count","Traits")}
             </span>
           )}
         </div>
@@ -107,9 +109,9 @@ export default function RaceSelector({ char, setChar }) {
       {lineages.length > 0 && (
         <div style={{ marginTop: 10 }}>
           <label style={sx.lbl}>
-            Lineage (2024 PHB)
+            {t("char.lineage_label","Lineage (2024 PHB)")}
             <span style={{ color: C.textDim, fontSize: 9, marginLeft: 6, textTransform: "none" }}>
-              — Sub-Identität deiner Species
+              {t("char.lineage_sublabel","— Sub-Identität deiner Species")}
             </span>
           </label>
           <select
@@ -117,7 +119,7 @@ export default function RaceSelector({ char, setChar }) {
             onChange={onLineageChange}
             style={sx.sel}
           >
-            <option value="">— Wähle Lineage —</option>
+            <option value="">{t("char.lineage_choose","— Wähle Lineage —")}</option>
             {lineages.map(l => (
               <option key={l.id} value={l.id}>{l.name}</option>
             ))}

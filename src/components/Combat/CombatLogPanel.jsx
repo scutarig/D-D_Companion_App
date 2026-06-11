@@ -3,16 +3,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { exportLogAsText, exportLogAsJSON, searchLog, filterLogByType } from "../../utils/log.js";
 import { addLog } from "../../utils/log.js";
-
-// ─── Type filter config ───────────────────────────────────────────────────────
-const FILTERS = [
-  { id: "all",       label: "Alle",     icon: "📋", color: C.textDim },
-  { id: "action",    label: "Aktionen", icon: "⚔️",  color: C.blue    },
-  { id: "dmg",       label: "Schaden",  icon: "💥",  color: C.red     },
-  { id: "heal",      label: "Heilung",  icon: "💚",  color: C.green   },
-  { id: "condition", label: "Status",   icon: "⚡",  color: C.amber   },
-  { id: "death",     label: "Tod",      icon: "☠️",  color: "#a61e4d" },
-];
+import { useI18n } from "../../i18n/index.js";
 
 const LOG_COLORS = {
   join: C.textDim, round: "#555", turn: "#777",
@@ -26,6 +17,15 @@ const LOG_ICONS = {
 };
 
 export default function CombatLogPanel() {
+  const { t } = useI18n();
+  const FILTERS = [
+    { id: "all",       label: t("combat.log_filter_all","Alle"),         icon: "📋", color: C.textDim },
+    { id: "action",    label: t("combat.log_filter_actions","Aktionen"), icon: "⚔️",  color: C.blue    },
+    { id: "dmg",       label: t("combat.log_filter_dmg","Schaden"),      icon: "💥",  color: C.red     },
+    { id: "heal",      label: t("combat.log_filter_heal","Heilung"),     icon: "💚",  color: C.green   },
+    { id: "condition", label: t("combat.log_filter_condition","Status"), icon: "⚡",  color: C.amber   },
+    { id: "death",     label: t("combat.log_filter_death","Tod"),        icon: "☠️",  color: "#a61e4d" },
+  ];
   const { state, setState } = useCombat();
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
@@ -81,24 +81,24 @@ export default function CombatLogPanel() {
       if (format === "copy") {
         const text = exportLogAsText(state.log, state.fighters);
         navigator.clipboard.writeText(text).then(() => {
-          setExportFeedback("✓ Kopiert!");
+          setExportFeedback(t("combat.log_export_copied","✓ Kopiert!"));
           setTimeout(() => setExportFeedback(""), 2000);
         });
       } else if (format === "txt") {
         const text = exportLogAsText(state.log, state.fighters);
         const blob = new Blob([text], { type: "text/plain" });
         downloadBlob(blob, `combat-log-${Date.now()}.txt`);
-        setExportFeedback("✓ TXT gespeichert");
+        setExportFeedback(t("combat.log_export_txt_saved","✓ TXT gespeichert"));
         setTimeout(() => setExportFeedback(""), 2000);
       } else if (format === "json") {
         const json = exportLogAsJSON(state);
         const blob = new Blob([json], { type: "application/json" });
         downloadBlob(blob, `combat-log-${Date.now()}.json`);
-        setExportFeedback("✓ JSON gespeichert");
+        setExportFeedback(t("combat.log_export_json_saved","✓ JSON gespeichert"));
         setTimeout(() => setExportFeedback(""), 2000);
       }
     } catch (e) {
-      setExportFeedback("✗ Fehler");
+      setExportFeedback(t("combat.log_export_err","✗ Fehler"));
       setTimeout(() => setExportFeedback(""), 2000);
     }
   };
@@ -110,7 +110,7 @@ export default function CombatLogPanel() {
       <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
         <input
           type="text"
-          placeholder="🔍 Log durchsuchen..."
+          placeholder={t("combat.log_search_placeholder","🔍 Log durchsuchen...")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={{ ...sx.inp, flex: 1, fontSize: 11 }}
@@ -118,7 +118,7 @@ export default function CombatLogPanel() {
         <div style={{ position: "relative" }}>
           <button
             onClick={() => setShowExportMenu((v) => !v)}
-            title="Log exportieren"
+            title={t("combat.log_export_title","Log exportieren")}
             style={{
               ...sx.bsm(C.teal), padding: "7px 10px", fontSize: 12,
               background: showExportMenu ? `${C.teal}22` : "transparent",
@@ -133,9 +133,9 @@ export default function CombatLogPanel() {
               padding: 4, minWidth: 140, boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
             }}>
               {[
-                { f: "copy", icon: "📋", label: "Clipboard kopieren" },
-                { f: "txt",  icon: "📄", label: "Als TXT speichern"  },
-                { f: "json", icon: "📦", label: "Als JSON speichern"  },
+                { f: "copy", icon: "📋", label: t("combat.log_export_copy","Clipboard kopieren") },
+                { f: "txt",  icon: "📄", label: t("combat.log_export_txt","Als TXT speichern")  },
+                { f: "json", icon: "📦", label: t("combat.log_export_json","Als JSON speichern")  },
               ].map(({ f, icon, label }) => (
                 <button
                   key={f}
@@ -157,7 +157,7 @@ export default function CombatLogPanel() {
         </div>
         <button
           onClick={() => setAutoScroll((v) => !v)}
-          title={autoScroll ? "Auto-Scroll aktiv" : "Auto-Scroll aus"}
+          title={autoScroll ? t("combat.log_autoscroll_on","Auto-Scroll aktiv") : t("combat.log_autoscroll_off","Auto-Scroll aus")}
           style={{
             ...sx.bsm(autoScroll ? C.green : C.border),
             padding: "7px 9px", fontSize: 12,
@@ -195,7 +195,7 @@ export default function CombatLogPanel() {
         <div ref={logEndRef} />
         {logWithSeparators.length === 0 ? (
           <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", padding: "20px 0" }}>
-            {search ? "Keine Treffer" : "Log leer — Kampf beginnen"}
+            {search ? t("combat.log_empty_search","Keine Treffer") : t("combat.log_empty","Log leer — Kampf beginnen")}
           </div>
         ) : (
           logWithSeparators.map((entry) => {
@@ -267,7 +267,7 @@ export default function CombatLogPanel() {
           value={note}
           onChange={(e) => setNote(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleAddNote()}
-          placeholder="📝 Notiz hinzufügen..."
+          placeholder={t("combat.log_note_placeholder","📝 Notiz hinzufügen...")}
           style={{ ...sx.inp, flex: 1, fontSize: 11 }}
         />
         <button
@@ -287,9 +287,9 @@ export default function CombatLogPanel() {
         fontSize: 10, color: C.textDim, display: "flex", justifyContent: "space-between",
         paddingTop: 6, borderTop: `1px solid ${C.border}`, flexShrink: 0,
       }}>
-        <span>{state.log.length} Einträge</span>
-        {search && <span style={{ color: C.amber }}>{displayLog.length} Treffer</span>}
-        <span>Runde {state.round}</span>
+        <span>{state.log.length} {t("combat.log_entries","Einträge")}</span>
+        {search && <span style={{ color: C.amber }}>{displayLog.length} {t("combat.log_matches","Treffer")}</span>}
+        <span>{t("combat.round","Runde")} {state.round}</span>
       </div>
     </div>
   );

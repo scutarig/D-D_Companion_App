@@ -2,9 +2,10 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useFighter } from "../../hooks/useFighter.js";
 import { MONSTERS as Bestiary } from "../../data/monsters.js";
-import { t } from "../../i18n/index.js";
+import { useI18n } from "../../i18n/index.js";
 
 export default function FighterAddForm({ onClose }) {
+  const { t } = useI18n();
   const { addFighter } = useFighter();
 
   const [mode, setMode] = useState("manual"); // "manual" or "bestiary"
@@ -81,7 +82,7 @@ export default function FighterAddForm({ onClose }) {
             fontSize: 12,
           }}
         >
-          ✏️ Manuell
+          {t("combat.add_mode_manual","✏️ Manuell")}
         </button>
         <button
           onClick={() => setMode("bestiary")}
@@ -97,7 +98,7 @@ export default function FighterAddForm({ onClose }) {
             fontSize: 12,
           }}
         >
-          📚 Bestiary
+          {t("combat.add_mode_bestiary","📚 Bestiary")}
         </button>
       </div>
 
@@ -110,7 +111,7 @@ export default function FighterAddForm({ onClose }) {
               type="text"
               value={formData.name}
               onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-              placeholder="z.B. Goblin"
+              placeholder={t("combat.placeholder_goblin","z.B. Goblin")}
               style={{ ...sx.inp, width: "100%" }}
             />
           </div>
@@ -135,7 +136,7 @@ export default function FighterAddForm({ onClose }) {
               />
             </div>
             <div>
-              <label style={sx.lbl}>Init Bonus</label>
+              <label style={sx.lbl}>{t("combat.init_bonus_lbl","Init Bonus")}</label>
               <input
                 type="number"
                 value={formData.initiativeBonus}
@@ -146,7 +147,7 @@ export default function FighterAddForm({ onClose }) {
           </div>
 
           <button onClick={handleAddManual} style={{ ...sx.btn(C.blue), width: "100%" }}>
-            ➕ Hinzufügen
+            {t("combat.add_btn","➕ Hinzufügen")}
           </button>
         </div>
       )}
@@ -155,12 +156,12 @@ export default function FighterAddForm({ onClose }) {
       {mode === "bestiary" && (
         <div>
           <div style={{ marginBottom: 8 }}>
-            <label style={sx.lbl}>Monster suchen</label>
+            <label style={sx.lbl}>{t("combat.search_monster_short","Monster suchen")}</label>
             <input
               type="text"
               value={bestiarySearch}
               onChange={(e) => setBestiarySearch(e.target.value)}
-              placeholder="z.B. Goblin, Orc..."
+              placeholder={t("combat.placeholder_goblin_orc","z.B. Goblin, Orc...")}
               style={{ ...sx.inp, width: "100%" }}
             />
           </div>
@@ -200,7 +201,7 @@ export default function FighterAddForm({ onClose }) {
               <div style={{ color: C.textDim, fontSize: 11, marginBottom: 6 }}>HP {selectedMonster.hp} · AC {selectedMonster.ac}</div>
 
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 6 }}>
-                <span style={{ fontSize: 11, color: C.textDim }}>Anzahl:</span>
+                <span style={{ fontSize: 11, color: C.textDim }}>{t("combat.count_label","Anzahl:")}</span>
                 <input
                   type="number"
                   min={1}
@@ -219,7 +220,7 @@ export default function FighterAddForm({ onClose }) {
 
           {filteredMonsters.length === 0 && bestiarySearch && (
             <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", padding: "12px 0" }}>
-              Keine Monster gefunden
+              {t("combat.no_monster_found","Keine Monster gefunden")}
             </div>
           )}
         </div>

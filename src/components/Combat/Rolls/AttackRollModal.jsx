@@ -3,6 +3,7 @@ import { C, sx, FH } from "../../../constants/theme.js";
 import { rollAttack, isCritical } from "../../../utils/rolls.js";
 import { useCombat } from "../../../context/CombatContext.jsx";
 import { suggestAttackModifiers } from "../../../utils/conditions.js";
+import { useI18n } from "../../../i18n/index.js";
 import TargetSelector from "./TargetSelector.jsx";
 import RollResult from "./RollResult.jsx";
 
@@ -14,6 +15,7 @@ import RollResult from "./RollResult.jsx";
  *   onHit: (attackResult, targetId, isCrit) => void
  */
 export default function AttackRollModal({ attacker, onClose, onHit }) {
+  const { t } = useI18n();
   const { state } = useCombat();
   const [targetId, setTargetId] = useState("");
   const [attackBonus, setAttackBonus] = useState("0");
@@ -54,13 +56,13 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
       <div style={modalStyle}>
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-          <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>⚔️ Attack Roll</div>
+          <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>{t("combat.attack_roll_title","⚔️ Attack Roll")}</div>
           <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Attacker */}
         <div style={{ background: `${C.purple}12`, borderRadius: 8, padding: "8px 12px", marginBottom: 12 }}>
-          <div style={{ fontSize: 10, color: C.textDim, letterSpacing: 0.5, marginBottom: 2 }}>ANGREIFER</div>
+          <div style={{ fontSize: 10, color: C.textDim, letterSpacing: 0.5, marginBottom: 2 }}>{t("combat.attacker_upper","ANGREIFER")}</div>
           <div style={{ fontSize: 14, color: C.purpleBright, fontWeight: 700 }}>{attacker?.name}</div>
         </div>
 
@@ -71,7 +73,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
             value={targetId}
             onChange={(id) => { setTargetId(id); setResult(null); }}
             excludeId={attacker?.id}
-            label="Ziel"
+            label={t("combat.target_lbl","Ziel")}
           />
         </div>
 
@@ -86,8 +88,8 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
           }}>
             <div style={{ fontWeight: 700, color: suggestion.cancelled ? C.textDim : suggestion.advantage ? C.greenBright : C.redBright, marginBottom: 4 }}>
               {suggestion.cancelled
-                ? "⚖ Advantage & Disadvantage heben sich auf"
-                : suggestion.advantage ? "▲ Advantage empfohlen" : "▼ Disadvantage empfohlen"}
+                ? t("combat.adv_dis_cancel","⚖ Advantage & Disadvantage heben sich auf")
+                : suggestion.advantage ? t("combat.adv_recommend","▲ Advantage empfohlen") : t("combat.dis_recommend","▼ Disadvantage empfohlen")}
             </div>
             {suggestion.advReasons.length > 0 && (
               <div style={{ color: C.greenBright }}>+ {suggestion.advReasons.join(", ")}</div>
@@ -100,7 +102,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
 
         {/* Attack Bonus */}
         <div style={{ marginBottom: 12 }}>
-          <label style={sx.lbl}>Angriffs-Bonus</label>
+          <label style={sx.lbl}>{t("combat.attack_bonus_lbl","Angriffs-Bonus")}</label>
           <input
             type="number"
             value={attackBonus}
@@ -140,16 +142,16 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
               opacity: !targetId ? 0.5 : 1, cursor: !targetId ? "not-allowed" : "pointer",
             }}
           >
-            🎲 Angriff würfeln
+            {t("combat.roll_attack_btn","🎲 Angriff würfeln")}
           </button>
         ) : (
           <div>
             {result.roll1 !== undefined && (
               <div style={{ marginBottom: 8, fontSize: 12, color: C.textDim, textAlign: "center" }}>
-                Gewürfelt: <span style={{ color: C.textBright }}>{result.roll1}</span> und{" "}
+                {t("combat.rolled_label","Gewürfelt:")} <span style={{ color: C.textBright }}>{result.roll1}</span> {t("combat.and_word","und")}{" "}
                 <span style={{ color: C.textBright }}>{result.roll2}</span> →{" "}
                 <span style={{ color: C.gold, fontWeight: 700 }}>
-                  {result.advantage ? "höher" : "niedriger"} genommen: {result.roll}
+                  {result.advantage ? t("combat.took_higher","höher genommen:") : t("combat.took_lower","niedriger genommen:")} {result.roll}
                 </span>
               </div>
             )}
@@ -163,15 +165,15 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
             <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
               {(result.hit || crit) ? (
                 <button onClick={() => onHit?.(result, targetId, crit)} style={{ ...sx.btn(C.green), flex: 1, padding: "10px", fontSize: 13 }}>
-                  💥 Schaden würfeln
+                  {t("combat.roll_damage_btn","💥 Schaden würfeln")}
                 </button>
               ) : (
                 <button onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "10px", fontSize: 13 }}>
-                  ✓ Daneben — Schließen
+                  {t("combat.miss_close","✓ Daneben — Schließen")}
                 </button>
               )}
               <button onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), padding: "10px 14px", fontSize: 12 }}>
-                🎲 Neu
+                {t("combat.reroll_neu","🎲 Neu")}
               </button>
             </div>
           </div>

@@ -4,6 +4,7 @@ import AttackAction from "./ActionButtons/AttackAction.jsx";
 import SaveRollModal from "./Rolls/SaveRollModal.jsx";
 import SpellcastingPanel from "./Spells/SpellcastingPanel.jsx";
 import SkillCheckModal from "./Rolls/SkillCheckModal.jsx";
+import { useI18n } from "../../i18n/index.js";
 
 const QUICK_ACTIONS = [
   { id: "attack", label: "Attack", icon: "⚔️", color: C.red    },
@@ -23,6 +24,7 @@ const MORE_ACTIONS = [
 ];
 
 export default function QuickActionBar({ onActionClick }) {
+  const { t } = useI18n();
   const [moreOpen, setMoreOpen] = useState(false);
   const [attackOpen, setAttackOpen] = useState(false);
   const [saveOpen, setSaveOpen] = useState(false);
@@ -63,7 +65,7 @@ export default function QuickActionBar({ onActionClick }) {
           fontWeight: moreOpen ? 700 : 400,
         }}
       >
-        {moreOpen ? "▼ Weniger" : "▶ Mehr Aktionen..."}
+        {moreOpen ? t("combat.less_actions","▼ Weniger") : t("combat.more_actions","▶ Mehr Aktionen...")}
       </button>
 
       {/* More actions grid */}

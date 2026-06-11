@@ -2,12 +2,8 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombatArchive } from "../../hooks/useCombatArchive.js";
 import { exportLogAsText } from "../../utils/log.js";
-
-const OUTCOME_CONFIG = {
-  victory: { icon: "🎉", color: C.gold,     label: "Sieg"    },
-  defeat:  { icon: "☠️", color: C.red,      label: "Niederlage" },
-  ended:   { icon: "⊗",  color: C.textDim,  label: "Beendet" },
-};
+import { useI18n } from "../../i18n/index.js";
+import { fmtDateTime } from "../../utils/locale.js";
 
 /**
  * CombatArchive — view + manage saved combat histories
@@ -15,6 +11,12 @@ const OUTCOME_CONFIG = {
  *   onClose: () => void
  */
 export default function CombatArchive({ onClose }) {
+  const { t } = useI18n();
+  const OUTCOME_CONFIG = {
+    victory: { icon: "🎉", color: C.gold,     label: t("combat.outcome_victory","Sieg")    },
+    defeat:  { icon: "☠️", color: C.red,      label: t("combat.outcome_defeat","Niederlage") },
+    ended:   { icon: "⊗",  color: C.textDim,  label: t("combat.outcome_ended","Beendet") },
+  };
   const { archives, deleteArchive, clearArchives } = useCombatArchive();
   const [expandedId, setExpandedId] = useState(null);
   const [confirmClear, setConfirmClear] = useState(false);
@@ -38,7 +40,7 @@ export default function CombatArchive({ onClose }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <div style={{ fontFamily: FH, fontSize: 16, color: C.gold, fontWeight: 700 }}>
-            🗂️ Kampf-Archiv
+            {t("combat.archive_title","🗂️ Kampf-Archiv")}
           </div>
           <div style={{ display: "flex", gap: 6 }}>
             {archives.length > 0 && (
@@ -48,13 +50,13 @@ export default function CombatArchive({ onClose }) {
                     onClick={() => { clearArchives(); setConfirmClear(false); }}
                     style={{ ...sx.bsm(C.red), padding: "4px 10px", fontSize: 11 }}
                   >
-                    Ja, alles löschen
+                    {t("combat.archive_yes_delete","Ja, alles löschen")}
                   </button>
                   <button
                     onClick={() => setConfirmClear(false)}
                     style={{ ...sx.bsm(C.border), padding: "4px 10px", fontSize: 11 }}
                   >
-                    Abbrechen
+                    {t("combat.archive_cancel","Abbrechen")}
                   </button>
                 </div>
               ) : (
@@ -62,7 +64,7 @@ export default function CombatArchive({ onClose }) {
                   onClick={() => setConfirmClear(true)}
                   style={{ ...sx.bsm(C.red), padding: "4px 10px", fontSize: 11 }}
                 >
-                  🗑️ Alle löschen
+                  {t("combat.archive_delete_all_btn","🗑️ Alle löschen")}
                 </button>
               )
             )}
@@ -74,18 +76,15 @@ export default function CombatArchive({ onClose }) {
         {archives.length === 0 ? (
           <div style={{ textAlign: "center", padding: "32px 0", color: C.textDim }}>
             <div style={{ fontSize: 36, marginBottom: 10 }}>🗂️</div>
-            <div style={{ fontSize: 14, marginBottom: 4 }}>Noch keine archivierten Kämpfe</div>
-            <div style={{ fontSize: 12 }}>Kämpfe werden nach Victory/Defeat gespeichert</div>
+            <div style={{ fontSize: 14, marginBottom: 4 }}>{t("combat.archive_empty","Noch keine archivierten Kämpfe")}</div>
+            <div style={{ fontSize: 12 }}>{t("combat.archive_empty_hint","Kämpfe werden nach Victory/Defeat gespeichert")}</div>
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {archives.map((archive) => {
               const cfg = OUTCOME_CONFIG[archive.outcome] ?? OUTCOME_CONFIG.ended;
               const isExpanded = expandedId === archive.id;
-              const date = new Date(archive.timestamp).toLocaleDateString("de-DE", {
-                day: "2-digit", month: "short", year: "numeric",
-                hour: "2-digit", minute: "2-digit",
-              });
+              const date = fmtDateTime(archive.timestamp);
 
               return (
                 <div
@@ -116,7 +115,7 @@ export default function CombatArchive({ onClose }) {
                         {archive.name}
                       </div>
                       <div style={{ fontSize: 11, color: C.textDim, marginTop: 2 }}>
-                        {date} · {archive.rounds} Runden
+                        {date} · {archive.rounds} {t("combat.archive_rounds","Runden")}
                       </div>
                     </div>
                     {/* Stats badges */}
@@ -141,7 +140,7 @@ export default function CombatArchive({ onClose }) {
                       {/* Fighter summary */}
                       <div style={{ marginBottom: 12 }}>
                         <div style={{ fontSize: 11, color: C.textDim, fontWeight: 700, letterSpacing: 0.5, marginBottom: 6 }}>
-                          KÄMPFER
+                          {t("combat.archive_fighters_label","KÄMPFER")}
                         </div>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                           {archive.fighters.map((f) => (
@@ -167,7 +166,7 @@ export default function CombatArchive({ onClose }) {
                       {/* Log preview (last 5 entries) */}
                       <div style={{ marginBottom: 10 }}>
                         <div style={{ fontSize: 11, color: C.textDim, fontWeight: 700, letterSpacing: 0.5, marginBottom: 6 }}>
-                          LOG ({archive.log.length} Einträge)
+                          LOG ({archive.log.length} {t("combat.log_entries","Einträge")})
                         </div>
                         <div style={{
                           background: "#161420", border: `1px solid ${C.border}`, borderRadius: 6,
@@ -180,7 +179,7 @@ export default function CombatArchive({ onClose }) {
                           ))}
                           {archive.log.length > 8 && (
                             <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", marginTop: 4 }}>
-                              + {archive.log.length - 8} weitere Einträge...
+                              + {archive.log.length - 8} {t("combat.archive_log_more","weitere Einträge...")}
                             </div>
                           )}
                         </div>
@@ -192,7 +191,7 @@ export default function CombatArchive({ onClose }) {
                           onClick={() => handleExportArchive(archive)}
                           style={{ ...sx.bsm(C.teal), flex: 1, padding: "8px", fontSize: 12 }}
                         >
-                          📄 Als TXT exportieren
+                          {t("combat.archive_export_txt","📄 Als TXT exportieren")}
                         </button>
                         <button
                           onClick={() => deleteArchive(archive.id)}

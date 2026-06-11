@@ -4,6 +4,7 @@ import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
 import { rollDeathSave } from "../../utils/rolls.js";
 import { getConditionId, getCondition } from "../../utils/conditions.js";
+import { useI18n } from "../../i18n/index.js";
 import ConditionBadge from "./Conditions/ConditionBadge.jsx";
 import ConditionPicker from "./Conditions/ConditionPicker.jsx";
 
@@ -40,6 +41,7 @@ const HoldBtn = ({ onClick, children, style, disabled = false }) => {
 };
 
 export default function ActiveFighterCard() {
+  const { t } = useI18n();
   const { state, setState } = useCombat();
   const { damageTarget, healTarget, addDeathSaveResult } = useCombatActions();
   const [showConditionPicker, setShowConditionPicker] = useState(false);
@@ -50,7 +52,7 @@ export default function ActiveFighterCard() {
     return (
       <div style={{ ...sx.card, textAlign: "center", color: C.textDim, padding: 24 }}>
         <div style={{ fontSize: 24, marginBottom: 8 }}>⚔️</div>
-        Keine aktiven Kämpfer
+        {t("combat.no_active_fighter","Keine aktiven Kämpfer")}
       </div>
     );
   }
@@ -117,7 +119,7 @@ export default function ActiveFighterCard() {
             {fighter.name}
           </div>
           <div style={{ fontSize: 12, color: C.textDim }}>
-            {fighter.isPlayer ? "Spieler" : "Gegner"} · AC <span style={{ color: C.amberBright, fontWeight: 700 }}>{fighter.ac}</span> · Init {fighter.initiative}
+            {fighter.isPlayer ? t("combat.player_short","Spieler") : t("combat.enemy_short","Gegner")} · AC <span style={{ color: C.amberBright, fontWeight: 700 }}>{fighter.ac}</span> · Init {fighter.initiative}
           </div>
         </div>
         {/* Condition picker trigger */}
@@ -201,16 +203,16 @@ export default function ActiveFighterCard() {
             type="number"
             value={customHp}
             onChange={(e) => setCustomHp(e.target.value)}
-            placeholder="HP Wert..."
+            placeholder={t("combat.hp_input_placeholder","HP Wert...")}
             style={{ ...sx.inp, flex: 1, fontSize: 13 }}
             autoFocus
             onKeyDown={(e) => { if (e.key === "Enter") applyCustomHp(false); }}
           />
           <button onClick={() => applyCustomHp(true)} style={{ ...sx.btn(C.red), padding: "8px 12px", fontSize: 12 }}>
-            − Dmg
+            {t("combat.dmg_btn","− Dmg")}
           </button>
           <button onClick={() => applyCustomHp(false)} style={{ ...sx.btn(C.green), padding: "8px 12px", fontSize: 12 }}>
-            + Heal
+            {t("combat.heal_btn","+ Heal")}
           </button>
         </div>
       )}
@@ -263,7 +265,7 @@ export default function ActiveFighterCard() {
           {fighterConditions.some((c) => {
             const cond = getCondition(getConditionId(c));
             return cond?.effects?.speedZero;
-          }) ? <span style={{ color: C.redBright }}>0 ft (restricted)</span> : `${fighter.actions?.movement ?? 30} ft`}
+          }) ? <span style={{ color: C.redBright }}>{t("combat.speed_zero_restricted","0 ft (eingeschränkt)")}</span> : `${fighter.actions?.movement ?? 30} ft`}
         </span>
       </div>
 

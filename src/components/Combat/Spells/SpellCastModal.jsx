@@ -69,7 +69,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
           <div>
             <div style={{ fontFamily: FH, fontSize: 16, color: C.purpleBright, fontWeight: 700 }}>{spell.name}</div>
             <div style={{ fontSize: 12, color: C.textDim, marginTop: 2 }}>
-              {isCantrip ? "Cantrip" : `Level ${spell.lv}`} · {spell.school}
+              {isCantrip ? t("combat.cantrip","Cantrip") : `${t("combat.level_label","Level")} ${spell.lv}`} · {spell.school}
             </div>
           </div>
           <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
@@ -96,7 +96,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
         {/* Concentration warning */}
         {needsConc && fighter.concentration && (
           <div style={{ background: `${C.amber}12`, border: `1px solid ${C.amber}35`, borderRadius: 8, padding: "8px 10px", marginBottom: 12, fontSize: 12, color: C.amberBright }}>
-            ⚠ Du konzentrierst dich bereits. Das Zaubern dieses Zaubers bricht die bestehende Konzentration!
+            {t("combat.conc_warn","⚠ Du konzentrierst dich bereits. Das Zaubern dieses Zaubers bricht die bestehende Konzentration!")}
           </div>
         )}
 
@@ -158,7 +158,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
               boxShadow: `0 4px 20px ${C.purple}40`,
             }}
           >
-            🔮 {spell.name} wirken{slotLevel !== null && slotLevel > 0 ? ` (${slotLabel(slotLevel)})` : ""}
+            {t("combat.cast_spell_btn","🔮 wirken")} {spell.name}{slotLevel !== null && slotLevel > 0 ? ` (${slotLabel(slotLevel)})` : ""}
           </button>
         )}
 
@@ -175,7 +175,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
               </div>
             )}
             <button onClick={onClose} style={{ ...sx.btn(C.teal), padding: "10px 24px" }}>
-              Schließen
+              {t("combat.close_word","Schließen")}
             </button>
           </div>
         )}

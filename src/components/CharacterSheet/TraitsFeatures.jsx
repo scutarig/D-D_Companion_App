@@ -2,16 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import TraitFeatureCard from "./TraitFeatureCard.jsx";
 import { getFeatById } from "../../data/feats.js";
-
-// ── Colour map for each trait group ──────────────────────────────────────────
-const GROUP_STYLE = {
-  race:      { icon: "🌿", label: "Volksmerkmale",   color: C.greenBright },
-  bg:        { icon: "📜", label: "Hintergrund",      color: C.amberBright },
-  class:     { icon: "⚔️", label: "Klassenmerkmale",  color: C.gold },
-  subclass:  { icon: "✨", label: "Subklasse",         color: C.purpleBright },
-  feat:      { icon: "⭐", label: "Talente (Feats)",   color: C.blueBright },
-  custom:    { icon: "✦", label: "Eigene",             color: C.tealBright },
-};
+import { useI18n } from "../../i18n/index.js";
 
 function groupKey(source) {
   if (!source) return "custom";
@@ -53,6 +44,15 @@ const GROUP_ORDER = ["race", "bg", "class", "subclass", "feat", "custom"];
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function TraitsFeatures({ char, setChar }) {
+  const { t } = useI18n();
+  const GROUP_STYLE = {
+    race:      { icon: "🌿", label: t("char.group_race","Volksmerkmale"),   color: C.greenBright },
+    bg:        { icon: "📜", label: t("char.group_bg","Hintergrund"),       color: C.amberBright },
+    class:     { icon: "⚔️", label: t("char.group_class","Klassenmerkmale"),color: C.gold },
+    subclass:  { icon: "✨", label: t("char.group_subclass","Subklasse"),    color: C.purpleBright },
+    feat:      { icon: "⭐", label: t("char.group_feat","Talente (Feats)"),   color: C.blueBright },
+    custom:    { icon: "✦", label: t("char.group_custom","Eigene"),          color: C.tealBright },
+  };
   const [showCustomForm, setShowCustomForm] = useState(false);
   const [customForm, setCustomForm] = useState({ name: "", description: "", category: "trait" });
 
@@ -94,24 +94,24 @@ export default function TraitsFeatures({ char, setChar }) {
       }}>
         <div>
           <span style={{ fontFamily: FH, fontSize: 12, color: "#818cf8", fontWeight: 700 }}>
-            ✦ Traits & Features
+            {t("char.traits_features_header","✦ Traits & Features")}
           </span>
           <span style={{ fontSize: 11, color: C.textDim, marginLeft: 10 }}>
-            Rasse, Hintergrund, Klasse &amp; Subklasse werden auto-befüllt
+            {t("char.traits_autofill_hint","Rasse, Hintergrund, Klasse & Subklasse werden auto-befüllt")}
           </span>
         </div>
         <button
           onClick={() => setShowCustomForm(p => !p)}
           style={{ ...sx.bsm(C.purple), fontSize: 11, padding: "4px 10px" }}
         >
-          ＋ Eigener Trait
+          {t("char.custom_trait_btn","＋ Eigener Trait")}
         </button>
       </div>
 
       {/* ── Origin Feat (2024 PHB — vom Background) ── */}
       {char.originFeat && (
         <div style={{ marginBottom: 14 }}>
-          <GroupHeader icon="⚔" label="Origin Feat (2024)" color={C.amberBright} />
+          <GroupHeader icon="⚔" label={t("char.origin_feat_2024_header","Origin Feat (2024)")} color={C.amberBright} />
           <div style={{
             marginTop: 6,
             background: `linear-gradient(135deg, ${C.amber}18, rgba(0,0,0,0.25))`,
@@ -131,7 +131,7 @@ export default function TraitsFeatures({ char, setChar }) {
                   background: "rgba(0,0,0,0.35)", border: `1px solid ${C.border}`,
                   color: C.textDim, letterSpacing: 0.3,
                 }}>
-                  Background: {char.background}
+                  {t("char.bg_label_inline","Background:")} {char.background}
                 </span>
               )}
             </div>
@@ -141,7 +141,7 @@ export default function TraitsFeatures({ char, setChar }) {
               </div>
             ) : (
               <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>
-                Details siehe Spielerhandbuch (Origin Feat).
+                {t("char.feat_phb_details","Details siehe Spielerhandbuch (Origin Feat).")}
               </div>
             )}
           </div>
@@ -151,7 +151,7 @@ export default function TraitsFeatures({ char, setChar }) {
       {/* ── Languages ── */}
       {(char.languages || []).length > 0 && (
         <div style={{ marginBottom: 14 }}>
-          <GroupHeader icon="💬" label="Sprachen" color={C.tealBright} />
+          <GroupHeader icon="💬" label={t("char.languages_label","Sprachen")} color={C.tealBright} />
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 6 }}>
             {(char.languages).map(lang => (
               <span key={lang} style={{
@@ -170,26 +170,26 @@ export default function TraitsFeatures({ char, setChar }) {
       {showCustomForm && (
         <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 10, padding: 14, marginBottom: 14 }}>
           <div style={{ fontFamily: FH, fontSize: 12, color: C.purple, marginBottom: 10, fontWeight: 700 }}>
-            Eigenen Trait hinzufügen
+            {t("char.add_custom_trait","Eigenen Trait hinzufügen")}
           </div>
           <div style={{ marginBottom: 8 }}>
-            <label style={sx.lbl}>Name *</label>
+            <label style={sx.lbl}>{t("combat.name_required_lbl","Name *")}</label>
             <input type="text" value={customForm.name}
               onChange={e => setCustomForm(p => ({ ...p, name: e.target.value }))}
-              placeholder="z.B. Sprung des Glaubens"
+              placeholder={t("char.placeholder_trait_name","z.B. Sprung des Glaubens")}
               style={{ ...sx.inp, fontSize: 13 }} autoFocus />
           </div>
           <div style={{ marginBottom: 8 }}>
-            <label style={sx.lbl}>Beschreibung</label>
+            <label style={sx.lbl}>{t("char.description_lbl","Beschreibung")}</label>
             <textarea value={customForm.description}
               onChange={e => setCustomForm(p => ({ ...p, description: e.target.value }))}
-              placeholder="Was kann dein Charakter damit tun?"
+              placeholder={t("char.placeholder_description","Was kann dein Charakter damit tun?")}
               style={{ ...sx.ta, fontSize: 12, minHeight: 60 }} />
           </div>
           <div style={{ marginBottom: 10 }}>
-            <label style={sx.lbl}>Kategorie</label>
+            <label style={sx.lbl}>{t("char.category_lbl","Kategorie")}</label>
             <div style={{ display: "flex", gap: 6 }}>
-              {[["trait", "Trait", "✦", "#10b981"], ["feature", "Feature", "⚡", "#6366f1"]].map(([id, label, icon, col]) => (
+              {[["trait", t("char.trait_lbl","Trait"), "✦", "#10b981"], ["feature", t("char.feature_lbl","Feature"), "⚡", "#6366f1"]].map(([id, label, icon, col]) => (
                 <button key={id} onClick={() => setCustomForm(p => ({ ...p, category: id }))} style={{
                   flex: 1, padding: 7, borderRadius: 8, cursor: "pointer", fontSize: 12,
                   border: `1px solid ${customForm.category === id ? col : C.border}`,
@@ -205,10 +205,10 @@ export default function TraitsFeatures({ char, setChar }) {
           <div style={{ display: "flex", gap: 8 }}>
             <button onClick={addCustomTrait} disabled={!customForm.name.trim()}
               style={{ ...sx.btn(C.purple), flex: 1, padding: 10, fontSize: 12, fontWeight: 700, opacity: customForm.name.trim() ? 1 : 0.4 }}>
-              ＋ Hinzufügen
+              {t("char.add_custom_btn","＋ Hinzufügen")}
             </button>
             <button onClick={() => setShowCustomForm(false)} style={{ ...sx.bsm(C.border), padding: "8px 14px", fontSize: 12, color: C.textDim }}>
-              Abbrechen
+              {t("combat.cancel_word","Abbrechen")}
             </button>
           </div>
         </div>
@@ -218,8 +218,8 @@ export default function TraitsFeatures({ char, setChar }) {
       {!hasAny && !showCustomForm && (
         <div style={{ textAlign: "center", padding: "32px 16px", border: `2px dashed ${C.border}`, borderRadius: 14, color: C.textDim }}>
           <div style={{ fontSize: 32, marginBottom: 10 }}>✦</div>
-          <div style={{ fontSize: 14, marginBottom: 4 }}>Noch keine Traits</div>
-          <div style={{ fontSize: 12 }}>Wähle Rasse, Hintergrund und Klasse — Traits werden automatisch eingetragen.</div>
+          <div style={{ fontSize: 14, marginBottom: 4 }}>{t("char.no_traits_yet","Noch keine Traits")}</div>
+          <div style={{ fontSize: 12 }}>{t("char.no_traits_hint","Wähle Rasse, Hintergrund und Klasse — Traits werden automatisch eingetragen.")}</div>
         </div>
       )}
 
@@ -236,7 +236,7 @@ export default function TraitsFeatures({ char, setChar }) {
                 <div key={trait.id} style={{ position: "relative" }}>
                   <TraitFeatureCard trait={trait} />
                   {trait.source === "Eigenes" && (
-                    <button onClick={() => removeTrait(trait.id)} title="Entfernen" style={{
+                    <button onClick={() => removeTrait(trait.id)} title={t("char.remove_title","Entfernen")} style={{
                       position: "absolute", top: 6, right: 6,
                       background: "transparent", border: "none",
                       color: C.textDim, cursor: "pointer", fontSize: 12, padding: "2px 5px", opacity: 0.5,

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { C, FH, sx } from "../../constants/theme.js";
 import { fmtMod } from "../../utils/derivedStats.js";
+import { useI18n } from "../../i18n/index.js";
 import DerivedStatCard from "./DerivedStatCard.jsx";
 
 const SC = { STR: "#ef4444", DEX: "#22c55e", CON: "#f97316", INT: "#3b82f6", WIS: "#a855f7", CHA: "#ec4899" };
 const SAVE_KEYS = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
 export default function DerivedStatsWidget({ stats, isMobile }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
 
   if (!stats) return null;
@@ -37,7 +39,7 @@ export default function DerivedStatsWidget({ stats, isMobile }) {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontFamily: FH, fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-            ⚔️ Kampfwerte
+            {t("char.combat_stats_header","⚔️ Kampfwerte")}
           </span>
           {/* Collapsed summary pills */}
           {!open && (
@@ -93,7 +95,7 @@ export default function DerivedStatsWidget({ stats, isMobile }) {
           {/* Row 2: Saving throws */}
           <div style={{ marginBottom: 6 }}>
             <div style={{ fontSize: 9, color: C.textDim, letterSpacing: 0.8, textTransform: "uppercase", marginBottom: 6 }}>
-              Rettungswürfe <span style={{ opacity: 0.5 }}>· Punkt = Übung</span>
+              {t("char.saving_throws_lbl","Rettungswürfe")} <span style={{ opacity: 0.5 }}>{t("char.proficiency_dot","· Punkt = Übung")}</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(6, 1fr)", gap: 5 }}>
               {SAVE_KEYS.map(ab => (
@@ -108,15 +110,15 @@ export default function DerivedStatsWidget({ stats, isMobile }) {
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <div style={{ flex: 1, background: `${C.tealBright}0d`, border: `1px solid ${C.tealBright}30`, borderRadius: 8, padding: "7px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: 9, color: C.tealBright, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", fontFamily: FH }}>Basis-RK</div>
+                <div style={{ fontSize: 9, color: C.tealBright, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", fontFamily: FH }}>{t("char.base_ac","Basis-RK")}</div>
                 <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>10 + DEX {fmtMod(dexMod)}</div>
               </div>
               <div style={{ fontSize: 22, fontWeight: 800, color: C.textBright }}>{baseAC}</div>
             </div>
             <div style={{ flex: 1, background: `${C.gold}0d`, border: `1px solid ${C.gold}30`, borderRadius: 8, padding: "7px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: 9, color: C.gold, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", fontFamily: FH }}>Prof Bonus</div>
-                <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>Level {stats.level}</div>
+                <div style={{ fontSize: 9, color: C.gold, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", fontFamily: FH }}>{t("char.prof_bonus","Prof Bonus")}</div>
+                <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>{t("char.level_short","Level")} {stats.level}</div>
               </div>
               <div style={{ fontSize: 22, fontWeight: 800, color: C.gold }}>+{proficiencyBonus}</div>
             </div>

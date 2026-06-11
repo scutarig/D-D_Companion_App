@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../../constants/theme.js";
 import { CONDITIONS, getConditionId } from "../../../utils/conditions.js";
+import { useI18n } from "../../../i18n/index.js";
 
 /**
  * ConditionPicker — modal to add conditions to a fighter
@@ -10,9 +11,13 @@ import { CONDITIONS, getConditionId } from "../../../utils/conditions.js";
  *   onClose: () => void
  */
 export default function ConditionPicker({ fighter, onAdd, onClose }) {
+  const { t, lang } = useI18n();
   const [selected, setSelected] = useState(null);
   const [duration, setDuration] = useState("permanent");
   const [customRounds, setCustomRounds] = useState("1");
+
+  const condName = (c) => (lang === "en" && c.nameEN) ? c.nameEN : c.name;
+  const condDesc = (c) => (lang === "en" && c.descEN) ? c.descEN : c.desc;
 
   const currentIds = (fighter?.conditions ?? []).map(getConditionId);
 
@@ -29,13 +34,13 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.amber, fontWeight: 700 }}>
-            ⚡ Condition hinzufügen
+            {t("combat.add_condition_title","⚡ Condition hinzufügen")}
           </div>
           <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         <div style={{ fontSize: 12, color: C.textDim, marginBottom: 12 }}>
-          Für: <span style={{ color: C.purpleBright, fontWeight: 700 }}>{fighter?.name}</span>
+          {t("combat.for_label","Für:")} <span style={{ color: C.purpleBright, fontWeight: 700 }}>{fighter?.name}</span>
         </div>
 
         {/* Condition Grid */}
@@ -55,7 +60,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
               <button
                 key={cond.id}
                 onClick={() => !alreadyHas && setSelected(isSelected ? null : cond.id)}
-                title={cond.desc}
+                title={condDesc(cond)}
                 style={{
                   padding: "8px 6px",
                   borderRadius: 8,
@@ -74,7 +79,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
                 }}
               >
                 <span style={{ fontSize: 18 }}>{cond.icon}</span>
-                <span style={{ lineHeight: 1.2, textAlign: "center" }}>{cond.name}</span>
+                <span style={{ lineHeight: 1.2, textAlign: "center" }}>{condName(cond)}</span>
                 {alreadyHas && (
                   <span style={{ position: "absolute", top: 3, right: 4, fontSize: 9, color: cond.color }}>✓</span>
                 )}
@@ -89,13 +94,13 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
           return (
             <div style={{ background: `${cond.color}10`, border: `1px solid ${cond.color}30`, borderRadius: 10, padding: "12px 14px", marginBottom: 14 }}>
               <div style={{ fontSize: 13, color: cond.color, fontWeight: 700, marginBottom: 4 }}>
-                {cond.icon} {cond.name}
+                {cond.icon} {condName(cond)}
               </div>
-              <div style={{ fontSize: 11, color: C.textDim, marginBottom: 10 }}>{cond.desc}</div>
+              <div style={{ fontSize: 11, color: C.textDim, marginBottom: 10 }}>{condDesc(cond)}</div>
 
               {/* Duration */}
               <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
-                <span style={{ fontSize: 11, color: C.textDim }}>Dauer:</span>
+                <span style={{ fontSize: 11, color: C.textDim }}>{t("combat.duration_label","Dauer:")}</span>
                 <button
                   onClick={() => setDuration("permanent")}
                   style={{
@@ -104,7 +109,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
                     fontSize: 11, padding: "4px 10px",
                   }}
                 >
-                  Permanent
+                  {t("combat.duration_permanent","Permanent")}
                 </button>
                 <button
                   onClick={() => setDuration("rounds")}
@@ -114,7 +119,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
                     fontSize: 11, padding: "4px 10px",
                   }}
                 >
-                  Runden
+                  {t("combat.duration_rounds_label","Runden")}
                 </button>
                 {duration === "rounds" && (
                   <input
@@ -144,7 +149,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
             cursor: selected ? "pointer" : "not-allowed",
           }}
         >
-          ⚡ Condition anwenden
+          {t("combat.apply_condition","⚡ Condition anwenden")}
         </button>
       </div>
     </div>

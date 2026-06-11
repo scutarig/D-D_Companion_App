@@ -3,6 +3,7 @@ import { C, FH, sx } from "../../constants/theme.js";
 import { ALL_KLASSEN } from "../../data/classes.js";
 import { useMulticlass } from "../../hooks/useMulticlass.js";
 import { canMulticlass } from "../../utils/multiclass.js";
+import { useI18n } from "../../i18n/index.js";
 import SubclassSelector from "./SubclassSelector.jsx";
 
 const CLASS_ICONS = {
@@ -16,6 +17,7 @@ const CLASS_ICONS = {
  * Props: char, setChar
  */
 export default function MulticlassManager({ char, setChar }) {
+  const { t } = useI18n();
   const { classes, totalLevel, pb, addKlass, updateLevel, removeKlass, setSubclass } =
     useMulticlass(char.id, char, setChar);
 
@@ -38,11 +40,11 @@ export default function MulticlassManager({ char, setChar }) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
         <span style={{ fontFamily: FH, fontSize: 11, color: C.gold, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-          ⚔️ Klassen
+          {t("char.classes_header","⚔️ Klassen")}
         </span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <span style={{ fontSize: 11, color: C.textDim }}>
-            Level <strong style={{ color: C.textBright }}>{totalLevel}</strong>
+            {t("char.level_total","Level")} <strong style={{ color: C.textBright }}>{totalLevel}</strong>
             {" · "}PB <strong style={{ color: C.gold }}>+{pb}</strong>
           </span>
         </div>
@@ -62,7 +64,7 @@ export default function MulticlassManager({ char, setChar }) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: idx === 0 ? C.gold : C.purpleBright, fontFamily: FH }}>
                 {klass.name}
-                {idx === 0 && <span style={{ fontSize: 9, color: C.textDim, fontWeight: 400, marginLeft: 6 }}>PRIMÄR</span>}
+                {idx === 0 && <span style={{ fontSize: 9, color: C.textDim, fontWeight: 400, marginLeft: 6 }}>{t("char.primary_tag","PRIMÄR")}</span>}
               </div>
               <div style={{ fontSize: 10, color: C.textDim }}>HD {klass.hd}</div>
               <SubclassSelector
@@ -109,7 +111,7 @@ export default function MulticlassManager({ char, setChar }) {
                   background: `${C.redBright}10`, color: C.redBright, cursor: "pointer",
                   fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center",
                 }}
-                title="Klasse entfernen"
+                title={t("combat.remove_class_title","Klasse entfernen")}
               >✕</button>
             )}
           </div>
@@ -125,7 +127,7 @@ export default function MulticlassManager({ char, setChar }) {
               onChange={e => { setSelected(e.target.value); setError(""); }}
               style={{ ...sx.sel, flex: 1, fontSize: 12 }}
             >
-              <option value="">+ Klasse hinzufügen…</option>
+              <option value="">{t("char.add_class_select","+ Klasse hinzufügen…")}</option>
               {available.map(k => <option key={k}>{k}</option>)}
             </select>
             <button
@@ -138,7 +140,7 @@ export default function MulticlassManager({ char, setChar }) {
                 cursor: selected ? "pointer" : "default",
                 fontSize: 12, fontWeight: 700, flexShrink: 0,
               }}
-            >Add</button>
+            >{t("char.add_btn","Hinzufügen")}</button>
           </div>
           {error && (
             <div style={{ fontSize: 11, color: C.redBright, marginTop: 5, padding: "4px 8px", borderRadius: 5, background: `${C.redBright}10`, border: `1px solid ${C.redBright}25` }}>
@@ -150,7 +152,7 @@ export default function MulticlassManager({ char, setChar }) {
 
       {totalLevel >= 20 && (
         <div style={{ fontSize: 11, color: C.textDim, textAlign: "center", padding: "4px 0" }}>
-          Maximallevel 20 erreicht
+          {t("char.max_level_reached","Maximallevel 20 erreicht")}
         </div>
       )}
     </div>

@@ -5,6 +5,7 @@ import { useCombatActions } from "../../../hooks/useCombatActions.js";
 import { useCombat } from "../../../context/CombatContext.jsx";
 import { SPELLS } from "../../../data/spells.js";
 import { getDamageTypeEmoji, isConcentration, slotColor, getAvailableSlotLevels, slotLabel } from "../../../utils/spells.js";
+import { useI18n } from "../../../i18n/index.js";
 import SpellSlotTracker from "./SpellSlotTracker.jsx";
 import SpellCastModal from "./SpellCastModal.jsx";
 
@@ -35,6 +36,7 @@ export default function SpellcastingPanel({ onClose }) {
 
 // Inner component so hooks can be called at top level safely
 function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropConcentration, setState }) {
+  const { t } = useI18n();
   // Read prepared spells for linked character
   const charId = fighter.charRef ?? "g";
   const [preparedIds] = usePersist(`spells_prep_${charId}`, []);
@@ -93,7 +95,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <div>
-            <div style={{ fontFamily: FH, fontSize: 16, color: C.purpleBright, fontWeight: 700 }}>🔮 Zauberei</div>
+            <div style={{ fontFamily: FH, fontSize: 16, color: C.purpleBright, fontWeight: 700 }}>{t("combat.spellcasting","🔮 Zauberei")}</div>
             <div style={{ fontSize: 12, color: C.textDim }}>{fighter.name}</div>
           </div>
           <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
@@ -105,14 +107,14 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
           return (
             <div style={{ background: `${C.amber}12`, border: `1px solid ${C.amber}35`, borderRadius: 8, padding: "8px 12px", marginBottom: 12, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
-                <div style={{ fontSize: 10, color: C.amber, fontFamily: FH, letterSpacing: 0.5, marginBottom: 2 }}>KONZENTRATION AKTIV</div>
-                <div style={{ fontSize: 13, color: C.amberBright, fontWeight: 700 }}>🧠 {concSpell?.name ?? "Unbekannter Zauber"}</div>
+                <div style={{ fontSize: 10, color: C.amber, fontFamily: FH, letterSpacing: 0.5, marginBottom: 2 }}>{t("combat.concentration_active","KONZENTRATION AKTIV")}</div>
+                <div style={{ fontSize: 13, color: C.amberBright, fontWeight: 700 }}>🧠 {concSpell?.name ?? t("combat.unknown_spell","Unbekannter Zauber")}</div>
               </div>
               <button
                 onClick={() => dropConcentration(fighter.id)}
                 style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "4px 8px" }}
               >
-                Abbrechen
+                {t("combat.cancel_word","Abbrechen")}
               </button>
             </div>
           );
@@ -121,7 +123,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
         {/* Spell Slots */}
         {(fighter.spellSlots?.length ?? 0) > 0 && (
           <div style={{ ...sx.card, padding: "12px 14px", marginBottom: 10 }}>
-            <div style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 8 }}>ZAUBERPLÄTZE</div>
+            <div style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 8 }}>{t("combat.spell_slots_upper","ZAUBERPLÄTZE")}</div>
             <SpellSlotTracker
               spellSlots={fighter.spellSlots ?? []}
               onUse={handleUseSlot}
@@ -133,10 +135,10 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
         {/* Rest buttons */}
         <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
           <button onClick={() => shortRest(fighter.id)} style={{ ...sx.bsm(C.teal), flex: 1, padding: "7px", fontSize: 11 }}>
-            🌙 Short Rest
+            {t("combat.short_rest_btn","🌙 Short Rest")}
           </button>
           <button onClick={() => longRest(fighter.id)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "7px", fontSize: 11 }}>
-            ☀️ Long Rest
+            {t("combat.long_rest_btn","☀️ Long Rest")}
           </button>
         </div>
 
@@ -147,13 +149,13 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
               onClick={() => setShowSearch(false)}
               style={{ ...sx.bsm(!showSearch ? C.purple : C.border), flex: 1, padding: "7px", fontSize: 11, background: !showSearch ? `${C.purple}22` : "transparent" }}
             >
-              🕯 Vorbereitet ({preparedIds.length})
+              {t("combat.prepared_label","🕯 Vorbereitet")} ({preparedIds.length})
             </button>
             <button
               onClick={() => setShowSearch(true)}
               style={{ ...sx.bsm(showSearch ? C.blue : C.border), flex: 1, padding: "7px", fontSize: 11, background: showSearch ? `${C.blue}22` : "transparent" }}
             >
-              📚 Alle Zauber
+              {t("combat.all_spells_btn","📚 Alle Zauber")}
             </button>
           </div>
         )}
@@ -164,7 +166,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="🔍 Zauber suchen..."
+            placeholder={t("combat.search_spell","🔍 Zauber suchen...")}
             style={{ ...sx.inp, fontSize: 13, marginBottom: 8 }}
             autoFocus={!!showSearch}
           />
@@ -194,8 +196,8 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
           {searchResults.length === 0 ? (
             <div style={{ textAlign: "center", padding: "20px 0", fontSize: 13, color: C.textDim }}>
               {fighter.charRef && !showSearch
-                ? "Keine vorbereiteten Zauber. Tab auf 'Alle Zauber' wechseln."
-                : "Keine Zauber gefunden."}
+                ? t("combat.no_prepared_spells","Keine vorbereiteten Zauber. Tab auf 'Alle Zauber' wechseln.")
+                : t("combat.no_spells_found","Keine Zauber gefunden.")}
             </div>
           ) : (
             searchResults.map((spell) => {

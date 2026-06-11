@@ -4,6 +4,7 @@ import {
   SKILLED_OPTIONS, TAVERN_BRAWLER_STATS,
   isComplexOriginFeat, getFeatIdFromName, getLuckPointsMax,
 } from "../../data/originFeatChoices.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * OriginFeatChoices — Picker UI for the 6 complex Origin Feats (PHB 2024)
@@ -16,6 +17,7 @@ import {
  * Lucky-Tracking: char.featChoices.lucky.used = number (consumed Luck Points)
  */
 export default function OriginFeatChoices({ char, setChar }) {
+  const { t } = useI18n();
   if (!char.originFeat) return null;
   if (!isComplexOriginFeat(char.originFeat)) return null;
 
@@ -39,14 +41,14 @@ export default function OriginFeatChoices({ char, setChar }) {
       borderLeft: `3px solid ${C.amberBright}`,
     }}>
       <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 6, letterSpacing: 0.5 }}>
-        ⚔ ORIGIN FEAT KONFIGURATION
+        {t("char.origin_feat_config_header","⚔ ORIGIN FEAT KONFIGURATION")}
       </div>
       <div style={{
         fontSize: 11, color: C.text, lineHeight: 1.55,
         background: `${C.amberBright}0d`, border: `1px solid ${C.amberBright}30`,
         borderRadius: 6, padding: "7px 10px", marginBottom: 12,
       }}>
-        <b>{char.originFeat}</b> — wähle die nötigen Optionen für diesen Feat (PHB 2024).
+        <b>{char.originFeat}</b> {t("char.choose_options_for_feat","— wähle die nötigen Optionen für diesen Feat (PHB 2024).")}
       </div>
 
       {featId === "magic_initiate" && <MagicInitiatePicker choices={choices} setChoice={setChoice} />}

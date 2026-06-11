@@ -2,6 +2,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
 import { SPELLS } from "../../data/spells.js";
 import { getAllSpellPreparedLimits } from "../../data/spellPreparation.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * SpellPreparationCard — 2024 PHB Spell Preparation Status
@@ -21,6 +22,7 @@ import { getAllSpellPreparedLimits } from "../../data/spellPreparation.js";
  * waren vorher "Known"). Tauschen nach Long Rest.
  */
 export default function SpellPreparationCard({ char, classes }) {
+  const { t } = useI18n();
   const [prepared] = usePersist(`spells_prep_${char.id || "g"}`, []);
 
   const limits = getAllSpellPreparedLimits(classes, char);
@@ -52,7 +54,7 @@ export default function SpellPreparationCard({ char, classes }) {
         fontFamily: FH, fontSize: 13, color: C.blueBright, fontWeight: 700,
         marginBottom: 6, letterSpacing: 0.5,
       }}>
-        🕯️ VORBEREITETE ZAUBER (2024 PHB)
+        {t("char.prepared_spells_header","🕯️ VORBEREITETE ZAUBER (2024 PHB)")}
       </div>
 
       <div style={{
@@ -60,7 +62,7 @@ export default function SpellPreparationCard({ char, classes }) {
         background: `${C.blue}0d`, border: `1px solid ${C.blue}30`,
         borderRadius: 6, padding: "7px 10px", marginBottom: 10,
       }}>
-        2024 Reform: <b>Alle Caster nutzen "Prepared"</b> (Sorcerer/Warlock/Bard waren vorher "Known"). Nach <b>Long Rest</b> darfst du die Auswahl tauschen. Verwaltung im <b>Spellbook</b>-Tab.
+        {t("char.prepared_intro","2024 Reform: Alle Caster nutzen \"Prepared\" (Sorcerer/Warlock/Bard waren vorher \"Known\"). Nach Long Rest darfst du die Auswahl tauschen. Verwaltung im Spellbook-Tab.")}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -100,8 +102,8 @@ export default function SpellPreparationCard({ char, classes }) {
                   <span style={{ fontSize: 11, color: barColor, fontWeight: 700 }}>
                     {count}/{l.limit}
                   </span>
-                  {isOver && <span style={{ fontSize: 9, color: C.redBright }}>⚠ Über Limit</span>}
-                  {isFull && !isOver && <span style={{ fontSize: 9, color: C.amberBright }}>✓ Voll</span>}
+                  {isOver && <span style={{ fontSize: 9, color: C.redBright }}>{t("char.over_limit","⚠ Über Limit")}</span>}
+                  {isFull && !isOver && <span style={{ fontSize: 9, color: C.amberBright }}>{t("char.full_tag","✓ Voll")}</span>}
                 </div>
               </div>
 
@@ -117,7 +119,7 @@ export default function SpellPreparationCard({ char, classes }) {
               </div>
 
               <div style={{ fontSize: 9, color: C.textDim, marginBottom: 4, fontStyle: "italic" }}>
-                Limit: {l.formula}
+                {t("char.limit_lbl","Limit:")} {l.formula}
               </div>
 
               {/* Prepared spell tags */}
@@ -136,7 +138,7 @@ export default function SpellPreparationCard({ char, classes }) {
               )}
               {count === 0 && (
                 <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", marginTop: 4 }}>
-                  Noch keine Zauber vorbereitet — wähle im Spellbook-Tab.
+                  {t("char.no_prepared_yet","Noch keine Zauber vorbereitet — wähle im Spellbook-Tab.")}
                 </div>
               )}
             </div>

@@ -1,6 +1,7 @@
 import { C, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
 import { calculateMulticlassSpellSlots } from "../../utils/multiclass.js";
+import { useI18n } from "../../i18n/index.js";
 
 const SLOT_COLORS = [
   C.redBright, C.amberBright, C.gold, C.greenBright,
@@ -13,6 +14,7 @@ const SLOT_COLORS = [
  * Props: classes (array), charId (string)
  */
 export default function MulticlassSpellSlots({ classes, charId }) {
+  const { t } = useI18n();
   const [used, setUsed] = usePersist(`slots_used_mc_${charId}`, {});
 
   if (!classes || classes.length === 0) return null;
@@ -31,13 +33,13 @@ export default function MulticlassSpellSlots({ classes, charId }) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
         <span style={{ fontFamily: FH, fontSize: 11, color: C.purpleBright, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-          🔮 Zauberplätze
+          {t("char.spell_slots_header","🔮 Zauberplätze")}
         </span>
         <button
           onClick={reset}
           style={{ fontSize: 10, padding: "3px 8px", borderRadius: 5, border: `1px solid ${C.border}`, background: "none", color: C.textDim, cursor: "pointer" }}
         >
-          🌙 Lange Rast
+          {t("char.long_rest_btn","🌙 Lange Rast")}
         </button>
       </div>
 
@@ -52,7 +54,7 @@ export default function MulticlassSpellSlots({ classes, charId }) {
               <div key={lvl} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 {/* Grade label */}
                 <div style={{ fontSize: 10, color: col, fontWeight: 700, fontFamily: FH, minWidth: 42, letterSpacing: 0.5 }}>
-                  {lvl}. Grad
+                  {t("char.grade_n","{n}. Grad").replace("{n}", lvl)}
                 </div>
                 {/* Slot bubbles */}
                 <div style={{ display: "flex", gap: 5, flex: 1 }}>
@@ -63,7 +65,7 @@ export default function MulticlassSpellSlots({ classes, charId }) {
                       <button
                         key={i}
                         onClick={() => toggle(key)}
-                        title={isUsed ? "Verbraucht — klicken zum Zurücksetzen" : "Verfügbar — klicken zum Verbrauchen"}
+                        title={isUsed ? t("char.slot_used_title","Verbraucht — klicken zum Zurücksetzen") : t("char.slot_avail_title","Verfügbar — klicken zum Verbrauchen")}
                         style={{
                           width: 22, height: 22, borderRadius: "50%",
                           border: `2px solid ${col}`,
@@ -89,7 +91,7 @@ export default function MulticlassSpellSlots({ classes, charId }) {
       {hasPact && (
         <div style={{ borderTop: hasCaster ? `1px solid ${C.border}` : "none", paddingTop: hasCaster ? 8 : 0 }}>
           <div style={{ fontSize: 10, color: C.textDim, letterSpacing: 0.6, marginBottom: 6, textTransform: "uppercase" }}>
-            Paktmagie <span style={{ color: C.purpleBright }}>{pact.spellLevel}. Grad</span>
+            {t("char.pact_magic","Paktmagie")} <span style={{ color: C.purpleBright }}>{t("char.pact_grade","{lv}. Grad").replace("{lv}", pact.spellLevel)}</span>
           </div>
           <div style={{ display: "flex", gap: 5 }}>
             {Array.from({ length: pact.slots }).map((_, i) => {
@@ -109,11 +111,13 @@ export default function MulticlassSpellSlots({ classes, charId }) {
               );
             })}
             <span style={{ fontSize: 10, color: C.textDim, marginLeft: 4, alignSelf: "center" }}>
-              {pact.slots - Array.from({ length: pact.slots }).filter((_, i) => used[`pact_${i}`]).length}/{pact.slots} Slots
+              {t("char.pact_slots_n","{rem}/{total} Slots")
+                .replace("{rem}", pact.slots - Array.from({ length: pact.slots }).filter((_, i) => used[`pact_${i}`]).length)
+                .replace("{total}", pact.slots)}
             </span>
           </div>
           <div style={{ fontSize: 10, color: C.textDim, marginTop: 4 }}>
-            Erneuern nach kurzer Rast
+            {t("char.short_rest_renew","Erneuern nach kurzer Rast")}
           </div>
         </div>
       )}

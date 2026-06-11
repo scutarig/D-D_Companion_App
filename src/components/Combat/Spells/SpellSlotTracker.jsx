@@ -1,5 +1,6 @@
 import { C, FH } from "../../../constants/theme.js";
 import { slotLabel, slotColor } from "../../../utils/spells.js";
+import { useI18n } from "../../../i18n/index.js";
 
 /**
  * SpellSlotTracker — visual slot circles per level
@@ -10,10 +11,11 @@ import { slotLabel, slotColor } from "../../../utils/spells.js";
  *   compact: boolean
  */
 export default function SpellSlotTracker({ spellSlots = [], onUse, onRestore, compact = false }) {
+  const { t } = useI18n();
   if (spellSlots.length === 0) {
     return (
       <div style={{ fontSize: 12, color: C.textDim, fontStyle: "italic", padding: "4px 0" }}>
-        Keine Zauberplätze
+        {t("combat.no_spell_slots","Keine Zauberplätze")}
       </div>
     );
   }
@@ -41,7 +43,7 @@ export default function SpellSlotTracker({ spellSlots = [], onUse, onRestore, co
                   <button
                     key={i}
                     onClick={() => filled ? onUse?.(slot.lv) : onRestore?.(slot.lv)}
-                    title={filled ? `Slot ${i + 1} verfügbar — klicken zum Verbrauchen` : `Slot ${i + 1} verbraucht — klicken zum Wiederherstellen`}
+                    title={filled ? `Slot ${i + 1} — ${t("combat.tracker_slot_available","Slot verfügbar — klicken zum Verbrauchen")}` : `Slot ${i + 1} — ${t("combat.tracker_slot_used","Slot verbraucht — klicken zum Wiederherstellen")}`}
                     style={{
                       width: compact ? 14 : 18,
                       height: compact ? 14 : 18,

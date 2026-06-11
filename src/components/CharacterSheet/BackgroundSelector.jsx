@@ -26,7 +26,7 @@ const ASI_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
 const STAT_COLOR = { str: C.red, dex: C.green, con: C.amber, int: C.blue, wis: C.teal, cha: C.purple };
 
 export default function BackgroundSelector({ char, setChar }) {
-  const { lang } = useI18n();
+  const { t, lang } = useI18n();
   const bg = getBackgroundData(char.background);
   const isCustom = char.background === "Eigener";
   const bgAsi = char.bgAsi || {};
@@ -60,17 +60,17 @@ export default function BackgroundSelector({ char, setChar }) {
   return (
     <div>
       {/* ── Dropdown ─────────────────────────────────────── */}
-      <label style={sx.lbl}>Hintergrund / Background</label>
+      <label style={sx.lbl}>{t("char.bg_label_field","Hintergrund / Background")}</label>
       <select value={char.background} onChange={onBgChange} style={sx.sel}>
         {ALL_BACKGROUNDS.map(b => <option key={b}>{b}</option>)}
-        <option value="Eigener">Eigener...</option>
+        <option value="Eigener">{t("char.bg_custom_option","Eigener...")}</option>
       </select>
       {isCustom && (
         <input
           value={char.backgroundCustom || ""}
           onChange={e => setChar(p => ({ ...p, backgroundCustom: e.target.value }))}
           style={{ ...sx.inp, marginTop: 4 }}
-          placeholder="Eigener Hintergrund..."
+          placeholder={t("char.bg_custom_placeholder","Eigener Hintergrund...")}
         />
       )}
 
@@ -89,8 +89,8 @@ export default function BackgroundSelector({ char, setChar }) {
               fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700,
               background: `${C.amberBright}1f`, border: `1px solid ${C.amberBright}55`,
               color: C.amberBright,
-            }} title="Du musst noch deine ASI-Verteilung wählen">
-              ⚠ ASI offen
+            }} title={t("char.asi_open_title","Du musst noch deine ASI-Verteilung wählen")}>
+              {t("char.asi_open_tag","⚠ ASI offen")}
             </span>
           )}
         </div>
@@ -106,9 +106,9 @@ export default function BackgroundSelector({ char, setChar }) {
           {/* ── ASI Picker ───────────────────────────────── */}
           <div style={{ marginTop: 12 }}>
             <label style={sx.lbl}>
-              Ability Score Increase
+              {t("char.asi_lbl","Ability Score Increase")}
               <span style={{ color: C.textDim, fontSize: 9, marginLeft: 6, textTransform: "none" }}>
-                — verteile 3 Punkte auf {bg.abilityScores.join(" / ")}
+                {t("char.asi_distribute","— verteile 3 Punkte auf {stats}").replace("{stats}", bg.abilityScores.join(" / "))}
               </span>
             </label>
 
@@ -140,7 +140,7 @@ export default function BackgroundSelector({ char, setChar }) {
                 border: `1px solid ${asiOk ? C.green : C.textDim}55`,
                 borderRadius: 8, padding: "5px 10px", minWidth: 50, textAlign: "center",
               }}>
-                <div style={{ fontSize: 9, color: asiOk ? C.green : C.textDim, fontFamily: FH, fontWeight: 700 }}>SUM</div>
+                <div style={{ fontSize: 9, color: asiOk ? C.green : C.textDim, fontFamily: FH, fontWeight: 700 }}>{t("char.asi_sum","SUM")}</div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: asiOk ? C.green : C.textDim }}>
                   {asiTotal(bgAsi)}/3
                 </div>
@@ -161,7 +161,7 @@ export default function BackgroundSelector({ char, setChar }) {
 
           {/* ── Origin Feat ──────────────────────────────── */}
           <div style={{ marginTop: 12 }}>
-            <label style={sx.lbl}>Origin Feat (2024)</label>
+            <label style={sx.lbl}>{t("char.origin_feat_2024_lbl","Origin Feat (2024)")}</label>
             <div style={{
               padding: "8px 10px",
               borderRadius: 6,
@@ -182,7 +182,7 @@ export default function BackgroundSelector({ char, setChar }) {
 
           {/* ── Skills + Tool ────────────────────────────── */}
           <div style={{ marginTop: 12 }}>
-            <label style={sx.lbl}>Proficiencies</label>
+            <label style={sx.lbl}>{t("char.proficiencies_lbl","Proficiencies")}</label>
             <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
               {bg.skillProfs.map(s => (
                 <span key={s} style={{
@@ -201,16 +201,16 @@ export default function BackgroundSelector({ char, setChar }) {
 
           {/* ── Equipment Choice ─────────────────────────── */}
           <div style={{ marginTop: 12 }}>
-            <label style={sx.lbl}>Startausrüstung — wähle Package A oder B</label>
+            <label style={sx.lbl}>{t("char.starting_eq_label","Startausrüstung — wähle Package A oder B")}</label>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
               <EquipCard
-                label="Package A (Gear)"
+                label={t("char.package_a","Package A (Ausrüstung)")}
                 items={bg.equipmentA.join(", ")}
                 active={char.bgEquipChoice === "A"}
                 onClick={() => onEquipChoice("A")}
               />
               <EquipCard
-                label="Package B"
+                label={t("char.package_b","Package B")}
                 items={bg.equipmentB}
                 active={char.bgEquipChoice === "B"}
                 onClick={() => onEquipChoice("B")}

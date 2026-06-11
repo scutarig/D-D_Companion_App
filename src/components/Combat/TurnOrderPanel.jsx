@@ -1,11 +1,13 @@
 import { C, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
+import { useI18n } from "../../i18n/index.js";
 
 export default function TurnOrderPanel() {
+  const { t } = useI18n();
   const { state } = useCombat();
 
   if (state.fighters.length === 0) {
-    return <div style={{ fontSize: 13, color: C.textDim, padding: "8px 0" }}>Keine Kämpfer</div>;
+    return <div style={{ fontSize: 13, color: C.textDim, padding: "8px 0" }}>{t("combat.no_fighters_short","Keine Kämpfer")}</div>;
   }
 
   return (

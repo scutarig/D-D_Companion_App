@@ -4,6 +4,7 @@ import {
   getSubclassChoiceLevel,
   getSubclassByName,
 } from "../../data/subclasses.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * SubclassPicker — 2024 PHB Subclass Selector with Feature Preview
@@ -21,6 +22,7 @@ import {
  * Speichert in char.subclasses[KlassenName] = subclassName (string).
  */
 export default function SubclassPicker({ char, classes, setSubclass }) {
+  const { t } = useI18n();
 
   // Filter classes that have reached subclass choice level
   const eligibleClasses = classes
@@ -42,14 +44,14 @@ export default function SubclassPicker({ char, classes, setSubclass }) {
         fontFamily: FH, fontSize: 13, color: C.purpleBright, fontWeight: 700,
         marginBottom: 6, letterSpacing: 0.5,
       }}>
-        ✦ SUBKLASSEN (2024 PHB)
+        {t("char.subclasses_header","✦ SUBKLASSEN (2024 PHB)")}
       </div>
       <div style={{
         fontSize: 11, color: C.text, lineHeight: 1.55,
         background: `${C.purple}0d`, border: `1px solid ${C.purple}30`,
         borderRadius: 6, padding: "7px 10px", marginBottom: 10,
       }}>
-        2024 Reform: <b>Alle Subklassen werden auf Lv3 gewählt</b> (vorher 2014: Lv1/2 für Cleric/Druid/Wizard/Sorcerer/Warlock). Pro Klasse 4 Subklassen verfügbar.
+        {t("char.subclasses_intro","2024 Reform: Alle Subklassen werden auf Lv3 gewählt (vorher 2014: Lv1/2 für Cleric/Druid/Wizard/Sorcerer/Warlock). Pro Klasse 4 Subklassen verfügbar.")}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -75,13 +77,13 @@ export default function SubclassPicker({ char, classes, setSubclass }) {
                 </div>
                 {isLocked && (
                   <span
-                    title="Du kannst Subklassen jetzt schon vorab anschauen, die Auswahl wird erst beim Erreichen des Choice-Levels wirksam."
+                    title={t("char.preview_locked_title","Du kannst Subklassen jetzt schon vorab anschauen, die Auswahl wird erst beim Erreichen des Choice-Levels wirksam.")}
                     style={{
                       fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700,
                       background: `${C.amberBright}1f`, border: `1px solid ${C.amberBright}55`,
                       color: C.amberBright,
                     }}>
-                    🔍 Preview · Lv{klass.choiceLevel} erforderlich
+                    {t("char.preview_lv_required","🔍 Vorschau · Lv{lv} erforderlich").replace("{lv}", klass.choiceLevel)}
                   </span>
                 )}
               </div>
@@ -92,7 +94,7 @@ export default function SubclassPicker({ char, classes, setSubclass }) {
                 onChange={e => setSubclass(klass.name, e.target.value)}
                 style={{ ...sx.sel, opacity: isLocked ? 0.85 : 1 }}
               >
-                <option value="">{isLocked ? "— Subklasse vorab anschauen —" : "— Subklasse wählen —"}</option>
+                <option value="">{isLocked ? t("char.subclass_preview_pick","— Subklasse vorab anschauen —") : t("char.subclass_pick","— Subklasse wählen —")}</option>
                 {choices.map(c => (
                   <option key={c.id} value={c.name}>{c.name}</option>
                 ))}
@@ -115,6 +117,7 @@ export default function SubclassPicker({ char, classes, setSubclass }) {
 
 // ── Feature Preview Card ─────────────────────────────────────────────────────
 function SubclassFeaturesPreview({ subclass, classLevel, isPreview = false }) {
+  const { t } = useI18n();
   // Group features by level
   const byLevel = {};
   subclass.features.forEach(f => {
@@ -138,7 +141,7 @@ function SubclassFeaturesPreview({ subclass, classLevel, isPreview = false }) {
         {isPreview ? "🔍" : "✦"} {subclass.name}
         {isPreview && (
           <span style={{ fontSize: 9, color: C.textDim, fontWeight: 400, fontFamily: "inherit", fontStyle: "italic" }}>
-            (Vorschau — wird auf Lv{subclass.levelGained || 3} wirksam)
+            {t("char.subclass_preview_active_on","(Vorschau — wird auf Lv{lv} wirksam)").replace("{lv}", subclass.levelGained || 3)}
           </span>
         )}
       </div>

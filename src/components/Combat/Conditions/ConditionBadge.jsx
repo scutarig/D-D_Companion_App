@@ -1,5 +1,6 @@
 import { getCondition, getConditionId } from "../../../utils/conditions.js";
 import { C } from "../../../constants/theme.js";
+import { useI18n } from "../../../i18n/index.js";
 
 /**
  * ConditionBadge — compact pill showing condition icon + name.
@@ -9,9 +10,12 @@ import { C } from "../../../constants/theme.js";
  *   size: "sm" | "md"
  */
 export default function ConditionBadge({ conditionId, onRemove, size = "md" }) {
+  const { lang } = useI18n();
   const id = getConditionId(conditionId);
   const cond = getCondition(id);
   if (!cond) return null;
+  const name = (lang === "en" && cond.nameEN) ? cond.nameEN : cond.name;
+  const desc = (lang === "en" && cond.descEN) ? cond.descEN : cond.desc;
 
   const duration = typeof conditionId === "object" ? conditionId.duration : null;
 
@@ -19,7 +23,7 @@ export default function ConditionBadge({ conditionId, onRemove, size = "md" }) {
 
   return (
     <div
-      title={cond.desc}
+      title={desc}
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -36,7 +40,7 @@ export default function ConditionBadge({ conditionId, onRemove, size = "md" }) {
       }}
     >
       <span style={{ fontSize: isSm ? 11 : 13 }}>{cond.icon}</span>
-      <span>{cond.name}</span>
+      <span>{name}</span>
       {duration !== null && (
         <span style={{ fontSize: 9, color: C.textDim, marginLeft: 1 }}>
           {duration}r

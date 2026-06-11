@@ -1,6 +1,7 @@
 import React from "react";
 import { C, FH } from "../../constants/theme.js";
 import { getSubclassNames, getSubclassChoiceLevel } from "../../data/subclasses.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * Shows a subclass dropdown for a class once the character reaches the
@@ -13,6 +14,7 @@ import { getSubclassNames, getSubclassChoiceLevel } from "../../data/subclasses.
  *   onChange   — (subclassName: string) => void
  */
 export default function SubclassSelector({ className, level, value, onChange }) {
+  const { t } = useI18n();
   const choiceLevel = getSubclassChoiceLevel(className);
   // choiceLevel kann null sein wenn Klasse keine Subklassen hat
   if (choiceLevel == null || level < choiceLevel) return null;
@@ -23,7 +25,7 @@ export default function SubclassSelector({ className, level, value, onChange }) 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
       <span style={{ fontSize: 11, color: C.purpleBright, fontFamily: FH, whiteSpace: "nowrap" }}>
-        Subklasse
+        {t("char.subclass_label","Subklasse")}
       </span>
       <select
         value={value || ""}
@@ -40,7 +42,7 @@ export default function SubclassSelector({ className, level, value, onChange }) 
           outline: "none",
         }}
       >
-        <option value="">— wählen —</option>
+        <option value="">{t("char.subclass_choose_short","— wählen —")}</option>
         {options.map(name => (
           <option key={name} value={name}>{name}</option>
         ))}

@@ -1,5 +1,6 @@
 import { C, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
+import { useI18n } from "../../i18n/index.js";
 
 const ACTIONS = [
   { key: "action",          icon: "⚔️",  label: "Action",   color: C.red },
@@ -8,6 +9,7 @@ const ACTIONS = [
 ];
 
 export default function ActionEconomyBar() {
+  const { t } = useI18n();
   const { state, setState } = useCombat();
 
   if (state.activeIndex < 0 || state.activeIndex >= state.fighters.length) return null;
@@ -71,7 +73,7 @@ export default function ActionEconomyBar() {
           display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
         }}>
           <span style={{ fontSize: 16 }}>👣</span>
-          <span style={{ fontSize: 9, color: C.textDim, fontFamily: FH, letterSpacing: 0.5 }}>BEWEGUNG</span>
+          <span style={{ fontSize: 9, color: C.textDim, fontFamily: FH, letterSpacing: 0.5 }}>{t("combat.movement_upper","BEWEGUNG")}</span>
           <span style={{ fontSize: 14, fontWeight: 700, color: C.tealBright }}>
             {fighter.actions.movement ?? 30} ft
           </span>
@@ -89,7 +91,7 @@ export default function ActionEconomyBar() {
           }}
         >
           <span style={{ fontSize: 16 }}>🤝</span>
-          <span style={{ fontSize: 9, color: C.textDim, fontFamily: FH, letterSpacing: 0.5 }}>FREE</span>
+          <span style={{ fontSize: 9, color: C.textDim, fontFamily: FH, letterSpacing: 0.5 }}>{t("combat.free_upper","FREE")}</span>
           <span style={{ fontSize: 11, fontWeight: 700, color: fighter.actions.freeInteraction ? C.greenBright : C.textDim }}>
             {fighter.actions.freeInteraction ? "✓" : "✗"}
           </span>

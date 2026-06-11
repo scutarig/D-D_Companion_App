@@ -5,6 +5,7 @@ import {
   getWeaponById,
   getMasteryCount,
 } from "../../data/weaponMasteries.js";
+import { useI18n } from "../../i18n/index.js";
 
 /**
  * WeaponMasteryPicker — 2024 PHB Weapon Mastery Selector
@@ -17,6 +18,7 @@ import {
  * Stored in char.weaponMasteries: string[] (weapon ids).
  */
 export default function WeaponMasteryPicker({ char, setChar }) {
+  const { t } = useI18n();
   const slotCount = getMasteryCount(char.klass, char.level);
   if (slotCount === 0) return null;
 
@@ -49,7 +51,7 @@ export default function WeaponMasteryPicker({ char, setChar }) {
         fontFamily: FH, fontSize: 13, color: C.redBright, fontWeight: 700,
         marginBottom: 6, letterSpacing: 0.5,
       }}>
-        ⚔ WEAPON MASTERY (2024 PHB)
+        {t("char.weapon_mastery_header","⚔ WEAPON MASTERY (2024 PHB)")}
       </div>
 
       <div style={{
@@ -57,8 +59,11 @@ export default function WeaponMasteryPicker({ char, setChar }) {
         background: `${C.red}0d`, border: `1px solid ${C.red}30`,
         borderRadius: 6, padding: "7px 10px", marginBottom: 10,
       }}>
-        <b>{char.klass}</b> Lv{char.level} → <b>{slotCount} Mastery-Slot{slotCount > 1 ? "s" : ""}</b>.
-        Wähle Waffen mit denen du Proficiency hast. Nach jeder Long Rest darfst du wechseln.
+        {t("char.mastery_slots_intro","{klass} Lv{lv} → {n} Mastery-Slot{s}. Wähle Waffen mit denen du Proficiency hast. Nach jeder Long Rest darfst du wechseln.")
+          .replace("{klass}", char.klass)
+          .replace("{lv}", char.level)
+          .replace("{n}", slotCount)
+          .replace("{s}", slotCount > 1 ? "s" : "")}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -76,14 +81,14 @@ export default function WeaponMasteryPicker({ char, setChar }) {
               padding: 8,
             }}>
               <label style={{ ...sx.lbl, marginBottom: 4 }}>
-                Slot {i + 1}
+                {t("char.slot_n","Slot {n}").replace("{n}", i + 1)}
               </label>
               <select
                 value={wid}
                 onChange={e => setSlot(i, e.target.value)}
                 style={sx.sel}
               >
-                <option value="">— Waffe wählen —</option>
+                <option value="">{t("char.choose_weapon","— Waffe wählen —")}</option>
                 {Object.entries(groupedWeapons).map(([groupName, ws]) => (
                   <optgroup key={groupName} label={groupName}>
                     {ws.map(w => (

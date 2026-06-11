@@ -7,6 +7,7 @@ import { useChar } from "../../context/CharContext.jsx";
 import { rollInitiative } from "../../utils/rolls.js";
 import { sortByInitiative } from "../../utils/combat.js";
 import { MONSTERS as Bestiary } from "../../data/monsters.js";
+import { useI18n } from "../../i18n/index.js";
 import PresetManager from "./PresetManager.jsx";
 
 // ─── Section header ────────────────────────────────────────────────────────────
@@ -25,6 +26,7 @@ const SectionHead = ({ color, icon, title, action }) => (
 );
 
 export default function CombatInitiativeView({ onStartCombat }) {
+  const { t } = useI18n();
   const { state, setState } = useCombat();
   const { startCombat } = useCombatActions();
   const { addFighter } = useFighter();
@@ -202,15 +204,15 @@ export default function CombatInitiativeView({ onStartCombat }) {
           <span style={{ fontSize: 40 }}>⚔️</span>
           <div>
             <div style={{ fontFamily: FH, fontSize: 20, color: C.purpleBright, fontWeight: 700, letterSpacing: 1 }}>
-              Kampf starten
+              {t("combat.init_view_title","Kampf starten")}
             </div>
             <div style={{ fontSize: 13, color: C.textDim, marginTop: 2 }}>
-              Charaktere wählen · Initiative würfeln · Los!
+              {t("combat.init_view_subtitle","Charaktere wählen · Initiative würfeln · Los!")}
             </div>
           </div>
         </div>
         <button onClick={() => setShowPresets(!showPresets)} style={{ ...sx.bsm(C.amber), padding: "8px 12px", fontSize: 12 }}>
-          💾 Presets
+          {t("combat.presets_btn","💾 Presets")}
         </button>
       </div>
 
@@ -222,12 +224,12 @@ export default function CombatInitiativeView({ onStartCombat }) {
 
       {/* ── SPIELER ─────────────────────────────────────────────────────────────── */}
       <div style={{ ...sx.card, borderLeft: `4px solid ${C.blue}`, marginBottom: 12 }}>
-        <SectionHead color={C.blueBright} icon="👤" title="Spieler-Charaktere" />
+        <SectionHead color={C.blueBright} icon="👤" title={t("combat.players_section","Spieler-Charaktere")} />
 
         {/* From app chars */}
         {chars.length > 0 && (
           <>
-            <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>Aus der App:</div>
+            <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>{t("combat.from_app","Aus der App:")}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 10 }}>
               {chars.map((char) => {
                 const checked = selectedChars.includes(char.id);
@@ -252,23 +254,23 @@ export default function CombatInitiativeView({ onStartCombat }) {
                       />
                     )}
                     <span style={{ flex: 1, fontSize: 14, color: C.textBright, fontWeight: checked ? 700 : 400 }}>{char.name}</span>
-                    <span style={{ fontSize: 12, color: C.textDim }}>Lv{char.level}</span>
+                    <span style={{ fontSize: 12, color: C.textDim }}>{t("combat.lv_short","Lv")}{char.level}</span>
                     <span style={{ fontSize: 12, color: C.amberBright }}>AC {char.ac}</span>
                     <span style={{ fontSize: 12, color: C.greenBright }}>HP {char.maxHp}</span>
-                    {alreadyAdded && <span style={{ fontSize: 10, color: C.greenBright, fontStyle: "italic" }}>bereits dabei</span>}
+                    {alreadyAdded && <span style={{ fontSize: 10, color: C.greenBright, fontStyle: "italic" }}>{t("combat.already_added","bereits dabei")}</span>}
                   </label>
                 );
               })}
             </div>
             {selectedChars.length > 0 && (
               <button onClick={addSelectedChars} style={{ ...sx.btn(C.blue), width: "100%", marginBottom: 10, padding: "10px", fontSize: 13 }}>
-                👤 {selectedChars.length} Charakter{selectedChars.length > 1 ? "e" : ""} hinzufügen
+                👤 {selectedChars.length} {selectedChars.length > 1 ? t("combat.add_n_chars_plural","Charaktere hinzufügen") : t("combat.add_n_chars_singular","Charakter hinzufügen")}
               </button>
             )}
           </>
         )}
         {chars.length === 0 && (
-          <div style={{ fontSize: 13, color: C.textDim, marginBottom: 10 }}>Keine App-Charaktere vorhanden</div>
+          <div style={{ fontSize: 13, color: C.textDim, marginBottom: 10 }}>{t("combat.no_app_chars","Keine App-Charaktere vorhanden")}</div>
         )}
 
         {/* Manual player button */}
@@ -281,19 +283,19 @@ export default function CombatInitiativeView({ onStartCombat }) {
             color: showManualPlayer ? C.tealBright : C.textDim,
           }}
         >
-          {showManualPlayer ? "✕ Abbrechen" : "＋ Spieler manuell hinzufügen"}
+          {showManualPlayer ? t("combat.cancel_btn","✕ Abbrechen") : t("combat.add_manual_player","＋ Spieler manuell hinzufügen")}
         </button>
 
         {showManualPlayer && (
           <div style={{ marginTop: 10, background: `${C.teal}0a`, border: `1px solid ${C.teal}25`, borderRadius: 10, padding: "14px 16px" }}>
-            <div style={{ fontSize: 14, color: C.tealBright, fontWeight: 700, marginBottom: 12 }}>👤 Neuer Spieler-Charakter</div>
+            <div style={{ fontSize: 14, color: C.tealBright, fontWeight: 700, marginBottom: 12 }}>{t("combat.new_player_char","👤 Neuer Spieler-Charakter")}</div>
             <div style={{ marginBottom: 10 }}>
-              <label style={sx.lbl}>Name *</label>
+              <label style={sx.lbl}>{t("combat.name_required_lbl","Name *")}</label>
               <input
                 type="text"
                 value={manualPlayer.name}
                 onChange={(e) => setManualPlayer((p) => ({ ...p, name: e.target.value }))}
-                placeholder="z.B. Aragorn"
+                placeholder={t("combat.placeholder_aragorn","z.B. Aragorn")}
                 style={{ ...sx.inp, fontSize: 14 }}
                 onKeyDown={(e) => e.key === "Enter" && addManualPlayer()}
                 autoFocus
@@ -301,10 +303,10 @@ export default function CombatInitiativeView({ onStartCombat }) {
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(80px, 1fr))", gap: 8, marginBottom: 12 }}>
               {[
-                { key: "hp", label: "Max HP" },
-                { key: "ac", label: "Rüstung (AC)" },
-                { key: "initiativeBonus", label: "Init Bonus" },
-                { key: "speed", label: "Speed (ft)" },
+                { key: "hp", label: t("combat.max_hp","Max HP") },
+                { key: "ac", label: t("combat.armor_ac","Rüstung (AC)") },
+                { key: "initiativeBonus", label: t("combat.init_bonus_lbl","Init Bonus") },
+                { key: "speed", label: t("combat.speed_ft_lbl","Geschwindigkeit (ft)") },
               ].map(({ key, label }) => (
                 <div key={key}>
                   <label style={sx.lbl}>{label}</label>
@@ -325,7 +327,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                 opacity: manualPlayer.name.trim() ? 1 : 0.4,
               }}
             >
-              ＋ Spieler hinzufügen
+              {t("combat.add_player_btn","＋ Spieler hinzufügen")}
             </button>
           </div>
         )}
@@ -333,7 +335,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
 
       {/* ── GEGNER ──────────────────────────────────────────────────────────────── */}
       <div style={{ ...sx.card, borderLeft: `4px solid ${C.red}`, marginBottom: 12 }}>
-        <SectionHead color={C.redBright} icon="💀" title="Gegner / Feinde" />
+        <SectionHead color={C.redBright} icon="💀" title={t("combat.enemies_section","Gegner / Feinde")} />
 
         {/* Bestiary */}
         <button
@@ -347,8 +349,8 @@ export default function CombatInitiativeView({ onStartCombat }) {
             display: "flex", justifyContent: "space-between", alignItems: "center",
           }}
         >
-          <span>📚 Aus dem Bestiary wählen</span>
-          <span style={{ fontSize: 11, opacity: 0.7 }}>{showBestiary ? "▲ Schließen" : "▼ Öffnen"}</span>
+          <span>{t("combat.from_bestiary","📚 Aus dem Bestiarium wählen")}</span>
+          <span style={{ fontSize: 11, opacity: 0.7 }}>{showBestiary ? t("combat.close_arrow","▲ Schließen") : t("combat.open_arrow","▼ Öffnen")}</span>
         </button>
 
         {showBestiary && (
@@ -357,7 +359,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
               type="text"
               value={bestiarySearch}
               onChange={(e) => { setBestiarySearch(e.target.value); setSelectedMonster(null); }}
-              placeholder="🔍 Monster suchen (z.B. Goblin, Orc...)"
+              placeholder={t("combat.search_monster_full","🔍 Monster suchen (z.B. Goblin, Orc...)")}
               style={{ ...sx.inp, fontSize: 13, marginBottom: 8 }}
               autoFocus
             />
@@ -383,13 +385,13 @@ export default function CombatInitiativeView({ onStartCombat }) {
               </div>
             )}
             {bestiarySearch && filteredMonsters.length === 0 && (
-              <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", padding: 8 }}>Kein Monster gefunden</div>
+              <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", padding: 8 }}>{t("combat.no_monster_found","Kein Monster gefunden")}</div>
             )}
             {selectedMonster && (
               <div style={{ display: "flex", gap: 8, alignItems: "center", background: `${C.red}12`, borderRadius: 8, padding: "8px 10px" }}>
                 <div style={{ flex: 1, fontSize: 13, color: C.redBright, fontWeight: 700 }}>{selectedMonster.name}</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <span style={{ fontSize: 12, color: C.textDim }}>Anzahl:</span>
+                  <span style={{ fontSize: 12, color: C.textDim }}>{t("combat.count_label","Anzahl:")}</span>
                   <input
                     type="number" min={1} max={20}
                     value={monsterCount}
@@ -398,7 +400,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                   />
                 </div>
                 <button onClick={addFromBestiary} style={{ ...sx.btn(C.red), padding: "8px 14px", fontSize: 13 }}>
-                  ＋ Hinzufügen
+                  {t("combat.add_short_btn","＋ Hinzufügen")}
                 </button>
               </div>
             )}
@@ -415,26 +417,26 @@ export default function CombatInitiativeView({ onStartCombat }) {
             color: showManualEnemy ? C.amberBright : C.textDim,
           }}
         >
-          {showManualEnemy ? "✕ Abbrechen" : "＋ Gegner manuell hinzufügen"}
+          {showManualEnemy ? t("combat.cancel_btn","✕ Abbrechen") : t("combat.add_manual_enemy","＋ Gegner manuell hinzufügen")}
         </button>
 
         {showManualEnemy && (
           <div style={{ marginTop: 10, background: `${C.amber}0a`, border: `1px solid ${C.amber}25`, borderRadius: 10, padding: "14px 16px" }}>
-            <div style={{ fontSize: 14, color: C.amberBright, fontWeight: 700, marginBottom: 12 }}>💀 Neuer Gegner</div>
+            <div style={{ fontSize: 14, color: C.amberBright, fontWeight: 700, marginBottom: 12 }}>{t("combat.new_enemy","💀 Neuer Gegner")}</div>
             <div style={{ marginBottom: 10 }}>
-              <label style={sx.lbl}>Name *</label>
+              <label style={sx.lbl}>{t("combat.name_required_lbl","Name *")}</label>
               <input
                 type="text"
                 value={manualEnemy.name}
                 onChange={(e) => setManualEnemy((p) => ({ ...p, name: e.target.value }))}
-                placeholder="z.B. Bandit"
+                placeholder={t("combat.placeholder_bandit","z.B. Bandit")}
                 style={{ ...sx.inp, fontSize: 14 }}
                 onKeyDown={(e) => e.key === "Enter" && addManualEnemy()}
                 autoFocus
               />
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))", gap: 8, marginBottom: 12 }}>
-              {[{ key: "hp", label: "Max HP" }, { key: "ac", label: "Rüstung (AC)" }, { key: "initiativeBonus", label: "Init Bonus" }].map(({ key, label }) => (
+              {[{ key: "hp", label: t("combat.max_hp","Max HP") }, { key: "ac", label: t("combat.armor_ac","Rüstung (AC)") }, { key: "initiativeBonus", label: t("combat.init_bonus_lbl","Init Bonus") }].map(({ key, label }) => (
                 <div key={key}>
                   <label style={sx.lbl}>{label}</label>
                   <input
@@ -454,7 +456,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                 opacity: manualEnemy.name.trim() ? 1 : 0.4,
               }}
             >
-              ＋ Gegner hinzufügen
+              {t("combat.add_enemy_btn","＋ Gegner hinzufügen")}
             </button>
           </div>
         )}
@@ -466,20 +468,20 @@ export default function CombatInitiativeView({ onStartCombat }) {
           <SectionHead
             color={C.gold}
             icon="🎲"
-            title={`Kämpfer (${state.fighters.length})`}
+            title={`${t("combat.fighters_word","Kämpfer")} (${state.fighters.length})`}
             action={
               <button
                 onClick={rollAllInitiative}
                 style={{ ...sx.btn(C.amber), padding: "7px 14px", fontSize: 12, color: C.bg }}
               >
-                🎲 Alle würfeln
+                {t("combat.roll_all_init","🎲 Alle würfeln")}
               </button>
             }
           />
 
           {players.length > 0 && (
             <div style={{ marginBottom: 10 }}>
-              <div style={{ fontSize: 11, color: C.blueBright, fontWeight: 700, marginBottom: 6, letterSpacing: 0.5 }}>👤 SPIELER</div>
+              <div style={{ fontSize: 11, color: C.blueBright, fontWeight: 700, marginBottom: 6, letterSpacing: 0.5 }}>{t("combat.players_upper","👤 SPIELER")}</div>
               {players.map((f) => (
                 <FighterRow key={f.id} fighter={f} color={C.blue}
                   onRemove={() => removeFighter(f.id)}
@@ -491,7 +493,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
 
           {enemies.length > 0 && (
             <div>
-              <div style={{ fontSize: 11, color: C.redBright, fontWeight: 700, marginBottom: 6, letterSpacing: 0.5 }}>💀 GEGNER</div>
+              <div style={{ fontSize: 11, color: C.redBright, fontWeight: 700, marginBottom: 6, letterSpacing: 0.5 }}>{t("combat.enemies_upper","💀 GEGNER")}</div>
               {enemies.map((f) => (
                 <FighterRow key={f.id} fighter={f} color={C.red}
                   onRemove={() => removeFighter(f.id)}
@@ -510,8 +512,8 @@ export default function CombatInitiativeView({ onStartCombat }) {
           border: `2px dashed ${C.border}`, borderRadius: 14,
         }}>
           <div style={{ fontSize: 40, marginBottom: 10 }}>⚔️</div>
-          <div style={{ fontSize: 15, marginBottom: 4 }}>Noch keine Kämpfer</div>
-          <div style={{ fontSize: 13 }}>Füge oben Spieler und Gegner hinzu</div>
+          <div style={{ fontSize: 15, marginBottom: 4 }}>{t("combat.no_fighters_yet","Noch keine Kämpfer")}</div>
+          <div style={{ fontSize: 13 }}>{t("combat.no_fighters_hint","Füge oben Spieler und Gegner hinzu")}</div>
         </div>
       )}
 
@@ -524,7 +526,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
         }}>
           {!allHaveInit && (
             <div style={{ fontSize: 11, color: C.amberBright, textAlign: "center", marginBottom: 6 }}>
-              ⚠ Initiative noch nicht gewürfelt — oder manuell oben eingeben
+              {t("combat.init_warning","⚠ Initiative noch nicht gewürfelt — oder manuell oben eingeben")}
             </div>
           )}
           <button
@@ -539,7 +541,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
               boxShadow: `0 4px 24px ${C.purple}55`,
             }}
           >
-            ▶ Kampf starten — {state.fighters.length} Kämpfer
+            {t("combat.start_combat_btn","▶ Kampf starten")} — {state.fighters.length} {t("combat.fighters_word","Kämpfer")}
           </button>
         </div>
       )}

@@ -2,9 +2,10 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
-import { t } from "../../i18n/index.js";
+import { useI18n } from "../../i18n/index.js";
 
 export default function PresetManager({ onClose }) {
+  const { t } = useI18n();
   const { state } = useCombat();
   const { savePreset, loadPreset, deletePreset } = useCombatActions();
   const [newPresetName, setNewPresetName] = useState("");
@@ -34,27 +35,27 @@ export default function PresetManager({ onClose }) {
     <div style={{ background: C.surface, borderRadius: 8, padding: "12px 14px", border: `1px solid ${C.border}`, marginBottom: 12 }}>
       {/* Save Current Setup as Preset */}
       <div style={{ marginBottom: 14, paddingBottom: 12, borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ ...sx.ct, marginBottom: 8 }}>💾 Aktuellen Kampf speichern</div>
+        <div style={{ ...sx.ct, marginBottom: 8 }}>{t("combat.preset_save_current","💾 Aktuellen Kampf speichern")}</div>
         <div style={{ display: "flex", gap: 6 }}>
           <input
             type="text"
             value={newPresetName}
             onChange={(e) => setNewPresetName(e.target.value)}
-            placeholder="z.B. Goblin Ambush"
+            placeholder={t("combat.placeholder_goblin_ambush","z.B. Goblin Ambush")}
             style={{ ...sx.inp, flex: 1 }}
             onKeyPress={(e) => e.key === "Enter" && handleSavePreset()}
           />
           <button onClick={handleSavePreset} style={sx.btn(C.green)}>
-            💾 Save
+            {t("combat.preset_save_btn","💾 Save")}
           </button>
         </div>
       </div>
 
       {/* Load Presets */}
       <div>
-        <div style={sx.ct}>{state.presets.length} Presets</div>
+        <div style={sx.ct}>{state.presets.length} {t("combat.presets_word","Presets")}</div>
         {state.presets.length === 0 ? (
-          <div style={{ fontSize: 12, color: C.textDim, marginTop: 8 }}>Noch keine Presets gespeichert</div>
+          <div style={{ fontSize: 12, color: C.textDim, marginTop: 8 }}>{t("combat.no_presets","Noch keine Presets gespeichert")}</div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 8 }}>
             {state.presets.map((preset) => (
@@ -73,7 +74,7 @@ export default function PresetManager({ onClose }) {
                 >
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, color: C.purpleBright, fontWeight: 700 }}>{preset.name}</div>
-                    <div style={{ fontSize: 11, color: C.textDim }}>{preset.fighters.length} Kämpfer</div>
+                    <div style={{ fontSize: 11, color: C.textDim }}>{preset.fighters.length} {t("combat.fighters_word","Kämpfer")}</div>
                   </div>
                   <div style={{ fontSize: 14 }}>{expandedPreset === preset.id ? "▼" : "▶"}</div>
                 </div>
@@ -94,7 +95,7 @@ export default function PresetManager({ onClose }) {
                         onClick={() => handleLoadPreset(preset.id)}
                         style={{ ...sx.btn(C.blue), flex: 1, fontSize: 11, padding: "6px 10px" }}
                       >
-                        📂 Load
+                        {t("combat.preset_load","📂 Load")}
                       </button>
                       <button
                         onClick={() => handleDeletePreset(preset.id)}
@@ -116,7 +117,7 @@ export default function PresetManager({ onClose }) {
         onClick={onClose}
         style={{ ...sx.bsm(C.textDim), width: "100%", marginTop: 12 }}
       >
-        ✕ Schließen
+        {t("combat.close_btn","✕ Schließen")}
       </button>
     </div>
   );
