@@ -108,7 +108,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
             value={attackBonus}
             onChange={(e) => setAttackBonus(e.target.value)}
             style={{ ...sx.inp, fontSize: 16, fontWeight: 700, textAlign: "center" }}
-            placeholder="z.B. 5"
+            placeholder={t("combat.attack_bonus_placeholder","z.B. 5")}
           />
         </div>
 

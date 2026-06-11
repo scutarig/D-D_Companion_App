@@ -285,9 +285,9 @@ export default function DowntimeTracker() {
                   {act.details}
                 </div>
               )}
-              <label style={sx.lbl}>Notizen (optional)</label>
+              <label style={sx.lbl}>{t("dt.notes_optional","Notizen (optional)")}</label>
               <textarea value={newForm.notes} onChange={e => setNewForm(p => ({ ...p, notes: e.target.value }))}
-                rows={2} placeholder="Ziel, Gegenstand, Zauberlevel…"
+                rows={2} placeholder={t("dt.notes_placeholder","Ziel, Gegenstand, Zauberlevel…")}
                 style={{ ...sx.inp, resize: "vertical", marginBottom: 14 }} />
               <div style={{ display: "flex", gap: 8 }}>
                 <button onClick={confirmStart} style={{ ...sx.btn(act?.color || C.purple), flex: 1 }}>

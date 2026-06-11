@@ -922,7 +922,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                 onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [swapModal.slot]: null } })); closeSwap(); }}
                 style={{ ...sx.btn(C.red), width:"100%", marginBottom:10 }}>{t("dash.unequip_short","↩ Ablegen")}</button>
               <div style={{ display:"flex", gap:4, marginBottom:10 }}>
-                <input value={swapSearch} onChange={e=>setSwapSearch(e.target.value)} placeholder="🔍 Suchen…" style={{ ...sx.inp, fontSize:12, flex:1 }} />
+                <input value={swapSearch} onChange={e=>setSwapSearch(e.target.value)} placeholder={t("dash.search_short","🔍 Suchen…")} style={{ ...sx.inp, fontSize:12, flex:1 }} />
                 <select value={swapType} onChange={e=>setSwapType(e.target.value)} style={{ ...sx.sel, fontSize:11, width:"auto" }}>
                   {["All",...EQ_TYPES].map(ty=><option key={ty} value={ty}>{ty==="All"?t("dash.all_types","Alle"):ty}</option>)}
                 </select>

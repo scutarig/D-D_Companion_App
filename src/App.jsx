@@ -635,13 +635,13 @@ function AppInner() {
           <div style={{ marginTop:4, display:"flex", flexDirection:"column", gap:2 }}>
             {/* Player: Charakter-Gruppe / DM: Referenz */}
             {!isDM && (
-              <button ref={charBtnRef} title="Charakter" onClick={e => { e.stopPropagation(); toggleChar(); }}
+              <button ref={charBtnRef} title={t("nav.character_group","Charakter")} onClick={e => { e.stopPropagation(); toggleChar(); }}
                 style={snb(isCharGroup || charOpen)}>
                 📜
               </button>
             )}
             {isDM && (
-              <button ref={refBtnRef} title="Referenz" onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef || refOpen)}>
+              <button ref={refBtnRef} title={t("nav.reference_group","Referenz")} onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef || refOpen)}>
                 📚
               </button>
             )}
@@ -652,8 +652,8 @@ function AppInner() {
         <div style={{ padding:"8px 4px 14px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
           {!isDM && (
             <>
-              <button title="JSON exportieren" onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
-              <button title="PDF exportieren"  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
+              <button title={t("nav.export_json","JSON exportieren")} onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
+              <button title={t("nav.export_pdf","PDF exportieren")}  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
             </>
           )}
           {/* Lang Toggle */}

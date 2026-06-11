@@ -176,7 +176,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                     type="text"
                     value={form.name}
                     onChange={(e) => set("name", e.target.value)}
-                    placeholder="z.B. Shadowbark"
+                    placeholder={t("comp.name_placeholder","z.B. Shadowbark")}
                     style={{ ...sx.inp, fontSize: 14 }}
                     autoFocus
                     onKeyDown={(e) => e.key === "Enter" && handleSave()}
@@ -313,7 +313,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                   <textarea
                     value={form.actions}
                     onChange={(e) => set("actions", e.target.value)}
-                    placeholder="z.B. Biss. Nahkampfangriff: +5 auf Treffer, 1d6+3 Stichschaden."
+                    placeholder={t("comp.actions_placeholder","z.B. Biss. Nahkampfangriff: +5 auf Treffer, 1d6+3 Stichschaden.")}
                     style={{ ...sx.ta, fontSize: 12, minHeight: 80 }}
                   />
                 </div>

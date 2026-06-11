@@ -301,7 +301,7 @@ export default function Bestiary() {
                     </span>
                   )}
                   {sel.edition === "2014" && (
-                    <span style={{fontSize:9,padding:"2px 7px",borderRadius:8,fontWeight:700,background:`${C.amberBright}1f`,border:`1px solid ${C.amberBright}55`,color:C.amberBright,letterSpacing:0.3}} title="2014 MM Legacy — noch nicht auf 2024 migriert">
+                    <span style={{fontSize:9,padding:"2px 7px",borderRadius:8,fontWeight:700,background:`${C.amberBright}1f`,border:`1px solid ${C.amberBright}55`,color:C.amberBright,letterSpacing:0.3}} title={t("bestiary.legacy_2014_tooltip","2014 MM Legacy — noch nicht auf 2024 migriert")}>
                       ⚠ Legacy 2014
                     </span>
                   )}
