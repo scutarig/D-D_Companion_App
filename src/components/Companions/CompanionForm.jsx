@@ -304,12 +304,12 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                   <textarea
                     value={form.traits}
                     onChange={(e) => set("traits", e.target.value)}
-                    placeholder="z.B. Rudeltaktik. Der Begleiter hat Vorteil auf Angriffswürfe..."
+                    placeholder={t("comp.traits_placeholder","z.B. Rudeltaktik. Der Begleiter hat Vorteil auf Angriffswürfe...")}
                     style={{ ...sx.ta, fontSize: 12, minHeight: 80 }}
                   />
                 </div>
                 <div style={{ marginBottom: 10 }}>
-                  <label style={sx.lbl}>Aktionen</label>
+                  <label style={sx.lbl}>{t("comp.actions_lbl","Aktionen")}</label>
                   <textarea
                     value={form.actions}
                     onChange={(e) => set("actions", e.target.value)}
@@ -318,11 +318,11 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                   />
                 </div>
                 <div>
-                  <label style={sx.lbl}>Notizen</label>
+                  <label style={sx.lbl}>{t("comp.notes_lbl","Notizen")}</label>
                   <textarea
                     value={form.notes}
                     onChange={(e) => set("notes", e.target.value)}
-                    placeholder="Persönliche Notizen zum Begleiter..."
+                    placeholder={t("comp.notes_placeholder","Persönliche Notizen zum Begleiter...")}
                     style={{ ...sx.ta, fontSize: 12, minHeight: 60 }}
                   />
                 </div>

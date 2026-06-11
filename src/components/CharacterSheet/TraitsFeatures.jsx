@@ -80,7 +80,7 @@ export default function TraitsFeatures({ char, setChar }) {
   const removeTrait = (id) => {
     setChar(p => ({
       ...p,
-      raceTraits: (p.raceTraits || []).filter(t => t.id !== id),
+      raceTraits: (p.raceTraits || []).filter(tr => tr.id !== id),
     }));
   };
 

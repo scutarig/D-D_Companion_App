@@ -236,7 +236,7 @@ export default function Bestiary() {
                 {isSpoilerMode && encountered.includes(m.id) && (
                   <button
                     onClick={e=>{e.stopPropagation(); forgetEncountered(m.id);}}
-                    title="Aus 'Begegnet'-Liste entfernen"
+                    title={t("best.title_remove_encountered","Aus 'Begegnet'-Liste entfernen")}
                     style={{background:"transparent",border:"none",cursor:"pointer",color:C.textDim,fontSize:11,padding:"0 4px"}}
                   >✕</button>
                 )}
@@ -248,17 +248,17 @@ export default function Bestiary() {
           {hiddenMatches.length > 0 && (
             <div style={{marginTop:8,paddingTop:8,borderTop:`1px dashed ${C.border}`}}>
               <div style={{fontSize:9,color:C.textDim,fontFamily:FH,letterSpacing:0.5,marginBottom:6}}>
-                ❔ TREFFER (NOCH NICHT BEGEGNET)
+                {t("best.hits_not_encountered","❔ TREFFER (NOCH NICHT BEGEGNET)")}
               </div>
               {hiddenMatches.map(m => (
                 <div key={m.id} style={{background:C.surface,border:`1px dashed ${C.border}`,borderRadius:4,padding:"6px 10px",marginBottom:3,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                   <span style={{fontSize:12,fontFamily:FH,color:C.textDim,fontStyle:"italic"}}>{m.name}</span>
                   <button
                     onClick={()=>markEncountered(m.id)}
-                    title="Als 'Begegnet' markieren — Stats werden sichtbar"
+                    title={t("best.title_mark_encountered","Als 'Begegnet' markieren — Stats werden sichtbar")}
                     style={{padding:"3px 8px",fontSize:9,fontFamily:FH,fontWeight:700,borderRadius:5,cursor:"pointer",background:`${C.green}33`,border:`1px solid ${C.green}88`,color:C.greenBright}}
                   >
-                    ✓ Begegnet
+                    {t("best.encountered_btn","✓ Begegnet")}
                   </button>
                 </div>
               ))}
@@ -267,7 +267,7 @@ export default function Bestiary() {
 
           {/* Counter */}
           <div style={{textAlign:"center",fontSize:11,color:C.textDim,marginTop:6}}>
-            {isSpoilerMode ? `${visibleList.length} bekannt · ${encountered.length} gesamt begegnet` : `${filtered.length} Monster`}
+            {isSpoilerMode ? t("best.spoiler_counter","{n} bekannt · {total} gesamt begegnet").replace("{n}", visibleList.length).replace("{total}", encountered.length) : `${filtered.length} ${t("best.monsters_word","Monster")}`}
           </div>
         </div>
       </div>
@@ -276,16 +276,16 @@ export default function Bestiary() {
       <div style={{flex:1,overflowY:"auto",maxHeight:mob?"none":"75vh"}}>
         {showAdd ? (
           <div style={sx.card}>
-            <div style={sx.ct}>🐉 Neues Monster</div>
-            <div style={sx.g3}>{[["name","Name","text"],["cr","CR","text"],["type","Typ","text"],["size","Größe","text"],["alignment","Gesinnung","text"],["hp","HP","number"],["ac","AC","number"],["speed","Speed","text"]].map(([k,l,t])=><div key={k}><label style={sx.lbl}>{l}</label><input type={t} value={form[k]} onChange={e=>setForm(p=>({...p,[k]:t==="number"?+e.target.value:e.target.value}))} style={sx.inp}/></div>)}</div>
-            <div style={{marginTop:8}}><label style={sx.lbl}>Attribute</label><div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{ABS.map(a=><div key={a}><label style={{...sx.lbl,textAlign:"center"}}>{a}</label><input type="number" value={form[a.toLowerCase()]} onChange={e=>setForm(p=>({...p,[a.toLowerCase()]:+e.target.value}))} style={{...sx.inp,width:60,textAlign:"center"}}/></div>)}</div></div>
-            <div style={{marginTop:8}}><label style={sx.lbl}>Sinne & Sprachen</label><input value={form.senses} onChange={e=>setForm(p=>({...p,senses:e.target.value}))} style={{...sx.inp,marginBottom:4}} placeholder="Dunkelsicht 60 ft., Passive Wahrnehmung 10"/><input value={form.languages} onChange={e=>setForm(p=>({...p,languages:e.target.value}))} style={sx.inp} placeholder="Gemeinsprache"/></div>
-            <div style={{marginTop:8}}><label style={sx.lbl}>Eigenschaften</label><textarea value={form.traits} onChange={e=>setForm(p=>({...p,traits:e.target.value}))} style={{...sx.ta,height:60}} placeholder="Besondere Eigenschaften…"/></div>
-            <div style={{marginTop:8}}><label style={sx.lbl}>Aktionen</label><textarea value={form.actions} onChange={e=>setForm(p=>({...p,actions:e.target.value}))} style={{...sx.ta,height:70}} placeholder="Angriffe und Fähigkeiten…"/></div>
-            <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.legendary_actions","Legendäre Aktionen")}</label><textarea value={form.legendary} onChange={e=>setForm(p=>({...p,legendary:e.target.value}))} style={{...sx.ta,height:50}} placeholder={t("best.legendary_placeholder","Nur für legendäre Monter…")}/></div>
+            <div style={sx.ct}>{t("best.new_monster_title","🐉 Neues Monster")}</div>
+            <div style={sx.g3}>{[["name",t("best.field_name","Name"),"text"],["cr","CR","text"],["type",t("best.field_type","Typ"),"text"],["size",t("best.field_size","Größe"),"text"],["alignment",t("best.field_alignment","Gesinnung"),"text"],["hp","HP","number"],["ac","AC","number"],["speed","Speed","text"]].map(([k,l,fty])=><div key={k}><label style={sx.lbl}>{l}</label><input type={fty} value={form[k]} onChange={e=>setForm(p=>({...p,[k]:fty==="number"?+e.target.value:e.target.value}))} style={sx.inp}/></div>)}</div>
+            <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.attributes_label","Attribute")}</label><div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{ABS.map(a=><div key={a}><label style={{...sx.lbl,textAlign:"center"}}>{a}</label><input type="number" value={form[a.toLowerCase()]} onChange={e=>setForm(p=>({...p,[a.toLowerCase()]:+e.target.value}))} style={{...sx.inp,width:60,textAlign:"center"}}/></div>)}</div></div>
+            <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.senses_languages_label","Sinne & Sprachen")}</label><input value={form.senses} onChange={e=>setForm(p=>({...p,senses:e.target.value}))} style={{...sx.inp,marginBottom:4}} placeholder={t("best.senses_placeholder","Dunkelsicht 60 ft., Passive Wahrnehmung 10")}/><input value={form.languages} onChange={e=>setForm(p=>({...p,languages:e.target.value}))} style={sx.inp} placeholder={t("best.languages_placeholder","Gemeinsprache")}/></div>
+            <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.traits_label","Eigenschaften")}</label><textarea value={form.traits} onChange={e=>setForm(p=>({...p,traits:e.target.value}))} style={{...sx.ta,height:60}} placeholder={t("best.traits_placeholder","Besondere Eigenschaften…")}/></div>
+            <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.actions_label","Aktionen")}</label><textarea value={form.actions} onChange={e=>setForm(p=>({...p,actions:e.target.value}))} style={{...sx.ta,height:70}} placeholder={t("best.actions_placeholder","Angriffe und Fähigkeiten…")}/></div>
+            <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.legendary_actions","Legendäre Aktionen")}</label><textarea value={form.legendary} onChange={e=>setForm(p=>({...p,legendary:e.target.value}))} style={{...sx.ta,height:50}} placeholder={t("best.legendary_placeholder","Nur für legendäre Monster…")}/></div>
             <div style={{display:"flex",gap:8,marginTop:10}}>
-              <button onClick={()=>{if(!form.name)return;setCustom(p=>[...p,{...form,id:Date.now(),custom:true}]);setShowAdd(false);}} style={sx.btn(C.green)}>✓ Speichern</button>
-              <button onClick={()=>setShowAdd(false)} style={sx.btn(C.red)}>✕ Abbrechen</button>
+              <button onClick={()=>{if(!form.name)return;setCustom(p=>[...p,{...form,id:Date.now(),custom:true}]);setShowAdd(false);}} style={sx.btn(C.green)}>{t("best.save_btn","✓ Speichern")}</button>
+              <button onClick={()=>setShowAdd(false)} style={sx.btn(C.red)}>{t("best.cancel_btn","✕ Abbrechen")}</button>
             </div>
           </div>
         ) : sel ? (
@@ -314,7 +314,7 @@ export default function Bestiary() {
                 {sel.xp && <div style={{fontSize:11,color:C.textDim}}>{sel.xp.toLocaleString(lang === "en" ? "en-US" : "de-DE")} XP{sel.pb?` · PB +${sel.pb}`:""}</div>}
                 {sel.custom&&<button onClick={()=>{setCustom(p=>p.filter(m=>m.id!==sel.id));setSel(null);}} style={{...sx.bsm(C.red),marginTop:4}}>🗑</button>}
                 {!sel.custom && isSpoilerMode && encountered.includes(sel.id) && (
-                  <button onClick={()=>forgetEncountered(sel.id)} style={{...sx.bsm(C.textDim),marginTop:4,fontSize:10}} title="Aus 'Begegnet'-Liste entfernen">
+                  <button onClick={()=>forgetEncountered(sel.id)} style={{...sx.bsm(C.textDim),marginTop:4,fontSize:10}} title={t("best.title_remove_encountered","Aus 'Begegnet'-Liste entfernen")}>
                     🙈 Vergessen
                   </button>
                 )}

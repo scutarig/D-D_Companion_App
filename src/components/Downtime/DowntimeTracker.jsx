@@ -203,13 +203,14 @@ export default function DowntimeTracker() {
 
       {/* Type filter */}
       <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
-        {typeKeys.map(t => {
-          const info = DOWNTIME_TYPES[t];
-          const active_ = typeFilter === t;
+        {typeKeys.map(tk => {
+          const info = DOWNTIME_TYPES[tk];
+          const active_ = typeFilter === tk;
+          const lbl = tk === "all" ? t("dt.type_all","Alle") : (info?.key ? t(info.key, info.label) : (info?.label || tk));
           return (
-            <button key={t} onClick={() => setTypeFilter(t)}
+            <button key={tk} onClick={() => setTypeFilter(tk)}
               style={{ background: active_ ? (info?.color || C.purple) + "33" : "transparent", border: `1px solid ${active_ ? (info?.color || C.purple) : C.border}`, borderRadius: 4, color: active_ ? (info?.color || C.purpleBright) : C.textDim, fontSize: 10, padding: "3px 8px", cursor: "pointer", fontFamily: FH, fontWeight: active_ ? 700 : 400 }}>
-              {t === "all" ? "Alle" : info?.label || t}
+              {lbl}
             </button>
           );
         })}
@@ -228,7 +229,7 @@ export default function DowntimeTracker() {
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: C.textBright, fontFamily: FH }}>{act.name}</div>
                   <div style={{ fontSize: 10, color: act.color }}>
-                    {DOWNTIME_TYPES[act.type]?.label} · {act.source}
+                    {DOWNTIME_TYPES[act.type]?.key ? t(DOWNTIME_TYPES[act.type].key, DOWNTIME_TYPES[act.type].label) : DOWNTIME_TYPES[act.type]?.label} · {act.source}
                   </div>
                 </div>
               </div>
@@ -261,7 +262,7 @@ export default function DowntimeTracker() {
             <div style={{ ...sx.card, width: "min(400px, 92vw)", maxHeight: "80vh", overflowY: "auto", position: "relative" }}
               onClick={e => e.stopPropagation()}>
               <button onClick={() => setNewForm(null)}
-                aria-label="Schließen"
+                aria-label={t("dt.aria_close","Schließen")}
                 style={{
                   position:"absolute", top:8, right:8, zIndex:10,
                   width:36, height:36, borderRadius:"50%",

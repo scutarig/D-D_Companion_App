@@ -73,7 +73,7 @@ function MagicInitiatePicker({ choices, setChoice }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div>
-        <label style={sx.lbl}>Spell-Liste</label>
+        <label style={sx.lbl}>{t("char.spell_list_lbl","Spell-Liste")}</label>
         <select value={list} onChange={e => {
           setChoice("list", e.target.value);
           setChoice("cantrip1", "");
@@ -90,21 +90,21 @@ function MagicInitiatePicker({ choices, setChoice }) {
       {listData && (
         <>
           <div>
-            <label style={sx.lbl}>Cantrip 1 (von {listData.name})</label>
+            <label style={sx.lbl}>{t("char.cantrip_from","Cantrip {n} (von {list})").replace("{n}", 1).replace("{list}", listData.name)}</label>
             <select value={cantrip1} onChange={e => setChoice("cantrip1", e.target.value)} style={sx.sel}>
               <option value="">{t("char.choose_cantrip_short","— Wähle Cantrip —")}</option>
               {listData.cantrips.filter(c => c !== cantrip2).map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <div>
-            <label style={sx.lbl}>Cantrip 2 (von {listData.name})</label>
+            <label style={sx.lbl}>{t("char.cantrip_from","Cantrip {n} (von {list})").replace("{n}", 2).replace("{list}", listData.name)}</label>
             <select value={cantrip2} onChange={e => setChoice("cantrip2", e.target.value)} style={sx.sel}>
               <option value="">{t("char.choose_cantrip_short","— Wähle Cantrip —")}</option>
               {listData.cantrips.filter(c => c !== cantrip1).map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <div>
-            <label style={sx.lbl}>Lv1 Spell (von {listData.name}) — 1×/Long Rest ohne Slot</label>
+            <label style={sx.lbl}>{t("char.lv1_spell_from","Lv1 Spell (von {list}) — 1×/Long Rest ohne Slot").replace("{list}", listData.name)}</label>
             <select value={lvl1} onChange={e => setChoice("lvl1", e.target.value)} style={sx.sel}>
               <option value="">{t("char.choose_lv1_short","— Wähle Lv1 Spell —")}</option>
               {listData.lvl1.map(s => <option key={s} value={s}>{s}</option>)}
@@ -114,7 +114,7 @@ function MagicInitiatePicker({ choices, setChoice }) {
       )}
 
       <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", marginTop: 4 }}>
-        Spellcasting-Ability: INT/WIS/CHA deiner Wahl (je nach Liste).
+        {t("char.spell_ability_choice_hint","Spellcasting-Ability: INT/WIS/CHA deiner Wahl (je nach Liste).")}
       </div>
     </div>
   );
@@ -131,18 +131,18 @@ function CrafterPicker({ choices, setChoice }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 11, color: C.textDim }}>3 Artisan's Tools deiner Wahl:</div>
+      <div style={{ fontSize: 11, color: C.textDim }}>{t("char.crafter_3_tools","3 Artisan's Tools deiner Wahl:")}</div>
       {[0, 1, 2].map(i => (
         <div key={i}>
-          <label style={sx.lbl}>Tool {i + 1}</label>
+          <label style={sx.lbl}>{t("char.tool_n","Tool {n}").replace("{n}", i + 1)}</label>
           <select value={tools[i] || ""} onChange={e => setTool(i, e.target.value)} style={sx.sel}>
             <option value="">{t("char.choose_tool_short","— Wähle Tool —")}</option>
-            {ARTISAN_TOOLS.filter(t => !tools.includes(t) || t === tools[i]).map(t => <option key={t} value={t}>{t}</option>)}
+            {ARTISAN_TOOLS.filter(at => !tools.includes(at) || at === tools[i]).map(at => <option key={at} value={at}>{at}</option>)}
           </select>
         </div>
       ))}
       <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic" }}>
-        Crafter-Bonus: 20% Rabatt auf nicht-magische Items. Nach Long Rest: 1 Stück Ausrüstung herstellen.
+        {t("char.crafter_hint","Crafter-Bonus: 20% Rabatt auf nicht-magische Items. Nach Long Rest: 1 Stück Ausrüstung herstellen.")}
       </div>
     </div>
   );
@@ -159,28 +159,28 @@ function SkilledPicker({ choices, setChoice }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 11, color: C.textDim }}>3 Skills oder Tools deiner Wahl:</div>
+      <div style={{ fontSize: 11, color: C.textDim }}>{t("char.skilled_3","3 Skills oder Tools deiner Wahl:")}</div>
       {[0, 1, 2].map(i => (
         <div key={i}>
-          <label style={sx.lbl}>Wahl {i + 1}</label>
+          <label style={sx.lbl}>{t("char.choice_n","Wahl {n}").replace("{n}", i + 1)}</label>
           <select value={selections[i] || ""} onChange={e => setSel(i, e.target.value)} style={sx.sel}>
             <option value="">{t("char.choose_skill_or_tool_short","— Wähle Skill oder Tool —")}</option>
-            <optgroup label="Skills">
+            <optgroup label={t("char.skills_optgroup","Skills")}>
               {SKILLED_OPTIONS.filter(o => o.type === "skill" && (!selections.includes(o.id) || o.id === selections[i])).map(o => (
                 <option key={o.id} value={o.id}>{o.label}</option>
               ))}
             </optgroup>
-            <optgroup label="Artisan's Tools">
+            <optgroup label={t("char.artisan_tools_optgroup","Artisan's Tools")}>
               {SKILLED_OPTIONS.filter(o => o.type === "tool" && o.id.startsWith("tool_") && !["tool_thieves","tool_navigator","tool_herbalism","tool_disguise","tool_forgery","tool_poisoner"].includes(o.id) && (!selections.includes(o.id) || o.id === selections[i])).map(o => (
                 <option key={o.id} value={o.id}>{o.label}</option>
               ))}
             </optgroup>
-            <optgroup label="Other Tools">
+            <optgroup label={t("char.other_tools_optgroup","Other Tools")}>
               {SKILLED_OPTIONS.filter(o => ["tool_thieves","tool_navigator","tool_herbalism","tool_disguise","tool_forgery","tool_poisoner"].includes(o.id) && (!selections.includes(o.id) || o.id === selections[i])).map(o => (
                 <option key={o.id} value={o.id}>{o.label}</option>
               ))}
             </optgroup>
-            <optgroup label="Musical Instruments">
+            <optgroup label={t("char.musical_instruments_optgroup","Musical Instruments")}>
               {SKILLED_OPTIONS.filter(o => o.type === "instrument" && (!selections.includes(o.id) || o.id === selections[i])).map(o => (
                 <option key={o.id} value={o.id}>{o.label}</option>
               ))}
@@ -203,20 +203,20 @@ function MusicianPicker({ choices, setChoice }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 11, color: C.textDim }}>3 Musical Instruments deiner Wahl:</div>
+      <div style={{ fontSize: 11, color: C.textDim }}>{t("char.musician_3","3 Musical Instruments deiner Wahl:")}</div>
       {[0, 1, 2].map(i => (
         <div key={i}>
-          <label style={sx.lbl}>Instrument {i + 1}</label>
+          <label style={sx.lbl}>{t("char.instrument_n","Instrument {n}").replace("{n}", i + 1)}</label>
           <select value={instruments[i] || ""} onChange={e => setInstr(i, e.target.value)} style={sx.sel}>
             <option value="">{t("char.choose_instrument_short","— Wähle Instrument —")}</option>
-            {MUSICAL_INSTRUMENTS.filter(t => !instruments.includes(t) || t === instruments[i]).map(t => (
-              <option key={t} value={t}>{t}</option>
+            {MUSICAL_INSTRUMENTS.filter(mi => !instruments.includes(mi) || mi === instruments[i]).map(mi => (
+              <option key={mi} value={mi}>{mi}</option>
             ))}
           </select>
         </div>
       ))}
       <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic" }}>
-        Performance-Effekt: Nach Short/Long Rest, spiele Stück → bis PB Verbündete (+ du) erhalten Heroic Inspiration.
+        {t("char.musician_hint","Performance-Effekt: Nach Short/Long Rest, spiele Stück → bis PB Verbündete (+ du) erhalten Heroic Inspiration.")}
       </div>
     </div>
   );
@@ -232,9 +232,9 @@ function LuckyTracker({ char, choices, setChoice }) {
   return (
     <div>
       <div style={{ fontSize: 12, color: C.text, marginBottom: 10 }}>
-        <b>Luck Points:</b> {remaining} / {max}
+        <b>{t("char.luck_points_lbl","Luck Points:")}</b> {remaining} / {max}
         <span style={{ color: C.textDim, fontSize: 10, marginLeft: 8 }}>
-          (PB × Punkte pro Long Rest, basiert auf Char-Level)
+          {t("char.luck_points_hint","(PB × Punkte pro Long Rest, basiert auf Char-Level)")}
         </span>
       </div>
 
@@ -246,7 +246,7 @@ function LuckyTracker({ char, choices, setChoice }) {
             <button
               key={i}
               onClick={() => setChoice("used", isUsed ? i : i + 1)}
-              title={isUsed ? "Verbraucht — klick um zurückzusetzen" : "Verfügbar — klick um zu verbrauchen"}
+              title={isUsed ? t("char.luck_used_title","Verbraucht — klick um zurückzusetzen") : t("char.luck_avail_title","Verfügbar — klick um zu verbrauchen")}
               style={{
                 width: 28, height: 28, borderRadius: "50%",
                 border: `2px solid ${isUsed ? C.textDim : C.amberBright}`,
@@ -261,10 +261,10 @@ function LuckyTracker({ char, choices, setChoice }) {
 
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
         <button onClick={() => setChoice("used", 0)} style={{ ...sx.bsm(C.gold), padding: "5px 10px", fontSize: 10 }}>
-          🌟 Long Rest Reset
+          {t("char.long_rest_reset","🌟 Long Rest Reset")}
         </button>
         <button onClick={() => setChoice("used", Math.min(max, used + 1))} style={{ ...sx.bsm(C.red), padding: "5px 10px", fontSize: 10 }}>
-          ⚡ Punkt verbrauchen
+          {t("char.spend_luck_pt","⚡ Punkt verbrauchen")}
         </button>
       </div>
 
@@ -302,8 +302,7 @@ function TavernBrawlerPicker({ choices, setChoice }) {
         ))}
       </div>
       <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", marginTop: 4, lineHeight: 1.5 }}>
-        <b>Brawler-Bonus:</b> Unarmed Strikes: 1d4 statt 1 Schaden. 1×/Zug nach Treffer mit Unarmed/Improvised: Push 5ft.
-        Improvised Weapons gelten als Proficient.
+        {t("char.brawler_hint","Brawler-Bonus: Unarmed Strikes: 1d4 statt 1 Schaden. 1×/Zug nach Treffer mit Unarmed/Improvised: Push 5ft. Improvised Weapons gelten als Proficient.")}
       </div>
     </div>
   );

@@ -140,11 +140,11 @@ export const DOWNTIME_ACTIVITIES = [
 ];
 
 export const DOWNTIME_TYPES = {
-  craft:    { label: "Handwerk",    color: "#c9a84c" },
-  earn:     { label: "Einnahmen",   color: "#68d18a" },
-  recovery: { label: "Erholung",    color: "#40a0ff" },
-  research: { label: "Recherche",   color: "#d070e0" },
-  train:    { label: "Training",    color: "#ff6644" },
-  social:   { label: "Sozial",      color: "#ffa460" },
-  trade:    { label: "Handel",      color: "#f59e0b" },
+  craft:    { label: "Handwerk",  key: "dt.type_craft",    color: "#c9a84c" },
+  earn:     { label: "Einnahmen", key: "dt.type_earn",     color: "#68d18a" },
+  recovery: { label: "Erholung",  key: "dt.type_recovery", color: "#40a0ff" },
+  research: { label: "Recherche", key: "dt.type_research", color: "#d070e0" },
+  train:    { label: "Training",  key: "dt.type_train",    color: "#ff6644" },
+  social:   { label: "Sozial",    key: "dt.type_social",   color: "#ffa460" },
+  trade:    { label: "Handel",    key: "dt.type_trade",    color: "#f59e0b" },
 };
