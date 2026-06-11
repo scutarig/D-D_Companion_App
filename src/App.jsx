@@ -350,6 +350,33 @@ function AppInner() {
         100% { background-position: -200% 0; }
       }
 
+      /* ── A11y: keyboard focus indicator (D2) ── */
+      *:focus-visible {
+        outline: 2px solid #c0a1ff !important;
+        outline-offset: 2px !important;
+        border-radius: 4px;
+      }
+      button:focus-visible, [role="button"]:focus-visible {
+        box-shadow: 0 0 0 3px rgba(192,161,255,0.35) !important;
+      }
+
+      /* ── A11y: prefers-reduced-motion (D7) ── */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+
+      /* ── Desktop hover affordances (D1) ── */
+      @media (hover: hover) {
+        button:not(:disabled):hover {
+          filter: brightness(1.1);
+        }
+        a:hover { text-decoration: underline; }
+      }
+
       /* ── Touch-Optimization for Tablets (S7 FE, iPad etc.) ──
          Bumps button padding/min-height on coarse-pointer devices ≥ 768px.
          Mobile (<768px) stays compact for bottom-nav efficiency. */
@@ -512,9 +539,15 @@ function AppInner() {
     if (!active) return;
     const pb   = getPB(active.level);
     const modS = s => { const m = Math.floor((s-10)/2); return m>=0?`+${m}`:String(m); };
-    const attrs = ["str","dex","con","int","wis","cha"].map(a=>`<tr><td>${a.toUpperCase()}</td><td>${active[a]||10}</td><td>${modS(active[a]||10)}</td></tr>`).join("");
-    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${active.name}</title><style>body{font-family:Calibri,sans-serif;padding:20px;max-width:680px}h1{margin:0}h3{border-bottom:1px solid #ccc;margin-top:16px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ddd;padding:4px 8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}.box{border:1px solid #ccc;padding:6px;text-align:center}.bv{font-size:20px;font-weight:bold}</style></head><body><h1>${active.name}</h1><p>${active.race} · ${active.klass} · Level ${active.level} · PB +${pb}</p><div class="grid"><div class="box"><div style="font-size:10px">HP</div><div class="bv">${active.hp}/${active.maxHp}</div></div><div class="box"><div style="font-size:10px">AC</div><div class="bv">${active.ac}</div></div><div class="box"><div style="font-size:10px">Init</div><div class="bv">${modS(active.dex||10)}</div></div><div class="box"><div style="font-size:10px">Gold</div><div class="bv">${active.gold||0}gp</div></div></div><h3>${t("pdf.attributes_h","Attribute")}</h3><table><tr><th>${t("pdf.attr_th","Attr")}</th><th>${t("pdf.value_th","Wert")}</th><th>${t("pdf.mod_th","Mod")}</th></tr>${attrs}</table>${active.traits?`<h3>${t("pdf.personality_h","Persönlichkeit")}</h3><p>${active.traits}</p>`:""}${active.features?`<h3>${t("pdf.features_h","Merkmale")}</h3><p>${active.features}</p>`:""}<p style="font-size:10px;color:#999">D&D Companion · ${new Date().toLocaleDateString(lang === "en" ? "en-US" : "de-DE")}</p></body></html>`;
-    const w = window.open("","_blank"); w.document.write(html); w.document.close(); setTimeout(()=>w.print(),300);
+    // Escape user-controlled strings to prevent XSS in the print window
+    const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+    const nlbr = s => esc(s).replace(/\n/g, "<br>");
+    const attrs = ["str","dex","con","int","wis","cha"].map(a=>`<tr><td>${a.toUpperCase()}</td><td>${esc(active[a]||10)}</td><td>${esc(modS(active[a]||10))}</td></tr>`).join("");
+    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc(active.name)}</title><style>body{font-family:Calibri,sans-serif;padding:20px;max-width:680px}h1{margin:0}h3{border-bottom:1px solid #ccc;margin-top:16px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ddd;padding:4px 8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}.box{border:1px solid #ccc;padding:6px;text-align:center}.bv{font-size:20px;font-weight:bold}</style></head><body><h1>${esc(active.name)}</h1><p>${esc(active.race)} · ${esc(active.klass)} · Level ${esc(active.level)} · PB +${esc(pb)}</p><div class="grid"><div class="box"><div style="font-size:10px">HP</div><div class="bv">${esc(active.hp)}/${esc(active.maxHp)}</div></div><div class="box"><div style="font-size:10px">AC</div><div class="bv">${esc(active.ac)}</div></div><div class="box"><div style="font-size:10px">Init</div><div class="bv">${esc(modS(active.dex||10))}</div></div><div class="box"><div style="font-size:10px">Gold</div><div class="bv">${esc(active.gold||0)}gp</div></div></div><h3>${esc(t("pdf.attributes_h","Attribute"))}</h3><table><tr><th>${esc(t("pdf.attr_th","Attr"))}</th><th>${esc(t("pdf.value_th","Wert"))}</th><th>${esc(t("pdf.mod_th","Mod"))}</th></tr>${attrs}</table>${active.traits?`<h3>${esc(t("pdf.personality_h","Persönlichkeit"))}</h3><p>${nlbr(active.traits)}</p>`:""}${active.features?`<h3>${esc(t("pdf.features_h","Merkmale"))}</h3><p>${nlbr(active.features)}</p>`:""}<p style="font-size:10px;color:#999">D&amp;D Companion · ${esc(new Date().toLocaleDateString(lang === "en" ? "en-US" : "de-DE"))}</p></body></html>`;
+    const w = window.open("","_blank");
+    if (!w) { alert(t("nav.popup_blocked","Popup-Blocker aktiv — bitte für diese Seite erlauben.")); return; }
+    w.document.write(html); w.document.close();
+    setTimeout(() => { try { w.print(); } catch (_) {} }, 300);
   };
 
   const isRef = REF_TABS.some(td => td.id === tab);

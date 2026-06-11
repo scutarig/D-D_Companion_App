@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { C, FH } from "../../constants/theme.js";
 
 const CATEGORY_CFG = {
@@ -9,7 +10,7 @@ const CATEGORY_CFG = {
  * TraitFeatureCard — Individual trait or feature display card
  * Props: trait { id, name, description, source, category }
  */
-export default function TraitFeatureCard({ trait }) {
+function TraitFeatureCard({ trait }) {
   const cfg = CATEGORY_CFG[trait.category] ?? CATEGORY_CFG.trait;
 
   return (
@@ -44,3 +45,5 @@ export default function TraitFeatureCard({ trait }) {
     </div>
   );
 }
+
+export default memo(TraitFeatureCard);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { getCondition, getConditionId } from "../../../utils/conditions.js";
 import { C } from "../../../constants/theme.js";
 import { useI18n } from "../../../i18n/index.js";
@@ -9,7 +10,7 @@ import { useI18n } from "../../../i18n/index.js";
  *   onRemove: () => void   (optional — shows ✕ button)
  *   size: "sm" | "md"
  */
-export default function ConditionBadge({ conditionId, onRemove, size = "md" }) {
+function ConditionBadge({ conditionId, onRemove, size = "md" }) {
   const { lang } = useI18n();
   const id = getConditionId(conditionId);
   const cond = getCondition(id);
@@ -67,3 +68,5 @@ export default function ConditionBadge({ conditionId, onRemove, size = "md" }) {
     </div>
   );
 }
+
+export default memo(ConditionBadge);

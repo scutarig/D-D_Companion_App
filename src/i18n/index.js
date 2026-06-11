@@ -28,7 +28,6 @@ const SUPPORTED_LANGS = ["de", "en"];
 // ─── Translation Dictionaries ──────────────────────────────────────────────
 const TRANSLATIONS = {
   de: {
-    // ── Mode + Header ────────────────────────────────────────────────────
     "mode.switch_to_player": "👤 Zu Spieler",
     "mode.switch_to_dm": "🎲 Zu DM",
     "mode.confirm_title_player": "Wechsel in Spieler-Modus?",
@@ -36,26 +35,18 @@ const TRANSLATIONS = {
     "mode.confirm_warning": "ACHTUNG — Spoiler-Risiko!",
     "mode.confirm_dm_desc": "Im DM-Modus siehst du alle Monster-Stats ohne Spoiler-Filter und alle Referenzen. Save/PDF-Funktionen + Rast-Buttons werden versteckt.",
     "mode.confirm_player_desc": "Im Spieler-Modus werden alle DM-Tabs (Kampf, Bestiary, Klassen-Ref, Völker-Ref, Encounter) ausgeblendet. Save/PDF und Heldenhafte Inspiration werden wieder sichtbar.",
-
-    // ── Header Buttons ───────────────────────────────────────────────────
     "header.heroic_inspiration": "Heldenhafte Inspiration",
     "header.short_rest": "Kurze Rast",
     "header.long_rest": "Lange Rast",
-
-    // ── Rest Banner ──────────────────────────────────────────────────────
     "rest.short_active": "◆ KURZE RAST",
     "rest.long_active": "◆ LANGE RAST",
     "rest.long_effects": "Volle TP · Alle Slots · Ressourcen zurück · Erschöpfung -1",
     "rest.heal_hp": "TP heilen:",
     "rest.heroic_inspiration_grant": "✦ Heldenhafte Inspiration (Mensch: Findig)",
     "rest.mastery_swap": "🗡️ Waffenmeisterschafts-Wechsel erlaubt — ggf. im Charakter-Tab tauschen",
-
-    // ── Common Actions ───────────────────────────────────────────────────
     "action.save": "Speichern",
     "action.cancel": "Abbrechen",
     "action.confirm": "Bestätigen",
-
-    // ── Tab Labels ───────────────────────────────────────────────────────
     "tab.overview": "Übersicht",
     "tab.character": "Charakter",
     "tab.companions": "Begleiter",
@@ -71,14 +62,10 @@ const TRANSLATIONS = {
     "tab.classes": "Klassen",
     "tab.species": "Völker",
     "tab.quickref": "Schnellreferenz",
-
-    // ── Common UI ────────────────────────────────────────────────────────
     "ui.search_placeholder": "🔍 Suchen…",
     "ui.no_character": "Kein Charakter gewählt",
     "ui.dm_no_character_needed": "🎲 DM-Modus aktiv — kein Charakter erforderlich",
     "ui.more": "Mehr",
-
-    // ── Encounter Builder ────────────────────────────────────────────────
     "encounter.title": "🎲 ENCOUNTER BUILDER · PHB 2024 / DMG 2024",
     "encounter.party_level": "Gruppen-Level",
     "encounter.party_size": "Gruppen-Größe",
@@ -92,8 +79,6 @@ const TRANSLATIONS = {
     "encounter.combat_archive": "📜 KAMPF-ARCHIV",
     "encounter.empty_state_title": "Bereit für Encounter-Design",
     "encounter.empty_state_desc": "Wähle unten Monster aus, um sie zur Begegnung hinzuzufügen. Die XP-Budget-Bar oben zeigt live ob die Begegnung zur Schwierigkeit passt.",
-
-    // ── Bestiary ─────────────────────────────────────────────────────────
     "bestiary.cr_filter_all": "Alle",
     "bestiary.cr_filter_weak": "<1",
     "bestiary.cr_filter_moderate": "1-4",
@@ -120,8 +105,6 @@ const TRANSLATIONS = {
     "bestiary.bonus_actions": "Bonus-Aktionen",
     "bestiary.reactions": "Reaktionen",
     "bestiary.legendary": "Legendäre Aktionen",
-
-    // ── Katalog (Items) ──────────────────────────────────────────────────
     "katalog.add_custom": "+ Eigenes Item",
     "katalog.search": "🔍 Suchen…",
     "katalog.items_count": "Items",
@@ -137,8 +120,6 @@ const TRANSLATIONS = {
     "katalog.save": "Speichern",
     "katalog.cancel": "Abbrechen",
     "katalog.edit": "Bearbeiten",
-
-    // ── Notes ────────────────────────────────────────────────────────────
     "notes.cat_all": "Alle",
     "notes.cat_location": "Location",
     "notes.cat_story": "Story",
@@ -160,8 +141,6 @@ const TRANSLATIONS = {
     "notes.ph_story": "Plotpunkte, Hinweise, Twist-Ideen...",
     "notes.ph_misc": "Freie Notizen...",
     "notes.empty_state": "Wähle eine Notiz oder erstelle eine neue.",
-
-    // ── CharActions ──────────────────────────────────────────────────────
     "actions.header": "Aktionen, Bonus-Aktionen und Reaktionen",
     "actions.pinned": "auf Übersicht",
     "actions.std_dnd": "Standard D&D",
@@ -189,8 +168,6 @@ const TRANSLATIONS = {
     "actions.empty_for_type": "Keine {type}. Nutze 'Standard D&D' oder '+ Eigene Aktion'.",
     "actions.empty_title": "Noch keine Aktionen angelegt",
     "actions.empty_desc": "Nutze 'Standard D&D' für vorgefertigte Regelwerk-Aktionen oder erstelle eigene.",
-
-    // ── CharSheet ────────────────────────────────────────────────────────
     "sheet.name": "Name",
     "sheet.primary_class": "Primärklasse",
     "sheet.classes_short": "Kl.",
@@ -239,23 +216,15 @@ const TRANSLATIONS = {
     "sheet.ph_features": "Klassen-Features, Volksfähigkeiten…",
     "sheet.backstory": "Hintergrundgeschichte",
     "sheet.ph_backstory": "Woher komme ich? Was motiviert mich?",
-
-    // ── Combat (alerts/confirms) ─────────────────────────────────────────
     "combat.err_name_required": "Name erforderlich!",
     "combat.err_select_monster": "Monster auswählen!",
     "combat.confirm_end": "Kampf beenden?",
-
-    // ── Worldbuilding (confirms) ─────────────────────────────────────────
     "wb.confirm_delete_faction": "Fraktion löschen?",
     "wb.confirm_delete_location": "Ort löschen?",
     "wb.confirm_delete_quest": "Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)",
-
-    // ── EncounterBuilder (confirms) ──────────────────────────────────────
     "encounter.confirm_clear": "Encounter wirklich leeren?",
     "encounter.confirm_delete_saved": "Gespeicherten Encounter löschen?",
     "encounter.confirm_delete_archive": "Archiv-Eintrag löschen?",
-
-    // ── Tokens ───────────────────────────────────────────────────────────
     "tokens.spell_slots": "Zauberplätze",
     "tokens.auto": "automatisch",
     "tokens.short_long_rest": "Kurze/Lange Rast",
@@ -276,8 +245,6 @@ const TRANSLATIONS = {
     "tokens.count": "Anzahl",
     "tokens.type": "Typ",
     "tokens.color": "Farbe",
-
-    // ── Currency ─────────────────────────────────────────────────────────
     "currency.transaction": "Transaktion",
     "currency.amount": "Betrag",
     "currency.currency": "Währung",
@@ -289,26 +256,18 @@ const TRANSLATIONS = {
     "currency.purse": "Geldbeutel",
     "currency.calculator": "Währungsrechner",
     "currency.from": "Von",
-
-    // ── Inventory ────────────────────────────────────────────────────────
     "inv.wealth": "Vermögen",
     "inv.weight": "Gewicht",
     "inv.equipment": "Ausrüstung & Rucksack",
     "inv.catalog": "Katalog",
     "inv.no_char": "Kein Charakter aktiv",
     "inv.no_char_hint": "Wechsle zum Charakter-Tab und wähle einen Charakter aus.",
-
-    // ── Audit-Fix-Keys (Welle 3 Polish) ──────────────────────────────────
     "sheet.from_background": "aus Background",
     "currency.total_wealth": "GESAMTVERMÖGEN",
     "currency.optimize": "Münzen optimieren",
-
-    // ── Exhaustion Tracker ───────────────────────────────────────────────
     "exh.title": "ERSCHÖPFUNG",
     "exh.confirm_death": "Stufe 6 bedeutet Tod des Charakters. Fortfahren?",
     "exh.level0_hint": "Kein Erschöpfungsgrad aktiv. Lange Rast reduziert um 1 Stufe.",
-
-    // ── Dice Roller ──────────────────────────────────────────────────────
     "dice.normal": "Normal",
     "dice.advantage": "Vorteil",
     "dice.disadvantage": "Nachteil",
@@ -332,8 +291,6 @@ const TRANSLATIONS = {
     "dice.inspiration_upper": "INSPIRATION",
     "dice.nat20": "NAT 20!",
     "dice.fumble": "PATZER!",
-
-    // ── ConditionsTracker ────────────────────────────────────────────────
     "cond.attacker_dis": "Nachteil auf eigene Angriffe",
     "cond.attacker_adv": "Vorteil auf eigene Angriffe",
     "cond.target_adv": "Angriffe gegen dich: Vorteil",
@@ -348,8 +305,6 @@ const TRANSLATIONS = {
     "cond.pick": "Condition wählen",
     "cond.active": "AKTIV",
     "cond.speed_zero": "Tempo = 0",
-
-    // ── Combat (Turn Manager) ────────────────────────────────────────────
     "combat.round": "Runde",
     "combat.fighters": "Kämpfer",
     "combat.archive": "Kampf-Archiv",
@@ -365,18 +320,12 @@ const TRANSLATIONS = {
     "combat.turn_order_upper": "REIHENFOLGE",
     "combat.undo": "Rückgängig (Strg+Z)",
     "combat.redo": "Wiederholen (Strg+Y)",
-
-    // ── Save/Export ──────────────────────────────────────────────────────
     "save.title": "Charakter speichern",
     "save.export_json": "JSON exportieren",
     "save.export_pdf": "PDF drucken",
     "save.dm_mode_active": "DM-MODUS AKTIV",
     "save.player_mode_active": "SPIELER-MODUS AKTIV",
     "save.switch": "Wechseln",
-
-    // ── CharManager Subtabs ──────────────────────────────────────────────
-
-    // ── Concentration Banner ─────────────────────────────────────────────
     "concentration.active": "KONZENTRATION AKTIV",
     "concentration.end": "Beenden",
     "concentration.dc_formula": "DC = max(10, Schaden ÷ 2)",
@@ -386,15 +335,11 @@ const TRANSLATIONS = {
     "concentration.broken": "Konzentration gebrochen!",
     "concentration.dice": "Würfel",
     "concentration.war_caster_adv": "War Caster: Vorteil",
-
-    // ── SpellCastModal ───────────────────────────────────────────────────
     "spellcast.choose_slot": "Zauberplatz-Stufe wählen",
     "spellcast.no_slots": "Keine Zauberplätze verfügbar",
     "spellcast.level": "Stufe",
     "spellcast.cast": "gewirkt!",
     "spellcast.conc_active": "Konzentration aktiv — erscheint als Condition",
-
-    // ── QuickRef ─────────────────────────────────────────────────────────
     "quickref.conditions": "⚡ Zustände",
     "quickref.actions": "🎯 Aktionen",
     "quickref.combat": "⚔️ Kampf",
@@ -410,8 +355,6 @@ const TRANSLATIONS = {
     "quickref.bonus_section": "Bonus-Aktionen",
     "quickref.reactions_section": "Reaktionen",
     "quickref.mastery_intro": "PHB 2024 Reform: Jede Waffe hat eine Meisterschafts-Eigenschaft, die durch Klassen-Feature freigeschaltet wird (Barbar, Kämpfer, Paladin, Waldläufer, Schurke Lv1). Du kannst eine bestimmte Anzahl Waffen-Meisterschaften gleichzeitig nutzen.",
-
-    // ── KlassenRef / VoelkerRef ──────────────────────────────────────────
     "ref.search_class": "🔍 Klasse suchen…",
     "ref.search_species": "🔍 Volk suchen…",
     "ref.about_class": "Über die Klasse",
@@ -436,8 +379,6 @@ const TRANSLATIONS = {
     "ref.edition_all": "Alle",
     "ref.edition_2024": "PHB 2024",
     "ref.edition_legacy": "Legacy",
-
-    // ── Welle 6: Combat Sub-Components ──────────────────────────────────
     "combat.movement_upper": "BEWEGUNG",
     "combat.free_upper": "FREE",
     "combat.more_actions": "▶ Mehr Aktionen...",
@@ -602,8 +543,6 @@ const TRANSLATIONS = {
     "combat.err_preset_name": "Preset-Name erforderlich!",
     "combat.confirm_delete_preset": "Preset löschen?",
     "combat.remove_class_title": "Klasse entfernen",
-
-    // ── Welle 7: CharacterSheet Sub-Components ────────────────────────────
     "char.species_label": "Volk / Species",
     "char.custom_option": "Eigenes...",
     "char.custom_placeholder": "Eigenes Volk...",
@@ -723,8 +662,6 @@ const TRANSLATIONS = {
     "char.prepared_intro": "2024 Reform: Alle Caster nutzen \"Prepared\" (Sorcerer/Warlock/Bard waren vorher \"Known\"). Nach Long Rest darfst du die Auswahl tauschen. Verwaltung im Spellbook-Tab.",
     "char.limit_lbl": "Limit:",
     "char.no_prepared_yet": "Noch keine Zauber vorbereitet — wähle im Spellbook-Tab.",
-
-    // ── Welle 8: Worldbuilding ─────────────────────────────────────────────
     "wb.header_title": "WELTENBAU",
     "wb.header_subtitle": "Quests · Orte · Fraktionen · Downtime",
     "wb.tab_quests": "📋 Quests",
@@ -817,8 +754,6 @@ const TRANSLATIONS = {
     "wb.rep_trusted": "Vertraut",
     "wb.rep_allied": "Verbündet",
     "wb.total_word": "total",
-
-    // ── Welle 9: Spellbook + Companions ────────────────────────────────────
     "sb.all_tab": "📚 Alle",
     "sb.known_tab": "⭐ Bekannt",
     "sb.prepared_tab": "🕯️ Vorbereitet",
@@ -849,7 +784,6 @@ const TRANSLATIONS = {
     "sb.cantrip_limit_warning_body": "{klass} (Lv{lv}) hat bereits {cur}/{max} Cantrips bekannt. Trotzdem hinzufügen?",
     "sb.bonus_action_rule": "PHB 2024 — Bonus-Action Spell Rule:",
     "sb.bonus_action_desc": "Wenn du diesen Zauber als Bonus Action wirkst, darfst du auf demselben Zug als Action nur einen Cantrip mit 1 Aktion Casting Time wirken (keinen Lv1+ Spell).",
-
     "comp.header_title": "Begleiter",
     "comp.no_companions": "Noch keine Begleiter",
     "comp.ready_count": "kampfbereit",
@@ -906,8 +840,6 @@ const TRANSLATIONS = {
     "comp.import_no_monster": "Kein Monster gefunden",
     "comp.import_btn": "✓ {name} importieren",
     "comp.import_select_btn": "Monster wählen",
-
-    // ── Welle 10: Downtime + Proficiencies + WildShape + Others ────────────
     "dt.active_header": "⏳ AKTIVE AKTIVITÄTEN",
     "dt.history_btn": "📋 Verlauf",
     "dt.no_active": "Keine aktiven Aktivitäten. Starte eine aus der Liste unten.",
@@ -920,7 +852,6 @@ const TRANSLATIONS = {
     "dt.clear_history": "🗑️ Verlauf leeren",
     "dt.start_new_header": "🎭 NEUE AKTIVITÄT STARTEN",
     "dt.abandoned": "Abgebrochen",
-
     "prof.header_title": "Übungsbonus",
     "prof.no_entries": "Noch keine Proficiencies eingetragen",
     "prof.n_entries": "Einträge",
@@ -940,8 +871,6 @@ const TRANSLATIONS = {
     "prof.save_btn": "✓ Speichern",
     "prof.add_short": "＋ Hinzufügen",
     "prof.cancel_btn": "Abbrechen",
-
-    // ── Welle 11: Edge Cases — NPC + Inventory + WildShape + Katalog ──────
     "npc.dm_mode": "🎲 DM-Modus",
     "npc.dm_mode_active_title": "DM-Modus ist aktiv — DM-Notizen sichtbar",
     "npc.dm_mode_inactive_title": "DM-Modus inaktiv — DM-Notizen versteckt",
@@ -1000,7 +929,6 @@ const TRANSLATIONS = {
     "npc.status_dead": "tot",
     "npc.status_unknown": "unbekannt",
     "npc.status_captured": "gefangen",
-
     "inv.equipment_header": "Ausrüstung",
     "inv.backpack_header": "Rucksack",
     "inv.attunement_header": "✨ Attunement",
@@ -1059,7 +987,6 @@ const TRANSLATIONS = {
     "inv.slot_main": "Haupthand",
     "inv.slot_off": "Nebenhand",
     "inv.slot_feet": "Füße",
-
     "ws.wild_shape_header": "🐺 WILD SHAPE",
     "ws.polymorph_header": "🔮 POLYMORPH",
     "ws.uses_label": "Verwendungen:",
@@ -1082,7 +1009,6 @@ const TRANSLATIONS = {
     "ws.wild_shape_short": "Wild Shape:",
     "ws.transform_short": "🐺 Transform",
     "ws.polymorph_short": "🔮 Polymorph",
-
     "katalog.magic_variant_header": "✨ ALS MAGISCHE VARIANTE HINZUFÜGEN",
     "katalog.custom_item_tag": "Eigenes Item",
     "katalog.no_magic_title": "Standard ohne Magie",
@@ -1093,8 +1019,6 @@ const TRANSLATIONS = {
     "katalog.to_inventory": "📦 Zu Inventar",
     "katalog.edit_item_title": "✏️ Item bearbeiten",
     "katalog.create_custom_title": "✏️ Eigenes Item erstellen",
-
-    // ── Welle 12: LevelUp + CombatDashboard + CharManager ──────────────────
     "lvl.title": "⬆️ Level-Up",
     "lvl.max_reached": "Level 20 erreicht — maximales Level!",
     "lvl.reached": "Level {n} erreicht!",
@@ -1160,31 +1084,6 @@ const TRANSLATIONS = {
     "lvl.rem_recalc": "📐 Nach ASI: Alle abhängigen Werte neu berechnen (AC, HP, Angriffsboni, Rettungswürfe, Zaubersave-DC).",
     "lvl.rem_pb": "🎖️ PB steigt auf +{pb}: Alle Proficiency-abhängigen Boni aktualisieren (Angriffe, Skills, Rettungswürfe, Zaubersave-DC).",
     "lvl.rem_subclass": "🔱 Unterklasse wählen: {klass} wählt auf Level 3 seinen Archetypen/Pfad/Domäne/Schule. (PHB 2024)",
-
-
-
-    // ── Welle 13: Final 20 ──────────────────────────────────────────────────
-
-    // ── Welle 14: Audit Bug-Fixes ──────────────────────────────────────────
-    "char.default_name": "Neuer Held",
-    "char.default_race": "Mensch",
-    "char.default_class": "Kämpfer",
-    "char.default_background": "Soldat",
-    "char.file_too_large": "Datei zu groß (max 512 KB).",
-    "err.title": "Etwas ist schiefgelaufen",
-    "err.body": "Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.",
-    "err.reload_btn": "🔄 Neu laden",
-    "err.details_summary": "Technische Details",
-
-    "char.default_name": "Neuer Held",
-    "char.default_race": "Mensch",
-    "char.default_class": "Kämpfer",
-    "char.default_background": "Soldat",
-    "char.file_too_large": "Datei zu groß (max 512 KB).",
-    "err.title": "Etwas ist schiefgelaufen",
-    "err.body": "Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.",
-    "err.reload_btn": "🔄 Neu laden",
-    "err.details_summary": "Technische Details",
     "lvl.rem_fighter_extra": "⚔️ Extra-Angriff prüfen: Kämpfer hat auf Level {lv} {n} Angriffe pro Angriffsaktion.",
     "lvl.rem_extra_attack": "⚔️ Extra-Angriff: Ab jetzt 2 Angriffe pro Angriffsaktion.",
     "lvl.rem_new_spells": "📖 Neue Zauber auswählen und ins Zauberbuch / die Zauberliste eintragen.",
@@ -1374,12 +1273,18 @@ const TRANSLATIONS = {
     "katalog.cat_magic": "✨ Magic",
     "katalog.cat_scrolls": "📜 Scrolls",
     "katalog.cat_tools": "🔧 Tools",
-    "char.import_too_large": "File too large (max 5 MB).",
-    "char.import_invalid_schema": "File schema invalid — missing or invalid required fields.",
+    "char.default_name": "Neuer Held",
+    "char.default_race": "Mensch",
+    "char.default_class": "Kämpfer",
+    "char.default_background": "Soldat",
+    "char.file_too_large": "Datei zu groß (max 512 KB).",
+    "err.title": "Etwas ist schiefgelaufen",
+    "err.body": "Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.",
+    "err.reload_btn": "🔄 Neu laden",
+    "err.details_summary": "Technische Details",
   },
 
   en: {
-    // ── Mode + Header ────────────────────────────────────────────────────
     "mode.switch_to_player": "👤 To Player",
     "mode.switch_to_dm": "🎲 To DM",
     "mode.confirm_title_player": "Switch to Player Mode?",
@@ -1387,26 +1292,18 @@ const TRANSLATIONS = {
     "mode.confirm_warning": "WARNING — Spoiler Risk!",
     "mode.confirm_dm_desc": "In DM mode you see all monster stats without spoiler filter and all references. Save/PDF + Rest buttons are hidden.",
     "mode.confirm_player_desc": "In Player mode all DM tabs (Combat, Bestiary, Classes Ref, Species Ref, Encounter) are hidden. Save/PDF and Heroic Inspiration become visible again.",
-
-    // ── Header Buttons ───────────────────────────────────────────────────
     "header.heroic_inspiration": "Heroic Inspiration",
     "header.short_rest": "Short Rest",
     "header.long_rest": "Long Rest",
-
-    // ── Rest Banner ──────────────────────────────────────────────────────
     "rest.short_active": "◆ SHORT REST",
     "rest.long_active": "◆ LONG REST",
     "rest.long_effects": "Full HP · All Slots · Resources reset · Exhaustion -1",
     "rest.heal_hp": "Heal HP:",
     "rest.heroic_inspiration_grant": "✦ Heroic Inspiration (Human: Resourceful)",
     "rest.mastery_swap": "🗡️ Weapon Mastery Swap allowed — change in Character tab if desired",
-
-    // ── Common Actions ───────────────────────────────────────────────────
     "action.save": "Save",
     "action.cancel": "Cancel",
     "action.confirm": "Confirm",
-
-    // ── Tab Labels ───────────────────────────────────────────────────────
     "tab.overview": "Overview",
     "tab.character": "Character",
     "tab.companions": "Companions",
@@ -1422,14 +1319,10 @@ const TRANSLATIONS = {
     "tab.classes": "Classes",
     "tab.species": "Species",
     "tab.quickref": "Quick Reference",
-
-    // ── Common UI ────────────────────────────────────────────────────────
     "ui.search_placeholder": "🔍 Search…",
     "ui.no_character": "No character selected",
     "ui.dm_no_character_needed": "🎲 DM mode active — no character required",
     "ui.more": "More",
-
-    // ── Encounter Builder ────────────────────────────────────────────────
     "encounter.title": "🎲 ENCOUNTER BUILDER · PHB 2024 / DMG 2024",
     "encounter.party_level": "Party Level",
     "encounter.party_size": "Party Size",
@@ -1443,8 +1336,6 @@ const TRANSLATIONS = {
     "encounter.combat_archive": "📜 COMBAT ARCHIVE",
     "encounter.empty_state_title": "Ready for Encounter Design",
     "encounter.empty_state_desc": "Pick monsters below to add them to your encounter. The XP budget bar above shows live whether the encounter matches the difficulty.",
-
-    // ── Bestiary ─────────────────────────────────────────────────────────
     "bestiary.cr_filter_all": "All",
     "bestiary.cr_filter_weak": "<1",
     "bestiary.cr_filter_moderate": "1-4",
@@ -1471,8 +1362,6 @@ const TRANSLATIONS = {
     "bestiary.bonus_actions": "Bonus Actions",
     "bestiary.reactions": "Reactions",
     "bestiary.legendary": "Legendary Actions",
-
-    // ── Katalog (Items) ──────────────────────────────────────────────────
     "katalog.add_custom": "+ Custom Item",
     "katalog.search": "🔍 Search…",
     "katalog.items_count": "Items",
@@ -1488,8 +1377,6 @@ const TRANSLATIONS = {
     "katalog.save": "Save",
     "katalog.cancel": "Cancel",
     "katalog.edit": "Edit",
-
-    // ── Notes ────────────────────────────────────────────────────────────
     "notes.cat_all": "All",
     "notes.cat_location": "Location",
     "notes.cat_story": "Story",
@@ -1511,8 +1398,6 @@ const TRANSLATIONS = {
     "notes.ph_story": "Plot points, hints, twist ideas...",
     "notes.ph_misc": "Free notes...",
     "notes.empty_state": "Select a note or create a new one.",
-
-    // ── CharActions ──────────────────────────────────────────────────────
     "actions.header": "Actions, Bonus Actions, and Reactions",
     "actions.pinned": "on overview",
     "actions.std_dnd": "Standard D&D",
@@ -1540,8 +1425,6 @@ const TRANSLATIONS = {
     "actions.empty_for_type": "No {type}. Use 'Standard D&D' or '+ Custom Action'.",
     "actions.empty_title": "No actions created yet",
     "actions.empty_desc": "Use 'Standard D&D' for prefab rulebook actions or create your own.",
-
-    // ── CharSheet ────────────────────────────────────────────────────────
     "sheet.name": "Name",
     "sheet.primary_class": "Primary Class",
     "sheet.classes_short": "Cl.",
@@ -1590,23 +1473,15 @@ const TRANSLATIONS = {
     "sheet.ph_features": "Class features, racial traits…",
     "sheet.backstory": "Backstory",
     "sheet.ph_backstory": "Where do I come from? What drives me?",
-
-    // ── Combat (alerts/confirms) ─────────────────────────────────────────
     "combat.err_name_required": "Name required!",
     "combat.err_select_monster": "Select a monster!",
     "combat.confirm_end": "End combat?",
-
-    // ── Worldbuilding (confirms) ─────────────────────────────────────────
     "wb.confirm_delete_faction": "Delete faction?",
     "wb.confirm_delete_location": "Delete location?",
     "wb.confirm_delete_quest": "Delete quest?\n(This action cannot be undone.)",
-
-    // ── EncounterBuilder (confirms) ──────────────────────────────────────
     "encounter.confirm_clear": "Really clear encounter?",
     "encounter.confirm_delete_saved": "Delete saved encounter?",
     "encounter.confirm_delete_archive": "Delete archive entry?",
-
-    // ── Tokens ───────────────────────────────────────────────────────────
     "tokens.spell_slots": "Spell Slots",
     "tokens.auto": "auto",
     "tokens.short_long_rest": "Short/Long Rest",
@@ -1627,8 +1502,6 @@ const TRANSLATIONS = {
     "tokens.count": "Count",
     "tokens.type": "Type",
     "tokens.color": "Color",
-
-    // ── Currency ─────────────────────────────────────────────────────────
     "currency.transaction": "Transaction",
     "currency.amount": "Amount",
     "currency.currency": "Currency",
@@ -1640,26 +1513,18 @@ const TRANSLATIONS = {
     "currency.purse": "Purse",
     "currency.calculator": "Currency Converter",
     "currency.from": "From",
-
-    // ── Inventory ────────────────────────────────────────────────────────
     "inv.wealth": "Wealth",
     "inv.weight": "Weight",
     "inv.equipment": "Equipment & Pack",
     "inv.catalog": "Catalog",
     "inv.no_char": "No active character",
     "inv.no_char_hint": "Switch to Character tab and select a character.",
-
-    // ── Audit-Fix-Keys (Wave 3 Polish) ───────────────────────────────────
     "sheet.from_background": "from Background",
     "currency.total_wealth": "TOTAL WEALTH",
     "currency.optimize": "Optimize coins",
-
-    // ── Exhaustion Tracker ───────────────────────────────────────────────
     "exh.title": "EXHAUSTION",
     "exh.confirm_death": "Level 6 means the character dies. Continue?",
     "exh.level0_hint": "No exhaustion active. A Long Rest reduces it by 1 level.",
-
-    // ── Dice Roller ──────────────────────────────────────────────────────
     "dice.normal": "Normal",
     "dice.advantage": "Advantage",
     "dice.disadvantage": "Disadvantage",
@@ -1683,8 +1548,6 @@ const TRANSLATIONS = {
     "dice.inspiration_upper": "INSPIRATION",
     "dice.nat20": "NAT 20!",
     "dice.fumble": "FUMBLE!",
-
-    // ── ConditionsTracker ────────────────────────────────────────────────
     "cond.attacker_dis": "Disadvantage on your attacks",
     "cond.attacker_adv": "Advantage on your attacks",
     "cond.target_adv": "Attacks against you: Advantage",
@@ -1699,8 +1562,6 @@ const TRANSLATIONS = {
     "cond.pick": "Pick Condition",
     "cond.active": "ACTIVE",
     "cond.speed_zero": "Speed = 0",
-
-    // ── Combat (Turn Manager) ────────────────────────────────────────────
     "combat.round": "Round",
     "combat.fighters": "Combatants",
     "combat.archive": "Combat Archive",
@@ -1716,18 +1577,12 @@ const TRANSLATIONS = {
     "combat.turn_order_upper": "TURN ORDER",
     "combat.undo": "Undo (Ctrl+Z)",
     "combat.redo": "Redo (Ctrl+Y)",
-
-    // ── Save/Export ──────────────────────────────────────────────────────
     "save.title": "Save Character",
     "save.export_json": "Export JSON",
     "save.export_pdf": "Print PDF",
     "save.dm_mode_active": "DM MODE ACTIVE",
     "save.player_mode_active": "PLAYER MODE ACTIVE",
     "save.switch": "Switch",
-
-    // ── CharManager Subtabs ──────────────────────────────────────────────
-
-    // ── Concentration Banner ─────────────────────────────────────────────
     "concentration.active": "CONCENTRATION ACTIVE",
     "concentration.end": "End",
     "concentration.dc_formula": "DC = max(10, Damage ÷ 2)",
@@ -1737,15 +1592,11 @@ const TRANSLATIONS = {
     "concentration.broken": "Concentration broken!",
     "concentration.dice": "Die",
     "concentration.war_caster_adv": "War Caster: Advantage",
-
-    // ── SpellCastModal ───────────────────────────────────────────────────
     "spellcast.choose_slot": "Choose spell slot level",
     "spellcast.no_slots": "No spell slots available",
     "spellcast.level": "Level",
     "spellcast.cast": "cast!",
     "spellcast.conc_active": "Concentration active — appears as Condition",
-
-    // ── QuickRef ─────────────────────────────────────────────────────────
     "quickref.conditions": "⚡ Conditions",
     "quickref.actions": "🎯 Actions",
     "quickref.combat": "⚔️ Combat",
@@ -1761,8 +1612,6 @@ const TRANSLATIONS = {
     "quickref.bonus_section": "Bonus Actions",
     "quickref.reactions_section": "Reactions",
     "quickref.mastery_intro": "PHB 2024 Reform: Each weapon has a Mastery Property unlocked by a class feature (Barbarian, Fighter, Paladin, Ranger, Rogue Lv1). You can use a certain number of weapon masteries at once.",
-
-    // ── KlassenRef / VoelkerRef ──────────────────────────────────────────
     "ref.search_class": "🔍 Search class…",
     "ref.search_species": "🔍 Search species…",
     "ref.about_class": "About the Class",
@@ -1787,8 +1636,6 @@ const TRANSLATIONS = {
     "ref.edition_all": "All",
     "ref.edition_2024": "PHB 2024",
     "ref.edition_legacy": "Legacy",
-
-    // ── Wave 6: Combat Sub-Components ────────────────────────────────────
     "combat.movement_upper": "MOVEMENT",
     "combat.free_upper": "FREE",
     "combat.more_actions": "▶ More Actions...",
@@ -1953,8 +1800,6 @@ const TRANSLATIONS = {
     "combat.err_preset_name": "Preset name required!",
     "combat.confirm_delete_preset": "Delete preset?",
     "combat.remove_class_title": "Remove class",
-
-    // ── Wave 7: CharacterSheet Sub-Components ──────────────────────────
     "char.species_label": "Species",
     "char.custom_option": "Custom...",
     "char.custom_placeholder": "Custom species...",
@@ -2074,8 +1919,6 @@ const TRANSLATIONS = {
     "char.prepared_intro": "2024 Reform: All casters use \"Prepared\" (Sorcerer/Warlock/Bard were previously \"Known\"). After Long Rest you may swap the selection. Manage in the Spellbook tab.",
     "char.limit_lbl": "Limit:",
     "char.no_prepared_yet": "No prepared spells yet — pick in the Spellbook tab.",
-
-    // ── Wave 8: Worldbuilding ──────────────────────────────────────────────
     "wb.header_title": "WORLDBUILDING",
     "wb.header_subtitle": "Quests · Locations · Factions · Downtime",
     "wb.tab_quests": "📋 Quests",
@@ -2168,8 +2011,6 @@ const TRANSLATIONS = {
     "wb.rep_trusted": "Trusted",
     "wb.rep_allied": "Allied",
     "wb.total_word": "total",
-
-    // ── Wave 9: Spellbook + Companions ─────────────────────────────────────
     "sb.all_tab": "📚 All",
     "sb.known_tab": "⭐ Known",
     "sb.prepared_tab": "🕯️ Prepared",
@@ -2200,7 +2041,6 @@ const TRANSLATIONS = {
     "sb.cantrip_limit_warning_body": "{klass} (Lv{lv}) already has {cur}/{max} cantrips known. Add anyway?",
     "sb.bonus_action_rule": "PHB 2024 — Bonus Action Spell Rule:",
     "sb.bonus_action_desc": "If you cast this spell as a Bonus Action, you may only cast a Cantrip with a 1 Action casting time as your Action that turn (no Lv1+ spell).",
-
     "comp.header_title": "Companions",
     "comp.no_companions": "No companions yet",
     "comp.ready_count": "ready for combat",
@@ -2257,8 +2097,6 @@ const TRANSLATIONS = {
     "comp.import_no_monster": "No monster found",
     "comp.import_btn": "✓ Import {name}",
     "comp.import_select_btn": "Select Monster",
-
-    // ── Wave 10: Downtime + Proficiencies + WildShape + Others ─────────────
     "dt.active_header": "⏳ ACTIVE ACTIVITIES",
     "dt.history_btn": "📋 History",
     "dt.no_active": "No active activities. Start one from the list below.",
@@ -2271,7 +2109,6 @@ const TRANSLATIONS = {
     "dt.clear_history": "🗑️ Clear History",
     "dt.start_new_header": "🎭 START NEW ACTIVITY",
     "dt.abandoned": "Abandoned",
-
     "prof.header_title": "Proficiency Bonus",
     "prof.no_entries": "No proficiencies recorded yet",
     "prof.n_entries": "entries",
@@ -2291,8 +2128,6 @@ const TRANSLATIONS = {
     "prof.save_btn": "✓ Save",
     "prof.add_short": "＋ Add",
     "prof.cancel_btn": "Cancel",
-
-    // ── Wave 11: Edge Cases — NPC + Inventory + WildShape + Katalog ───────
     "npc.dm_mode": "🎲 DM Mode",
     "npc.dm_mode_active_title": "DM Mode active — DM notes visible",
     "npc.dm_mode_inactive_title": "DM Mode inactive — DM notes hidden",
@@ -2351,7 +2186,6 @@ const TRANSLATIONS = {
     "npc.status_dead": "dead",
     "npc.status_unknown": "unknown",
     "npc.status_captured": "captured",
-
     "inv.equipment_header": "Equipment",
     "inv.backpack_header": "Backpack",
     "inv.attunement_header": "✨ Attunement",
@@ -2410,7 +2244,6 @@ const TRANSLATIONS = {
     "inv.slot_main": "Main Hand",
     "inv.slot_off": "Off-Hand",
     "inv.slot_feet": "Feet",
-
     "ws.wild_shape_header": "🐺 WILD SHAPE",
     "ws.polymorph_header": "🔮 POLYMORPH",
     "ws.uses_label": "Uses:",
@@ -2433,7 +2266,6 @@ const TRANSLATIONS = {
     "ws.wild_shape_short": "Wild Shape:",
     "ws.transform_short": "🐺 Transform",
     "ws.polymorph_short": "🔮 Polymorph",
-
     "katalog.magic_variant_header": "✨ ADD AS MAGICAL VARIANT",
     "katalog.custom_item_tag": "Custom Item",
     "katalog.no_magic_title": "Standard, non-magical",
@@ -2444,8 +2276,6 @@ const TRANSLATIONS = {
     "katalog.to_inventory": "📦 To Inventory",
     "katalog.edit_item_title": "✏️ Edit item",
     "katalog.create_custom_title": "✏️ Create custom item",
-
-    // ── Wave 12: LevelUp + CombatDashboard + CharManager ───────────────────
     "lvl.title": "⬆️ Level-Up",
     "lvl.max_reached": "Level 20 reached — maximum level!",
     "lvl.reached": "Level {n} reached!",
@@ -2519,7 +2349,6 @@ const TRANSLATIONS = {
     "lvl.rem_skills": "📊 Update all skills and saves with new PB.",
     "lvl.rem_hd": "🎲 You gain 1 new Hit Die (HD). Total now: {n}× {hd}.",
     "lvl.rem_capstone": "🏆 Level 20 reached! Activate your class's Capstone feature.",
-
     "dash.unconscious": "☠ Unconscious",
     "dash.exhaustion": "Exhaustion",
     "dash.death_saves_header": "💀 Death Saves",
@@ -2561,7 +2390,6 @@ const TRANSLATIONS = {
     "dash.ac_short": "AC",
     "dash.profs_header": "🎓 Proficiencies",
     "dash.close_modal": "✕ Close",
-
     "char.invalid_file": "Invalid character file.",
     "char.json_error": "Could not parse JSON.",
     "char.character_label": "CHARACTER",
@@ -2603,8 +2431,6 @@ const TRANSLATIONS = {
     "char.exhaustion_word": "Exhaustion",
     "char.resources_word": "Resources",
     "char.reset_word": "reset",
-
-    // ── Wave 13: Final 20 ───────────────────────────────────────────────────
     "dash.back_arrow": "← Back",
     "dash.next_pick_slot": "Next → Pick slot",
     "dash.equipped_tag": "Equipped",
@@ -2625,8 +2451,6 @@ const TRANSLATIONS = {
     "char.lucky_spend_line1": "Spend Luck Point: Before a d20 roll for a reroll → you must take the new roll.",
     "char.lucky_spend_line2": "Spend against a roll: After an enemy roll against you → enemy must reroll.",
     "char.tavern_brawler_hint": "Choose: +1 STR or +1 CON (Half-Feat, max 20):",
-
-    // ── Wave 14: Audit Bug-Fixes ───────────────────────────────────────────
     "dash.search_placeholder": "🔍 Search…",
     "dash.all_types": "All",
     "dash.unequip_short": "↩ Unequip",
@@ -2656,7 +2480,6 @@ const TRANSLATIONS = {
     "dash.conc_breaks_end": "ends the active concentration immediately.",
     "dash.cast_ritual_btn": "ℛ Cast as Ritual",
     "dash.cast_anyway_btn": "Cast anyway",
-
     "best.new_monster_title": "🐉 New Monster",
     "best.attributes_label": "Ability Scores",
     "best.senses_languages_label": "Senses & Languages",
@@ -2678,12 +2501,9 @@ const TRANSLATIONS = {
     "best.encountered_btn": "✓ Encountered",
     "best.spoiler_counter": "{n} known · {total} total encountered",
     "best.monsters_word": "monsters",
-
     "comp.traits_placeholder": "e.g. Pack Tactics. The companion has advantage on attack rolls...",
     "comp.notes_placeholder": "Personal notes about the companion...",
-
     "dt.aria_close": "Close",
-
     "char.skills_optgroup": "Skills",
     "char.artisan_tools_optgroup": "Artisan's Tools",
     "char.other_tools_optgroup": "Other Tools",
@@ -2719,8 +2539,6 @@ const TRANSLATIONS = {
     "err.body": "An unexpected error occurred. Please reload the page.",
     "err.reload_btn": "🔄 Reload",
     "err.details_summary": "Technical details",
-    "char.import_too_large": "File too large (max 5 MB).",
-    "char.import_invalid_schema": "File schema invalid — missing or invalid required fields.",
   },
 };
 
