@@ -85,6 +85,7 @@ function StepList({ steps, onChange }) {
 // ── Main component ────────────────────────────────────────────────────────────
 export default function QuestList() {
   const { t } = useI18n();
+  const { confirm } = useDialog();
   const STATUS = Object.fromEntries(Object.entries(STATUS_META).map(([k, v]) => [k, { ...v, label: t(v.key, v.de) }]));
   const PRIORITY = Object.fromEntries(Object.entries(PRIORITY_META).map(([k, v]) => [k, { ...v, label: t(v.key, v.de) }]));
   const [quests,    setQuests,    ready] = usePersist("quests_v1", []);
@@ -130,8 +131,9 @@ export default function QuestList() {
     setEditing(null); setDraft(null);
   };
 
-  const deleteQuest = (id) => {
-    if (!window.confirm(moduleT("wb.confirm_delete_quest","Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)"))) return;
+  const deleteQuest = async (id) => {
+    const ok = await confirm(t("wb.confirm_delete_quest","Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)"), { danger: true });
+    if (!ok) return;
     setQuests(p => p.filter(q => q.id !== id));
     if (selId === id) setSelId(null);
     if (editing === id) { setEditing(null); setDraft(null); }
