@@ -102,14 +102,14 @@ const GLOW = { Common:"none", Uncommon:"0 0 8px #00c04033", Rare:"0 0 10px #3b82
 const TICON = { Weapon:"⚔️", Armor:"🛡️", Item:"📦", Potion:"🧪", Ring:"💍", Wand:"🪄", Staff:"🔱", Scroll:"📜" };
 
 const CATS = [
-  { id:"alle",     label:"Alle" },
-  { id:"waffe",    label:"⚔️ Waffen",       match: i => i.type === "Weapon" && i.sub !== "Magic" },
-  { id:"ruestung", label:"🛡️ Rüstung",      match: i => i.type === "Armor"  && i.sub !== "Magic" },
-  { id:"gear",     label:"🎒 Ausrüstung",   match: i => i.type === "Item"   && ["Gear","Focus","Ammo","Tool"].includes(i.sub) },
-  { id:"trank",    label:"🧪 Tränke",        match: i => i.sub === "Potion" },
-  { id:"magie",    label:"✨ Magie",          match: i => i.sub === "Magic" },
-  { id:"schriftrolle", label:"📜 Schriftrollen", match: i => i.sub === "Scroll" },
-  { id:"werkzeug", label:"🔧 Werkzeuge",     match: i => i.sub === "Tool" },
+  { id:"alle",     label:"Alle",           key:"katalog.cat_all" },
+  { id:"waffe",    label:"⚔️ Waffen",       key:"katalog.cat_weapons",   match: i => i.type === "Weapon" && i.sub !== "Magic" },
+  { id:"ruestung", label:"🛡️ Rüstung",      key:"katalog.cat_armor",     match: i => i.type === "Armor"  && i.sub !== "Magic" },
+  { id:"gear",     label:"🎒 Ausrüstung",   key:"katalog.cat_gear",      match: i => i.type === "Item"   && ["Gear","Focus","Ammo","Tool"].includes(i.sub) },
+  { id:"trank",    label:"🧪 Tränke",       key:"katalog.cat_potions",   match: i => i.sub === "Potion" },
+  { id:"magie",    label:"✨ Magie",         key:"katalog.cat_magic",     match: i => i.sub === "Magic" },
+  { id:"schriftrolle", label:"📜 Schriftrollen", key:"katalog.cat_scrolls", match: i => i.sub === "Scroll" },
+  { id:"werkzeug", label:"🔧 Werkzeuge",    key:"katalog.cat_tools",     match: i => i.sub === "Tool" },
 ];
 const RARS = ["Alle", "Common", "Uncommon", "Rare", "Very Rare", "Legendary"];
 
@@ -186,7 +186,7 @@ export default function Katalog({ char, setChar }) {
         {CATS.map(c => (
           <button key={c.id} onClick={() => setCat(c.id)}
             style={{ ...sx.bsm(cat === c.id ? C.purple : C.textDim), fontWeight: cat === c.id ? 700 : 400, fontSize:11 }}>
-            {c.label}
+            {c.key ? t(c.key, c.label) : c.label}
           </button>
         ))}
       </div>

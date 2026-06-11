@@ -246,7 +246,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
             {activeTab === "stats" && (
               <div>
                 <div style={{ fontSize: 11, color: C.textDim, marginBottom: 10 }}>
-                  Attributwerte (1–30). Modifier wird automatisch berechnet.
+                  {t("comp.stats_hint","Attributwerte (1–30). Modifier wird automatisch berechnet.")}
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 12 }}>
                   {ABS.map((ab) => {
@@ -273,22 +273,22 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   <div>
-                    <label style={sx.lbl}>Sinne</label>
+                    <label style={sx.lbl}>{t("comp.senses_lbl","Sinne")}</label>
                     <input
                       type="text"
                       value={form.senses}
                       onChange={(e) => set("senses", e.target.value)}
-                      placeholder="z.B. Dunkelsicht 60 ft."
+                      placeholder={t("comp.senses_placeholder","z.B. Dunkelsicht 60 ft.")}
                       style={{ ...sx.inp, fontSize: 12 }}
                     />
                   </div>
                   <div>
-                    <label style={sx.lbl}>Sprachen</label>
+                    <label style={sx.lbl}>{t("comp.languages_lbl","Sprachen")}</label>
                     <input
                       type="text"
                       value={form.languages}
                       onChange={(e) => set("languages", e.target.value)}
-                      placeholder="z.B. Gemeinsprache"
+                      placeholder={t("comp.languages_placeholder","z.B. Gemeinsprache")}
                       style={{ ...sx.inp, fontSize: 12 }}
                     />
                   </div>

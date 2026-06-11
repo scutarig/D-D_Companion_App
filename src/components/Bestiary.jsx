@@ -420,42 +420,42 @@ export default function Bestiary() {
 
             {/* Description */}
             {sel.desc && (
-              <Sect title={lang === "en" ? "Description" : "Beschreibung"}>
+              <Sect title={t("bestiary.description","Beschreibung")}>
                 <div style={{fontSize:13,color:C.text,lineHeight:1.6,fontStyle:"italic"}}>{tMon(sel.desc, sel.descDE)}</div>
               </Sect>
             )}
 
             {/* Traits */}
             {sel.traits && (
-              <Sect title={lang === "en" ? "Traits" : "Eigenschaften"}>
+              <Sect title={t("bestiary.traits","Eigenschaften")}>
                 <div style={{fontSize:13,color:C.text,lineHeight:1.6,whiteSpace:"pre-wrap"}}>{tMon(sel.traits, sel.traitsDE)}</div>
               </Sect>
             )}
 
             {/* Actions */}
             {sel.actions && (
-              <Sect title={lang === "en" ? "Actions" : "Aktionen"}>
+              <Sect title={t("bestiary.actions","Aktionen")}>
                 <div style={{fontSize:13,color:C.textBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.actions, sel.actionsDE)}</div>
               </Sect>
             )}
 
             {/* Bonus Actions (2024) */}
             {sel.bonusActions && (
-              <Sect title={lang === "en" ? "Bonus Actions" : "Bonus-Aktionen"}>
+              <Sect title={t("bestiary.bonus_actions","Bonus-Aktionen")}>
                 <div style={{fontSize:13,color:C.amberBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.bonusActions, sel.bonusActionsDE)}</div>
               </Sect>
             )}
 
             {/* Reactions (2024 separates from Actions) */}
             {sel.reactions && (
-              <Sect title={lang === "en" ? "Reactions" : "Reaktionen"}>
+              <Sect title={t("bestiary.reactions","Reaktionen")}>
                 <div style={{fontSize:13,color:C.tealBright,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.reactions, sel.reactionsDE)}</div>
               </Sect>
             )}
 
             {/* Legendary */}
             {sel.legendary && (
-              <Sect title={lang === "en" ? "Legendary Actions" : "Legendäre Aktionen"}>
+              <Sect title={t("bestiary.legendary","Legendäre Aktionen")}>
                 <div style={{fontSize:13,color:C.purple,lineHeight:1.7,whiteSpace:"pre-wrap"}}>{tMon(sel.legendary, sel.legendaryDE)}</div>
               </Sect>
             )}

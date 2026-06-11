@@ -147,7 +147,7 @@ export default function FighterAddForm({ onClose }) {
           </div>
 
           <button onClick={handleAddManual} style={{ ...sx.btn(C.blue), width: "100%" }}>
-            {t("combat.add_btn","➕ Hinzufügen")}
+            {t("combat.add_short_btn","➕ Hinzufügen")}
           </button>
         </div>
       )}
