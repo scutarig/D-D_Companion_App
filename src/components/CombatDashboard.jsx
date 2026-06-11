@@ -17,6 +17,7 @@ import { typeOf } from "./Companions/CompanionCard.jsx";
 import { useProficiencies } from "../hooks/useProficiencies.js";
 import { calculateProficiencyBonus, PROF_CATEGORIES } from "../utils/proficiency.js";
 import { useDerivedStats } from "../hooks/useDerivedStats.js";
+import { useI18n } from "../i18n/index.js";
 import DerivedStatsWidget from "./CharacterSheet/DerivedStatsWidget.jsx";
 
 const RARITY_COL = {
@@ -84,6 +85,7 @@ function HoldBtn({ label, onPress, style }) {
 }
 
 function InfoModal({ data, onClose }) {
+  const { t } = useI18n();
   if (!data) return null;
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", zIndex: 300, display: "flex", alignItems: "flex-end", justifyContent: "center" }}
@@ -92,7 +94,7 @@ function InfoModal({ data, onClose }) {
         <div style={{ width: 40, height: 4, background: C.border, borderRadius: 2, margin: "0 auto 16px" }} />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <div style={{ fontFamily: FH, fontSize: 18, fontWeight: 700, color: data.color }}>{data.title}</div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.textDim), fontSize: 14, padding: "6px 12px" }}>✕ Schließen</button>
+          <button onClick={onClose} style={{ ...sx.bsm(C.textDim), fontSize: 14, padding: "6px 12px" }}>{t("dash.close_modal","✕ Schließen")}</button>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: data.stats?.length || data.desc ? 14 : 0 }}>
           {data.badges?.map((b, i) => <span key={i} style={sx.tag(b.col || data.color)}>{b.label}</span>)}
@@ -114,6 +116,7 @@ function InfoModal({ data, onClose }) {
 }
 
 export default function CombatDashboard({ slots, setSlots, custom, setCustom, autoUsed = {}, setAutoUsed = () => {} }) {
+  const { t } = useI18n();
   const { active: char, setActive: setChar, aid } = useChar();
   const { companions, updateHp: updateCompanionHp } = useCompanions(aid);
   const { proficiencies } = useProficiencies(aid);
@@ -223,9 +226,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
 
   const actions = char.actions || [];
   const ACT_SLOT = {
-    action:   { col: C.blueBright,  label: "Aktion"       },
-    bonus:    { col: C.amberBright, label: "Bonus-Aktion" },
-    reaction: { col: C.tealBright,  label: "Reaktion"     },
+    action:   { col: C.blueBright,  label: t("dash.action_word","Aktion")       },
+    bonus:    { col: C.amberBright, label: t("dash.bonus_action_word","Bonus-Aktion") },
+    reaction: { col: C.tealBright,  label: t("dash.reaction_word","Reaktion")     },
   };
 
   const HP_BTNS = [
@@ -249,7 +252,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
     <div style={{ position: "relative" }}>
       <div style={{ ...sx.card, padding: "8px 12px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
         onClick={() => setShowCurrency(p => !p)}>
-        <span style={{ fontSize: 11, color: C.gold, fontFamily: FH, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>💰 Wealth</span>
+        <span style={{ fontSize: 11, color: C.gold, fontFamily: FH, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>{t("dash.wealth_header","💰 Wealth")}</span>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <span style={{ fontSize: 15, fontWeight: 700, color: C.gold }}>{totalGP % 1 === 0 ? totalGP : totalGP.toFixed(2)} GP</span>
           <span style={{ fontSize: 10, color: C.textDim }}>{showCurrency ? "▲" : "▼"}</span>
@@ -326,11 +329,11 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           </div>
 
           {isDying && (
-            <span style={{ fontSize: 10, color: C.redBright, background: `${C.red}33`, border: `1px solid ${C.redBright}55`, borderRadius: 5, padding: "2px 7px", fontWeight: 700, flex: "0 0 auto" }}>☠ Kampfunfähig</span>
+            <span style={{ fontSize: 10, color: C.redBright, background: `${C.red}33`, border: `1px solid ${C.redBright}55`, borderRadius: 5, padding: "2px 7px", fontWeight: 700, flex: "0 0 auto" }}>{t("dash.unconscious","☠ Kampfunfähig")}</span>
           )}
           {exhaustInfo && (
             <span style={{ fontSize: 10, color: exhaustInfo.color, background: `${exhaustInfo.color}22`, border: `1px solid ${exhaustInfo.color}55`, borderRadius: 5, padding: "2px 7px", fontWeight: 700, flex: "0 0 auto" }}>
-              {exhaustInfo.icon} Erschöpfung {exhaustLv}/6
+              {exhaustInfo.icon} {t("dash.exhaustion","Erschöpfung")} {exhaustLv}/6
             </span>
           )}
           <button onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
@@ -366,8 +369,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
 
         {/* Death Saves */}
         <div style={{ ...sx.card, border: `1px solid ${isDying ? C.red : C.border}`, padding: "10px 14px", opacity: isDying ? 1 : 0.5, transition: "opacity .3s, border-color .3s", minWidth: 160 }}>
-          <div style={{ fontSize: 10, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>💀 Death Saves</div>
-          {[{ label: "✓ Erfolg", col: C.greenBright, key: "suc" }, { label: "✗ Fail", col: C.redBright, key: "fail" }].map(row => (
+          <div style={{ fontSize: 10, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>{t("dash.death_saves_header","💀 Death Saves")}</div>
+          {[{ label: t("dash.success_word","✓ Erfolg"), col: C.greenBright, key: "suc" }, { label: t("dash.fail_word","✗ Fail"), col: C.redBright, key: "fail" }].map(row => (
             <div key={row.key} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
               <span style={{ fontSize: 11, color: row.col, minWidth: 56 }}>{row.label}</span>
               <div style={{ display: "flex", gap: 5 }}>
@@ -381,15 +384,15 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           ))}
           {isDying && (
             <button onClick={() => setChar(p => ({ ...p, hp: 1, deathSaves: { suc: 0, fail: 0 } }))}
-              style={{ ...sx.bsm(C.greenBright), fontSize: 10, marginTop: 4, width: "100%" }}>↺ 1 HP stabil</button>
+              style={{ ...sx.bsm(C.greenBright), fontSize: 10, marginTop: 4, width: "100%" }}>{t("dash.stabilize_1hp","↺ 1 HP stabil")}</button>
           )}
         </div>
 
         {/* Conditions */}
         <div style={{ ...sx.card, padding: "10px 12px" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 7 }}>
-            <span style={{ fontSize: 10, color: C.gold, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>🚨 Conditions</span>
-            {activeConds.length > 0 && <span style={{ fontSize: 11, color: C.redBright, fontWeight: 700 }}>{activeConds.length} aktiv</span>}
+            <span style={{ fontSize: 10, color: C.gold, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>{t("dash.conditions_header","🚨 Conditions")}</span>
+            {activeConds.length > 0 && <span style={{ fontSize: 11, color: C.redBright, fontWeight: 700 }}>{activeConds.length} {t("dash.active_word","aktiv")}</span>}
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
             {CONDITIONS.map(c => {
@@ -424,12 +427,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
 
           <div style={sx.card}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <div style={ctStyle}>⚔️ Ausrüstung</div>
+              <div style={ctStyle}>{t("dash.equipment_header","⚔️ Ausrüstung")}</div>
               <button onClick={() => { setEqModal("list"); setEqStep("pick"); setEqItem(null); setEqSearch(""); setEqType("All"); }}
-                style={{ ...sx.bsm(C.teal), fontSize:11, fontWeight:700 }}>＋ Anlegen</button>
+                style={{ ...sx.bsm(C.teal), fontSize:11, fontWeight:700 }}>{t("dash.equip_btn","＋ Anlegen")}</button>
             </div>
             {equipped.length === 0 ? (
-              <div style={{ fontSize:12, color:C.textDim, fontStyle:"italic" }}>Nichts ausgerüstet — ＋ Anlegen drücken</div>
+              <div style={{ fontSize:12, color:C.textDim, fontStyle:"italic" }}>{t("dash.no_equipment","Nichts ausgerüstet — ＋ Anlegen drücken")}</div>
             ) : (
               <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
                 {equipped.map(({ slot, item }) => {
@@ -455,7 +458,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           {custom.length > 0 && (
             <div style={sx.card}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                <div style={ctStyle}>🏷️ Ressourcen</div>
+                <div style={ctStyle}>{t("dash.resources_header","🏷️ Ressourcen")}</div>
                 <button onClick={() => setCustom(p => p.map(t => ({ ...t, used: 0 })))} style={sx.bsm(C.gold)}>↺ Reset</button>
               </div>
               {custom.map(tok => (
@@ -484,13 +487,13 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
 
         {/* Right: Spells */}
         <div style={sx.card}>
-          <div style={ctStyle}>🔮 Magie & Ressourcen</div>
+          <div style={ctStyle}>{t("dash.magic_header","🔮 Magie & Ressourcen")}</div>
 
           {/* Class Resources (Rage, Ki, Sorcery, etc.) */}
           {autoResources.length > 0 && (
             <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 14px", marginBottom: 14 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                <span style={{ fontSize: 11, color: C.amberBright, fontFamily: FH, fontWeight: 700, letterSpacing: 0.5 }}>⚡ KLASSEN-RESSOURCEN</span>
+                <span style={{ fontSize: 11, color: C.amberBright, fontFamily: FH, fontWeight: 700, letterSpacing: 0.5 }}>{t("dash.class_resources_header","⚡ KLASSEN-RESSOURCEN")}</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {autoResources.map(r => {
@@ -501,7 +504,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       <div key={r.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                         <span style={{ fontFamily: FH, fontSize: 12, color: r.color, fontWeight: 700, minWidth: 130 }}>{r.name}</span>
                         <span style={{ fontSize: 11, color: r.color, fontStyle: "italic" }}>{r.max}</span>
-                        <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? "K.Rast" : "L.Rast"}</span>
+                        <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? t("dash.short_rest_short","K.Rast") : t("dash.long_rest_short","L.Rast")}</span>
                       </div>
                     );
                   }
@@ -512,12 +515,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                         {Array.from({ length: maxNum }).map((_, i) => (
                           <button key={i}
                             onClick={() => setAutoUsedR(r.id, i < used ? i : i + 1)}
-                            title={`${r.name} ${i < (maxNum - used) ? "verbrauchen" : "wiederherstellen"}`}
+                            title={`${r.name} ${i < (maxNum - used) ? t("dash.spend_word","verbrauchen") : t("dash.restore_word","wiederherstellen")}`}
                             style={{ width: 18, height: 18, borderRadius: 4, cursor: "pointer", border: `2px solid ${r.color}`, background: i < used ? "transparent" : r.color, transition: "background .15s", padding: 0 }} />
                         ))}
                       </div>
                       <span style={{ fontSize: 11, color: C.textDim }}>{maxNum - used}/{maxNum}</span>
-                      <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? "K.Rast" : "L.Rast"}</span>
+                      <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? t("dash.short_rest_short","K.Rast") : t("dash.long_rest_short","L.Rast")}</span>
                       <button onClick={() => setAutoUsedR(r.id, 0)} style={{ ...sx.bsm(C.goldDim), fontSize: 10, padding: "1px 6px" }}>↺</button>
                     </div>
                   );
@@ -529,10 +532,10 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           {/* Cantrips */}
           {cantrips.length > 0 && (
             <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
-              <span style={lbl}>Cantrips</span>
+              <span style={lbl}>{t("dash.cantrips_word","Cantrips")}</span>
               {cantrips.map(c => (
                 <button key={c.id}
-                  onClick={() => setInfoModal({ title: c.name, color: C.tealBright, badges: [{ label: c.school, col: C.tealBright }, { label: c.ct, col: C.textDim }, { label: c.range, col: C.textDim }], stats: [c.dmg !== "—" && { label: "Schaden", val: c.dmg, col: C.redBright }].filter(Boolean), desc: c.desc })}
+                  onClick={() => setInfoModal({ title: c.name, color: C.tealBright, badges: [{ label: c.school, col: C.tealBright }, { label: c.ct, col: C.textDim }, { label: c.range, col: C.textDim }], stats: [c.dmg !== "—" && { label: t("dash.damage_label","Schaden"), val: c.dmg, col: C.redBright }].filter(Boolean), desc: c.desc })}
                   style={{ ...sx.tag(C.tealBright), cursor: "pointer", fontSize: 12, padding: "3px 10px" }}>{c.name}</button>
               ))}
             </div>
@@ -563,7 +566,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
 
           {/* Spell list */}
           {preparedSpells.length === 0 ? (
-            <div style={{ fontSize: 12, color: C.textDim, fontStyle: "italic" }}>Keine Zauber vorbereitet (Charakter → Spellbook → 🕯️)</div>
+            <div style={{ fontSize: 12, color: C.textDim, fontStyle: "italic" }}>{t("dash.no_prepared_hint","Keine Zauber vorbereitet (Charakter → Spellbook → 🕯️)")}</div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
               {preparedSpells.map(spell => {
@@ -574,7 +577,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                 return (
                   <div key={spell.id}
                     style={{ background: rowActive ? C.surface : C.bg, borderRadius: 10, border: `1px solid ${rowActive ? C.border : C.border + "66"}`, padding: "10px 14px", opacity: rowActive ? 1 : 0.5, transition: "opacity .2s", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, cursor: "pointer" }}
-                    onClick={() => setInfoModal({ title: spell.name, color: C.purpleBright, badges: [{ label: `Level ${spell.lv}`, col: C.purpleBright }, { label: spell.school, col: C.textDim }, { label: spell.ct, col: C.textDim }, { label: spell.dur, col: C.amberBright }], stats: [spell.dmg !== "—" && { label: "Schaden", val: spell.dmg, col: C.redBright }, { label: "Reichweite", val: spell.range, col: C.text }, { label: "Komp.", val: spell.comp, col: C.textDim }, spell.upcast?.length && { label: "Upcast", val: "Skaliert", col: C.amberBright }].filter(Boolean), desc: spell.desc })}>
+                    onClick={() => setInfoModal({ title: spell.name, color: C.purpleBright, badges: [{ label: `Level ${spell.lv}`, col: C.purpleBright }, { label: spell.school, col: C.textDim }, { label: spell.ct, col: C.textDim }, { label: spell.dur, col: C.amberBright }], stats: [spell.dmg !== "—" && { label: t("dash.damage_label","Schaden"), val: spell.dmg, col: C.redBright }, { label: t("dash.range_label","Reichweite"), val: spell.range, col: C.text }, { label: t("dash.components_label","Komp."), val: spell.comp, col: C.textDim }, spell.upcast?.length && { label: "Upcast", val: t("dash.scales_label","Skaliert"), col: C.amberBright }].filter(Boolean), desc: spell.desc })}>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: "flex", gap: 8, marginBottom: 4, alignItems: "center", flexWrap: "wrap" }}>
                         <span style={{ fontSize: 14, fontWeight: 600, color: rowActive ? C.textBright : C.text }}>{spell.name}</span>
@@ -585,13 +588,13 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
                         <span style={{ fontSize: 11, color: C.text }}>{spell.dmg !== "—" ? spell.dmg : spell.dur}</span>
                         <span style={{ fontSize: 11, color: C.textDim }}>· {spell.range}</span>
-                        {spell.upcast?.length > 0 && <span style={{ fontSize: 11, color: C.amberBright }}>↑ Skaliert</span>}
+                        {spell.upcast?.length > 0 && <span style={{ fontSize: 11, color: C.amberBright }}>{t("dash.scales_word","↑ Skaliert")}</span>}
                       </div>
                     </div>
                     <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }} onClick={e => e.stopPropagation()}>
                       {spell.upcast?.length > 0 && canCast && (
                         <button onClick={() => setCastModal({ spell })}
-                          style={{ ...sx.tag(C.amberBright), cursor: "pointer" }}>↑ Upcast</button>
+                          style={{ ...sx.tag(C.amberBright), cursor: "pointer" }}>{t("dash.upcast_word","↑ Upcast")}</button>
                       )}
                       {spell.ritual && (
                         <button onClick={() => handleRitualCast(spell)}
@@ -602,8 +605,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       <button disabled={!canCast} onClick={() => canCast && handleCast(spell, lowestSlot.lv)}
                         style={{ padding: "5px 14px", borderRadius: 7, cursor: canCast ? "pointer" : "default", fontSize: 12, fontWeight: 600, background: canCast ? `${C.purple}44` : C.bg, border: `1px solid ${canCast ? C.purpleBright : C.border}`, color: canCast ? C.purpleBright : C.textDim, whiteSpace: "nowrap" }}>
                         {canCast
-                          ? <>{requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}{`Wirken Lv${lowestSlot.lv}`}</>
-                          : "Keine Slots"}
+                          ? <>{requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}{t("dash.cast_at_lv","Wirken Lv{lv}").replace("{lv}", lowestSlot.lv)}</>
+                          : t("dash.no_slots_word","Keine Slots")}
                       </button>
                     </div>
                   </div>
@@ -617,7 +620,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       {/* ── WILD SHAPE / POLYMORPH ── */}
       <div style={sx.card}>
         <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, letterSpacing: 0.5, marginBottom: 10 }}>
-          🐺 WILD SHAPE & POLYMORPH
+          {t("dash.wild_shape_polymorph","🐺 WILD SHAPE & POLYMORPH")}
         </div>
         <WildShapePanel compact={true} />
       </div>
@@ -625,7 +628,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       {/* ── ACTIONS HOTBAR ── */}
       {actions.length > 0 && (
         <div style={sx.card}>
-          <div style={ctStyle}>⚔️ Aktionen</div>
+          <div style={ctStyle}>{t("dash.actions_header","⚔️ Aktionen")}</div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 12 }}>
             {["action", "bonus", "reaction"].map(slot => {
               const { col, label } = ACT_SLOT[slot];
@@ -637,7 +640,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                       {acts.map((action, idx) => (
                         <button key={action.id}
-                          onClick={() => setInfoModal({ title: action.name, color: col, badges: [{ label, col }, action.range && { label: action.range, col: C.textDim }].filter(Boolean), stats: [action.toHit && { label: "To Hit", val: action.toHit, col: C.blueBright }, action.damage && action.damage !== "—" && { label: "Schaden", val: action.damage, col: C.redBright }, action.saveDC && { label: "Save DC", val: `${action.saveDC} ${action.saveAbility || ""}`, col: C.amberBright }].filter(Boolean), desc: action.description })}
+                          onClick={() => setInfoModal({ title: action.name, color: col, badges: [{ label, col }, action.range && { label: action.range, col: C.textDim }].filter(Boolean), stats: [action.toHit && { label: t("dash.to_hit_label","To Hit"), val: action.toHit, col: C.blueBright }, action.damage && action.damage !== "—" && { label: t("dash.damage_label","Schaden"), val: action.damage, col: C.redBright }, action.saveDC && { label: t("dash.save_dc_label","Save DC"), val: `${action.saveDC} ${action.saveAbility || ""}`, col: C.amberBright }].filter(Boolean), desc: action.description })}
                           style={{ background: idx === 0 ? `${col}22` : C.surface, border: `1px solid ${idx === 0 ? col + "88" : C.border}`, borderRadius: 9, padding: idx === 0 ? "10px 12px" : "7px 10px", cursor: "pointer", textAlign: "left" }}>
                           <div style={{ fontSize: idx === 0 ? 14 : 12, fontWeight: 600, color: idx === 0 ? col : C.text, marginBottom: idx === 0 ? 4 : 2 }}>{action.name}</div>
                           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -661,9 +664,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       {companions.length > 0 && (
         <div style={sx.card}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <div style={ctStyle}>🐾 Begleiter</div>
+            <div style={ctStyle}>{t("dash.companions_header","🐾 Begleiter")}</div>
             <span style={{ fontSize: 10, color: C.textDim }}>
-              {companions.filter(c => c.hp > 0).length}/{companions.length} aktiv
+              {companions.filter(c => c.hp > 0).length}/{companions.length} {t("dash.active_count","aktiv")}
             </span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -701,7 +704,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       style={{ ...sx.bsm(C.green), padding: "2px 7px", fontSize: 13, fontWeight: 700 }}
                     >+</button>
                   </div>
-                  <span style={{ fontSize: 10, color: C.textDim, flexShrink: 0 }}>RK {c.ac}</span>
+                  <span style={{ fontSize: 10, color: C.textDim, flexShrink: 0 }}>{t("dash.ac_short","RK")} {c.ac}</span>
                 </div>
               );
             })}
@@ -721,7 +724,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         return (
           <div style={sx.card}>
             <div style={{ marginBottom: 10 }}>
-              <div style={ctStyle}>🎓 Proficiencies</div>
+              <div style={ctStyle}>{t("dash.profs_header","🎓 Proficiencies")}</div>
             </div>
 
             {/* Category pills */}

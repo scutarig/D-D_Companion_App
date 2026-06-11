@@ -49,7 +49,7 @@ const CLF = Object.fromEntries(
 
 // ── Komponente ───────────────────────────────────────────────────────────────
 export default function LevelUpAssistant({ char, setChar }) {
-  const { lang } = useI18n();
+  const { t, lang } = useI18n();
   const newLevel = char.level + 1;
   const pb = getPB(newLevel);
   const pbOld = getPB(char.level);
@@ -128,16 +128,16 @@ export default function LevelUpAssistant({ char, setChar }) {
   };
 
   if (newLevel > 20 && !doneInfo) return (
-    <div style={sx.card}><div style={sx.ct}>⬆️ Level-Up</div><div style={{ color: C.textDim, fontSize: 14 }}>Level 20 erreicht — maximales Level!</div></div>
+    <div style={sx.card}><div style={sx.ct}>{t("lvl.title","⬆️ Level-Up")}</div><div style={{ color: C.textDim, fontSize: 14 }}>{t("lvl.max_reached","Level 20 erreicht — maximales Level!")}</div></div>
   );
 
   if (doneInfo) return (
     <div style={{ ...sx.card, background: `${C.purple}10`, border: `1px solid ${C.purple}40` }}>
       <div style={{ textAlign: "center", padding: 20 }}>
         <div style={{ fontSize: 48, marginBottom: 10 }}>🎉</div>
-        <div style={{ fontFamily: FH, fontSize: 22, color: C.gold, fontWeight: 700, marginBottom: 6 }}>Level {doneInfo.reachedLevel} erreicht!</div>
-        <div style={{ fontSize: 14, color: C.textDim, marginBottom: 16 }}>+{doneInfo.hpGained} Max HP · PB {doneInfo.newPb > doneInfo.oldPb ? `+${doneInfo.newPb} (war +${doneInfo.oldPb})` : `+${doneInfo.newPb}`}</div>
-        <button onClick={() => setDoneInfo(null)} style={sx.btn(C.purple)}>Zurück zum Assistenten</button>
+        <div style={{ fontFamily: FH, fontSize: 22, color: C.gold, fontWeight: 700, marginBottom: 6 }}>{t("lvl.reached","Level {n} erreicht!").replace("{n}", doneInfo.reachedLevel)}</div>
+        <div style={{ fontSize: 14, color: C.textDim, marginBottom: 16 }}>+{doneInfo.hpGained} Max HP · PB {doneInfo.newPb > doneInfo.oldPb ? `+${doneInfo.newPb} (${lang === "en" ? "was" : "war"} +${doneInfo.oldPb})` : `+${doneInfo.newPb}`}</div>
+        <button onClick={() => setDoneInfo(null)} style={sx.btn(C.purple)}>{t("lvl.back_to_assistant","Zurück zum Assistenten")}</button>
       </div>
     </div>
   );
@@ -152,16 +152,16 @@ export default function LevelUpAssistant({ char, setChar }) {
       const [slots, grade] = pm;
       return (
         <div style={sx.card}>
-          <div style={sx.ct}>3. Paktmagie (Hexenmeister)</div>
+          <div style={sx.ct}>{t("lvl.pact_magic_header","3. Paktmagie (Hexenmeister)")}</div>
           <div style={{ fontSize: 13, color: C.textDim, marginBottom: 10 }}>
-            Kurzrastend auffüllbar. Alle Slots haben denselben Grad.
+            {t("lvl.pact_intro","Kurzrastend auffüllbar. Alle Slots haben denselben Grad.")}
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <div style={slotBox(C.purple)}><div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>Grad</div><div style={{ fontSize: 20, fontWeight: 700, color: C.purpleBright }}>{grade}</div></div>
-            <div style={slotBox(C.purple)}><div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>Slots</div><div style={{ fontSize: 20, fontWeight: 700, color: C.purpleBright }}>{slots}</div></div>
+            <div style={slotBox(C.purple)}><div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>{t("lvl.grade","Grad")}</div><div style={{ fontSize: 20, fontWeight: 700, color: C.purpleBright }}>{grade}</div></div>
+            <div style={slotBox(C.purple)}><div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>{t("lvl.slots","Slots")}</div><div style={{ fontSize: 20, fontWeight: 700, color: C.purpleBright }}>{slots}</div></div>
           </div>
-          <div style={{ fontSize: 12, color: C.textDim, marginTop: 8 }}>Pakt-Slots füllen sich nach einem kurzen oder langen Rest auf.</div>
-          <div style={{ fontSize: 12, color: C.greenBright, marginTop: 4 }}>✅ Pakt-Slots passen sich automatisch zu deinem Level an.</div>
+          <div style={{ fontSize: 12, color: C.textDim, marginTop: 8 }}>{t("lvl.pact_refill","Pakt-Slots füllen sich nach einem kurzen oder langen Rest auf.")}</div>
+          <div style={{ fontSize: 12, color: C.greenBright, marginTop: 4 }}>{t("lvl.pact_auto","✅ Pakt-Slots passen sich automatisch zu deinem Level an.")}</div>
         </div>
       );
     }
@@ -172,44 +172,42 @@ export default function LevelUpAssistant({ char, setChar }) {
     const slots = table[newLevel];
     if (!slots) return null;
 
-    const label = casterType === "half" ? "Halbzauberer" : casterType === "third" ? "⅓-Zauberer" : "Vollzauberer";
+    const label = casterType === "half" ? t("lvl.half_caster","Halbzauberer") : casterType === "third" ? t("lvl.third_caster","⅓-Zauberer") : t("lvl.full_caster","Vollzauberer");
     const labels = ["1","2","3","4","5","6","7","8","9"];
 
     return (
       <div style={sx.card}>
-        <div style={sx.ct}>3. Zauberplätze ({label})</div>
+        <div style={sx.ct}>{t("lvl.spell_slots_header","3. Zauberplätze ({type})").replace("{type}", label)}</div>
         <div style={{ fontSize: 13, color: C.textDim, marginBottom: 10 }}>
-          {char.klass} auf Level {newLevel} — Zauberplätze nach langem Rest:
+          {t("lvl.spell_slots_intro","{klass} auf Level {lv} — Zauberplätze nach langem Rest:").replace("{klass}", char.klass).replace("{lv}", newLevel)}
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {slots.map((s, i) => s ? (
             <div key={i} style={slotBox(C.blue)}>
-              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>{labels[i]}. Grad</div>
+              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, marginBottom: 2 }}>{t("lvl.grade_n","{n}. Grad").replace("{n}", labels[i])}</div>
               <div style={{ fontSize: 20, fontWeight: 700, color: C.blueBright }}>{s}</div>
             </div>
           ) : null)}
         </div>
-        <div style={{ fontSize: 12, color: C.greenBright, marginTop: 8 }}>✅ Zauberplätze im Tokens-Tab passen sich automatisch zu deinem Level an.</div>
+        <div style={{ fontSize: 12, color: C.greenBright, marginTop: 8 }}>{t("lvl.spell_slots_auto","✅ Zauberplätze im Tokens-Tab passen sich automatisch zu deinem Level an.")}</div>
       </div>
     );
   };
 
   // ── Erinnerungen ──────────────────────────────────────────────────────────
   const reminders = [
-    isAsi && "⚔️ ASI oder Feat: 2 verschiedene Attribute +1 ODER 1 Feat wählen (wenn DM Feats erlaubt).",
-    isAsi && "📐 Nach ASI: Alle abhängigen Werte neu berechnen (AC, HP, Angriffsboni, Rettungswürfe, Zaubersave-DC).",
-    newPbFeature && `🎖️ PB steigt auf +${pb}: Alle Proficiency-abhängigen Boni aktualisieren (Angriffe, Skills, Rettungswürfe, Zaubersave-DC).`,
-    // ── PHB 2024: ALLE Klassen wählen Subklasse auf Level 3 (vereinheitlicht) ──
-    // (Magieschmied bleibt Lv3 als 2014-Legacy)
-    newLevel === 3 && ["Barbar","Barde","Druide","Hexenmeister","Kämpfer","Kleriker","Magier","Mönch","Paladin","Schurke","Waldläufer","Zauberer","Magieschmied"].includes(char.klass) && `🔱 Unterklasse wählen: ${char.klass} wählt auf Level 3 seinen Archetypen/Pfad/Domäne/Schule. (PHB 2024)`,
-    [5,11,20].includes(newLevel) && char.klass === "Kämpfer" && `⚔️ Extra-Angriff prüfen: Kämpfer hat auf Level ${newLevel} ${newLevel === 5 ? "2" : newLevel === 11 ? "3" : "4"} Angriffe pro Angriffsaktion.`,
-    newLevel === 5 && ["Barbar","Paladin","Waldläufer","Mönch","Magieschmied"].includes(char.klass) && "⚔️ Extra-Angriff: Ab jetzt 2 Angriffe pro Angriffsaktion.",
-    casterType && "📖 Neue Zauber auswählen und ins Zauberbuch / die Zauberliste eintragen.",
-    casterType && newPbFeature && "🎯 Zaubersave-DC und Zauberangriffswurf neu berechnen (8 + PB + Zaubermerkmal-Mod).",
-    "👁️ Passive Wahrnehmung aktualisieren: 10 + WIS-Mod + PB (wenn Proficiency).",
-    "📊 Alle Skills und Rettungswürfe mit neuem PB aktualisieren.",
-    "🎲 Du erhältst 1 neuen Trefferwürfel (HD). Gesamtzahl jetzt: " + newLevel + "× " + (char.hd || "W8") + ".",
-    newLevel === 20 && "🏆 Level 20 erreicht! Capstone-Feature deiner Klasse aktivieren.",
+    isAsi && t("lvl.rem_asi","⚔️ ASI oder Feat: 2 verschiedene Attribute +1 ODER 1 Feat wählen (wenn DM Feats erlaubt)."),
+    isAsi && t("lvl.rem_recalc","📐 Nach ASI: Alle abhängigen Werte neu berechnen (AC, HP, Angriffsboni, Rettungswürfe, Zaubersave-DC)."),
+    newPbFeature && t("lvl.rem_pb","🎖️ PB steigt auf +{pb}: Alle Proficiency-abhängigen Boni aktualisieren (Angriffe, Skills, Rettungswürfe, Zaubersave-DC).").replace("{pb}", pb),
+    newLevel === 3 && ["Barbar","Barde","Druide","Hexenmeister","Kämpfer","Kleriker","Magier","Mönch","Paladin","Schurke","Waldläufer","Zauberer","Magieschmied"].includes(char.klass) && t("lvl.rem_subclass","🔱 Unterklasse wählen: {klass} wählt auf Level 3 seinen Archetypen/Pfad/Domäne/Schule. (PHB 2024)").replace("{klass}", char.klass),
+    [5,11,20].includes(newLevel) && char.klass === "Kämpfer" && t("lvl.rem_fighter_extra","⚔️ Extra-Angriff prüfen: Kämpfer hat auf Level {lv} {n} Angriffe pro Angriffsaktion.").replace("{lv}", newLevel).replace("{n}", newLevel === 5 ? "2" : newLevel === 11 ? "3" : "4"),
+    newLevel === 5 && ["Barbar","Paladin","Waldläufer","Mönch","Magieschmied"].includes(char.klass) && t("lvl.rem_extra_attack","⚔️ Extra-Angriff: Ab jetzt 2 Angriffe pro Angriffsaktion."),
+    casterType && t("lvl.rem_new_spells","📖 Neue Zauber auswählen und ins Zauberbuch / die Zauberliste eintragen."),
+    casterType && newPbFeature && t("lvl.rem_spell_dc","🎯 Zaubersave-DC und Zauberangriffswurf neu berechnen (8 + PB + Zaubermerkmal-Mod)."),
+    t("lvl.rem_passive","👁️ Passive Wahrnehmung aktualisieren: 10 + WIS-Mod + PB (wenn Proficiency)."),
+    t("lvl.rem_skills","📊 Alle Skills und Rettungswürfe mit neuem PB aktualisieren."),
+    t("lvl.rem_hd","🎲 Du erhältst 1 neuen Trefferwürfel (HD). Gesamtzahl jetzt: {n}× {hd}.").replace("{n}", newLevel).replace("{hd}", char.hd || "W8"),
+    newLevel === 20 && t("lvl.rem_capstone","🏆 Level 20 erreicht! Capstone-Feature deiner Klasse aktivieren."),
   ].filter(Boolean);
 
   const sectionNum = (n) => casterType ? n : n - 1;
@@ -235,29 +233,29 @@ export default function LevelUpAssistant({ char, setChar }) {
 
       {/* 1. HP */}
       <div style={sx.card}>
-        <div style={sx.ct}>1. Trefferpunkte</div>
+        <div style={sx.ct}>{t("lvl.hp_header","1. Trefferpunkte")}</div>
         <div style={{ fontSize: 13, color: C.textDim, marginBottom: 12 }}>
-          CON-Mod: <strong style={{ color: C.textBright }}>{modStr(char.con || 10)}</strong> · Trefferwürfel: <strong style={{ color: C.textBright }}>{char.hd}</strong>
+          {t("lvl.con_mod","CON-Mod:")} <strong style={{ color: C.textBright }}>{modStr(char.con || 10)}</strong> · {t("lvl.hit_die","Trefferwürfel:")} <strong style={{ color: C.textBright }}>{char.hd}</strong>
           <span style={{ marginLeft: 12, color: C.textDim }}>
-            (Fest: {Math.floor(hdNum/2)+1}{conMod !== 0 ? ` ${conMod > 0 ? "+" : ""}${conMod}` : ""} HP)
+            ({t("lvl.fixed","Fest:")} {Math.floor(hdNum/2)+1}{conMod !== 0 ? ` ${conMod > 0 ? "+" : ""}${conMod}` : ""} HP)
           </span>
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
-          {[["avg", `Durchschnitt (${avgHp} HP)`, C.blue], ["roll", "Würfeln", C.amber]].map(([v, l, col]) => (
+          {[["avg", `${t("lvl.average","Durchschnitt")} (${avgHp} HP)`, C.blue], ["roll", t("lvl.roll_word","Würfeln"), C.amber]].map(([v, l, col]) => (
             <button key={v} onClick={() => setHpChoice(v)} style={{ flex: "1 1 120px", padding: "10px", borderRadius: 10, cursor: "pointer", background: hpChoice === v ? `${col}22` : "transparent", border: `2px solid ${hpChoice === v ? col : C.border}`, color: hpChoice === v ? col : C.textDim, fontFamily: FH, fontSize: 11, fontWeight: hpChoice === v ? 700 : 400 }}>{l}</button>
           ))}
         </div>
         {hpChoice === "roll" && (
           <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>
-            <span style={{ fontSize: 13, color: C.textDim }}>Ergebnis des {char.hd}-Wurfs:</span>
+            <span style={{ fontSize: 13, color: C.textDim }}>{t("lvl.roll_result_of","Ergebnis des {hd}-Wurfs:").replace("{hd}", char.hd)}</span>
             <input type="number" min={1} max={hdNum} value={rolledHp ?? ""} onChange={e => setRolledHp(Math.max(1, Math.min(hdNum, +e.target.value)))} style={{ ...sx.inp, width: 80 }} placeholder={`1–${hdNum}`} />
-            <button onClick={() => setRolledHp(Math.floor(Math.random() * hdNum) + 1)} style={sx.btn(C.amber)}>🎲 Würfeln</button>
+            <button onClick={() => setRolledHp(Math.floor(Math.random() * hdNum) + 1)} style={sx.btn(C.amber)}>{t("lvl.roll_btn","🎲 Würfeln")}</button>
           </div>
         )}
         <div style={{ background: `${C.green}12`, border: `1px solid ${C.green}30`, borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{ fontSize: 24 }}>❤️</span>
           <div>
-            <div style={{ fontSize: 12, color: C.textDim }}>Neue Max HP</div>
+            <div style={{ fontSize: 12, color: C.textDim }}>{t("lvl.new_max_hp","Neue Max HP")}</div>
             <div style={{ fontSize: 22, fontWeight: 700, color: C.greenBright }}>{char.maxHp} + {chosenHp} = <span style={{ color: C.gold }}>{char.maxHp + chosenHp}</span></div>
           </div>
         </div>
@@ -265,11 +263,11 @@ export default function LevelUpAssistant({ char, setChar }) {
 
       {/* 2. Klassenmerkmale */}
       <div style={sx.card}>
-        <div style={sx.ct}>2. Klassenmerkmale — {char.klass} Level {newLevel}</div>
+        <div style={sx.ct}>{t("lvl.class_features_header","2. Klassenmerkmale — {klass} Level {lv}").replace("{klass}", char.klass).replace("{lv}", newLevel)}</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {isAsi && (
             <div style={{ ...featureBox(C.green), padding: 14 }}>
-              <div style={{ fontFamily: FH, fontSize: 13, color: C.greenBright, fontWeight: 700, marginBottom: 8 }}>✨ Attributswerterhöhung (ASI) oder Feat</div>
+              <div style={{ fontFamily: FH, fontSize: 13, color: C.greenBright, fontWeight: 700, marginBottom: 8 }}>{t("lvl.asi_or_feat_header","✨ Attributswerterhöhung (ASI) oder Feat")}</div>
 
               {/* ── EXPLANATION BANNER ─────────────────────────────────────── */}
               <div style={{
@@ -277,15 +275,15 @@ export default function LevelUpAssistant({ char, setChar }) {
                 background: `${C.purple}10`, border: `1px solid ${C.purple}33`, borderLeft: `3px solid ${C.purpleBright}`,
                 borderRadius: 6, padding: "8px 10px", marginBottom: 12,
               }}>
-                <div style={{ fontWeight: 700, color: C.purpleBright, marginBottom: 4 }}>ℹ️ Entweder/Oder — du wählst EINS pro ASI-Level</div>
-                <div style={{ marginBottom: 3 }}><b style={{ color: C.greenBright }}>📈 ASI</b> = pures Stat-Plus (+2 auf 1 Attribut <i>oder</i> +1 auf 2 Attribute).</div>
-                <div style={{ marginBottom: 3 }}><b style={{ color: C.amberBright }}>⭐ Feat</b> = neue Fähigkeit. Viele sind <b>Half-Feats</b> — sie geben <b>+1 Stat als Teil des Feats</b> (markiert mit 🎯 in der Liste).</div>
-                <div style={{ color: C.textDim, fontSize: 10 }}>↳ Background-ASI (Level 1, einmalig) ist eine andere Quelle — nicht zu verwechseln.</div>
+                <div style={{ fontWeight: 700, color: C.purpleBright, marginBottom: 4 }}>{t("lvl.either_or_title","ℹ️ Entweder/Oder — du wählst EINS pro ASI-Level")}</div>
+                <div style={{ marginBottom: 3 }}><b style={{ color: C.greenBright }}>{t("lvl.asi_label","📈 ASI")}</b>{t("lvl.asi_def"," = pures Stat-Plus (+2 auf 1 Attribut oder +1 auf 2 Attribute).")}</div>
+                <div style={{ marginBottom: 3 }}><b style={{ color: C.amberBright }}>{t("lvl.feat_label","⭐ Feat")}</b>{t("lvl.feat_def"," = neue Fähigkeit. Viele sind Half-Feats — sie geben +1 Stat als Teil des Feats (markiert mit 🎯 in der Liste).")}</div>
+                <div style={{ color: C.textDim, fontSize: 10 }}>{t("lvl.bg_asi_hint","↳ Background-ASI (Level 1, einmalig) ist eine andere Quelle — nicht zu verwechseln.")}</div>
               </div>
 
               {/* Toggle ASI / Feat */}
               <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-                {[["asi", "📈 ASI (pures Stat-Plus)"], ["feat", "⭐ Feat (Fähigkeit)"]].map(([mode, label]) => (
+                {[["asi", t("lvl.asi_toggle","📈 ASI (pures Stat-Plus)")], ["feat", t("lvl.feat_toggle","⭐ Feat (Fähigkeit)")]].map(([mode, label]) => (
                   <button key={mode} onClick={() => setAsiMode(mode)} style={{
                     flex: 1, padding: "7px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 700,
                     border: `1px solid ${asiMode === mode ? C.greenBright : C.border}`,
@@ -297,7 +295,7 @@ export default function LevelUpAssistant({ char, setChar }) {
 
               {asiMode === "asi" && (
                 <div>
-                  <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>Wähle 1–2 Attribute (+1 je Attribut, max. 20):</div>
+                  <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>{t("lvl.pick_1_2_attrs","Wähle 1–2 Attribute (+1 je Attribut, max. 20):")}</div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
                     {ABS_LIST.map(ab => {
                       const val = char[ab.toLowerCase()] || 10;
@@ -323,7 +321,7 @@ export default function LevelUpAssistant({ char, setChar }) {
                       );
                     })}
                   </div>
-                  {!asiA && !asiB && <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>Kein Attribut gewählt — Erhöhung wird beim Level-Up übersprungen.</div>}
+                  {!asiA && !asiB && <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>{t("lvl.no_attr_selected","Kein Attribut gewählt — Erhöhung wird beim Level-Up übersprungen.")}</div>}
                 </div>
               )}
 
@@ -338,23 +336,23 @@ export default function LevelUpAssistant({ char, setChar }) {
                       boxShadow: `0 0 16px ${C.amberBright}44`,
                     }}>
                       <div style={{ fontFamily: FH, fontSize: 14, color: C.amberBright, fontWeight: 700, marginBottom: 4, letterSpacing: 0.6 }}>
-                        🌟 EPIC BOON LEVEL (PHB 2024)
+                        {t("lvl.epic_boon_header","🌟 EPIC BOON LEVEL (PHB 2024)")}
                       </div>
                       <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>
-                        Auf Lv19 wählst du statt eines normalen ASI/Feats einen <b>Epic Boon</b> — extrem mächtige Fähigkeiten, die Stats <b>bis 30</b> erlauben. Allgemeine Feats bleiben auch wählbar.
+                        {t("lvl.epic_boon_desc","Auf Lv19 wählst du statt eines normalen ASI/Feats einen Epic Boon — extrem mächtige Fähigkeiten, die Stats bis 30 erlauben. Allgemeine Feats bleiben auch wählbar.")}
                       </div>
                     </div>
                   )}
 
                   <div style={{ fontSize: 11, color: C.textDim, marginBottom: 8 }}>
-                    Wähle ein Feat — <span style={{ color: C.amberBright }}>🎯 = Half-Feat (+1 Stat)</span>
-                    {isEpicLevel && <span> · <span style={{ color: C.amberBright, fontWeight: 700 }}>🌟 = Epic Boon</span></span>}
+                    {t("lvl.pick_feat_hint","Wähle ein Feat — 🎯 = Half-Feat (+1 Stat)")}
+                    {isEpicLevel && <span>{t("lvl.epic_boon_marker"," · 🌟 = Epic Boon")}</span>}
                   </div>
                   <select value={featId} onChange={e => setFeatId(e.target.value)} style={{ ...sx.sel, width: "100%" }}>
-                    <option value="">— Feat wählen —</option>
+                    <option value="">{t("lvl.pick_feat_select","— Feat wählen —")}</option>
                     {/* Epic Boons zuerst auf Lv19 */}
                     {isEpicLevel && (
-                      <optgroup label="🌟 Epic Boons (PHB 2024 Lv19)">
+                      <optgroup label={t("lvl.epic_boons_group","🌟 Epic Boons (PHB 2024 Lv19)")}>
                         {availableFeats.filter(f => f.category === "epic_boon").map(f => {
                           const halfStats = getHalfFeatStats(f);
                           const halfMark = halfStats.length ? `🎯 ` : "";
@@ -366,7 +364,7 @@ export default function LevelUpAssistant({ char, setChar }) {
                         })}
                       </optgroup>
                     )}
-                    <optgroup label={isEpicLevel ? "Allgemeine Feats (auch wählbar)" : "Allgemeine Feats"}>
+                    <optgroup label={isEpicLevel ? t("lvl.general_feats_also","Allgemeine Feats (auch wählbar)") : t("lvl.general_feats","Allgemeine Feats")}>
                       {availableFeats.filter(f => f.category !== "epic_boon").map(f => {
                         const halfStats = getHalfFeatStats(f);
                         const halfMark = halfStats.length ? `🎯 [+1 ${halfStats.join("/")}] ` : "";
@@ -390,7 +388,7 @@ export default function LevelUpAssistant({ char, setChar }) {
                             background: `${C.amberBright}15`, border: `1px solid ${C.amberBright}55`, borderLeft: `3px solid ${C.amberBright}`,
                             borderRadius: 6, padding: "6px 10px", marginBottom: 6, fontSize: 11, color: C.amberBright, fontWeight: 700,
                           }}>
-                            🌟 Epic Boon: Mächtige Lv19-Fähigkeit. Stat-Bumps gehen bis <b>30</b> (statt 20).
+                            {t("lvl.epic_boon_callout","🌟 Epic Boon: Mächtige Lv19-Fähigkeit. Stat-Bumps gehen bis 30 (statt 20).")}
                           </div>
                         )}
                         {halfStats.length > 0 && (
@@ -398,7 +396,7 @@ export default function LevelUpAssistant({ char, setChar }) {
                             background: `${C.amber}15`, border: `1px solid ${C.amber}55`, borderLeft: `3px solid ${C.amberBright}`,
                             borderRadius: 6, padding: "6px 10px", marginBottom: 6, fontSize: 11, color: C.amberBright, fontWeight: 700,
                           }}>
-                            🎯 Half-Feat: Du erhältst <b>+1 auf {halfStats.join(" oder ")}</b> zusätzlich zur Fähigkeit (max {isEpic ? 30 : 20}).
+                            {t("lvl.half_feat_callout","🎯 Half-Feat: Du erhältst +1 auf {stats} zusätzlich zur Fähigkeit (max {max}).").replace("{stats}", halfStats.join(" " + t("lvl.or_word","oder") + " ")).replace("{max}", isEpic ? 30 : 20)}
                           </div>
                         )}
                         <div style={{ fontSize: 12, color: C.text, background: C.surface, padding: "8px 10px", borderRadius: 6 }}>
@@ -413,8 +411,8 @@ export default function LevelUpAssistant({ char, setChar }) {
           )}
           {newPbFeature && (
             <div style={featureBox(C.gold)}>
-              <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 3 }}>🎖️ Übungsbonus steigt: +{pbOld} → +{pb}</div>
-              <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>Alle Proben, Angriffe und DCs mit PB werden stärker.</div>
+              <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 3 }}>{t("lvl.pb_increases","🎖️ Übungsbonus steigt: +{old} → +{new}").replace("{old}", pbOld).replace("{new}", pb)}</div>
+              <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{t("lvl.pb_desc","Alle Proben, Angriffe und DCs mit PB werden stärker.")}</div>
             </div>
           )}
           {classFeatures.length > 0 ? classFeatures.map((f, i) => (
@@ -423,7 +421,7 @@ export default function LevelUpAssistant({ char, setChar }) {
               <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{f.d}</div>
             </div>
           )) : !isAsi && !newPbFeature && (
-            <div style={{ fontSize: 13, color: C.textDim, fontStyle: "italic" }}>Kein generelles Feature auf Level {newLevel} — prüfe deine Unterklasse im Regelwerk.</div>
+            <div style={{ fontSize: 13, color: C.textDim, fontStyle: "italic" }}>{t("lvl.no_general_feature","Kein generelles Feature auf Level {lv} — prüfe deine Unterklasse im Regelwerk.").replace("{lv}", newLevel)}</div>
           )}
         </div>
       </div>
@@ -436,7 +434,7 @@ export default function LevelUpAssistant({ char, setChar }) {
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
           <span style={{ fontSize: 22 }}>📋</span>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.amberBright, fontWeight: 700 }}>
-            {casterType ? "4." : "3."} Checkliste für Level {newLevel}
+            {t("lvl.checklist_header","{n}. Checkliste für Level {lv}").replace("{n}", casterType ? "4." : "3.").replace("{lv}", newLevel)}
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -453,26 +451,26 @@ export default function LevelUpAssistant({ char, setChar }) {
       <div style={{ ...sx.card, background: `${C.green}10`, border: `1px solid ${C.green}40` }}>
         <div style={{ ...sx.jb, flexWrap: "wrap", gap: 10 }}>
           <div>
-            <div style={{ fontFamily: FH, fontSize: 14, color: C.greenBright, fontWeight: 700 }}>Level-Up bestätigen</div>
-            <div style={{ fontSize: 12, color: C.textDim }}>Level {char.level} → {newLevel} · Max HP +{chosenHp} ({char.maxHp} → {char.maxHp + chosenHp}) · PB +{pb}</div>
+            <div style={{ fontFamily: FH, fontSize: 14, color: C.greenBright, fontWeight: 700 }}>{t("lvl.confirm_header","Level-Up bestätigen")}</div>
+            <div style={{ fontSize: 12, color: C.textDim }}>{t("lvl.confirm_summary","Level {old} → {new} · Max HP +{hp} ({maxOld} → {maxNew}) · PB +{pb}").replace("{old}", char.level).replace("{new}", newLevel).replace("{hp}", chosenHp).replace("{maxOld}", char.maxHp).replace("{maxNew}", char.maxHp + chosenHp).replace("{pb}", pb)}</div>
           </div>
-          <button onClick={doLevelUp} style={{ ...sx.btn(C.green), fontSize: 13, padding: "10px 20px" }}>⬆️ Jetzt Level-Up durchführen</button>
+          <button onClick={doLevelUp} style={{ ...sx.btn(C.green), fontSize: 13, padding: "10px 20px" }}>{t("lvl.do_levelup_btn","⬆️ Jetzt Level-Up durchführen")}</button>
         </div>
       </div>
 
       {!confirmReset ? (
         <div style={{ textAlign: "center", paddingBottom: 8 }}>
-          <button onClick={() => setConfirmReset(true)} style={{ ...sx.bsm(C.red), fontSize: 11 }}>↩️ Auf Level 1 zurücksetzen</button>
+          <button onClick={() => setConfirmReset(true)} style={{ ...sx.bsm(C.red), fontSize: 11 }}>{t("lvl.reset_to_1","↩️ Auf Level 1 zurücksetzen")}</button>
         </div>
       ) : (
         <div style={{ ...sx.card, background: `${C.red}0d`, border: `1px solid ${C.red}40` }}>
-          <div style={{ fontFamily: FH, fontSize: 13, color: C.redBright, fontWeight: 700, marginBottom: 6 }}>⚠️ Wirklich auf Level 1 zurücksetzen?</div>
+          <div style={{ fontFamily: FH, fontSize: 13, color: C.redBright, fontWeight: 700, marginBottom: 6 }}>{t("lvl.reset_confirm","⚠️ Wirklich auf Level 1 zurücksetzen?")}</div>
           <div style={{ fontSize: 12, color: C.textDim, marginBottom: 12 }}>
-            Level → 1 · Max HP → {hdNum + conMod} ({char.hd} Max + CON) · HD zurückgesetzt
+            {t("lvl.reset_summary","Level → 1 · Max HP → {hp} ({hd} Max + CON) · HD zurückgesetzt").replace("{hp}", hdNum + conMod).replace("{hd}", char.hd)}
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={doReset} style={{ ...sx.btn(C.red), fontSize: 12 }}>↩️ Ja, zurücksetzen</button>
-            <button onClick={() => setConfirmReset(false)} style={sx.bsm(C.textDim)}>Abbrechen</button>
+            <button onClick={doReset} style={{ ...sx.btn(C.red), fontSize: 12 }}>{t("lvl.reset_yes","↩️ Ja, zurücksetzen")}</button>
+            <button onClick={() => setConfirmReset(false)} style={sx.bsm(C.textDim)}>{t("lvl.cancel_word","Abbrechen")}</button>
           </div>
         </div>
       )}

@@ -107,20 +107,20 @@ export default function CharManager() {
       <div data-no-print style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${C.border}`, borderRadius: 14, padding: "12px 16px", marginBottom: 14 }}>
         <div style={{ ...sx.jb, flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1 }}>CHARAKTER</span>
+            <span style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1 }}>{t("char.character_label","CHARAKTER")}</span>
             {chars.map(c => (
               <button key={c.id} onClick={() => setAid(c.id)} style={{ background: c.id === aid ? "linear-gradient(135deg,#7c3aed44,#5b21b622)" : "transparent", border: `1px solid ${c.id === aid ? C.purple : C.border}`, borderRadius: 20, color: c.id === aid ? C.purpleBright : C.textBright, fontFamily: FH, fontSize: 12, padding: "5px 14px", cursor: "pointer", fontWeight: c.id === aid ? 700 : 400, boxShadow: c.id === aid ? "0 0 12px rgba(124,58,237,0.3)" : "none", transition: "all .2s" }}>
                 {c.name} <span style={{ color: C.textDim, fontSize: 10 }}>Lv.{c.level}</span>
               </button>
             ))}
-            <button onClick={addChar} style={sx.bsm(C.green)}>+ Neu</button>
+            <button onClick={addChar} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
             {chars.length > 1 && <button onClick={() => delChar(aid)} style={sx.bsm(C.red)}>🗑</button>}
             <label style={{ ...sx.bsm(C.blue), cursor: "pointer" }}>
-              📥 Import
+              {t("char.import_btn","📥 Import")}
               <input type="file" accept=".json" onChange={importJSON} style={{ display: "none" }} />
             </label>
-            <button onClick={exportPDF} title="Charakter-Bogen als PDF drucken/speichern" style={sx.bsm(C.gold)}>
-              📄 PDF Export
+            <button onClick={exportPDF} title={t("char.pdf_export_title","Charakter-Bogen als PDF drucken/speichern")} style={sx.bsm(C.gold)}>
+              {t("char.pdf_export_btn","📄 PDF Export")}
             </button>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
@@ -137,23 +137,23 @@ export default function CharManager() {
           const conMod = Math.floor(((active.con || 10) - 10) / 2);
           return (
             <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(13,148,136,0.1)", border: `1px solid ${C.teal}40`, borderRadius: 10 }}>
-              <div style={{ fontSize: 13, color: C.tealBright, fontFamily: FH, fontWeight: 700, marginBottom: 8 }}>🌙 Kurze Rast — Hit Dice ausgeben (2024 RAW)</div>
+              <div style={{ fontSize: 13, color: C.tealBright, fontFamily: FH, fontWeight: 700, marginBottom: 8 }}>{t("char.short_rest_header","🌙 Kurze Rast — Hit Dice ausgeben (2024 RAW)")}</div>
               <div style={{ fontSize: 12, color: C.textDim, marginBottom: 10 }}>
-                HP: <strong style={{ color: C.textBright }}>{active.hp} / {active.maxHp}</strong>
-                {" · "}HD verfügbar: <strong style={{ color: hdRemaining > 0 ? C.tealBright : C.textDim }}>{hdRemaining} × d{hdSize}</strong>
-                {" · "}CON-Mod: <strong style={{ color: C.amberBright }}>{conMod >= 0 ? `+${conMod}` : conMod}</strong>
+                {t("char.hp_label","HP:")} <strong style={{ color: C.textBright }}>{active.hp} / {active.maxHp}</strong>
+                {" · "}{t("char.hd_available","HD verfügbar:")} <strong style={{ color: hdRemaining > 0 ? C.tealBright : C.textDim }}>{hdRemaining} × d{hdSize}</strong>
+                {" · "}{t("char.con_mod_label","CON-Mod:")} <strong style={{ color: C.amberBright }}>{conMod >= 0 ? `+${conMod}` : conMod}</strong>
               </div>
               <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 8 }}>
                 <button onClick={doRollHitDie} disabled={hdRemaining <= 0 || active.hp >= active.maxHp} style={{ ...sx.btn(C.teal), opacity: (hdRemaining <= 0 || active.hp >= active.maxHp) ? 0.4 : 1 }}>
-                  🎲 1 HD würfeln (d{hdSize} + {conMod >= 0 ? `+${conMod}` : conMod})
+                  {t("char.roll_hd_btn","🎲 1 HD würfeln")} (d{hdSize} + {conMod >= 0 ? `+${conMod}` : conMod})
                 </button>
-                <span style={{ fontSize: 11, color: C.textDim }}>oder manuell:</span>
-                <label style={{ ...sx.lbl, marginBottom: 0 }}>HP:</label>
+                <span style={{ fontSize: 11, color: C.textDim }}>{t("char.or_manual","oder manuell:")}</span>
+                <label style={{ ...sx.lbl, marginBottom: 0 }}>{t("char.hp_label","HP:")}</label>
                 <input type="number" min={0} max={active.maxHp} value={shortHpVal} onChange={e => setShortHpVal(Math.max(0, +e.target.value))} style={{ ...sx.inp, width: 70 }} />
               </div>
               {hdRollLog.length > 0 && (
                 <div style={{ marginBottom: 8, padding: "6px 10px", background: "rgba(0,0,0,0.25)", borderRadius: 6, fontSize: 11, color: C.text }}>
-                  <span style={{ color: C.tealBright, fontWeight: 700 }}>🎲 Würfe: </span>
+                  <span style={{ color: C.tealBright, fontWeight: 700 }}>{t("char.rolls_word","🎲 Würfe:")} </span>
                   {hdRollLog.map((l, i) => (
                     <span key={i} style={{ marginRight: 8 }}>
                       [{l.roll}+{l.mod >= 0 ? l.mod : `(${l.mod})`}={l.healed}]
@@ -163,8 +163,8 @@ export default function CharManager() {
                 </div>
               )}
               <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={doShortRest} style={sx.btn(C.tealBright)}>✓ Kurze Rast abschließen</button>
-                <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>Abbrechen</button>
+                <button onClick={doShortRest} style={sx.btn(C.tealBright)}>{t("char.complete_short_rest","✓ Kurze Rast abschließen")}</button>
+                <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>{t("char.cancel_word","Abbrechen")}</button>
               </div>
             </div>
           );
@@ -174,10 +174,10 @@ export default function CharManager() {
           <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(13,148,136,0.1)", border: `1px solid ${C.teal}40`, borderRadius: 10, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
             <div style={{ fontSize: 22 }}>🌙</div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, color: C.tealBright, fontWeight: 700 }}>Kurze Rast abgeschlossen!</div>
+              <div style={{ fontSize: 14, color: C.tealBright, fontWeight: 700 }}>{t("char.short_rest_done","Kurze Rast abgeschlossen!")}</div>
               <div style={{ fontSize: 12, color: C.textDim }}>
-                <strong style={{ color: C.greenBright }}>+{shortResult.healed} HP</strong> wiederhergestellt
-                {shortResult.resourcesReset > 0 && <> · <strong style={{ color: C.amberBright }}>{shortResult.resourcesReset} Klassen-Ressource(n)</strong> zurückgesetzt (Action Surge, Bardische Inspiration, Channel Divinity, Focus Points, Pact Slots…)</>}
+                <strong style={{ color: C.greenBright }}>+{shortResult.healed} HP</strong> {t("char.hp_restored","wiederhergestellt")}
+                {shortResult.resourcesReset > 0 && <> · <strong style={{ color: C.amberBright }}>{shortResult.resourcesReset} {t("char.resources_reset","Klassen-Ressource(n) zurückgesetzt (Action Surge, Bardische Inspiration, Channel Divinity, Focus Points, Pact Slots…)")}</strong></>}
               </div>
             </div>
             <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>✕</button>
@@ -186,21 +186,21 @@ export default function CharManager() {
 
         {restMode === "long_confirm" && (
           <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(124,58,237,0.1)", border: `1px solid ${C.purple}40`, borderRadius: 10 }}>
-            <div style={{ fontSize: 13, color: C.purpleBright, fontFamily: FH, fontWeight: 700, marginBottom: 6 }}>🌟 Lange Rast — Bestätigen (2024 PHB)</div>
+            <div style={{ fontSize: 13, color: C.purpleBright, fontFamily: FH, fontWeight: 700, marginBottom: 6 }}>{t("char.long_rest_confirm_header","🌟 Lange Rast — Bestätigen (2024 PHB)")}</div>
             <div style={{ fontSize: 12, color: C.textDim, marginBottom: 10, lineHeight: 1.6 }}>
-              Stellt wieder her:
+              {t("char.restores_word","Stellt wieder her:")}
               <ul style={{ margin: "4px 0 0 16px", padding: 0 }}>
-                <li><strong style={{ color: C.greenBright }}>HP → Max</strong> ({active.maxHp})</li>
-                <li><strong style={{ color: C.blueBright }}>Alle Spell Slots</strong></li>
-                <li><strong style={{ color: C.amberBright }}>{Math.max(1, Math.floor((active.level || 1) / 2))} Hit Dice</strong> wiederhergestellt</li>
-                <li><strong style={{ color: C.tealBright }}>Temp HP → 0</strong>, Death Saves reset</li>
-                <li><strong style={{ color: C.redBright }}>Exhaustion -1 Level</strong> (2024 RAW)</li>
-                <li><strong style={{ color: C.purpleBright }}>Alle Klassen-Ressourcen</strong> (Rage, Action Surge, Bardische Inspiration, Focus Points, Pact Slots, etc.)</li>
+                <li><strong style={{ color: C.greenBright }}>{t("char.lr_hp_max","HP → Max")}</strong> ({active.maxHp})</li>
+                <li><strong style={{ color: C.blueBright }}>{t("char.lr_all_slots","Alle Spell Slots")}</strong></li>
+                <li><strong style={{ color: C.amberBright }}>{Math.max(1, Math.floor((active.level || 1) / 2))} {t("char.lr_hd_restored","Hit Dice wiederhergestellt")}</strong></li>
+                <li><strong style={{ color: C.tealBright }}>{t("char.lr_temp_hp","Temp HP → 0, Death Saves reset")}</strong></li>
+                <li><strong style={{ color: C.redBright }}>{t("char.lr_exhaustion","Exhaustion -1 Level (2024 RAW)")}</strong></li>
+                <li><strong style={{ color: C.purpleBright }}>{t("char.lr_resources","Alle Klassen-Ressourcen (Rage, Action Surge, Bardische Inspiration, Focus Points, Pact Slots, etc.)")}</strong></li>
               </ul>
             </div>
             <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={doLongRest} style={sx.btn(C.purple)}>🌟 Lange Rast durchführen</button>
-              <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>Abbrechen</button>
+              <button onClick={doLongRest} style={sx.btn(C.purple)}>{t("char.do_long_rest","🌟 Lange Rast durchführen")}</button>
+              <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>{t("char.cancel_word","Abbrechen")}</button>
             </div>
           </div>
         )}
@@ -209,11 +209,11 @@ export default function CharManager() {
           <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(124,58,237,0.1)", border: `1px solid ${C.purple}40`, borderRadius: 10, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
             <div style={{ fontSize: 22 }}>🌟</div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, color: C.purpleBright, fontWeight: 700 }}>Lange Rast abgeschlossen!</div>
+              <div style={{ fontSize: 14, color: C.purpleBright, fontWeight: 700 }}>{t("char.long_rest_done","Lange Rast abgeschlossen!")}</div>
               <div style={{ fontSize: 12, color: C.textDim }}>
-                HP voll · Spell Slots zurück · <strong style={{ color: C.amberBright }}>+{longResult.hdRecovered} HD</strong>
-                {longResult.exhaustionRemoved > 0 && <> · <strong style={{ color: C.redBright }}>Exhaustion -{longResult.exhaustionRemoved}</strong></>}
-                {longResult.resourcesReset > 0 && <> · <strong style={{ color: C.purpleBright }}>{longResult.resourcesReset} Ressourcen</strong> reset</>}
+                {t("char.lr_summary_hp","HP voll · Spell Slots zurück")} · <strong style={{ color: C.amberBright }}>+{longResult.hdRecovered} HD</strong>
+                {longResult.exhaustionRemoved > 0 && <> · <strong style={{ color: C.redBright }}>{t("char.exhaustion_word","Exhaustion")} -{longResult.exhaustionRemoved}</strong></>}
+                {longResult.resourcesReset > 0 && <> · <strong style={{ color: C.purpleBright }}>{longResult.resourcesReset} {t("char.resources_word","Ressourcen")}</strong> {t("char.reset_word","reset")}</>}
               </div>
             </div>
             <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>✕</button>
