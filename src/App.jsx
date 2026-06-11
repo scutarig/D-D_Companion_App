@@ -406,6 +406,14 @@ function AppInner() {
         a:hover { text-decoration: underline; }
       }
 
+      /* ── D8: bottom-nav smooth active transitions ── */
+      nav button {
+        transition: background-color .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease;
+      }
+      nav button:active {
+        transform: scale(0.97);
+      }
+
       /* ── Touch-Optimization for Tablets (S7 FE, iPad etc.) ──
          Bumps button padding/min-height on coarse-pointer devices ≥ 768px.
          Mobile (<768px) stays compact for bottom-nav efficiency. */
@@ -461,6 +469,8 @@ function AppInner() {
         /* Light theme override for readable PDF */
         body, html { background: #fff !important; color: #111 !important; }
         * { background: transparent !important; color: #111 !important; box-shadow: none !important; }
+        /* A12 audit fix: preserve stat-coding via data-print-color attribute */
+        [data-print-color] { color: var(--print-color, #111) !important; font-weight: 700 !important; }
         /* Borders subtle */
         [style*="border"] { border-color: #aaa !important; }
         /* Preserve accent colors via filter */
@@ -509,11 +519,29 @@ function AppInner() {
       });
     };
     patch(document.body);
+    // Throttle: only patch newly-added subtrees, and only if they actually contain inputs.
+    // Avoids running for every single text-node change (huge in active lists).
+    let pending = false;
+    let queued = [];
+    const flush = () => {
+      pending = false;
+      const nodes = queued.splice(0);
+      for (const n of nodes) patch(n);
+    };
     const observer = new MutationObserver((mutations) => {
       for (const m of mutations) {
         for (const node of m.addedNodes) {
-          if (node.nodeType === 1) patch(node);
+          if (node.nodeType !== 1) continue;
+          // Skip subtrees with zero number-inputs — cheap fast path
+          if (!node.querySelector || (!node.matches?.('input[type="number"]') && !node.querySelector('input[type="number"]'))) continue;
+          queued.push(node);
         }
+      }
+      if (!pending && queued.length) {
+        pending = true;
+        (typeof requestIdleCallback === "function"
+          ? requestIdleCallback(flush, { timeout: 500 })
+          : setTimeout(flush, 50));
       }
     });
     observer.observe(document.body, { childList: true, subtree: true });
