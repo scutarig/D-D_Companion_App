@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { aggregateBonuses, formatBonusSummary } from "../utils/magicItemBonuses.js";
+import { useI18n } from "../i18n/index.js";
 
 // ── Rarity colours ────────────────────────────────────────────────────────────
 const RC   = { Common: C.textDim, Uncommon: "#00c040", Rare: "#3b82f6", "Very Rare": "#a855f7", Legendary: "#f59e0b" };
@@ -11,16 +12,16 @@ const ITEM_TYPES = ["Weapon","Armor","Gear","Tool","Item","Potion","Ring","Wand"
 
 // ── D&D 5e Slot-Definitionen ─────────────────────────────────────────────────
 const SLOTS = [
-  { id:"head",  label:"Kopf",      icon:"👑" },
-  { id:"neck",  label:"Hals",      icon:"📿" },
-  { id:"chest", label:"Brust",     icon:"🧥" },
-  { id:"back",  label:"Rücken",    icon:"🎒" },
-  { id:"hands", label:"Hände",     icon:"🧤" },
-  { id:"ring1", label:"Ring L",    icon:"💍" },
-  { id:"ring2", label:"Ring R",    icon:"💍" },
-  { id:"main",  label:"Haupthand", icon:"⚔️" },
-  { id:"off",   label:"Nebenhand", icon:"🛡️" },
-  { id:"feet",  label:"Füße",      icon:"👢" },
+  { id:"head",  label:"Kopf",      key:"inv.slot_head",   icon:"👑" },
+  { id:"neck",  label:"Hals",      key:"inv.slot_neck",   icon:"📿" },
+  { id:"chest", label:"Brust",     key:"inv.slot_chest",  icon:"🧥" },
+  { id:"back",  label:"Rücken",    key:"inv.slot_back",   icon:"🎒" },
+  { id:"hands", label:"Hände",     key:"inv.slot_hands",  icon:"🧤" },
+  { id:"ring1", label:"Ring L",    key:"inv.slot_ring_l", icon:"💍" },
+  { id:"ring2", label:"Ring R",    key:"inv.slot_ring_r", icon:"💍" },
+  { id:"main",  label:"Haupthand", key:"inv.slot_main",   icon:"⚔️" },
+  { id:"off",   label:"Nebenhand", key:"inv.slot_off",    icon:"🛡️" },
+  { id:"feet",  label:"Füße",      key:"inv.slot_feet",   icon:"👢" },
 ];
 
 // ── D&D 5e Slot-Kompatibilität ────────────────────────────────────────────────
@@ -113,6 +114,8 @@ const MAX_ATTUNEMENT = 3;
 
 // ── Hauptkomponente ───────────────────────────────────────────────────────────
 export default function CharInventory({ char, setChar }) {
+  const { t } = useI18n();
+  const slotLabel = (slot) => slot?.key ? t(slot.key, slot.label) : (slot?.label || "");
   const inv    = char.inventory || [];
   const eq     = char.equipSlots || {};
   const attunedItems = char.attunedItems || [];
@@ -190,8 +193,8 @@ export default function CharInventory({ char, setChar }) {
     // Kompatibilität prüfen
     if (!compatSlots.includes(slotId)) {
       const reason = mainIsTwoHanded && slotId === "off"
-        ? "Nebenhand gesperrt — Haupthand führt eine Zweihandwaffe."
-        : `Dieses Item passt nicht in den Slot „${SLOTS.find(s=>s.id===slotId)?.label}".`;
+        ? t("inv.off_locked_reason","Nebenhand gesperrt — Haupthand führt eine Zweihandwaffe.")
+        : t("inv.slot_mismatch","Dieses Item passt nicht in den Slot „{slot}\".").replace("{slot}", slotLabel(SLOTS.find(s=>s.id===slotId)));
       setSlotError(reason);
       setTimeout(() => setSlotError(null), 2500);
       return;
@@ -217,7 +220,7 @@ export default function CharInventory({ char, setChar }) {
       {/* ── Attunement Widget ── */}
       {allMagicItems.length > 0 && (
         <div style={{ ...panelBg, marginBottom: 12 }}>
-          <div style={secTitle}>✨ Attunement ({attunedItems.length}/{MAX_ATTUNEMENT})</div>
+          <div style={secTitle}>{t("inv.attunement_header","✨ Attunement")} ({attunedItems.length}/{MAX_ATTUNEMENT})</div>
 
           {/* Rest-Hinweis wenn Änderungen seit letzter Rast */}
           {attunementChangedSinceRest.length > 0 && (
@@ -228,8 +231,8 @@ export default function CharInventory({ char, setChar }) {
             }}>
               <span>⏳</span>
               <span>
-                Attunement-Änderungen aktiv — benötigt <strong>Kurze/Lange Rast</strong> zum Abschließen
-                ({attunementChangedSinceRest.length} Gegenstand{attunementChangedSinceRest.length !== 1 ? "e" : ""})
+                {t("inv.attunement_change_warning","Attunement-Änderungen aktiv — benötigt")} <strong>{t("inv.attunement_rest_word","Kurze/Lange Rast")}</strong> {t("inv.attunement_complete","zum Abschließen")}
+                ({attunementChangedSinceRest.length} {attunementChangedSinceRest.length !== 1 ? t("inv.item_plural","Gegenstände") : t("inv.item_singular","Gegenstand")})
               </span>
             </div>
           )}
@@ -255,10 +258,10 @@ export default function CharInventory({ char, setChar }) {
                         fontSize: 9, padding: "1px 6px", borderRadius: 4,
                         background: `${C.red}22`, border: `1px solid ${C.red}55`,
                         color: C.redBright, cursor: "pointer",
-                      }}>entfernen</button>
+                      }}>{t("inv.remove_word","entfernen")}</button>
                     </>
                   ) : (
-                    <div style={{ fontSize: 11, color: "#3a3060", fontFamily: FH }}>leer</div>
+                    <div style={{ fontSize: 11, color: "#3a3060", fontFamily: FH }}>{t("inv.empty_slot","leer")}</div>
                   )}
                 </div>
               );
@@ -268,7 +271,7 @@ export default function CharInventory({ char, setChar }) {
           {/* Active bonus summary */}
           {bonusSummary.length > 0 && (
             <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-              <span style={{ fontSize: 10, color: C.textDim, alignSelf: "center", marginRight: 2 }}>Aktive Boni:</span>
+              <span style={{ fontSize: 10, color: C.textDim, alignSelf: "center", marginRight: 2 }}>{t("inv.active_bonuses","Aktive Boni:")}</span>
               {bonusSummary.map((b, i) => (
                 <span key={i} style={{
                   fontSize: 10, padding: "2px 7px", borderRadius: 10,
@@ -290,8 +293,8 @@ export default function CharInventory({ char, setChar }) {
               <div style={{fontFamily:FH,fontSize:12,color:RC[selForEquip.rar]||C.gold,fontWeight:700}}>{selForEquip.name}</div>
               <div style={{fontSize:11,color:C.textDim}}>
                 {compatSlots.length > 0
-                  ? `Gültige Slots: ${compatSlots.map(id => SLOTS.find(s=>s.id===id)?.label).join(", ")}`
-                  : "Dieses Item kann nicht ausgerüstet werden."}
+                  ? `${t("inv.valid_slots","Gültige Slots:")} ${compatSlots.map(id => slotLabel(SLOTS.find(s=>s.id===id))).join(", ")}`
+                  : t("inv.cant_equip","Dieses Item kann nicht ausgerüstet werden.")}
               </div>
             </div>
             <button onClick={() => setSelForEquip(null)} style={sx.bsm(C.textDim)}>✕</button>
@@ -306,12 +309,12 @@ export default function CharInventory({ char, setChar }) {
 
       {/* ── Equipment Slots — 5×2 Grid ── */}
       <div style={{ ...panelBg, marginBottom:12 }}>
-        <div style={secTitle}>Ausrüstung</div>
+        <div style={secTitle}>{t("inv.equipment_header","Ausrüstung")}</div>
 
         {/* Zweihänder-Hinweis */}
         {mainIsTwoHanded && (
           <div style={{fontSize:10,color:C.amberBright,background:`${C.amber}12`,border:`1px solid ${C.amber}30`,borderRadius:6,padding:"4px 8px",marginBottom:8,textAlign:"center"}}>
-            🔒 Zweihänder in der Haupthand — Nebenhand gesperrt
+            {t("inv.two_handed_lock_hint","🔒 Zweihänder in der Haupthand — Nebenhand gesperrt")}
           </div>
         )}
 
@@ -333,7 +336,7 @@ export default function CharInventory({ char, setChar }) {
                   if (selForEquip)         equipTo(slot.id);
                   else if (item)           setSlotModal({ ...item, _slotId: slot.id });
                 }}
-                title={item ? `${item.name}${info ? " · " + info : ""}` : slot.label}
+                title={item ? `${item.name}${info ? " · " + info : ""}` : slotLabel(slot)}
                 style={{
                   background: isOffLockedByTwoHand
                     ? "rgba(133,0,0,0.15)"
@@ -359,7 +362,7 @@ export default function CharInventory({ char, setChar }) {
                 {isOffLockedByTwoHand ? (
                   <>
                     <span style={{fontSize:16}}>🔒</span>
-                    <span style={{fontSize:7,color:"#85000099",fontFamily:F,textTransform:"uppercase",letterSpacing:0.3,textAlign:"center"}}>Gesperrt</span>
+                    <span style={{fontSize:7,color:"#85000099",fontFamily:F,textTransform:"uppercase",letterSpacing:0.3,textAlign:"center"}}>{t("inv.slot_locked_short","Gesperrt")}</span>
                   </>
                 ) : (
                   <>
@@ -372,7 +375,7 @@ export default function CharInventory({ char, setChar }) {
                       textAlign:"center", width:"100%", overflow:"hidden", textOverflow:"ellipsis",
                       whiteSpace:"nowrap", padding:"0 2px", lineHeight:1.3,
                     }}>
-                      {item ? item.name : slot.label}
+                      {item ? item.name : slotLabel(slot)}
                     </span>
                     {item && info && (
                       <span style={{
@@ -393,9 +396,9 @@ export default function CharInventory({ char, setChar }) {
         {/* Legende */}
         {selForEquip && compatSlots.length > 0 && (
           <div style={{marginTop:8,fontSize:10,color:C.textDim,textAlign:"center"}}>
-            <span style={{color:"#00c840"}}>✚ Gültiger Slot</span>
+            <span style={{color:"#00c840"}}>{t("inv.valid_slot_label","✚ Gültiger Slot")}</span>
             <span style={{margin:"0 8px"}}>·</span>
-            <span style={{opacity:0.5}}>Ausgegraut = inkompatibel</span>
+            <span style={{opacity:0.5}}>{t("inv.invalid_slot_label","Ausgegraut = inkompatibel")}</span>
           </div>
         )}
       </div>
@@ -404,30 +407,30 @@ export default function CharInventory({ char, setChar }) {
       <div style={{ ...panelBg, marginBottom:12 }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
           <span style={{...secTitle, marginBottom:0, textAlign:"left"}}>
-            Rucksack <span style={{color:C.purple}}>({bagItems.length})</span>
+            {t("inv.backpack_header","Rucksack")} <span style={{color:C.purple}}>({bagItems.length})</span>
           </span>
-          <button onClick={() => setShowAdd(p=>!p)} style={{...sx.bsm(C.green),fontSize:11}}>+ Item</button>
+          <button onClick={() => setShowAdd(p=>!p)} style={{...sx.bsm(C.green),fontSize:11}}>{t("inv.add_item_btn","+ Item")}</button>
         </div>
 
         <div style={{display:"flex", gap:6, marginBottom:8}}>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="🔍 Suchen…"
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("inv.search_placeholder","🔍 Suchen…")}
             style={{...sx.inp, fontSize:13, flex:1, padding:"7px 10px"}} />
           <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)}
             style={{...sx.sel, fontSize:11, padding:"7px 6px", width:88}}>
-            <option value="All">Alle</option>
-            {ITEM_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+            <option value="All">{t("inv.all_types","Alle")}</option>
+            {ITEM_TYPES.map(it => <option key={it} value={it}>{it}</option>)}
           </select>
           <button onClick={() => setMagicOnly(p=>!p)} style={{
             padding:"6px 10px", borderRadius:6, border:`1px solid ${magicOnly ? C.purpleBright : C.border}`,
             background: magicOnly ? `${C.purpleBright}22` : "transparent",
             color: magicOnly ? C.purpleBright : C.textDim, fontSize:13, cursor:"pointer",
-          }} title="Nur magische Items anzeigen">✨</button>
+          }} title={t("inv.magic_only_title","Nur magische Items anzeigen")}>✨</button>
         </div>
 
         {filtered.length === 0 && (
           <div style={{textAlign:"center",color:C.textDim,padding:24,fontSize:12}}>
             <div style={{fontSize:28,marginBottom:6}}>🎒</div>
-            Rucksack leer — füge Items im <strong style={{color:C.blue}}>Katalog</strong> hinzu.
+            {t("inv.empty_backpack","Rucksack leer — füge Items im")} <strong style={{color:C.blue}}>{t("inv.catalog_word","Katalog")}</strong> {t("inv.hinzu_word","hinzu.")}
           </div>
         )}
 
@@ -492,7 +495,7 @@ export default function CharInventory({ char, setChar }) {
                         {item.ac  && <span style={sx.tag(C.blue)}>🛡️ {item.ac}</span>}
                         {item.eff && item.eff!=="—" && <span style={sx.tag(C.green)}>✨ {item.eff}</span>}
                         {item.wt  && item.wt!=="—"  && <span style={sx.tag(C.textDim)}>⚖️ {item.wt}</span>}
-                        {isTwoHanded(item) && <span style={sx.tag(C.amber)}>Zweihändig</span>}
+                        {isTwoHanded(item) && <span style={sx.tag(C.amber)}>{t("inv.two_handed_short","Zweihändig")}</span>}
                       </div>
                     )}
                     {item.notes && item.notes!=="—" && (
@@ -508,7 +511,7 @@ export default function CharInventory({ char, setChar }) {
                       }}>
                         <span style={{fontSize:14}}>🔗</span>
                         <span style={{flex:1,fontSize:12,color:attunedItems.includes(item.uid) ? C.purpleBright : C.textDim}}>
-                          {attunedItems.includes(item.uid) ? "Attunement aktiv" : "Benötigt Attunement"}
+                          {attunedItems.includes(item.uid) ? t("inv.attunement_active","Attunement aktiv") : t("inv.attunement_needed","Benötigt Attunement")}
                         </span>
                         <button onClick={() => {
                           if (!attunedItems.includes(item.uid) && attunedItems.length >= MAX_ATTUNEMENT) return;
@@ -520,10 +523,10 @@ export default function CharInventory({ char, setChar }) {
                           color: attunedItems.includes(item.uid) ? C.redBright : C.purpleBright,
                           opacity: !attunedItems.includes(item.uid) && attunedItems.length >= MAX_ATTUNEMENT ? 0.4 : 1,
                         }}>
-                          {attunedItems.includes(item.uid) ? "Trennen" : `Attunieren (${attunedItems.length}/${MAX_ATTUNEMENT})`}
+                          {attunedItems.includes(item.uid) ? t("inv.detach_btn","Trennen") : `${t("inv.attune_btn","Attunieren")} (${attunedItems.length}/${MAX_ATTUNEMENT})`}
                         </button>
                         {attunementChangedSinceRest.includes(item.uid) && (
-                          <span style={{ fontSize: 10, color: C.amberBright }}>⏳ Rast ausstehend</span>
+                          <span style={{ fontSize: 10, color: C.amberBright }}>{t("inv.rest_pending","⏳ Rast ausstehend")}</span>
                         )}
                       </div>
                     )}
@@ -531,14 +534,14 @@ export default function CharInventory({ char, setChar }) {
                     <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
                       {canEquip && (
                         <button onClick={() => { setSelForEquip(item); setExpanded(null); }}
-                          style={{...sx.btn(C.purple),fontSize:12,padding:"7px 14px"}}>⚔️ Ausstatten</button>
+                          style={{...sx.btn(C.purple),fontSize:12,padding:"7px 14px"}}>{t("inv.equip_btn","⚔️ Ausstatten")}</button>
                       )}
                       <button onClick={() => removeItem(item.uid)}
-                        style={{...sx.bsm(C.red),fontSize:12,padding:"7px 12px"}}>🗑 Entfernen</button>
+                        style={{...sx.bsm(C.red),fontSize:12,padding:"7px 12px"}}>{t("inv.remove_btn","🗑 Entfernen")}</button>
                     </div>
                     {!canEquip && (
                       <div style={{fontSize:10,color:C.textDim,fontStyle:"italic"}}>
-                        📦 Wird im Rucksack getragen (kein Ausrüstungsslot)
+                        {t("inv.in_backpack_hint","📦 Wird im Rucksack getragen (kein Ausrüstungsslot)")}
                       </div>
                     )}
                   </div>
@@ -552,20 +555,20 @@ export default function CharInventory({ char, setChar }) {
       {/* ── Custom Item Form ── */}
       {showAdd && (
         <div style={{...sx.card, marginBottom:14}}>
-          <div style={sx.ct}>✏️ Eigenes Item</div>
+          <div style={sx.ct}>{t("inv.custom_form_title","✏️ Eigenes Item")}</div>
           <div style={sx.g3}>
-            <div><label style={sx.lbl}>Name</label><input value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} style={sx.inp} /></div>
-            <div><label style={sx.lbl}>Typ</label><select value={form.type} onChange={e=>setForm(p=>({...p,type:e.target.value}))} style={sx.sel}>{ITEM_TYPES.map(t=><option key={t}>{t}</option>)}</select></div>
-            <div><label style={sx.lbl}>Seltenheit</label><select value={form.rar} onChange={e=>setForm(p=>({...p,rar:e.target.value}))} style={sx.sel}>{["Common","Uncommon","Rare","Very Rare","Legendary"].map(r=><option key={r}>{r}</option>)}</select></div>
-            <div><label style={sx.lbl}>Schaden</label><input value={form.dmg} onChange={e=>setForm(p=>({...p,dmg:e.target.value}))} style={sx.inp} placeholder="1d8 S" /></div>
-            <div><label style={sx.lbl}>AC</label><input value={form.ac} onChange={e=>setForm(p=>({...p,ac:e.target.value}))} style={sx.inp} placeholder="AC 16" /></div>
-            <div><label style={sx.lbl}>Gewicht</label><input value={form.wt} onChange={e=>setForm(p=>({...p,wt:e.target.value}))} style={sx.inp} placeholder="3 lb" /></div>
+            <div><label style={sx.lbl}>{t("inv.label_name","Name")}</label><input value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} style={sx.inp} /></div>
+            <div><label style={sx.lbl}>{t("inv.label_type","Typ")}</label><select value={form.type} onChange={e=>setForm(p=>({...p,type:e.target.value}))} style={sx.sel}>{ITEM_TYPES.map(it=><option key={it}>{it}</option>)}</select></div>
+            <div><label style={sx.lbl}>{t("inv.label_rarity","Seltenheit")}</label><select value={form.rar} onChange={e=>setForm(p=>({...p,rar:e.target.value}))} style={sx.sel}>{["Common","Uncommon","Rare","Very Rare","Legendary"].map(r=><option key={r}>{r}</option>)}</select></div>
+            <div><label style={sx.lbl}>{t("inv.label_dmg","Schaden")}</label><input value={form.dmg} onChange={e=>setForm(p=>({...p,dmg:e.target.value}))} style={sx.inp} placeholder="1d8 S" /></div>
+            <div><label style={sx.lbl}>{t("inv.label_ac","AC")}</label><input value={form.ac} onChange={e=>setForm(p=>({...p,ac:e.target.value}))} style={sx.inp} placeholder="AC 16" /></div>
+            <div><label style={sx.lbl}>{t("inv.label_weight","Gewicht")}</label><input value={form.wt} onChange={e=>setForm(p=>({...p,wt:e.target.value}))} style={sx.inp} placeholder="3 lb" /></div>
           </div>
-          <div style={{marginTop:8}}><label style={sx.lbl}>Notizen (Eigenschaften wie "zweihändig", "leicht"…)</label>
+          <div style={{marginTop:8}}><label style={sx.lbl}>{t("inv.notes_custom_label","Notizen (Eigenschaften wie „zweihändig\", „leicht\"…)")}</label>
             <textarea value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} style={{...sx.ta,height:50}} /></div>
           <div style={{display:"flex",gap:8,marginTop:10}}>
-            <button onClick={addCustom} style={sx.btn(C.green)}>Hinzufügen</button>
-            <button onClick={() => setShowAdd(false)} style={sx.bsm(C.textDim)}>Abbrechen</button>
+            <button onClick={addCustom} style={sx.btn(C.green)}>{t("inv.add_btn","Hinzufügen")}</button>
+            <button onClick={() => setShowAdd(false)} style={sx.bsm(C.textDim)}>{t("inv.cancel_btn","Abbrechen")}</button>
           </div>
         </div>
       )}
@@ -590,8 +593,8 @@ export default function CharInventory({ char, setChar }) {
                 <div style={{fontFamily:FH,fontSize:20,color:RC[slotModal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{slotModal.name}</div>
                 <div style={{fontSize:12,color:C.textDim,marginTop:4}}>
                   {slotModal.sub||slotModal.type} · <span style={{color:RC[slotModal.rar]||C.textDim}}>{slotModal.rar}</span>
-                  <span style={{...sx.tag(C.purple),marginLeft:8,fontSize:9}}>Ausgerüstet</span>
-                  {isTwoHanded(slotModal) && <span style={{...sx.tag(C.amber),marginLeft:6,fontSize:9}}>Zweihändig</span>}
+                  <span style={{...sx.tag(C.purple),marginLeft:8,fontSize:9}}>{t("inv.equipped_tag","Ausgerüstet")}</span>
+                  {isTwoHanded(slotModal) && <span style={{...sx.tag(C.amber),marginLeft:6,fontSize:9}}>{t("inv.two_handed_short","Zweihändig")}</span>}
                 </div>
               </div>
             </div>
@@ -607,8 +610,8 @@ export default function CharInventory({ char, setChar }) {
               </div>
             )}
             <div style={{display:"flex",gap:8}}>
-              <button onClick={() => unequip(slotModal._slotId)} style={{...sx.btn(C.red),padding:"10px 20px",fontSize:13}}>↩ Ablegen</button>
-              <button onClick={() => setSlotModal(null)} style={{...sx.bsm(C.textDim),padding:"10px 16px"}}>Schließen</button>
+              <button onClick={() => unequip(slotModal._slotId)} style={{...sx.btn(C.red),padding:"10px 20px",fontSize:13}}>{t("inv.unequip_btn","↩ Ablegen")}</button>
+              <button onClick={() => setSlotModal(null)} style={{...sx.bsm(C.textDim),padding:"10px 16px"}}>{t("inv.close_btn","Schließen")}</button>
             </div>
           </div>
         </div>

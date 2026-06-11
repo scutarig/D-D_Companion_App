@@ -194,7 +194,7 @@ export default function Katalog({ char, setChar }) {
       {/* ── Custom item form ── */}
       {showForm && (
         <div style={{ ...sx.card, marginBottom:12 }}>
-          <div style={sx.ct}>{editId != null ? (lang==="en"?"✏️ Edit item":"✏️ Item bearbeiten") : (lang==="en"?"✏️ Create custom item":"✏️ Eigenes Item erstellen")}</div>
+          <div style={sx.ct}>{editId != null ? t("katalog.edit_item_title","✏️ Item bearbeiten") : t("katalog.create_custom_title","✏️ Eigenes Item erstellen")}</div>
           <div style={sx.g3}>
             <div style={{ gridColumn:"1/3" }}><label style={sx.lbl}>{t("katalog.label_name","Name")}</label><input value={form.name} onChange={e => setForm(p=>({...p,name:e.target.value}))} style={sx.inp} /></div>
             <div><label style={sx.lbl}>{t("katalog.label_type","Typ")}</label>
@@ -279,7 +279,7 @@ export default function Katalog({ char, setChar }) {
             }}>
             {/* Close X (Touch-Discoverability) */}
             <button onClick={() => setModal(null)}
-              aria-label={lang==="en"?"Close":"Schließen"}
+              aria-label={t("katalog.close_word","Schließen")}
               style={{
                 position:"absolute", top:10, right:10, zIndex:10,
                 width:36, height:36, borderRadius:"50%",
@@ -296,7 +296,7 @@ export default function Katalog({ char, setChar }) {
                 <div style={{fontFamily:FH,fontSize:20,color:RC[modal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{modal.name}</div>
                 <div style={{fontSize:12,color:C.textDim,marginTop:4}}>
                   {modal.sub||modal.type} · <span style={{color:RC[modal.rar]||C.textDim}}>{modal.rar}</span>
-                  {modal.custom && <span style={{...sx.tag(C.purple),marginLeft:8,fontSize:9}}>Eigenes Item</span>}
+                  {modal.custom && <span style={{...sx.tag(C.purple),marginLeft:8,fontSize:9}}>{t("katalog.custom_item_tag","Eigenes Item")}</span>}
                 </div>
               </div>
             </div>
@@ -325,7 +325,7 @@ export default function Katalog({ char, setChar }) {
                 borderLeft: `3px solid ${C.amberBright}`,
               }}>
                 <div style={{ fontSize: 10, color: C.amberBright, fontFamily: FH, letterSpacing: 0.5, fontWeight: 700, marginBottom: 6 }}>
-                  ✨ ALS MAGISCHE VARIANTE HINZUFÜGEN
+                  {t("katalog.magic_variant_header","✨ ALS MAGISCHE VARIANTE HINZUFÜGEN")}
                 </div>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                   {MAGIC_MODIFIERS.map(mod => {
@@ -335,7 +335,7 @@ export default function Katalog({ char, setChar }) {
                       <button
                         key={mod.plus}
                         onClick={() => { addToInv(modal, mod.plus); setModal(null); }}
-                        title={mod.plus === 0 ? "Standard ohne Magie" : `+${mod.plus} auf Angriff & Schaden (Waffe) bzw. +${mod.plus} AC (Rüstung). Rarität: ${mod.rar}`}
+                        title={mod.plus === 0 ? t("katalog.no_magic_title","Standard ohne Magie") : t("katalog.modifier_title","+{n} auf Angriff & Schaden (Waffe) bzw. +{n} AC (Rüstung). Rarität: {rar}").replace(/\{n\}/g, mod.plus).replace("{rar}", mod.rar)}
                         style={{
                           flex: "1 1 auto",
                           padding: "8px 10px",
@@ -368,7 +368,7 @@ export default function Katalog({ char, setChar }) {
                 return (
                   <button onClick={() => { addToInv(modal); setModal(null); }}
                     style={{...sx.btn(C.green),padding:"10px 20px",fontSize:13}}>
-                    {cnt > 0 ? (lang==="en"?`📦 Add again (${cnt}×)`:`📦 Nochmal hinzufügen (${cnt}×)`) : (lang==="en"?"📦 To Inventory":"📦 Zu Inventar")}
+                    {cnt > 0 ? `${t("katalog.add_again","📦 Nochmal hinzufügen")} (${cnt}×)` : t("katalog.to_inventory","📦 Zu Inventar")}
                   </button>
                 );
               })()}
@@ -376,10 +376,10 @@ export default function Katalog({ char, setChar }) {
                 <>
                   <button onClick={() => { setForm({name:modal.name,type:modal.type,sub:modal.sub||"",dmg:modal.dmg||"",ac:modal.ac||"",eff:modal.eff||"",wt:modal.wt||"",rar:modal.rar,notes:modal.notes||""}); setEditId(modal._cid); setShowForm(true); setModal(null); }}
                     style={{...sx.bsm(C.gold),padding:"8px 14px"}}>✎ {t("katalog.edit","Bearbeiten")}</button>
-                  <button onClick={() => deleteCustom(modal._cid)} style={{...sx.bsm(C.red),padding:"8px 14px"}}>🗑 {lang==="en"?"Delete":"Löschen"}</button>
+                  <button onClick={() => deleteCustom(modal._cid)} style={{...sx.bsm(C.red),padding:"8px 14px"}}>🗑 {t("katalog.delete_word","Löschen")}</button>
                 </>
               )}
-              <button onClick={() => setModal(null)} style={{...sx.bsm(C.textDim),padding:"8px 14px"}}>{lang==="en"?"Close":"Schließen"}</button>
+              <button onClick={() => setModal(null)} style={{...sx.bsm(C.textDim),padding:"8px 14px"}}>{t("katalog.close_word","Schließen")}</button>
             </div>
           </div>
         </div>

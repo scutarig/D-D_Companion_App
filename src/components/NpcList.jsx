@@ -3,6 +3,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 import { SRD_NPCS } from "../data/npcs.js";
+import { useI18n } from "../i18n/index.js";
 
 // helper: faction color dot
 function FactionBadge({ factionId, factions, style = {} }) {
@@ -32,6 +33,20 @@ const SOURCE_LABEL = {
 const sourceOf = id => SOURCE_LABEL[Math.floor(id / 100)] || "—";
 
 export default function NpcList() {
+  const { t } = useI18n();
+  const ATT_LABEL = {
+    freundlich: t("npc.att_friendly","freundlich"),
+    neutral: t("npc.att_neutral","neutral"),
+    feindlich: t("npc.att_hostile","feindlich"),
+    unbekannt: t("npc.att_unknown","unbekannt"),
+    Alle: t("npc.att_all","Alle"),
+  };
+  const STATUS_LABEL = {
+    lebendig: t("npc.status_alive","lebendig"),
+    tot: t("npc.status_dead","tot"),
+    unbekannt: t("npc.status_unknown","unbekannt"),
+    gefangen: t("npc.status_captured","gefangen"),
+  };
   const [factions] = usePersist("factions_v1", []);
   const [dmMode, setDmMode] = usePersist("npc_dm_mode", false);
   const [dmConfirm, setDmConfirm] = useState(false);
@@ -110,9 +125,9 @@ export default function NpcList() {
             justifyContent: "space-between",
             gap: 8,
           }}
-          title={dmMode ? "DM-Modus ist aktiv — DM-Notizen sichtbar" : "DM-Modus inaktiv — DM-Notizen versteckt"}
+          title={dmMode ? t("npc.dm_mode_active_title","DM-Modus ist aktiv — DM-Notizen sichtbar") : t("npc.dm_mode_inactive_title","DM-Modus inaktiv — DM-Notizen versteckt")}
         >
-          <span>🎲 DM-Modus</span>
+          <span>{t("npc.dm_mode","🎲 DM-Modus")}</span>
           <span style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             width: 28, height: 14, borderRadius: 7,
@@ -130,22 +145,22 @@ export default function NpcList() {
 
         {/* Tab-Switcher */}
         <div style={{ display: "flex", gap: 4 }}>
-          <button onClick={() => setView("list")}    style={{ ...sx.nb(view === "list"),    flex: 1, fontSize: 11 }}>👥 Meine NPCs</button>
-          <button onClick={() => { setView("catalog"); setSel(null); setShowForm(false); }} style={{ ...sx.nb(view === "catalog"), flex: 1, fontSize: 11 }}>📖 D&D Katalog</button>
+          <button onClick={() => setView("list")}    style={{ ...sx.nb(view === "list"),    flex: 1, fontSize: 11 }}>{t("npc.my_npcs","👥 Meine NPCs")}</button>
+          <button onClick={() => { setView("catalog"); setSel(null); setShowForm(false); }} style={{ ...sx.nb(view === "catalog"), flex: 1, fontSize: 11 }}>{t("npc.catalog_tab","📖 D&D Katalog")}</button>
         </div>
 
         {/* ── Meine NPCs ── */}
         {view === "list" && <>
-          <button onClick={() => { setForm(blank); setSel(null); setShowForm(true); }} style={{ ...sx.btn(C.purple), width: "100%" }}>+ Neuer NPC</button>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="🔍 Name, Rolle, Ort..." style={sx.inp} />
+          <button onClick={() => { setForm(blank); setSel(null); setShowForm(true); }} style={{ ...sx.btn(C.purple), width: "100%" }}>{t("npc.new_npc_btn","+ Neuer NPC")}</button>
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("npc.search_placeholder","🔍 Name, Rolle, Ort...")} style={sx.inp} />
           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
             {["Alle", "freundlich", "neutral", "feindlich", "unbekannt"].map(a => (
               <button key={a} onClick={() => setAttFilter(a)} style={{ ...sx.bsm(ATT_COL[a] || C.textDim), fontWeight: attFilter === a ? 700 : 400, background: attFilter === a ? `${ATT_COL[a] || C.textDim}22` : `${ATT_COL[a] || C.textDim}08` }}>
-                {ATT_ICON[a] || "📋"} {a}
+                {ATT_ICON[a] || "📋"} {ATT_LABEL[a] || a}
               </button>
             ))}
           </div>
-          <div style={{ fontSize: 11, color: C.textDim, marginLeft: 2 }}>{filtered.length} NPCs</div>
+          <div style={{ fontSize: 11, color: C.textDim, marginLeft: 2 }}>{filtered.length} {t("npc.count_label","NPCs")}</div>
           <div style={{ flex: 1, overflowY: "auto", maxHeight: "68vh", display: "flex", flexDirection: "column", gap: 4 }}>
             {filtered.map(npc => {
               const col = ATT_COL[npc.attitude] || C.textDim;
@@ -160,7 +175,7 @@ export default function NpcList() {
                       <div style={{ fontSize: 10, color: C.textDim, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{npc.role}{npc.location && ` · ${npc.location}`}</div>
                     </div>
                     <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:2, flexShrink:0 }}>
-                      <span style={{ fontSize: 9, color: STATUS_COL[npc.status] || C.textDim, fontWeight: 700, whiteSpace: "nowrap" }}>{npc.status}</span>
+                      <span style={{ fontSize: 9, color: STATUS_COL[npc.status] || C.textDim, fontWeight: 700, whiteSpace: "nowrap" }}>{STATUS_LABEL[npc.status] || npc.status}</span>
                       <FactionBadge factionId={npc.factionId} factions={factions} style={{ fontSize: 8, padding: "0px 5px" }} />
                     </div>
                   </div>
@@ -172,15 +187,15 @@ export default function NpcList() {
 
         {/* ── D&D Katalog ── */}
         {view === "catalog" && <>
-          <input value={catSearch} onChange={e => setCatSearch(e.target.value)} placeholder="🔍 Name, Abenteuer, Ort..." style={sx.inp} />
+          <input value={catSearch} onChange={e => setCatSearch(e.target.value)} placeholder={t("npc.cat_search_placeholder","🔍 Name, Abenteuer, Ort...")} style={sx.inp} />
           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
             {["Alle", "freundlich", "neutral", "feindlich"].map(a => (
               <button key={a} onClick={() => setCatAtt(a)} style={{ ...sx.bsm(ATT_COL[a] || C.textDim), fontWeight: catAtt === a ? 700 : 400, background: catAtt === a ? `${ATT_COL[a] || C.textDim}22` : `${ATT_COL[a] || C.textDim}08` }}>
-                {ATT_ICON[a] || "📋"} {a}
+                {ATT_ICON[a] || "📋"} {ATT_LABEL[a] || a}
               </button>
             ))}
           </div>
-          <div style={{ fontSize: 11, color: C.textDim, marginLeft: 2 }}>{catFiltered.length} NPCs</div>
+          <div style={{ fontSize: 11, color: C.textDim, marginLeft: 2 }}>{catFiltered.length} {t("npc.count_label","NPCs")}</div>
           <div style={{ flex: 1, overflowY: "auto", maxHeight: "68vh", display: "flex", flexDirection: "column", gap: 4 }}>
             {catFiltered.map(npc => {
               const col = ATT_COL[npc.attitude] || C.textDim;
@@ -197,7 +212,7 @@ export default function NpcList() {
                   </div>
                   <button onClick={e => { e.stopPropagation(); addFromCatalog(npc); }}
                     style={{ ...sx.bsm(inList ? C.textDim : C.green), fontSize: 10, padding: "2px 7px", flexShrink: 0, opacity: inList ? 0.5 : 1 }}
-                    title={inList ? "Bereits in Liste" : "Zu meinen NPCs hinzufügen"}>
+                    title={inList ? t("npc.already_in_list","Bereits in Liste") : t("npc.add_to_list_title","Zu meinen NPCs hinzufügen")}>
                     {inList ? "✓" : "+"}
                   </button>
                 </div>
@@ -210,37 +225,37 @@ export default function NpcList() {
       {/* ── Rechter Detail-Bereich ─────────────────────────────────────── */}
       <div style={{ flex: 1 }}>
         {showForm && <div style={sx.card}>
-          <div style={sx.ct}>{sel?.custom ? "NPC bearbeiten" : "Neuer NPC"}</div>
+          <div style={sx.ct}>{sel?.custom ? t("npc.edit_title","NPC bearbeiten") : t("npc.new_title","Neuer NPC")}</div>
           <div style={sx.g3}>
-            <div style={{ gridColumn: "1/3" }}><label style={sx.lbl}>Name</label><input value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} style={sx.inp} placeholder="Name des NPC" /></div>
-            <div><label style={sx.lbl}>Rolle / Beruf</label><input value={form.role} onChange={e => setForm(p => ({ ...p, role: e.target.value }))} style={sx.inp} placeholder="Wirt, Händler..." /></div>
-            <div><label style={sx.lbl}>Ort</label><input value={form.location} onChange={e => setForm(p => ({ ...p, location: e.target.value }))} style={sx.inp} placeholder="Stadt, Taverne..." /></div>
-            <div><label style={sx.lbl}>Rasse</label><input value={form.race} onChange={e => setForm(p => ({ ...p, race: e.target.value }))} style={sx.inp} placeholder="Mensch, Elf..." /></div>
-            <div><label style={sx.lbl}>Gesinnung</label><input value={form.alignment} onChange={e => setForm(p => ({ ...p, alignment: e.target.value }))} style={sx.inp} placeholder="Rechtsch. Gut..." /></div>
-            <div><label style={sx.lbl}>Status</label>
+            <div style={{ gridColumn: "1/3" }}><label style={sx.lbl}>{t("npc.name_label","Name")}</label><input value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} style={sx.inp} placeholder={t("npc.name_placeholder","Name des NPC")} /></div>
+            <div><label style={sx.lbl}>{t("npc.role_label","Rolle / Beruf")}</label><input value={form.role} onChange={e => setForm(p => ({ ...p, role: e.target.value }))} style={sx.inp} placeholder={t("npc.role_placeholder","Wirt, Händler...")} /></div>
+            <div><label style={sx.lbl}>{t("npc.location_label","Ort")}</label><input value={form.location} onChange={e => setForm(p => ({ ...p, location: e.target.value }))} style={sx.inp} placeholder={t("npc.location_placeholder","Stadt, Taverne...")} /></div>
+            <div><label style={sx.lbl}>{t("npc.race_label","Rasse")}</label><input value={form.race} onChange={e => setForm(p => ({ ...p, race: e.target.value }))} style={sx.inp} placeholder={t("npc.race_placeholder","Mensch, Elf...")} /></div>
+            <div><label style={sx.lbl}>{t("npc.alignment_label","Gesinnung")}</label><input value={form.alignment} onChange={e => setForm(p => ({ ...p, alignment: e.target.value }))} style={sx.inp} placeholder={t("npc.alignment_placeholder","Rechtsch. Gut...")} /></div>
+            <div><label style={sx.lbl}>{t("npc.status_label","Status")}</label>
               <select value={form.status} onChange={e => setForm(p => ({ ...p, status: e.target.value }))} style={sx.sel}>
-                {["lebendig", "tot", "unbekannt", "gefangen"].map(s => <option key={s}>{s}</option>)}
+                {["lebendig", "tot", "unbekannt", "gefangen"].map(s => <option key={s} value={s}>{STATUS_LABEL[s] || s}</option>)}
               </select>
             </div>
-            <div><label style={sx.lbl}>Einstellung</label>
+            <div><label style={sx.lbl}>{t("npc.attitude_label","Einstellung")}</label>
               <select value={form.attitude} onChange={e => setForm(p => ({ ...p, attitude: e.target.value }))} style={sx.sel}>
-                {["freundlich", "neutral", "feindlich", "unbekannt"].map(a => <option key={a}>{a}</option>)}
+                {["freundlich", "neutral", "feindlich", "unbekannt"].map(a => <option key={a} value={a}>{ATT_LABEL[a] || a}</option>)}
               </select>
             </div>
             {factions.length > 0 && (
-              <div><label style={sx.lbl}>Fraktion</label>
+              <div><label style={sx.lbl}>{t("npc.faction_label","Fraktion")}</label>
                 <select value={form.factionId || ""} onChange={e => setForm(p => ({ ...p, factionId: e.target.value }))} style={sx.sel}>
-                  <option value="">— keine —</option>
+                  <option value="">{t("npc.no_faction","— keine —")}</option>
                   {factions.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
                 </select>
               </div>
             )}
           </div>
-          <div style={{ marginTop: 8 }}><label style={sx.lbl}>Beschreibung / Aussehen</label><textarea value={form.desc} onChange={e => setForm(p => ({ ...p, desc: e.target.value }))} style={{ ...sx.ta, height: 80 }} placeholder="Aussehen, Persönlichkeit..." /></div>
-          <div style={{ marginTop: 6 }}><label style={sx.lbl}>DM-Notizen / Plot-Verbindungen</label><textarea value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} style={{ ...sx.ta, height: 60 }} placeholder="Geheimnis, Verbindungen, Quest-Relevanz..." /></div>
+          <div style={{ marginTop: 8 }}><label style={sx.lbl}>{t("npc.desc_label","Beschreibung / Aussehen")}</label><textarea value={form.desc} onChange={e => setForm(p => ({ ...p, desc: e.target.value }))} style={{ ...sx.ta, height: 80 }} placeholder={t("npc.desc_placeholder","Aussehen, Persönlichkeit...")} /></div>
+          <div style={{ marginTop: 6 }}><label style={sx.lbl}>{t("npc.dm_notes_label","DM-Notizen / Plot-Verbindungen")}</label><textarea value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} style={{ ...sx.ta, height: 60 }} placeholder={t("npc.dm_notes_placeholder","Geheimnis, Verbindungen, Quest-Relevanz...")} /></div>
           <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-            <button onClick={save} style={sx.btn(C.green)}>Speichern</button>
-            <button onClick={() => setShowForm(false)} style={sx.btn(C.textDim)}>Abbrechen</button>
+            <button onClick={save} style={sx.btn(C.green)}>{t("npc.save_btn","Speichern")}</button>
+            <button onClick={() => setShowForm(false)} style={sx.btn(C.textDim)}>{t("npc.cancel_btn","Abbrechen")}</button>
           </div>
         </div>}
 
@@ -255,13 +270,13 @@ export default function NpcList() {
             </div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "flex-end" }}>
               {view === "catalog" && !npcs.some(n => n.name === sel.name) && (
-                <button onClick={() => addFromCatalog(sel)} style={sx.bsm(C.green)}>+ Zu meinen NPCs</button>
+                <button onClick={() => addFromCatalog(sel)} style={sx.bsm(C.green)}>{t("npc.add_to_my_btn","+ Zu meinen NPCs")}</button>
               )}
               {sel.custom && (
-                <button onClick={() => { setForm({ ...sel }); setShowForm(true); }} style={sx.bsm(C.gold)}>✎ Bearbeiten</button>
+                <button onClick={() => { setForm({ ...sel }); setShowForm(true); }} style={sx.bsm(C.gold)}>{t("npc.edit_btn","✎ Bearbeiten")}</button>
               )}
               {npcs.some(n => n.id === sel.id) && (
-                <button onClick={() => del(sel.id)} style={sx.bsm(C.red)}>🗑 Löschen</button>
+                <button onClick={() => del(sel.id)} style={sx.bsm(C.red)}>{t("npc.delete_btn","🗑 Löschen")}</button>
               )}
             </div>
           </div>
@@ -273,13 +288,13 @@ export default function NpcList() {
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
             {sel.race && <span style={sx.tag(C.purple)}>🧬 {sel.race}</span>}
             {sel.alignment && <span style={sx.tag(C.blue)}>⚖️ {sel.alignment}</span>}
-            <span style={sx.tag(STATUS_COL[sel.status] || C.textDim)}>● {sel.status}</span>
-            <span style={sx.tag(ATT_COL[sel.attitude] || C.textDim)}>{ATT_ICON[sel.attitude]} {sel.attitude}</span>
+            <span style={sx.tag(STATUS_COL[sel.status] || C.textDim)}>● {STATUS_LABEL[sel.status] || sel.status}</span>
+            <span style={sx.tag(ATT_COL[sel.attitude] || C.textDim)}>{ATT_ICON[sel.attitude]} {ATT_LABEL[sel.attitude] || sel.attitude}</span>
             <FactionBadge factionId={sel.factionId} factions={factions} />
           </div>
           {sel.desc && <div style={{ fontSize: 14, color: C.text, lineHeight: 1.75, marginBottom: sel.notes ? 12 : 0 }}>{sel.desc}</div>}
           {sel.notes && dmMode && <div style={{ background: `${C.purple}0a`, borderTop: `1px solid ${C.purple}25`, borderRight: `1px solid ${C.purple}25`, borderBottom: `1px solid ${C.purple}25`, borderLeft: `3px solid ${C.purple}`, borderRadius: 8, padding: "10px 12px", fontSize: 13, color: C.textDim, lineHeight: 1.6 }}>
-            <div style={{ fontSize: 10, color: C.purple, fontFamily: FH, fontWeight: 700, marginBottom: 4 }}>🎲 DM-NOTIZEN</div>
+            <div style={{ fontSize: 10, color: C.purple, fontFamily: FH, fontWeight: 700, marginBottom: 4 }}>{t("npc.dm_notes_upper","🎲 DM-NOTIZEN")}</div>
             {sel.notes}
           </div>}
         </div>}
@@ -287,8 +302,8 @@ export default function NpcList() {
         {!sel && !showForm && <div style={{ ...sx.card, textAlign: "center", color: C.textDim, padding: 48 }}>
           <div style={{ fontSize: 40, marginBottom: 10 }}>{view === "catalog" ? "📖" : "👥"}</div>
           {view === "catalog"
-            ? <><div style={{ fontSize: 15, marginBottom: 4 }}>D&D Katalog</div><div style={{ fontSize: 12 }}>Ikonische NPCs aus offiziellen Abenteuern · <strong style={{ color: C.green }}>+</strong> zum Hinzufügen</div></>
-            : <><div style={{ fontSize: 15, marginBottom: 4 }}>NPC aus der Liste wählen</div><div style={{ fontSize: 12 }}>oder <strong style={{ color: C.purple }}>+ Neuer NPC</strong> · <span style={{ color: C.blue, cursor: "pointer" }} onClick={() => setView("catalog")}>📖 D&D Katalog</span></div></>
+            ? <><div style={{ fontSize: 15, marginBottom: 4 }}>{t("npc.catalog_title","D&D Katalog")}</div><div style={{ fontSize: 12 }}>{t("npc.catalog_hint","Ikonische NPCs aus offiziellen Abenteuern · ")}<strong style={{ color: C.green }}>+</strong> {t("npc.add_word","zum Hinzufügen")}</div></>
+            : <><div style={{ fontSize: 15, marginBottom: 4 }}>{t("npc.pick_from_list","NPC aus der Liste wählen")}</div><div style={{ fontSize: 12 }}>{t("npc.or_word","oder")} <strong style={{ color: C.purple }}>{t("npc.new_npc_btn","+ Neuer NPC")}</strong> · <span style={{ color: C.blue, cursor: "pointer" }} onClick={() => setView("catalog")}>{t("npc.catalog_tab","📖 D&D Katalog")}</span></div></>
           }
         </div>}
       </div>
@@ -300,21 +315,21 @@ export default function NpcList() {
           <div style={{ ...sx.card, width: "min(420px, 92vw)", border: `2px solid ${C.purpleBright}` }}
             onClick={e => e.stopPropagation()}>
             <div style={{ fontFamily: FH, fontSize: 18, color: C.purpleBright, fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-              🎲 DM-Modus aktivieren?
+              {t("npc.confirm_dm_title","🎲 DM-Modus aktivieren?")}
             </div>
             <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6, marginBottom: 16 }}>
-              Im DM-Modus sind <strong style={{ color: C.purpleBright }}>geheime DM-Notizen</strong> zu jedem NPC sichtbar — Plot-Hooks, Geheimnisse, Verbindungen.
+              {t("npc.confirm_dm_body_1","Im DM-Modus sind")} <strong style={{ color: C.purpleBright }}>{t("npc.confirm_dm_body_2","geheime DM-Notizen")}</strong> {t("npc.confirm_dm_body_3","zu jedem NPC sichtbar — Plot-Hooks, Geheimnisse, Verbindungen.")}
               <br /><br />
-              <strong style={{ color: C.amberBright }}>⚠️ Nur aktivieren, wenn du der DM bist!</strong> Spieler sollten diese Notizen nicht sehen.
+              <strong style={{ color: C.amberBright }}>{t("npc.confirm_dm_warning","⚠️ Nur aktivieren, wenn du der DM bist!")}</strong> {t("npc.confirm_dm_subwarning","Spieler sollten diese Notizen nicht sehen.")}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
               <button onClick={() => { setDmMode(true); setDmConfirm(false); }}
                 style={{ ...sx.btn(C.purpleBright), flex: 1 }}>
-                ✓ Ja, ich bin der DM
+                {t("npc.confirm_dm_yes","✓ Ja, ich bin der DM")}
               </button>
               <button onClick={() => setDmConfirm(false)}
                 style={{ ...sx.btn(C.textDim), padding: "8px 16px" }}>
-                Abbrechen
+                {t("npc.cancel_btn","Abbrechen")}
               </button>
             </div>
           </div>
