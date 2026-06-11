@@ -42,7 +42,7 @@ export default function DamageRollModal({ attacker, target, isCrit = false, onCl
           <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>
             {isCrit ? "🎯 Critical Damage!" : "💥 Damage Roll"}
           </div>
-          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
         </div>
 
         {/* Attacker → Target */}

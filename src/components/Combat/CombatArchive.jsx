@@ -68,7 +68,7 @@ export default function CombatArchive({ onClose }) {
                 </button>
               )
             )}
-            <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+            <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
           </div>
         </div>
 

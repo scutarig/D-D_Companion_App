@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { C, FH, sx } from "../../constants/theme.js";
 import { fmtMod } from "../../utils/derivedStats.js";
 import { useI18n } from "../../i18n/index.js";
@@ -7,7 +7,7 @@ import DerivedStatCard from "./DerivedStatCard.jsx";
 const SC = { STR: "#ef4444", DEX: "#22c55e", CON: "#f97316", INT: "#3b82f6", WIS: "#a855f7", CHA: "#ec4899" };
 const SAVE_KEYS = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
-export default function DerivedStatsWidget({ stats, isMobile }) {
+function DerivedStatsWidget({ stats, isMobile }) {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
 
@@ -128,3 +128,5 @@ export default function DerivedStatsWidget({ stats, isMobile }) {
     </div>
   );
 }
+
+export default memo(DerivedStatsWidget);

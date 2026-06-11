@@ -72,7 +72,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
               {isCantrip ? t("combat.cantrip","Cantrip") : `${t("combat.level_label","Level")} ${spell.lv}`} · {spell.school}
             </div>
           </div>
-          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
         </div>
 
         {/* Spell info tags */}

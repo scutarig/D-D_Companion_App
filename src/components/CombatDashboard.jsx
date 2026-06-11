@@ -795,7 +795,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     <div style={{ fontFamily:FH, fontSize:14, color:C.teal, fontWeight:700 }}>
                       {eqStep==="pick" ? t("dash.equip_item","⚔️ Item anlegen") : t("dash.slot_for","🎯 Slot für: {name}").replace("{name}", eqItem?.name || "")}
                     </div>
-                    <button type="button" onClick={close} style={sx.bsm(C.textDim)}>✕</button>
+                    <button type="button" onClick={close} style={sx.bsm(C.textDim)} aria-label="Schließen">✕</button>
                   </div>
                   {eqStep === "pick" && (
                     <>
@@ -862,7 +862,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                 <>
                   <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:12 }}>
                     <div style={{ fontFamily:FH, fontSize:14, color:C.green, fontWeight:700 }}>{t("dash.new_item","＋ Neues Item")}</div>
-                    <button type="button" onClick={close} style={sx.bsm(C.textDim)}>✕</button>
+                    <button type="button" onClick={close} style={sx.bsm(C.textDim)} aria-label="Schließen">✕</button>
                   </div>
                   <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                     <div><label style={sx.lbl}>{t("dash.name_required","Name *")}</label><input value={eqNew.name} onChange={e=>setEqNew(p=>({...p,name:e.target.value}))} style={sx.inp} autoFocus /></div>
@@ -916,7 +916,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                   <div style={{ fontFamily:FH, fontSize:14, color:C.amber, fontWeight:700 }}>{t("dash.swap_word","↔ Tauschen")}</div>
                   <div style={{ fontSize:11, color:C.textDim }}>{swapModal.item.name} · {sd.icon} {slotLabel(sd)}</div>
                 </div>
-                <button type="button" onClick={closeSwap} style={sx.bsm(C.textDim)}>✕</button>
+                <button type="button" onClick={closeSwap} style={sx.bsm(C.textDim)} aria-label="Schließen">✕</button>
               </div>
               <button type="button"
                 onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [swapModal.slot]: null } })); closeSwap(); }}
@@ -1018,14 +1018,14 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           <div style={{ ...sx.card, border: `1px solid ${C.blueBright}55`, width: 300, padding: 22 }} onClick={e => e.stopPropagation()}>
             <div style={ctStyle}>{t("dash.temp_hp_header","Temporäre HP")}</div>
             <p style={{ fontSize: 12, color: C.text, marginBottom: 16 }}>{t("dash.temp_hp_hint","Temp HP stapeln sich nicht — nur der höchste Wert gilt.")}</p>
-            <input autoFocus type="number" value={tempHpInput}
+            <input autoFocus type="number" min={0} max={999} value={tempHpInput}
               onChange={e => setTempHpInput(e.target.value)}
-              onKeyDown={e => { if (e.key === "Enter") { setChar(p => ({ ...p, tempHp: parseInt(tempHpInput) || 0 })); setTempHpModal(false); } if (e.key === "Escape") setTempHpModal(false); }}
+              onKeyDown={e => { if (e.key === "Enter") { const n = Math.max(0, Math.min(999, parseInt(tempHpInput, 10) || 0)); setChar(p => ({ ...p, tempHp: n })); setTempHpModal(false); } if (e.key === "Escape") setTempHpModal(false); }}
               placeholder="0"
               style={{ width: "100%", textAlign: "center", fontSize: 40, fontWeight: 700, background: C.surface, border: `1px solid ${C.blueBright}`, borderRadius: 10, color: C.blueBright, padding: "10px 0", marginBottom: 14, outline: "none" }} />
             <div style={{ display: "flex", gap: 8 }}>
               <button type="button" onClick={() => setTempHpModal(false)} style={{ ...sx.bsm(C.textDim), flex: 1 }}>{t("dash.cancel_btn","Abbrechen")}</button>
-              <button type="button" onClick={() => { setChar(p => ({ ...p, tempHp: parseInt(tempHpInput) || 0 })); setTempHpModal(false); }}
+              <button type="button" onClick={() => { const n = Math.max(0, Math.min(999, parseInt(tempHpInput, 10) || 0)); setChar(p => ({ ...p, tempHp: n })); setTempHpModal(false); }}
                 style={{ ...sx.btn(C.blueBright), flex: 2, fontWeight: 700 }}>{t("dash.set_btn","Setzen")}</button>
             </div>
           </div>

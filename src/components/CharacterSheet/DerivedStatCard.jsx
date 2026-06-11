@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { C, FH } from "../../constants/theme.js";
 import { fmtMod } from "../../utils/derivedStats.js";
 
@@ -5,7 +6,7 @@ import { fmtMod } from "../../utils/derivedStats.js";
  * DerivedStatCard — Individual stat display
  * Props: label, value (number), color, formula (string), size ("sm"|"md"|"lg"), proficient (bool)
  */
-export default function DerivedStatCard({ label, value, color, formula, size = "md", proficient = false }) {
+function DerivedStatCard({ label, value, color, formula, size = "md", proficient = false }) {
   const fontSize = size === "lg" ? 24 : size === "sm" ? 14 : 18;
   const padding  = size === "lg" ? "10px 12px" : size === "sm" ? "5px 8px" : "8px 10px";
 
@@ -50,3 +51,5 @@ export default function DerivedStatCard({ label, value, color, formula, size = "
     </div>
   );
 }
+
+export default memo(DerivedStatCard);

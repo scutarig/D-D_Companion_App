@@ -57,16 +57,17 @@ const REF_TABS = ALL_TABS.filter(t => ["bestiary","klassen","voelker"].includes(
 // Character group dropdown (Desktop) — Player-only
 const CHAR_GROUP = ALL_TABS.filter(td => ["char","companions","proficiencies"].includes(td.id));
 
-const Loader = () => (
+const Loader = ({ label }) => (
   <div style={{
     display: "flex", alignItems: "center", justifyContent: "center",
     padding: 60, gap: 14,
-  }}>
+  }} role="status" aria-live="polite" aria-label={label || "Loading"}>
     <div style={{
       fontSize: 28,
       animation: "dndPulse 1.4s ease-in-out infinite",
     }}>🐉</div>
     <div style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 180 }}>
+      {label && <div style={{ fontFamily: FH, fontSize: 10, color: C.gold, letterSpacing: 1.2, marginBottom: 2, opacity: 0.85 }}>{label}</div>}
       <div style={{
         height: 12,
         background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)",
@@ -546,12 +547,19 @@ function AppInner() {
     setCharOpen(p => !p); setRefOpen(false);
   };
 
-  // Close dropdowns on outside click
+  // Close dropdowns on outside click / touch / ESC
   useEffect(() => {
     if (!refOpen && !charOpen) return;
     const handler = () => { setRefOpen(false); setCharOpen(false); };
+    const keyHandler = (e) => { if (e.key === "Escape") { setRefOpen(false); setCharOpen(false); } };
     window.addEventListener("click", handler);
-    return () => window.removeEventListener("click", handler);
+    window.addEventListener("touchstart", handler, { passive: true });
+    window.addEventListener("keydown", keyHandler);
+    return () => {
+      window.removeEventListener("click", handler);
+      window.removeEventListener("touchstart", handler);
+      window.removeEventListener("keydown", keyHandler);
+    };
   }, [refOpen, charOpen]);
 
   const exportJSON = () => {

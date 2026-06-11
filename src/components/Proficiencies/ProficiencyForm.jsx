@@ -35,7 +35,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
           <div style={{ fontFamily: FH, fontSize: 15, color: C.tealBright, fontWeight: 700 }}>
             {isEdit ? t("prof.edit_title","✎ Proficiency bearbeiten") : t("prof.new_title","＋ Neue Proficiency")}
           </div>
-          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
         </div>
 
         {/* Name */}
