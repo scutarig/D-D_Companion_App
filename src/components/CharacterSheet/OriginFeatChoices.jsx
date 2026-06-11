@@ -63,6 +63,7 @@ export default function OriginFeatChoices({ char, setChar }) {
 
 // ─── 1. Magic Initiate ──────────────────────────────────────────────────────
 function MagicInitiatePicker({ choices, setChoice }) {
+  const { t } = useI18n();
   const list = choices.list || "";
   const cantrip1 = choices.cantrip1 || "";
   const cantrip2 = choices.cantrip2 || "";
@@ -79,7 +80,7 @@ function MagicInitiatePicker({ choices, setChoice }) {
           setChoice("cantrip2", "");
           setChoice("lvl1", "");
         }} style={sx.sel}>
-          <option value="">— Wähle Liste —</option>
+          <option value="">{t("char.choose_list_short","— Wähle Liste —")}</option>
           <option value="cleric">Cleric</option>
           <option value="druid">Druid</option>
           <option value="wizard">Wizard</option>
@@ -91,21 +92,21 @@ function MagicInitiatePicker({ choices, setChoice }) {
           <div>
             <label style={sx.lbl}>Cantrip 1 (von {listData.name})</label>
             <select value={cantrip1} onChange={e => setChoice("cantrip1", e.target.value)} style={sx.sel}>
-              <option value="">— Wähle Cantrip —</option>
+              <option value="">{t("char.choose_cantrip_short","— Wähle Cantrip —")}</option>
               {listData.cantrips.filter(c => c !== cantrip2).map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <div>
             <label style={sx.lbl}>Cantrip 2 (von {listData.name})</label>
             <select value={cantrip2} onChange={e => setChoice("cantrip2", e.target.value)} style={sx.sel}>
-              <option value="">— Wähle Cantrip —</option>
+              <option value="">{t("char.choose_cantrip_short","— Wähle Cantrip —")}</option>
               {listData.cantrips.filter(c => c !== cantrip1).map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <div>
             <label style={sx.lbl}>Lv1 Spell (von {listData.name}) — 1×/Long Rest ohne Slot</label>
             <select value={lvl1} onChange={e => setChoice("lvl1", e.target.value)} style={sx.sel}>
-              <option value="">— Wähle Lv1 Spell —</option>
+              <option value="">{t("char.choose_lv1_short","— Wähle Lv1 Spell —")}</option>
               {listData.lvl1.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
@@ -121,6 +122,7 @@ function MagicInitiatePicker({ choices, setChoice }) {
 
 // ─── 2. Crafter ─────────────────────────────────────────────────────────────
 function CrafterPicker({ choices, setChoice }) {
+  const { t } = useI18n();
   const tools = choices.tools || ["", "", ""];
   const setTool = (idx, val) => {
     const next = [...tools]; next[idx] = val;
@@ -134,7 +136,7 @@ function CrafterPicker({ choices, setChoice }) {
         <div key={i}>
           <label style={sx.lbl}>Tool {i + 1}</label>
           <select value={tools[i] || ""} onChange={e => setTool(i, e.target.value)} style={sx.sel}>
-            <option value="">— Wähle Tool —</option>
+            <option value="">{t("char.choose_tool_short","— Wähle Tool —")}</option>
             {ARTISAN_TOOLS.filter(t => !tools.includes(t) || t === tools[i]).map(t => <option key={t} value={t}>{t}</option>)}
           </select>
         </div>
@@ -148,6 +150,7 @@ function CrafterPicker({ choices, setChoice }) {
 
 // ─── 3. Skilled ─────────────────────────────────────────────────────────────
 function SkilledPicker({ choices, setChoice }) {
+  const { t } = useI18n();
   const selections = choices.selections || ["", "", ""];
   const setSel = (idx, val) => {
     const next = [...selections]; next[idx] = val;
@@ -161,7 +164,7 @@ function SkilledPicker({ choices, setChoice }) {
         <div key={i}>
           <label style={sx.lbl}>Wahl {i + 1}</label>
           <select value={selections[i] || ""} onChange={e => setSel(i, e.target.value)} style={sx.sel}>
-            <option value="">— Wähle Skill oder Tool —</option>
+            <option value="">{t("char.choose_skill_or_tool_short","— Wähle Skill oder Tool —")}</option>
             <optgroup label="Skills">
               {SKILLED_OPTIONS.filter(o => o.type === "skill" && (!selections.includes(o.id) || o.id === selections[i])).map(o => (
                 <option key={o.id} value={o.id}>{o.label}</option>
@@ -191,6 +194,7 @@ function SkilledPicker({ choices, setChoice }) {
 
 // ─── 4. Musician ────────────────────────────────────────────────────────────
 function MusicianPicker({ choices, setChoice }) {
+  const { t } = useI18n();
   const instruments = choices.instruments || ["", "", ""];
   const setInstr = (idx, val) => {
     const next = [...instruments]; next[idx] = val;
@@ -204,7 +208,7 @@ function MusicianPicker({ choices, setChoice }) {
         <div key={i}>
           <label style={sx.lbl}>Instrument {i + 1}</label>
           <select value={instruments[i] || ""} onChange={e => setInstr(i, e.target.value)} style={sx.sel}>
-            <option value="">— Wähle Instrument —</option>
+            <option value="">{t("char.choose_instrument_short","— Wähle Instrument —")}</option>
             {MUSICAL_INSTRUMENTS.filter(t => !instruments.includes(t) || t === instruments[i]).map(t => (
               <option key={t} value={t}>{t}</option>
             ))}
@@ -220,6 +224,7 @@ function MusicianPicker({ choices, setChoice }) {
 
 // ─── 5. Lucky — Tracker ─────────────────────────────────────────────────────
 function LuckyTracker({ char, choices, setChoice }) {
+  const { t } = useI18n();
   const max = getLuckPointsMax(char.level || 1);
   const used = choices.used || 0;
   const remaining = max - used;
@@ -264,8 +269,8 @@ function LuckyTracker({ char, choices, setChoice }) {
       </div>
 
       <div style={{ fontSize: 10, color: C.textDim, fontStyle: "italic", marginTop: 8, lineHeight: 1.5 }}>
-        <b>Spend Luck Point:</b> Vor d20-Wurf für Reroll → musst neuen Wurf nehmen.<br />
-        <b>Spend gegen Wurf:</b> Nach gegnerischem Wurf gegen dich → Gegner muss rerollen.
+        {t("char.lucky_spend_line1","Spend Luck Point: Vor d20-Wurf für Reroll → musst neuen Wurf nehmen.")}<br />
+        {t("char.lucky_spend_line2","Spend gegen Wurf: Nach gegnerischem Wurf gegen dich → Gegner muss rerollen.")}
       </div>
     </div>
   );
@@ -273,11 +278,12 @@ function LuckyTracker({ char, choices, setChoice }) {
 
 // ─── 6. Tavern Brawler ──────────────────────────────────────────────────────
 function TavernBrawlerPicker({ choices, setChoice }) {
+  const { t } = useI18n();
   const stat = choices.stat || "";
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 11, color: C.textDim }}>Wähle: +1 STR oder +1 CON (Half-Feat, max 20):</div>
+      <div style={{ fontSize: 11, color: C.textDim }}>{t("char.tavern_brawler_hint","Wähle: +1 STR oder +1 CON (Half-Feat, max 20):")}</div>
       <div style={{ display: "flex", gap: 6 }}>
         {TAVERN_BRAWLER_STATS.map(s => (
           <button

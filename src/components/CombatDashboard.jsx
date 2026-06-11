@@ -850,7 +850,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                             })}
                           </div>
                         )}
-                        <button onClick={() => { setEqStep("pick"); setEqItem(null); }} style={{ ...sx.bsm(C.textDim), marginTop:10, fontSize:11 }}>← Zurück</button>
+                        <button onClick={() => { setEqStep("pick"); setEqItem(null); }} style={{ ...sx.bsm(C.textDim), marginTop:10, fontSize:11 }}>{t("dash.back_arrow","← Zurück")}</button>
                       </>
                     );
                   })()}
@@ -879,8 +879,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                         const ni = { ...eqNew, uid:Date.now()+Math.random(), qty:1, custom:true };
                         setEqItem(ni); setEqStep("slot"); setEqModal("list");
                         setEqNew({ name:"", type:"Weapon", dmg:"", ac:"", eff:"", rar:"Common", notes:"" });
-                      }} style={{ ...sx.btn(C.green), flex:1 }}>Weiter → Slot wählen</button>
-                      <button onClick={() => setEqModal("list")} style={sx.bsm(C.textDim)}>← Zurück</button>
+                      }} style={{ ...sx.btn(C.green), flex:1 }}>{t("dash.next_pick_slot","Weiter → Slot wählen")}</button>
+                      <button onClick={() => setEqModal("list")} style={sx.bsm(C.textDim)}>{t("dash.back_arrow","← Zurück")}</button>
                     </div>
                   </div>
                 </>
@@ -981,9 +981,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                   <span>{eqInfoModal.sub||eqInfoModal.type}</span>
                   <span>·</span>
                   <span style={{ color:RARITY_COL[eqInfoModal.rar]||C.textDim }}>{eqInfoModal.rar}</span>
-                  <span style={{ ...sx.tag(C.purple), fontSize:9 }}>Ausgerüstet</span>
+                  <span style={{ ...sx.tag(C.purple), fontSize:9 }}>{t("dash.equipped_tag","Ausgerüstet")}</span>
                   <span style={{ ...sx.tag(C.textDim), fontSize:9 }}>{eqInfoModal._slotIcon} {eqInfoModal._slotLabel}</span>
-                  {isTwoHanded(eqInfoModal) && <span style={{ ...sx.tag(C.amber), fontSize:9 }}>Zweihändig</span>}
+                  {isTwoHanded(eqInfoModal) && <span style={{ ...sx.tag(C.amber), fontSize:9 }}>{t("dash.two_handed_tag","Zweihändig")}</span>}
                 </div>
               </div>
             </div>
@@ -1001,7 +1001,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <div style={{ display:"flex", gap:8 }}>
               <button onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [eqInfoModal._slotId]: null } })); setEqInfoModal(null); }}
                 style={{ ...sx.btn(C.red), padding:"10px 20px", fontSize:13 }}>↩ Ablegen</button>
-              <button onClick={() => setEqInfoModal(null)} style={{ ...sx.bsm(C.textDim), padding:"10px 16px" }}>Schließen</button>
+              <button onClick={() => setEqInfoModal(null)} style={{ ...sx.bsm(C.textDim), padding:"10px 16px" }}>{t("dash.close_btn","Schließen")}</button>
             </div>
           </div>
         </div>
@@ -1015,8 +1015,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         <div style={{ position: "fixed", inset: 0, background: "#00000088", zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center" }}
           onClick={() => setTempHpModal(false)}>
           <div style={{ ...sx.card, border: `1px solid ${C.blueBright}55`, width: 300, padding: 22 }} onClick={e => e.stopPropagation()}>
-            <div style={ctStyle}>Temporäre HP</div>
-            <p style={{ fontSize: 12, color: C.text, marginBottom: 16 }}>Temp HP stapeln sich nicht — nur der höchste Wert gilt.</p>
+            <div style={ctStyle}>{t("dash.temp_hp_header","Temporäre HP")}</div>
+            <p style={{ fontSize: 12, color: C.text, marginBottom: 16 }}>{t("dash.temp_hp_hint","Temp HP stapeln sich nicht — nur der höchste Wert gilt.")}</p>
             <input autoFocus type="number" value={tempHpInput}
               onChange={e => setTempHpInput(e.target.value)}
               onKeyDown={e => { if (e.key === "Enter") { setChar(p => ({ ...p, tempHp: parseInt(tempHpInput) || 0 })); setTempHpModal(false); } if (e.key === "Escape") setTempHpModal(false); }}
@@ -1037,7 +1037,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           onClick={() => setCastModal(null)}>
           <div style={{ ...sx.card, border: `1px solid ${C.purpleBright}55`, width: 320, padding: 20 }} onClick={e => e.stopPropagation()}>
             <div style={ctStyle}>Wirken: {castModal.spell.name}</div>
-            <p style={{ fontSize: 12, color: C.text, marginBottom: 14 }}>Wähle den Slot-Level:</p>
+            <p style={{ fontSize: 12, color: C.text, marginBottom: 14 }}>{t("dash.pick_slot_level","Wähle den Slot-Level:")}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {slots.filter(sl => sl.lv >= castModal.spell.lv && sl.tot > 0).map(sl => {
                 const avail = sl.tot - sl.used;

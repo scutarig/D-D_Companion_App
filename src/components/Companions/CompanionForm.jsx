@@ -300,7 +300,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
             {activeTab === "details" && (
               <div>
                 <div style={{ marginBottom: 10 }}>
-                  <label style={sx.lbl}>Traits / Fähigkeiten</label>
+                  <label style={sx.lbl}>{t("comp.traits_abilities","Traits / Fähigkeiten")}</label>
                   <textarea
                     value={form.traits}
                     onChange={(e) => set("traits", e.target.value)}
