@@ -2,8 +2,10 @@ import { useState, useRef } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { rollD } from "../utils/helpers.js";
 import { getCondition } from "../utils/conditions.js";
+import { useI18n } from "../i18n/index.js";
 
 export default function DiceRoller({ char, setChar }) {
+  const { t } = useI18n();
   const [res, setRes]         = useState([]);
   const [cnt, setCnt]         = useState(1);
   const [mod, setMod]         = useState(0);
@@ -28,9 +30,9 @@ export default function DiceRoller({ char, setChar }) {
   const DC   = { 4:"#a040c0", 6:"#2060c0", 8:"#20a060", 10:"#c07020", 12:"#c02040", 20:"#c9a84c", 100:"#808080" };
 
   const ADV_OPTS = [
-    { key:"normal",       label:"Normal",      color:C.textDim },
-    { key:"advantage",    label:"⬆ Vorteil",   color:C.greenBright },
-    { key:"disadvantage", label:"⬇ Nachteil",  color:C.redBright },
+    { key:"normal",       label:t("dice.normal","Normal"),                  color:C.textDim },
+    { key:"advantage",    label:`⬆ ${t("dice.advantage","Vorteil")}`,      color:C.greenBright },
+    { key:"disadvantage", label:`⬇ ${t("dice.disadvantage","Nachteil")}`,  color:C.redBright },
   ];
 
   const go = s => {
@@ -68,7 +70,7 @@ export default function DiceRoller({ char, setChar }) {
 
       setRes(p => [{
         id: Date.now(), sides: s, cnt, rolls, mod: parseInt(mod || 0), total,
-        ts: new Date().toLocaleTimeString(),
+        ts: new Date().toLocaleTimeString(undefined),
         adv: effectiveAdv,
         rollPairs,
         inspirationUsed: consumingInspiration,
@@ -83,16 +85,16 @@ export default function DiceRoller({ char, setChar }) {
     <div>
       {/* ── Einstellungen ── */}
       <div style={sx.card}>
-        <div style={sx.ct}>⚙️ Einstellungen</div>
+        <div style={sx.ct}>⚙️ {t("dice.settings","Einstellungen")}</div>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", alignItems:"flex-end" }}>
           <div>
-            <label style={sx.lbl}>Anzahl</label>
+            <label style={sx.lbl}>{t("dice.count","Anzahl")}</label>
             <input type="number" min={1} max={20} value={cnt}
               onChange={e => setCnt(+e.target.value)}
               style={{ ...sx.inp, width:80 }} />
           </div>
           <div>
-            <label style={sx.lbl}>Modifier</label>
+            <label style={sx.lbl}>{t("dice.modifier","Modifier")}</label>
             <input type="number" value={mod}
               onChange={e => setMod(e.target.value)}
               style={{ ...sx.inp, width:80 }} />
@@ -101,7 +103,7 @@ export default function DiceRoller({ char, setChar }) {
 
         {/* Vorteil / Nachteil Toggle */}
         <div style={{ marginTop:14 }}>
-          <label style={sx.lbl}>Modus</label>
+          <label style={sx.lbl}>{t("dice.mode","Modus")}</label>
           <div style={{
             display:"flex", gap:0, marginTop:6,
             border:`1px solid ${C.border}`, borderRadius:8,
@@ -112,7 +114,6 @@ export default function DiceRoller({ char, setChar }) {
               return (
                 <button key={key} onClick={() => setAdvSafe(key)} style={{
                   background:  active ? `${color}33` : "transparent",
-                  borderLeft:  i > 0 ? `1px solid ${C.border}` : "none",
                   border:      "none",
                   borderLeft:  i > 0 ? `1px solid ${C.border}` : "none",
                   color:       active ? color : C.textDim,
@@ -130,8 +131,8 @@ export default function DiceRoller({ char, setChar }) {
           {adv !== "normal" && (
             <div style={{ marginTop:5, fontSize:11, color:advColor }}>
               {adv === "advantage"
-                ? "⬆ Jeden Würfel 2× würfeln — höchsten nehmen"
-                : "⬇ Jeden Würfel 2× würfeln — niedrigsten nehmen"}
+                ? `⬆ ${t("dice.adv_hint","Jeden Würfel 2× würfeln — höchsten nehmen")}`
+                : `⬇ ${t("dice.dis_hint","Jeden Würfel 2× würfeln — niedrigsten nehmen")}`}
             </div>
           )}
 
@@ -144,13 +145,13 @@ export default function DiceRoller({ char, setChar }) {
             }}>
               <span style={{ fontSize: 18 }}>✨</span>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, color: C.gold, fontWeight: 700, fontFamily: FH }}>Inspiration aktiv!</div>
-                <div style={{ fontSize: 11, color: C.textDim }}>Beim nächsten d20 → Vorteil + Inspiration verbraucht</div>
+                <div style={{ fontSize: 12, color: C.gold, fontWeight: 700, fontFamily: FH }}>{t("dice.inspiration_active","Inspiration aktiv!")}</div>
+                <div style={{ fontSize: 11, color: C.textDim }}>{t("dice.inspiration_hint","Beim nächsten d20 → Vorteil + Inspiration verbraucht")}</div>
               </div>
               <label style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
                 <input type="checkbox" checked={useInspiration} onChange={e => setUseInspirationSafe(e.target.checked)} />
                 <span style={{ fontSize: 12, color: useInspiration ? C.gold : C.textDim, fontWeight: useInspiration ? 700 : 400 }}>
-                  Nutzen
+                  {t("dice.use","Nutzen")}
                 </span>
               </label>
             </div>
@@ -162,16 +163,16 @@ export default function DiceRoller({ char, setChar }) {
       {(condAdvHints.length > 0 || condDisHints.length > 0) && (
         <div style={{ ...sx.card, background: `${C.amber}0e`, border: `1px solid ${C.amberBright}44` }}>
           <div style={{ fontSize: 11, color: C.amberBright, fontFamily: FH, fontWeight: 700, marginBottom: 4 }}>
-            ⚠️ Aktive Conditions beeinflussen Würfe
+            ⚠️ {t("dice.conditions_affect","Aktive Conditions beeinflussen Würfe")}
           </div>
           {condAdvHints.length > 0 && (
             <div style={{ fontSize: 12, color: C.greenBright, marginBottom: 2 }}>
-              ⬆ Vorteil: {condAdvHints.join(", ")}
+              ⬆ {t("dice.advantage","Vorteil")}: {condAdvHints.join(", ")}
             </div>
           )}
           {condDisHints.length > 0 && (
             <div style={{ fontSize: 12, color: C.redBright }}>
-              ⬇ Nachteil: {condDisHints.join(", ")}
+              ⬇ {t("dice.disadvantage","Nachteil")}: {condDisHints.join(", ")}
             </div>
           )}
         </div>
@@ -180,14 +181,14 @@ export default function DiceRoller({ char, setChar }) {
       {/* ── Würfel ── */}
       <div style={sx.card}>
         <div style={{ ...sx.jb, marginBottom:10 }}>
-          <div style={sx.ct}>🎲 Würfel</div>
+          <div style={sx.ct}>🎲 {t("dice.dice","Würfel")}</div>
           {adv !== "normal" && (
             <span style={{
               background: `${advColor}22`, border:`1px solid ${advColor}`,
               borderRadius:6, color:advColor,
               fontSize:12, fontWeight:700, padding:"3px 10px",
             }}>
-              {adv === "advantage" ? "⬆ Vorteil aktiv" : "⬇ Nachteil aktiv"}
+              {adv === "advantage" ? `⬆ ${t("dice.adv_active","Vorteil aktiv")}` : `⬇ ${t("dice.dis_active","Nachteil aktiv")}`}
             </span>
           )}
         </div>
@@ -238,8 +239,8 @@ export default function DiceRoller({ char, setChar }) {
       {res.length > 0 && (
         <div style={sx.card}>
           <div style={{ ...sx.jb, marginBottom:8 }}>
-            <div style={sx.ct}>📜 Verlauf</div>
-            <button onClick={() => setRes([])} style={sx.bsm(C.red)}>Leeren</button>
+            <div style={sx.ct}>📜 {t("dice.history","Verlauf")}</div>
+            <button onClick={() => setRes([])} style={sx.bsm(C.red)}>{t("dice.clear","Leeren")}</button>
           </div>
 
           {res.map(r => {
@@ -272,23 +273,23 @@ export default function DiceRoller({ char, setChar }) {
                       <span style={{
                         background:C.greenBright, color:"#000",
                         borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
-                      }}>⬆ VORTEIL</span>
+                      }}>⬆ {t("dice.adv_upper","VORTEIL")}</span>
                     )}
                     {r.adv === "disadvantage" && (
                       <span style={{
                         background:C.redBright, color:"#000",
                         borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
-                      }}>⬇ NACHTEIL</span>
+                      }}>⬇ {t("dice.dis_upper","NACHTEIL")}</span>
                     )}
                     {r.inspirationUsed && (
                       <span style={{
                         background:C.gold, color:"#000",
                         borderRadius:4, fontSize:11, fontWeight:900, padding:"1px 7px",
-                      }}>✨ INSPIRATION</span>
+                      }}>✨ {t("dice.inspiration_upper","INSPIRATION")}</span>
                     )}
 
-                    {isNat20 && <span style={{ color:C.gold, fontSize:12 }}>✨ NAT 20!</span>}
-                    {isNat1  && <span style={{ color:C.red,  fontSize:12 }}>💀 PATZER!</span>}
+                    {isNat20 && <span style={{ color:C.gold, fontSize:12 }}>✨ {t("dice.nat20","NAT 20!")}</span>}
+                    {isNat1  && <span style={{ color:C.red,  fontSize:12 }}>💀 {t("dice.fumble","PATZER!")}</span>}
                   </div>
                   <span style={{ color:C.textDim, fontSize:11 }}>{r.ts}</span>
                 </div>

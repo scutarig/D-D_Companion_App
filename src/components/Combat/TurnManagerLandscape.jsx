@@ -1,7 +1,7 @@
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
-import { t } from "../../i18n/index.js";
+import { useI18n } from "../../i18n/index.js";
 import TurnOrderPanel from "./TurnOrderPanel.jsx";
 import ActiveFighterCard from "./ActiveFighterCard.jsx";
 import ActionEconomyBar from "./ActionEconomyBar.jsx";
@@ -14,6 +14,7 @@ import CombatLogPanel from "./CombatLogPanel.jsx";
  * Right: Turn order + log
  */
 export default function TurnManagerLandscape() {
+  const { t } = useI18n();
   const { state, undo, redo, canUndo, canRedo } = useCombat();
   const { endTurn, endCombat, checkVictoryCondition } = useCombatActions();
 
@@ -43,7 +44,7 @@ export default function TurnManagerLandscape() {
           borderRadius: 8, padding: "5px 10px",
         }}>
           <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, flex: 1 }}>
-            ⚔️ Runde {state.round}
+            ⚔️ {t("combat.round","Runde")} {state.round}
           </div>
           {/* Undo / Redo */}
           <UndoRedoButtons undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
@@ -72,14 +73,14 @@ export default function TurnManagerLandscape() {
               onClick={handleEndTurn}
               style={{ ...sx.btn(C.green), width: "100%", padding: "9px", fontSize: 13, fontWeight: 700 }}
             >
-              ✓ Next Turn ▶
+              ✓ {t("combat.next_turn","Next Turn")} ▶
             </button>
           ) : (
             <div style={{
               ...sx.btn(C.green), width: "100%", textAlign: "center",
               color: C.greenBright, fontSize: 13, fontWeight: 700,
             }}>
-              🎉 Victory!
+              🎉 {t("combat.victory","Victory!")}
             </div>
           )}
         </div>
@@ -90,7 +91,7 @@ export default function TurnManagerLandscape() {
         {/* Turn Order */}
         <div style={{ ...sx.card, padding: "6px 10px", flexShrink: 0, maxHeight: "45%", overflowY: "auto" }}>
           <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>
-            TURN ORDER
+            {t("combat.turn_order_upper","TURN ORDER")}
           </div>
           <TurnOrderPanel compact />
         </div>
@@ -98,7 +99,7 @@ export default function TurnManagerLandscape() {
         {/* Combat Log */}
         <div style={{ ...sx.card, padding: "6px 10px", flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4, flexShrink: 0 }}>
-            COMBAT LOG
+            {t("combat.combat_log_upper","COMBAT LOG")}
           </div>
           <div style={{ flex: 1, minHeight: 0 }}>
             <CombatLogPanel compact />
@@ -111,6 +112,7 @@ export default function TurnManagerLandscape() {
 
 // ─── Shared Undo/Redo button group ────────────────────────────────────────────
 export function UndoRedoButtons({ undo, redo, canUndo, canRedo, small = true }) {
+  const { t } = useI18n();
   const btnStyle = (enabled) => ({
     padding: small ? "4px 8px" : "6px 12px",
     borderRadius: 6,
@@ -126,10 +128,10 @@ export function UndoRedoButtons({ undo, redo, canUndo, canRedo, small = true }) 
 
   return (
     <div style={{ display: "flex", gap: 4 }}>
-      <button onClick={undo} disabled={!canUndo} title="Rückgängig (Strg+Z)" style={btnStyle(canUndo)}>
+      <button onClick={undo} disabled={!canUndo} title={t("combat.undo","Rückgängig (Strg+Z)")} style={btnStyle(canUndo)}>
         ⟲
       </button>
-      <button onClick={redo} disabled={!canRedo} title="Wiederholen (Strg+Y)" style={btnStyle(canRedo)}>
+      <button onClick={redo} disabled={!canRedo} title={t("combat.redo","Wiederholen (Strg+Y)")} style={btnStyle(canRedo)}>
         ⟳
       </button>
     </div>

@@ -1,14 +1,16 @@
 import { C, sx, FH } from "../constants/theme.js";
 import { EXHAUSTION_LEVELS, getExhaustionLevel } from "../data/exhaustion.js";
+import { useI18n } from "../i18n/index.js";
 
 export default function ExhaustionTracker({ char, setChar }) {
+  const { t } = useI18n();
   const lv  = char?.exhaustion ?? 0;
   const cur = getExhaustionLevel(lv);
 
   const set = (newLv) => {
     if (!setChar) return;
     if (newLv === 6) {
-      if (!confirm("Stufe 6 bedeutet Tod des Charakters. Fortfahren?")) return;
+      if (!confirm(t("exh.confirm_death","Stufe 6 bedeutet Tod des Charakters. Fortfahren?"))) return;
     }
     setChar(p => ({ ...p, exhaustion: newLv }));
   };
@@ -21,7 +23,7 @@ export default function ExhaustionTracker({ char, setChar }) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
         <div style={{ fontFamily: FH, fontSize: 12, color: lv > 0 ? cur.color : C.textDim, fontWeight: 700, letterSpacing: 0.5 }}>
-          😴 ERSCHÖPFUNG
+          😴 {t("exh.title","ERSCHÖPFUNG")}
         </div>
         {lv > 0 && (
           <span style={{
@@ -91,7 +93,7 @@ export default function ExhaustionTracker({ char, setChar }) {
       {/* Hinweis bei Level 0 */}
       {lv === 0 && (
         <div style={{ fontSize: 11, color: C.textDim }}>
-          Kein Erschöpfungsgrad aktiv. Lange Rast reduziert um 1 Stufe.
+          {t("exh.level0_hint","Kein Erschöpfungsgrad aktiv. Lange Rast reduziert um 1 Stufe.")}
         </div>
       )}
     </div>

@@ -3,7 +3,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
 import { useCombatArchive } from "../../hooks/useCombatArchive.js";
-import { t } from "../../i18n/index.js";
+import { useI18n } from "../../i18n/index.js";
 import TurnOrderPanel from "./TurnOrderPanel.jsx";
 import ActiveFighterCard from "./ActiveFighterCard.jsx";
 import ActionEconomyBar from "./ActionEconomyBar.jsx";
@@ -13,6 +13,7 @@ import CombatArchive from "./CombatArchive.jsx";
 import { UndoRedoButtons } from "./TurnManagerLandscape.jsx";
 
 export default function TurnManagerMobile() {
+  const { t } = useI18n();
   const { state, undo, redo, canUndo, canRedo } = useCombat();
   const { endTurn, endCombat, checkVictoryCondition } = useCombatActions();
   const { archives } = useCombatArchive();
@@ -40,10 +41,10 @@ export default function TurnManagerMobile() {
       <div style={{ ...sx.card, background: `${C.purple}08`, border: `1px solid ${C.purple}25`, padding: "10px 12px", marginBottom: 12, display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0 }}>
         <div>
           <div style={{ fontFamily: FH, fontSize: 13, color: C.purpleBright, fontWeight: 700 }}>
-            ⚔️ Runde {state.round}
+            ⚔️ {t("combat.round","Runde")} {state.round}
           </div>
           <div style={{ fontSize: 11, color: C.textDim }}>
-            {state.fighters.length} Kämpfer
+            {state.fighters.length} {t("combat.fighters","Kämpfer")}
           </div>
         </div>
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
@@ -76,13 +77,13 @@ export default function TurnManagerMobile() {
 
         {/* Action Economy */}
         <div style={sx.card}>
-          <div style={{ ...sx.ct, marginBottom: 10 }}>⚙️ Action Economy</div>
+          <div style={{ ...sx.ct, marginBottom: 10 }}>⚙️ {t("combat.action_economy","Action Economy")}</div>
           <ActionEconomyBar />
         </div>
 
         {/* Quick Actions */}
         <div style={sx.card}>
-          <div style={{ ...sx.ct, marginBottom: 10 }}>🎯 Quick Actions</div>
+          <div style={{ ...sx.ct, marginBottom: 10 }}>🎯 {t("combat.quick_actions","Quick Actions")}</div>
           <QuickActionBar onActionClick={() => {}} />
         </div>
       </div>
@@ -101,7 +102,7 @@ export default function TurnManagerMobile() {
           }}
         >
           <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700 }}>
-            🎯 Turn Order
+            🎯 {t("combat.turn_order","Turn Order")}
           </div>
           <span style={{ fontSize: 12, color: C.textDim }}>{turnOrderOpen ? "▼" : "▶"}</span>
         </div>
@@ -128,7 +129,7 @@ export default function TurnManagerMobile() {
           }}
         >
           <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700 }}>
-            📜 Combat Log
+            📜 {t("combat.combat_log","Combat Log")}
           </div>
           <span style={{ fontSize: 12, color: C.textDim }}>{logOpen ? "▼" : "▶"}</span>
         </div>
@@ -152,13 +153,13 @@ export default function TurnManagerMobile() {
               fontWeight: 700,
             }}
           >
-            ✓ Next Turn
+            ✓ {t("combat.next_turn","Next Turn")}
           </button>
         )}
 
         {isVictory && (
           <div style={{ flex: 1, ...sx.btn(C.green), textAlign: "center", color: C.greenBright, fontSize: 13, fontWeight: 700 }}>
-            🎉 Victory!
+            🎉 {t("combat.victory","Victory!")}
           </div>
         )}
       </div>
