@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
-import { t } from "../../i18n/index.js";
+import { t as moduleT, useI18n } from "../../i18n/index.js";
 
 const TYPES = ["Stadt", "Dorf", "Dungeon", "Wildnis", "Tempel", "Festung", "Ruine", "Taverne", "Sonstiges"];
 
@@ -15,11 +15,19 @@ const TYPE_COLOR = {
   Tempel: C.amberBright, Festung: C.purpleBright, Ruine: C.textDim, Taverne: C.gold, Sonstiges: C.textDim,
 };
 
+const TYPE_KEY = {
+  Stadt: "wb.loc_city", Dorf: "wb.loc_village", Dungeon: "wb.loc_dungeon",
+  Wildnis: "wb.loc_wilderness", Tempel: "wb.loc_temple", Festung: "wb.loc_fortress",
+  Ruine: "wb.loc_ruin", Taverne: "wb.loc_tavern", Sonstiges: "wb.loc_other",
+};
+
 function newLoc() {
   return { id: Date.now().toString(), name: "", type: "Stadt", description: "", npcIds: [] };
 }
 
 export default function LocationsList() {
+  const { t } = useI18n();
+  const typeLabel = (ty) => t(TYPE_KEY[ty] || "", ty);
   const [locs, setLocs, ready] = usePersist("locations_v1", []);
   const [editing, setEditing]  = useState(null); // null | "new" | id
   const [draft,   setDraft]    = useState(null);
@@ -57,7 +65,7 @@ export default function LocationsList() {
   };
 
   const deleteLoc = (id) => {
-    if (!confirm(t("wb.confirm_delete_location","Ort löschen?"))) return;
+    if (!confirm(moduleT("wb.confirm_delete_location","Ort löschen?"))) return;
     setLocs(p => p.filter(l => l.id !== id));
     if (editing === id) { setEditing(null); setDraft(null); }
   };
@@ -69,46 +77,46 @@ export default function LocationsList() {
       {/* Toolbar */}
       <div style={{ display:"flex", gap:8, marginBottom:12, flexWrap:"wrap", alignItems:"center" }}>
         <input
-          placeholder="🔍 Orte suchen…"
+          placeholder={t("wb.locations_search_placeholder","🔍 Orte suchen…")}
           value={search} onChange={e => setSearch(e.target.value)}
           style={{ ...sx.inp, flex:1, minWidth:140 }}
         />
         <select value={filterT} onChange={e => setFilterT(e.target.value)} style={{ ...sx.sel, minWidth:110 }}>
-          <option value="">Alle Typen</option>
-          {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {ty}</option>)}
+          <option value="">{t("wb.all_types","Alle Typen")}</option>
+          {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {typeLabel(ty)}</option>)}
         </select>
-        <button onClick={startNew} style={sx.btn(C.teal)}>+ Ort</button>
+        <button onClick={startNew} style={sx.btn(C.teal)}>{t("wb.new_location_btn","+ Ort")}</button>
       </div>
 
       {/* Editor */}
       {editing && draft && (
         <div style={{ ...sx.card, border:`1px solid ${C.tealBright}55`, marginBottom:14 }}>
           <div style={{ ...sx.ct, color:C.tealBright, marginBottom:10 }}>
-            {editing === "new" ? "✨ Neuer Ort" : "✏️ Ort bearbeiten"}
+            {editing === "new" ? t("wb.new_location_title","✨ Neuer Ort") : t("wb.edit_location_title","✏️ Ort bearbeiten")}
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:9 }}>
             <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
               <div style={{ flex:2, minWidth:160 }}>
-                <label style={sx.lbl}>Name *</label>
+                <label style={sx.lbl}>{t("wb.name_required","Name *")}</label>
                 <input value={draft.name} onChange={e => setDraft(p => ({ ...p, name: e.target.value }))}
-                  placeholder="Ortsname…" style={sx.inp} autoFocus />
+                  placeholder={t("wb.location_name_placeholder","Ortsname…")} style={sx.inp} autoFocus />
               </div>
               <div style={{ flex:1, minWidth:120 }}>
-                <label style={sx.lbl}>Typ</label>
+                <label style={sx.lbl}>{t("wb.type_label","Typ")}</label>
                 <select value={draft.type} onChange={e => setDraft(p => ({ ...p, type: e.target.value }))} style={sx.sel}>
-                  {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {ty}</option>)}
+                  {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {typeLabel(ty)}</option>)}
                 </select>
               </div>
             </div>
             <div>
-              <label style={sx.lbl}>Beschreibung</label>
+              <label style={sx.lbl}>{t("wb.description_label","Beschreibung")}</label>
               <textarea value={draft.description} onChange={e => setDraft(p => ({ ...p, description: e.target.value }))}
-                placeholder="Beschreibung, Notizen, Geheimnisse…"
+                placeholder={t("wb.location_desc_placeholder","Beschreibung, Notizen, Geheimnisse…")}
                 style={{ ...sx.inp, minHeight:90, resize:"vertical", fontFamily:"inherit", lineHeight:1.5 }} />
             </div>
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={saveDraft} style={sx.btn(C.tealBright)} disabled={!draft.name?.trim()}>💾 Speichern</button>
-              <button onClick={cancel} style={sx.bsm(C.textDim)}>Abbrechen</button>
+              <button onClick={saveDraft} style={sx.btn(C.tealBright)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
+              <button onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>
@@ -118,8 +126,8 @@ export default function LocationsList() {
       {filtered.length === 0 ? (
         <div style={{ textAlign:"center", padding:"40px 20px", color:C.textDim, fontSize:13 }}>
           {locs.length === 0
-            ? <span>Noch keine Orte — <button onClick={startNew} style={{ background:"none", border:"none", color:C.tealBright, cursor:"pointer", fontSize:13 }}>ersten Ort anlegen</button></span>
-            : "Keine Ergebnisse"}
+            ? <span>{t("wb.no_locations_yet","Noch keine Orte —")} <button onClick={startNew} style={{ background:"none", border:"none", color:C.tealBright, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_location","ersten Ort anlegen")}</button></span>
+            : t("wb.no_results","Keine Ergebnisse")}
         </div>
       ) : (
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -144,7 +152,7 @@ export default function LocationsList() {
                           background:`${col}22`, color:col, border:`1px solid ${col}44`,
                           borderRadius:5, fontSize:9, fontWeight:700, padding:"1px 7px",
                           fontFamily:FH, letterSpacing:0.4, whiteSpace:"nowrap",
-                        }}>{loc.type}</span>
+                        }}>{typeLabel(loc.type)}</span>
                       </div>
                     </div>
                   </div>
@@ -167,8 +175,8 @@ export default function LocationsList() {
       {/* Summary */}
       {locs.length > 0 && (
         <div style={{ marginTop:14, fontSize:11, color:C.textDim, textAlign:"center" }}>
-          {locs.length} Ort{locs.length !== 1 ? "e" : ""} total
-          {filterT || search ? ` · ${filtered.length} angezeigt` : ""}
+          {locs.length} {locs.length !== 1 ? t("wb.locations_total_plural","Orte") : t("wb.locations_total_singular","Ort")} {t("wb.total_word","total")}
+          {filterT || search ? ` · ${filtered.length} ${t("wb.shown","angezeigt")}` : ""}
         </div>
       )}
     </div>

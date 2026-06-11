@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
+import { useI18n } from "../../i18n/index.js";
 import LocationsList    from "./LocationsList.jsx";
 import FactionsList     from "./FactionsList.jsx";
 import QuestList        from "./QuestList.jsx";
 import DowntimeTracker  from "../Downtime/DowntimeTracker.jsx";
 
-const TABS = [
-  { id: "quests",    label: "📋 Quests"     },
-  { id: "locations", label: "📍 Orte"       },
-  { id: "factions",  label: "⚔️ Fraktionen" },
-  { id: "downtime",  label: "⏳ Downtime"   },
-];
-
 export default function WorldbuildingPage() {
+  const { t } = useI18n();
+  const TABS = [
+    { id: "quests",    label: t("wb.tab_quests","📋 Quests")     },
+    { id: "locations", label: t("wb.tab_locations","📍 Orte")    },
+    { id: "factions",  label: t("wb.tab_factions","⚔️ Fraktionen") },
+    { id: "downtime",  label: t("wb.tab_downtime","⏳ Downtime") },
+  ];
   const [tab, setTab] = useState("quests");
 
   return (
@@ -21,16 +22,16 @@ export default function WorldbuildingPage() {
       <div style={sx.hdr}>
         <span style={{ fontSize:22 }}>🌍</span>
         <div>
-          <div style={sx.hT}>WELTENBAU</div>
-          <div style={sx.hS}>Quests · Orte · Fraktionen · Downtime</div>
+          <div style={sx.hT}>{t("wb.header_title","WELTENBAU")}</div>
+          <div style={sx.hS}>{t("wb.header_subtitle","Quests · Orte · Fraktionen · Downtime")}</div>
         </div>
       </div>
 
       {/* Sub-tabs */}
       <nav style={sx.nav}>
-        {TABS.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={sx.nb(tab === t.id)}>
-            {t.label}
+        {TABS.map(tb => (
+          <button key={tb.id} onClick={() => setTab(tb.id)} style={sx.nb(tab === tb.id)}>
+            {tb.label}
           </button>
         ))}
       </nav>

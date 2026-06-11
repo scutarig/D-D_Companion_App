@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
-import { t } from "../../i18n/index.js";
+import { t as moduleT, useI18n } from "../../i18n/index.js";
+import { fmtDate } from "../../utils/locale.js";
 
 // ── Constants ────────────────────────────────────────────────────────────────
-const STATUS = {
-  aktiv:         { label: "Aktiv",        icon: "⚡", color: C.greenBright },
-  ausstehend:    { label: "Ausstehend",   icon: "⏳", color: C.amberBright },
-  abgeschlossen: { label: "Abgeschlossen",icon: "✅", color: C.tealBright  },
-  gescheitert:   { label: "Gescheitert",  icon: "💀", color: C.redBright   },
+const STATUS_META = {
+  aktiv:         { icon: "⚡", color: C.greenBright, key: "wb.status_active", de: "Aktiv" },
+  ausstehend:    { icon: "⏳", color: C.amberBright, key: "wb.status_pending", de: "Ausstehend" },
+  abgeschlossen: { icon: "✅", color: C.tealBright,  key: "wb.status_done", de: "Abgeschlossen" },
+  gescheitert:   { icon: "💀", color: C.redBright,   key: "wb.status_failed", de: "Gescheitert" },
 };
 
-const PRIORITY = {
-  haupt:  { label: "Hauptquest",  icon: "🌟", color: C.gold        },
-  neben:  { label: "Nebenquest",  icon: "📌", color: C.blueBright  },
-  geheim: { label: "Geheimquest", icon: "🔒", color: C.purpleBright},
+const PRIORITY_META = {
+  haupt:  { icon: "🌟", color: C.gold,         key: "wb.prio_main", de: "Hauptquest" },
+  neben:  { icon: "📌", color: C.blueBright,   key: "wb.prio_side", de: "Nebenquest" },
+  geheim: { icon: "🔒", color: C.purpleBright, key: "wb.prio_secret", de: "Geheimquest" },
 };
 
 const STATUS_ORDER = ["aktiv", "ausstehend", "abgeschlossen", "gescheitert"];
@@ -27,7 +28,7 @@ function newQuest() {
     locationId: "", npcIds: [],
     rewards: "", notes: "",
     steps: [],
-    createdAt: new Date().toLocaleDateString(undefined),
+    createdAtIso: new Date().toISOString(),
   };
 }
 
@@ -37,6 +38,7 @@ function newStep(text = "") {
 
 // ── Sub-component: Step checklist ─────────────────────────────────────────────
 function StepList({ steps, onChange }) {
+  const { t } = useI18n();
   const [input, setInput] = useState("");
 
   const addStep = () => {
@@ -54,7 +56,7 @@ function StepList({ steps, onChange }) {
 
   return (
     <div>
-      <label style={sx.lbl}>Ziele / Schritte {total > 0 && <span style={{ color:C.tealBright }}>({done}/{total})</span>}</label>
+      <label style={sx.lbl}>{t("wb.steps_label","Ziele / Schritte")} {total > 0 && <span style={{ color:C.tealBright }}>({done}/{total})</span>}</label>
       {/* Progress bar */}
       {total > 0 && (
         <div style={{ height:4, background:C.surface, borderRadius:2, margin:"4px 0 8px", overflow:"hidden" }}>
@@ -70,7 +72,7 @@ function StepList({ steps, onChange }) {
         </div>
       ))}
       <div style={{ display:"flex", gap:6, marginTop:4 }}>
-        <input value={input} onChange={e => setInput(e.target.value)} placeholder="Neues Ziel…"
+        <input value={input} onChange={e => setInput(e.target.value)} placeholder={t("wb.new_step_placeholder","Neues Ziel…")}
           onKeyDown={e => { if (e.key === "Enter") addStep(); }}
           style={{ ...sx.inp, flex:1, fontSize:12 }} />
         <button onClick={addStep} style={sx.bsm(C.tealBright)}>+</button>
@@ -81,6 +83,9 @@ function StepList({ steps, onChange }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function QuestList() {
+  const { t } = useI18n();
+  const STATUS = Object.fromEntries(Object.entries(STATUS_META).map(([k, v]) => [k, { ...v, label: t(v.key, v.de) }]));
+  const PRIORITY = Object.fromEntries(Object.entries(PRIORITY_META).map(([k, v]) => [k, { ...v, label: t(v.key, v.de) }]));
   const [quests,    setQuests,    ready] = usePersist("quests_v1", []);
   const [locations]                      = usePersist("locations_v1", []);
   const [npcs]                           = usePersist("npc_list_v1", []);
@@ -102,7 +107,7 @@ export default function QuestList() {
       q.name.toLowerCase().includes(search.toLowerCase()) ||
       q.description?.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
-      const po = Object.keys(PRIORITY);
+      const po = Object.keys(PRIORITY_META);
       const so = STATUS_ORDER;
       const sd = so.indexOf(a.status) - so.indexOf(b.status);
       if (sd !== 0) return sd;
@@ -125,7 +130,7 @@ export default function QuestList() {
   };
 
   const deleteQuest = (id) => {
-    if (!window.confirm(t("wb.confirm_delete_quest","Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)"))) return;
+    if (!window.confirm(moduleT("wb.confirm_delete_quest","Quest löschen?\n(Diese Aktion kann nicht rückgängig gemacht werden.)"))) return;
     setQuests(p => p.filter(q => q.id !== id));
     if (selId === id) setSelId(null);
     if (editing === id) { setEditing(null); setDraft(null); }
@@ -174,35 +179,35 @@ export default function QuestList() {
 
       {/* Toolbar */}
       <div style={{ display:"flex", gap:7, marginBottom:12, flexWrap:"wrap", alignItems:"center" }}>
-        <input placeholder="🔍 Quest suchen…" value={search} onChange={e => setSearch(e.target.value)}
+        <input placeholder={t("wb.quest_search_placeholder","🔍 Quest suchen…")} value={search} onChange={e => setSearch(e.target.value)}
           style={{ ...sx.inp, flex:1, minWidth:130 }} />
         <select value={filterSt} onChange={e => setFilterSt(e.target.value)} style={{ ...sx.sel, minWidth:120 }}>
-          <option value="alle">Alle Status</option>
+          <option value="alle">{t("wb.all_status","Alle Status")}</option>
           {STATUS_ORDER.map(s => <option key={s} value={s}>{STATUS[s].icon} {STATUS[s].label}</option>)}
         </select>
         <select value={filterPr} onChange={e => setFilterPr(e.target.value)} style={{ ...sx.sel, minWidth:120 }}>
-          <option value="alle">Alle Typen</option>
+          <option value="alle">{t("wb.all_types","Alle Typen")}</option>
           {Object.entries(PRIORITY).map(([k,v]) => <option key={k} value={k}>{v.icon} {v.label}</option>)}
         </select>
-        <button onClick={startNew} style={sx.btn(C.gold)}>+ Quest</button>
+        <button onClick={startNew} style={sx.btn(C.gold)}>{t("wb.new_quest_btn","+ Quest")}</button>
       </div>
 
       {/* Editor */}
       {editing && draft && (
         <div style={{ ...sx.card, border:`1px solid ${C.gold}55`, marginBottom:14 }}>
           <div style={{ ...sx.ct, color:C.gold, marginBottom:12 }}>
-            {editing === "new" ? "✨ Neue Quest" : "✏️ Quest bearbeiten"}
+            {editing === "new" ? t("wb.new_quest_title","✨ Neue Quest") : t("wb.edit_quest_title","✏️ Quest bearbeiten")}
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
             {/* Name + Priority + Status */}
             <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
               <div style={{ flex:2, minWidth:160 }}>
-                <label style={sx.lbl}>Name *</label>
+                <label style={sx.lbl}>{t("wb.name_required","Name *")}</label>
                 <input value={draft.name} onChange={e => setDraft(p => ({ ...p, name: e.target.value }))}
-                  placeholder="Questname…" style={sx.inp} autoFocus />
+                  placeholder={t("wb.quest_name_placeholder","Questname…")} style={sx.inp} autoFocus />
               </div>
               <div style={{ flex:1, minWidth:110 }}>
-                <label style={sx.lbl}>Typ</label>
+                <label style={sx.lbl}>{t("wb.type_label","Typ")}</label>
                 <select value={draft.priority} onChange={e => setDraft(p => ({ ...p, priority: e.target.value }))} style={sx.sel}>
                   {Object.entries(PRIORITY).map(([k,v]) => <option key={k} value={k}>{v.icon} {v.label}</option>)}
                 </select>
@@ -217,9 +222,9 @@ export default function QuestList() {
 
             {/* Description */}
             <div>
-              <label style={sx.lbl}>Beschreibung</label>
+              <label style={sx.lbl}>{t("wb.description_label","Beschreibung")}</label>
               <textarea value={draft.description} onChange={e => setDraft(p => ({ ...p, description: e.target.value }))}
-                placeholder="Auftrag, Hintergrundinformationen…"
+                placeholder={t("wb.quest_description_placeholder","Auftrag, Hintergrundinformationen…")}
                 style={{ ...sx.inp, minHeight:70, resize:"vertical", fontFamily:"inherit", lineHeight:1.5 }} />
             </div>
 
@@ -230,24 +235,24 @@ export default function QuestList() {
             <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
               {locations.length > 0 && (
                 <div style={{ flex:1, minWidth:140 }}>
-                  <label style={sx.lbl}>Ort</label>
+                  <label style={sx.lbl}>{t("wb.location_label","Ort")}</label>
                   <select value={draft.locationId || ""} onChange={e => setDraft(p => ({ ...p, locationId: e.target.value }))} style={sx.sel}>
-                    <option value="">— kein Ort —</option>
+                    <option value="">{t("wb.no_location","— kein Ort —")}</option>
                     {locations.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
                   </select>
                 </div>
               )}
               <div style={{ flex:1, minWidth:140 }}>
-                <label style={sx.lbl}>Belohnungen</label>
+                <label style={sx.lbl}>{t("wb.rewards_label","Belohnungen")}</label>
                 <input value={draft.rewards} onChange={e => setDraft(p => ({ ...p, rewards: e.target.value }))}
-                  placeholder="500 Gold, Magisches Schwert…" style={sx.inp} />
+                  placeholder={t("wb.rewards_placeholder","500 Gold, Magisches Schwert…")} style={sx.inp} />
               </div>
             </div>
 
             {/* NPCs */}
             {npcs.filter(n => n.custom !== false || n.id > 100).length > 0 || npcs.length > 0 ? (
               <div>
-                <label style={sx.lbl}>Beteiligte NPCs</label>
+                <label style={sx.lbl}>{t("wb.involved_npcs","Beteiligte NPCs")}</label>
                 <div style={{ display:"flex", flexWrap:"wrap", gap:5, marginTop:4 }}>
                   {npcs.map(n => {
                     const sel = (draft.npcIds || []).includes(String(n.id));
@@ -268,15 +273,15 @@ export default function QuestList() {
 
             {/* Notes */}
             <div>
-              <label style={sx.lbl}>DM-Notizen</label>
+              <label style={sx.lbl}>{t("wb.dm_notes","DM-Notizen")}</label>
               <textarea value={draft.notes} onChange={e => setDraft(p => ({ ...p, notes: e.target.value }))}
-                placeholder="Geheime Infos, Twists, Plot-Verbindungen…"
+                placeholder={t("wb.dm_notes_placeholder","Geheime Infos, Twists, Plot-Verbindungen…")}
                 style={{ ...sx.inp, minHeight:55, resize:"vertical", fontFamily:"inherit", lineHeight:1.5 }} />
             </div>
 
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={saveDraft} style={sx.btn(C.gold)} disabled={!draft.name?.trim()}>💾 Speichern</button>
-              <button onClick={cancel} style={sx.bsm(C.textDim)}>Abbrechen</button>
+              <button onClick={saveDraft} style={sx.btn(C.gold)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
+              <button onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>
@@ -286,8 +291,8 @@ export default function QuestList() {
       {filtered.length === 0 ? (
         <div style={{ textAlign:"center", padding:"40px 20px", color:C.textDim, fontSize:13 }}>
           {quests.length === 0
-            ? <span>Noch keine Quests — <button onClick={startNew} style={{ background:"none", border:"none", color:C.gold, cursor:"pointer", fontSize:13 }}>erste Quest anlegen</button></span>
-            : "Keine Ergebnisse"}
+            ? <span>{t("wb.no_quests_yet","Noch keine Quests —")} <button onClick={startNew} style={{ background:"none", border:"none", color:C.gold, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_quest","erste Quest anlegen")}</button></span>
+            : t("wb.no_results","Keine Ergebnisse")}
         </div>
       ) : (
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -328,7 +333,7 @@ export default function QuestList() {
                         {/* Step progress */}
                         {steps.length > 0 && (
                           <span style={{ fontSize:9, color:done===steps.length ? C.tealBright : C.textDim }}>
-                            {done}/{steps.length} Ziele
+                            {done}/{steps.length} {t("wb.goals_n","Ziele")}
                           </span>
                         )}
                         {/* Location */}
@@ -339,7 +344,7 @@ export default function QuestList() {
 
                   <div style={{ display:"flex", gap:5, flexShrink:0 }}>
                     {/* Quick status cycle */}
-                    <button onClick={() => cycleStatus(q.id)} title="Status wechseln"
+                    <button onClick={() => cycleStatus(q.id)} title={t("wb.status_cycle_title","Status wechseln")}
                       style={{ ...sx.bsm(st.color), fontSize:12, padding:"3px 8px" }}>
                       {st.icon}
                     </button>
@@ -365,7 +370,7 @@ export default function QuestList() {
                     {/* Step checklist (interactive) */}
                     {steps.length > 0 && (
                       <div>
-                        <div style={{ fontSize:10, color:C.textDim, fontFamily:FH, letterSpacing:0.5, marginBottom:5 }}>ZIELE</div>
+                        <div style={{ fontSize:10, color:C.textDim, fontFamily:FH, letterSpacing:0.5, marginBottom:5 }}>{t("wb.goals_label_upper","ZIELE")}</div>
                         {steps.map(s => (
                           <div key={s.id} style={{ display:"flex", alignItems:"center", gap:7, marginBottom:5 }}>
                             <input type="checkbox" checked={s.done}
@@ -382,7 +387,7 @@ export default function QuestList() {
                     {/* NPCs */}
                     {qNpcs.length > 0 && (
                       <div>
-                        <div style={{ fontSize:10, color:C.textDim, fontFamily:FH, letterSpacing:0.5, marginBottom:5 }}>BETEILIGTE NPCS</div>
+                        <div style={{ fontSize:10, color:C.textDim, fontFamily:FH, letterSpacing:0.5, marginBottom:5 }}>{t("wb.involved_npcs_upper","BETEILIGTE NPCS")}</div>
                         <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
                           {qNpcs.map(n => (
                             <span key={n.id} style={{ background:`${C.purple}18`, border:`1px solid ${C.purple}44`, borderRadius:5, fontSize:11, color:C.purpleBright, padding:"2px 8px" }}>
@@ -396,20 +401,20 @@ export default function QuestList() {
                     {/* Rewards */}
                     {q.rewards && (
                       <div style={{ background:`${C.gold}0e`, border:`1px solid ${C.gold}33`, borderRadius:7, padding:"7px 11px", fontSize:12, color:C.gold }}>
-                        🎁 <strong>Belohnungen:</strong> {q.rewards}
+                        🎁 <strong>{t("wb.rewards_label_bold","Belohnungen:")}</strong> {q.rewards}
                       </div>
                     )}
 
                     {/* Notes */}
                     {q.notes && (
                       <div style={{ background:`${C.purple}0a`, border:`1px solid ${C.purple}33`, borderRadius:7, padding:"7px 11px", fontSize:12, color:C.textDim, lineHeight:1.6 }}>
-                        <div style={{ fontSize:9, color:C.purpleBright, fontFamily:FH, fontWeight:700, marginBottom:4 }}>DM-NOTIZEN</div>
+                        <div style={{ fontSize:9, color:C.purpleBright, fontFamily:FH, fontWeight:700, marginBottom:4 }}>{t("wb.dm_notes_upper","DM-NOTIZEN")}</div>
                         {q.notes}
                       </div>
                     )}
 
-                    {q.createdAt && (
-                      <div style={{ fontSize:10, color:C.textDim }}>Erstellt: {q.createdAt}</div>
+                    {(q.createdAtIso || q.createdAt) && (
+                      <div style={{ fontSize:10, color:C.textDim }}>{t("wb.created_at","Erstellt:")} {q.createdAtIso ? fmtDate(q.createdAtIso) : q.createdAt}</div>
                     )}
                   </div>
                 )}
@@ -421,8 +426,8 @@ export default function QuestList() {
 
       {quests.length > 0 && (
         <div style={{ marginTop:14, fontSize:11, color:C.textDim, textAlign:"center" }}>
-          {quests.length} Quest{quests.length !== 1 ? "s" : ""} total
-          {(filterSt !== "alle" || filterPr !== "alle" || search) ? ` · ${filtered.length} angezeigt` : ""}
+          {quests.length} {quests.length !== 1 ? t("wb.quests_total_plural","Quests") : t("wb.quests_total_singular","Quest")} {t("wb.total_word","total")}
+          {(filterSt !== "alle" || filterPr !== "alle" || search) ? ` · ${filtered.length} ${t("wb.shown","angezeigt")}` : ""}
         </div>
       )}
     </div>

@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
-import { t } from "../../i18n/index.js";
+import { t as moduleT, useI18n } from "../../i18n/index.js";
+import { fmtDateTime } from "../../utils/locale.js";
 
 // Reputation scale: -3..+3
-const REP_LABELS = {
-  "-3": { label: "Feindlich",   icon: "💀", color: "#ff3333" },
-  "-2": { label: "Feindselig",  icon: "😠", color: "#ff6644" },
-  "-1": { label: "Misstrauisch",icon: "😒", color: "#ff9944" },
-   "0": { label: "Neutral",     icon: "😐", color: C.textDim },
-   "1": { label: "Freundlich",  icon: "🙂", color: "#68d18a" },
-   "2": { label: "Vertraut",    icon: "😊", color: "#40c080" },
-   "3": { label: "Verbündet",   icon: "🤝", color: "#c9a84c" },
+const REP_META = {
+  "-3": { icon: "💀", color: "#ff3333", key: "wb.rep_hostile",    de: "Feindlich"    },
+  "-2": { icon: "😠", color: "#ff6644", key: "wb.rep_unfriendly", de: "Feindselig"   },
+  "-1": { icon: "😒", color: "#ff9944", key: "wb.rep_suspicious", de: "Misstrauisch" },
+   "0": { icon: "😐", color: C.textDim, key: "wb.rep_neutral",    de: "Neutral"      },
+   "1": { icon: "🙂", color: "#68d18a", key: "wb.rep_friendly",   de: "Freundlich"   },
+   "2": { icon: "😊", color: "#40c080", key: "wb.rep_trusted",    de: "Vertraut"     },
+   "3": { icon: "🤝", color: "#c9a84c", key: "wb.rep_allied",     de: "Verbündet"    },
 };
 
 const PRESET_COLORS = [
@@ -24,6 +25,8 @@ function newFaction() {
 }
 
 export default function FactionsList() {
+  const { t } = useI18n();
+  const REP_LABELS = Object.fromEntries(Object.entries(REP_META).map(([k, v]) => [k, { ...v, label: t(v.key, v.de) }]));
   const [factions, setFactions, ready] = usePersist("factions_v1", []);
   const [npcs]                         = usePersist("npc_list_v1", []);
   const [editing,  setEditing]  = useState(null);
@@ -63,7 +66,7 @@ export default function FactionsList() {
   };
 
   const deleteFaction = (id) => {
-    if (!confirm(t("wb.confirm_delete_faction","Fraktion löschen?"))) return;
+    if (!confirm(moduleT("wb.confirm_delete_faction","Fraktion löschen?"))) return;
     setFactions(p => p.filter(f => f.id !== id));
     if (editing === id) { setEditing(null); setDraft(null); }
   };
@@ -72,11 +75,11 @@ export default function FactionsList() {
   const confirmRep = () => {
     if (!repPop) return;
     const { fid, delta } = repPop;
-    const ts = new Date().toLocaleString(undefined); // user's system locale (lang-aware fallback)
+    const tsIso = new Date().toISOString();
     setFactions(p => p.map(f => {
       if (f.id !== fid) return f;
       const newRep = Math.max(-3, Math.min(3, (f.reputation ?? 0) + delta));
-      const entry  = { id: Date.now().toString(), ts, delta, note: repNote.trim(), from: f.reputation ?? 0, to: newRep };
+      const entry  = { id: Date.now().toString(), tsIso, delta, note: repNote.trim(), from: f.reputation ?? 0, to: newRep };
       return { ...f, reputation: newRep, repLog: [...(f.repLog || []), entry] };
     }));
     setRepPop(null); setRepNote("");
@@ -92,27 +95,27 @@ export default function FactionsList() {
       {/* Toolbar */}
       <div style={{ display:"flex", gap:8, marginBottom:12, alignItems:"center" }}>
         <input
-          placeholder="🔍 Fraktionen suchen…"
+          placeholder={t("wb.factions_search_placeholder","🔍 Fraktionen suchen…")}
           value={search} onChange={e => setSearch(e.target.value)}
           style={{ ...sx.inp, flex:1 }}
         />
-        <button onClick={startNew} style={sx.btn(C.purple)}>+ Fraktion</button>
+        <button onClick={startNew} style={sx.btn(C.purple)}>{t("wb.new_faction_btn","+ Fraktion")}</button>
       </div>
 
       {/* Editor */}
       {editing && draft && (
         <div style={{ ...sx.card, border:`1px solid ${draft.color}66`, marginBottom:14 }}>
           <div style={{ ...sx.ct, marginBottom:10 }}>
-            <span style={{ color: draft.color }}>{editing === "new" ? "✨ Neue Fraktion" : "✏️ Fraktion bearbeiten"}</span>
+            <span style={{ color: draft.color }}>{editing === "new" ? t("wb.new_faction_title","✨ Neue Fraktion") : t("wb.edit_faction_title","✏️ Fraktion bearbeiten")}</span>
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:9 }}>
             <div>
-              <label style={sx.lbl}>Name *</label>
+              <label style={sx.lbl}>{t("wb.name_required","Name *")}</label>
               <input value={draft.name} onChange={e => setDraft(p => ({ ...p, name: e.target.value }))}
-                placeholder="Fraktionsname…" style={sx.inp} autoFocus />
+                placeholder={t("wb.faction_name_placeholder","Fraktionsname…")} style={sx.inp} autoFocus />
             </div>
             <div>
-              <label style={sx.lbl}>Farbe</label>
+              <label style={sx.lbl}>{t("wb.color_label","Farbe")}</label>
               <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:4 }}>
                 {PRESET_COLORS.map(col => (
                   <button key={col} onClick={() => setDraft(p => ({ ...p, color: col }))} style={{
@@ -125,14 +128,14 @@ export default function FactionsList() {
               </div>
             </div>
             <div>
-              <label style={sx.lbl}>Beschreibung</label>
+              <label style={sx.lbl}>{t("wb.description_label","Beschreibung")}</label>
               <textarea value={draft.description} onChange={e => setDraft(p => ({ ...p, description: e.target.value }))}
-                placeholder="Ziele, Geschichte, Mitglieder, Symbole…"
+                placeholder={t("wb.faction_desc_placeholder","Ziele, Geschichte, Mitglieder, Symbole…")}
                 style={{ ...sx.inp, minHeight:90, resize:"vertical", fontFamily:"inherit", lineHeight:1.5 }} />
             </div>
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={saveDraft} style={sx.btn(C.purpleBright)} disabled={!draft.name?.trim()}>💾 Speichern</button>
-              <button onClick={cancel} style={sx.bsm(C.textDim)}>Abbrechen</button>
+              <button onClick={saveDraft} style={sx.btn(C.purpleBright)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
+              <button onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>
@@ -142,8 +145,8 @@ export default function FactionsList() {
       {filtered.length === 0 ? (
         <div style={{ textAlign:"center", padding:"40px 20px", color:C.textDim, fontSize:13 }}>
           {factions.length === 0
-            ? <span>Noch keine Fraktionen — <button onClick={startNew} style={{ background:"none", border:"none", color:C.purpleBright, cursor:"pointer", fontSize:13 }}>erste anlegen</button></span>
-            : "Keine Ergebnisse"}
+            ? <span>{t("wb.no_factions_yet","Noch keine Fraktionen —")} <button onClick={startNew} style={{ background:"none", border:"none", color:C.purpleBright, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_faction","erste anlegen")}</button></span>
+            : t("wb.no_results","Keine Ergebnisse")}
         </div>
       ) : (
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -213,16 +216,16 @@ export default function FactionsList() {
                 {repPop?.fid === f.id && (
                   <div style={{ marginTop:8, background:`${C.surface}`, border:`1px solid ${f.color}55`, borderRadius:8, padding:"10px 12px", display:"flex", flexDirection:"column", gap:7 }}>
                     <div style={{ fontSize:11, color:f.color, fontWeight:700, fontFamily:FH }}>
-                      Reputation {repPop.delta > 0 ? `+${repPop.delta}` : repPop.delta} — Notiz (optional)
+                      {t("wb.reputation_change_title","Reputation {delta} — Notiz (optional)").replace("{delta}", repPop.delta > 0 ? `+${repPop.delta}` : repPop.delta)}
                     </div>
                     <input value={repNote} onChange={e => setRepNote(e.target.value)}
-                      placeholder="Warum ändert sich die Reputation?"
+                      placeholder={t("wb.reputation_note_placeholder","Warum ändert sich die Reputation?")}
                       style={{ ...sx.inp, fontSize:12 }}
                       onKeyDown={e => { if (e.key === "Enter") confirmRep(); if (e.key === "Escape") cancelRep(); }}
                       autoFocus />
                     <div style={{ display:"flex", gap:6 }}>
-                      <button onClick={confirmRep} style={sx.btn(f.color)}>✓ Bestätigen</button>
-                      <button onClick={cancelRep} style={sx.bsm(C.textDim)}>Abbrechen</button>
+                      <button onClick={confirmRep} style={sx.btn(f.color)}>{t("wb.confirm_btn","✓ Bestätigen")}</button>
+                      <button onClick={cancelRep} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
                     </div>
                   </div>
                 )}
@@ -247,7 +250,7 @@ export default function FactionsList() {
                       }}>
                         <span>{isExp ? "▾" : "▸"}</span>
                         <span style={{ color:f.color, fontWeight:700 }}>{members.length}</span>
-                        <span>Mitglied{members.length !== 1 ? "er" : ""}</span>
+                        <span>{members.length !== 1 ? t("wb.members_label_plural","Mitglieder") : t("wb.members_label_singular","Mitglied")}</span>
                       </button>
                       {isExp && (
                         <div style={{ marginTop:6, display:"flex", flexWrap:"wrap", gap:5 }}>
@@ -278,7 +281,7 @@ export default function FactionsList() {
                         fontSize:11, display:"flex", alignItems:"center", gap:5, padding:0,
                       }}>
                         <span>{isExp ? "▾" : "▸"}</span>
-                        <span>📜 Reputations-Log ({f.repLog.length})</span>
+                        <span>{t("wb.reputation_log","📜 Reputations-Log")} ({f.repLog.length})</span>
                       </button>
                       {isExp && (
                         <div style={{ marginTop:6, display:"flex", flexDirection:"column", gap:4 }}>
@@ -289,7 +292,7 @@ export default function FactionsList() {
                                 <span style={{ color:eCol, fontWeight:700, minWidth:24 }}>{e.delta > 0 ? `+${e.delta}` : e.delta}</span>
                                 <span style={{ color:C.textDim, fontSize:10 }}>{e.from}→{e.to}</span>
                                 {e.note && <span style={{ color:C.text }}>{e.note}</span>}
-                                <span style={{ marginLeft:"auto", color:C.textDim, fontSize:9, whiteSpace:"nowrap" }}>{e.ts}</span>
+                                <span style={{ marginLeft:"auto", color:C.textDim, fontSize:9, whiteSpace:"nowrap" }}>{e.tsIso ? fmtDateTime(e.tsIso) : (e.ts || "")}</span>
                               </div>
                             );
                           })}
@@ -306,7 +309,7 @@ export default function FactionsList() {
 
       {factions.length > 0 && (
         <div style={{ marginTop:14, fontSize:11, color:C.textDim, textAlign:"center" }}>
-          {factions.length} Fraktion{factions.length !== 1 ? "en" : ""} total
+          {factions.length} {factions.length !== 1 ? t("wb.factions_total_plural","Fraktionen") : t("wb.factions_total_singular","Fraktion")} {t("wb.total_word","total")}
         </div>
       )}
     </div>
