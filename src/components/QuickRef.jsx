@@ -206,7 +206,7 @@ export default function QuickRef() {
       </div>
 
       <div style={{ display: "flex", gap: 5, marginBottom: 14, flexWrap: "wrap" }}>
-        {SECTIONS.map(s => <button key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.labelKey ? t(s.labelKey, s.label) : s.label}</button>)}
+        {SECTIONS.map(s => <button type="button" key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.labelKey ? t(s.labelKey, s.label) : s.label}</button>)}
       </div>
 
       {/* CONDITIONS */}

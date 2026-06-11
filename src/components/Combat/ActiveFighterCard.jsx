@@ -29,7 +29,7 @@ const HoldBtn = ({ onClick, children, style, disabled = false }) => {
     document.addEventListener("touchcancel", onEnd);
   };
   return (
-    <button
+    <button type="button"
       onMouseDown={handleStart}
       onTouchStart={handleStart}
       style={{ ...style, cursor: disabled ? "not-allowed" : "pointer", opacity: disabled ? 0.5 : 1 }}
@@ -123,7 +123,7 @@ export default function ActiveFighterCard() {
           </div>
         </div>
         {/* Condition picker trigger */}
-        <button
+        <button type="button"
           onClick={() => setShowConditionPicker(true)}
           style={{
             ...sx.bsm(C.amber), padding: "5px 10px", fontSize: 11,
@@ -187,7 +187,7 @@ export default function ActiveFighterCard() {
               +{n} HP
             </HoldBtn>
           ))}
-          <button
+          <button type="button"
             onClick={() => setShowCustomHp(!showCustomHp)}
             style={{ ...sx.bsm(C.purple), padding: "8px 10px", fontSize: 12 }}
           >
@@ -208,10 +208,10 @@ export default function ActiveFighterCard() {
             autoFocus
             onKeyDown={(e) => { if (e.key === "Enter") applyCustomHp(false); }}
           />
-          <button onClick={() => applyCustomHp(true)} style={{ ...sx.btn(C.red), padding: "8px 12px", fontSize: 12 }}>
+          <button type="button" onClick={() => applyCustomHp(true)} style={{ ...sx.btn(C.red), padding: "8px 12px", fontSize: 12 }}>
             {t("combat.dmg_btn","− Dmg")}
           </button>
-          <button onClick={() => applyCustomHp(false)} style={{ ...sx.btn(C.green), padding: "8px 12px", fontSize: 12 }}>
+          <button type="button" onClick={() => applyCustomHp(false)} style={{ ...sx.btn(C.green), padding: "8px 12px", fontSize: 12 }}>
             {t("combat.heal_btn","+ Heal")}
           </button>
         </div>
@@ -222,7 +222,7 @@ export default function ActiveFighterCard() {
         <div style={{ background: `${C.red}10`, border: `1px solid ${C.red}30`, borderRadius: 8, padding: "10px 12px", marginBottom: 10 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
             <span style={{ fontFamily: FH, fontSize: 12, color: C.redBright }}>☠️ Death Saves</span>
-            <button
+            <button type="button"
               onClick={() => { const r = rollDeathSave(); addDeathSaveResult(fighter.id, r.success ? "success" : "failure"); }}
               style={{ ...sx.bsm(C.red), fontSize: 10, padding: "3px 8px" }}
             >
@@ -234,7 +234,7 @@ export default function ActiveFighterCard() {
               <div style={{ fontSize: 10, color: C.greenBright, marginBottom: 4 }}>Successes</div>
               <div style={{ display: "flex", gap: 4 }}>
                 {[0, 1, 2].map((i) => (
-                  <button key={i} onClick={() => addDeathSaveResult(fighter.id, "success")} style={{
+                  <button type="button" key={i} onClick={() => addDeathSaveResult(fighter.id, "success")} style={{
                     width: 32, height: 32, borderRadius: 4, border: `2px solid ${C.green}`,
                     background: i < (fighter.deathSaves?.suc ?? 0) ? C.green : "transparent", cursor: "pointer", padding: 0,
                   }} />
@@ -245,7 +245,7 @@ export default function ActiveFighterCard() {
               <div style={{ fontSize: 10, color: C.redBright, marginBottom: 4 }}>Failures</div>
               <div style={{ display: "flex", gap: 4 }}>
                 {[0, 1, 2].map((i) => (
-                  <button key={i} onClick={() => addDeathSaveResult(fighter.id, "failure")} style={{
+                  <button type="button" key={i} onClick={() => addDeathSaveResult(fighter.id, "failure")} style={{
                     width: 32, height: 32, borderRadius: 4, border: `2px solid ${C.red}`,
                     background: i < (fighter.deathSaves?.fail ?? 0) ? C.red : "transparent", cursor: "pointer", padding: 0,
                   }} />

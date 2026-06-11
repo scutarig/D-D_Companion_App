@@ -243,7 +243,7 @@ function LuckyTracker({ char, choices, setChoice }) {
         {Array.from({ length: max }).map((_, i) => {
           const isUsed = i < used;
           return (
-            <button
+            <button type="button"
               key={i}
               onClick={() => setChoice("used", isUsed ? i : i + 1)}
               title={isUsed ? t("char.luck_used_title","Verbraucht — klick um zurückzusetzen") : t("char.luck_avail_title","Verfügbar — klick um zu verbrauchen")}
@@ -260,10 +260,10 @@ function LuckyTracker({ char, choices, setChoice }) {
       </div>
 
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-        <button onClick={() => setChoice("used", 0)} style={{ ...sx.bsm(C.gold), padding: "5px 10px", fontSize: 10 }}>
+        <button type="button" onClick={() => setChoice("used", 0)} style={{ ...sx.bsm(C.gold), padding: "5px 10px", fontSize: 10 }}>
           {t("char.long_rest_reset","🌟 Long Rest Reset")}
         </button>
-        <button onClick={() => setChoice("used", Math.min(max, used + 1))} style={{ ...sx.bsm(C.red), padding: "5px 10px", fontSize: 10 }}>
+        <button type="button" onClick={() => setChoice("used", Math.min(max, used + 1))} style={{ ...sx.bsm(C.red), padding: "5px 10px", fontSize: 10 }}>
           {t("char.spend_luck_pt","⚡ Punkt verbrauchen")}
         </button>
       </div>
@@ -286,7 +286,7 @@ function TavernBrawlerPicker({ choices, setChoice }) {
       <div style={{ fontSize: 11, color: C.textDim }}>{t("char.tavern_brawler_hint","Wähle: +1 STR oder +1 CON (Half-Feat, max 20):")}</div>
       <div style={{ display: "flex", gap: 6 }}>
         {TAVERN_BRAWLER_STATS.map(s => (
-          <button
+          <button type="button"
             key={s}
             onClick={() => setChoice("stat", s === stat ? "" : s)}
             style={{

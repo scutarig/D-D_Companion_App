@@ -2,6 +2,7 @@ import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import { DialogProvider } from "./hooks/useDialog.jsx";
 import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
 import { useI18n } from "./i18n/index.js";
@@ -195,7 +196,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
         <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
           {!isDM && (
             <>
-              <button
+              <button type="button"
                 onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
                 title={char.inspiration
                   ? "Heroic Inspiration aktiv — Klick: ausgeben (Reroll auf D20 Test)"
@@ -214,8 +215,8 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                 }}>
                 {char.inspiration ? "✦" : "✧"} {t("header.heroic_inspiration")}
               </button>
-              <button onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:11, padding:"4px 8px" }}>🌙 {t("header.short_rest")}</button>
-              <button onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:11, padding:"4px 8px" }}>🌟 {t("header.long_rest")}</button>
+              <button type="button" onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:11, padding:"4px 8px" }}>🌙 {t("header.short_rest")}</button>
+              <button type="button" onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:11, padding:"4px 8px" }}>🌟 {t("header.long_rest")}</button>
             </>
           )}
         </div>
@@ -248,8 +249,8 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
               )}
             </div>
           )}
-          <button onClick={confirmRest} style={sx.btn(restBanner==="long" ? C.purpleBright : C.tealBright)}>{t("action.confirm")}</button>
-          <button onClick={() => setRestBanner(null)} style={{ background:"none", border:"none", color:C.textDim, fontSize:18, cursor:"pointer" }}>✕</button>
+          <button type="button" onClick={confirmRest} style={sx.btn(restBanner==="long" ? C.purpleBright : C.tealBright)}>{t("action.confirm")}</button>
+          <button type="button" onClick={() => setRestBanner(null)} style={{ background:"none", border:"none", color:C.textDim, fontSize:18, cursor:"pointer" }}>✕</button>
         </div>
       )}
     </div>
@@ -340,6 +341,29 @@ function AppInner() {
     const styleEl = document.createElement("style");
     styleEl.id = "dnd-print-styles";
     styleEl.textContent = `
+      /* ── Keyboard focus ring (D2 audit fix) ── */
+      :focus { outline: none; }
+      :focus-visible {
+        outline: 2px solid #c0a1ff;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+        outline: 2px solid #c0a1ff;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(192,161,255,0.18);
+      }
+
+      /* ── Respect user motion preferences (D7 audit fix) ── */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
       /* ── Loader Animations ── */
       @keyframes dndPulse {
         0%, 100% { opacity: 0.5; transform: scale(1); }
@@ -348,6 +372,10 @@ function AppInner() {
       @keyframes dndShimmer {
         0% { background-position: 200% 0; }
         100% { background-position: -200% 0; }
+      }
+      @keyframes dndFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
 
       /* ── A11y: keyboard focus indicator (D2) ── */
@@ -630,13 +658,13 @@ function AppInner() {
         )}
 
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
-          <button
+          <button type="button"
             onClick={() => setModeConfirm(false)}
             style={{ ...sx.bsm(C.textDim), padding: "10px 18px", fontSize: 12 }}
           >
             {t("action.cancel")}
           </button>
-          <button
+          <button type="button"
             onClick={confirmModeSwitch}
             style={{ ...sx.btn(isDM ? C.gold : C.purpleBright), padding: "10px 22px", fontSize: 13 }}
           >
@@ -661,21 +689,24 @@ function AppInner() {
 
         {/* Nav */}
         <nav style={{ flex:1, padding:"8px 4px", display:"flex", flexDirection:"column", gap:2, overflowY:"auto" }}>
-          {sidebarTopTabs.map(td => (
-            <button key={td.id} title={td.labelKey ? t(td.labelKey, td.label) : td.label} onClick={() => setTab(td.id)} style={snb(tab===td.id)}>
-              {td.icon}
-            </button>
-          ))}
+          {sidebarTopTabs.map(td => {
+            const label = td.labelKey ? t(td.labelKey, td.label) : td.label;
+            return (
+              <button type="button" key={td.id} title={label} aria-label={label} aria-current={tab===td.id ? "page" : undefined} onClick={() => setTab(td.id)} style={snb(tab===td.id)}>
+                {td.icon}
+              </button>
+            );
+          })}
           <div style={{ marginTop:4, display:"flex", flexDirection:"column", gap:2 }}>
             {/* Player: Charakter-Gruppe / DM: Referenz */}
             {!isDM && (
-              <button ref={charBtnRef} title={t("nav.character_group","Charakter")} onClick={e => { e.stopPropagation(); toggleChar(); }}
+              <button type="button" ref={charBtnRef} title={t("nav.character_group","Charakter")} aria-label={t("nav.character_group","Charakter")} aria-expanded={charOpen} aria-haspopup="menu" onClick={e => { e.stopPropagation(); toggleChar(); }}
                 style={snb(isCharGroup || charOpen)}>
                 📜
               </button>
             )}
             {isDM && (
-              <button ref={refBtnRef} title={t("nav.reference_group","Referenz")} onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef || refOpen)}>
+              <button type="button" ref={refBtnRef} title={t("nav.reference_group","Referenz")} aria-label={t("nav.reference_group","Referenz")} aria-expanded={refOpen} aria-haspopup="menu" onClick={e => { e.stopPropagation(); toggleRef(); }} style={snb(isRef || refOpen)}>
                 📚
               </button>
             )}
@@ -686,12 +717,12 @@ function AppInner() {
         <div style={{ padding:"8px 4px 14px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
           {!isDM && (
             <>
-              <button title={t("nav.export_json","JSON exportieren")} onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
-              <button title={t("nav.export_pdf","PDF exportieren")}  onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
+              <button type="button" title={t("nav.export_json","JSON exportieren")} aria-label={t("nav.export_json","JSON exportieren")} onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
+              <button type="button" title={t("nav.export_pdf","PDF exportieren")}  aria-label={t("nav.export_pdf","PDF exportieren")} onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
             </>
           )}
           {/* Lang Toggle */}
-          <button
+          <button type="button"
             onClick={() => setLang(lang === "de" ? "en" : "de")}
             title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
             style={{
@@ -706,7 +737,7 @@ function AppInner() {
             🌐 {lang.toUpperCase()}
           </button>
           {/* Mode-Toggle: prominent, hervorgehoben, unterhalb Exporte */}
-          <button
+          <button type="button"
             onClick={requestModeSwitch}
             title={isDM ? "🎲 DM-Modus aktiv — Klick: Wechsel in Spieler-Modus" : "👤 Spieler-Modus aktiv — Klick: Wechsel in DM-Modus"}
             style={{
@@ -744,7 +775,7 @@ function AppInner() {
       {charOpen && !isDM && (
         <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:charPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.gold}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
           {CHAR_GROUP.map(td => (
-            <button key={td.id} onClick={() => { setTab(td.id); setCharOpen(false); }}
+            <button type="button" key={td.id} onClick={() => { setTab(td.id); setCharOpen(false); }}
               style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===td.id?`${C.gold}22`:"transparent", border:"none", borderRadius:7, color:tab===td.id?C.gold:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
               <span style={{ fontSize:15 }}>{td.icon}</span>
               {td.labelKey ? t(td.labelKey, td.label) : td.label}
@@ -757,7 +788,7 @@ function AppInner() {
       {refOpen && isDM && (
         <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:refPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.purple}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
           {REF_TABS.map(td => (
-            <button key={td.id} onClick={() => { setTab(td.id); setRefOpen(false); }}
+            <button type="button" key={td.id} onClick={() => { setTab(td.id); setRefOpen(false); }}
               style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===td.id?`${C.purple}33`:"transparent", border:"none", borderRadius:7, color:tab===td.id?C.purpleBright:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
               <span style={{ fontSize:15 }}>{td.icon}</span>
               {td.labelKey ? t(td.labelKey, td.label) : td.label}
@@ -795,8 +826,8 @@ function AppInner() {
             <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
               <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>{t("save.title", "Charakter speichern")}</div>
               <div style={{ display:"flex", gap:8 }}>
-                <button onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ {t("save.export_json", "JSON exportieren")}</button>
-                <button onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 {t("save.export_pdf", "PDF drucken")}</button>
+                <button type="button" onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ {t("save.export_json", "JSON exportieren")}</button>
+                <button type="button" onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 {t("save.export_pdf", "PDF drucken")}</button>
               </div>
             </div>
           )}
@@ -820,7 +851,7 @@ function AppInner() {
               {group.children.map(child => {
                 const isActive = tab === child.id;
                 return (
-                  <button key={child.id}
+                  <button type="button" key={child.id}
                     onClick={() => { setTab(child.id); setMobileMenu(null); }}
                     style={{
                       display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
@@ -851,7 +882,7 @@ function AppInner() {
         gap: 6,
         alignItems: "stretch",
       }}>
-        <button
+        <button type="button"
           onClick={() => setLang(lang === "de" ? "en" : "de")}
           title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
           style={{
@@ -866,7 +897,7 @@ function AppInner() {
           }}>
           🌐 {lang.toUpperCase()}
         </button>
-        <button
+        <button type="button"
           onClick={requestModeSwitch}
           style={{
             width: "100%",
@@ -910,7 +941,7 @@ function AppInner() {
           const isActive     = isGroup ? isGroupActive : tab === item.id;
 
           return (
-            <button
+            <button type="button"
               key={item.id}
               onClick={() => {
                 if (isGroup) {
@@ -953,7 +984,9 @@ export default function App() {
     <ErrorBoundary>
       <CharProvider>
         <CombatProvider>
-          <AppInner />
+          <DialogProvider>
+            <AppInner />
+          </DialogProvider>
         </CombatProvider>
       </CharProvider>
     </ErrorBoundary>

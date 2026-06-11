@@ -51,7 +51,7 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
             )}
           </div>
           {slotDef !== null && slots.length > 0 && (
-            <button onClick={resetAllSlots} style={sx.bsm(C.gold)}>
+            <button type="button" onClick={resetAllSlots} style={sx.bsm(C.gold)}>
               {isPact ? `↺ ${t("tokens.short_long_rest","Kurze/Lange Rast")}` : `↺ ${t("header.long_rest","Lange Rast")}`}
             </button>
           )}
@@ -126,8 +126,8 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
               <div style={{ fontSize: 11, color: C.textDim, marginTop: 2 }}>{t("tokens.auto_from_class","Automatisch aus Klasse + Level")}</div>
             </div>
             <div style={{ display: "flex", gap: 6 }}>
-              <button onClick={() => resetAutoResources("short")} style={sx.bsm(C.teal)}>↺ {t("tokens.sr_short","K.Rast")}</button>
-              <button onClick={() => resetAutoResources("long")} style={sx.bsm(C.gold)}>↺ {t("tokens.lr_short","L.Rast")}</button>
+              <button type="button" onClick={() => resetAutoResources("short")} style={sx.bsm(C.teal)}>↺ {t("tokens.sr_short","K.Rast")}</button>
+              <button type="button" onClick={() => resetAutoResources("long")} style={sx.bsm(C.gold)}>↺ {t("tokens.lr_short","L.Rast")}</button>
             </div>
           </div>
 
@@ -147,7 +147,7 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
                     {maxNum !== null && (
                       <span style={{ fontSize: 12, color: C.textDim }}>{maxNum - used}/{maxNum}</span>
                     )}
-                    <button onClick={() => setAutoUsedR(r.id, 0)} style={sx.bsm(C.goldDim)}>↺</button>
+                    <button type="button" onClick={() => setAutoUsedR(r.id, 0)} style={sx.bsm(C.goldDim)}>↺</button>
                   </div>
                 </div>
                 {maxNum !== null ? (
@@ -181,7 +181,7 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
       <div style={sx.card}>
         <div style={{ ...sx.jb, marginBottom: 8 }}>
           <div style={sx.ct}>🏷️ {t("tokens.custom_resources","Eigene Ressourcen")}</div>
-          <button onClick={() => setCustom(p => p.map(tok => ({ ...tok, used: 0 })))} style={sx.bsm(C.gold)}>↺ {t("tokens.reset_all","Alle zurücksetzen")}</button>
+          <button type="button" onClick={() => setCustom(p => p.map(tok => ({ ...tok, used: 0 })))} style={sx.bsm(C.gold)}>↺ {t("tokens.reset_all","Alle zurücksetzen")}</button>
         </div>
 
         {custom.length === 0 && (
@@ -198,8 +198,8 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
               </span>
               <div style={{ display: "flex", gap: 6 }}>
                 <span style={{ fontSize: 12, color: C.textDim }}>{tok.tot - tok.used}/{tok.tot}</span>
-                <button onClick={() => setCustom(p => p.map(x => x.id === tok.id ? { ...x, used: 0 } : x))} style={sx.bsm(C.goldDim)}>↺</button>
-                <button onClick={() => setCustom(p => p.filter(x => x.id !== tok.id))} style={sx.bsm(C.red)}>✕</button>
+                <button type="button" onClick={() => setCustom(p => p.map(x => x.id === tok.id ? { ...x, used: 0 } : x))} style={sx.bsm(C.goldDim)}>↺</button>
+                <button type="button" onClick={() => setCustom(p => p.filter(x => x.id !== tok.id))} style={sx.bsm(C.red)}>✕</button>
               </div>
             </div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -230,7 +230,7 @@ export default function Tokens({ char, charId, usedSlots, setUsedSlots }) {
             <div><label style={sx.lbl}>{t("tokens.count","Anzahl")}</label><input type="number" min={1} max={20} value={nT.tot} onChange={e => setNT(p => ({ ...p, tot: +e.target.value }))} style={{ ...sx.inp, width: 70 }} /></div>
             <div><label style={sx.lbl}>{t("tokens.type","Typ")}</label><input value={nT.tier} onChange={e => setNT(p => ({ ...p, tier: e.target.value }))} style={{ ...sx.inp, width: 80 }} placeholder="d8" /></div>
             <div><label style={sx.lbl}>{t("tokens.color","Farbe")}</label><input type="color" value={nT.color} onChange={e => setNT(p => ({ ...p, color: e.target.value }))} style={{ height: 34, width: 50, border: `1px solid ${C.border}`, borderRadius: 4, background: "transparent", cursor: "pointer" }} /></div>
-            <button onClick={() => { if (!nT.name) return; setCustom(p => [...p, { ...nT, id: Date.now(), used: 0 }]); setNT({ name: "", tot: 3, color: C.purple, tier: "" }); }} style={sx.btn(C.green)}>{t("actions.add","Hinzufügen")}</button>
+            <button type="button" onClick={() => { if (!nT.name) return; setCustom(p => [...p, { ...nT, id: Date.now(), used: 0 }]); setNT({ name: "", tot: 3, color: C.purple, tier: "" }); }} style={sx.btn(C.green)}>{t("actions.add","Hinzufügen")}</button>
           </div>
         </div>
       </div>

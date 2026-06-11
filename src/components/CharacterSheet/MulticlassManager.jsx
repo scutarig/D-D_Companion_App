@@ -77,7 +77,7 @@ export default function MulticlassManager({ char, setChar }) {
 
             {/* Level controls */}
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <button
+              <button type="button"
                 onClick={() => updateLevel(klass.name, -1)}
                 disabled={klass.level <= 1}
                 style={{
@@ -90,7 +90,7 @@ export default function MulticlassManager({ char, setChar }) {
               <span style={{ fontSize: 16, fontWeight: 800, color: C.textBright, minWidth: 20, textAlign: "center", fontFamily: FH }}>
                 {klass.level}
               </span>
-              <button
+              <button type="button"
                 onClick={() => updateLevel(klass.name, 1)}
                 disabled={totalLevel >= 20}
                 style={{
@@ -104,7 +104,7 @@ export default function MulticlassManager({ char, setChar }) {
 
             {/* Remove (only for secondary classes) */}
             {classes.length > 1 && (
-              <button
+              <button type="button"
                 onClick={() => removeKlass(klass.name)}
                 style={{
                   width: 32, height: 32, borderRadius: 4, border: `1px solid ${C.redBright}40`,
@@ -130,7 +130,7 @@ export default function MulticlassManager({ char, setChar }) {
               <option value="">{t("char.add_class_select","+ Klasse hinzufügen…")}</option>
               {available.map(k => <option key={k}>{k}</option>)}
             </select>
-            <button
+            <button type="button"
               onClick={handleAdd}
               disabled={!selected}
               style={{

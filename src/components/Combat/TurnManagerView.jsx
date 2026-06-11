@@ -61,7 +61,7 @@ function VictoryOverlay({ onEndCombat }) {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {!saved ? (
-            <button
+            <button type="button"
               onClick={handleSaveAndEnd}
               style={{ ...sx.btn(C.gold), padding: "12px 28px", fontSize: 13, color: C.bg, fontWeight: 700 }}
             >
@@ -72,7 +72,7 @@ function VictoryOverlay({ onEndCombat }) {
               {t("combat.saved_ending","✓ Gespeichert! Wird beendet...")}
             </div>
           )}
-          <button
+          <button type="button"
             onClick={onEndCombat}
             style={{ ...sx.bsm(C.border), padding: "10px 20px", fontSize: 12, color: C.textDim }}
           >
@@ -112,7 +112,7 @@ function DefeatOverlay({ onEndCombat }) {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {!saved ? (
-            <button
+            <button type="button"
               onClick={handleSaveAndEnd}
               style={{ ...sx.btn(C.red), padding: "12px 28px", fontSize: 13, fontWeight: 700 }}
             >
@@ -123,7 +123,7 @@ function DefeatOverlay({ onEndCombat }) {
               {t("combat.saved_ending","✓ Gespeichert! Wird beendet...")}
             </div>
           )}
-          <button
+          <button type="button"
             onClick={onEndCombat}
             style={{ ...sx.bsm(C.border), padding: "10px 20px", fontSize: 12, color: C.textDim }}
           >

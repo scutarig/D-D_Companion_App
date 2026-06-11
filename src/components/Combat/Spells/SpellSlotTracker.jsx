@@ -40,7 +40,7 @@ export default function SpellSlotTracker({ spellSlots = [], onUse, onRestore, co
               {Array.from({ length: slot.total }, (_, i) => {
                 const filled = i < available;
                 return (
-                  <button
+                  <button type="button"
                     key={i}
                     onClick={() => filled ? onUse?.(slot.lv) : onRestore?.(slot.lv)}
                     title={filled ? `Slot ${i + 1} — ${t("combat.tracker_slot_available","Slot verfügbar — klicken zum Verbrauchen")}` : `Slot ${i + 1} — ${t("combat.tracker_slot_used","Slot verbraucht — klicken zum Wiederherstellen")}`}

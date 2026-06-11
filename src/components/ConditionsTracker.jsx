@@ -96,7 +96,7 @@ export default function ConditionsTracker({ char, setChar }) {
                     <span style={{ fontFamily: FH, fontSize: 13, color: col, fontWeight: 700 }}>
                       {cond.icon} {condName(cond)}
                     </span>
-                    <button onClick={() => toggle(cond.id)} style={sx.bsm(C.red)}>✕</button>
+                    <button type="button" onClick={() => toggle(cond.id)} style={sx.bsm(C.red)}>✕</button>
                   </div>
                   <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.5, marginBottom: effects.length ? 6 : 0 }}>
                     {condDesc(cond)}

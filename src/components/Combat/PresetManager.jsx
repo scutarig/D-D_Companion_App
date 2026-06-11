@@ -45,7 +45,7 @@ export default function PresetManager({ onClose }) {
             style={{ ...sx.inp, flex: 1 }}
             onKeyPress={(e) => e.key === "Enter" && handleSavePreset()}
           />
-          <button onClick={handleSavePreset} style={sx.btn(C.green)}>
+          <button type="button" onClick={handleSavePreset} style={sx.btn(C.green)}>
             {t("combat.preset_save_btn","💾 Save")}
           </button>
         </div>
@@ -91,13 +91,13 @@ export default function PresetManager({ onClose }) {
                     </div>
 
                     <div style={{ display: "flex", gap: 6 }}>
-                      <button
+                      <button type="button"
                         onClick={() => handleLoadPreset(preset.id)}
                         style={{ ...sx.btn(C.blue), flex: 1, fontSize: 11, padding: "6px 10px" }}
                       >
                         {t("combat.preset_load","📂 Load")}
                       </button>
-                      <button
+                      <button type="button"
                         onClick={() => handleDeletePreset(preset.id)}
                         style={{ ...sx.btn(C.red), fontSize: 11, padding: "6px 10px" }}
                       >
@@ -113,7 +113,7 @@ export default function PresetManager({ onClose }) {
       </div>
 
       {/* Close Button */}
-      <button
+      <button type="button"
         onClick={onClose}
         style={{ ...sx.bsm(C.textDim), width: "100%", marginTop: 12 }}
       >

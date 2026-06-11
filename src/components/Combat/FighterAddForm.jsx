@@ -68,7 +68,7 @@ export default function FighterAddForm({ onClose }) {
     <div style={{ background: C.surface, borderRadius: 8, padding: "12px 14px", border: `1px solid ${C.border}`, marginBottom: 12 }}>
       {/* Mode Selector */}
       <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-        <button
+        <button type="button"
           onClick={() => setMode("manual")}
           style={{
             flex: 1,
@@ -84,7 +84,7 @@ export default function FighterAddForm({ onClose }) {
         >
           {t("combat.add_mode_manual","✏️ Manuell")}
         </button>
-        <button
+        <button type="button"
           onClick={() => setMode("bestiary")}
           style={{
             flex: 1,
@@ -146,7 +146,7 @@ export default function FighterAddForm({ onClose }) {
             </div>
           </div>
 
-          <button onClick={handleAddManual} style={{ ...sx.btn(C.blue), width: "100%" }}>
+          <button type="button" onClick={handleAddManual} style={{ ...sx.btn(C.blue), width: "100%" }}>
             {t("combat.add_short_btn","➕ Hinzufügen")}
           </button>
         </div>
@@ -212,7 +212,7 @@ export default function FighterAddForm({ onClose }) {
                 />
               </div>
 
-              <button onClick={handleAddFromBestiary} style={{ ...sx.btn(C.green), width: "100%" }}>
+              <button type="button" onClick={handleAddFromBestiary} style={{ ...sx.btn(C.green), width: "100%" }}>
                 ➕ {monsterCount}× {selectedMonster.name}
               </button>
             </div>

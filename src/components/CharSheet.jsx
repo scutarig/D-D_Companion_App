@@ -74,7 +74,7 @@ export default function CharSheet({ char, setChar, printMode = false }) {
               <input type="number" min={mn} max={mx} value={char[f] ?? 0} onChange={e => { const raw = e.target.value; if (raw === "" || raw === "-") { u(f, raw === "-" ? "-" : 0); return; } const n = Number(raw); if (!Number.isFinite(n)) return; u(f, Math.max(mn, Math.min(mx, n))); }} onBlur={e => { const n = Number(e.target.value); u(f, Number.isFinite(n) ? Math.max(mn, Math.min(mx, n)) : mn); }} style={{ ...sx.inp, textAlign: "center", fontSize: 22, fontWeight: 700, color: C.textBright, padding: "2px 0", background: "transparent", border: "none", width: "100%", minWidth: 0 }} />
             </div>
           ))}
-          <button onClick={() => u("inspiration", !char.inspiration)} style={{ background: char.inspiration ? "linear-gradient(135deg,#f0c060,#d97706)" : "rgba(0,0,0,0.25)", border: `1px solid ${char.inspiration ? C.gold : C.border}`, borderRadius: 10, padding: "8px 14px", cursor: "pointer", textAlign: "center", minWidth: 88, flex: "1 1 88px", boxShadow: char.inspiration ? "0 0 20px rgba(240,192,96,0.4)" : "none", transition: "all .3s" }}>
+          <button type="button" onClick={() => u("inspiration", !char.inspiration)} style={{ background: char.inspiration ? "linear-gradient(135deg,#f0c060,#d97706)" : "rgba(0,0,0,0.25)", border: `1px solid ${char.inspiration ? C.gold : C.border}`, borderRadius: 10, padding: "8px 14px", cursor: "pointer", textAlign: "center", minWidth: 88, flex: "1 1 88px", boxShadow: char.inspiration ? "0 0 20px rgba(240,192,96,0.4)" : "none", transition: "all .3s" }}>
             <div style={{ fontSize: 20 }}>{char.inspiration ? "✨" : "💫"}</div>
             <div style={{ fontSize: 9, fontFamily: FH, fontWeight: 700, color: char.inspiration ? "#000" : C.textDim, letterSpacing: .5, marginTop: 2 }}>{t("sheet.inspiration","INSPIRATION")}</div>
             <div style={{ fontSize: 8, color: char.inspiration ? "#00000099" : C.textDim }}>{char.inspiration ? t("sheet.active","AKTIV") : t("sheet.inactive","INAKTIV")}</div>
@@ -105,7 +105,7 @@ export default function CharSheet({ char, setChar, printMode = false }) {
           ["traits", `✦ ${t("sheet.tab_traits","Traits")}`],
           ["personality", `🎭 ${t("sheet.tab_personality","Charakter")}`],
         ].map(([id, l]) => (
-          <button key={id} onClick={() => setTab(id)} style={{ ...sx.nb(tab === id), flexShrink: 0 }}>{l}</button>
+          <button type="button" key={id} onClick={() => setTab(id)} style={{ ...sx.nb(tab === id), flexShrink: 0 }}>{l}</button>
         ))}
       </div>
 
@@ -165,8 +165,8 @@ export default function CharSheet({ char, setChar, printMode = false }) {
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                 <input value={char.hd} onChange={e => u("hd", e.target.value)} style={{ ...sx.inp, width: 70 }} placeholder="d10" />
                 <span style={{ color: C.textBright }}>{char.level - (char.hd_used || 0)}× {t("sheet.available","verfügbar")}</span>
-                <button onClick={() => u("hd_used", Math.max(0, (char.hd_used || 0) - 1))} style={sx.bsm(C.green)}>+ {t("sheet.regain","Wiederh.")}</button>
-                <button onClick={() => u("hd_used", Math.min(char.level, (char.hd_used || 0) + 1))} style={sx.bsm(C.red)}>- {t("sheet.spend","Verbrauch")}</button>
+                <button type="button" onClick={() => u("hd_used", Math.max(0, (char.hd_used || 0) - 1))} style={sx.bsm(C.green)}>+ {t("sheet.regain","Wiederh.")}</button>
+                <button type="button" onClick={() => u("hd_used", Math.min(char.level, (char.hd_used || 0) + 1))} style={sx.bsm(C.red)}>- {t("sheet.spend","Verbrauch")}</button>
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function CharSheet({ char, setChar, printMode = false }) {
                 </div>
               ))}
             </div>
-            <button onClick={() => setChar(p => ({ ...p, deathSaves: { suc: 0, fail: 0 } }))} style={{ ...sx.bsm(C.textDim), marginTop: 10 }}>{t("sheet.reset","Zurücksetzen")}</button>
+            <button type="button" onClick={() => setChar(p => ({ ...p, deathSaves: { suc: 0, fail: 0 } }))} style={{ ...sx.bsm(C.textDim), marginTop: 10 }}>{t("sheet.reset","Zurücksetzen")}</button>
           </div>
           <div style={sx.card}>
             <div style={sx.ct}>🔮 {t("sheet.spell_stats","Zauberwerte")}</div>

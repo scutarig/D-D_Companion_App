@@ -35,7 +35,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
           <div style={{ fontFamily: FH, fontSize: 15, color: C.tealBright, fontWeight: 700 }}>
             {isEdit ? t("prof.edit_title","✎ Proficiency bearbeiten") : t("prof.new_title","＋ Neue Proficiency")}
           </div>
-          <button onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Name */}
@@ -57,7 +57,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
           <label style={sx.lbl}>{t("prof.category_label","Kategorie")}</label>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             {PROF_CATEGORIES.map(cat => (
-              <button
+              <button type="button"
                 key={cat.id}
                 onClick={() => set("category", cat.id)}
                 style={{
@@ -80,7 +80,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
           <label style={sx.lbl}>{t("prof.type_label","Typ")}</label>
           <div style={{ display: "flex", gap: 6 }}>
             {PROF_TYPES.map(pt => (
-              <button
+              <button type="button"
                 key={pt.id}
                 onClick={() => set("type", pt.id)}
                 style={{
@@ -114,7 +114,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
 
         {/* Buttons */}
         <div style={{ display: "flex", gap: 8 }}>
-          <button
+          <button type="button"
             onClick={handleSave}
             disabled={!form.name.trim()}
             style={{
@@ -125,7 +125,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
           >
             {isEdit ? t("prof.save_btn","✓ Speichern") : t("prof.add_short","＋ Hinzufügen")}
           </button>
-          <button onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
+          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
             {t("prof.cancel_btn","Abbrechen")}
           </button>
         </div>

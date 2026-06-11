@@ -57,14 +57,14 @@ function WealthWidget({ char, setChar }) {
             <div key={c.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
               <span style={{ ...lbl, minWidth: 36, color: c.col }}>{c.short}</span>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <button onClick={e => { e.stopPropagation(); setChar(p => ({ ...p, [c.id]: Math.max(0, (p[c.id] || 0) - 1) })); }} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>−</button>
+                <button type="button" onClick={e => { e.stopPropagation(); setChar(p => ({ ...p, [c.id]: Math.max(0, (p[c.id] || 0) - 1) })); }} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>−</button>
                 <input
                   type="number" value={char[c.id] || 0}
                   onChange={e => setChar(p => ({ ...p, [c.id]: Math.max(0, parseInt(e.target.value) || 0) }))}
                   onClick={e => e.stopPropagation()}
                   style={{ width: 64, textAlign: "center", background: C.surface, border: `1px solid ${C.border}`, borderRadius: 6, color: c.col, padding: "3px 0", fontSize: 16, fontWeight: 700 }}
                 />
-                <button onClick={e => { e.stopPropagation(); setChar(p => ({ ...p, [c.id]: (p[c.id] || 0) + 1 })); }} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>+</button>
+                <button type="button" onClick={e => { e.stopPropagation(); setChar(p => ({ ...p, [c.id]: (p[c.id] || 0) + 1 })); }} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>+</button>
               </div>
             </div>
           ))}
@@ -84,8 +84,8 @@ export default function InventarTab() {
       {active && <WealthWidget char={active} setChar={setActive} />}
 
       <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-        <button onClick={() => setView("char")} style={sx.nb(view === "char")}>🗡️ {t("inv.equipment","Ausrüstung & Rucksack")}</button>
-        <button onClick={() => setView("sammlung")} style={sx.nb(view === "sammlung")}>📚 {t("inv.catalog","Katalog")}</button>
+        <button type="button" onClick={() => setView("char")} style={sx.nb(view === "char")}>🗡️ {t("inv.equipment","Ausrüstung & Rucksack")}</button>
+        <button type="button" onClick={() => setView("sammlung")} style={sx.nb(view === "sammlung")}>📚 {t("inv.catalog","Katalog")}</button>
       </div>
 
       {view === "char" && active && <CharInventory char={active} setChar={setActive} />}

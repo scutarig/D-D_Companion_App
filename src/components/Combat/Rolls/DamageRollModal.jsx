@@ -42,7 +42,7 @@ export default function DamageRollModal({ attacker, target, isCrit = false, onCl
           <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>
             {isCrit ? "🎯 Critical Damage!" : "💥 Damage Roll"}
           </div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Attacker → Target */}
@@ -85,7 +85,7 @@ export default function DamageRollModal({ attacker, target, isCrit = false, onCl
         {/* Quick dice presets */}
         <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 12 }}>
           {["1d4", "1d6", "1d8", "1d10", "2d6", "1d12"].map((d) => (
-            <button
+            <button type="button"
               key={d}
               onClick={() => { setDiceInput(d); setResult(null); }}
               style={{
@@ -116,7 +116,7 @@ export default function DamageRollModal({ attacker, target, isCrit = false, onCl
 
         {/* Roll button */}
         {!result && (
-          <button
+          <button type="button"
             onClick={handleRoll}
             disabled={!isValid}
             style={{
@@ -161,13 +161,13 @@ export default function DamageRollModal({ attacker, target, isCrit = false, onCl
             )}
 
             <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-              <button
+              <button type="button"
                 onClick={handleApply}
                 style={{ ...sx.btn(C.red), flex: 1, padding: "10px", fontSize: 13 }}
               >
                 ✓ Apply {result.total} Damage
               </button>
-              <button
+              <button type="button"
                 onClick={() => setResult(null)}
                 style={{ ...sx.bsm(C.purple), padding: "10px 14px", fontSize: 12 }}
               >
@@ -188,7 +188,7 @@ export default function DamageRollModal({ attacker, target, isCrit = false, onCl
               {target?.name}: {Math.max(0, target.hp - result.total)} HP remaining
               {target?.hp - result.total <= 0 && " — Unconscious"}
             </div>
-            <button onClick={onClose} style={{ ...sx.btn(C.teal), padding: "10px 20px" }}>
+            <button type="button" onClick={onClose} style={{ ...sx.btn(C.teal), padding: "10px 20px" }}>
               Close
             </button>
           </div>

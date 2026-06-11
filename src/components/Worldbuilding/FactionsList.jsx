@@ -99,7 +99,7 @@ export default function FactionsList() {
           value={search} onChange={e => setSearch(e.target.value)}
           style={{ ...sx.inp, flex:1 }}
         />
-        <button onClick={startNew} style={sx.btn(C.purple)}>{t("wb.new_faction_btn","+ Fraktion")}</button>
+        <button type="button" onClick={startNew} style={sx.btn(C.purple)}>{t("wb.new_faction_btn","+ Fraktion")}</button>
       </div>
 
       {/* Editor */}
@@ -118,7 +118,7 @@ export default function FactionsList() {
               <label style={sx.lbl}>{t("wb.color_label","Farbe")}</label>
               <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginTop:4 }}>
                 {PRESET_COLORS.map(col => (
-                  <button key={col} onClick={() => setDraft(p => ({ ...p, color: col }))} style={{
+                  <button type="button" key={col} onClick={() => setDraft(p => ({ ...p, color: col }))} style={{
                     width:24, height:24, borderRadius:6, background:col, border:`2px solid ${draft.color === col ? "#fff" : "transparent"}`,
                     cursor:"pointer", transition:"border-color .15s", flexShrink:0,
                   }} />
@@ -134,8 +134,8 @@ export default function FactionsList() {
                 style={{ ...sx.inp, minHeight:90, resize:"vertical", fontFamily:"inherit", lineHeight:1.5 }} />
             </div>
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={saveDraft} style={sx.btn(C.purpleBright)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
-              <button onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
+              <button type="button" onClick={saveDraft} style={sx.btn(C.purpleBright)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
+              <button type="button" onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function FactionsList() {
       {filtered.length === 0 ? (
         <div style={{ textAlign:"center", padding:"40px 20px", color:C.textDim, fontSize:13 }}>
           {factions.length === 0
-            ? <span>{t("wb.no_factions_yet","Noch keine Fraktionen —")} <button onClick={startNew} style={{ background:"none", border:"none", color:C.purpleBright, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_faction","erste anlegen")}</button></span>
+            ? <span>{t("wb.no_factions_yet","Noch keine Fraktionen —")} <button type="button" onClick={startNew} style={{ background:"none", border:"none", color:C.purpleBright, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_faction","erste anlegen")}</button></span>
             : t("wb.no_results","Keine Ergebnisse")}
         </div>
       ) : (
@@ -170,14 +170,14 @@ export default function FactionsList() {
                     </div>
                   </div>
                   <div style={{ display:"flex", gap:6, flexShrink:0 }}>
-                    <button onClick={() => startEdit(f)} style={sx.bsm(C.purpleBright)}>✏️</button>
-                    <button onClick={() => deleteFaction(f.id)} style={sx.bsm(C.red)}>🗑️</button>
+                    <button type="button" onClick={() => startEdit(f)} style={sx.bsm(C.purpleBright)}>✏️</button>
+                    <button type="button" onClick={() => deleteFaction(f.id)} style={sx.bsm(C.red)}>🗑️</button>
                   </div>
                 </div>
 
                 {/* Reputation bar */}
                 <div style={{ marginTop:10, display:"flex", alignItems:"center", gap:8 }}>
-                  <button onClick={() => openRepPop(f.id, -1)} disabled={f.reputation <= -3}
+                  <button type="button" onClick={() => openRepPop(f.id, -1)} disabled={f.reputation <= -3}
                     style={{ background:"none", border:`1px solid ${C.border}`, borderRadius:5, color:C.textDim, width:22, height:22, cursor:"pointer", fontSize:12, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, opacity:f.reputation<=-3?0.3:1 }}>
                     −
                   </button>
@@ -202,7 +202,7 @@ export default function FactionsList() {
                     })}
                   </div>
 
-                  <button onClick={() => openRepPop(f.id, 1)} disabled={f.reputation >= 3}
+                  <button type="button" onClick={() => openRepPop(f.id, 1)} disabled={f.reputation >= 3}
                     style={{ background:"none", border:`1px solid ${C.border}`, borderRadius:5, color:C.textDim, width:22, height:22, cursor:"pointer", fontSize:12, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, opacity:f.reputation>=3?0.3:1 }}>
                     +
                   </button>
@@ -224,8 +224,8 @@ export default function FactionsList() {
                       onKeyDown={e => { if (e.key === "Enter") confirmRep(); if (e.key === "Escape") cancelRep(); }}
                       autoFocus />
                     <div style={{ display:"flex", gap:6 }}>
-                      <button onClick={confirmRep} style={sx.btn(f.color)}>{t("wb.confirm_btn","✓ Bestätigen")}</button>
-                      <button onClick={cancelRep} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
+                      <button type="button" onClick={confirmRep} style={sx.btn(f.color)}>{t("wb.confirm_btn","✓ Bestätigen")}</button>
+                      <button type="button" onClick={cancelRep} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
                     </div>
                   </div>
                 )}
@@ -244,7 +244,7 @@ export default function FactionsList() {
                   const isExp = expanded[f.id];
                   return (
                     <div style={{ marginTop:8, borderTop:`1px solid ${C.border}`, paddingTop:7 }}>
-                      <button onClick={() => toggleExpand(f.id)} style={{
+                      <button type="button" onClick={() => toggleExpand(f.id)} style={{
                         background:"none", border:"none", cursor:"pointer", color:C.textDim,
                         fontSize:11, display:"flex", alignItems:"center", gap:5, padding:0,
                       }}>
@@ -276,7 +276,7 @@ export default function FactionsList() {
                   const recent = [...(f.repLog || [])].reverse().slice(0, 10);
                   return (
                     <div style={{ marginTop:6, borderTop:`1px solid ${C.border}`, paddingTop:7 }}>
-                      <button onClick={() => setExpanded(p => ({ ...p, [logKey]: !p[logKey] }))} style={{
+                      <button type="button" onClick={() => setExpanded(p => ({ ...p, [logKey]: !p[logKey] }))} style={{
                         background:"none", border:"none", cursor:"pointer", color:C.textDim,
                         fontSize:11, display:"flex", alignItems:"center", gap:5, padding:0,
                       }}>

@@ -226,7 +226,7 @@ export default function BackgroundSelector({ char, setChar }) {
 // ─── Small sub-components ───────────────────────────────────────────────────
 function AsiBtn({ label, onClick, active, highlight }) {
   return (
-    <button onClick={onClick} style={{
+    <button type="button" onClick={onClick} style={{
       fontSize: 9,
       padding: "4px 8px",
       borderRadius: 5,

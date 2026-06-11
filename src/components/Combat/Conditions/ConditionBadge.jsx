@@ -48,7 +48,7 @@ function ConditionBadge({ conditionId, onRemove, size = "md" }) {
         </span>
       )}
       {onRemove && (
-        <button
+        <button type="button"
           onClick={(e) => { e.stopPropagation(); onRemove(); }}
           style={{
             marginLeft: 2,

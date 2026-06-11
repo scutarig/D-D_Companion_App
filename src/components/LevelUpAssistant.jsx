@@ -137,7 +137,7 @@ export default function LevelUpAssistant({ char, setChar }) {
         <div style={{ fontSize: 48, marginBottom: 10 }}>🎉</div>
         <div style={{ fontFamily: FH, fontSize: 22, color: C.gold, fontWeight: 700, marginBottom: 6 }}>{t("lvl.reached","Level {n} erreicht!").replace("{n}", doneInfo.reachedLevel)}</div>
         <div style={{ fontSize: 14, color: C.textDim, marginBottom: 16 }}>+{doneInfo.hpGained} Max HP · PB {doneInfo.newPb > doneInfo.oldPb ? `+${doneInfo.newPb} (${lang === "en" ? "was" : "war"} +${doneInfo.oldPb})` : `+${doneInfo.newPb}`}</div>
-        <button onClick={() => setDoneInfo(null)} style={sx.btn(C.purple)}>{t("lvl.back_to_assistant","Zurück zum Assistenten")}</button>
+        <button type="button" onClick={() => setDoneInfo(null)} style={sx.btn(C.purple)}>{t("lvl.back_to_assistant","Zurück zum Assistenten")}</button>
       </div>
     </div>
   );
@@ -242,14 +242,14 @@ export default function LevelUpAssistant({ char, setChar }) {
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
           {[["avg", `${t("lvl.average","Durchschnitt")} (${avgHp} HP)`, C.blue], ["roll", t("lvl.roll_word","Würfeln"), C.amber]].map(([v, l, col]) => (
-            <button key={v} onClick={() => setHpChoice(v)} style={{ flex: "1 1 120px", padding: "10px", borderRadius: 10, cursor: "pointer", background: hpChoice === v ? `${col}22` : "transparent", border: `2px solid ${hpChoice === v ? col : C.border}`, color: hpChoice === v ? col : C.textDim, fontFamily: FH, fontSize: 11, fontWeight: hpChoice === v ? 700 : 400 }}>{l}</button>
+            <button type="button" key={v} onClick={() => setHpChoice(v)} style={{ flex: "1 1 120px", padding: "10px", borderRadius: 10, cursor: "pointer", background: hpChoice === v ? `${col}22` : "transparent", border: `2px solid ${hpChoice === v ? col : C.border}`, color: hpChoice === v ? col : C.textDim, fontFamily: FH, fontSize: 11, fontWeight: hpChoice === v ? 700 : 400 }}>{l}</button>
           ))}
         </div>
         {hpChoice === "roll" && (
           <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>
             <span style={{ fontSize: 13, color: C.textDim }}>{t("lvl.roll_result_of","Ergebnis des {hd}-Wurfs:").replace("{hd}", char.hd)}</span>
             <input type="number" min={1} max={hdNum} value={rolledHp ?? ""} onChange={e => setRolledHp(Math.max(1, Math.min(hdNum, +e.target.value)))} style={{ ...sx.inp, width: 80 }} placeholder={`1–${hdNum}`} />
-            <button onClick={() => setRolledHp(Math.floor(Math.random() * hdNum) + 1)} style={sx.btn(C.amber)}>{t("lvl.roll_btn","🎲 Würfeln")}</button>
+            <button type="button" onClick={() => setRolledHp(Math.floor(Math.random() * hdNum) + 1)} style={sx.btn(C.amber)}>{t("lvl.roll_btn","🎲 Würfeln")}</button>
           </div>
         )}
         <div style={{ background: `${C.green}12`, border: `1px solid ${C.green}30`, borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 12 }}>
@@ -284,7 +284,7 @@ export default function LevelUpAssistant({ char, setChar }) {
               {/* Toggle ASI / Feat */}
               <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
                 {[["asi", t("lvl.asi_toggle","📈 ASI (pures Stat-Plus)")], ["feat", t("lvl.feat_toggle","⭐ Feat (Fähigkeit)")]].map(([mode, label]) => (
-                  <button key={mode} onClick={() => setAsiMode(mode)} style={{
+                  <button type="button" key={mode} onClick={() => setAsiMode(mode)} style={{
                     flex: 1, padding: "7px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 700,
                     border: `1px solid ${asiMode === mode ? C.greenBright : C.border}`,
                     background: asiMode === mode ? `${C.greenBright}22` : "transparent",
@@ -302,7 +302,7 @@ export default function LevelUpAssistant({ char, setChar }) {
                       const isA = asiA === ab, isB = asiB === ab;
                       const selected = isA || isB;
                       return (
-                        <button key={ab} onClick={() => {
+                        <button type="button" key={ab} onClick={() => {
                           if (isA) { setAsiA(asiB); setAsiB(""); }
                           else if (isB) setAsiB("");
                           else if (!asiA) setAsiA(ab);
@@ -454,13 +454,13 @@ export default function LevelUpAssistant({ char, setChar }) {
             <div style={{ fontFamily: FH, fontSize: 14, color: C.greenBright, fontWeight: 700 }}>{t("lvl.confirm_header","Level-Up bestätigen")}</div>
             <div style={{ fontSize: 12, color: C.textDim }}>{t("lvl.confirm_summary","Level {old} → {new} · Max HP +{hp} ({maxOld} → {maxNew}) · PB +{pb}").replace("{old}", char.level).replace("{new}", newLevel).replace("{hp}", chosenHp).replace("{maxOld}", char.maxHp).replace("{maxNew}", char.maxHp + chosenHp).replace("{pb}", pb)}</div>
           </div>
-          <button onClick={doLevelUp} style={{ ...sx.btn(C.green), fontSize: 13, padding: "10px 20px" }}>{t("lvl.do_levelup_btn","⬆️ Jetzt Level-Up durchführen")}</button>
+          <button type="button" onClick={doLevelUp} style={{ ...sx.btn(C.green), fontSize: 13, padding: "10px 20px" }}>{t("lvl.do_levelup_btn","⬆️ Jetzt Level-Up durchführen")}</button>
         </div>
       </div>
 
       {!confirmReset ? (
         <div style={{ textAlign: "center", paddingBottom: 8 }}>
-          <button onClick={() => setConfirmReset(true)} style={{ ...sx.bsm(C.red), fontSize: 11 }}>{t("lvl.reset_to_1","↩️ Auf Level 1 zurücksetzen")}</button>
+          <button type="button" onClick={() => setConfirmReset(true)} style={{ ...sx.bsm(C.red), fontSize: 11 }}>{t("lvl.reset_to_1","↩️ Auf Level 1 zurücksetzen")}</button>
         </div>
       ) : (
         <div style={{ ...sx.card, background: `${C.red}0d`, border: `1px solid ${C.red}40` }}>
@@ -469,8 +469,8 @@ export default function LevelUpAssistant({ char, setChar }) {
             {t("lvl.reset_summary","Level → 1 · Max HP → {hp} ({hd} Max + CON) · HD zurückgesetzt").replace("{hp}", hdNum + conMod).replace("{hd}", char.hd)}
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={doReset} style={{ ...sx.btn(C.red), fontSize: 12 }}>{t("lvl.reset_yes","↩️ Ja, zurücksetzen")}</button>
-            <button onClick={() => setConfirmReset(false)} style={sx.bsm(C.textDim)}>{t("lvl.cancel_word","Abbrechen")}</button>
+            <button type="button" onClick={doReset} style={{ ...sx.btn(C.red), fontSize: 12 }}>{t("lvl.reset_yes","↩️ Ja, zurücksetzen")}</button>
+            <button type="button" onClick={() => setConfirmReset(false)} style={sx.bsm(C.textDim)}>{t("lvl.cancel_word","Abbrechen")}</button>
           </div>
         </div>
       )}

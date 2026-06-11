@@ -38,7 +38,7 @@ export default function ExhaustionTracker({ char, setChar }) {
 
       {/* Stufen-Track */}
       <div style={{ display: "flex", gap: 4, alignItems: "center", marginBottom: 10 }}>
-        <button onClick={dec} disabled={lv === 0} style={{
+        <button type="button" onClick={dec} disabled={lv === 0} style={{
           background: "none", border: `1px solid ${C.border}`, borderRadius: 5,
           color: C.textDim, width: 24, height: 24, cursor: lv > 0 ? "pointer" : "default",
           fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center",
@@ -63,7 +63,7 @@ export default function ExhaustionTracker({ char, setChar }) {
           })}
         </div>
 
-        <button onClick={inc} disabled={lv === 6} style={{
+        <button type="button" onClick={inc} disabled={lv === 6} style={{
           background: "none", border: `1px solid ${C.border}`, borderRadius: 5,
           color: C.textDim, width: 24, height: 24, cursor: lv < 6 ? "pointer" : "default",
           fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center",

@@ -63,7 +63,7 @@ export default function CurrencyTab() {
             <div style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1, marginBottom: 4 }}>{t("currency.total_wealth","GESAMTVERMÖGEN")}</div>
             <div style={{ fontSize: 32, fontWeight: 900, color: C.gold, fontFamily: FH }}>{fmtNumber(totalGP, { minimumFractionDigits: 0, maximumFractionDigits: 2 })} <span style={{ fontSize: 16 }}>GP</span></div>
           </div>
-          <button onClick={autoConvert} style={{ ...sx.btn(C.teal), fontSize: 12 }}>⟳ {t("currency.optimize","Münzen optimieren")}</button>
+          <button type="button" onClick={autoConvert} style={{ ...sx.btn(C.teal), fontSize: 12 }}>⟳ {t("currency.optimize","Münzen optimieren")}</button>
         </div>
       </div>
 
@@ -92,8 +92,8 @@ export default function CurrencyTab() {
             <label style={sx.lbl}>{t("currency.note","Notiz")}</label>
             <input value={txDesc} onChange={e => setTxDesc(e.target.value)} onKeyDown={e => e.key === "Enter" && book("add")} style={sx.inp} placeholder={t("currency.ph_note","Beute, Sold, Kauf…")} />
           </div>
-          <button onClick={() => book("add")} style={{ ...sx.btn(C.green), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>+ {t("currency.gain","Erhalten")}</button>
-          <button onClick={() => book("sub")} style={{ ...sx.btn(C.red), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>− {t("currency.spend","Ausgeben")}</button>
+          <button type="button" onClick={() => book("add")} style={{ ...sx.btn(C.green), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>+ {t("currency.gain","Erhalten")}</button>
+          <button type="button" onClick={() => book("sub")} style={{ ...sx.btn(C.red), fontSize: 14, padding: "10px 20px", flexShrink: 0 }}>− {t("currency.spend","Ausgeben")}</button>
         </div>
 
         {/* Transaktionslog */}
@@ -139,7 +139,7 @@ export default function CurrencyTab() {
                 {/* +/- Buttons — responsive grid: 2 Spalten auf engen Screens, 4 sonst */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(40px, 1fr))", gap: 4, width: "100%" }}>
                   {[-10, -1, 1, 10].map(d => (
-                    <button key={d} onClick={() => adjust(c.id, d)} style={{
+                    <button type="button" key={d} onClick={() => adjust(c.id, d)} style={{
                       background: d < 0 ? `${C.red}18` : `${c.color}18`,
                       border: `1px solid ${d < 0 ? C.red : c.color}40`,
                       borderRadius: 8, color: d < 0 ? C.redBright : c.color,
@@ -157,7 +157,7 @@ export default function CurrencyTab() {
 
       {/* ── Währungsrechner (kollabierbar) ── */}
       <div style={sx.card}>
-        <button onClick={() => setShowCalc(p => !p)} style={{ background: "none", border: "none", cursor: "pointer", width: "100%", textAlign: "left", padding: 0 }}>
+        <button type="button" onClick={() => setShowCalc(p => !p)} style={{ background: "none", border: "none", cursor: "pointer", width: "100%", textAlign: "left", padding: 0 }}>
           <div style={{ ...sx.ct, marginBottom: showCalc ? 12 : 0, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span>🔄 {t("currency.calculator","Währungsrechner")}</span>
             <span style={{ fontSize: 12, color: C.textDim }}>{showCalc ? "▲" : "▼"}</span>

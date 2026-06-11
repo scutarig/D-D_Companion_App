@@ -169,7 +169,7 @@ export default function Bestiary() {
       <div style={{width:mob?"100%":240,flexShrink:0}}>
         {/* Spoiler-Hide Mode toggle */}
         <div style={{marginBottom:8,display:"flex",gap:4}}>
-          <button
+          <button type="button"
             onClick={() => setViewMode(isSpoilerMode ? "full" : "spoiler")}
             title={isSpoilerMode ? t("bestiary.show_all","Zeige alle Monster (DM/Lookup)") : t("bestiary.hide_unknown","Verstecke unbekannte Monster (Spoiler-Schutz)")}
             style={{
@@ -202,7 +202,7 @@ export default function Bestiary() {
             { id: "deadly",   label: t("bestiary.cr_filter_deadly", "5-10"),    col: C.red },
             { id: "boss",     label: t("bestiary.cr_filter_boss", "11+"),       col: "#c020c0" },
           ].map(opt => (
-            <button key={opt.id} onClick={() => setCrFilter(opt.id)} title={`CR ${opt.label}`}
+            <button type="button" key={opt.id} onClick={() => setCrFilter(opt.id)} title={`CR ${opt.label}`}
               style={{
                 padding: "5px 2px", borderRadius: 5, fontSize: 9,
                 fontFamily: FH, fontWeight: 700, letterSpacing: 0.3, cursor: "pointer",
@@ -216,7 +216,7 @@ export default function Bestiary() {
           ))}
         </div>
 
-        <button onClick={()=>setShowAdd(!showAdd)} style={{...sx.btn(C.green),width:"100%",marginBottom:8}}>{t("bestiary.add_custom","+ Eigenes Monster")}</button>
+        <button type="button" onClick={()=>setShowAdd(!showAdd)} style={{...sx.btn(C.green),width:"100%",marginBottom:8}}>{t("bestiary.add_custom","+ Eigenes Monster")}</button>
 
         <div style={{maxHeight:mob?"none":"62vh",overflowY:"auto"}}>
           {/* Encountered + custom: full cards */}
@@ -234,7 +234,7 @@ export default function Bestiary() {
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <span style={{fontSize:11,color:C.textDim}}>{m.size} {m.type}{m.custom&&<span style={{color:C.gold}}> ★</span>}{m.edition === "2024" && <span style={{color:C.purpleBright, marginLeft:4}}>· 2024</span>}</span>
                 {isSpoilerMode && encountered.includes(m.id) && (
-                  <button
+                  <button type="button"
                     onClick={e=>{e.stopPropagation(); forgetEncountered(m.id);}}
                     title={t("best.title_remove_encountered","Aus 'Begegnet'-Liste entfernen")}
                     style={{background:"transparent",border:"none",cursor:"pointer",color:C.textDim,fontSize:11,padding:"0 4px"}}
@@ -253,7 +253,7 @@ export default function Bestiary() {
               {hiddenMatches.map(m => (
                 <div key={m.id} style={{background:C.surface,border:`1px dashed ${C.border}`,borderRadius:4,padding:"6px 10px",marginBottom:3,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                   <span style={{fontSize:12,fontFamily:FH,color:C.textDim,fontStyle:"italic"}}>{m.name}</span>
-                  <button
+                  <button type="button"
                     onClick={()=>markEncountered(m.id)}
                     title={t("best.title_mark_encountered","Als 'Begegnet' markieren — Stats werden sichtbar")}
                     style={{padding:"3px 8px",fontSize:9,fontFamily:FH,fontWeight:700,borderRadius:5,cursor:"pointer",background:`${C.green}33`,border:`1px solid ${C.green}88`,color:C.greenBright}}
@@ -284,8 +284,8 @@ export default function Bestiary() {
             <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.actions_label","Aktionen")}</label><textarea value={form.actions} onChange={e=>setForm(p=>({...p,actions:e.target.value}))} style={{...sx.ta,height:70}} placeholder={t("best.actions_placeholder","Angriffe und Fähigkeiten…")}/></div>
             <div style={{marginTop:8}}><label style={sx.lbl}>{t("best.legendary_actions","Legendäre Aktionen")}</label><textarea value={form.legendary} onChange={e=>setForm(p=>({...p,legendary:e.target.value}))} style={{...sx.ta,height:50}} placeholder={t("best.legendary_placeholder","Nur für legendäre Monster…")}/></div>
             <div style={{display:"flex",gap:8,marginTop:10}}>
-              <button onClick={()=>{if(!form.name)return;setCustom(p=>[...p,{...form,id:Date.now(),custom:true}]);setShowAdd(false);}} style={sx.btn(C.green)}>{t("best.save_btn","✓ Speichern")}</button>
-              <button onClick={()=>setShowAdd(false)} style={sx.btn(C.red)}>{t("best.cancel_btn","✕ Abbrechen")}</button>
+              <button type="button" onClick={()=>{if(!form.name)return;setCustom(p=>[...p,{...form,id:Date.now(),custom:true}]);setShowAdd(false);}} style={sx.btn(C.green)}>{t("best.save_btn","✓ Speichern")}</button>
+              <button type="button" onClick={()=>setShowAdd(false)} style={sx.btn(C.red)}>{t("best.cancel_btn","✕ Abbrechen")}</button>
             </div>
           </div>
         ) : sel ? (
@@ -312,9 +312,9 @@ export default function Bestiary() {
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:22,fontWeight:900,color:crC(sel.cr),fontFamily:FH}}>CR {sel.cr}</div>
                 {sel.xp && <div style={{fontSize:11,color:C.textDim}}>{sel.xp.toLocaleString(lang === "en" ? "en-US" : "de-DE")} XP{sel.pb?` · PB +${sel.pb}`:""}</div>}
-                {sel.custom&&<button onClick={()=>{setCustom(p=>p.filter(m=>m.id!==sel.id));setSel(null);}} style={{...sx.bsm(C.red),marginTop:4}}>🗑</button>}
+                {sel.custom&&<button type="button" onClick={()=>{setCustom(p=>p.filter(m=>m.id!==sel.id));setSel(null);}} style={{...sx.bsm(C.red),marginTop:4}}>🗑</button>}
                 {!sel.custom && isSpoilerMode && encountered.includes(sel.id) && (
-                  <button onClick={()=>forgetEncountered(sel.id)} style={{...sx.bsm(C.textDim),marginTop:4,fontSize:10}} title={t("best.title_remove_encountered","Aus 'Begegnet'-Liste entfernen")}>
+                  <button type="button" onClick={()=>forgetEncountered(sel.id)} style={{...sx.bsm(C.textDim),marginTop:4,fontSize:10}} title={t("best.title_remove_encountered","Aus 'Begegnet'-Liste entfernen")}>
                     🙈 Vergessen
                   </button>
                 )}
@@ -485,7 +485,7 @@ export default function Bestiary() {
                       <div style={{ fontSize:10, color:C.textDim, fontStyle:"italic" }}>
                         ✓ Lokal gespeichert · pro Monster
                       </div>
-                      <button
+                      <button type="button"
                         onClick={() => { if (window.confirm(t("bestiary.delete_note","Notiz löschen?"))) setDmNotes(p => { const np = {...p}; delete np[sel.id]; return np; }); }}
                         style={{ ...sx.bsm(C.red), fontSize:9, padding:"3px 7px" }}
                       >

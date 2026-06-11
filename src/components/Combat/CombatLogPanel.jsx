@@ -116,7 +116,7 @@ export default function CombatLogPanel() {
           style={{ ...sx.inp, flex: 1, fontSize: 11 }}
         />
         <div style={{ position: "relative" }}>
-          <button
+          <button type="button"
             onClick={() => setShowExportMenu((v) => !v)}
             title={t("combat.log_export_title","Log exportieren")}
             style={{
@@ -137,7 +137,7 @@ export default function CombatLogPanel() {
                 { f: "txt",  icon: "📄", label: t("combat.log_export_txt","Als TXT speichern")  },
                 { f: "json", icon: "📦", label: t("combat.log_export_json","Als JSON speichern")  },
               ].map(({ f, icon, label }) => (
-                <button
+                <button type="button"
                   key={f}
                   onClick={() => handleExport(f)}
                   style={{
@@ -155,7 +155,7 @@ export default function CombatLogPanel() {
             </div>
           )}
         </div>
-        <button
+        <button type="button"
           onClick={() => setAutoScroll((v) => !v)}
           title={autoScroll ? t("combat.log_autoscroll_on","Auto-Scroll aktiv") : t("combat.log_autoscroll_off","Auto-Scroll aus")}
           style={{
@@ -171,7 +171,7 @@ export default function CombatLogPanel() {
       {/* ── Type filter chips ──────────────────────────────────────────── */}
       <div style={{ display: "flex", gap: 4, flexWrap: "wrap", flexShrink: 0 }}>
         {FILTERS.map((f) => (
-          <button
+          <button type="button"
             key={f.id}
             onClick={() => setTypeFilter(f.id)}
             style={{
@@ -270,7 +270,7 @@ export default function CombatLogPanel() {
           placeholder={t("combat.log_note_placeholder","📝 Notiz hinzufügen...")}
           style={{ ...sx.inp, flex: 1, fontSize: 11 }}
         />
-        <button
+        <button type="button"
           onClick={handleAddNote}
           disabled={!note.trim()}
           style={{

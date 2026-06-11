@@ -86,7 +86,7 @@ export default function Notes() {
             style={{ ...sx.inp, paddingRight: search ? 32 : 10 }}
           />
           {search && (
-            <button
+            <button type="button"
               onClick={() => setSearch("")}
               title={t("notes.clear_search","Suche zurücksetzen")}
               style={{
@@ -111,7 +111,7 @@ export default function Notes() {
               : notes.filter(n => normalizeCat(n.cat) === c.id).length;
             const isFiltered = search.trim() !== "" && count !== totalCount;
             return (
-              <button
+              <button type="button"
                 key={c.id}
                 onClick={() => setCatFilter(c.id)}
                 style={{
@@ -141,7 +141,7 @@ export default function Notes() {
         {/* ── Add-Buttons ───────────────────────────────────────────── */}
         <div style={{display:"flex", flexWrap:"wrap", gap:4, borderTop:`1px solid ${C.border}`, paddingTop:6}}>
           {CATS.slice(1).map(c => (
-            <button
+            <button type="button"
               key={c.id}
               onClick={() => addNote(c.id)}
               title={t("notes.new_with_cat","Neue {cat}-Notiz").replace("{cat}", c.label)}
@@ -201,7 +201,7 @@ export default function Notes() {
         </div>
 
         {notes.length > 0 && (
-          <button onClick={delNote} style={{...sx.bsm(C.red), width:"100%"}}>{t("notes.delete","Notiz löschen")}</button>
+          <button type="button" onClick={delNote} style={{...sx.bsm(C.red), width:"100%"}}>{t("notes.delete","Notiz löschen")}</button>
         )}
       </div>
 

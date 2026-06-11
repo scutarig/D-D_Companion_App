@@ -239,8 +239,8 @@ export default function EncounterBuilder() {
               <span style={{ color: C.blue }}>🛡️ Ø {avgAc} AC</span>
             </div>
             <div style={{ display: "flex", gap: 5 }}>
-              <button onClick={saveEncounter} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>💾 Speichern</button>
-              <button onClick={clearEncounter} style={{ ...sx.bsm(C.red), fontSize: 10 }}>🗑 Leeren</button>
+              <button type="button" onClick={saveEncounter} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>💾 Speichern</button>
+              <button type="button" onClick={clearEncounter} style={{ ...sx.bsm(C.red), fontSize: 10 }}>🗑 Leeren</button>
             </div>
           </div>
 
@@ -253,9 +253,9 @@ export default function EncounterBuilder() {
                   display: "flex", alignItems: "center", gap: 8,
                   background: "rgba(255,255,255,0.03)", borderRadius: 6, padding: "6px 10px",
                 }}>
-                  <button onClick={() => removeMonster(m)} style={{ ...sx.bsm(C.red), fontSize: 12, padding: "2px 8px", minWidth: 28 }}>−</button>
+                  <button type="button" onClick={() => removeMonster(m)} style={{ ...sx.bsm(C.red), fontSize: 12, padding: "2px 8px", minWidth: 28 }}>−</button>
                   <div style={{ minWidth: 24, textAlign: "center", fontFamily: FH, fontSize: 14, fontWeight: 700, color: C.amberBright }}>{e.count}×</div>
-                  <button onClick={() => addMonster(m)} style={{ ...sx.bsm(C.green), fontSize: 12, padding: "2px 8px", minWidth: 28 }}>+</button>
+                  <button type="button" onClick={() => addMonster(m)} style={{ ...sx.bsm(C.green), fontSize: 12, padding: "2px 8px", minWidth: 28 }}>+</button>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontFamily: FH, fontSize: 12, color: C.textBright, fontWeight: 700 }}>
                       {m.nameDE || m.name}
@@ -301,7 +301,7 @@ export default function EncounterBuilder() {
                   CR {m.cr} · {m.xp} XP · {m.type}
                 </div>
               </div>
-              <button style={{ ...sx.btn(C.green), fontSize: 11, padding: "4px 12px" }}>+</button>
+              <button type="button" style={{ ...sx.btn(C.green), fontSize: 11, padding: "4px 12px" }}>+</button>
             </div>
           ))}
         </div>
@@ -314,7 +314,7 @@ export default function EncounterBuilder() {
             <div style={{ fontFamily: FH, fontSize: 13, color: C.red, fontWeight: 700 }}>
               {t("encounter.combat_archive", "📜 KAMPF-ARCHIV")} ({archives.length})
             </div>
-            <button
+            <button type="button"
               onClick={() => setShowArchive(!showArchive)}
               style={{ ...sx.bsm(C.red), fontSize: 10 }}
             >
@@ -345,7 +345,7 @@ export default function EncounterBuilder() {
                         {date} · {a.rounds} Runden · Spieler {survived}/{total} · Gegner besiegt {defeated}
                       </div>
                     </div>
-                    <button onClick={() => { if (window.confirm(t("encounter.confirm_delete_archive","Archiv-Eintrag löschen?"))) deleteArchive(a.id); }}
+                    <button type="button" onClick={() => { if (window.confirm(t("encounter.confirm_delete_archive","Archiv-Eintrag löschen?"))) deleteArchive(a.id); }}
                       style={{ ...sx.bsm(C.red), fontSize: 10, padding: "2px 6px" }}>🗑</button>
                   </div>
                 );
@@ -375,8 +375,8 @@ export default function EncounterBuilder() {
                     Lv{enc.partyLevel} × {enc.partySize} · {enc.difficulty} · {enc.xp} XP · {enc.monsters.length} Typen
                   </div>
                 </div>
-                <button onClick={() => loadEncounter(enc)} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>📂 Laden</button>
-                <button onClick={() => deleteEncounter(enc.id)} style={{ ...sx.bsm(C.red), fontSize: 10 }}>🗑</button>
+                <button type="button" onClick={() => loadEncounter(enc)} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>📂 Laden</button>
+                <button type="button" onClick={() => deleteEncounter(enc.id)} style={{ ...sx.bsm(C.red), fontSize: 10 }}>🗑</button>
               </div>
             ))}
           </div>

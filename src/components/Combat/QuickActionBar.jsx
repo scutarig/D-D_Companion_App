@@ -55,7 +55,7 @@ export default function QuickActionBar({ onActionClick }) {
       </div>
 
       {/* More toggle */}
-      <button
+      <button type="button"
         onClick={() => setMoreOpen(!moreOpen)}
         style={{
           width: "100%", padding: "7px", borderRadius: 6, cursor: "pointer", fontSize: 11, transition: "all .2s",
@@ -82,7 +82,7 @@ export default function QuickActionBar({ onActionClick }) {
 
 function QuickBtn({ action, onClick, small = false }) {
   return (
-    <button
+    <button type="button"
       onClick={onClick}
       style={{
         flex: small ? "1 1 calc(33% - 4px)" : "1 1 calc(50% - 3px)",

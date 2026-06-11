@@ -46,13 +46,13 @@ export default function CombatArchive({ onClose }) {
             {archives.length > 0 && (
               confirmClear ? (
                 <div style={{ display: "flex", gap: 4 }}>
-                  <button
+                  <button type="button"
                     onClick={() => { clearArchives(); setConfirmClear(false); }}
                     style={{ ...sx.bsm(C.red), padding: "4px 10px", fontSize: 11 }}
                   >
                     {t("combat.archive_yes_delete","Ja, alles löschen")}
                   </button>
-                  <button
+                  <button type="button"
                     onClick={() => setConfirmClear(false)}
                     style={{ ...sx.bsm(C.border), padding: "4px 10px", fontSize: 11 }}
                   >
@@ -60,7 +60,7 @@ export default function CombatArchive({ onClose }) {
                   </button>
                 </div>
               ) : (
-                <button
+                <button type="button"
                   onClick={() => setConfirmClear(true)}
                   style={{ ...sx.bsm(C.red), padding: "4px 10px", fontSize: 11 }}
                 >
@@ -68,7 +68,7 @@ export default function CombatArchive({ onClose }) {
                 </button>
               )
             )}
-            <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+            <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
           </div>
         </div>
 
@@ -187,13 +187,13 @@ export default function CombatArchive({ onClose }) {
 
                       {/* Actions */}
                       <div style={{ display: "flex", gap: 8 }}>
-                        <button
+                        <button type="button"
                           onClick={() => handleExportArchive(archive)}
                           style={{ ...sx.bsm(C.teal), flex: 1, padding: "8px", fontSize: 12 }}
                         >
                           {t("combat.archive_export_txt","📄 Als TXT exportieren")}
                         </button>
-                        <button
+                        <button type="button"
                           onClick={() => deleteArchive(archive.id)}
                           style={{ ...sx.bsm(C.red), padding: "8px 12px", fontSize: 12 }}
                         >

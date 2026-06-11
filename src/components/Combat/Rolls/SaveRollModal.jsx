@@ -76,7 +76,7 @@ export default function SaveRollModal({ onClose }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>🛡️ Saving Throw</div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Save type selector */}
@@ -84,7 +84,7 @@ export default function SaveRollModal({ onClose }) {
           <label style={sx.lbl}>Save Type</label>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(50px, 1fr))", gap: 4 }}>
             {SAVE_TYPES.map((s) => (
-              <button
+              <button type="button"
                 key={s.key}
                 onClick={() => { setSaveType(s.key); setResult(null); }}
                 style={{
@@ -162,7 +162,7 @@ export default function SaveRollModal({ onClose }) {
 
         {/* Advantage / Disadvantage */}
         <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
-          <button
+          <button type="button"
             onClick={toggleAdv}
             style={{
               flex: 1, padding: "7px", borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: advantage ? 700 : 400, transition: "all .15s",
@@ -173,7 +173,7 @@ export default function SaveRollModal({ onClose }) {
           >
             ▲ Advantage
           </button>
-          <button
+          <button type="button"
             onClick={toggleDis}
             style={{
               flex: 1, padding: "7px", borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: disadvantage ? 700 : 400, transition: "all .15s",
@@ -188,7 +188,7 @@ export default function SaveRollModal({ onClose }) {
 
         {/* Roll */}
         {!result ? (
-          <button
+          <button type="button"
             onClick={handleRoll}
             style={{
               ...sx.btn(activeSave?.color || C.teal),
@@ -216,10 +216,10 @@ export default function SaveRollModal({ onClose }) {
               extra={result.success ? "✓ Save Successful!" : "✗ Save Failed!"}
             />
             <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-              <button onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "9px", fontSize: 12 }}>
+              <button type="button" onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "9px", fontSize: 12 }}>
                 🎲 Re-Roll
               </button>
-              <button onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "9px", fontSize: 12 }}>
+              <button type="button" onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "9px", fontSize: 12 }}>
                 Close
               </button>
             </div>

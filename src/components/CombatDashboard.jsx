@@ -81,7 +81,7 @@ function HoldBtn({ label, onPress, style }) {
   const t = useRef(null), iv = useRef(null);
   const start = e => { e.preventDefault(); onPress(); t.current = setTimeout(() => { iv.current = setInterval(onPress, 80); }, 400); };
   const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); };
-  return <button style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
+  return <button type="button" style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
 }
 
 function InfoModal({ data, onClose }) {
@@ -94,7 +94,7 @@ function InfoModal({ data, onClose }) {
         <div style={{ width: 40, height: 4, background: C.border, borderRadius: 2, margin: "0 auto 16px" }} />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <div style={{ fontFamily: FH, fontSize: 18, fontWeight: 700, color: data.color }}>{data.title}</div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.textDim), fontSize: 14, padding: "6px 12px" }}>{t("dash.close_modal","✕ Schließen")}</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.textDim), fontSize: 14, padding: "6px 12px" }}>{t("dash.close_modal","✕ Schließen")}</button>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: data.stats?.length || data.desc ? 14 : 0 }}>
           {data.badges?.map((b, i) => <span key={i} style={sx.tag(b.col || data.color)}>{b.label}</span>)}
@@ -265,10 +265,10 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <div key={c.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
               <span style={{ ...lbl, minWidth: 36 }}>{c.short}</span>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <button onClick={() => setChar(p => ({ ...p, [c.id]: Math.max(0, (p[c.id] || 0) - 1) }))} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>−</button>
+                <button type="button" onClick={() => setChar(p => ({ ...p, [c.id]: Math.max(0, (p[c.id] || 0) - 1) }))} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>−</button>
                 <input type="number" value={char[c.id] || 0} onChange={e => setChar(p => ({ ...p, [c.id]: parseInt(e.target.value) || 0 }))}
                   style={{ width: 56, textAlign: "center", background: C.surface, border: `1px solid ${C.border}`, borderRadius: 6, color: C.textBright, padding: "3px 0", fontSize: 14 }} />
-                <button onClick={() => setChar(p => ({ ...p, [c.id]: (p[c.id] || 0) + 1 }))} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>+</button>
+                <button type="button" onClick={() => setChar(p => ({ ...p, [c.id]: (p[c.id] || 0) + 1 }))} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>+</button>
               </div>
             </div>
           ))}
@@ -325,7 +325,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           <div style={{ display: "flex", alignItems: "center", gap: 5, flex: "0 0 auto" }}>
             <span style={{ fontSize: 9, color: C.blueBright, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5 }}>💙 Temp</span>
             <span style={{ fontSize: 18, fontWeight: 800, color: (char.tempHp || 0) > 0 ? C.blueBright : C.textDim, fontFamily: FH, minWidth: 18 }}>{char.tempHp || 0}</span>
-            <button onClick={() => { setTempHpInput(String(char.tempHp || "")); setTempHpModal(true); }}
+            <button type="button" onClick={() => { setTempHpInput(String(char.tempHp || "")); setTempHpModal(true); }}
               style={{ fontSize: 10, padding: "3px 8px", borderRadius: 5, border: `1px solid ${C.blueBright}44`, background: `${C.blueBright}10`, color: C.blueBright, cursor: "pointer" }}>±</button>
           </div>
 
@@ -337,7 +337,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               {exhaustInfo.icon} {t("dash.exhaustion","Erschöpfung")} {exhaustLv}/6
             </span>
           )}
-          <button onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
+          <button type="button" onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
         </div>
 
         {/* Concentration Banner */}
@@ -376,7 +376,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               <span style={{ fontSize: 11, color: row.col, minWidth: 56 }}>{row.label}</span>
               <div style={{ display: "flex", gap: 5 }}>
                 {[0, 1, 2].map(i => (
-                  <button key={i}
+                  <button type="button" key={i}
                     onClick={() => isDying && setChar(p => ({ ...p, deathSaves: { ...p.deathSaves, [row.key]: (p.deathSaves?.[row.key] || 0) === i + 1 ? i : i + 1 } }))}
                     style={{ width: 32, height: 32, borderRadius: "50%", cursor: isDying ? "pointer" : "default", border: `2px solid ${row.col}`, background: i < (char.deathSaves?.[row.key] || 0) ? row.col : "transparent", padding: 0 }} />
                 ))}
@@ -384,7 +384,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             </div>
           ))}
           {isDying && (
-            <button onClick={() => setChar(p => ({ ...p, hp: 1, deathSaves: { suc: 0, fail: 0 } }))}
+            <button type="button" onClick={() => setChar(p => ({ ...p, hp: 1, deathSaves: { suc: 0, fail: 0 } }))}
               style={{ ...sx.bsm(C.greenBright), fontSize: 10, marginTop: 4, width: "100%" }}>{t("dash.stabilize_1hp","↺ 1 HP stabil")}</button>
           )}
         </div>
@@ -399,7 +399,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             {CONDITIONS.map(c => {
               const active = activeConds.includes(c.id);
               return (
-                <button key={c.id}
+                <button type="button" key={c.id}
                   onClick={() => setActiveConds(p => active ? p.filter(x => x !== c.id) : [...p, c.id])}
                   style={{ padding: "3px 8px", borderRadius: 6, cursor: "pointer", fontSize: 10, fontWeight: 600, transition: "all .15s", background: active ? `${C.red}33` : "transparent", border: `1px solid ${active ? C.redBright : C.border}`, color: active ? C.redBright : C.textDim }}>
                   {active ? "✕ " : ""}{c.icon} {c.name}
@@ -429,7 +429,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           <div style={sx.card}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
               <div style={ctStyle}>{t("dash.equipment_header","⚔️ Ausrüstung")}</div>
-              <button onClick={() => { setEqModal("list"); setEqStep("pick"); setEqItem(null); setEqSearch(""); setEqType("All"); }}
+              <button type="button" onClick={() => { setEqModal("list"); setEqStep("pick"); setEqItem(null); setEqSearch(""); setEqType("All"); }}
                 style={{ ...sx.bsm(C.teal), fontSize:11, fontWeight:700 }}>{t("dash.equip_btn","＋ Anlegen")}</button>
             </div>
             {equipped.length === 0 ? (
@@ -447,7 +447,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                         <div style={{ fontSize:13, fontWeight:600, color:col, fontFamily:FH, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{item.name}</div>
                         <div style={{ fontSize:10, color:C.textDim }}>{sd.icon} {slotLabel(sd)}</div>
                       </div>
-                      <button onClick={() => { setSwapModal({slot,item}); setSwapSearch(""); setSwapType("All"); }}
+                      <button type="button" onClick={() => { setSwapModal({slot,item}); setSwapSearch(""); setSwapType("All"); }}
                         style={{ background:`${C.amber}18`, border:`1px solid ${C.amber}44`, borderRadius:6, padding:"3px 8px", cursor:"pointer", fontSize:12, color:C.amber, flexShrink:0 }}>↔</button>
                     </div>
                   );
@@ -460,7 +460,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <div style={sx.card}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
                 <div style={ctStyle}>{t("dash.resources_header","🏷️ Ressourcen")}</div>
-                <button onClick={() => setCustom(p => p.map(tk => ({ ...tk, used: 0 })))} style={sx.bsm(C.gold)}>↺ Reset</button>
+                <button type="button" onClick={() => setCustom(p => p.map(tk => ({ ...tk, used: 0 })))} style={sx.bsm(C.gold)}>↺ Reset</button>
               </div>
               {custom.map(tok => (
                 <div key={tok.id} style={{ marginBottom: 10 }}>
@@ -470,12 +470,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     </span>
                     <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
                       <span style={{ fontSize: 10, color: C.textDim }}>{tok.tot - tok.used}/{tok.tot}</span>
-                      <button onClick={() => setCustom(p => p.map(tk => tk.id === tok.id ? { ...tk, used: 0 } : tk))} style={sx.bsm(C.goldDim)}>↺</button>
+                      <button type="button" onClick={() => setCustom(p => p.map(tk => tk.id === tok.id ? { ...tk, used: 0 } : tk))} style={sx.bsm(C.goldDim)}>↺</button>
                     </div>
                   </div>
                   <div style={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
                     {Array.from({ length: tok.tot }).map((_, i) => (
-                      <button key={i}
+                      <button type="button" key={i}
                         onClick={() => setCustom(p => p.map(tk => tk.id === tok.id ? { ...tk, used: i < tk.used ? i : i + 1 } : tk))}
                         style={{ width: 20, height: 20, borderRadius: "50%", cursor: "pointer", border: `2px solid ${tok.color}`, background: i < tok.used ? "transparent" : tok.color, transition: "background .15s" }} />
                     ))}
@@ -514,7 +514,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       <span style={{ fontFamily: FH, fontSize: 12, color: r.color, fontWeight: 700, minWidth: 130 }}>{r.name}</span>
                       <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
                         {Array.from({ length: maxNum }).map((_, i) => (
-                          <button key={i}
+                          <button type="button" key={i}
                             onClick={() => setAutoUsedR(r.id, i < used ? i : i + 1)}
                             title={`${r.name} ${i < (maxNum - used) ? t("dash.spend_word","verbrauchen") : t("dash.restore_word","wiederherstellen")}`}
                             style={{ width: 18, height: 18, borderRadius: 4, cursor: "pointer", border: `2px solid ${r.color}`, background: i < used ? "transparent" : r.color, transition: "background .15s", padding: 0 }} />
@@ -522,7 +522,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       </div>
                       <span style={{ fontSize: 11, color: C.textDim }}>{maxNum - used}/{maxNum}</span>
                       <span style={{ fontSize: 9, color: C.textDim, marginLeft: "auto" }}>{r.reset === "short" ? t("dash.short_rest_short","K.Rast") : t("dash.long_rest_short","L.Rast")}</span>
-                      <button onClick={() => setAutoUsedR(r.id, 0)} style={{ ...sx.bsm(C.goldDim), fontSize: 10, padding: "1px 6px" }}>↺</button>
+                      <button type="button" onClick={() => setAutoUsedR(r.id, 0)} style={{ ...sx.bsm(C.goldDim), fontSize: 10, padding: "1px 6px" }}>↺</button>
                     </div>
                   );
                 })}
@@ -535,7 +535,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
               <span style={lbl}>{t("dash.cantrips_word","Cantrips")}</span>
               {cantrips.map(c => (
-                <button key={c.id}
+                <button type="button" key={c.id}
                   onClick={() => setInfoModal({ title: c.name, color: C.tealBright, badges: [{ label: c.school, col: C.tealBright }, { label: c.ct, col: C.textDim }, { label: c.range, col: C.textDim }], stats: [c.dmg !== "—" && { label: t("dash.damage_label","Schaden"), val: c.dmg, col: C.redBright }].filter(Boolean), desc: c.desc })}
                   style={{ ...sx.tag(C.tealBright), cursor: "pointer", fontSize: 12, padding: "3px 10px" }}>{c.name}</button>
               ))}
@@ -553,7 +553,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       <div style={{ ...lbl, marginBottom: 4 }}>LV{s.lv}</div>
                       <div style={{ display: "flex", gap: 2 }}>
                         {Array.from({ length: s.tot }).map((_, i) => (
-                          <button key={i}
+                          <button type="button" key={i}
                             onClick={() => setSlots(p => p.map(x => x.lv === s.lv ? { ...x, used: i < (x.tot - x.used) ? x.used + 1 : Math.max(0, x.used - 1) } : x))}
                             style={{ width: 14, height: 14, borderRadius: 3, cursor: "pointer", border: `1.5px solid ${C.purpleBright}`, background: i < avail ? C.purpleBright : "transparent", transition: "background .15s" }} />
                         ))}
@@ -594,16 +594,16 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     </div>
                     <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }} onClick={e => e.stopPropagation()}>
                       {spell.upcast?.length > 0 && canCast && (
-                        <button onClick={() => setCastModal({ spell })}
+                        <button type="button" onClick={() => setCastModal({ spell })}
                           style={{ ...sx.tag(C.amberBright), cursor: "pointer" }}>{t("dash.upcast_word","↑ Upcast")}</button>
                       )}
                       {spell.ritual && (
-                        <button onClick={() => handleRitualCast(spell)}
+                        <button type="button" onClick={() => handleRitualCast(spell)}
                           style={{ padding: "5px 12px", borderRadius: 7, cursor: "pointer", fontSize: 11, fontWeight: 600, background: `${C.amberBright}18`, border: `1px solid ${C.amberBright}55`, color: C.amberBright, whiteSpace: "nowrap" }}>
                           {requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}ℛ +10 Min.
                         </button>
                       )}
-                      <button disabled={!canCast} onClick={() => canCast && handleCast(spell, lowestSlot.lv)}
+                      <button type="button" disabled={!canCast} onClick={() => canCast && handleCast(spell, lowestSlot.lv)}
                         style={{ padding: "5px 14px", borderRadius: 7, cursor: canCast ? "pointer" : "default", fontSize: 12, fontWeight: 600, background: canCast ? `${C.purple}44` : C.bg, border: `1px solid ${canCast ? C.purpleBright : C.border}`, color: canCast ? C.purpleBright : C.textDim, whiteSpace: "nowrap" }}>
                         {canCast
                           ? <>{requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}{t("dash.cast_at_lv","Wirken Lv{lv}").replace("{lv}", lowestSlot.lv)}</>
@@ -640,7 +640,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                   {acts.length === 0 ? <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>—</div> : (
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                       {acts.map((action, idx) => (
-                        <button key={action.id}
+                        <button type="button" key={action.id}
                           onClick={() => setInfoModal({ title: action.name, color: col, badges: [{ label, col }, action.range && { label: action.range, col: C.textDim }].filter(Boolean), stats: [action.toHit && { label: t("dash.to_hit_label","To Hit"), val: action.toHit, col: C.blueBright }, action.damage && action.damage !== "—" && { label: t("dash.damage_label","Schaden"), val: action.damage, col: C.redBright }, action.saveDC && { label: t("dash.save_dc_label","Save DC"), val: `${action.saveDC} ${action.saveAbility || ""}`, col: C.amberBright }].filter(Boolean), desc: action.description })}
                           style={{ background: idx === 0 ? `${col}22` : C.surface, border: `1px solid ${idx === 0 ? col + "88" : C.border}`, borderRadius: 9, padding: idx === 0 ? "10px 12px" : "7px 10px", cursor: "pointer", textAlign: "left" }}>
                           <div style={{ fontSize: idx === 0 ? 14 : 12, fontWeight: 600, color: idx === 0 ? col : C.text, marginBottom: idx === 0 ? 4 : 2 }}>{action.name}</div>
@@ -693,14 +693,14 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     </div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
-                    <button
+                    <button type="button"
                       onMouseDown={() => updateCompanionHp(c.id, -1)}
                       style={{ ...sx.bsm(C.red), padding: "2px 7px", fontSize: 13, fontWeight: 700 }}
                     >−</button>
                     <span style={{ fontSize: 11, fontWeight: 700, color: hpTxt, minWidth: 36, textAlign: "center" }}>
                       {c.hp}/{c.maxHp}
                     </span>
-                    <button
+                    <button type="button"
                       onMouseDown={() => updateCompanionHp(c.id, +1)}
                       style={{ ...sx.bsm(C.green), padding: "2px 7px", fontSize: 13, fontWeight: 700 }}
                     >+</button>
@@ -795,7 +795,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     <div style={{ fontFamily:FH, fontSize:14, color:C.teal, fontWeight:700 }}>
                       {eqStep==="pick" ? t("dash.equip_item","⚔️ Item anlegen") : t("dash.slot_for","🎯 Slot für: {name}").replace("{name}", eqItem?.name || "")}
                     </div>
-                    <button onClick={close} style={sx.bsm(C.textDim)}>✕</button>
+                    <button type="button" onClick={close} style={sx.bsm(C.textDim)}>✕</button>
                   </div>
                   {eqStep === "pick" && (
                     <>
@@ -825,7 +825,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                       ) : (
                         <div style={{ fontSize:12, color:C.textDim, textAlign:"center", padding:"10px 0", marginBottom:8 }}>{t("dash.no_item_inv","Kein Item im Inventar")}</div>
                       )}
-                      <button onClick={() => setEqModal("new")} style={{ ...sx.btn(C.green), width:"100%" }}>{t("dash.new_item_create","＋ Neues Item erstellen")}</button>
+                      <button type="button" onClick={() => setEqModal("new")} style={{ ...sx.btn(C.green), width:"100%" }}>{t("dash.new_item_create","＋ Neues Item erstellen")}</button>
                     </>
                   )}
                   {eqStep === "slot" && eqItem && (() => {
@@ -841,7 +841,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                               const cur = eq2[sid];
                               const locked = sid === "off" && mainIsTwoHanded;
                               return (
-                                <button key={sid} disabled={locked} onClick={() => !locked && doEquip(eqItem, sid)}
+                                <button type="button" key={sid} disabled={locked} onClick={() => !locked && doEquip(eqItem, sid)}
                                   style={{ background:locked?`${C.red}15`:cur?`${C.amber}15`:`${C.teal}12`, border:`1px solid ${locked?C.red:cur?C.amber:C.teal}44`, borderRadius:10, padding:"9px 12px", cursor:locked?"not-allowed":"pointer", minWidth:80, textAlign:"center", opacity:locked?0.5:1 }}>
                                   <div style={{ fontSize:20 }}>{locked?"🔒":sd.icon}</div>
                                   <div style={{ fontSize:11, color:locked?C.red:cur?C.amber:C.teal, fontFamily:FH, fontWeight:700 }}>{slotLabel(sd)}</div>
@@ -851,7 +851,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                             })}
                           </div>
                         )}
-                        <button onClick={() => { setEqStep("pick"); setEqItem(null); }} style={{ ...sx.bsm(C.textDim), marginTop:10, fontSize:11 }}>{t("dash.back_arrow","← Zurück")}</button>
+                        <button type="button" onClick={() => { setEqStep("pick"); setEqItem(null); }} style={{ ...sx.bsm(C.textDim), marginTop:10, fontSize:11 }}>{t("dash.back_arrow","← Zurück")}</button>
                       </>
                     );
                   })()}
@@ -862,7 +862,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                 <>
                   <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:12 }}>
                     <div style={{ fontFamily:FH, fontSize:14, color:C.green, fontWeight:700 }}>{t("dash.new_item","＋ Neues Item")}</div>
-                    <button onClick={close} style={sx.bsm(C.textDim)}>✕</button>
+                    <button type="button" onClick={close} style={sx.bsm(C.textDim)}>✕</button>
                   </div>
                   <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                     <div><label style={sx.lbl}>{t("dash.name_required","Name *")}</label><input value={eqNew.name} onChange={e=>setEqNew(p=>({...p,name:e.target.value}))} style={sx.inp} autoFocus /></div>
@@ -875,13 +875,13 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     <div><label style={sx.lbl}>{t("dash.effect_label","Effekt")}</label><input value={eqNew.eff} onChange={e=>setEqNew(p=>({...p,eff:e.target.value}))} style={sx.inp} placeholder="+1 ATK…" /></div>
                     <div><label style={sx.lbl}>{t("dash.notes_label","Notizen")}</label><textarea value={eqNew.notes} onChange={e=>setEqNew(p=>({...p,notes:e.target.value}))} style={{ ...sx.ta, height:50 }} /></div>
                     <div style={{ display:"flex", gap:8 }}>
-                      <button onClick={() => {
+                      <button type="button" onClick={() => {
                         if (!eqNew.name.trim()) return;
                         const ni = { ...eqNew, uid:Date.now()+Math.random(), qty:1, custom:true };
                         setEqItem(ni); setEqStep("slot"); setEqModal("list");
                         setEqNew({ name:"", type:"Weapon", dmg:"", ac:"", eff:"", rar:"Common", notes:"" });
                       }} style={{ ...sx.btn(C.green), flex:1 }}>{t("dash.next_pick_slot","Weiter → Slot wählen")}</button>
-                      <button onClick={() => setEqModal("list")} style={sx.bsm(C.textDim)}>{t("dash.back_arrow","← Zurück")}</button>
+                      <button type="button" onClick={() => setEqModal("list")} style={sx.bsm(C.textDim)}>{t("dash.back_arrow","← Zurück")}</button>
                     </div>
                   </div>
                 </>
@@ -916,9 +916,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                   <div style={{ fontFamily:FH, fontSize:14, color:C.amber, fontWeight:700 }}>{t("dash.swap_word","↔ Tauschen")}</div>
                   <div style={{ fontSize:11, color:C.textDim }}>{swapModal.item.name} · {sd.icon} {slotLabel(sd)}</div>
                 </div>
-                <button onClick={closeSwap} style={sx.bsm(C.textDim)}>✕</button>
+                <button type="button" onClick={closeSwap} style={sx.bsm(C.textDim)}>✕</button>
               </div>
-              <button
+              <button type="button"
                 onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [swapModal.slot]: null } })); closeSwap(); }}
                 style={{ ...sx.btn(C.red), width:"100%", marginBottom:10 }}>{t("dash.unequip_short","↩ Ablegen")}</button>
               <div style={{ display:"flex", gap:4, marginBottom:10 }}>
@@ -1000,9 +1000,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               </div>
             )}
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [eqInfoModal._slotId]: null } })); setEqInfoModal(null); }}
+              <button type="button" onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [eqInfoModal._slotId]: null } })); setEqInfoModal(null); }}
                 style={{ ...sx.btn(C.red), padding:"10px 20px", fontSize:13 }}>↩ Ablegen</button>
-              <button onClick={() => setEqInfoModal(null)} style={{ ...sx.bsm(C.textDim), padding:"10px 16px" }}>{t("dash.close_btn","Schließen")}</button>
+              <button type="button" onClick={() => setEqInfoModal(null)} style={{ ...sx.bsm(C.textDim), padding:"10px 16px" }}>{t("dash.close_btn","Schließen")}</button>
             </div>
           </div>
         </div>
@@ -1024,8 +1024,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               placeholder="0"
               style={{ width: "100%", textAlign: "center", fontSize: 40, fontWeight: 700, background: C.surface, border: `1px solid ${C.blueBright}`, borderRadius: 10, color: C.blueBright, padding: "10px 0", marginBottom: 14, outline: "none" }} />
             <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={() => setTempHpModal(false)} style={{ ...sx.bsm(C.textDim), flex: 1 }}>{t("dash.cancel_btn","Abbrechen")}</button>
-              <button onClick={() => { setChar(p => ({ ...p, tempHp: parseInt(tempHpInput) || 0 })); setTempHpModal(false); }}
+              <button type="button" onClick={() => setTempHpModal(false)} style={{ ...sx.bsm(C.textDim), flex: 1 }}>{t("dash.cancel_btn","Abbrechen")}</button>
+              <button type="button" onClick={() => { setChar(p => ({ ...p, tempHp: parseInt(tempHpInput) || 0 })); setTempHpModal(false); }}
                 style={{ ...sx.btn(C.blueBright), flex: 2, fontWeight: 700 }}>{t("dash.set_btn","Setzen")}</button>
             </div>
           </div>
@@ -1043,7 +1043,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               {slots.filter(sl => sl.lv >= castModal.spell.lv && sl.tot > 0).map(sl => {
                 const avail = sl.tot - sl.used;
                 return (
-                  <button key={sl.lv} disabled={avail === 0} onClick={() => { handleCast(castModal.spell, sl.lv); setCastModal(null); }}
+                  <button type="button" key={sl.lv} disabled={avail === 0} onClick={() => { handleCast(castModal.spell, sl.lv); setCastModal(null); }}
                     style={{ background: avail > 0 ? `${C.purpleBright}22` : C.surface, border: `1px solid ${avail > 0 ? C.purpleBright : C.border}`, borderRadius: 8, color: avail > 0 ? C.purpleBright : C.textDim, padding: "6px 14px", cursor: avail > 0 ? "pointer" : "default", fontSize: 13, fontWeight: 600, display: "flex", justifyContent: "space-between", alignItems: "center", opacity: avail > 0 ? 1 : 0.4 }}>
                     <span>{SLOT_LABELS[sl.lv]} {t("dash.slot_word","Slot")}</span>
                     <span style={{ fontSize: 11, opacity: 0.8 }}>{avail} {t("dash.remaining_word","übrig")}</span>
@@ -1078,12 +1078,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               {t("dash.conc_casting_breaks","Das Wirken von")} <strong style={{ color:C.textBright }}>{concWarn.spell.name}</strong> {t("dash.conc_breaks_end","beendet die aktive Konzentration sofort.")}
             </p>
             <div style={{ display:"flex", gap:10 }}>
-              <button onClick={() => {
+              <button type="button" onClick={() => {
                 if (!concWarn.ritual) useSlot(concWarn.slotLv);
                 setChar(p => startConcentration(p, concWarn.spell, concWarn.slotLv ?? concWarn.spell.lv));
                 setConcWarn(null);
               }} style={sx.btn(C.amberBright)}>{concWarn.ritual ? t("dash.cast_ritual_btn","ℛ Ritual wirken") : t("dash.cast_anyway_btn","Trotzdem wirken")}</button>
-              <button onClick={() => setConcWarn(null)} style={sx.btn(C.textDim)}>{t("dash.cancel_btn","Abbrechen")}</button>
+              <button type="button" onClick={() => setConcWarn(null)} style={sx.btn(C.textDim)}>{t("dash.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>

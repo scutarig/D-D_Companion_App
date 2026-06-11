@@ -98,7 +98,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
             <div style={{ fontFamily: FH, fontSize: 16, color: C.purpleBright, fontWeight: 700 }}>{t("combat.spellcasting","🔮 Zauberei")}</div>
             <div style={{ fontSize: 12, color: C.textDim }}>{fighter.name}</div>
           </div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Concentration display */}
@@ -110,7 +110,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
                 <div style={{ fontSize: 10, color: C.amber, fontFamily: FH, letterSpacing: 0.5, marginBottom: 2 }}>{t("combat.concentration_active","KONZENTRATION AKTIV")}</div>
                 <div style={{ fontSize: 13, color: C.amberBright, fontWeight: 700 }}>🧠 {concSpell?.name ?? t("combat.unknown_spell","Unbekannter Zauber")}</div>
               </div>
-              <button
+              <button type="button"
                 onClick={() => dropConcentration(fighter.id)}
                 style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "4px 8px" }}
               >
@@ -134,10 +134,10 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
 
         {/* Rest buttons */}
         <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-          <button onClick={() => shortRest(fighter.id)} style={{ ...sx.bsm(C.teal), flex: 1, padding: "7px", fontSize: 11 }}>
+          <button type="button" onClick={() => shortRest(fighter.id)} style={{ ...sx.bsm(C.teal), flex: 1, padding: "7px", fontSize: 11 }}>
             {t("combat.short_rest_btn","🌙 Short Rest")}
           </button>
-          <button onClick={() => longRest(fighter.id)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "7px", fontSize: 11 }}>
+          <button type="button" onClick={() => longRest(fighter.id)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "7px", fontSize: 11 }}>
             {t("combat.long_rest_btn","☀️ Long Rest")}
           </button>
         </div>
@@ -145,13 +145,13 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
         {/* Toggle search vs prepared */}
         {fighter.charRef && (
           <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
-            <button
+            <button type="button"
               onClick={() => setShowSearch(false)}
               style={{ ...sx.bsm(!showSearch ? C.purple : C.border), flex: 1, padding: "7px", fontSize: 11, background: !showSearch ? `${C.purple}22` : "transparent" }}
             >
               {t("combat.prepared_label","🕯 Vorbereitet")} ({preparedIds.length})
             </button>
-            <button
+            <button type="button"
               onClick={() => setShowSearch(true)}
               style={{ ...sx.bsm(showSearch ? C.blue : C.border), flex: 1, padding: "7px", fontSize: 11, background: showSearch ? `${C.blue}22` : "transparent" }}
             >
@@ -175,7 +175,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
         {/* Level filter pills */}
         <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
           {LEVELS.map((l) => (
-            <button
+            <button type="button"
               key={l}
               onClick={() => setLevelFilter(l)}
               style={{

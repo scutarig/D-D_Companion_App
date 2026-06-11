@@ -40,7 +40,7 @@ export default class ErrorBoundary extends Component {
           <p style={{ color: C.text, fontSize: 13, lineHeight: 1.5, textAlign: "center", margin: "12px 0 16px" }}>
             {t("err.body", "Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.")}
           </p>
-          <button onClick={this.handleReload} style={{ ...sx.btn(C.redBright), width: "100%", padding: "10px 14px", fontSize: 13 }}>
+          <button type="button" onClick={this.handleReload} style={{ ...sx.btn(C.redBright), width: "100%", padding: "10px 14px", fontSize: 13 }}>
             {t("err.reload_btn", "🔄 Neu laden")}
           </button>
           {error && (

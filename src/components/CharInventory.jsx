@@ -254,7 +254,7 @@ export default function CharInventory({ char, setChar }) {
                       <div style={{ fontSize: 10, color: col, fontFamily: FH, fontWeight: 700, textAlign: "center", marginBottom: 2 }}>
                         {item.name.length > 16 ? item.name.slice(0, 14) + "…" : item.name}
                       </div>
-                      <button onClick={() => toggleAttune(uid)} style={{
+                      <button type="button" onClick={() => toggleAttune(uid)} style={{
                         fontSize: 9, padding: "1px 6px", borderRadius: 4,
                         background: `${C.red}22`, border: `1px solid ${C.red}55`,
                         color: C.redBright, cursor: "pointer",
@@ -297,7 +297,7 @@ export default function CharInventory({ char, setChar }) {
                   : t("inv.cant_equip","Dieses Item kann nicht ausgerüstet werden.")}
               </div>
             </div>
-            <button onClick={() => setSelForEquip(null)} style={sx.bsm(C.textDim)}>✕</button>
+            <button type="button" onClick={() => setSelForEquip(null)} style={sx.bsm(C.textDim)}>✕</button>
           </div>
           {slotError && (
             <div style={{marginTop:8,padding:"6px 10px",background:`${C.red}18`,border:`1px solid ${C.red}44`,borderRadius:8,fontSize:12,color:C.redBright}}>
@@ -409,7 +409,7 @@ export default function CharInventory({ char, setChar }) {
           <span style={{...secTitle, marginBottom:0, textAlign:"left"}}>
             {t("inv.backpack_header","Rucksack")} <span style={{color:C.purple}}>({bagItems.length})</span>
           </span>
-          <button onClick={() => setShowAdd(p=>!p)} style={{...sx.bsm(C.green),fontSize:11}}>{t("inv.add_item_btn","+ Item")}</button>
+          <button type="button" onClick={() => setShowAdd(p=>!p)} style={{...sx.bsm(C.green),fontSize:11}}>{t("inv.add_item_btn","+ Item")}</button>
         </div>
 
         <div style={{display:"flex", gap:6, marginBottom:8}}>
@@ -420,7 +420,7 @@ export default function CharInventory({ char, setChar }) {
             <option value="All">{t("inv.all_types","Alle")}</option>
             {ITEM_TYPES.map(it => <option key={it} value={it}>{it}</option>)}
           </select>
-          <button onClick={() => setMagicOnly(p=>!p)} style={{
+          <button type="button" onClick={() => setMagicOnly(p=>!p)} style={{
             padding:"6px 10px", borderRadius:6, border:`1px solid ${magicOnly ? C.purpleBright : C.border}`,
             background: magicOnly ? `${C.purpleBright}22` : "transparent",
             color: magicOnly ? C.purpleBright : C.textDim, fontSize:13, cursor:"pointer",
@@ -473,10 +473,10 @@ export default function CharInventory({ char, setChar }) {
                   {/* Menge — stopPropagation damit kein Toggle */}
                   <div style={{display:"flex",alignItems:"center",gap:4,flexShrink:0}}
                     onClick={e => e.stopPropagation()}>
-                    <button onClick={() => changeQty(item.uid,-1)}
+                    <button type="button" onClick={() => changeQty(item.uid,-1)}
                       style={{width:24,height:24,borderRadius:6,background:"rgba(0,0,0,0.4)",border:`1px solid ${C.border}`,color:C.text,cursor:"pointer",fontSize:14,lineHeight:1,padding:0}}>−</button>
                     <span style={{fontSize:13,fontWeight:700,color:C.textBright,minWidth:20,textAlign:"center"}}>{item.qty||1}</span>
-                    <button onClick={() => changeQty(item.uid,+1)}
+                    <button type="button" onClick={() => changeQty(item.uid,+1)}
                       style={{width:24,height:24,borderRadius:6,background:"rgba(0,0,0,0.4)",border:`1px solid ${C.border}`,color:C.text,cursor:"pointer",fontSize:14,lineHeight:1,padding:0}}>+</button>
                   </div>
                   <span style={{fontSize:12,color:C.textDim,flexShrink:0}}>{open?"▲":"▼"}</span>
@@ -513,7 +513,7 @@ export default function CharInventory({ char, setChar }) {
                         <span style={{flex:1,fontSize:12,color:attunedItems.includes(item.uid) ? C.purpleBright : C.textDim}}>
                           {attunedItems.includes(item.uid) ? t("inv.attunement_active","Attunement aktiv") : t("inv.attunement_needed","Benötigt Attunement")}
                         </span>
-                        <button onClick={() => {
+                        <button type="button" onClick={() => {
                           if (!attunedItems.includes(item.uid) && attunedItems.length >= MAX_ATTUNEMENT) return;
                           toggleAttune(item.uid);
                         }} style={{
@@ -533,10 +533,10 @@ export default function CharInventory({ char, setChar }) {
 
                     <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
                       {canEquip && (
-                        <button onClick={() => { setSelForEquip(item); setExpanded(null); }}
+                        <button type="button" onClick={() => { setSelForEquip(item); setExpanded(null); }}
                           style={{...sx.btn(C.purple),fontSize:12,padding:"7px 14px"}}>{t("inv.equip_btn","⚔️ Ausstatten")}</button>
                       )}
-                      <button onClick={() => removeItem(item.uid)}
+                      <button type="button" onClick={() => removeItem(item.uid)}
                         style={{...sx.bsm(C.red),fontSize:12,padding:"7px 12px"}}>{t("inv.remove_btn","🗑 Entfernen")}</button>
                     </div>
                     {!canEquip && (
@@ -567,8 +567,8 @@ export default function CharInventory({ char, setChar }) {
           <div style={{marginTop:8}}><label style={sx.lbl}>{t("inv.notes_custom_label","Notizen (Eigenschaften wie „zweihändig\", „leicht\"…)")}</label>
             <textarea value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} style={{...sx.ta,height:50}} /></div>
           <div style={{display:"flex",gap:8,marginTop:10}}>
-            <button onClick={addCustom} style={sx.btn(C.green)}>{t("inv.add_btn","Hinzufügen")}</button>
-            <button onClick={() => setShowAdd(false)} style={sx.bsm(C.textDim)}>{t("inv.cancel_btn","Abbrechen")}</button>
+            <button type="button" onClick={addCustom} style={sx.btn(C.green)}>{t("inv.add_btn","Hinzufügen")}</button>
+            <button type="button" onClick={() => setShowAdd(false)} style={sx.bsm(C.textDim)}>{t("inv.cancel_btn","Abbrechen")}</button>
           </div>
         </div>
       )}
@@ -610,8 +610,8 @@ export default function CharInventory({ char, setChar }) {
               </div>
             )}
             <div style={{display:"flex",gap:8}}>
-              <button onClick={() => unequip(slotModal._slotId)} style={{...sx.btn(C.red),padding:"10px 20px",fontSize:13}}>{t("inv.unequip_btn","↩ Ablegen")}</button>
-              <button onClick={() => setSlotModal(null)} style={{...sx.bsm(C.textDim),padding:"10px 16px"}}>{t("inv.close_btn","Schließen")}</button>
+              <button type="button" onClick={() => unequip(slotModal._slotId)} style={{...sx.btn(C.red),padding:"10px 20px",fontSize:13}}>{t("inv.unequip_btn","↩ Ablegen")}</button>
+              <button type="button" onClick={() => setSlotModal(null)} style={{...sx.bsm(C.textDim),padding:"10px 16px"}}>{t("inv.close_btn","Schließen")}</button>
             </div>
           </div>
         </div>

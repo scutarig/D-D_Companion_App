@@ -105,16 +105,16 @@ export default function Spellbook({ charId }) {
     <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
       <div style={{width:mob?"100%":255,flexShrink:0}}>
         <div style={{display:"flex",gap:3,marginBottom:8,flexWrap:"wrap"}}>
-          <button onClick={() => setView("db")} style={sx.nb(view==="db")}>{t("sb.all_tab","📚 Alle")}</button>
-          <button onClick={() => setView("known")} style={{...sx.nb(view==="known"),display:"flex",alignItems:"center",gap:4}}>{t("sb.known_tab","⭐ Bekannt")} <span style={{background:C.blue,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px"}}>{known.length}</span></button>
-          <button onClick={() => setView("prepared")} style={{...sx.nb(view==="prepared"),display:"flex",alignItems:"center",gap:4}}>{t("sb.prepared_tab","🕯️ Vorbereitet")} <span style={{background:C.gold,color:C.bg,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px",fontWeight:700}}>{prepared.length}</span></button>
+          <button type="button" onClick={() => setView("db")} style={sx.nb(view==="db")}>{t("sb.all_tab","📚 Alle")}</button>
+          <button type="button" onClick={() => setView("known")} style={{...sx.nb(view==="known"),display:"flex",alignItems:"center",gap:4}}>{t("sb.known_tab","⭐ Bekannt")} <span style={{background:C.blue,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px"}}>{known.length}</span></button>
+          <button type="button" onClick={() => setView("prepared")} style={{...sx.nb(view==="prepared"),display:"flex",alignItems:"center",gap:4}}>{t("sb.prepared_tab","🕯️ Vorbereitet")} <span style={{background:C.gold,color:C.bg,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px",fontWeight:700}}>{prepared.length}</span></button>
         </div>
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("sb.search_placeholder","🔍 Zauber suchen…")} style={{...sx.inp,marginBottom:6}}/>
         <select value={cf} onChange={e => setCf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{CLASSES.map(c => <option key={c}>{c}</option>)}</select>
         <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:6}}>
-          {LVS.map(l => <button key={l} onClick={() => setLf(l)} style={{background:lf===l?SPC[parseInt(l)]||C.gold+"44":"transparent",border:`1px solid ${lf===l?SPC[parseInt(l)]||C.gold:C.border}`,borderRadius:3,color:lf===l?C.textBright:C.textDim,fontSize:10,padding:"3px 7px",cursor:"pointer",fontFamily:FH}}>{l==="All"?"All":l==="0"?"C":l}</button>)}
+          {LVS.map(l => <button type="button" key={l} onClick={() => setLf(l)} style={{background:lf===l?SPC[parseInt(l)]||C.gold+"44":"transparent",border:`1px solid ${lf===l?SPC[parseInt(l)]||C.gold:C.border}`,borderRadius:3,color:lf===l?C.textBright:C.textDim,fontSize:10,padding:"3px 7px",cursor:"pointer",fontFamily:FH}}>{l==="All"?"All":l==="0"?"C":l}</button>)}
         </div>
-        <button onClick={() => setRitualOnly(p => !p)} style={{background:ritualOnly?`${C.amberBright}22`:"transparent",border:`1px solid ${ritualOnly?C.amberBright:C.border}`,borderRadius:5,color:ritualOnly?C.amberBright:C.textDim,fontSize:10,padding:"3px 10px",cursor:"pointer",fontFamily:FH,marginBottom:8,width:"100%",fontWeight:ritualOnly?700:400}}>
+        <button type="button" onClick={() => setRitualOnly(p => !p)} style={{background:ritualOnly?`${C.amberBright}22`:"transparent",border:`1px solid ${ritualOnly?C.amberBright:C.border}`,borderRadius:5,color:ritualOnly?C.amberBright:C.textDim,fontSize:10,padding:"3px 10px",cursor:"pointer",fontFamily:FH,marginBottom:8,width:"100%",fontWeight:ritualOnly?700:400}}>
           {ritualOnly ? t("sb.rituals_only","ℛ Nur Rituale") : "ℛ " + t("sb.all_spells","Alle Zauber")}{ritualOnly && " ✓"}
         </button>
         <div style={{maxHeight:mob?"none":"55vh",overflowY:"auto"}}>
@@ -147,8 +147,8 @@ export default function Spellbook({ charId }) {
                     <div style={{fontSize:10,color:C.textDim}}>{sp.school}</div>
                   </div>
                   <div style={{display:"flex",gap:4}}>
-                    <button onClick={e=>{e.stopPropagation();togPrep(sp.id);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:prepared.includes(sp.id)?C.gold:"#444"}}>🕯️</button>
-                    <button onClick={e=>{e.stopPropagation();togKnown(sp.id);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:known.includes(sp.id)?C.blueBright:"#444"}}>★</button>
+                    <button type="button" onClick={e=>{e.stopPropagation();togPrep(sp.id);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:prepared.includes(sp.id)?C.gold:"#444"}}>🕯️</button>
+                    <button type="button" onClick={e=>{e.stopPropagation();togKnown(sp.id);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:known.includes(sp.id)?C.blueBright:"#444"}}>★</button>
                   </div>
                 </div>
               ))}
@@ -163,8 +163,8 @@ export default function Spellbook({ charId }) {
             <div style={{...sx.jb,marginBottom:10}}>
               <div><div style={{fontFamily:FH,fontSize:20,color:C.purpleBright,fontWeight:700}}>{sel.name}</div><div style={{color:C.textDim,fontSize:13}}>{sel.lv===0?t("sb.cantrip_label","Cantrip"):ll(sel.lv)} · {sel.school}</div></div>
               <div style={{display:"flex",gap:8}}>
-                <button onClick={() => togPrep(sel.id)} style={sx.btn(prepared.includes(sel.id)?C.goldDim:C.purple)}>{prepared.includes(sel.id)?t("sb.prepared_btn","🕯️ Vorbereitet"):t("sb.prepare_btn","🕯️ Vorbereiten")}</button>
-                <button onClick={() => togKnown(sel.id)} style={sx.btn(known.includes(sel.id)?C.blue:C.textDim)}>{known.includes(sel.id)?t("sb.known_btn","★ Bekannt"):t("sb.memorize_btn","☆ Merken")}</button>
+                <button type="button" onClick={() => togPrep(sel.id)} style={sx.btn(prepared.includes(sel.id)?C.goldDim:C.purple)}>{prepared.includes(sel.id)?t("sb.prepared_btn","🕯️ Vorbereitet"):t("sb.prepare_btn","🕯️ Vorbereiten")}</button>
+                <button type="button" onClick={() => togKnown(sel.id)} style={sx.btn(known.includes(sel.id)?C.blue:C.textDim)}>{known.includes(sel.id)?t("sb.known_btn","★ Bekannt"):t("sb.memorize_btn","☆ Merken")}</button>
               </div>
             </div>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:12}}>

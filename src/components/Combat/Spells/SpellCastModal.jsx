@@ -72,7 +72,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
               {isCantrip ? t("combat.cantrip","Cantrip") : `${t("combat.level_label","Level")} ${spell.lv}`} · {spell.school}
             </div>
           </div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Spell info tags */}
@@ -116,7 +116,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
                     ? spell.upcast?.find((u) => u.slot <= lv && !spell.upcast.find(u2 => u2.slot > u.slot && u2.slot <= lv))
                     : null;
                   return (
-                    <button
+                    <button type="button"
                       key={lv}
                       onClick={() => setSlotLevel(lv)}
                       style={{
@@ -148,7 +148,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
 
         {/* Cast button */}
         {!cast && (
-          <button
+          <button type="button"
             onClick={handleCast}
             disabled={!isCantrip && (slotLevel === null || availableLevels.length === 0)}
             style={{
@@ -174,7 +174,7 @@ export default function SpellCastModal({ spell, fighter, onClose }) {
                 🧠 {t("spellcast.conc_active","Konzentration aktiv — erscheint als Condition")}
               </div>
             )}
-            <button onClick={onClose} style={{ ...sx.btn(C.teal), padding: "10px 24px" }}>
+            <button type="button" onClick={onClose} style={{ ...sx.btn(C.teal), padding: "10px 24px" }}>
               {t("combat.close_word","Schließen")}
             </button>
           </div>

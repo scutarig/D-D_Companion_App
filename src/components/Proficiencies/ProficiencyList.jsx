@@ -33,7 +33,7 @@ export default function ProficiencyList({ proficiencies, add, update, remove, pb
     <div>
       {/* Add button */}
       <div style={{ marginBottom: 12 }}>
-        <button
+        <button type="button"
           onClick={() => { setShowForm(true); setEditTarget(null); }}
           style={{ ...sx.btn(C.tealBright), width: "100%", padding: "11px", fontSize: 13, fontWeight: 700 }}
         >
@@ -57,7 +57,7 @@ export default function ProficiencyList({ proficiencies, add, update, remove, pb
       {groups.map(group => (
         <div key={group.id} style={{ marginBottom: 10 }}>
           {/* Group header */}
-          <button
+          <button type="button"
             onClick={() => toggleCat(group.id)}
             style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -166,11 +166,11 @@ function ProficiencyItem({ prof, cat, pb, onEdit, onDelete }) {
 
       {/* Actions */}
       <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
-        <button
+        <button type="button"
           onClick={onEdit}
           style={{ ...sx.bsm(C.border), padding: "3px 8px", fontSize: 12, color: C.textDim }}
         >✎</button>
-        <button
+        <button type="button"
           onClick={onDelete}
           style={{ ...sx.bsm(C.red), padding: "3px 8px", fontSize: 12 }}
         >✕</button>

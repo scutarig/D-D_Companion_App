@@ -164,8 +164,8 @@ export default function CharActions({ char, setChar }) {
           {(char.pinnedActionIds || []).length > 0 && <span style={{ ...sx.tag(C.amber), marginLeft: 8, fontSize: 10 }}>📌 {(char.pinnedActionIds || []).length} {t("actions.pinned","auf Übersicht")}</span>}
         </div>
         <div style={{ display: "flex", gap: 6 }}>
-          <button onClick={() => { setShowStd(!showStd); setShowForm(false); }} style={sx.btn(showStd ? C.amber : C.teal)}>📖 {t("actions.std_dnd","Standard D&D")}</button>
-          <button onClick={openNew} style={sx.btn(C.purple)}>+ {t("actions.custom","Eigene Aktion")}</button>
+          <button type="button" onClick={() => { setShowStd(!showStd); setShowForm(false); }} style={sx.btn(showStd ? C.amber : C.teal)}>📖 {t("actions.std_dnd","Standard D&D")}</button>
+          <button type="button" onClick={openNew} style={sx.btn(C.purple)}>+ {t("actions.custom","Eigene Aktion")}</button>
         </div>
       </div>
 
@@ -183,14 +183,14 @@ export default function CharActions({ char, setChar }) {
             <div style={{ fontFamily: FH, fontSize: 12, color: C.greenBright, fontWeight: 700, marginBottom: 2 }}>⚡ {t("actions.quick_setup","Quick-Setup")}</div>
             <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4 }}>{t("actions.quick_desc","Lade alle PHB-2024 Core-Aktionen (Attack/Dash/Dodge/Help/Hide/Influence/Magic/Ready/Search/Study/Utilize + Grapple/Shove + Off-Hand + Bonus-Spell + OA + Ready-Reaction).")}</div>
           </div>
-          <button onClick={addAllCore} style={{ ...sx.btn(C.greenBright), padding: "10px 16px", whiteSpace: "nowrap" }}>
+          <button type="button" onClick={addAllCore} style={{ ...sx.btn(C.greenBright), padding: "10px 16px", whiteSpace: "nowrap" }}>
             ⚡ {t("actions.bulk_all_core","Alle Core-Aktionen")}
           </button>
         </div>
 
         <div style={{ display: "flex", gap: 6, marginBottom: 10, alignItems: "center", flexWrap: "wrap" }}>
-          {TYPES.map(td => <button key={td.id} onClick={() => setStdFilter(td.id)} style={{ ...sx.bsm(td.color), background: stdFilter === td.id ? `${td.color}30` : `${td.color}10`, border: `1px solid ${td.color}44`, fontWeight: stdFilter === td.id ? 700 : 400 }}>{td.icon} {pickTypeLabel(td.id)}</button>)}
-          <button onClick={addAllOfType} title={t("actions.bulk_of_type","Alle {type} der aktuellen Liste hinzufügen").replace("{type}", pickTypeLabel(stdFilter))} style={{
+          {TYPES.map(td => <button type="button" key={td.id} onClick={() => setStdFilter(td.id)} style={{ ...sx.bsm(td.color), background: stdFilter === td.id ? `${td.color}30` : `${td.color}10`, border: `1px solid ${td.color}44`, fontWeight: stdFilter === td.id ? 700 : 400 }}>{td.icon} {pickTypeLabel(td.id)}</button>)}
+          <button type="button" onClick={addAllOfType} title={t("actions.bulk_of_type","Alle {type} der aktuellen Liste hinzufügen").replace("{type}", pickTypeLabel(stdFilter))} style={{
             ...sx.bsm(C.teal), background: `${C.teal}18`, border: `1px solid ${C.teal}55`,
             marginLeft: "auto", fontSize: 10, fontWeight: 700,
           }}>+ {t("actions.bulk_of_type_btn","Alle dieser Sorte")}</button>
@@ -206,7 +206,7 @@ export default function CharActions({ char, setChar }) {
                   {(a.toHit || pickDamage(a)) && <div style={{ display: "flex", gap: 6, marginBottom: 4 }}>{a.toHit && <span style={sx.tag(col)}>🎯 {a.toHit}</span>}{pickDamage(a) && pickDamage(a) !== "—" && <span style={sx.tag(col)}>💥 {pickDamage(a)}</span>}</div>}
                   <div style={{ fontSize: 12, color: C.textDim, lineHeight: 1.5 }}>{pickDesc(a)}</div>
                 </div>
-                <button onClick={() => !already && addStd(a)} style={{ ...sx.btn(already ? C.textDim : col), opacity: already ? .5 : 1, flexShrink: 0, fontSize: 10, padding: "5px 10px" }}>
+                <button type="button" onClick={() => !already && addStd(a)} style={{ ...sx.btn(already ? C.textDim : col), opacity: already ? .5 : 1, flexShrink: 0, fontSize: 10, padding: "5px 10px" }}>
                   {already ? `✓ ${t("actions.already_added","Drin")}` : `+ ${t("actions.add","Hinzufügen")}`}
                 </button>
               </div>
@@ -219,7 +219,7 @@ export default function CharActions({ char, setChar }) {
         <div style={sx.ct}>{editId ? t("actions.edit_title","Aktion bearbeiten") : t("actions.new_title","Neue Aktion")}</div>
         <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
           {TYPES.map(td => (
-            <button key={td.id} onClick={() => setForm(p => ({ ...p, type: td.id }))} style={{ flex: 1, padding: "10px 6px", borderRadius: 10, cursor: "pointer", border: `2px solid ${form.type === td.id ? td.color : C.border}`, background: form.type === td.id ? `${td.color}22` : "transparent", color: form.type === td.id ? td.color : C.textDim, fontFamily: FH, fontSize: 11, fontWeight: 700, transition: "all .15s" }}>{td.icon} {pickTypeLabel(td.id)}</button>
+            <button type="button" key={td.id} onClick={() => setForm(p => ({ ...p, type: td.id }))} style={{ flex: 1, padding: "10px 6px", borderRadius: 10, cursor: "pointer", border: `2px solid ${form.type === td.id ? td.color : C.border}`, background: form.type === td.id ? `${td.color}22` : "transparent", color: form.type === td.id ? td.color : C.textDim, fontFamily: FH, fontSize: 11, fontWeight: 700, transition: "all .15s" }}>{td.icon} {pickTypeLabel(td.id)}</button>
           ))}
         </div>
         <div style={sx.g3}>
@@ -232,8 +232,8 @@ export default function CharActions({ char, setChar }) {
         </div>
         <div style={{ marginTop: 10 }}><label style={sx.lbl}>{t("actions.field_desc","Beschreibung")}</label><textarea value={form.description} onChange={e => setForm(p => ({ ...p, description: e.target.value }))} style={{ ...sx.ta, height: 72 }} placeholder={t("actions.ph_desc","Effekt, Bedingungen, Sonderregeln...")} /></div>
         <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-          <button onClick={save} style={sx.btn(C.green)}>{t("action.save","Speichern")}</button>
-          <button onClick={() => setShowForm(false)} style={sx.btn(C.textDim)}>{t("action.cancel","Abbrechen")}</button>
+          <button type="button" onClick={save} style={sx.btn(C.green)}>{t("action.save","Speichern")}</button>
+          <button type="button" onClick={() => setShowForm(false)} style={sx.btn(C.textDim)}>{t("action.cancel","Abbrechen")}</button>
         </div>
       </div>}
 
@@ -263,13 +263,13 @@ export default function CharActions({ char, setChar }) {
                     {aRange && aRange !== "—" && <span style={sx.tag(color)}>{aRange}</span>}
                   </div>
                   <div style={{ display: "flex", gap: 4 }}>
-                    <button onClick={() => openEdit(action)} style={sx.bsm(C.gold)}>✎</button>
-                    <button onClick={() => {
+                    <button type="button" onClick={() => openEdit(action)} style={sx.bsm(C.gold)}>✎</button>
+                    <button type="button" onClick={() => {
                       const pinned = char.pinnedActionIds || [];
                       const next = pinned.includes(action.id) ? pinned.filter(x => x !== action.id) : [...pinned, action.id];
                       setChar(p => ({ ...p, pinnedActionIds: next }));
                     }} title={t("actions.pin_to_overview","Auf Übersicht anzeigen")} style={{ ...sx.bsm((char.pinnedActionIds || []).includes(action.id) ? C.amber : C.textDim), fontWeight: (char.pinnedActionIds || []).includes(action.id) ? 700 : 400 }}>📌</button>
-                    <button onClick={() => del(action.id)} style={sx.bsm(C.red)}>✕</button>
+                    <button type="button" onClick={() => del(action.id)} style={sx.bsm(C.red)}>✕</button>
                   </div>
                 </div>
                 {(action.toHit || aDamage || action.saveDC) && <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: aDesc ? 5 : 0 }}>

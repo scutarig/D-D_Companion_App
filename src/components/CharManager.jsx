@@ -122,23 +122,23 @@ export default function CharManager() {
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
             <span style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1 }}>{t("char.character_label","CHARAKTER")}</span>
             {chars.map(c => (
-              <button key={c.id} onClick={() => setAid(c.id)} style={{ background: c.id === aid ? "linear-gradient(135deg,#7c3aed44,#5b21b622)" : "transparent", border: `1px solid ${c.id === aid ? C.purple : C.border}`, borderRadius: 20, color: c.id === aid ? C.purpleBright : C.textBright, fontFamily: FH, fontSize: 12, padding: "5px 14px", cursor: "pointer", fontWeight: c.id === aid ? 700 : 400, boxShadow: c.id === aid ? "0 0 12px rgba(124,58,237,0.3)" : "none", transition: "all .2s" }}>
+              <button type="button" key={c.id} onClick={() => setAid(c.id)} style={{ background: c.id === aid ? "linear-gradient(135deg,#7c3aed44,#5b21b622)" : "transparent", border: `1px solid ${c.id === aid ? C.purple : C.border}`, borderRadius: 20, color: c.id === aid ? C.purpleBright : C.textBright, fontFamily: FH, fontSize: 12, padding: "5px 14px", cursor: "pointer", fontWeight: c.id === aid ? 700 : 400, boxShadow: c.id === aid ? "0 0 12px rgba(124,58,237,0.3)" : "none", transition: "all .2s" }}>
                 {c.name} <span style={{ color: C.textDim, fontSize: 10 }}>Lv.{c.level}</span>
               </button>
             ))}
-            <button onClick={addChar} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
-            {chars.length > 1 && <button onClick={() => delChar(aid)} style={sx.bsm(C.red)}>🗑</button>}
+            <button type="button" onClick={addChar} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
+            {chars.length > 1 && <button type="button" onClick={() => delChar(aid)} style={sx.bsm(C.red)}>🗑</button>}
             <label style={{ ...sx.bsm(C.blue), cursor: "pointer" }}>
               {t("char.import_btn","📥 Import")}
               <input type="file" accept=".json" onChange={importJSON} style={{ display: "none" }} />
             </label>
-            <button onClick={exportPDF} title={t("char.pdf_export_title","Charakter-Bogen als PDF drucken/speichern")} style={sx.bsm(C.gold)}>
+            <button type="button" onClick={exportPDF} title={t("char.pdf_export_title","Charakter-Bogen als PDF drucken/speichern")} style={sx.bsm(C.gold)}>
               {t("char.pdf_export_btn","📄 PDF Export")}
             </button>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-            <button onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 {t("header.short_rest","Kurze Rast")}</button>
-            <button onClick={() => setRestMode(restMode === "long_confirm" ? null : "long_confirm")} style={{ ...sx.bsm(C.purple), background: restMode === "long_confirm" ? `${C.purple}30` : `${C.purple}18`, border: `1px solid ${C.purple}55`, fontWeight: 700 }}>🌟 {t("header.long_rest","Lange Rast")}</button>
+            <button type="button" onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 {t("header.short_rest","Kurze Rast")}</button>
+            <button type="button" onClick={() => setRestMode(restMode === "long_confirm" ? null : "long_confirm")} style={{ ...sx.bsm(C.purple), background: restMode === "long_confirm" ? `${C.purple}30` : `${C.purple}18`, border: `1px solid ${C.purple}55`, fontWeight: 700 }}>🌟 {t("header.long_rest","Lange Rast")}</button>
             <span style={{ fontSize: 10, color: C.textDim }}>💾 {t("char.auto_save","Auto-Speichern")}</span>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function CharManager() {
                 {" · "}{t("char.con_mod_label","CON-Mod:")} <strong style={{ color: C.amberBright }}>{conMod >= 0 ? `+${conMod}` : conMod}</strong>
               </div>
               <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 8 }}>
-                <button onClick={doRollHitDie} disabled={hdRemaining <= 0 || active.hp >= active.maxHp} style={{ ...sx.btn(C.teal), opacity: (hdRemaining <= 0 || active.hp >= active.maxHp) ? 0.4 : 1 }}>
+                <button type="button" onClick={doRollHitDie} disabled={hdRemaining <= 0 || active.hp >= active.maxHp} style={{ ...sx.btn(C.teal), opacity: (hdRemaining <= 0 || active.hp >= active.maxHp) ? 0.4 : 1 }}>
                   {t("char.roll_hd_btn","🎲 1 HD würfeln")} (d{hdSize} + {conMod >= 0 ? `+${conMod}` : conMod})
                 </button>
                 <span style={{ fontSize: 11, color: C.textDim }}>{t("char.or_manual","oder manuell:")}</span>
@@ -176,8 +176,8 @@ export default function CharManager() {
                 </div>
               )}
               <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={doShortRest} style={sx.btn(C.tealBright)}>{t("char.complete_short_rest","✓ Kurze Rast abschließen")}</button>
-                <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>{t("char.cancel_word","Abbrechen")}</button>
+                <button type="button" onClick={doShortRest} style={sx.btn(C.tealBright)}>{t("char.complete_short_rest","✓ Kurze Rast abschließen")}</button>
+                <button type="button" onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>{t("char.cancel_word","Abbrechen")}</button>
               </div>
             </div>
           );
@@ -193,7 +193,7 @@ export default function CharManager() {
                 {shortResult.resourcesReset > 0 && <> · <strong style={{ color: C.amberBright }}>{shortResult.resourcesReset} {t("char.resources_reset","Klassen-Ressource(n) zurückgesetzt (Action Surge, Bardische Inspiration, Channel Divinity, Focus Points, Pact Slots…)")}</strong></>}
               </div>
             </div>
-            <button onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>✕</button>
+            <button type="button" onClick={() => { setRestMode(null); setShortHpVal(0); setHdRollLog([]); }} style={sx.bsm(C.textDim)}>✕</button>
           </div>
         )}
 
@@ -212,8 +212,8 @@ export default function CharManager() {
               </ul>
             </div>
             <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={doLongRest} style={sx.btn(C.purple)}>{t("char.do_long_rest","🌟 Lange Rast durchführen")}</button>
-              <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>{t("char.cancel_word","Abbrechen")}</button>
+              <button type="button" onClick={doLongRest} style={sx.btn(C.purple)}>{t("char.do_long_rest","🌟 Lange Rast durchführen")}</button>
+              <button type="button" onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>{t("char.cancel_word","Abbrechen")}</button>
             </div>
           </div>
         )}
@@ -229,7 +229,7 @@ export default function CharManager() {
                 {longResult.resourcesReset > 0 && <> · <strong style={{ color: C.purpleBright }}>{longResult.resourcesReset} {t("char.resources_word","Ressourcen")}</strong> {t("char.reset_word","reset")}</>}
               </div>
             </div>
-            <button onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>✕</button>
+            <button type="button" onClick={() => setRestMode(null)} style={sx.bsm(C.textDim)}>✕</button>
           </div>
         )}
       </div>
@@ -244,7 +244,7 @@ export default function CharManager() {
           ["tokens", `🏷️ ${t("char.tab_tokens","Tokens")}`],
           ["conditions", `⚡ ${t("char.tab_conditions","Conditions")}`],
         ].map(([id, l]) => (
-          <button key={id} onClick={() => setSubtab(id)} style={{ ...sx.nb(subtab === id), flexShrink: 0 }}>{l}</button>
+          <button type="button" key={id} onClick={() => setSubtab(id)} style={{ ...sx.nb(subtab === id), flexShrink: 0 }}>{l}</button>
         ))}
       </div>
 

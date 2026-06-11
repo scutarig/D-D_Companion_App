@@ -35,7 +35,7 @@ export default function MulticlassSpellSlots({ classes, charId }) {
         <span style={{ fontFamily: FH, fontSize: 11, color: C.purpleBright, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
           {t("char.spell_slots_header","🔮 Zauberplätze")}
         </span>
-        <button
+        <button type="button"
           onClick={reset}
           style={{ fontSize: 10, padding: "3px 8px", borderRadius: 5, border: `1px solid ${C.border}`, background: "none", color: C.textDim, cursor: "pointer" }}
         >
@@ -62,7 +62,7 @@ export default function MulticlassSpellSlots({ classes, charId }) {
                     const key = `${lvl}_${i}`;
                     const isUsed = !!used[key];
                     return (
-                      <button
+                      <button type="button"
                         key={i}
                         onClick={() => toggle(key)}
                         title={isUsed ? t("char.slot_used_title","Verbraucht — klicken zum Zurücksetzen") : t("char.slot_avail_title","Verfügbar — klicken zum Verbrauchen")}
@@ -98,7 +98,7 @@ export default function MulticlassSpellSlots({ classes, charId }) {
               const key = `pact_${i}`;
               const isUsed = !!used[key];
               return (
-                <button
+                <button type="button"
                   key={i}
                   onClick={() => toggle(key)}
                   style={{

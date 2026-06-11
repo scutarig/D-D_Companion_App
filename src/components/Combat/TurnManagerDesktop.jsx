@@ -56,7 +56,7 @@ export default function TurnManagerDesktop() {
                 {state.fighters.length} {t("combat.fighters","Kämpfer")}
               </div>
             </div>
-            <button
+            <button type="button"
               onClick={() => setArchiveOpen(true)}
               title={t("combat.archive","Kampf-Archiv")}
               style={{ ...sx.bsm(C.gold), padding: "5px 9px", fontSize: 12, position: "relative" }}
@@ -113,7 +113,7 @@ export default function TurnManagerDesktop() {
 
           <div style={{ display: "flex", gap: 6 }}>
             {!isVictory && (
-              <button
+              <button type="button"
                 onClick={handleEndTurn}
                 style={{ flex: 1, ...sx.btn(C.green), fontSize: 14, padding: "12px 16px", fontWeight: 700 }}
               >
@@ -125,7 +125,7 @@ export default function TurnManagerDesktop() {
                 🎉 {t("combat.victory","Victory!")}
               </div>
             )}
-            <button onClick={handleEndCombat} style={{ ...sx.bsm(C.red), padding: "10px 16px", fontSize: 12 }}>
+            <button type="button" onClick={handleEndCombat} style={{ ...sx.bsm(C.red), padding: "10px 16px", fontSize: 12 }}>
               ⊗ {t("combat.end_combat","End Combat")}
             </button>
           </div>

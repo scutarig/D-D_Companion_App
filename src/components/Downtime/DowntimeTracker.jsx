@@ -82,7 +82,7 @@ export default function DowntimeTracker() {
               </span>
             )}
           </div>
-          <button onClick={() => setHistShow(p => !p)} style={{ ...sx.bsm(C.textDim), fontSize: 10 }}>
+          <button type="button" onClick={() => setHistShow(p => !p)} style={{ ...sx.bsm(C.textDim), fontSize: 10 }}>
             {t("dt.history_btn","📋 Verlauf")} {history.length > 0 ? `(${history.length})` : ""}
           </button>
         </div>
@@ -143,18 +143,18 @@ export default function DowntimeTracker() {
                       <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
                         <span style={{ fontSize: 11, color: C.textDim }}>{t("dt.days_word","Tage:")}</span>
                         {[-1, +1, +3, +5, +10].map(d => (
-                          <button key={d} onClick={() => addDays(entry.id, d)}
+                          <button type="button" key={d} onClick={() => addDays(entry.id, d)}
                             style={{ ...sx.bsm(d < 0 ? C.red : C.tealBright), fontSize: 11, padding: "3px 8px" }}>
                             {d > 0 ? `+${d}` : d}
                           </button>
                         ))}
                       </div>
                       <div style={{ display: "flex", gap: 6, marginTop: 10 }}>
-                        <button onClick={() => complete(entry)}
+                        <button type="button" onClick={() => complete(entry)}
                           style={{ ...sx.btn(C.green), flex: 1, fontSize: 11 }}>
                           {t("dt.complete_btn","✓ Abschließen")}
                         </button>
-                        <button onClick={() => abandon(entry)}
+                        <button type="button" onClick={() => abandon(entry)}
                           style={{ ...sx.btn(C.red), fontSize: 11, padding: "6px 14px" }}>
                           {t("dt.cancel_btn","✕ Abbrechen")}
                         </button>
@@ -192,7 +192,7 @@ export default function DowntimeTracker() {
               );
             })}
           </div>
-          <button onClick={() => setHistory([])} style={{ ...sx.bsm(C.red), fontSize: 10, marginTop: 8 }}>{t("dt.clear_history","🗑️ Verlauf leeren")}</button>
+          <button type="button" onClick={() => setHistory([])} style={{ ...sx.bsm(C.red), fontSize: 10, marginTop: 8 }}>{t("dt.clear_history","🗑️ Verlauf leeren")}</button>
         </div>
       )}
 
@@ -208,7 +208,7 @@ export default function DowntimeTracker() {
           const active_ = typeFilter === tk;
           const lbl = tk === "all" ? t("dt.type_all","Alle") : (info?.key ? t(info.key, info.label) : (info?.label || tk));
           return (
-            <button key={tk} onClick={() => setTypeFilter(tk)}
+            <button type="button" key={tk} onClick={() => setTypeFilter(tk)}
               style={{ background: active_ ? (info?.color || C.purple) + "33" : "transparent", border: `1px solid ${active_ ? (info?.color || C.purple) : C.border}`, borderRadius: 4, color: active_ ? (info?.color || C.purpleBright) : C.textDim, fontSize: 10, padding: "3px 8px", cursor: "pointer", fontFamily: FH, fontWeight: active_ ? 700 : 400 }}>
               {lbl}
             </button>
@@ -245,7 +245,7 @@ export default function DowntimeTracker() {
             <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.5, marginBottom: 10 }}>
               {act.desc}
             </div>
-            <button onClick={() => openForm(act)}
+            <button type="button" onClick={() => openForm(act)}
               style={{ ...sx.btn(act.color), width: "100%", fontSize: 11 }}>
               + Starten
             </button>
@@ -261,7 +261,7 @@ export default function DowntimeTracker() {
             onClick={() => setNewForm(null)}>
             <div style={{ ...sx.card, width: "min(400px, 92vw)", maxHeight: "80vh", overflowY: "auto", position: "relative" }}
               onClick={e => e.stopPropagation()}>
-              <button onClick={() => setNewForm(null)}
+              <button type="button" onClick={() => setNewForm(null)}
                 aria-label={t("dt.aria_close","Schließen")}
                 style={{
                   position:"absolute", top:8, right:8, zIndex:10,
@@ -290,10 +290,10 @@ export default function DowntimeTracker() {
                 rows={2} placeholder={t("dt.notes_placeholder","Ziel, Gegenstand, Zauberlevel…")}
                 style={{ ...sx.inp, resize: "vertical", marginBottom: 14 }} />
               <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={confirmStart} style={{ ...sx.btn(act?.color || C.purple), flex: 1 }}>
+                <button type="button" onClick={confirmStart} style={{ ...sx.btn(act?.color || C.purple), flex: 1 }}>
                   ✓ Starten
                 </button>
-                <button onClick={() => setNewForm(null)} style={{ ...sx.btn(C.textDim), padding: "8px 16px" }}>
+                <button type="button" onClick={() => setNewForm(null)} style={{ ...sx.btn(C.textDim), padding: "8px 16px" }}>
                   Abbrechen
                 </button>
               </div>

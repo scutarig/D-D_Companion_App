@@ -85,7 +85,7 @@ export default function LocationsList() {
           <option value="">{t("wb.all_types","Alle Typen")}</option>
           {TYPES.map(ty => <option key={ty} value={ty}>{TYPE_ICON[ty]} {typeLabel(ty)}</option>)}
         </select>
-        <button onClick={startNew} style={sx.btn(C.teal)}>{t("wb.new_location_btn","+ Ort")}</button>
+        <button type="button" onClick={startNew} style={sx.btn(C.teal)}>{t("wb.new_location_btn","+ Ort")}</button>
       </div>
 
       {/* Editor */}
@@ -115,8 +115,8 @@ export default function LocationsList() {
                 style={{ ...sx.inp, minHeight:90, resize:"vertical", fontFamily:"inherit", lineHeight:1.5 }} />
             </div>
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={saveDraft} style={sx.btn(C.tealBright)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
-              <button onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
+              <button type="button" onClick={saveDraft} style={sx.btn(C.tealBright)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
+              <button type="button" onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function LocationsList() {
       {filtered.length === 0 ? (
         <div style={{ textAlign:"center", padding:"40px 20px", color:C.textDim, fontSize:13 }}>
           {locs.length === 0
-            ? <span>{t("wb.no_locations_yet","Noch keine Orte —")} <button onClick={startNew} style={{ background:"none", border:"none", color:C.tealBright, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_location","ersten Ort anlegen")}</button></span>
+            ? <span>{t("wb.no_locations_yet","Noch keine Orte —")} <button type="button" onClick={startNew} style={{ background:"none", border:"none", color:C.tealBright, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_location","ersten Ort anlegen")}</button></span>
             : t("wb.no_results","Keine Ergebnisse")}
         </div>
       ) : (
@@ -157,8 +157,8 @@ export default function LocationsList() {
                     </div>
                   </div>
                   <div style={{ display:"flex", gap:6, flexShrink:0 }}>
-                    <button onClick={() => startEdit(loc)} style={sx.bsm(C.tealBright)}>✏️</button>
-                    <button onClick={() => deleteLoc(loc.id)} style={sx.bsm(C.red)}>🗑️</button>
+                    <button type="button" onClick={() => startEdit(loc)} style={sx.bsm(C.tealBright)}>✏️</button>
+                    <button type="button" onClick={() => deleteLoc(loc.id)} style={sx.bsm(C.red)}>🗑️</button>
                   </div>
                 </div>
                 {loc.description && (

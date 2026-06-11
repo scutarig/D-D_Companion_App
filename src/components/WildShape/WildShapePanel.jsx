@@ -13,7 +13,7 @@ function HoldBtn({ label, onPress, style }) {
   const t = useRef(null), iv = useRef(null);
   const start = e => { e.preventDefault(); onPress(); t.current = setTimeout(() => { iv.current = setInterval(onPress, 80); }, 400); };
   const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); };
-  return <button style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
+  return <button type="button" style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
 }
 
 export default function WildShapePanel({ compact = false }) {
@@ -146,7 +146,7 @@ export default function WildShapePanel({ compact = false }) {
                 {beast.traits.map((tr, i) => <div key={i} style={{ fontSize: 11, color: C.text, marginBottom: 1 }}>• {tr}</div>)}
               </div>
             )}
-            <button onClick={() => onPick(beast)} style={{ ...sx.btn(col), width: "100%", fontSize: 12 }}>
+            <button type="button" onClick={() => onPick(beast)} style={{ ...sx.btn(col), width: "100%", fontSize: 12 }}>
               {t("ws.pick_this_form","✓ Diese Form wählen")}
             </button>
           </div>
@@ -163,14 +163,14 @@ export default function WildShapePanel({ compact = false }) {
         {/* Header */}
         <div style={{ ...sx.jb, marginBottom: 12 }}>
           <div style={{ fontFamily: FH, fontSize: 16, color: C.purpleBright, fontWeight: 700 }}>{title}</div>
-          <button onClick={() => { setPicker(false); setPolyPicker(false); setSelBeast(null); }} style={{ ...sx.bsm(C.textDim) }}>✕</button>
+          <button type="button" onClick={() => { setPicker(false); setPolyPicker(false); setSelBeast(null); }} style={{ ...sx.bsm(C.textDim) }}>✕</button>
         </div>
         {/* Filters */}
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10 }}>
           <div style={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
-            <button onClick={() => setCrFilter("all")} style={{ ...sx.bsm(crFilter==="all"?C.purpleBright:C.textDim), fontSize: 10 }}>{t("ws.cr_all","CR: Alle")}</button>
+            <button type="button" onClick={() => setCrFilter("all")} style={{ ...sx.bsm(crFilter==="all"?C.purpleBright:C.textDim), fontSize: 10 }}>{t("ws.cr_all","CR: Alle")}</button>
             {availCrLabels.map(l => (
-              <button key={l} onClick={() => setCrFilter(crFilter===l?"all":l)}
+              <button type="button" key={l} onClick={() => setCrFilter(crFilter===l?"all":l)}
                 style={{ ...sx.bsm(crFilter===l ? crCol(CR_VALUES[CR_LABELS.indexOf(l)]) : C.textDim), fontSize: 10 }}>
                 {l}
               </button>
@@ -178,17 +178,17 @@ export default function WildShapePanel({ compact = false }) {
           </div>
           <div style={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
             {availSizes.map(s => (
-              <button key={s} onClick={() => setSizeFilter(sizeFilter===s?"all":s)}
+              <button type="button" key={s} onClick={() => setSizeFilter(sizeFilter===s?"all":s)}
                 style={{ ...sx.bsm(sizeFilter===s ? C.tealBright : C.textDim), fontSize: 10 }}>
                 {s}
               </button>
             ))}
           </div>
-          <button onClick={() => setFlyFilter(p=>!p)}
+          <button type="button" onClick={() => setFlyFilter(p=>!p)}
             style={{ ...sx.bsm(flyFilter ? C.blueBright : C.textDim), fontSize: 10 }}>
             🦅 Fly
           </button>
-          <button onClick={() => setSwimFilter(p=>!p)}
+          <button type="button" onClick={() => setSwimFilter(p=>!p)}
             style={{ ...sx.bsm(swimFilter ? C.tealBright : C.textDim), fontSize: 10 }}>
             🌊 Swim
           </button>
@@ -216,7 +216,7 @@ export default function WildShapePanel({ compact = false }) {
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             <span style={{ fontSize: 10, color: C.textDim }}>🛡️ {beast.ac}</span>
-            <button onClick={onRevert} style={{ ...sx.bsm(C.amberBright), fontSize: 11 }}>{t("ws.revert_btn","↩️ Revert")}</button>
+            <button type="button" onClick={onRevert} style={{ ...sx.bsm(C.amberBright), fontSize: 11 }}>{t("ws.revert_btn","↩️ Revert")}</button>
           </div>
         </div>
         {/* HP */}
@@ -238,7 +238,7 @@ export default function WildShapePanel({ compact = false }) {
               onPress={() => setHp(p => Math.max(0, Math.min(beast.hp, p + d)))}
               style={{ ...sx.bsm(d<0?C.red:C.green), fontSize: 10, padding: "2px 6px" }} />
           ))}
-          <button onClick={() => setHp(beast.hp)} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>{t("ws.max_btn","Max")}</button>
+          <button type="button" onClick={() => setHp(beast.hp)} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>{t("ws.max_btn","Max")}</button>
         </div>
         {/* Attacks */}
         {beast.attacks.length > 0 && (
@@ -279,11 +279,11 @@ export default function WildShapePanel({ compact = false }) {
             {Array.from({ length: maxUses }, (_, i) => (
               <span key={i} style={{ width: 14, height: 14, borderRadius: "50%", background: i < usesLeft ? C.purpleBright : "transparent", border: `2px solid ${C.purpleBright}`, display: "inline-block" }} />
             ))}
-            <button onClick={() => setUses(0)} style={{ ...sx.bsm(C.textDim), fontSize: 9, padding: "1px 5px" }}>↺</button>
+            <button type="button" onClick={() => setUses(0)} style={{ ...sx.bsm(C.textDim), fontSize: 9, padding: "1px 5px" }}>↺</button>
             {!form && usesLeft > 0 && (
-              <button onClick={() => setPicker(true)} style={{ ...sx.bsm(C.purpleBright), fontSize: 10 }}>{t("ws.transform_short","🐺 Transform")}</button>
+              <button type="button" onClick={() => setPicker(true)} style={{ ...sx.bsm(C.purpleBright), fontSize: 10 }}>{t("ws.transform_short","🐺 Transform")}</button>
             )}
-            {form && <button onClick={revert} style={{ ...sx.bsm(C.amberBright), fontSize: 10 }}>{t("ws.revert_btn","↩️ Revert")}</button>}
+            {form && <button type="button" onClick={revert} style={{ ...sx.bsm(C.amberBright), fontSize: 10 }}>{t("ws.revert_btn","↩️ Revert")}</button>}
           </div>
         )}
         {/* Active form compact */}
@@ -291,7 +291,7 @@ export default function WildShapePanel({ compact = false }) {
         {polyForm && renderBeastHpBar(polyForm, polyHp, setPolyHp, revertPoly, "Polymorph")}
         {/* Polymorph button (always) */}
         {!polyForm && (
-          <button onClick={() => setPolyPicker(true)} style={{ ...sx.bsm(C.blue), fontSize: 10, marginTop: form ? 6 : 0 }}>{t("ws.polymorph_short","🔮 Polymorph")}</button>
+          <button type="button" onClick={() => setPolyPicker(true)} style={{ ...sx.bsm(C.blue), fontSize: 10, marginTop: form ? 6 : 0 }}>{t("ws.polymorph_short","🔮 Polymorph")}</button>
         )}
         {picker && renderPicker(b => { spendUse(b); }, t("ws.wild_shape_picker_title","🐺 Wild Shape — Form wählen"))}
         {polyPicker && renderPicker(b => { startPoly(b); }, t("ws.polymorph_picker_title","🔮 Polymorph — Form wählen"))}
@@ -314,12 +314,12 @@ export default function WildShapePanel({ compact = false }) {
               <span key={i} style={{ width: 18, height: 18, borderRadius: "50%", background: i < usesLeft ? C.purpleBright : "transparent", border: `2px solid ${C.purpleBright}`, display: "inline-block", cursor: "pointer" }}
                 onClick={() => setUses(i < usesLeft ? uses + 1 : Math.max(0, uses - 1))} />
             ))}
-            <button onClick={() => setUses(0)} style={{ ...sx.bsm(C.textDim), fontSize: 10 }}>{t("ws.rest_label","↺ Rast")}</button>
+            <button type="button" onClick={() => setUses(0)} style={{ ...sx.bsm(C.textDim), fontSize: 10 }}>{t("ws.rest_label","↺ Rast")}</button>
           </div>
           {form
             ? renderBeastHpBar(form, beastHp, setBeastHp, () => { revert(); setUses(p => p + 1); }, "Wild Shape")
             : (
-              <button disabled={usesLeft === 0} onClick={() => setPicker(true)}
+              <button type="button" disabled={usesLeft === 0} onClick={() => setPicker(true)}
                 style={{ ...sx.btn(usesLeft > 0 ? C.purpleBright : C.textDim), opacity: usesLeft > 0 ? 1 : 0.5 }}>
                 {t("ws.pick_form_btn","🐺 Form wählen")} {usesLeft > 0 ? `(${usesLeft} ${t("ws.remaining_word","verbleibend")})` : `(${t("ws.none_word","keine")})`}
               </button>
@@ -336,7 +336,7 @@ export default function WildShapePanel({ compact = false }) {
         {polyForm
           ? renderBeastHpBar(polyForm, polyHp, setPolyHp, revertPoly, "Polymorph")
           : (
-            <button onClick={() => setPolyPicker(true)} style={sx.btn(C.blue)}>
+            <button type="button" onClick={() => setPolyPicker(true)} style={sx.btn(C.blue)}>
               {t("ws.polymorph_pick_btn","🔮 Form wählen")}
             </button>
           )

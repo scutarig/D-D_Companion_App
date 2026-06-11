@@ -68,14 +68,14 @@ function StepList({ steps, onChange }) {
           <input type="checkbox" checked={s.done} onChange={() => toggleStep(s.id)} style={{ cursor:"pointer", accentColor:C.tealBright, flexShrink:0 }} />
           <input value={s.text} onChange={e => editStep(s.id, e.target.value)}
             style={{ ...sx.inp, flex:1, fontSize:12, textDecoration:s.done?"line-through":"none", color:s.done?C.textDim:C.text }} />
-          <button onClick={() => deleteStep(s.id)} style={{ background:"none", border:"none", color:C.textDim, cursor:"pointer", fontSize:13, padding:"0 2px", flexShrink:0 }}>✕</button>
+          <button type="button" onClick={() => deleteStep(s.id)} style={{ background:"none", border:"none", color:C.textDim, cursor:"pointer", fontSize:13, padding:"0 2px", flexShrink:0 }}>✕</button>
         </div>
       ))}
       <div style={{ display:"flex", gap:6, marginTop:4 }}>
         <input value={input} onChange={e => setInput(e.target.value)} placeholder={t("wb.new_step_placeholder","Neues Ziel…")}
           onKeyDown={e => { if (e.key === "Enter") addStep(); }}
           style={{ ...sx.inp, flex:1, fontSize:12 }} />
-        <button onClick={addStep} style={sx.bsm(C.tealBright)}>+</button>
+        <button type="button" onClick={addStep} style={sx.bsm(C.tealBright)}>+</button>
       </div>
     </div>
   );
@@ -189,7 +189,7 @@ export default function QuestList() {
           <option value="alle">{t("wb.all_types","Alle Typen")}</option>
           {Object.entries(PRIORITY).map(([k,v]) => <option key={k} value={k}>{v.icon} {v.label}</option>)}
         </select>
-        <button onClick={startNew} style={sx.btn(C.gold)}>{t("wb.new_quest_btn","+ Quest")}</button>
+        <button type="button" onClick={startNew} style={sx.btn(C.gold)}>{t("wb.new_quest_btn","+ Quest")}</button>
       </div>
 
       {/* Editor */}
@@ -257,7 +257,7 @@ export default function QuestList() {
                   {npcs.map(n => {
                     const sel = (draft.npcIds || []).includes(String(n.id));
                     return (
-                      <button key={n.id} onClick={() => toggleNpc(String(n.id))} style={{
+                      <button type="button" key={n.id} onClick={() => toggleNpc(String(n.id))} style={{
                         background: sel ? `${C.purpleBright}22` : C.surface,
                         border: `1px solid ${sel ? C.purpleBright : C.border}`,
                         borderRadius:6, padding:"3px 9px", fontSize:11,
@@ -280,8 +280,8 @@ export default function QuestList() {
             </div>
 
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={saveDraft} style={sx.btn(C.gold)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
-              <button onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
+              <button type="button" onClick={saveDraft} style={sx.btn(C.gold)} disabled={!draft.name?.trim()}>{t("wb.save_btn","💾 Speichern")}</button>
+              <button type="button" onClick={cancel} style={sx.bsm(C.textDim)}>{t("wb.cancel_btn","Abbrechen")}</button>
             </div>
           </div>
         </div>
@@ -291,7 +291,7 @@ export default function QuestList() {
       {filtered.length === 0 ? (
         <div style={{ textAlign:"center", padding:"40px 20px", color:C.textDim, fontSize:13 }}>
           {quests.length === 0
-            ? <span>{t("wb.no_quests_yet","Noch keine Quests —")} <button onClick={startNew} style={{ background:"none", border:"none", color:C.gold, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_quest","erste Quest anlegen")}</button></span>
+            ? <span>{t("wb.no_quests_yet","Noch keine Quests —")} <button type="button" onClick={startNew} style={{ background:"none", border:"none", color:C.gold, cursor:"pointer", fontSize:13 }}>{t("wb.create_first_quest","erste Quest anlegen")}</button></span>
             : t("wb.no_results","Keine Ergebnisse")}
         </div>
       ) : (
@@ -344,12 +344,12 @@ export default function QuestList() {
 
                   <div style={{ display:"flex", gap:5, flexShrink:0 }}>
                     {/* Quick status cycle */}
-                    <button onClick={() => cycleStatus(q.id)} title={t("wb.status_cycle_title","Status wechseln")}
+                    <button type="button" onClick={() => cycleStatus(q.id)} title={t("wb.status_cycle_title","Status wechseln")}
                       style={{ ...sx.bsm(st.color), fontSize:12, padding:"3px 8px" }}>
                       {st.icon}
                     </button>
-                    <button onClick={() => startEdit(q)} style={sx.bsm(C.gold)}>✏️</button>
-                    <button onClick={() => deleteQuest(q.id)} style={sx.bsm(C.red)}>🗑️</button>
+                    <button type="button" onClick={() => startEdit(q)} style={sx.bsm(C.gold)}>✏️</button>
+                    <button type="button" onClick={() => deleteQuest(q.id)} style={sx.bsm(C.red)}>🗑️</button>
                   </div>
                 </div>
 

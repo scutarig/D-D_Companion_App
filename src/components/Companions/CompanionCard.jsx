@@ -38,7 +38,7 @@ function HoldBtn({ label, onPress, style }) {
   };
   const stop = () => { clearTimeout(t.current); clearInterval(iv.current); };
   return (
-    <button
+    <button type="button"
       style={style}
       onMouseDown={start} onMouseUp={stop} onMouseLeave={stop}
       onTouchStart={start} onTouchEnd={stop}
@@ -88,14 +88,14 @@ export default function CompanionCard({ companion, onEdit, onDelete, onHpChange 
         </div>
         {/* Action buttons */}
         <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
-          <button
+          <button type="button"
             onClick={() => setExpanded((v) => !v)}
             style={{ ...sx.bsm(C.blue), fontSize: 11, padding: "4px 8px" }}
           >
             {expanded ? "▲" : "▼"}
           </button>
-          <button onClick={() => onEdit?.(companion)} style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "4px 8px" }}>✎</button>
-          <button
+          <button type="button" onClick={() => onEdit?.(companion)} style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "4px 8px" }}>✎</button>
+          <button type="button"
             onClick={() => {
               if (window.confirm(moduleT("comp.delete_confirm","\"{name}\" wirklich löschen?").replace("{name}", companion.name))) onDelete?.(companion.id);
             }}

@@ -76,11 +76,11 @@ export default function ConcentrationBanner({ char, setChar }) {
           </div>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
-          <button onClick={() => { setShowSave(p => !p); setSaveResult(null); }}
+          <button type="button" onClick={() => { setShowSave(p => !p); setSaveResult(null); }}
             style={{ ...sx.bsm(C.amberBright), fontSize: 11 }}>
             🎲 CON Save
           </button>
-          <button onClick={doBreak} style={{ ...sx.bsm(C.red), fontSize: 11 }}>
+          <button type="button" onClick={doBreak} style={{ ...sx.bsm(C.red), fontSize: 11 }}>
             ✕ {t("concentration.end","Beenden")}
           </button>
         </div>
@@ -107,7 +107,7 @@ export default function ConcentrationBanner({ char, setChar }) {
                 DC {getConcentrationDC(parseInt(dmgInput) || 0)}
               </div>
             )}
-            <button onClick={rollSave} style={sx.btn(C.amberBright)}>
+            <button type="button" onClick={rollSave} style={sx.btn(C.amberBright)}>
               🎲 {t("concentration.roll","Würfeln")}
             </button>
           </div>

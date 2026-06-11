@@ -30,7 +30,7 @@ export default function WorldbuildingPage() {
       {/* Sub-tabs */}
       <nav style={sx.nav}>
         {TABS.map(tb => (
-          <button key={tb.id} onClick={() => setTab(tb.id)} style={sx.nb(tab === tb.id)}>
+          <button type="button" key={tb.id} onClick={() => setTab(tb.id)} style={sx.nb(tab === tb.id)}>
             {tb.label}
           </button>
         ))}

@@ -49,7 +49,7 @@ export default function TurnManagerMobile() {
         </div>
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
           <UndoRedoButtons undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
-          <button
+          <button type="button"
             onClick={() => setArchiveOpen(true)}
             style={{ ...sx.bsm(C.gold), fontSize: 11, padding: "6px 10px", position: "relative" }}
           >
@@ -64,7 +64,7 @@ export default function TurnManagerMobile() {
               </span>
             )}
           </button>
-          <button onClick={handleEndCombat} style={{ ...sx.bsm(C.red), fontSize: 11, padding: "6px 10px" }}>
+          <button type="button" onClick={handleEndCombat} style={{ ...sx.bsm(C.red), fontSize: 11, padding: "6px 10px" }}>
             ⊗
           </button>
         </div>
@@ -143,7 +143,7 @@ export default function TurnManagerMobile() {
       {/* Bottom: End Turn Button (sticky) */}
       <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
         {!isVictory && (
-          <button
+          <button type="button"
             onClick={handleEndTurn}
             style={{
               flex: 1,

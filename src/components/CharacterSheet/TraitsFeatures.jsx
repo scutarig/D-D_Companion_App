@@ -100,7 +100,7 @@ export default function TraitsFeatures({ char, setChar }) {
             {t("char.traits_autofill_hint","Rasse, Hintergrund, Klasse & Subklasse werden auto-befüllt")}
           </span>
         </div>
-        <button
+        <button type="button"
           onClick={() => setShowCustomForm(p => !p)}
           style={{ ...sx.bsm(C.purple), fontSize: 11, padding: "4px 10px" }}
         >
@@ -190,7 +190,7 @@ export default function TraitsFeatures({ char, setChar }) {
             <label style={sx.lbl}>{t("char.category_lbl","Kategorie")}</label>
             <div style={{ display: "flex", gap: 6 }}>
               {[["trait", t("char.trait_lbl","Trait"), "✦", "#10b981"], ["feature", t("char.feature_lbl","Feature"), "⚡", "#6366f1"]].map(([id, label, icon, col]) => (
-                <button key={id} onClick={() => setCustomForm(p => ({ ...p, category: id }))} style={{
+                <button type="button" key={id} onClick={() => setCustomForm(p => ({ ...p, category: id }))} style={{
                   flex: 1, padding: 7, borderRadius: 8, cursor: "pointer", fontSize: 12,
                   border: `1px solid ${customForm.category === id ? col : C.border}`,
                   background: customForm.category === id ? `${col}22` : "transparent",
@@ -203,11 +203,11 @@ export default function TraitsFeatures({ char, setChar }) {
             </div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={addCustomTrait} disabled={!customForm.name.trim()}
+            <button type="button" onClick={addCustomTrait} disabled={!customForm.name.trim()}
               style={{ ...sx.btn(C.purple), flex: 1, padding: 10, fontSize: 12, fontWeight: 700, opacity: customForm.name.trim() ? 1 : 0.4 }}>
               {t("char.add_custom_btn","＋ Hinzufügen")}
             </button>
-            <button onClick={() => setShowCustomForm(false)} style={{ ...sx.bsm(C.border), padding: "8px 14px", fontSize: 12, color: C.textDim }}>
+            <button type="button" onClick={() => setShowCustomForm(false)} style={{ ...sx.bsm(C.border), padding: "8px 14px", fontSize: 12, color: C.textDim }}>
               {t("combat.cancel_word","Abbrechen")}
             </button>
           </div>
@@ -236,7 +236,7 @@ export default function TraitsFeatures({ char, setChar }) {
                 <div key={trait.id} style={{ position: "relative" }}>
                   <TraitFeatureCard trait={trait} />
                   {trait.source === "Eigenes" && (
-                    <button onClick={() => removeTrait(trait.id)} title={t("char.remove_title","Entfernen")} style={{
+                    <button type="button" onClick={() => removeTrait(trait.id)} title={t("char.remove_title","Entfernen")} style={{
                       position: "absolute", top: 6, right: 6,
                       background: "transparent", border: "none",
                       color: C.textDim, cursor: "pointer", fontSize: 12, padding: "2px 5px", opacity: 0.5,

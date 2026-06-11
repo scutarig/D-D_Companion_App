@@ -112,7 +112,7 @@ export default function DiceRoller({ char, setChar }) {
             {ADV_OPTS.map(({ key, label, color }, i) => {
               const active = adv === key;
               return (
-                <button key={key} onClick={() => setAdvSafe(key)} style={{
+                <button type="button" key={key} onClick={() => setAdvSafe(key)} style={{
                   background:  active ? `${color}33` : "transparent",
                   border:      "none",
                   borderLeft:  i > 0 ? `1px solid ${C.border}` : "none",
@@ -196,7 +196,7 @@ export default function DiceRoller({ char, setChar }) {
           {DICE.map(d => {
             const isRolling = rolling === d;
             return (
-              <button key={d} onClick={() => go(d)} style={{
+              <button type="button" key={d} onClick={() => go(d)} style={{
                 position:     "relative",
                 background:   isRolling
                   ? `radial-gradient(circle,${DC[d]},#000)`
@@ -240,7 +240,7 @@ export default function DiceRoller({ char, setChar }) {
         <div style={sx.card}>
           <div style={{ ...sx.jb, marginBottom:8 }}>
             <div style={sx.ct}>📜 {t("dice.history","Verlauf")}</div>
-            <button onClick={() => setRes([])} style={sx.bsm(C.red)}>{t("dice.clear","Leeren")}</button>
+            <button type="button" onClick={() => setRes([])} style={sx.bsm(C.red)}>{t("dice.clear","Leeren")}</button>
           </div>
 
           {res.map(r => {

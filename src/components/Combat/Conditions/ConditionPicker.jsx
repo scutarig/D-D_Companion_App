@@ -36,7 +36,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
           <div style={{ fontFamily: FH, fontSize: 15, color: C.amber, fontWeight: 700 }}>
             {t("combat.add_condition_title","⚡ Condition hinzufügen")}
           </div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         <div style={{ fontSize: 12, color: C.textDim, marginBottom: 12 }}>
@@ -57,7 +57,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
             const alreadyHas = currentIds.includes(cond.id);
             const isSelected = selected === cond.id;
             return (
-              <button
+              <button type="button"
                 key={cond.id}
                 onClick={() => !alreadyHas && setSelected(isSelected ? null : cond.id)}
                 title={condDesc(cond)}
@@ -101,7 +101,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
               {/* Duration */}
               <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
                 <span style={{ fontSize: 11, color: C.textDim }}>{t("combat.duration_label","Dauer:")}</span>
-                <button
+                <button type="button"
                   onClick={() => setDuration("permanent")}
                   style={{
                     ...sx.bsm(duration === "permanent" ? C.amber : C.border),
@@ -111,7 +111,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
                 >
                   {t("combat.duration_permanent","Permanent")}
                 </button>
-                <button
+                <button type="button"
                   onClick={() => setDuration("rounds")}
                   style={{
                     ...sx.bsm(duration === "rounds" ? C.teal : C.border),
@@ -137,7 +137,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
         })()}
 
         {/* Add button */}
-        <button
+        <button type="button"
           onClick={handleAdd}
           disabled={!selected}
           style={{

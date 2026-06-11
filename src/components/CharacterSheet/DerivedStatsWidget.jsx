@@ -28,7 +28,7 @@ export default function DerivedStatsWidget({ stats, isMobile }) {
     <div style={{ ...sx.card, padding: 0, overflow: "hidden" }}>
 
       {/* ── Header / Toggle ── */}
-      <button
+      <button type="button"
         onClick={() => setOpen(p => !p)}
         style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",

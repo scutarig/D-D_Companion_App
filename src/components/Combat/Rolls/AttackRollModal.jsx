@@ -57,7 +57,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>{t("combat.attack_roll_title","⚔️ Attack Roll")}</div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Attacker */}
@@ -114,7 +114,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
 
         {/* Advantage / Disadvantage */}
         <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
-          <button onClick={toggleAdv} style={{
+          <button type="button" onClick={toggleAdv} style={{
             flex: 1, padding: "8px", borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: advantage ? 700 : 400, transition: "all .15s",
             border: `1px solid ${advantage ? C.green : C.border}`,
             background: advantage ? `${C.green}22` : C.surface,
@@ -122,7 +122,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
           }}>
             ▲ Advantage
           </button>
-          <button onClick={toggleDis} style={{
+          <button type="button" onClick={toggleDis} style={{
             flex: 1, padding: "8px", borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: disadvantage ? 700 : 400, transition: "all .15s",
             border: `1px solid ${disadvantage ? C.red : C.border}`,
             background: disadvantage ? `${C.red}22` : C.surface,
@@ -134,7 +134,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
 
         {/* Roll */}
         {!result ? (
-          <button
+          <button type="button"
             onClick={handleRoll}
             disabled={!targetId}
             style={{
@@ -164,15 +164,15 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
             />
             <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
               {(result.hit || crit) ? (
-                <button onClick={() => onHit?.(result, targetId, crit)} style={{ ...sx.btn(C.green), flex: 1, padding: "10px", fontSize: 13 }}>
+                <button type="button" onClick={() => onHit?.(result, targetId, crit)} style={{ ...sx.btn(C.green), flex: 1, padding: "10px", fontSize: 13 }}>
                   {t("combat.roll_damage_btn","💥 Schaden würfeln")}
                 </button>
               ) : (
-                <button onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "10px", fontSize: 13 }}>
+                <button type="button" onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "10px", fontSize: 13 }}>
                   {t("combat.miss_close","✓ Daneben — Schließen")}
                 </button>
               )}
-              <button onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), padding: "10px 14px", fontSize: 12 }}>
+              <button type="button" onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), padding: "10px 14px", fontSize: 12 }}>
                 {t("combat.reroll_neu","🎲 Neu")}
               </button>
             </div>

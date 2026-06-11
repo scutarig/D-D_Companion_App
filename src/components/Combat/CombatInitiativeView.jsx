@@ -211,7 +211,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
             </div>
           </div>
         </div>
-        <button onClick={() => setShowPresets(!showPresets)} style={{ ...sx.bsm(C.amber), padding: "8px 12px", fontSize: 12 }}>
+        <button type="button" onClick={() => setShowPresets(!showPresets)} style={{ ...sx.bsm(C.amber), padding: "8px 12px", fontSize: 12 }}>
           {t("combat.presets_btn","💾 Presets")}
         </button>
       </div>
@@ -263,7 +263,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
               })}
             </div>
             {selectedChars.length > 0 && (
-              <button onClick={addSelectedChars} style={{ ...sx.btn(C.blue), width: "100%", marginBottom: 10, padding: "10px", fontSize: 13 }}>
+              <button type="button" onClick={addSelectedChars} style={{ ...sx.btn(C.blue), width: "100%", marginBottom: 10, padding: "10px", fontSize: 13 }}>
                 👤 {selectedChars.length} {selectedChars.length > 1 ? t("combat.add_n_chars_plural","Charaktere hinzufügen") : t("combat.add_n_chars_singular","Charakter hinzufügen")}
               </button>
             )}
@@ -274,7 +274,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
         )}
 
         {/* Manual player button */}
-        <button
+        <button type="button"
           onClick={() => setShowManualPlayer(!showManualPlayer)}
           style={{
             width: "100%", padding: "9px", borderRadius: 8, cursor: "pointer", fontSize: 13, transition: "all .15s",
@@ -319,7 +319,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                 </div>
               ))}
             </div>
-            <button
+            <button type="button"
               onClick={addManualPlayer}
               disabled={!manualPlayer.name.trim()}
               style={{
@@ -338,7 +338,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
         <SectionHead color={C.redBright} icon="💀" title={t("combat.enemies_section","Gegner / Feinde")} />
 
         {/* Bestiary */}
-        <button
+        <button type="button"
           onClick={() => { setShowBestiary(!showBestiary); if (showManualEnemy) setShowManualEnemy(false); }}
           style={{
             width: "100%", padding: "10px 14px", borderRadius: 8, cursor: "pointer", fontSize: 13, fontWeight: 600, transition: "all .15s",
@@ -399,7 +399,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                     style={{ ...sx.inp, width: 60, fontSize: 13, padding: "6px 8px" }}
                   />
                 </div>
-                <button onClick={addFromBestiary} style={{ ...sx.btn(C.red), padding: "8px 14px", fontSize: 13 }}>
+                <button type="button" onClick={addFromBestiary} style={{ ...sx.btn(C.red), padding: "8px 14px", fontSize: 13 }}>
                   {t("combat.add_short_btn","＋ Hinzufügen")}
                 </button>
               </div>
@@ -408,7 +408,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
         )}
 
         {/* Manual enemy */}
-        <button
+        <button type="button"
           onClick={() => { setShowManualEnemy(!showManualEnemy); if (showBestiary) setShowBestiary(false); }}
           style={{
             width: "100%", padding: "9px", borderRadius: 8, cursor: "pointer", fontSize: 13, transition: "all .15s",
@@ -448,7 +448,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
                 </div>
               ))}
             </div>
-            <button
+            <button type="button"
               onClick={addManualEnemy}
               disabled={!manualEnemy.name.trim()}
               style={{
@@ -470,7 +470,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
             icon="🎲"
             title={`${t("combat.fighters_word","Kämpfer")} (${state.fighters.length})`}
             action={
-              <button
+              <button type="button"
                 onClick={rollAllInitiative}
                 style={{ ...sx.btn(C.amber), padding: "7px 14px", fontSize: 12, color: C.bg }}
               >
@@ -529,7 +529,7 @@ export default function CombatInitiativeView({ onStartCombat }) {
               {t("combat.init_warning","⚠ Initiative noch nicht gewürfelt — oder manuell oben eingeben")}
             </div>
           )}
-          <button
+          <button type="button"
             onClick={handleStartCombat}
             style={{
               width: "100%",
@@ -585,7 +585,7 @@ function FighterRow({ fighter, color, onRemove, onInitChange }) {
         />
       </div>
 
-      <button
+      <button type="button"
         onClick={onRemove}
         style={{
           minWidth: 36, width: 36, height: 36, borderRadius: 6, border: `1px solid ${C.red}40`,

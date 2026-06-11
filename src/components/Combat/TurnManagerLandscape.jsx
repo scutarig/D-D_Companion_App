@@ -48,7 +48,7 @@ export default function TurnManagerLandscape() {
           </div>
           {/* Undo / Redo */}
           <UndoRedoButtons undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
-          <button onClick={handleEndCombat} style={{ ...sx.bsm(C.red), fontSize: 10, padding: "4px 8px" }}>⊗</button>
+          <button type="button" onClick={handleEndCombat} style={{ ...sx.bsm(C.red), fontSize: 10, padding: "4px 8px" }}>⊗</button>
         </div>
 
         {/* Fighter card — compact */}
@@ -69,7 +69,7 @@ export default function TurnManagerLandscape() {
         {/* End Turn */}
         <div style={{ flexShrink: 0 }}>
           {!isVictory ? (
-            <button
+            <button type="button"
               onClick={handleEndTurn}
               style={{ ...sx.btn(C.green), width: "100%", padding: "9px", fontSize: 13, fontWeight: 700 }}
             >
@@ -128,10 +128,10 @@ export function UndoRedoButtons({ undo, redo, canUndo, canRedo, small = true }) 
 
   return (
     <div style={{ display: "flex", gap: 4 }}>
-      <button onClick={undo} disabled={!canUndo} title={t("combat.undo","Rückgängig (Strg+Z)")} style={btnStyle(canUndo)}>
+      <button type="button" onClick={undo} disabled={!canUndo} title={t("combat.undo","Rückgängig (Strg+Z)")} style={btnStyle(canUndo)}>
         ⟲
       </button>
-      <button onClick={redo} disabled={!canRedo} title={t("combat.redo","Wiederholen (Strg+Y)")} style={btnStyle(canRedo)}>
+      <button type="button" onClick={redo} disabled={!canRedo} title={t("combat.redo","Wiederholen (Strg+Y)")} style={btnStyle(canRedo)}>
         ⟳
       </button>
     </div>

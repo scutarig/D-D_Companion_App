@@ -73,7 +73,7 @@ export default function VoelkerRef() {
             { id:"2024", label: t("ref.edition_2024", "PHB 2024") },
             { id:"2014", label: t("ref.edition_legacy", "Legacy") },
           ].map(opt => (
-            <button key={opt.id} onClick={() => setEditionFilter(opt.id)}
+            <button type="button" key={opt.id} onClick={() => setEditionFilter(opt.id)}
               style={{
                 flex:1, padding:"4px 6px", borderRadius:5, fontSize:10,
                 fontFamily:FH, fontWeight:700, letterSpacing:0.3,

@@ -108,7 +108,7 @@ export default function NpcList() {
       <div style={{ width: mob ? "100%" : 260, flexShrink: 0, display: "flex", flexDirection: "column", gap: 6 }}>
 
         {/* DM Mode Toggle */}
-        <button
+        <button type="button"
           onClick={() => dmMode ? setDmMode(false) : setDmConfirm(true)}
           style={{
             background: dmMode ? `${C.purple}22` : "transparent",
@@ -145,17 +145,17 @@ export default function NpcList() {
 
         {/* Tab-Switcher */}
         <div style={{ display: "flex", gap: 4 }}>
-          <button onClick={() => setView("list")}    style={{ ...sx.nb(view === "list"),    flex: 1, fontSize: 11 }}>{t("npc.my_npcs","👥 Meine NPCs")}</button>
-          <button onClick={() => { setView("catalog"); setSel(null); setShowForm(false); }} style={{ ...sx.nb(view === "catalog"), flex: 1, fontSize: 11 }}>{t("npc.catalog_tab","📖 D&D Katalog")}</button>
+          <button type="button" onClick={() => setView("list")}    style={{ ...sx.nb(view === "list"),    flex: 1, fontSize: 11 }}>{t("npc.my_npcs","👥 Meine NPCs")}</button>
+          <button type="button" onClick={() => { setView("catalog"); setSel(null); setShowForm(false); }} style={{ ...sx.nb(view === "catalog"), flex: 1, fontSize: 11 }}>{t("npc.catalog_tab","📖 D&D Katalog")}</button>
         </div>
 
         {/* ── Meine NPCs ── */}
         {view === "list" && <>
-          <button onClick={() => { setForm(blank); setSel(null); setShowForm(true); }} style={{ ...sx.btn(C.purple), width: "100%" }}>{t("npc.new_npc_btn","+ Neuer NPC")}</button>
+          <button type="button" onClick={() => { setForm(blank); setSel(null); setShowForm(true); }} style={{ ...sx.btn(C.purple), width: "100%" }}>{t("npc.new_npc_btn","+ Neuer NPC")}</button>
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("npc.search_placeholder","🔍 Name, Rolle, Ort...")} style={sx.inp} />
           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
             {["Alle", "freundlich", "neutral", "feindlich", "unbekannt"].map(a => (
-              <button key={a} onClick={() => setAttFilter(a)} style={{ ...sx.bsm(ATT_COL[a] || C.textDim), fontWeight: attFilter === a ? 700 : 400, background: attFilter === a ? `${ATT_COL[a] || C.textDim}22` : `${ATT_COL[a] || C.textDim}08` }}>
+              <button type="button" key={a} onClick={() => setAttFilter(a)} style={{ ...sx.bsm(ATT_COL[a] || C.textDim), fontWeight: attFilter === a ? 700 : 400, background: attFilter === a ? `${ATT_COL[a] || C.textDim}22` : `${ATT_COL[a] || C.textDim}08` }}>
                 {ATT_ICON[a] || "📋"} {ATT_LABEL[a] || a}
               </button>
             ))}
@@ -190,7 +190,7 @@ export default function NpcList() {
           <input value={catSearch} onChange={e => setCatSearch(e.target.value)} placeholder={t("npc.cat_search_placeholder","🔍 Name, Abenteuer, Ort...")} style={sx.inp} />
           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
             {["Alle", "freundlich", "neutral", "feindlich"].map(a => (
-              <button key={a} onClick={() => setCatAtt(a)} style={{ ...sx.bsm(ATT_COL[a] || C.textDim), fontWeight: catAtt === a ? 700 : 400, background: catAtt === a ? `${ATT_COL[a] || C.textDim}22` : `${ATT_COL[a] || C.textDim}08` }}>
+              <button type="button" key={a} onClick={() => setCatAtt(a)} style={{ ...sx.bsm(ATT_COL[a] || C.textDim), fontWeight: catAtt === a ? 700 : 400, background: catAtt === a ? `${ATT_COL[a] || C.textDim}22` : `${ATT_COL[a] || C.textDim}08` }}>
                 {ATT_ICON[a] || "📋"} {ATT_LABEL[a] || a}
               </button>
             ))}
@@ -210,7 +210,7 @@ export default function NpcList() {
                       {npc.role} · <span style={{ color: C.purple }}>{sourceOf(npc.id)}</span>
                     </div>
                   </div>
-                  <button onClick={e => { e.stopPropagation(); addFromCatalog(npc); }}
+                  <button type="button" onClick={e => { e.stopPropagation(); addFromCatalog(npc); }}
                     style={{ ...sx.bsm(inList ? C.textDim : C.green), fontSize: 10, padding: "2px 7px", flexShrink: 0, opacity: inList ? 0.5 : 1 }}
                     title={inList ? t("npc.already_in_list","Bereits in Liste") : t("npc.add_to_list_title","Zu meinen NPCs hinzufügen")}>
                     {inList ? "✓" : "+"}
@@ -254,8 +254,8 @@ export default function NpcList() {
           <div style={{ marginTop: 8 }}><label style={sx.lbl}>{t("npc.desc_label","Beschreibung / Aussehen")}</label><textarea value={form.desc} onChange={e => setForm(p => ({ ...p, desc: e.target.value }))} style={{ ...sx.ta, height: 80 }} placeholder={t("npc.desc_placeholder","Aussehen, Persönlichkeit...")} /></div>
           <div style={{ marginTop: 6 }}><label style={sx.lbl}>{t("npc.dm_notes_label","DM-Notizen / Plot-Verbindungen")}</label><textarea value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} style={{ ...sx.ta, height: 60 }} placeholder={t("npc.dm_notes_placeholder","Geheimnis, Verbindungen, Quest-Relevanz...")} /></div>
           <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-            <button onClick={save} style={sx.btn(C.green)}>{t("npc.save_btn","Speichern")}</button>
-            <button onClick={() => setShowForm(false)} style={sx.btn(C.textDim)}>{t("npc.cancel_btn","Abbrechen")}</button>
+            <button type="button" onClick={save} style={sx.btn(C.green)}>{t("npc.save_btn","Speichern")}</button>
+            <button type="button" onClick={() => setShowForm(false)} style={sx.btn(C.textDim)}>{t("npc.cancel_btn","Abbrechen")}</button>
           </div>
         </div>}
 
@@ -270,13 +270,13 @@ export default function NpcList() {
             </div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "flex-end" }}>
               {view === "catalog" && !npcs.some(n => n.name === sel.name) && (
-                <button onClick={() => addFromCatalog(sel)} style={sx.bsm(C.green)}>{t("npc.add_to_my_btn","+ Zu meinen NPCs")}</button>
+                <button type="button" onClick={() => addFromCatalog(sel)} style={sx.bsm(C.green)}>{t("npc.add_to_my_btn","+ Zu meinen NPCs")}</button>
               )}
               {sel.custom && (
-                <button onClick={() => { setForm({ ...sel }); setShowForm(true); }} style={sx.bsm(C.gold)}>{t("npc.edit_btn","✎ Bearbeiten")}</button>
+                <button type="button" onClick={() => { setForm({ ...sel }); setShowForm(true); }} style={sx.bsm(C.gold)}>{t("npc.edit_btn","✎ Bearbeiten")}</button>
               )}
               {npcs.some(n => n.id === sel.id) && (
-                <button onClick={() => del(sel.id)} style={sx.bsm(C.red)}>{t("npc.delete_btn","🗑 Löschen")}</button>
+                <button type="button" onClick={() => del(sel.id)} style={sx.bsm(C.red)}>{t("npc.delete_btn","🗑 Löschen")}</button>
               )}
             </div>
           </div>
@@ -323,11 +323,11 @@ export default function NpcList() {
               <strong style={{ color: C.amberBright }}>{t("npc.confirm_dm_warning","⚠️ Nur aktivieren, wenn du der DM bist!")}</strong> {t("npc.confirm_dm_subwarning","Spieler sollten diese Notizen nicht sehen.")}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={() => { setDmMode(true); setDmConfirm(false); }}
+              <button type="button" onClick={() => { setDmMode(true); setDmConfirm(false); }}
                 style={{ ...sx.btn(C.purpleBright), flex: 1 }}>
                 {t("npc.confirm_dm_yes","✓ Ja, ich bin der DM")}
               </button>
-              <button onClick={() => setDmConfirm(false)}
+              <button type="button" onClick={() => setDmConfirm(false)}
                 style={{ ...sx.btn(C.textDim), padding: "8px 16px" }}>
                 {t("npc.cancel_btn","Abbrechen")}
               </button>

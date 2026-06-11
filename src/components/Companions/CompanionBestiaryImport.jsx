@@ -91,7 +91,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
       {/* CR Filter */}
       <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
         {CR_OPTS.map((cr) => (
-          <button
+          <button type="button"
             key={cr}
             onClick={() => { setCrFilter(cr); setSelected(null); }}
             style={{
@@ -161,7 +161,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
 
       {/* Actions */}
       <div style={{ display: "flex", gap: 8 }}>
-        <button
+        <button type="button"
           onClick={handleImport}
           disabled={!selected}
           style={{
@@ -173,7 +173,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
         >
           {selected ? t("comp.import_btn","✓ {name} importieren").replace("{name}", `"${selected.name}"`) : t("comp.import_select_btn","Monster wählen")}
         </button>
-        <button onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
+        <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
           {t("prof.cancel_btn","Abbrechen")}
         </button>
       </div>

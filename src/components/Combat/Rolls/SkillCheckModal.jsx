@@ -90,7 +90,7 @@ export default function SkillCheckModal({ onClose }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.teal, fontWeight: 700 }}>🎯 Skill Check</div>
-          <button onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Creature selector */}
@@ -113,7 +113,7 @@ export default function SkillCheckModal({ onClose }) {
               const score = fighter.abilityScores[ab.key] ?? 10;
               const mod = abilityMod(score);
               return (
-                <button
+                <button type="button"
                   key={ab.key}
                   onClick={() => setActiveAbility(activeAbility === ab.key ? null : ab.key)}
                   title={`${ab.label}: ${score} (${fmtMod(mod)})`}
@@ -235,7 +235,7 @@ export default function SkillCheckModal({ onClose }) {
 
         {/* Adv / Dis */}
         <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
-          <button
+          <button type="button"
             onClick={toggleAdv}
             style={{
               flex: 1, padding: "7px", borderRadius: 6, cursor: "pointer", fontSize: 11,
@@ -247,7 +247,7 @@ export default function SkillCheckModal({ onClose }) {
           >
             ▲ Advantage
           </button>
-          <button
+          <button type="button"
             onClick={toggleDis}
             style={{
               flex: 1, padding: "7px", borderRadius: 6, cursor: "pointer", fontSize: 11,
@@ -263,7 +263,7 @@ export default function SkillCheckModal({ onClose }) {
 
         {/* Roll / Result */}
         {!result ? (
-          <button
+          <button type="button"
             onClick={handleRoll}
             disabled={!selectedSkill}
             style={{
@@ -294,10 +294,10 @@ export default function SkillCheckModal({ onClose }) {
               extra={result.success ? t("combat.skill_succeeded","✓ Geschafft!") : t("combat.skill_failed","✗ Misslungen!")}
             />
             <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-              <button onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "9px", fontSize: 12 }}>
+              <button type="button" onClick={() => setResult(null)} style={{ ...sx.bsm(C.purple), flex: 1, padding: "9px", fontSize: 12 }}>
                 {t("combat.reroll_nochmal","🎲 Nochmal")}
               </button>
-              <button onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "9px", fontSize: 12 }}>
+              <button type="button" onClick={onClose} style={{ ...sx.btn(C.teal), flex: 1, padding: "9px", fontSize: 12 }}>
                 {t("combat.close_word","Schließen")}
               </button>
             </div>

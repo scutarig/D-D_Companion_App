@@ -34,7 +34,7 @@ export default function ActionEconomyBar() {
         {ACTIONS.map(({ key, icon, label, color }) => {
           const active = fighter.actions[key];
           return (
-            <button
+            <button type="button"
               key={key}
               onClick={() => toggle(key)}
               style={{
@@ -80,7 +80,7 @@ export default function ActionEconomyBar() {
         </div>
 
         {/* Free Interaction toggle */}
-        <button
+        <button type="button"
           onClick={() => toggle("freeInteraction")}
           style={{
             flex: 1, borderRadius: 8, padding: "8px 10px", cursor: "pointer", transition: "all .2s",

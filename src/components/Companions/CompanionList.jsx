@@ -39,13 +39,13 @@ export default function CompanionList({ companions, add, update, remove, updateH
     <div>
       {/* Add buttons */}
       <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
-        <button
+        <button type="button"
           onClick={() => { setShowForm(true); setEditTarget(null); setShowTemplates(false); }}
           style={{ ...sx.btn(C.green), flex: "1 1 200px", padding: "11px", fontSize: 13, fontWeight: 700 }}
         >
           {t("comp.add_custom_btn","🐾 Eigener Begleiter")}
         </button>
-        <button
+        <button type="button"
           onClick={() => { setShowTemplates(!showTemplates); setShowForm(false); setEditTarget(null); }}
           style={{ ...sx.btn(showTemplates ? C.amber : C.purple), flex: "1 1 200px", padding: "11px", fontSize: 13, fontWeight: 700 }}
         >
@@ -77,7 +77,7 @@ export default function CompanionList({ companions, add, update, remove, updateH
                   </div>
                   <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.5 }}>{tpl.desc}</div>
                 </div>
-                <button
+                <button type="button"
                   onClick={() => handleAddTemplate(tpl)}
                   style={{ ...sx.btn(C.green), fontSize: 11, padding: "6px 12px", flexShrink: 0 }}
                 >

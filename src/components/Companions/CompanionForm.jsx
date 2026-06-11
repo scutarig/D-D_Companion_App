@@ -123,12 +123,12 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
           <div style={{ fontFamily: FH, fontSize: 15, color: C.green, fontWeight: 700 }}>
             {isEdit ? t("comp.edit_title","✎ Begleiter bearbeiten") : t("comp.new_title","🐾 Neuer Begleiter")}
           </div>
-          <button onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
+          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Bestiary import button (only for new) */}
         {!isEdit && !showBestiary && (
-          <button
+          <button type="button"
             onClick={() => setShowBestiary(true)}
             style={{ ...sx.bsm(C.amber), width: "100%", padding: "9px", fontSize: 12, marginBottom: 14, textAlign: "left" }}
           >
@@ -150,7 +150,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
             {/* Tab bar */}
             <div style={{ display: "flex", gap: 4, marginBottom: 14, background: C.surface, borderRadius: 8, padding: 3 }}>
               {TABS.map((tb) => (
-                <button
+                <button type="button"
                   key={tb.id}
                   onClick={() => setActiveTab(tb.id)}
                   style={{
@@ -188,7 +188,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                   <label style={sx.lbl}>{t("wb.type_label","Typ")}</label>
                   <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
                     {TYPES.map((ty) => (
-                      <button
+                      <button type="button"
                         key={ty.id}
                         onClick={() => set("type", ty.id)}
                         style={{
@@ -331,7 +331,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
 
             {/* Save / Cancel */}
             <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
-              <button
+              <button type="button"
                 onClick={handleSave}
                 disabled={!form.name.trim()}
                 style={{
@@ -342,7 +342,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
               >
                 {isEdit ? t("comp.save_changes","✓ Änderungen speichern") : t("comp.add_btn","＋ Begleiter hinzufügen")}
               </button>
-              <button onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
+              <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
                 {t("prof.cancel_btn","Abbrechen")}
               </button>
             </div>
