@@ -45,11 +45,45 @@ export const C = {
   text:      "#b5b2bc",
   textDim:   "#625f69",
   textBright:"#eeeef0",
+
+  // Brand accent gold (header/nav borders) — D5 audit fix
+  brandGold: "#c9a84c",
+
+  // Header gradient stops
+  hdrTop:    "#1c1826",
+  hdrBot:    "#16121e",
+  navBg:     "#141120",
+
+  // Nav active button (purple gradient)
+  navActiveFrom: "#6d4fc2",
+  navActiveTo:   "#4a2fa0",
 };
 
 // ─── Typography ──────────────────────────────────────────────────────────────
 export const F  = "'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif";
 export const FH = "'Cinzel','Inter','Segoe UI',Georgia,serif";
+
+// ─── Spacing scale (4-px base) ──────────────────────────────────────────────
+// Token names use t-shirt sizing; raw numbers for direct use in inline styles.
+export const S = {
+  xs: 4,
+  sm: 6,
+  md: 8,
+  lg: 10,
+  xl: 12,
+  xxl: 14,
+  xxxl: 16,
+  jumbo: 20,
+};
+
+// ─── Radius scale ───────────────────────────────────────────────────────────
+export const R = {
+  sm: 6,
+  md: 8,
+  lg: 10,
+  xl: 14,
+  pill: 999,
+};
 
 // ─── Style Factories ─────────────────────────────────────────────────────────
 export const sx = {
@@ -65,7 +99,7 @@ export const sx = {
 
   // Header — warm charcoal, subtle gold border
   hdr: {
-    background: "linear-gradient(180deg,#1c1826 0%,#16121e 100%)",
+    background: `linear-gradient(180deg,${C.hdrTop} 0%,${C.hdrBot} 100%)`,
     borderBottom: `1px solid rgba(201,168,76,0.18)`,
     padding: "9px 14px",
     display: "flex",
@@ -96,7 +130,7 @@ export const sx = {
 
   // Nav — same warm dark, amber accent for active tab
   nav: {
-    background: "#141120",
+    background: C.navBg,
     borderBottom: "1px solid rgba(201,168,76,0.1)",
     display: "flex",
     overflowX: "auto",
@@ -112,7 +146,7 @@ export const sx = {
   // Nav button — active: amber/gold, inactive: ghost
   nb: (a) => ({
     background: a
-      ? "linear-gradient(135deg,#6d4fc2,#4a2fa0)"
+      ? `linear-gradient(135deg,${C.navActiveFrom},${C.navActiveTo})`
       : "transparent",
     border: a ? "none" : `1px solid rgba(255,255,255,0.08)`,
     borderRadius: 10,

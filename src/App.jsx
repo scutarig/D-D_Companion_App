@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useRef, useEffect } from "react";
+import { lazy, Suspense, useState, useRef, useEffect, useMemo } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
@@ -120,7 +120,7 @@ function OfflineBanner() {
 const snb = (active) => ({
   display: "flex", alignItems: "center", justifyContent: "center",
   width: "100%",
-  background: active ? "linear-gradient(135deg,#6d4fc2 0%,#4a2fa0 100%)" : "transparent",
+  background: active ? `linear-gradient(135deg,${C.navActiveFrom} 0%,${C.navActiveTo} 100%)` : "transparent",
   border: "1px solid transparent",
   borderRadius: 9,
   color: active ? "#f0eeff" : C.textDim,
@@ -312,7 +312,7 @@ function AppInner() {
   const [charOpen, setCharOpen] = useState(false);
 
   // Auto-tab-switch when mode changes and current tab is invalid
-  const allowedTabIds = tabsForMode(mode).map(td => td.id);
+  const allowedTabIds = useMemo(() => tabsForMode(mode).map(td => td.id), [mode]);
   useEffect(() => {
     if (!allowedTabIds.includes(tab)) {
       setTab(mode === "dm" ? "combat" : "overview");
@@ -526,8 +526,8 @@ function AppInner() {
   const [autoUsed, setAutoUsed]   = usePersist(`tokens_auto_used_${aid}`, {});
 
   // Slots live aus Klasse+Level ableiten (wie in Tokens.jsx)
-  const slotDef = buildSlotsForLevel(active?.klass, active?.level) ?? [];
-  const slots   = slotDef.map(s => ({ ...s, used: usedSlots[s.lv] || 0 }));
+  const slotDef = useMemo(() => buildSlotsForLevel(active?.klass, active?.level) ?? [], [active?.klass, active?.level]);
+  const slots   = useMemo(() => slotDef.map(s => ({ ...s, used: usedSlots[s.lv] || 0 })), [slotDef, usedSlots]);
   const setSlots = (updater) => setUsedSlots(prev => {
     const cur  = slotDef.map(s => ({ ...s, used: prev[s.lv] || 0 }));
     const next = typeof updater === "function" ? updater(cur) : updater;
@@ -595,8 +595,11 @@ function AppInner() {
   const sidebarTopIds = isDM ? SIDEBAR_TOP_DM : SIDEBAR_TOP_PLAYER;
   const sidebarTopTabs = sidebarTopIds.map(id => ALL_TABS.find(td => td.id === id)).filter(Boolean);
 
+  const currentTabLabel = ALL_TABS.find(td => td.id === tab);
+  const loaderLabel = currentTabLabel ? (currentTabLabel.labelKey ? t(currentTabLabel.labelKey, currentTabLabel.label) : currentTabLabel.label) : null;
+
   const content = (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader label={loaderLabel} />}>
       {tab==="overview"    && <Overview  slots={slots} setSlots={setSlots} custom={custom} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} />}
       {tab==="char"        && <CharManager />}
       {tab==="notes"       && <Notes />}

@@ -3,9 +3,11 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
 import { useI18n } from "../../i18n/index.js";
+import { useDialog } from "../../hooks/useDialog.jsx";
 
 export default function PresetManager({ onClose }) {
   const { t } = useI18n();
+  const { alert } = useDialog();
   const { state } = useCombat();
   const { savePreset, loadPreset, deletePreset } = useCombatActions();
   const [newPresetName, setNewPresetName] = useState("");

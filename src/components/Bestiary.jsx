@@ -5,6 +5,7 @@ import { useIsMobile } from "../hooks/useIsMobile.js";
 import { modStr } from "../utils/helpers.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useI18n } from "../i18n/index.js";
+import { useDialog } from "../hooks/useDialog.jsx";
 
 // ─── Inline DE→EN ⇄ EN→DE translation for common monster stat patterns ──
 // Bestiary monster traits/actions follow regex patterns. Auto-translate.
@@ -101,6 +102,7 @@ const pickMonsterField = (lang, en, de) => (lang === "de" ? (de || MONSTER_TEXT_
  */
 export default function Bestiary() {
   const { t, lang } = useI18n();
+  const { confirm } = useDialog();
   const mob = useIsMobile(900);
   const tMon = (en, de) => pickMonsterField(lang, en, de);
   const [custom, setCustom] = usePersist("bestiary_v4", []);
@@ -486,7 +488,7 @@ export default function Bestiary() {
                         ✓ Lokal gespeichert · pro Monster
                       </div>
                       <button type="button"
-                        onClick={() => { if (window.confirm(t("bestiary.delete_note","Notiz löschen?"))) setDmNotes(p => { const np = {...p}; delete np[sel.id]; return np; }); }}
+                        onClick={async () => { if (await confirm(t("bestiary.delete_note","Notiz löschen?"), { danger: true })) setDmNotes(p => { const np = {...p}; delete np[sel.id]; return np; }); }}
                         style={{ ...sx.bsm(C.red), fontSize:9, padding:"3px 7px" }}
                       >
                         🗑 Löschen

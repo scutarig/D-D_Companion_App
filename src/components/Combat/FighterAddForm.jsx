@@ -3,9 +3,11 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useFighter } from "../../hooks/useFighter.js";
 import { MONSTERS as Bestiary } from "../../data/monsters.js";
 import { useI18n } from "../../i18n/index.js";
+import { useDialog } from "../../hooks/useDialog.jsx";
 
 export default function FighterAddForm({ onClose }) {
   const { t } = useI18n();
+  const { alert } = useDialog();
   const { addFighter } = useFighter();
 
   const [mode, setMode] = useState("manual"); // "manual" or "bestiary"

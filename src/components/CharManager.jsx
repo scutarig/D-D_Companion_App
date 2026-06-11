@@ -5,6 +5,7 @@ import { newChar } from "../utils/helpers.js";
 import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
+import { useDialog } from "../hooks/useDialog.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
 import CharSheet from "./CharSheet.jsx";
@@ -17,6 +18,7 @@ import CurrencyTab from "./CurrencyTab.jsx";
 
 export default function CharManager() {
   const { t } = useI18n();
+  const { alert } = useDialog();
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
   const [subtab, _setSubtab] = useState("sheet");
   // Wrapper: bei Subtab-Wechsel Scroll zurück zum Anfang

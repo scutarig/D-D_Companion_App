@@ -7,6 +7,7 @@ import { useChar } from "../context/CharContext.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { getAllCantripLimits } from "../data/spellPreparation.js";
 import { useI18n } from "../i18n/index.js";
+import { useDialog } from "../hooks/useDialog.jsx";
 
 const KLASS_TO_SPELL_TAG = {
   Barde: "Bard", Druide: "Druid", Hexenmeister: "Warlock", Kleriker: "Cleric",
@@ -15,6 +16,7 @@ const KLASS_TO_SPELL_TAG = {
 
 export default function Spellbook({ charId }) {
   const { t } = useI18n();
+  const { confirm } = useDialog();
   const mob = useIsMobile(900);
   const [known, setKnown] = usePersist(`spells_known_${charId||"g"}`, []);
   const [prepared, setPrepared] = usePersist(`spells_prep_${charId||"g"}`, []);
@@ -67,24 +69,26 @@ export default function Spellbook({ charId }) {
     return null;
   };
 
-  const togKnown = id => setKnown(p => {
-    if (p.includes(id)) return p.filter(x => x !== id); // remove always allowed
+  const togKnown = async id => {
+    if (known.includes(id)) { setKnown(p => p.filter(x => x !== id)); return; }
     const spell = SPELLS.find(s => s.id === id);
     const warning = checkCantripLimit(spell);
-    if (warning && !window.confirm(`${t("sb.cantrip_limit_warning","⚠ Cantrip-Limit erreicht")}\n\n${warning}`)) {
-      return p; // user declined → keep state
+    if (warning) {
+      const ok = await confirm(`${warning}`, { title: t("sb.cantrip_limit_warning","⚠ Cantrip-Limit erreicht"), danger: true });
+      if (!ok) return;
     }
-    return [...p, id];
-  });
+    setKnown(p => p.includes(id) ? p : [...p, id]);
+  };
 
-  const togPrep = id => {
+  const togPrep = async id => {
     if (!known.includes(id)) {
       const spell = SPELLS.find(s => s.id === id);
       const warning = checkCantripLimit(spell);
-      if (warning && !window.confirm(`${t("sb.cantrip_limit_warning","⚠ Cantrip-Limit erreicht")}\n\n${warning}`)) {
-        return; // user declined → don't add to known or prepared
+      if (warning) {
+        const ok = await confirm(`${warning}`, { title: t("sb.cantrip_limit_warning","⚠ Cantrip-Limit erreicht"), danger: true });
+        if (!ok) return;
       }
-      setKnown(p => [...p, id]);
+      setKnown(p => p.includes(id) ? p : [...p, id]);
     }
     setPrepared(p => p.includes(id) ? p.filter(x => x !== id) : [...p, id]);
   };

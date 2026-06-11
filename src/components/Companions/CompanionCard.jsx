@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { t as moduleT, useI18n } from "../../i18n/index.js";
+import { useDialog } from "../../hooks/useDialog.jsx";
 import CompanionStats from "./CompanionStats.jsx";
 
 // Companion type config
@@ -54,6 +55,7 @@ function HoldBtn({ label, onPress, style }) {
  */
 export default function CompanionCard({ companion, onEdit, onDelete, onHpChange }) {
   const { t } = useI18n();
+  const { confirm } = useDialog();
   const [expanded, setExpanded] = useState(false);
   const cfg = typeOf(companion.type);
   const cfgLabel = cfg.key ? t(cfg.key, cfg.label) : cfg.label;
@@ -96,8 +98,9 @@ export default function CompanionCard({ companion, onEdit, onDelete, onHpChange 
           </button>
           <button type="button" onClick={() => onEdit?.(companion)} style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "4px 8px" }}>✎</button>
           <button type="button"
-            onClick={() => {
-              if (window.confirm(moduleT("comp.delete_confirm","\"{name}\" wirklich löschen?").replace("{name}", companion.name))) onDelete?.(companion.id);
+            onClick={async () => {
+              const ok = await confirm(t("comp.delete_confirm","\"{name}\" wirklich löschen?").replace("{name}", companion.name), { danger: true });
+              if (ok) onDelete?.(companion.id);
             }}
             style={{ ...sx.bsm(C.red), fontSize: 11, padding: "4px 8px" }}
           >

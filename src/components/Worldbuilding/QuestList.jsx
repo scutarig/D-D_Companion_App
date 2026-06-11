@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
 import { t as moduleT, useI18n } from "../../i18n/index.js";
+import { useDialog } from "../../hooks/useDialog.jsx";
 import { fmtDate } from "../../utils/locale.js";
 
 // ── Constants ────────────────────────────────────────────────────────────────

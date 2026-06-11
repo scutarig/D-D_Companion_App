@@ -13,6 +13,16 @@ const store = {
     if (typeof window !== "undefined" && window.storage) { window.storage.set(key, val); return; }
     try { localStorage.setItem(key, val); } catch (e) {
       if (typeof console !== "undefined") console.warn("[usePersist] storage write failed for", key, e);
+      // A6 audit fix: notify user once on quota exceeded
+      const isQuota = e && (e.name === "QuotaExceededError" || e.code === 22 || /quota/i.test(String(e.message)));
+      if (isQuota && typeof window !== "undefined" && !window.__dndQuotaNotified) {
+        window.__dndQuotaNotified = true;
+        try {
+          const msg = "⚠ Speicher voll: Browser-localStorage hat sein Limit erreicht. Bitte alte Charaktere exportieren und löschen, sonst gehen weitere Änderungen verloren.";
+          // Use setTimeout so we don't block the failing setter
+          setTimeout(() => { try { alert(msg); } catch (_) {} }, 0);
+        } catch (_) {}
+      }
     }
   },
 };

@@ -5,6 +5,7 @@ import { useIsMobile } from "../hooks/useIsMobile.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useCombatArchive } from "../hooks/useCombatArchive.js";
 import { useI18n } from "../i18n/index.js";
+import { useDialog } from "../hooks/useDialog.jsx";
 
 /**
  * Encounter Builder — DM-Mode Tool für Encounter-Design mit CR-Budget
@@ -57,6 +58,7 @@ const getThreshold = (level) => XP_THRESHOLDS.find(t => t.lv === level) || XP_TH
 
 export default function EncounterBuilder() {
   const { t } = useI18n();
+  const { confirm } = useDialog();
   const mob = useIsMobile(900);
   const [partyLevel, setPartyLevel] = usePersist("eb_party_level", 1);
   const [partySize, setPartySize] = usePersist("eb_party_size", 4);
@@ -108,8 +110,8 @@ export default function EncounterBuilder() {
     setEncounter(prev => prev.map(e => e.monsterId === m.id ? { ...e, count: e.count - 1 } : e).filter(e => e.count > 0));
   };
 
-  const clearEncounter = () => {
-    if (window.confirm(t("encounter.confirm_clear","Encounter wirklich leeren?"))) setEncounter([]);
+  const clearEncounter = async () => {
+    if (await confirm(t("encounter.confirm_clear","Encounter wirklich leeren?"), { danger: true })) setEncounter([]);
   };
 
   const saveEncounter = () => {
@@ -125,8 +127,8 @@ export default function EncounterBuilder() {
     setDifficulty(enc.difficulty);
   };
 
-  const deleteEncounter = (id) => {
-    if (window.confirm(t("encounter.confirm_delete_saved","Gespeicherten Encounter löschen?"))) {
+  const deleteEncounter = async (id) => {
+    if (await confirm(t("encounter.confirm_delete_saved","Gespeicherten Encounter löschen?"), { danger: true })) {
       setSavedEncounters(p => p.filter(e => e.id !== id));
     }
   };
@@ -345,7 +347,7 @@ export default function EncounterBuilder() {
                         {date} · {a.rounds} Runden · Spieler {survived}/{total} · Gegner besiegt {defeated}
                       </div>
                     </div>
-                    <button type="button" onClick={() => { if (window.confirm(t("encounter.confirm_delete_archive","Archiv-Eintrag löschen?"))) deleteArchive(a.id); }}
+                    <button type="button" onClick={async () => { if (await confirm(t("encounter.confirm_delete_archive","Archiv-Eintrag löschen?"), { danger: true })) deleteArchive(a.id); }}
                       style={{ ...sx.bsm(C.red), fontSize: 10, padding: "2px 6px" }}>🗑</button>
                   </div>
                 );
