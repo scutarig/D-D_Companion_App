@@ -6,6 +6,7 @@ import { SPELLS } from "../data/spells.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { getAllCantripLimits } from "../data/spellPreparation.js";
+import { useI18n } from "../i18n/index.js";
 
 const KLASS_TO_SPELL_TAG = {
   Barde: "Bard", Druide: "Druid", Hexenmeister: "Warlock", Kleriker: "Cleric",
@@ -13,6 +14,7 @@ const KLASS_TO_SPELL_TAG = {
 };
 
 export default function Spellbook({ charId }) {
+  const { t } = useI18n();
   const mob = useIsMobile(900);
   const [known, setKnown] = usePersist(`spells_known_${charId||"g"}`, []);
   const [prepared, setPrepared] = usePersist(`spells_prep_${charId||"g"}`, []);
@@ -55,7 +57,11 @@ export default function Spellbook({ charId }) {
       if (!spellMatchesClass) continue;
       const currentClassCount = knownCantrips.filter(s => tag && (s.cls?.includes(tag) || s.cls === tag)).length;
       if (currentClassCount >= limit.limit) {
-        return `${limit.klassName} (Lv${limit.level}) hat bereits ${currentClassCount}/${limit.limit} Cantrips bekannt. Trotzdem hinzufügen?`;
+        return t("sb.cantrip_limit_warning_body","{klass} (Lv{lv}) hat bereits {cur}/{max} Cantrips bekannt. Trotzdem hinzufügen?")
+          .replace("{klass}", limit.klassName)
+          .replace("{lv}", limit.level)
+          .replace("{cur}", currentClassCount)
+          .replace("{max}", limit.limit);
       }
     }
     return null;
@@ -65,7 +71,7 @@ export default function Spellbook({ charId }) {
     if (p.includes(id)) return p.filter(x => x !== id); // remove always allowed
     const spell = SPELLS.find(s => s.id === id);
     const warning = checkCantripLimit(spell);
-    if (warning && !window.confirm(`⚠ Cantrip-Limit erreicht\n\n${warning}`)) {
+    if (warning && !window.confirm(`${t("sb.cantrip_limit_warning","⚠ Cantrip-Limit erreicht")}\n\n${warning}`)) {
       return p; // user declined → keep state
     }
     return [...p, id];
@@ -75,14 +81,14 @@ export default function Spellbook({ charId }) {
     if (!known.includes(id)) {
       const spell = SPELLS.find(s => s.id === id);
       const warning = checkCantripLimit(spell);
-      if (warning && !window.confirm(`⚠ Cantrip-Limit erreicht\n\n${warning}`)) {
+      if (warning && !window.confirm(`${t("sb.cantrip_limit_warning","⚠ Cantrip-Limit erreicht")}\n\n${warning}`)) {
         return; // user declined → don't add to known or prepared
       }
       setKnown(p => [...p, id]);
     }
     setPrepared(p => p.includes(id) ? p.filter(x => x !== id) : [...p, id]);
   };
-  const ll = l => l===0?"Cantrip":`Level ${l}`;
+  const ll = l => l===0 ? t("sb.cantrip_label","Cantrip") : `${t("sb.level_label","Level")} ${l}`;
 
   // Build "X/Y" status for cantrip section header
   const cantripStatus = (() => {
@@ -99,17 +105,17 @@ export default function Spellbook({ charId }) {
     <div style={{display:"flex",gap:12,flexDirection:mob?"column":"row"}}>
       <div style={{width:mob?"100%":255,flexShrink:0}}>
         <div style={{display:"flex",gap:3,marginBottom:8,flexWrap:"wrap"}}>
-          <button onClick={() => setView("db")} style={sx.nb(view==="db")}>📚 Alle</button>
-          <button onClick={() => setView("known")} style={{...sx.nb(view==="known"),display:"flex",alignItems:"center",gap:4}}>⭐ Bekannt <span style={{background:C.blue,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px"}}>{known.length}</span></button>
-          <button onClick={() => setView("prepared")} style={{...sx.nb(view==="prepared"),display:"flex",alignItems:"center",gap:4}}>🕯️ Vorbereitet <span style={{background:C.gold,color:C.bg,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px",fontWeight:700}}>{prepared.length}</span></button>
+          <button onClick={() => setView("db")} style={sx.nb(view==="db")}>{t("sb.all_tab","📚 Alle")}</button>
+          <button onClick={() => setView("known")} style={{...sx.nb(view==="known"),display:"flex",alignItems:"center",gap:4}}>{t("sb.known_tab","⭐ Bekannt")} <span style={{background:C.blue,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px"}}>{known.length}</span></button>
+          <button onClick={() => setView("prepared")} style={{...sx.nb(view==="prepared"),display:"flex",alignItems:"center",gap:4}}>{t("sb.prepared_tab","🕯️ Vorbereitet")} <span style={{background:C.gold,color:C.bg,borderRadius:"50%",minWidth:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10,padding:"0 2px",fontWeight:700}}>{prepared.length}</span></button>
         </div>
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="🔍 Zauber suchen…" style={{...sx.inp,marginBottom:6}}/>
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("sb.search_placeholder","🔍 Zauber suchen…")} style={{...sx.inp,marginBottom:6}}/>
         <select value={cf} onChange={e => setCf(e.target.value)} style={{...sx.sel,marginBottom:6}}>{CLASSES.map(c => <option key={c}>{c}</option>)}</select>
         <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:6}}>
           {LVS.map(l => <button key={l} onClick={() => setLf(l)} style={{background:lf===l?SPC[parseInt(l)]||C.gold+"44":"transparent",border:`1px solid ${lf===l?SPC[parseInt(l)]||C.gold:C.border}`,borderRadius:3,color:lf===l?C.textBright:C.textDim,fontSize:10,padding:"3px 7px",cursor:"pointer",fontFamily:FH}}>{l==="All"?"All":l==="0"?"C":l}</button>)}
         </div>
         <button onClick={() => setRitualOnly(p => !p)} style={{background:ritualOnly?`${C.amberBright}22`:"transparent",border:`1px solid ${ritualOnly?C.amberBright:C.border}`,borderRadius:5,color:ritualOnly?C.amberBright:C.textDim,fontSize:10,padding:"3px 10px",cursor:"pointer",fontFamily:FH,marginBottom:8,width:"100%",fontWeight:ritualOnly?700:400}}>
-          ℛ {ritualOnly ? "Nur Rituale" : "Alle Zauber"}{ritualOnly && " ✓"}
+          {ritualOnly ? t("sb.rituals_only","ℛ Nur Rituale") : "ℛ " + t("sb.all_spells","Alle Zauber")}{ritualOnly && " ✓"}
         </button>
         <div style={{maxHeight:mob?"none":"55vh",overflowY:"auto"}}>
           {Object.keys(grps).sort((a,b)=>+a-+b).map(lv => (
@@ -119,7 +125,7 @@ export default function Spellbook({ charId }) {
                 {+lv === 0 && cantripStatus && cantripStatus.length > 0 && (
                   <div style={{display:"flex",gap:3,flexWrap:"wrap"}}>
                     {cantripStatus.map(s => (
-                      <span key={s.name} title={`${s.name}: ${s.count} von ${s.limit} Cantrips bekannt`} style={{
+                      <span key={s.name} title={t("sb.cantrips_status_title","{klass}: {n} von {max} Cantrips bekannt").replace("{klass}", s.name).replace("{n}", s.count).replace("{max}", s.limit)} style={{
                         fontSize: 9, padding: "1px 5px", borderRadius: 4, fontWeight: 700, letterSpacing: 0.3,
                         background: s.isOver ? `${C.redBright}22` : s.isFull ? `${C.amberBright}22` : `${C.greenBright}1a`,
                         border: `1px solid ${s.isOver ? C.redBright : s.isFull ? C.amberBright : C.greenBright}55`,
@@ -148,23 +154,23 @@ export default function Spellbook({ charId }) {
               ))}
             </div>
           ))}
-          {shown.length===0&&<div style={{color:C.textDim,fontStyle:"italic",fontSize:13,padding:8}}>Keine Zauber.</div>}
+          {shown.length===0&&<div style={{color:C.textDim,fontStyle:"italic",fontSize:13,padding:8}}>{t("sb.no_spells","Keine Zauber.")}</div>}
         </div>
       </div>
       <div style={{flex:1}}>
         {sel ? (
           <div style={sx.card}>
             <div style={{...sx.jb,marginBottom:10}}>
-              <div><div style={{fontFamily:FH,fontSize:20,color:C.purpleBright,fontWeight:700}}>{sel.name}</div><div style={{color:C.textDim,fontSize:13}}>{sel.lv===0?"Cantrip":ll(sel.lv)} · {sel.school}</div></div>
+              <div><div style={{fontFamily:FH,fontSize:20,color:C.purpleBright,fontWeight:700}}>{sel.name}</div><div style={{color:C.textDim,fontSize:13}}>{sel.lv===0?t("sb.cantrip_label","Cantrip"):ll(sel.lv)} · {sel.school}</div></div>
               <div style={{display:"flex",gap:8}}>
-                <button onClick={() => togPrep(sel.id)} style={sx.btn(prepared.includes(sel.id)?C.goldDim:C.purple)}>{prepared.includes(sel.id)?"🕯️ Vorbereitet":"🕯️ Vorbereiten"}</button>
-                <button onClick={() => togKnown(sel.id)} style={sx.btn(known.includes(sel.id)?C.blue:C.textDim)}>{known.includes(sel.id)?"★ Bekannt":"☆ Merken"}</button>
+                <button onClick={() => togPrep(sel.id)} style={sx.btn(prepared.includes(sel.id)?C.goldDim:C.purple)}>{prepared.includes(sel.id)?t("sb.prepared_btn","🕯️ Vorbereitet"):t("sb.prepare_btn","🕯️ Vorbereiten")}</button>
+                <button onClick={() => togKnown(sel.id)} style={sx.btn(known.includes(sel.id)?C.blue:C.textDim)}>{known.includes(sel.id)?t("sb.known_btn","★ Bekannt"):t("sb.memorize_btn","☆ Merken")}</button>
               </div>
             </div>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:12}}>
               {[["⏱",sel.ct],["📏",sel.range],["⏳",sel.dur],["🔤",sel.comp]].map(([ic,v]) => <span key={ic} style={sx.tag(C.blue)}>{ic} {v}</span>)}
-              {sel.ritual && <span style={sx.tag(C.amberBright)}>ℛ Ritual (+10 Min.)</span>}
-              {sel.concentration && <span style={sx.tag(C.purpleBright)}>🔮 Konzentration</span>}
+              {sel.ritual && <span style={sx.tag(C.amberBright)}>{t("sb.ritual_tag","ℛ Ritual (+10 Min.)")}</span>}
+              {sel.concentration && <span style={sx.tag(C.purpleBright)}>{t("sb.concentration_tag","🔮 Konzentration")}</span>}
             </div>
 
             {/* PHB 2024 Bonus-Action Spell Rule Warning */}
@@ -184,9 +190,9 @@ export default function Spellbook({ charId }) {
               }}>
                 <span style={{fontSize: 16, lineHeight: 1}}>⚠️</span>
                 <div>
-                  <b style={{fontFamily:FH, fontWeight:700, letterSpacing:0.4}}>PHB 2024 — Bonus-Action Spell Rule:</b>
+                  <b style={{fontFamily:FH, fontWeight:700, letterSpacing:0.4}}>{t("sb.bonus_action_rule","PHB 2024 — Bonus-Action Spell Rule:")}</b>
                   <div style={{color: C.text, fontSize: 12, lineHeight: 1.5, marginTop: 3}}>
-                    Wenn du diesen Zauber als <b>Bonus Action</b> wirkst, darfst du auf demselben Zug als Action nur einen <b>Cantrip mit 1 Aktion Casting Time</b> wirken (keinen Lv1+ Spell).
+                    {t("sb.bonus_action_desc","Wenn du diesen Zauber als Bonus Action wirkst, darfst du auf demselben Zug als Action nur einen Cantrip mit 1 Aktion Casting Time wirken (keinen Lv1+ Spell).")}
                   </div>
                 </div>
               </div>
@@ -195,12 +201,12 @@ export default function Spellbook({ charId }) {
             <div style={{fontSize:15,color:C.text,lineHeight:1.7,marginBottom:12}}>{sel.desc}</div>
             {sel.upcast?.length > 0 && (
               <div style={{background:`${C.gold}0d`,border:`1px solid ${C.gold}30`,borderRadius:10,padding:"10px 14px",marginBottom:12}}>
-                <div style={{fontSize:11,color:C.gold,fontFamily:FH,fontWeight:700,letterSpacing:.5,marginBottom:8}}>📈 AUF HÖHEREM LEVEL</div>
+                <div style={{fontSize:11,color:C.gold,fontFamily:FH,fontWeight:700,letterSpacing:.5,marginBottom:8}}>{t("sb.upcast_header","📈 AUF HÖHEREM LEVEL")}</div>
                 <div style={{display:"flex",flexDirection:"column",gap:5}}>
                   {/* Basiszeile */}
                   <div style={{display:"flex",alignItems:"center",gap:8}}>
                     <span style={{fontSize:11,background:SPC[sel.lv]||C.purple,borderRadius:6,padding:"2px 8px",color:"#fff",fontWeight:700,fontFamily:FH,minWidth:36,textAlign:"center"}}>{sel.lv===0?"C":SLOT_LABELS[sel.lv]}</span>
-                    <span style={{fontSize:12,color:C.textBright}}>{sel.dmg!=="—"?`💥 ${sel.dmg}`:""} <span style={{color:C.textDim,fontSize:11}}>(Basis)</span></span>
+                    <span style={{fontSize:12,color:C.textBright}}>{sel.dmg!=="—"?`💥 ${sel.dmg}`:""} <span style={{color:C.textDim,fontSize:11}}>{t("sb.base_label","(Basis)")}</span></span>
                   </div>
                   {sel.upcast.map((u,i) => (
                     <div key={i} style={{display:"flex",alignItems:"center",gap:8}}>
@@ -216,20 +222,20 @@ export default function Spellbook({ charId }) {
             )}
             {sel.ritual && (
               <div style={{background:`${C.amberBright}0d`,border:`1px solid ${C.amberBright}30`,borderRadius:8,padding:"8px 12px",marginBottom:10,fontSize:12,color:C.amberBright}}>
-                <span style={{fontWeight:700,fontFamily:FH}}>ℛ Ritual-Casting:</span>{" "}
-                Kann ohne Zauberplatz gewirkt werden (+10 Minuten Wirken). Zauberer können Ritual-Zauber aus dem Zauberbuch wirken, ohne sie vorzubereiten.
+                <span style={{fontWeight:700,fontFamily:FH}}>{t("sb.ritual_casting_label","ℛ Ritual-Casting:")}</span>{" "}
+                {t("sb.ritual_casting_desc","Kann ohne Zauberplatz gewirkt werden (+10 Minuten Wirken). Zauberer können Ritual-Zauber aus dem Zauberbuch wirken, ohne sie vorzubereiten.")}
               </div>
             )}
-            <div style={{borderTop:`1px solid ${C.border}`,paddingTop:8,fontSize:12,color:C.textDim}}>Klassen: {sel.cls.join(", ")}</div>
+            <div style={{borderTop:`1px solid ${C.border}`,paddingTop:8,fontSize:12,color:C.textDim}}>{t("sb.classes_label","Klassen:")} {sel.cls.join(", ")}</div>
           </div>
         ) : (
           <div style={{...sx.card,textAlign:"center",color:C.textDim}}>
             <div style={{fontSize:40,marginBottom:8}}>🔮</div>
-            <div>Zauber aus der Liste auswählen.</div>
+            <div>{t("sb.pick_spell_hint","Zauber aus der Liste auswählen.")}</div>
             <div style={{marginTop:10,display:"flex",justifyContent:"center",gap:16,fontSize:13}}>
-              <span>★ = Bekannt</span><span>🕯️ = Vorbereitet</span>
+              <span>{t("sb.star_equals_known","★ = Bekannt")}</span><span>{t("sb.candle_equals_prepared","🕯️ = Vorbereitet")}</span>
             </div>
-            <div style={{marginTop:4,fontSize:12,color:C.gold}}>{known.length} bekannt · {prepared.length} vorbereitet</div>
+            <div style={{marginTop:4,fontSize:12,color:C.gold}}>{known.length} {t("sb.known_word","bekannt")} · {prepared.length} {t("sb.prepared_word","vorbereitet")}</div>
           </div>
         )}
       </div>

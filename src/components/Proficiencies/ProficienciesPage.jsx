@@ -2,9 +2,11 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useChar } from "../../context/CharContext.jsx";
 import { useProficiencies } from "../../hooks/useProficiencies.js";
 import { calculateProficiencyBonus, PROF_CATEGORIES } from "../../utils/proficiency.js";
+import { useI18n } from "../../i18n/index.js";
 import ProficiencyList from "./ProficiencyList.jsx";
 
 export default function ProficienciesPage() {
+  const { t } = useI18n();
   const { active: char, aid } = useChar();
   const { proficiencies, add, update, remove } = useProficiencies(aid);
 
@@ -30,12 +32,12 @@ export default function ProficienciesPage() {
         <span style={{ fontSize: 38 }}>🎓</span>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: FH, fontSize: 20, color: C.tealBright, fontWeight: 700, letterSpacing: 1 }}>
-            Übungsbonus
+            {t("prof.header_title","Übungsbonus")}
           </div>
           <div style={{ fontSize: 12, color: C.textDim, marginTop: 2 }}>
             {proficiencies.length === 0
-              ? "Noch keine Proficiencies eingetragen"
-              : `${proficiencies.length} Einträge · ${expertiseCount} Expertise`}
+              ? t("prof.no_entries","Noch keine Proficiencies eingetragen")
+              : `${proficiencies.length} ${t("prof.n_entries","Einträge")} · ${expertiseCount} ${t("prof.expertise_n","Expertise")}`}
           </div>
         </div>
 
@@ -46,13 +48,13 @@ export default function ProficienciesPage() {
           padding: "10px 18px", flexShrink: 0,
         }}>
           <div style={{ fontSize: 10, color: C.tealBright, fontWeight: 700, letterSpacing: 1, marginBottom: 2 }}>
-            PROF BONUS
+            {t("prof.pb_upper","PROF BONUS")}
           </div>
           <div style={{ fontFamily: FH, fontSize: 28, fontWeight: 800, color: C.tealBright, lineHeight: 1 }}>
             +{pb}
           </div>
           <div style={{ fontSize: 9, color: C.textDim, marginTop: 2 }}>
-            Level {level}
+            {t("prof.level_label","Level")} {level}
           </div>
         </div>
       </div>

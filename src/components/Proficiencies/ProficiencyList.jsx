@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { PROF_CATEGORIES, categoryOf } from "../../utils/proficiency.js";
+import { useI18n } from "../../i18n/index.js";
 import ProficiencyForm from "./ProficiencyForm.jsx";
 
 /**
@@ -8,6 +9,7 @@ import ProficiencyForm from "./ProficiencyForm.jsx";
  * Props: proficiencies, add, update, remove, pb (proficiency bonus)
  */
 export default function ProficiencyList({ proficiencies, add, update, remove, pb }) {
+  const { t } = useI18n();
   const [showForm, setShowForm] = useState(false);
   const [editTarget, setEditTarget] = useState(null);
   const [expandedCats, setExpandedCats] = useState(() =>
@@ -35,7 +37,7 @@ export default function ProficiencyList({ proficiencies, add, update, remove, pb
           onClick={() => { setShowForm(true); setEditTarget(null); }}
           style={{ ...sx.btn(C.tealBright), width: "100%", padding: "11px", fontSize: 13, fontWeight: 700 }}
         >
-          ＋ Proficiency hinzufügen
+          {t("prof.add_btn","＋ Proficiency hinzufügen")}
         </button>
       </div>
 
@@ -46,8 +48,8 @@ export default function ProficiencyList({ proficiencies, add, update, remove, pb
           border: `2px dashed ${C.border}`, borderRadius: 14, color: C.textDim,
         }}>
           <div style={{ fontSize: 36, marginBottom: 10 }}>🎓</div>
-          <div style={{ fontSize: 14, marginBottom: 4 }}>Noch keine Proficiencies</div>
-          <div style={{ fontSize: 12 }}>Füge Waffen-, Rüstungs-, Werkzeug- oder Sprachkenntnisse hinzu</div>
+          <div style={{ fontSize: 14, marginBottom: 4 }}>{t("prof.no_yet","Noch keine Proficiencies")}</div>
+          <div style={{ fontSize: 12 }}>{t("prof.add_hint","Füge Waffen-, Rüstungs-, Werkzeug- oder Sprachkenntnisse hinzu")}</div>
         </div>
       )}
 

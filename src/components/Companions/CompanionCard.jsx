@@ -1,18 +1,19 @@
 import { useState, useRef } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
+import { t as moduleT, useI18n } from "../../i18n/index.js";
 import CompanionStats from "./CompanionStats.jsx";
 
 // Companion type config
 const TYPE_CFG = {
-  beast:     { label: "Tier",       icon: "🐾", color: C.green    },
-  construct: { label: "Konstrukt",  icon: "⚙️",  color: C.blue     },
-  humanoid:  { label: "Humanoid",   icon: "👤", color: C.teal     },
-  fiend:     { label: "Teufel",     icon: "😈", color: C.red      },
-  undead:    { label: "Untoter",    icon: "💀", color: C.purple   },
-  celestial: { label: "Himmlisch",  icon: "✨", color: C.gold     },
-  fey:       { label: "Fee",        icon: "🧚", color: C.purpleBright },
-  dragon:    { label: "Drache",     icon: "🐉", color: C.amberBright },
-  other:     { label: "Sonstiges",  icon: "❓", color: C.textDim  },
+  beast:     { label: "Tier",       key: "comp.type_beast",     icon: "🐾", color: C.green    },
+  construct: { label: "Konstrukt",  key: "comp.type_construct", icon: "⚙️",  color: C.blue     },
+  humanoid:  { label: "Humanoid",   key: "comp.type_humanoid",  icon: "👤", color: C.teal     },
+  fiend:     { label: "Teufel",     key: "comp.type_fiend",     icon: "😈", color: C.red      },
+  undead:    { label: "Untoter",    key: "comp.type_undead",    icon: "💀", color: C.purple   },
+  celestial: { label: "Himmlisch",  key: "comp.type_celestial", icon: "✨", color: C.gold     },
+  fey:       { label: "Fee",        key: "comp.type_fey",       icon: "🧚", color: C.purpleBright },
+  dragon:    { label: "Drache",     key: "comp.type_dragon",    icon: "🐉", color: C.amberBright },
+  other:     { label: "Sonstiges",  key: "comp.type_other",     icon: "❓", color: C.textDim  },
 };
 
 export function typeOf(type) {
@@ -52,8 +53,10 @@ function HoldBtn({ label, onPress, style }) {
  * Props: companion, onEdit, onDelete, onHpChange
  */
 export default function CompanionCard({ companion, onEdit, onDelete, onHpChange }) {
+  const { t } = useI18n();
   const [expanded, setExpanded] = useState(false);
   const cfg = typeOf(companion.type);
+  const cfgLabel = cfg.key ? t(cfg.key, cfg.label) : cfg.label;
   const hpPct = Math.max(0, Math.min(1, companion.hp / (companion.maxHp || 1)));
   const col = hpColor(companion.hp, companion.maxHp);
   const textCol = hpText(companion.hp, companion.maxHp);
@@ -80,7 +83,7 @@ export default function CompanionCard({ companion, onEdit, onDelete, onHpChange 
             )}
           </div>
           <div style={{ fontSize: 10, color: C.textDim, marginTop: 1 }}>
-            {cfg.label}{companion.size ? ` · ${companion.size}` : ""} · AC {companion.ac} · {companion.speed} ft.
+            {cfgLabel}{companion.size ? ` · ${companion.size}` : ""} · AC {companion.ac} · {companion.speed} ft.
           </div>
         </div>
         {/* Action buttons */}
@@ -94,7 +97,7 @@ export default function CompanionCard({ companion, onEdit, onDelete, onHpChange 
           <button onClick={() => onEdit?.(companion)} style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "4px 8px" }}>✎</button>
           <button
             onClick={() => {
-              if (window.confirm(`"${companion.name}" wirklich löschen?`)) onDelete?.(companion.id);
+              if (window.confirm(moduleT("comp.delete_confirm","\"{name}\" wirklich löschen?").replace("{name}", companion.name))) onDelete?.(companion.id);
             }}
             style={{ ...sx.bsm(C.red), fontSize: 11, padding: "4px 8px" }}
           >
@@ -134,19 +137,19 @@ export default function CompanionCard({ companion, onEdit, onDelete, onHpChange 
           <CompanionStats companion={companion} compact />
           {companion.traits && (
             <div style={{ marginTop: 8 }}>
-              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>TRAITS</div>
+              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>{t("comp.traits_upper","TRAITS")}</div>
               <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>{companion.traits}</div>
             </div>
           )}
           {companion.actions && (
             <div style={{ marginTop: 8 }}>
-              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>AKTIONEN</div>
+              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>{t("comp.actions_upper","AKTIONEN")}</div>
               <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>{companion.actions}</div>
             </div>
           )}
           {companion.notes && (
             <div style={{ marginTop: 8 }}>
-              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>NOTIZEN</div>
+              <div style={{ fontSize: 10, color: C.textDim, fontFamily: FH, letterSpacing: 0.5, marginBottom: 4 }}>{t("comp.notes_upper","NOTIZEN")}</div>
               <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>{companion.notes}</div>
             </div>
           )}

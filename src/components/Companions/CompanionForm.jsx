@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { C, sx, FH, SC } from "../../constants/theme.js";
+import { useI18n } from "../../i18n/index.js";
 import CompanionBestiaryImport from "./CompanionBestiaryImport.jsx";
 
 const TYPES = [
-  { id: "beast",     label: "Tier",       icon: "🐾" },
-  { id: "construct", label: "Konstrukt",  icon: "⚙️"  },
-  { id: "humanoid",  label: "Humanoid",   icon: "👤" },
-  { id: "fiend",     label: "Teufel",     icon: "😈" },
-  { id: "undead",    label: "Untoter",    icon: "💀" },
-  { id: "celestial", label: "Himmlisch",  icon: "✨" },
-  { id: "fey",       label: "Fee",        icon: "🧚" },
-  { id: "dragon",    label: "Drache",     icon: "🐉" },
-  { id: "other",     label: "Sonstiges",  icon: "❓" },
+  { id: "beast",     label: "Tier",       key: "comp.type_beast",     icon: "🐾" },
+  { id: "construct", label: "Konstrukt",  key: "comp.type_construct", icon: "⚙️"  },
+  { id: "humanoid",  label: "Humanoid",   key: "comp.type_humanoid",  icon: "👤" },
+  { id: "fiend",     label: "Teufel",     key: "comp.type_fiend",     icon: "😈" },
+  { id: "undead",    label: "Untoter",    key: "comp.type_undead",    icon: "💀" },
+  { id: "celestial", label: "Himmlisch",  key: "comp.type_celestial", icon: "✨" },
+  { id: "fey",       label: "Fee",        key: "comp.type_fey",       icon: "🧚" },
+  { id: "dragon",    label: "Drache",     key: "comp.type_dragon",    icon: "🐉" },
+  { id: "other",     label: "Sonstiges",  key: "comp.type_other",     icon: "❓" },
 ];
 
 const SIZES = ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"];
@@ -33,6 +34,7 @@ const defaultForm = () => ({
  *   onCancel: () => void
  */
 export default function CompanionForm({ initial, onSave, onCancel }) {
+  const { t } = useI18n();
   const isEdit = !!initial;
 
   const [form, setForm] = useState(() =>
@@ -107,9 +109,9 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
   };
 
   const TABS = [
-    { id: "basic",   label: "Basis" },
-    { id: "stats",   label: "Stats" },
-    { id: "details", label: "Details" },
+    { id: "basic",   label: t("comp.tab_basic","Basis") },
+    { id: "stats",   label: t("comp.tab_stats","Stats") },
+    { id: "details", label: t("comp.tab_details","Details") },
   ];
 
   return (
@@ -119,7 +121,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.green, fontWeight: 700 }}>
-            {isEdit ? "✎ Begleiter bearbeiten" : "🐾 Neuer Begleiter"}
+            {isEdit ? t("comp.edit_title","✎ Begleiter bearbeiten") : t("comp.new_title","🐾 Neuer Begleiter")}
           </div>
           <button onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
@@ -130,7 +132,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
             onClick={() => setShowBestiary(true)}
             style={{ ...sx.bsm(C.amber), width: "100%", padding: "9px", fontSize: 12, marginBottom: 14, textAlign: "left" }}
           >
-            📚 Aus Bestiary importieren — Monster als Begleiter hinzufügen
+            {t("comp.import_bestiary","📚 Aus Bestiary importieren — Monster als Begleiter hinzufügen")}
           </button>
         )}
 
@@ -147,20 +149,20 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
           <>
             {/* Tab bar */}
             <div style={{ display: "flex", gap: 4, marginBottom: 14, background: C.surface, borderRadius: 8, padding: 3 }}>
-              {TABS.map((t) => (
+              {TABS.map((tb) => (
                 <button
-                  key={t.id}
-                  onClick={() => setActiveTab(t.id)}
+                  key={tb.id}
+                  onClick={() => setActiveTab(tb.id)}
                   style={{
                     flex: 1, padding: "7px 4px", borderRadius: 6, cursor: "pointer", fontSize: 11,
                     border: "none",
-                    background: activeTab === t.id ? C.card : "transparent",
-                    color: activeTab === t.id ? C.textBright : C.textDim,
-                    fontWeight: activeTab === t.id ? 700 : 400,
+                    background: activeTab === tb.id ? C.card : "transparent",
+                    color: activeTab === tb.id ? C.textBright : C.textDim,
+                    fontWeight: activeTab === tb.id ? 700 : 400,
                     transition: "all .15s",
                   }}
                 >
-                  {t.label}
+                  {tb.label}
                 </button>
               ))}
             </div>
@@ -169,7 +171,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
             {activeTab === "basic" && (
               <div>
                 <div style={{ marginBottom: 10 }}>
-                  <label style={sx.lbl}>Name *</label>
+                  <label style={sx.lbl}>{t("wb.name_required","Name *")}</label>
                   <input
                     type="text"
                     value={form.name}
@@ -183,22 +185,22 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
 
                 {/* Type selector */}
                 <div style={{ marginBottom: 10 }}>
-                  <label style={sx.lbl}>Typ</label>
+                  <label style={sx.lbl}>{t("wb.type_label","Typ")}</label>
                   <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-                    {TYPES.map((t) => (
+                    {TYPES.map((ty) => (
                       <button
-                        key={t.id}
-                        onClick={() => set("type", t.id)}
+                        key={ty.id}
+                        onClick={() => set("type", ty.id)}
                         style={{
                           padding: "5px 10px", borderRadius: 20, cursor: "pointer", fontSize: 10,
-                          border: `1px solid ${form.type === t.id ? C.green : C.border}`,
-                          background: form.type === t.id ? `${C.green}22` : "transparent",
-                          color: form.type === t.id ? C.greenBright : C.textDim,
-                          fontWeight: form.type === t.id ? 700 : 400,
+                          border: `1px solid ${form.type === ty.id ? C.green : C.border}`,
+                          background: form.type === ty.id ? `${C.green}22` : "transparent",
+                          color: form.type === ty.id ? C.greenBright : C.textDim,
+                          fontWeight: form.type === ty.id ? 700 : 400,
                           transition: "all .12s",
                         }}
                       >
-                        {t.icon} {t.label}
+                        {ty.icon} {t(ty.key, ty.label)}
                       </button>
                     ))}
                   </div>
@@ -206,7 +208,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
 
                 {/* Size */}
                 <div style={{ marginBottom: 10 }}>
-                  <label style={sx.lbl}>Größe</label>
+                  <label style={sx.lbl}>{t("comp.size_label","Größe")}</label>
                   <select
                     value={form.size}
                     onChange={(e) => set("size", e.target.value)}
@@ -338,10 +340,10 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
                   cursor: form.name.trim() ? "pointer" : "not-allowed",
                 }}
               >
-                {isEdit ? "✓ Änderungen speichern" : "＋ Begleiter hinzufügen"}
+                {isEdit ? t("comp.save_changes","✓ Änderungen speichern") : t("comp.add_btn","＋ Begleiter hinzufügen")}
               </button>
               <button onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
-                Abbrechen
+                {t("prof.cancel_btn","Abbrechen")}
               </button>
             </div>
           </>

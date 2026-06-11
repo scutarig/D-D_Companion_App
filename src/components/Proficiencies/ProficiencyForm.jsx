@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { PROF_CATEGORIES, PROF_TYPES } from "../../utils/proficiency.js";
+import { useI18n } from "../../i18n/index.js";
 
 const defaultForm = () => ({ name: "", category: "weapon", type: "normal", notes: "" });
 
@@ -9,6 +10,7 @@ const defaultForm = () => ({ name: "", category: "weapon", type: "normal", notes
  * Props: initial, onSave, onCancel
  */
 export default function ProficiencyForm({ initial, onSave, onCancel }) {
+  const { t } = useI18n();
   const isEdit = !!initial;
 
   const [form, setForm] = useState(() =>
@@ -31,19 +33,19 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.tealBright, fontWeight: 700 }}>
-            {isEdit ? "✎ Proficiency bearbeiten" : "＋ Neue Proficiency"}
+            {isEdit ? t("prof.edit_title","✎ Proficiency bearbeiten") : t("prof.new_title","＋ Neue Proficiency")}
           </div>
           <button onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }}>✕</button>
         </div>
 
         {/* Name */}
         <div style={{ marginBottom: 12 }}>
-          <label style={sx.lbl}>Name *</label>
+          <label style={sx.lbl}>{t("wb.name_required","Name *")}</label>
           <input
             type="text"
             value={form.name}
             onChange={e => set("name", e.target.value)}
-            placeholder="z.B. Langschwert, Kettenpanzer, Diebeswerkzeug…"
+            placeholder={t("prof.placeholder_name","z.B. Langschwert, Kettenpanzer, Diebeswerkzeug…")}
             style={{ ...sx.inp, fontSize: 14 }}
             autoFocus
             onKeyDown={e => e.key === "Enter" && handleSave()}
@@ -52,7 +54,7 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
 
         {/* Category */}
         <div style={{ marginBottom: 12 }}>
-          <label style={sx.lbl}>Kategorie</label>
+          <label style={sx.lbl}>{t("prof.category_label","Kategorie")}</label>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             {PROF_CATEGORIES.map(cat => (
               <button
@@ -75,25 +77,25 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
 
         {/* Type */}
         <div style={{ marginBottom: 12 }}>
-          <label style={sx.lbl}>Typ</label>
+          <label style={sx.lbl}>{t("prof.type_label","Typ")}</label>
           <div style={{ display: "flex", gap: 6 }}>
-            {PROF_TYPES.map(t => (
+            {PROF_TYPES.map(pt => (
               <button
-                key={t.id}
-                onClick={() => set("type", t.id)}
+                key={pt.id}
+                onClick={() => set("type", pt.id)}
                 style={{
                   flex: 1, padding: "8px", borderRadius: 8, cursor: "pointer", fontSize: 12,
-                  border: `1px solid ${form.type === t.id ? C.tealBright : C.border}`,
-                  background: form.type === t.id ? `${C.tealBright}22` : "transparent",
-                  color: form.type === t.id ? C.tealBright : C.textDim,
-                  fontWeight: form.type === t.id ? 700 : 400,
+                  border: `1px solid ${form.type === pt.id ? C.tealBright : C.border}`,
+                  background: form.type === pt.id ? `${C.tealBright}22` : "transparent",
+                  color: form.type === pt.id ? C.tealBright : C.textDim,
+                  fontWeight: form.type === pt.id ? 700 : 400,
                   transition: "all .12s",
                 }}
               >
                 <div style={{ fontSize: 10, marginBottom: 2, opacity: 0.7 }}>
-                  {t.id === "normal" ? "×1 PB" : "×2 PB"}
+                  {pt.id === "normal" ? "×1 PB" : "×2 PB"}
                 </div>
-                {t.label}
+                {pt.label}
               </button>
             ))}
           </div>
@@ -101,11 +103,11 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
 
         {/* Notes */}
         <div style={{ marginBottom: 16 }}>
-          <label style={sx.lbl}>Notizen (optional)</label>
+          <label style={sx.lbl}>{t("prof.notes_label","Notizen (optional)")}</label>
           <textarea
             value={form.notes}
             onChange={e => set("notes", e.target.value)}
-            placeholder="z.B. einfache Waffen, schwere Rüstungen…"
+            placeholder={t("prof.notes_placeholder","z.B. einfache Waffen, schwere Rüstungen…")}
             style={{ ...sx.ta, fontSize: 12, minHeight: 56 }}
           />
         </div>
@@ -121,10 +123,10 @@ export default function ProficiencyForm({ initial, onSave, onCancel }) {
               cursor: form.name.trim() ? "pointer" : "not-allowed",
             }}
           >
-            {isEdit ? "✓ Speichern" : "＋ Hinzufügen"}
+            {isEdit ? t("prof.save_btn","✓ Speichern") : t("prof.add_short","＋ Hinzufügen")}
           </button>
           <button onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
-            Abbrechen
+            {t("prof.cancel_btn","Abbrechen")}
           </button>
         </div>
       </div>

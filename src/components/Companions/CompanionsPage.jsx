@@ -1,9 +1,11 @@
 import { C, sx, FH } from "../../constants/theme.js";
 import { useChar } from "../../context/CharContext.jsx";
 import { useCompanions } from "../../hooks/useCompanions.js";
+import { useI18n } from "../../i18n/index.js";
 import CompanionList from "./CompanionList.jsx";
 
 export default function CompanionsPage() {
+  const { t } = useI18n();
   const { aid } = useChar();
   const { companions, add, update, remove, updateHp } = useCompanions(aid);
 
@@ -23,12 +25,12 @@ export default function CompanionsPage() {
         <span style={{ fontSize: 40 }}>🐾</span>
         <div>
           <div style={{ fontFamily: FH, fontSize: 20, color: C.greenBright, fontWeight: 700, letterSpacing: 1 }}>
-            Begleiter
+            {t("comp.header_title","Begleiter")}
           </div>
           <div style={{ fontSize: 12, color: C.textDim, marginTop: 2 }}>
             {total === 0
-              ? "Noch keine Begleiter"
-              : `${alive} / ${total} kampfbereit`}
+              ? t("comp.no_companions","Noch keine Begleiter")
+              : `${alive} / ${total} ${t("comp.ready_count","kampfbereit")}`}
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { MONSTERS } from "../../data/monsters.js";
+import { useI18n } from "../../i18n/index.js";
 
 const CR_OPTS = ["all", "0", "1/8", "1/4", "1/2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
 
@@ -11,6 +12,7 @@ const CR_OPTS = ["all", "0", "1/8", "1/4", "1/2", "1", "2", "3", "4", "5", "6", 
  *   onCancel: () => void
  */
 export default function CompanionBestiaryImport({ onImport, onCancel }) {
+  const { t } = useI18n();
   const [search, setSearch] = useState("");
   const [crFilter, setCrFilter] = useState("all");
   const [selected, setSelected] = useState(null);
@@ -73,7 +75,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
   return (
     <div>
       <div style={{ fontFamily: FH, fontSize: 13, color: C.amberBright, fontWeight: 700, marginBottom: 12 }}>
-        📚 Aus Bestiary importieren
+        {t("comp.import_header","📚 Aus Bestiary importieren")}
       </div>
 
       {/* Search */}
@@ -81,7 +83,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
         type="text"
         value={search}
         onChange={(e) => { setSearch(e.target.value); setSelected(null); }}
-        placeholder="🔍 Monster suchen..."
+        placeholder={t("comp.import_search_placeholder","🔍 Monster suchen...")}
         style={{ ...sx.inp, fontSize: 13, marginBottom: 8 }}
         autoFocus
       />
@@ -101,7 +103,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
               transition: "all .1s",
             }}
           >
-            {cr === "all" ? "Alle CR" : `CR ${cr}`}
+            {cr === "all" ? t("comp.import_all_cr","Alle CR") : `CR ${cr}`}
           </button>
         ))}
       </div>
@@ -110,7 +112,7 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
       <div style={{ maxHeight: 240, overflowY: "auto", border: `1px solid ${C.border}`, borderRadius: 8, marginBottom: 10 }}>
         {filtered.length === 0 ? (
           <div style={{ padding: 16, fontSize: 12, color: C.textDim, textAlign: "center" }}>
-            Kein Monster gefunden
+            {t("comp.import_no_monster","Kein Monster gefunden")}
           </div>
         ) : (
           filtered.map((m) => (
@@ -169,10 +171,10 @@ export default function CompanionBestiaryImport({ onImport, onCancel }) {
             color: "#000",
           }}
         >
-          ✓ {selected ? `"${selected.name}" importieren` : "Monster wählen"}
+          {selected ? t("comp.import_btn","✓ {name} importieren").replace("{name}", `"${selected.name}"`) : t("comp.import_select_btn","Monster wählen")}
         </button>
         <button onClick={onCancel} style={{ ...sx.bsm(C.border), padding: "10px 16px", fontSize: 12, color: C.textDim }}>
-          Abbrechen
+          {t("prof.cancel_btn","Abbrechen")}
         </button>
       </div>
     </div>
