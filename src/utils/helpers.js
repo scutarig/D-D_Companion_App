@@ -1,3 +1,5 @@
+import { t } from "../i18n/index.js";
+
 export const modOf = s => Math.floor((s - 10) / 2);
 export const modStr = s => { const m = modOf(s); return m >= 0 ? `+${m}` : `${m}`; };
 export const rollD = n => Math.floor(Math.random() * n) + 1;
@@ -35,7 +37,12 @@ export function buildSlotsForLevel(klass, level) {
 }
 
 export const newChar = id => ({
-  id, name:"Neuer Held", race:"Mensch", klass:"Kämpfer", level:1, background:"Soldat",
+  id,
+  name: t("char.default_name", "Neuer Held"),
+  race: t("char.default_race", "Mensch"),
+  klass: t("char.default_class", "Kämpfer"),
+  level:1,
+  background: t("char.default_background", "Soldat"),
   str:10, dex:10, con:10, int:10, wis:10, cha:10,
   hp:10, maxHp:10, tempHp:0, ac:10, speed:30, initiative:0,
   hd:"W10", hd_used:0, deathSaves:{suc:0,fail:0},

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { newChar } from "../utils/helpers.js";
+import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
 import { useMulticlass } from "../hooks/useMulticlass.js";
@@ -88,13 +89,25 @@ export default function CharManager() {
 
   const importJSON = e => {
     const file = e.target.files[0]; if (!file) return;
+    if (file.size > MAX_FILE_BYTES) {
+      alert(t("char.file_too_large","Datei zu groß (max 512 KB)."));
+      e.target.value = "";
+      return;
+    }
     const reader = new FileReader();
     reader.onload = ev => {
-      try {
-        const data = JSON.parse(ev.target.result);
-        if (data && data.name) { const id = Date.now(); const newC = { ...newChar(id), ...data, id }; setChars(p => [...p, newC]); setAid(id); }
-        else { alert(t("char.invalid_file","Ungültige Charakter-Datei.")); }
-      } catch { alert(t("char.json_error","JSON konnte nicht gelesen werden.")); }
+      let raw;
+      try { raw = JSON.parse(ev.target.result); }
+      catch { alert(t("char.json_error","JSON konnte nicht gelesen werden.")); return; }
+      const result = sanitizeCharImport(raw, file.size);
+      if (!result.ok) {
+        alert(t("char.invalid_file","Ungültige Charakter-Datei."));
+        return;
+      }
+      const id = Date.now();
+      const newC = { ...newChar(id), ...result.data, id };
+      setChars(p => [...p, newC]);
+      setAid(id);
     };
     reader.readAsText(file);
     e.target.value = "";

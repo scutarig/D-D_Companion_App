@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
 import { useI18n } from "./i18n/index.js";
@@ -916,10 +917,12 @@ function AppInner() {
 
 export default function App() {
   return (
-    <CharProvider>
-      <CombatProvider>
-        <AppInner />
-      </CombatProvider>
-    </CharProvider>
+    <ErrorBoundary>
+      <CharProvider>
+        <CombatProvider>
+          <AppInner />
+        </CombatProvider>
+      </CharProvider>
+    </ErrorBoundary>
   );
 }
