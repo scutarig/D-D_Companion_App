@@ -328,14 +328,18 @@ export default function Notes() {
               background: C.surface, borderRadius: 8,
               border: `1px solid ${(catById[normalizeCat(cur.cat)]?.color) || C.border}`,
               borderLeft: `4px solid ${(catById[normalizeCat(cur.cat)]?.color) || C.gold}`,
-              padding: "10px 14px", display: "flex", alignItems: "center", gap: 10,
+              padding: "10px 14px",
+              display: "flex", alignItems: "center", gap: 10,
+              flexWrap: "wrap",
+              minWidth: 0,
             }}>
-              <span style={{fontSize:18}}>{catById[normalizeCat(cur.cat)]?.icon || "📝"}</span>
+              <span style={{fontSize:18, flexShrink: 0}}>{catById[normalizeCat(cur.cat)]?.icon || "📝"}</span>
               <input
                 value={cur.title}
                 onChange={e => upd(cur.id, "title", e.target.value)}
                 style={{
-                  flex: 1, background: "transparent", border: "none", outline: "none",
+                  flex: "1 1 140px", minWidth: 0,
+                  background: "transparent", border: "none", outline: "none",
                   color: (catById[normalizeCat(cur.cat)]?.color) || C.gold,
                   fontFamily: FH, fontSize: 17, fontWeight: 700,
                 }}
@@ -344,6 +348,7 @@ export default function Notes() {
               <select
                 value={normalizeCat(cur.cat)}
                 onChange={e => upd(cur.id, "cat", e.target.value)}
+                title={t("notes.cat_prefix","Kategorie")}
                 style={{
                   background: C.card,
                   border: `1px solid ${(catById[normalizeCat(cur.cat)]?.color) || C.border}`,
@@ -351,10 +356,12 @@ export default function Notes() {
                   color: (catById[normalizeCat(cur.cat)]?.color) || C.textDim,
                   fontFamily: F, fontSize: 12, padding: "3px 8px",
                   cursor: "pointer", outline: "none",
+                  maxWidth: "100%",
+                  flexShrink: 0,
                 }}
               >
                 {allCats.map(c => (
-                  <option key={c.id} value={c.id}>{t("notes.cat_prefix","Kategorie")}: {c.label}</option>
+                  <option key={c.id} value={c.id}>{c.icon} {c.label}</option>
                 ))}
               </select>
             </div>
