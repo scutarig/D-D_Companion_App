@@ -173,7 +173,7 @@ function ProficiencyItem({ prof, cat, pb, onEdit, onDelete }) {
         <button type="button"
           onClick={onDelete}
           style={{ ...sx.bsm(C.red), padding: "3px 8px", fontSize: 12 }}
-         aria-label="Schließen">✕</button>
+         aria-label={t("modal.close","Schließen")}>✕</button>
       </div>
     </div>
   );

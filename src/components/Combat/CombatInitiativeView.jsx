@@ -592,7 +592,7 @@ function FighterRow({ fighter, color, onRemove, onInitChange }) {
           background: `${C.red}12`, color: C.redBright, cursor: "pointer",
           fontSize: 14, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center",
         }}
-       aria-label="Schließen">
+       aria-label={t("modal.close","Schließen")}>
         ✕
       </button>
     </div>

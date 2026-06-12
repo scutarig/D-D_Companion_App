@@ -57,7 +57,7 @@ export default function AttackRollModal({ attacker, onClose, onHit }) {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <div style={{ fontFamily: FH, fontSize: 15, color: C.gold, fontWeight: 700 }}>{t("combat.attack_roll_title","⚔️ Attack Roll")}</div>
-          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label={t("modal.close","Schließen")}>✕</button>
         </div>
 
         {/* Attacker */}

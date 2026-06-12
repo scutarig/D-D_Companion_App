@@ -36,7 +36,7 @@ export default function ConditionPicker({ fighter, onAdd, onClose }) {
           <div style={{ fontFamily: FH, fontSize: 15, color: C.amber, fontWeight: 700 }}>
             {t("combat.add_condition_title","⚡ Condition hinzufügen")}
           </div>
-          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label={t("modal.close","Schließen")}>✕</button>
         </div>
 
         <div style={{ fontSize: 12, color: C.textDim, marginBottom: 12 }}>

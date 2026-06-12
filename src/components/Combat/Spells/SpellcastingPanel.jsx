@@ -98,7 +98,7 @@ function SpellcastingPanelInner({ fighter, onClose, shortRest, longRest, dropCon
             <div style={{ fontFamily: FH, fontSize: 16, color: C.purpleBright, fontWeight: 700 }}>{t("combat.spellcasting","🔮 Zauberei")}</div>
             <div style={{ fontSize: 12, color: C.textDim }}>{fighter.name}</div>
           </div>
-          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
+          <button type="button" onClick={onClose} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label={t("modal.close","Schließen")}>✕</button>
         </div>
 
         {/* Concentration display */}

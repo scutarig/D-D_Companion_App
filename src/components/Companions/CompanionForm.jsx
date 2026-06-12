@@ -123,7 +123,7 @@ export default function CompanionForm({ initial, onSave, onCancel }) {
           <div style={{ fontFamily: FH, fontSize: 15, color: C.green, fontWeight: 700 }}>
             {isEdit ? t("comp.edit_title","✎ Begleiter bearbeiten") : t("comp.new_title","🐾 Neuer Begleiter")}
           </div>
-          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label="Schließen">✕</button>
+          <button type="button" onClick={onCancel} style={{ ...sx.bsm(C.red), padding: "4px 8px", fontSize: 13 }} aria-label={t("modal.close","Schließen")}>✕</button>
         </div>
 
         {/* Bestiary import button (only for new) */}

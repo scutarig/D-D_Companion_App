@@ -58,7 +58,7 @@ const getThreshold = (level) => XP_THRESHOLDS.find(t => t.lv === level) || XP_TH
 
 export default function EncounterBuilder() {
   const { t } = useI18n();
-  const { confirm } = useDialog();
+  const { confirm, prompt } = useDialog();
   const mob = useIsMobile(900);
   const [partyLevel, setPartyLevel] = usePersist("eb_party_level", 1);
   const [partySize, setPartySize] = usePersist("eb_party_size", 4);
@@ -114,10 +114,17 @@ export default function EncounterBuilder() {
     if (await confirm(t("encounter.confirm_clear","Encounter wirklich leeren?"), { danger: true })) setEncounter([]);
   };
 
-  const saveEncounter = () => {
-    const name = window.prompt("Encounter-Name?", `Lv${partyLevel} ${difficulty} (${encounter.length} Typen)`);
-    if (!name) return;
-    setSavedEncounters(p => [...p, { id: Date.now(), name, partyLevel, partySize, difficulty, monsters: encounter, xp: encounterXp }]);
+  const saveEncounter = async () => {
+    const defaultName = t("encounter.default_name","Lv{lv} {diff} ({n} Typen)")
+      .replace("{lv}", partyLevel).replace("{diff}", difficulty).replace("{n}", encounter.length);
+    const name = await prompt(t("encounter.prompt_name","Wie soll der Encounter heißen?"), {
+      title: t("encounter.save_title","Encounter speichern"),
+      defaultValue: defaultName,
+      placeholder: defaultName,
+      maxLength: 80,
+    });
+    if (!name || !name.trim()) return;
+    setSavedEncounters(p => [...p, { id: Date.now(), name: name.trim(), partyLevel, partySize, difficulty, monsters: encounter, xp: encounterXp }]);
   };
 
   const loadEncounter = (enc) => {

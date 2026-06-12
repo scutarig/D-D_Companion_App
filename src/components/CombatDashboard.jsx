@@ -795,7 +795,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                     <div style={{ fontFamily:FH, fontSize:14, color:C.teal, fontWeight:700 }}>
                       {eqStep==="pick" ? t("dash.equip_item","⚔️ Item anlegen") : t("dash.slot_for","🎯 Slot für: {name}").replace("{name}", eqItem?.name || "")}
                     </div>
-                    <button type="button" onClick={close} style={sx.bsm(C.textDim)} aria-label="Schließen">✕</button>
+                    <button type="button" onClick={close} style={sx.bsm(C.textDim)} aria-label={t("modal.close","Schließen")}>✕</button>
                   </div>
                   {eqStep === "pick" && (
                     <>
@@ -862,7 +862,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                 <>
                   <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:12 }}>
                     <div style={{ fontFamily:FH, fontSize:14, color:C.green, fontWeight:700 }}>{t("dash.new_item","＋ Neues Item")}</div>
-                    <button type="button" onClick={close} style={sx.bsm(C.textDim)} aria-label="Schließen">✕</button>
+                    <button type="button" onClick={close} style={sx.bsm(C.textDim)} aria-label={t("modal.close","Schließen")}>✕</button>
                   </div>
                   <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
                     <div><label style={sx.lbl}>{t("dash.name_required","Name *")}</label><input value={eqNew.name} onChange={e=>setEqNew(p=>({...p,name:e.target.value}))} style={sx.inp} autoFocus /></div>
@@ -916,7 +916,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                   <div style={{ fontFamily:FH, fontSize:14, color:C.amber, fontWeight:700 }}>{t("dash.swap_word","↔ Tauschen")}</div>
                   <div style={{ fontSize:11, color:C.textDim }}>{swapModal.item.name} · {sd.icon} {slotLabel(sd)}</div>
                 </div>
-                <button type="button" onClick={closeSwap} style={sx.bsm(C.textDim)} aria-label="Schließen">✕</button>
+                <button type="button" onClick={closeSwap} style={sx.bsm(C.textDim)} aria-label={t("modal.close","Schließen")}>✕</button>
               </div>
               <button type="button"
                 onClick={() => { setChar(p => ({ ...p, equipSlots: { ...(p.equipSlots||{}), [swapModal.slot]: null } })); closeSwap(); }}
