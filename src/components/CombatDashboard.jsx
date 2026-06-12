@@ -80,7 +80,9 @@ function hpText(hp, max)   { const p = hp / max; return p > 0.5 ? C.greenBright 
 function HoldBtn({ label, onPress, style }) {
   const t = useRef(null), iv = useRef(null);
   const start = e => { e.preventDefault(); onPress(); t.current = setTimeout(() => { iv.current = setInterval(onPress, 80); }, 400); };
-  const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); };
+  const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); t.current = null; iv.current = null; };
+  // Cleanup if unmounted mid-hold
+  useEffect(() => stop, []);
   return <button type="button" style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
 }
 

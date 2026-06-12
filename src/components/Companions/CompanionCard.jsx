@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { t as moduleT, useI18n } from "../../i18n/index.js";
 import { useDialog } from "../../hooks/useDialog.jsx";
@@ -37,7 +37,9 @@ function HoldBtn({ label, onPress, style }) {
     onPress();
     t.current = setTimeout(() => { iv.current = setInterval(onPress, 80); }, 400);
   };
-  const stop = () => { clearTimeout(t.current); clearInterval(iv.current); };
+  const stop = () => { clearTimeout(t.current); clearInterval(iv.current); t.current = null; iv.current = null; };
+  // Cleanup if unmounted mid-hold (prevents setState-on-unmounted warnings)
+  useEffect(() => stop, []);
   return (
     <button type="button"
       style={style}

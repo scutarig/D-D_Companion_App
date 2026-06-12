@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { useCombat } from "../../context/CombatContext.jsx";
 import { useCombatActions } from "../../hooks/useCombatActions.js";
@@ -39,11 +39,13 @@ function VictoryOverlay({ onEndCombat }) {
   const { state } = useCombat();
   const { saveToArchive } = useCombatArchive();
   const [saved, setSaved] = useState(false);
+  const endTimerRef = useRef(null);
+  useEffect(() => () => { if (endTimerRef.current) clearTimeout(endTimerRef.current); }, []);
 
   const handleSaveAndEnd = () => {
     saveToArchive(state, "victory");
     setSaved(true);
-    setTimeout(() => onEndCombat(), 800);
+    endTimerRef.current = setTimeout(() => onEndCombat(), 800);
   };
 
   return (
@@ -90,11 +92,13 @@ function DefeatOverlay({ onEndCombat }) {
   const { state } = useCombat();
   const { saveToArchive } = useCombatArchive();
   const [saved, setSaved] = useState(false);
+  const endTimerRef = useRef(null);
+  useEffect(() => () => { if (endTimerRef.current) clearTimeout(endTimerRef.current); }, []);
 
   const handleSaveAndEnd = () => {
     saveToArchive(state, "defeat");
     setSaved(true);
-    setTimeout(() => onEndCombat(), 800);
+    endTimerRef.current = setTimeout(() => onEndCombat(), 800);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
 import { usePersist } from "../../hooks/usePersist.js";
 import { useChar } from "../../context/CharContext.jsx";
@@ -12,7 +12,9 @@ const crCol = (cr) => CR_COLOR[cr] || "#6020c0";
 function HoldBtn({ label, onPress, style }) {
   const t = useRef(null), iv = useRef(null);
   const start = e => { e.preventDefault(); onPress(); t.current = setTimeout(() => { iv.current = setInterval(onPress, 80); }, 400); };
-  const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); };
+  const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); t.current = null; iv.current = null; };
+  // Cleanup if unmounted mid-hold (prevents setState-on-unmounted warnings)
+  useEffect(() => stop, []);
   return <button type="button" style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
 }
 

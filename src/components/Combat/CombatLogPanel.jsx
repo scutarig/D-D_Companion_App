@@ -35,6 +35,16 @@ export default function CombatLogPanel() {
   const [exportFeedback, setExportFeedback] = useState("");
   const logEndRef = useRef(null);
   const containerRef = useRef(null);
+  const feedbackTimerRef = useRef(null);
+
+  // Clear pending feedback timer on unmount to prevent setState-on-unmounted warnings
+  useEffect(() => () => { if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current); }, []);
+
+  const showFeedback = (msg) => {
+    setExportFeedback(msg);
+    if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
+    feedbackTimerRef.current = setTimeout(() => setExportFeedback(""), 2000);
+  };
 
   // Auto-scroll when new entries arrive
   useEffect(() => {
@@ -81,25 +91,21 @@ export default function CombatLogPanel() {
       if (format === "copy") {
         const text = exportLogAsText(state.log, state.fighters);
         navigator.clipboard.writeText(text).then(() => {
-          setExportFeedback(t("combat.log_export_copied","✓ Kopiert!"));
-          setTimeout(() => setExportFeedback(""), 2000);
+          showFeedback(t("combat.log_export_copied","✓ Kopiert!"));
         });
       } else if (format === "txt") {
         const text = exportLogAsText(state.log, state.fighters);
         const blob = new Blob([text], { type: "text/plain" });
         downloadBlob(blob, `combat-log-${Date.now()}.txt`);
-        setExportFeedback(t("combat.log_export_txt_saved","✓ TXT gespeichert"));
-        setTimeout(() => setExportFeedback(""), 2000);
+        showFeedback(t("combat.log_export_txt_saved","✓ TXT gespeichert"));
       } else if (format === "json") {
         const json = exportLogAsJSON(state);
         const blob = new Blob([json], { type: "application/json" });
         downloadBlob(blob, `combat-log-${Date.now()}.json`);
-        setExportFeedback(t("combat.log_export_json_saved","✓ JSON gespeichert"));
-        setTimeout(() => setExportFeedback(""), 2000);
+        showFeedback(t("combat.log_export_json_saved","✓ JSON gespeichert"));
       }
     } catch (e) {
-      setExportFeedback(t("combat.log_export_err","✗ Fehler"));
-      setTimeout(() => setExportFeedback(""), 2000);
+      showFeedback(t("combat.log_export_err","✗ Fehler"));
     }
   };
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { aggregateBonuses, formatBonusSummary } from "../utils/magicItemBonuses.js";
 import { useI18n } from "../i18n/index.js";
@@ -131,6 +131,8 @@ export default function CharInventory({ char, setChar }) {
   const [form,        setForm]        = useState({ name:"", type:"Item", sub:"", dmg:"", ac:"", eff:"", wt:"", rar:"Common", notes:"" });
   const [slotModal,   setSlotModal]   = useState(null);
   const [slotError,   setSlotError]   = useState(null);
+  const slotErrTimerRef = useRef(null);
+  useEffect(() => () => { if (slotErrTimerRef.current) clearTimeout(slotErrTimerRef.current); }, []);
 
   // Attunement toggle — jede Änderung wird in attunementChangedSinceRest geloggt
   const toggleAttune = (uid) => {
@@ -196,7 +198,8 @@ export default function CharInventory({ char, setChar }) {
         ? t("inv.off_locked_reason","Nebenhand gesperrt — Haupthand führt eine Zweihandwaffe.")
         : t("inv.slot_mismatch","Dieses Item passt nicht in den Slot „{slot}\".").replace("{slot}", slotLabel(SLOTS.find(s=>s.id===slotId)));
       setSlotError(reason);
-      setTimeout(() => setSlotError(null), 2500);
+      if (slotErrTimerRef.current) clearTimeout(slotErrTimerRef.current);
+      slotErrTimerRef.current = setTimeout(() => setSlotError(null), 2500);
       return;
     }
 
