@@ -18,8 +18,16 @@ export default function WorldbuildingPage() {
 
   return (
     <div>
-      {/* Sub-tabs */}
-      <nav style={sx.nav}>
+      {/* Sub-tabs — zentriert, transparenter Hintergrund */}
+      <nav style={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        gap: 6,
+        padding: "10px 10px 4px",
+        background: "transparent",
+        border: "none",
+      }}>
         {TABS.map(tb => (
           <button type="button" key={tb.id} onClick={() => setTab(tb.id)} style={sx.nb(tab === tb.id)}>
             {tb.label}
@@ -28,7 +36,7 @@ export default function WorldbuildingPage() {
       </nav>
 
       {/* Content */}
-      <div style={{ ...sx.main, paddingTop:14 }}>
+      <div style={{ ...sx.main, paddingTop:10 }}>
         {tab === "quests"    && <QuestList />}
         {tab === "locations" && <LocationsList />}
         {tab === "factions"  && <FactionsList />}
