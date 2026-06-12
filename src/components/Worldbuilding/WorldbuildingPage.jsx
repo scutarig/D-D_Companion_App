@@ -18,15 +18,6 @@ export default function WorldbuildingPage() {
 
   return (
     <div>
-      {/* Header */}
-      <div style={sx.hdr}>
-        <span style={{ fontSize:22 }}>🌍</span>
-        <div>
-          <div style={sx.hT}>{t("wb.header_title","WELTENBAU")}</div>
-          <div style={sx.hS}>{t("wb.header_subtitle","Quests · Orte · Fraktionen · Downtime")}</div>
-        </div>
-      </div>
-
       {/* Sub-tabs */}
       <nav style={sx.nav}>
         {TABS.map(tb => (
