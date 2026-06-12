@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
@@ -406,8 +406,12 @@ function CategoryEditor({ open, cat, onClose, onSave, onDelete }) {
   const [icon, setIcon] = useState(cat?.icon || "⚔️");
   const [colorKey, setColorKey] = useState(cat?.colorKey || "gold");
 
-  // Re-sync state when cat changes (open with different cat / create→edit)
-  useMemo(() => {
+  // Re-sync state when cat changes (open with different cat / create→edit).
+  // Must be useEffect, NOT useMemo — useMemo runs during render and setState
+  // during render of a child crashes with "Cannot update component while
+  // rendering a different component" (the Notes ErrorBoundary catches this).
+  useEffect(() => {
+    if (!open) return;
     setLabel(cat?.label || "");
     setIcon(cat?.icon || "⚔️");
     setColorKey(cat?.colorKey || "gold");
