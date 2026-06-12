@@ -175,7 +175,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
 
   return (
     <div style={{ background: "linear-gradient(180deg,#1c1826 0%,#16121e 100%)", borderBottom: `1px solid rgba(201,168,76,0.15)`, padding: "0 14px", flexShrink: 0 }}>
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:6, height:44 }}>
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:6, minHeight:44, padding:"4px 0" }}>
         <div>
           <div style={{ fontFamily:FH, fontSize:14, fontWeight:700, color:C.gold, lineHeight:1.1 }}>{char.name}</div>
           <div style={{ fontSize:11, color:C.textDim, marginTop:1, display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
@@ -197,7 +197,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
         <div data-no-print style={{ display:"flex", gap:4, alignItems:"center", flexWrap:"wrap" }}>
           {!isDM && (
             <>
-              <button type="button"
+              <button type="button" data-compact-btn
                 onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
                 title={char.inspiration
                   ? "Heroic Inspiration aktiv — Klick: ausgeben (Reroll auf D20 Test)"
@@ -216,8 +216,8 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
                 }}>
                 {char.inspiration ? "✦" : "✧"} {t("header.heroic_inspiration")}
               </button>
-              <button type="button" onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:11, padding:"4px 8px" }}>🌙 {t("header.short_rest")}</button>
-              <button type="button" onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:11, padding:"4px 8px" }}>🌟 {t("header.long_rest")}</button>
+              <button type="button" data-compact-btn onClick={() => setRestBanner(restBanner === "short" ? null : "short")} style={{ ...sx.bsm(C.tealBright),   fontSize:11, padding:"4px 8px" }}>🌙 {t("header.short_rest")}</button>
+              <button type="button" data-compact-btn onClick={() => setRestBanner(restBanner === "long"  ? null : "long")}  style={{ ...sx.bsm(C.purpleBright), fontSize:11, padding:"4px 8px" }}>🌟 {t("header.long_rest")}</button>
             </>
           )}
         </div>
@@ -460,6 +460,25 @@ function AppInner() {
           min-height: auto !important;
           transform: scale(1.3);
           margin: 4px !important;
+        }
+      }
+
+      /* ── CharHeader-Buttons (Inspiration/Kurze Rast/Lange Rast) — kompakt auf Touch ── */
+      /* Auf Touch-Geräten überschreibt min-height: 44px! die Inline-Padding, was die
+         Buttons in den 44px-Header overflowen lässt. Mit data-compact-btn opt-out. */
+      @media (pointer: coarse) and (min-width: 768px) {
+        button[data-compact-btn] {
+          min-height: 32px !important;
+          padding: 4px 10px !important;
+          font-size: 11px !important;
+        }
+      }
+      @media (pointer: coarse) and (max-width: 767px) {
+        button[data-compact-btn] {
+          min-height: 28px !important;
+          padding: 3px 7px !important;
+          font-size: 10px !important;
+          letter-spacing: 0.2px !important;
         }
       }
 
