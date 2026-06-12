@@ -63,28 +63,6 @@ export const C = {
 export const F  = "'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif";
 export const FH = "'Cinzel','Inter','Segoe UI',Georgia,serif";
 
-// ─── Spacing scale (4-px base) ──────────────────────────────────────────────
-// Token names use t-shirt sizing; raw numbers for direct use in inline styles.
-export const S = {
-  xs: 4,
-  sm: 6,
-  md: 8,
-  lg: 10,
-  xl: 12,
-  xxl: 14,
-  xxxl: 16,
-  jumbo: 20,
-};
-
-// ─── Radius scale ───────────────────────────────────────────────────────────
-export const R = {
-  sm: 6,
-  md: 8,
-  lg: 10,
-  xl: 14,
-  pill: 999,
-};
-
 // ─── Style Factories ─────────────────────────────────────────────────────────
 export const sx = {
 
