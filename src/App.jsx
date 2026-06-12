@@ -482,6 +482,17 @@ function AppInner() {
         }
       }
 
+      /* ── Mode-Toggle + Lang-Switch nur auf Handy kompakter ── */
+      /* Tablet behält 44px Touch-Target (44px ist OK auf größerem Screen),
+         nur auf Phone-Viewport wird auf moderate 34px reduziert. */
+      @media (max-width: 767px) {
+        button[data-phone-compact] {
+          min-height: 34px !important;
+          padding-top: 5px !important;
+          padding-bottom: 5px !important;
+        }
+      }
+
       @media print {
         /* Hide UI chrome */
         [data-no-print] { display: none !important; }
@@ -940,7 +951,7 @@ function AppInner() {
         gap: 6,
         alignItems: "stretch",
       }}>
-        <button type="button"
+        <button type="button" data-phone-compact
           onClick={() => setLang(lang === "de" ? "en" : "de")}
           title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
           style={{
@@ -955,7 +966,7 @@ function AppInner() {
           }}>
           🌐 {lang.toUpperCase()}
         </button>
-        <button type="button"
+        <button type="button" data-phone-compact
           onClick={requestModeSwitch}
           style={{
             width: "100%",
