@@ -90,9 +90,13 @@ export default function CombatLogPanel() {
     try {
       if (format === "copy") {
         const text = exportLogAsText(state.log, state.fighters);
-        navigator.clipboard.writeText(text).then(() => {
-          showFeedback(t("combat.log_export_copied","✓ Kopiert!"));
-        });
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(text)
+            .then(() => showFeedback(t("combat.log_export_copied","✓ Kopiert!")))
+            .catch(() => showFeedback(t("combat.log_export_err","✗ Fehler")));
+        } else {
+          showFeedback(t("combat.log_export_err","✗ Fehler"));
+        }
       } else if (format === "txt") {
         const text = exportLogAsText(state.log, state.fighters);
         const blob = new Blob([text], { type: "text/plain" });
