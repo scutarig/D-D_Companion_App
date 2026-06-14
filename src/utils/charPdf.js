@@ -7,10 +7,19 @@
 //   - Custom proficiencies from `proficiencies_v1`
 // XSS-safe: every user-controlled string is escaped before being interpolated.
 
+// Per-field length cap for user-supplied free-text. Prevents a single huge
+// field from blowing up the PDF and the print preview.
+const TEXT_CAP = 4000;
+
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
 }[c]));
-const nlbr = (s) => esc(s).replace(/\n/g, "<br>");
+const truncate = (s) => {
+  const str = String(s ?? "");
+  return str.length > TEXT_CAP ? str.slice(0, TEXT_CAP) + " …" : str;
+};
+// Long-text fields: escape + truncate + convert newlines to <br>.
+const nlbr = (s) => esc(truncate(s)).replace(/\n/g, "<br>");
 
 const modStr = (score) => {
   const m = Math.floor(((Number(score) || 10) - 10) / 2);
@@ -187,26 +196,30 @@ export function buildCharPdfHtml(char, opts = {}) {
       }</p>`
     : "";
 
+  // Render the spells section if there's EITHER known spells OR slot usage —
+  // a martial-multiclass user could have spent slots without having any
+  // specific spells in their known-list. Don't swallow that data.
   let spellsHtml = "";
-  if (knownByLevel.size > 0) {
+  if (knownByLevel.size > 0 || Object.keys(slotUsed).length > 0) {
     const levelsSorted = [...knownByLevel.keys()].sort((a, b) => (a === "?" ? 99 : a) - (b === "?" ? 99 : b));
+    const spellGroups = levelsSorted.map((lv) => {
+      const list = knownByLevel.get(lv);
+      const heading = lv === 0
+        ? esc(t("pdf.cantrips","Cantrips"))
+        : lv === "?" ? esc(t("pdf.unknown_level","Unbekannt"))
+        : `${esc(t("pdf.level_word","Level"))} ${lv}`;
+      const items = list.map((s) => {
+        if (typeof s === "string") return `<span class="spellPill">${esc(s)}</span>`;
+        const name = lang === "en" && s.nameEN ? s.nameEN : s.name;
+        const prep = prepSet.has(s.id) ? "★" : "";
+        return `<span class="spellPill">${prep} ${esc(name)}</span>`;
+      }).join(" ");
+      return `<div><strong>${heading}:</strong> ${items}</div>`;
+    }).join("");
     spellsHtml = `
       <h3>${esc(t("pdf.spells_h","Zauber"))}</h3>
       ${spellSlotsLine}
-      ${levelsSorted.map((lv) => {
-        const list = knownByLevel.get(lv);
-        const heading = lv === 0
-          ? esc(t("pdf.cantrips","Cantrips"))
-          : lv === "?" ? esc(t("pdf.unknown_level","Unbekannt"))
-          : `${esc(t("pdf.level_word","Level"))} ${lv}`;
-        const items = list.map((s) => {
-          if (typeof s === "string") return `<span class="spellPill">${esc(s)}</span>`;
-          const name = lang === "en" && s.nameEN ? s.nameEN : s.name;
-          const prep = prepSet.has(s.id) ? "★" : "";
-          return `<span class="spellPill">${prep} ${esc(name)}</span>`;
-        }).join(" ");
-        return `<div><strong>${heading}:</strong> ${items}</div>`;
-      }).join("")}`;
+      ${spellGroups}`;
   }
 
   // ── 9. Background details + personality ───────────────────────────────
