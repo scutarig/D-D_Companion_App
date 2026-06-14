@@ -5,8 +5,11 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
 import { ProfileProvider, useProfile } from "./context/ProfileContext.jsx";
 import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
-import ShareCharDialog from "./components/ShareCharDialog.jsx";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
+
+// Lazy-load ShareCharDialog so the qrcode lib (~30 KB) only loads on first share-click,
+// not in every cold-boot of the main bundle.
+const ShareCharDialog = lazy(() => import("./components/ShareCharDialog.jsx"));
 import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
 import { useI18n } from "./i18n/index.js";
@@ -883,7 +886,7 @@ function AppInner() {
         </main>
       </div>
       {modeConfirmModal}
-      <ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} />
+      {shareOpen && <Suspense fallback={null}><ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} /></Suspense>}
     </div>
   );
 
@@ -910,7 +913,7 @@ function AppInner() {
               </div>
             </div>
           )}
-          <ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} />
+          {shareOpen && <Suspense fallback={null}><ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} /></Suspense>}
         </div>
       </main>
 
