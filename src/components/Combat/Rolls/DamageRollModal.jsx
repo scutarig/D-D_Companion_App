@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C, sx, FH } from "../../../constants/theme.js";
 import { rollDamage, doubleDamageDice, parseDiceNotation } from "../../../utils/rolls.js";
+import { useI18n } from "../../../i18n/index.js";
 import RollResult from "./RollResult.jsx";
 
 /**
@@ -13,6 +14,7 @@ import RollResult from "./RollResult.jsx";
  *   onApply: (targetId, damage) => void
  */
 export default function DamageRollModal({ attacker, target, isCrit = false, onClose, onApply }) {
+  const { t } = useI18n();
   const [diceInput, setDiceInput] = useState("1d8");
   const [damageType, setDamageType] = useState("Piercing");
   const [result, setResult] = useState(null);

@@ -5,6 +5,7 @@ import { useCombat } from "../../../context/CombatContext.jsx";
 import { useCombatActions } from "../../../hooks/useCombatActions.js";
 import { addLog } from "../../../utils/log.js";
 import { saveModifier, fmtMod } from "../../../data/skills.js";
+import { useI18n } from "../../../i18n/index.js";
 import RollResult from "./RollResult.jsx";
 import TargetSelector from "./TargetSelector.jsx";
 
@@ -23,6 +24,7 @@ const SAVE_TYPES = [
  *   onClose: () => void
  */
 export default function SaveRollModal({ onClose }) {
+  const { t } = useI18n();
   const { state, setState } = useCombat();
   const [saveType, setSaveType] = useState("DEX");
   const [dc, setDc] = useState("15");
