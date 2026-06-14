@@ -2,7 +2,11 @@ import { lazy, Suspense, useState, useRef, useEffect, useMemo } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
-import { DialogProvider } from "./hooks/useDialog.jsx";
+import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
+import { ProfileProvider, useProfile } from "./context/ProfileContext.jsx";
+import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
+import ShareCharDialog from "./components/ShareCharDialog.jsx";
+import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
 import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
 import { useI18n } from "./i18n/index.js";
@@ -308,6 +312,7 @@ function AppInner() {
   const { lang, setLang, t }  = useI18n();
   const { active, aid, setActive: setChar } = useChar();
   const [refOpen,  setRefOpen]  = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
   const [charOpen, setCharOpen] = useState(false);
 
@@ -788,8 +793,11 @@ function AppInner() {
             <>
               <button type="button" title={t("nav.export_json","JSON exportieren")} aria-label={t("nav.export_json","JSON exportieren")} onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
               <button type="button" title={t("nav.export_pdf","PDF exportieren")}  aria-label={t("nav.export_pdf","PDF exportieren")} onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
+              <button type="button" title={t("share.btn","Teilen (QR)")} aria-label={t("share.btn","Teilen (QR)")} onClick={() => setShareOpen(true)} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📤</button>
             </>
           )}
+          {/* Profile Switcher */}
+          <ProfileSwitcher variant="sidebar" />
           {/* Lang Toggle */}
           <button type="button"
             onClick={() => setLang(lang === "de" ? "en" : "de")}
@@ -875,6 +883,7 @@ function AppInner() {
         </main>
       </div>
       {modeConfirmModal}
+      <ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} />
     </div>
   );
 
@@ -894,12 +903,14 @@ function AppInner() {
           {tab === "char" && active && !isDM && (
             <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
               <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>{t("save.title", "Charakter speichern")}</div>
-              <div style={{ display:"flex", gap:8 }}>
-                <button type="button" onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:1, fontSize:12 }}>⬇️ {t("save.export_json", "JSON exportieren")}</button>
-                <button type="button" onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:1, fontSize:12 }}>📄 {t("save.export_pdf", "PDF drucken")}</button>
+              <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
+                <button type="button" onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:"1 1 120px", fontSize:12 }}>⬇️ {t("save.export_json", "JSON exportieren")}</button>
+                <button type="button" onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:"1 1 120px", fontSize:12 }}>📄 {t("save.export_pdf", "PDF drucken")}</button>
+                <button type="button" onClick={() => setShareOpen(true)} style={{ ...sx.btn(C.tealBright), flex:"1 1 120px", fontSize:12 }}>📤 {t("share.btn", "Teilen (QR)")}</button>
               </div>
             </div>
           )}
+          <ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} />
         </div>
       </main>
 
@@ -951,6 +962,7 @@ function AppInner() {
         gap: 6,
         alignItems: "stretch",
       }}>
+        <ProfileSwitcher variant="compact" />
         <button type="button" data-phone-compact
           onClick={() => setLang(lang === "de" ? "en" : "de")}
           title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
@@ -1048,16 +1060,64 @@ function AppInner() {
   );
 }
 
+/**
+ * Listens for `#share=<payload>` in the URL on boot and on hash-change.
+ * Decodes the char, prompts the user via dialog, and imports into the
+ * active profile's char list.
+ */
+function ShareImportListener() {
+  const { confirm, alert } = useDialog();
+  const { setChars, setAid } = useChar();
+  const { active } = useProfile();
+  const { t } = useI18n();
+
+  useEffect(() => {
+    let handled = false;
+    const tryImport = async () => {
+      const payload = extractShareFromHash();
+      if (!payload || handled) return;
+      const decoded = decodeChar(payload);
+      // Clear hash immediately so it doesn't loop on accidental nav
+      clearShareHash();
+      if (!decoded) {
+        await alert(t("share.invalid","Der geteilte Charakter konnte nicht gelesen werden."));
+        return;
+      }
+      handled = true;
+      const ok = await confirm(
+        t("share.import_confirm","Charakter \"{name}\" in Profil \"{prof}\" importieren?")
+          .replace("{name}", decoded.name || "?")
+          .replace("{prof}", active?.name || "?"),
+        { title: t("share.import_title","Charakter importieren"), okLabel: t("share.import_btn","Importieren") }
+      );
+      if (!ok) return;
+      const id = Date.now();
+      setChars(prev => [...prev, { ...decoded, id }]);
+      setAid(id);
+    };
+    tryImport();
+    const onHash = () => { handled = false; tryImport(); };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active?.id]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <ErrorBoundary>
-      <CharProvider>
-        <CombatProvider>
-          <DialogProvider>
-            <AppInner />
-          </DialogProvider>
-        </CombatProvider>
-      </CharProvider>
+      <ProfileProvider>
+        <CharProvider>
+          <CombatProvider>
+            <DialogProvider>
+              <ShareImportListener />
+              <AppInner />
+            </DialogProvider>
+          </CombatProvider>
+        </CharProvider>
+      </ProfileProvider>
     </ErrorBoundary>
   );
 }

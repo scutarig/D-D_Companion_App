@@ -1,4 +1,15 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useProfile } from "../context/ProfileContext.jsx";
+
+function useEffectiveKey(rawKey) {
+  // useProfile() returns null if ProfileProvider isn't mounted yet — safe default.
+  const ctx = useProfile();
+  if (!rawKey) return rawKey;
+  if (rawKey.startsWith("__")) return rawKey;            // global keys (profile list itself)
+  const aid = ctx?.activeId;
+  if (!aid || aid === "default") return rawKey;          // default profile = backwards-compat
+  return `p_${aid}_${rawKey}`;
+}
 
 // Unified storage: Tauri/Capacitor window.storage if available, else localStorage
 const store = {
@@ -27,7 +38,8 @@ const store = {
   },
 };
 
-export function usePersist(key, def) {
+export function usePersist(rawKey, def) {
+  const key = useEffectiveKey(rawKey);
   const [v, setRaw] = useState(def);
   const [rdy, setRdy] = useState(false);
   // readyRef breaks the race: set() calls before the async load finishes are
