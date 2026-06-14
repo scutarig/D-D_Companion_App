@@ -2,6 +2,11 @@
 
 import { createLogEntry } from "./combat.js";
 
+// Hard cap on log entries kept in state — prevents unbounded growth during
+// long campaigns from blowing past the localStorage quota. Display is
+// always paged anyway, so older entries beyond this aren't reachable in UI.
+const LOG_MAX_ENTRIES = 500;
+
 // Add log entry to combat log
 export const addLog = (state, type, text, sourceId = null, targetId = null) => {
   const entry = createLogEntry({
@@ -16,9 +21,11 @@ export const addLog = (state, type, text, sourceId = null, targetId = null) => {
     sourceId,
     targetId,
   });
+  // newest first, then enforce hard cap so log never grows unbounded
+  const next = [entry, ...state.log];
   return {
     ...state,
-    log: [entry, ...state.log], // newest first
+    log: next.length > LOG_MAX_ENTRIES ? next.slice(0, LOG_MAX_ENTRIES) : next,
   };
 };
 
