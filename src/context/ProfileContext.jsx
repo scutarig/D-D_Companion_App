@@ -43,21 +43,46 @@ export function useProfile() {
   return useContext(ProfileContext);
 }
 
+// Validate a single profile object — drops anything malformed.
+function validProfile(p) {
+  return p && typeof p === "object" && typeof p.id === "string" && p.id.length > 0;
+}
+function sanitizeList(raw) {
+  if (!Array.isArray(raw)) return [DEFAULT_PROFILE];
+  const cleaned = raw.filter(validProfile).map(p => ({
+    id: String(p.id).slice(0, 64),
+    name: (typeof p.name === "string" ? p.name : "Profil").slice(0, 60) || "Profil",
+    icon: (typeof p.icon === "string" ? p.icon : "🧙").slice(0, 8) || "🧙",
+  }));
+  // Always guarantee default profile is present so usePersist's default-path works
+  if (!cleaned.some(p => p.id === DEFAULT_PROFILE.id)) cleaned.unshift(DEFAULT_PROFILE);
+  return cleaned.length ? cleaned : [DEFAULT_PROFILE];
+}
+
 export function ProfileProvider({ children }) {
   // Initial state: load synchronously from localStorage so the first
   // render of children sees the correct profile (avoids flicker / wrong-key fetch).
+  // Wrapped in try/catch — any throw here would brick the entire app at boot,
+  // and the user would have no way to recover without dev-tools.
   const [profiles, setProfilesState] = useState(() => {
-    const list = readJson(PROFILES_KEY, [DEFAULT_PROFILE]);
-    if (!Array.isArray(list) || list.length === 0) return [DEFAULT_PROFILE];
-    return list;
+    try {
+      const list = readJson(PROFILES_KEY, [DEFAULT_PROFILE]);
+      return sanitizeList(list);
+    } catch (_) {
+      return [DEFAULT_PROFILE];
+    }
   });
   const [activeId, setActiveIdState] = useState(() => {
-    const stored = readJson(ACTIVE_KEY, DEFAULT_PROFILE.id);
-    return typeof stored === "string" ? stored : DEFAULT_PROFILE.id;
+    try {
+      const stored = readJson(ACTIVE_KEY, DEFAULT_PROFILE.id);
+      return typeof stored === "string" && stored.length ? stored : DEFAULT_PROFILE.id;
+    } catch (_) {
+      return DEFAULT_PROFILE.id;
+    }
   });
 
   // Defensive: if active profile got deleted out-of-band, fall back to first.
-  const active = profiles.find(p => p.id === activeId) || profiles[0] || DEFAULT_PROFILE;
+  const active = (Array.isArray(profiles) && (profiles.find(p => p?.id === activeId) || profiles[0])) || DEFAULT_PROFILE;
   const effectiveId = active.id;
 
   // Persist whenever changed

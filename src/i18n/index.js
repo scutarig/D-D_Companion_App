@@ -1333,6 +1333,10 @@ const TRANSLATIONS = {
     "err.title": "Etwas ist schiefgelaufen",
     "err.body": "Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.",
     "err.reload_btn": "🔄 Neu laden",
+    "err.reset_hint": "Wenn der Fehler nach dem Neuladen wieder erscheint, hilft ein Reset der lokalen Daten:",
+    "err.reset_btn": "Alle lokalen Daten löschen + neu laden",
+    "err.confirm_reset": "ALLE lokalen Daten löschen (Charaktere, Notizen, Profile, Combat-State)?\nDies kann nicht rückgängig gemacht werden.\nFortfahren?",
+    "err.resetting": "Setze zurück…",
     "err.details_summary": "Technische Details",
   },
 
@@ -2642,6 +2646,10 @@ const TRANSLATIONS = {
     "err.title": "Something went wrong",
     "err.body": "An unexpected error occurred. Please reload the page.",
     "err.reload_btn": "🔄 Reload",
+    "err.reset_hint": "If the error keeps appearing after reload, resetting local data usually fixes it:",
+    "err.reset_btn": "Clear all local data + reload",
+    "err.confirm_reset": "Delete ALL local data (characters, notes, profiles, combat state)?\nThis cannot be undone.\nContinue?",
+    "err.resetting": "Resetting…",
     "err.details_summary": "Technical details",
   },
 };
