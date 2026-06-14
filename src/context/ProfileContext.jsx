@@ -160,15 +160,3 @@ export function ProfileProvider({ children }) {
 
   return <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>;
 }
-
-/**
- * Compute the effective storage key for the active profile.
- * Default profile uses the raw key (backwards compat); others get `p_<id>_<key>`.
- * Keys starting with `__` are global (e.g. profile-list itself) — never prefixed.
- */
-export function profileKeyFor(activeId, rawKey) {
-  if (!rawKey) return rawKey;
-  if (rawKey.startsWith("__")) return rawKey;
-  if (!activeId || activeId === DEFAULT_PROFILE.id) return rawKey;
-  return `p_${activeId}_${rawKey}`;
-}
