@@ -8,7 +8,8 @@ import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
 import { buildProfileBackup } from "./utils/profileBackup.js";
 import { buildCharPdfHtml } from "./utils/charPdf.js";
-import { SPELLS as SPELL_DB } from "./data/spells.js";
+// SPELLS (100 KB) ist nur in exportPDF nötig — dynamic import via lazy-loader
+// hält das Main-Bundle schlank (sonst landet die ganze Spell-DB im initial-load).
 
 // Lazy-load ShareCharDialog so the qrcode lib (~30 KB) only loads on first share-click,
 // not in every cold-boot of the main bundle.
@@ -648,7 +649,7 @@ function AppInner() {
     URL.revokeObjectURL(url);
   };
 
-  const exportPDF = () => {
+  const exportPDF = async () => {
     if (!active) return;
     // Pull this char's companions — stored per-char as `companions_v1_<id>`.
     const companions = (() => {
@@ -659,6 +660,8 @@ function AppInner() {
         return Array.isArray(parsed) ? parsed : [];
       } catch (_) { return []; }
     })();
+    // Lazy-load the spell DB (~100 KB) so it stays out of the main bundle.
+    const { SPELLS: SPELL_DB } = await import("./data/spells.js");
     const html = buildCharPdfHtml(active, { t, lang, spellDb: SPELL_DB, companions });
     const w = window.open("", "_blank");
     if (!w) { alert(t("nav.popup_blocked","Popup-Blocker aktiv — bitte für diese Seite erlauben.")); return; }
