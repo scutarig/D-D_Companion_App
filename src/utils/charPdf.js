@@ -12,7 +12,6 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({
 }[c]));
 const nlbr = (s) => esc(s).replace(/\n/g, "<br>");
 
-const modOf = (score) => Math.floor((Number(score) || 10) - 10) >> 1;
 const modStr = (score) => {
   const m = Math.floor(((Number(score) || 10) - 10) / 2);
   return m >= 0 ? `+${m}` : String(m);

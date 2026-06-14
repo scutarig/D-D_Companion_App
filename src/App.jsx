@@ -650,15 +650,15 @@ function AppInner() {
 
   const exportPDF = () => {
     if (!active) return;
-    // Pull this char's companions from the profile-scoped companions store.
-    const compsRaw = (() => {
+    // Pull this char's companions — stored per-char as `companions_v1_<id>`.
+    const companions = (() => {
       try {
         const prefix = profileActive?.id && profileActive.id !== "default" ? `p_${profileActive.id}_` : "";
-        const v = localStorage.getItem(prefix + "companions_v1");
-        return v ? JSON.parse(v) : [];
+        const v = localStorage.getItem(`${prefix}companions_v1_${active.id}`);
+        const parsed = v ? JSON.parse(v) : [];
+        return Array.isArray(parsed) ? parsed : [];
       } catch (_) { return []; }
     })();
-    const companions = Array.isArray(compsRaw) ? compsRaw.filter((c) => !c.charId || c.charId === active.id) : [];
     const html = buildCharPdfHtml(active, { t, lang, spellDb: SPELL_DB, companions });
     const w = window.open("", "_blank");
     if (!w) { alert(t("nav.popup_blocked","Popup-Blocker aktiv — bitte für diese Seite erlauben.")); return; }
