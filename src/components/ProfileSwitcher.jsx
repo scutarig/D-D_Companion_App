@@ -50,44 +50,46 @@ export default function ProfileSwitcher({ variant = "sidebar", onSwitch }) {
     deleteProfile(p.id);
   };
 
+  // Icon-only trigger — matches the lang-toggle's compact footprint.
+  // Tooltip + aria-label carry the active profile name.
   const triggerStyle = variant === "compact" ? {
     background: `${C.amberBright}15`,
     border: `1px solid ${C.amberBright}55`,
     borderRadius: 8,
     color: C.amberBright,
-    fontFamily: FH, fontSize: 10, fontWeight: 700,
-    cursor: "pointer", letterSpacing: 0.3,
+    fontFamily: FH, fontWeight: 700,
+    cursor: "pointer",
     padding: "6px 10px",
-    display: "flex", alignItems: "center", gap: 4,
+    display: "flex", alignItems: "center", justifyContent: "center",
     flexShrink: 0,
+    minWidth: 44,
   } : {
     background: `${C.amberBright}11`,
     border: `1px solid ${C.amberBright}55`,
     borderRadius: 8,
     color: C.amberBright,
-    fontFamily: FH, fontSize: 10, fontWeight: 700,
-    cursor: "pointer", letterSpacing: 0.5,
-    padding: "6px 10px",
-    display: "flex", alignItems: "center", gap: 4,
-    width: "100%", justifyContent: "center",
+    fontFamily: FH, fontWeight: 700,
+    cursor: "pointer",
+    padding: "6px 4px",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    width: "100%",
   };
 
+  const tooltip = `${t("profile.switch_title","Profil wechseln")}: ${active.name}`;
+
   return (
-    <div ref={wrapRef} style={{ position: "relative", flexShrink: 0 }}>
+    <div ref={wrapRef} style={{ position: "relative", flexShrink: 0, width: variant === "sidebar" ? "100%" : undefined }}>
       <button
         type="button"
         data-phone-compact
         onClick={() => setOpen((o) => !o)}
-        title={t("profile.switch_title","Profil wechseln") + ": " + active.name}
+        title={tooltip}
+        aria-label={tooltip}
         aria-haspopup="menu"
         aria-expanded={open}
         style={triggerStyle}
       >
-        <span style={{ fontSize: 13 }}>{active.icon}</span>
-        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 90 }}>
-          {active.name}
-        </span>
-        <span style={{ fontSize: 9, opacity: 0.6 }}>▾</span>
+        <span style={{ fontSize: 16, lineHeight: 1 }}>{active.icon}</span>
       </button>
 
       {open && (
