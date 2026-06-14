@@ -6,6 +6,9 @@ import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
 import { ProfileProvider, useProfile } from "./context/ProfileContext.jsx";
 import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
+import { buildProfileBackup } from "./utils/profileBackup.js";
+import { buildCharPdfHtml } from "./utils/charPdf.js";
+import { SPELLS as SPELL_DB } from "./data/spells.js";
 
 // Lazy-load ShareCharDialog so the qrcode lib (~30 KB) only loads on first share-click,
 // not in every cold-boot of the main bundle.
@@ -314,6 +317,7 @@ function AppInner() {
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
   const { lang, setLang, t }  = useI18n();
   const { active, aid, setActive: setChar } = useChar();
+  const { active: profileActive } = useProfile();
   const [refOpen,  setRefOpen]  = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
@@ -629,24 +633,34 @@ function AppInner() {
   }, [refOpen, charOpen]);
 
   const exportJSON = () => {
-    if (!active) return;
-    const blob = new Blob([JSON.stringify(active, null, 2)], { type:"application/json" });
+    // Exports a COMPLETE profile backup (all chars + notes + worldbuilding +
+    // combat + spells + slots + companions + proficiencies + …).
+    // Legacy single-char export → use the QR-share button instead.
+    const backup = buildProfileBackup(profileActive);
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type:"application/json" });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement("a");
-    a.href = url; a.download = `${active.name||"charakter"}.json`; a.click();
+    const safeName = (profileActive?.name || "profil").replace(/[^a-z0-9_-]+/gi, "_");
+    const date = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `dnd-profil-${safeName}-${date}.json`;
+    a.click();
     URL.revokeObjectURL(url);
   };
 
   const exportPDF = () => {
     if (!active) return;
-    const pb   = getPB(active.level);
-    const modS = s => { const m = Math.floor((s-10)/2); return m>=0?`+${m}`:String(m); };
-    // Escape user-controlled strings to prevent XSS in the print window
-    const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
-    const nlbr = s => esc(s).replace(/\n/g, "<br>");
-    const attrs = ["str","dex","con","int","wis","cha"].map(a=>`<tr><td>${a.toUpperCase()}</td><td>${esc(active[a]||10)}</td><td>${esc(modS(active[a]||10))}</td></tr>`).join("");
-    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc(active.name)}</title><style>body{font-family:Calibri,sans-serif;padding:20px;max-width:680px}h1{margin:0}h3{border-bottom:1px solid #ccc;margin-top:16px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ddd;padding:4px 8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}.box{border:1px solid #ccc;padding:6px;text-align:center}.bv{font-size:20px;font-weight:bold}</style></head><body><h1>${esc(active.name)}</h1><p>${esc(active.race)} · ${esc(active.klass)} · Level ${esc(active.level)} · PB +${esc(pb)}</p><div class="grid"><div class="box"><div style="font-size:10px">HP</div><div class="bv">${esc(active.hp)}/${esc(active.maxHp)}</div></div><div class="box"><div style="font-size:10px">AC</div><div class="bv">${esc(active.ac)}</div></div><div class="box"><div style="font-size:10px">Init</div><div class="bv">${esc(modS(active.dex||10))}</div></div><div class="box"><div style="font-size:10px">Gold</div><div class="bv">${esc(active.gold||0)}gp</div></div></div><h3>${esc(t("pdf.attributes_h","Attribute"))}</h3><table><tr><th>${esc(t("pdf.attr_th","Attr"))}</th><th>${esc(t("pdf.value_th","Wert"))}</th><th>${esc(t("pdf.mod_th","Mod"))}</th></tr>${attrs}</table>${active.traits?`<h3>${esc(t("pdf.personality_h","Persönlichkeit"))}</h3><p>${nlbr(active.traits)}</p>`:""}${active.features?`<h3>${esc(t("pdf.features_h","Merkmale"))}</h3><p>${nlbr(active.features)}</p>`:""}<p style="font-size:10px;color:#999">D&amp;D Companion · ${esc(new Date().toLocaleDateString(lang === "en" ? "en-US" : "de-DE"))}</p></body></html>`;
-    const w = window.open("","_blank");
+    // Pull this char's companions from the profile-scoped companions store.
+    const compsRaw = (() => {
+      try {
+        const prefix = profileActive?.id && profileActive.id !== "default" ? `p_${profileActive.id}_` : "";
+        const v = localStorage.getItem(prefix + "companions_v1");
+        return v ? JSON.parse(v) : [];
+      } catch (_) { return []; }
+    })();
+    const companions = Array.isArray(compsRaw) ? compsRaw.filter((c) => !c.charId || c.charId === active.id) : [];
+    const html = buildCharPdfHtml(active, { t, lang, spellDb: SPELL_DB, companions });
+    const w = window.open("", "_blank");
     if (!w) { alert(t("nav.popup_blocked","Popup-Blocker aktiv — bitte für diese Seite erlauben.")); return; }
     w.document.write(html); w.document.close();
     setTimeout(() => { try { w.print(); } catch (_) {} }, 300);

@@ -3,6 +3,12 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { newChar } from "../utils/helpers.js";
 import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
+import { detectImportType, restoreProfileBackup } from "../utils/profileBackup.js";
+import { useProfile } from "../context/ProfileContext.jsx";
+
+// Profile-backups (all chars + notes + worldbuilding) can legitimately be
+// larger than a single character — allow up to 5 MB for them.
+const MAX_PROFILE_BYTES = 5 * 1024 * 1024;
 import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
 import { useDialog } from "../hooks/useDialog.jsx";
@@ -18,7 +24,8 @@ import CurrencyTab from "./CurrencyTab.jsx";
 
 export default function CharManager() {
   const { t } = useI18n();
-  const { alert } = useDialog();
+  const { alert, confirm } = useDialog();
+  const { active: profileActive } = useProfile();
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
   const [subtab, _setSubtab] = useState("sheet");
   // Wrapper: bei Subtab-Wechsel Scroll zurück zum Anfang
@@ -91,25 +98,61 @@ export default function CharManager() {
 
   const importJSON = e => {
     const file = e.target.files[0]; if (!file) return;
-    if (file.size > MAX_FILE_BYTES) {
-      alert(t("char.file_too_large","Datei zu groß (max 512 KB)."));
+    if (file.size > MAX_PROFILE_BYTES) {
+      alert(t("char.file_too_large","Datei zu groß (max 512 KB).").replace("512 KB", "5 MB"));
       e.target.value = "";
       return;
     }
     const reader = new FileReader();
-    reader.onload = ev => {
+    reader.onload = async ev => {
       let raw;
       try { raw = JSON.parse(ev.target.result); }
       catch { alert(t("char.json_error","JSON konnte nicht gelesen werden.")); return; }
-      const result = sanitizeCharImport(raw, file.size);
-      if (!result.ok) {
-        alert(t("char.invalid_file","Ungültige Charakter-Datei."));
+
+      const kind = detectImportType(raw);
+      if (kind === "profile") {
+        // Full profile restore — confirm with stats summary
+        const stats = raw.stats || {};
+        const msg = t("import.profile_confirm",
+          "Profil-Backup importieren?\n\n• Chars: {chars}\n• Notizen: {notes}\n• Gesamt-Keys: {keys}\n\n⚠ Daten im aktuellen Profil \"{prof}\" werden ÜBERSCHRIEBEN.")
+          .replace("{chars}", stats.chars ?? "?")
+          .replace("{notes}", stats.notes ?? "?")
+          .replace("{keys}", stats.totalKeys ?? "?")
+          .replace("{prof}", profileActive?.name || "?");
+        const ok = await confirm(msg, {
+          title: t("import.profile_title","Profil-Backup importieren"),
+          danger: true,
+          okLabel: t("import.profile_ok","Importieren"),
+        });
+        if (!ok) return;
+        const r = restoreProfileBackup(raw, profileActive?.id || "default");
+        if (!r.ok) {
+          alert(t("import.profile_error","Restore fehlgeschlagen: {err}").replace("{err}", r.error));
+          return;
+        }
+        await alert(t("import.profile_done","✓ Backup importiert ({n} Keys). Die Seite wird neu geladen, um alle Daten zu aktivieren.").replace("{n}", r.written));
+        window.location.reload();
         return;
       }
-      const id = Date.now();
-      const newC = { ...newChar(id), ...result.data, id };
-      setChars(p => [...p, newC]);
-      setAid(id);
+
+      if (kind === "char") {
+        if (file.size > MAX_FILE_BYTES) {
+          alert(t("char.file_too_large","Datei zu groß (max 512 KB)."));
+          return;
+        }
+        const result = sanitizeCharImport(raw, file.size);
+        if (!result.ok) {
+          alert(t("char.invalid_file","Ungültige Charakter-Datei."));
+          return;
+        }
+        const id = Date.now();
+        const newC = { ...newChar(id), ...result.data, id };
+        setChars(p => [...p, newC]);
+        setAid(id);
+        return;
+      }
+
+      alert(t("char.invalid_file","Ungültige Charakter-Datei."));
     };
     reader.readAsText(file);
     e.target.value = "";
