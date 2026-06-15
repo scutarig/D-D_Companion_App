@@ -1,19 +1,16 @@
 import { useState } from "react";
-import { C, sx, FH } from "../constants/theme.js";
+import { sx } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
 import Bogen from "./CharacterSheet/Bogen.jsx";
 import Aufbau from "./CharacterSheet/Aufbau.jsx";
 import Kampf from "./CharacterSheet/Kampf.jsx";
 import Inventar from "./CharacterSheet/Inventar.jsx";
+import Progress from "./CharacterSheet/Progress.jsx";
 
 /**
- * CharManagerV2 — new 5-tab character area.
+ * CharManagerV2 — 5-tab character area.
  *
- * Phase 1 (this file): skeleton only — 5 top-tabs, placeholder content per tab.
- * Toggle from old CharManager activates this view (`char_view_v2` setting).
- *
- * Tab plan (filled in subsequent phases):
  *   📜 Bogen     → read-only Char-Sheet (abilities, skills, saves, derived)
  *   🧬 Aufbau    → edit identity, race, class, background, stats, skills, mastery
  *   ⚔️ Kampf     → spellbook, slots, actions, conditions
@@ -66,49 +63,7 @@ export default function CharManagerV2() {
         {tab === "aufbau"   && <Aufbau char={active} setChar={setActive} />}
         {tab === "kampf"    && <Kampf char={active} setChar={setActive} />}
         {tab === "inv"      && <Inventar char={active} setChar={setActive} />}
-        {tab === "progress" && <PlaceholderTab title="📈 Progress" desc={t("v2.placeholder_progress", "Level-Up-Assistant, Exhaustion, Hit-Dice, Wild-Shape.")} phase={6} />}
-      </div>
-    </div>
-  );
-}
-
-function PlaceholderTab({ title, desc, phase }) {
-  const { t } = useI18n();
-  return (
-    <div style={{
-      ...sx.card,
-      textAlign: "center",
-      padding: 32,
-      borderColor: `${C.amberBright}33`,
-      background: `linear-gradient(180deg, ${C.amberBright}06 0%, transparent 100%)`,
-    }}>
-      <div style={{ fontSize: 36, marginBottom: 12 }}>{title.split(" ")[0]}</div>
-      <h2 style={{
-        ...sx.ct,
-        color: C.amberBright,
-        fontSize: 18,
-        borderBottom: "none",
-        margin: "0 0 8px",
-        padding: 0,
-      }}>
-        {title}
-      </h2>
-      <p style={{ color: C.text, fontSize: 13, lineHeight: 1.55, margin: "0 0 14px", maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
-        {desc}
-      </p>
-      <div style={{
-        display: "inline-block",
-        padding: "4px 10px",
-        background: `${C.gold}22`,
-        border: `1px solid ${C.gold}55`,
-        borderRadius: 12,
-        color: C.gold,
-        fontFamily: FH,
-        fontSize: 11,
-        fontWeight: 700,
-        letterSpacing: 0.5,
-      }}>
-        {t("v2.coming_in_phase", "Kommt in Phase {n}").replace("{n}", phase)}
+        {tab === "progress" && <Progress char={active} setChar={setActive} />}
       </div>
     </div>
   );
