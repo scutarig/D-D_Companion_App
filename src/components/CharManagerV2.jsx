@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
+import Bogen from "./CharacterSheet/Bogen.jsx";
 
 /**
  * CharManagerV2 — new 5-tab character area.
@@ -18,7 +19,7 @@ import { useI18n } from "../i18n/index.js";
  */
 export default function CharManagerV2() {
   const { t } = useI18n();
-  const { active } = useChar();
+  const { active, setActive } = useChar();
   const [tab, setTab] = useState("bogen");
 
   const TABS = [
@@ -58,7 +59,7 @@ export default function CharManagerV2() {
       </nav>
 
       <div>
-        {tab === "bogen"    && <PlaceholderTab title="📜 Bogen" desc={t("v2.placeholder_bogen", "Hier kommt das klassische Char-Sheet — Stats, Saves, Skills, Derived Values.")} phase={2} />}
+        {tab === "bogen"    && <Bogen char={active} setChar={setActive} />}
         {tab === "aufbau"   && <PlaceholderTab title="🧬 Aufbau" desc={t("v2.placeholder_aufbau", "Identity, Volk, Klassen, Hintergrund, Origin-Feat, Stats/Skill-Editor, Weapon-Mastery, Sprachen.")} phase={3} />}
         {tab === "kampf"    && <PlaceholderTab title="⚔️ Kampf" desc={t("v2.placeholder_kampf", "Spellbook, Spell-Slots, Aktionen, Conditions, Equipped-Quick-View.")} phase={4} />}
         {tab === "inv"      && <PlaceholderTab title="🎒 Inventar" desc={t("v2.placeholder_inv", "Inventar, Equipped-Slots-Visual, Währung, Attunement-Tracker.")} phase={5} />}
