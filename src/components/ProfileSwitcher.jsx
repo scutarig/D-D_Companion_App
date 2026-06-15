@@ -50,19 +50,21 @@ export default function ProfileSwitcher({ variant = "sidebar", onSwitch }) {
     deleteProfile(p.id);
   };
 
-  // Icon-only trigger — matches the lang-toggle's compact footprint.
+  // Icon-only trigger — mirrors the lang-toggle's exact compact footprint.
+  // padding/font/border are identical to the 🌐-DE button so both visually
+  // sit at the same height + similar width on Mobile.
   // Tooltip + aria-label carry the active profile name.
   const triggerStyle = variant === "compact" ? {
     background: `${C.amberBright}15`,
     border: `1px solid ${C.amberBright}55`,
     borderRadius: 8,
     color: C.amberBright,
-    fontFamily: FH, fontWeight: 700,
-    cursor: "pointer",
+    fontFamily: FH, fontSize: 13, fontWeight: 700,
+    cursor: "pointer", letterSpacing: 0.5,
     padding: "6px 10px",
     display: "flex", alignItems: "center", justifyContent: "center",
     flexShrink: 0,
-    minWidth: 44,
+    minWidth: 56,
   } : {
     background: `${C.amberBright}11`,
     border: `1px solid ${C.amberBright}55`,
@@ -78,7 +80,16 @@ export default function ProfileSwitcher({ variant = "sidebar", onSwitch }) {
   const tooltip = `${t("profile.switch_title","Profil wechseln")}: ${active.name}`;
 
   return (
-    <div ref={wrapRef} style={{ position: "relative", flexShrink: 0, width: variant === "sidebar" ? "100%" : undefined }}>
+    <div ref={wrapRef} style={{
+      position: "relative",
+      flexShrink: 0,
+      // Compact (mobile) sits in a `alignItems: stretch` strip — the wrapper
+      // needs `display:flex` itself so the button stretches to the strip's
+      // height (matches the DE/EN toggle's height visually).
+      display: variant === "compact" ? "flex" : undefined,
+      alignSelf: variant === "compact" ? "stretch" : undefined,
+      width: variant === "sidebar" ? "100%" : undefined,
+    }}>
       <button
         type="button"
         data-phone-compact
@@ -89,7 +100,7 @@ export default function ProfileSwitcher({ variant = "sidebar", onSwitch }) {
         aria-expanded={open}
         style={triggerStyle}
       >
-        <span style={{ fontSize: 16, lineHeight: 1 }}>{active.icon}</span>
+        <span style={{ fontSize: variant === "compact" ? 14 : 16, lineHeight: 1 }}>{active.icon}</span>
       </button>
 
       {open && (
