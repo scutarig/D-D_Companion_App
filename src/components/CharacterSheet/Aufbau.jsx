@@ -506,6 +506,9 @@ function PersonalityEditor({ char, setChar }) {
       <div style={{ gridColumn: "1 / -1" }}>
         <Field label={t("pdf.backstory_h","Hintergrundgeschichte")} value={char.backstory} onChange={(v) => u("backstory", v)} col={C.gold} rows={5} />
       </div>
+      <div style={{ gridColumn: "1 / -1" }}>
+        <Field label={t("aufbau.notes_lbl","Notizen / Freitext-Features")} value={char.features} onChange={(v) => u("features", v)} col={C.tealBright} rows={4} />
+      </div>
     </div>
   );
 }

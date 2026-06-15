@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { newChar } from "../utils/helpers.js";
@@ -14,13 +14,6 @@ import { useI18n } from "../i18n/index.js";
 import { useDialog } from "../hooks/useDialog.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
-import CharSheet from "./CharSheet.jsx";
-import LevelUpAssistant from "./LevelUpAssistant.jsx";
-import CharActions from "./CharActions.jsx";
-import Spellbook from "./Spellbook.jsx";
-import Tokens from "./Tokens.jsx";
-import ConditionsTracker from "./ConditionsTracker.jsx";
-import CurrencyTab from "./CurrencyTab.jsx";
 import CharManagerV2 from "./CharManagerV2.jsx";
 
 export default function CharManager() {
@@ -28,42 +21,15 @@ export default function CharManager() {
   const { alert, confirm } = useDialog();
   const { active: profileActive } = useProfile();
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
-  // Feature-flag: neue 5-Tab-Char-Ansicht. Default off — alte 7-Subtab-Layout
-  // bleibt parallel bis V2 vollständig ist (Phase 8 räumt auf).
-  const [useV2, setUseV2] = usePersist("char_view_v2", false);
-  const [subtab, _setSubtab] = useState("sheet");
-  // Wrapper: bei Subtab-Wechsel Scroll zurück zum Anfang
-  const setSubtab = (next) => {
-    _setSubtab(next);
-    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "auto" });
-  };
-  const [usedSlots, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
+  const [, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
   const [restMode, setRestMode] = useState(null);
   const [shortHpVal, setShortHpVal] = useState(0);
   const [shortResult, setShortResult] = useState(null);
   const [longResult, setLongResult] = useState(null);
   const [hdRollLog, setHdRollLog] = useState([]);
-  const [printMode, setPrintMode] = useState(false);
   // Multiclass info needed for rest resource tracking
   const { classes } = useMulticlass(aid, active, setActive);
-
-  // Trigger browser print after React renders printMode
-  useEffect(() => {
-    if (!printMode) return;
-    const t = setTimeout(() => window.print(), 150);
-    const onAfter = () => setPrintMode(false);
-    window.addEventListener("afterprint", onAfter);
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("afterprint", onAfter);
-    };
-  }, [printMode]);
-
-  const exportPDF = () => {
-    setSubtab("sheet");        // PDF only covers the character sheet
-    setPrintMode(true);
-  };
 
   const addChar = () => { const id = Date.now(); setChars(p => [...p, newChar(id)]); setAid(id); };
   const delChar = id => { if (chars.length <= 1) return; const nx = chars.find(c => c.id !== id); setChars(p => p.filter(c => c.id !== id)); setAid(nx?.id); };
@@ -115,7 +81,6 @@ export default function CharManager() {
 
       const kind = detectImportType(raw);
       if (kind === "profile") {
-        // Full profile restore — confirm with stats summary
         const stats = raw.stats || {};
         const msg = t("import.profile_confirm",
           "Profil-Backup importieren?\n\n• Chars: {chars}\n• Notizen: {notes}\n• Gesamt-Keys: {keys}\n\n⚠ Daten im aktuellen Profil \"{prof}\" werden ÜBERSCHRIEBEN.")
@@ -181,9 +146,6 @@ export default function CharManager() {
               {t("char.import_btn","📥 Import")}
               <input type="file" accept=".json" onChange={importJSON} style={{ display: "none" }} />
             </label>
-            <button type="button" onClick={exportPDF} title={t("char.pdf_export_title","Charakter-Bogen als PDF drucken/speichern")} style={sx.bsm(C.gold)}>
-              {t("char.pdf_export_btn","📄 PDF Export")}
-            </button>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             <button type="button" onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 {t("header.short_rest","Kurze Rast")}</button>
@@ -283,63 +245,7 @@ export default function CharManager() {
         )}
       </div>
 
-      {/* View-Toggle: neue 5-Tab-Char-Ansicht vs. klassische 7-Subtab-Ansicht.
-          Während der inkrementellen Migration (Phase 1-8) bleibt die alte
-          Ansicht als Fallback erreichbar. */}
-      <div data-no-print style={{
-        display: "flex", alignItems: "center", justifyContent: "flex-end",
-        gap: 6, marginBottom: 10, fontSize: 11,
-      }}>
-        <button
-          type="button"
-          onClick={() => setUseV2((v) => !v)}
-          title={useV2
-            ? t("v2.toggle_to_classic_title", "Zur klassischen Ansicht zurückwechseln")
-            : t("v2.toggle_to_v2_title", "Neue 5-Tab-Ansicht aktivieren (in Entwicklung)")}
-          style={{
-            background: useV2 ? `${C.amberBright}22` : "transparent",
-            border: `1px solid ${useV2 ? C.amberBright : C.border}`,
-            borderRadius: 12,
-            color: useV2 ? C.amberBright : C.textDim,
-            fontFamily: FH, fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
-            padding: "5px 12px", cursor: "pointer",
-            display: "flex", alignItems: "center", gap: 6,
-          }}
-        >
-          <span style={{ fontSize: 11 }}>{useV2 ? "✨" : "📜"}</span>
-          {useV2
-            ? t("v2.toggle_label_active", "Neue Ansicht (Beta)")
-            : t("v2.toggle_label_inactive", "Neue Ansicht testen")}
-        </button>
-      </div>
-
-      {useV2 ? (
-        <CharManagerV2 />
-      ) : (
-        <>
-          <div data-no-print style={{ display: "flex", gap: 5, marginBottom: 14, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 4 }}>
-            {[
-              ["sheet", `📜 ${t("char.tab_sheet","Bogen")}`],
-              ["currency", `💰 ${t("char.tab_currency","Währung")}`],
-              ["levelup", `⬆️ ${t("char.tab_levelup","Level-Up")}`],
-              ["aktionen", `⚔️ ${t("char.tab_actions","Aktionen")}`],
-              ["spells", `🔮 ${t("char.tab_spells","Spellbook")}`],
-              ["tokens", `🏷️ ${t("char.tab_tokens","Tokens")}`],
-              ["conditions", `⚡ ${t("char.tab_conditions","Conditions")}`],
-            ].map(([id, l]) => (
-              <button type="button" key={id} onClick={() => setSubtab(id)} style={{ ...sx.nb(subtab === id), flexShrink: 0 }}>{l}</button>
-            ))}
-          </div>
-
-          {subtab === "sheet" && <CharSheet char={active} setChar={setActive} printMode={printMode} />}
-          {subtab === "currency" && <CurrencyTab />}
-          {subtab === "levelup" && <LevelUpAssistant char={active} setChar={setActive} />}
-          {subtab === "aktionen" && <CharActions char={active} setChar={setActive} />}
-          {subtab === "spells" && <Spellbook key={aid} charId={aid} />}
-          {subtab === "tokens" && <Tokens char={active} charId={aid} usedSlots={usedSlots} setUsedSlots={setUsedSlots} />}
-          {subtab === "conditions" && <ConditionsTracker char={active} setChar={setActive} />}
-        </>
-      )}
+      <CharManagerV2 />
     </div>
   );
 }
