@@ -42,7 +42,8 @@ Static D&D 5e data lives in `src/data/` (spells, monsters, classes, races, items
 ```
 src/components/
   CombatDashboard.jsx   — "Übersicht" tab: token tracker + quick stats
-  CharManager.jsx       — character CRUD + CharSheet
+  CharManager.jsx       — character CRUD + Rest header (renders CharManagerV2)
+  CharManagerV2.jsx     — 5-tab character area (Bogen/Aufbau/Kampf/Inventar/Progress)
   Combat/               — full initiative/turn combat system
   CharacterSheet/       — multiclass, subclass, race selector, traits
   Companions/           — animal companions / familiars
