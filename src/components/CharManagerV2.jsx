@@ -4,6 +4,7 @@ import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
 import Bogen from "./CharacterSheet/Bogen.jsx";
 import Aufbau from "./CharacterSheet/Aufbau.jsx";
+import Kampf from "./CharacterSheet/Kampf.jsx";
 
 /**
  * CharManagerV2 — new 5-tab character area.
@@ -62,7 +63,7 @@ export default function CharManagerV2() {
       <div>
         {tab === "bogen"    && <Bogen char={active} setChar={setActive} />}
         {tab === "aufbau"   && <Aufbau char={active} setChar={setActive} />}
-        {tab === "kampf"    && <PlaceholderTab title="⚔️ Kampf" desc={t("v2.placeholder_kampf", "Spellbook, Spell-Slots, Aktionen, Conditions, Equipped-Quick-View.")} phase={4} />}
+        {tab === "kampf"    && <Kampf char={active} setChar={setActive} />}
         {tab === "inv"      && <PlaceholderTab title="🎒 Inventar" desc={t("v2.placeholder_inv", "Inventar, Equipped-Slots-Visual, Währung, Attunement-Tracker.")} phase={5} />}
         {tab === "progress" && <PlaceholderTab title="📈 Progress" desc={t("v2.placeholder_progress", "Level-Up-Assistant, Exhaustion, Hit-Dice, Wild-Shape.")} phase={6} />}
       </div>
