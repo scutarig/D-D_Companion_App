@@ -71,58 +71,6 @@ export default function Bogen({ char, setChar }) {
         </div>
       </div>
 
-      {/* ── Play-Row: Inspiration + Death Saves ─────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 10, marginBottom: 10 }}>
-        <button type="button"
-          onClick={() => u("inspiration", !char.inspiration)}
-          title={t("bogen.inspiration_title","Inspiration ein-/ausschalten")}
-          style={{
-            background: char.inspiration ? "linear-gradient(135deg, #f0c060, #d97706)" : "rgba(0,0,0,0.25)",
-            border: `1px solid ${char.inspiration ? C.gold : C.border}`,
-            borderRadius: 12,
-            padding: "12px 10px",
-            cursor: "pointer",
-            textAlign: "center",
-            boxShadow: char.inspiration ? `0 0 18px ${C.gold}44` : "none",
-            transition: "all .2s",
-          }}>
-          <div style={{ fontSize: 22 }}>{char.inspiration ? "✨" : "💫"}</div>
-          <div style={{ fontSize: 9, fontFamily: FH, fontWeight: 700, color: char.inspiration ? "#000" : C.textDim, letterSpacing: .5, marginTop: 2 }}>
-            {t("sheet.inspiration","INSPIRATION")}
-          </div>
-          <div style={{ fontSize: 8, color: char.inspiration ? "#00000099" : C.textDim, marginTop: 1 }}>
-            {char.inspiration ? t("sheet.active","AKTIV") : t("sheet.inactive","INAKTIV")}
-          </div>
-        </button>
-
-        <div style={{ ...sx.card, marginBottom: 0, padding: "10px 12px" }}>
-          <div style={{ ...sx.ct, fontSize: 10, marginBottom: 8, borderBottom: "none", paddingBottom: 0 }}>💀 {t("sheet.death_saves","DEATH SAVES")}</div>
-          {["suc", "fail"].map((f) => {
-            const col = f === "suc" ? C.green : C.red;
-            const cur = (char.deathSaves || {})[f] || 0;
-            return (
-              <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                <span style={{ color: col, fontSize: 11, fontWeight: 700, minWidth: 60 }}>
-                  {f === "suc" ? `✓ ${t("sheet.success","Erfolg")}` : `✗ ${t("sheet.fail","Fail")}`}
-                </span>
-                <div style={{ display: "flex", gap: 4 }}>
-                  {[0, 1, 2].map((i) => (
-                    <button key={i} type="button"
-                      onClick={() => setChar((p) => { const ds = p.deathSaves || { suc: 0, fail: 0 }; return { ...p, deathSaves: { ...ds, [f]: i < (ds[f] || 0) ? i : (ds[f] || 0) + 1 } }; })}
-                      style={{
-                        width: 22, height: 22, borderRadius: "50%",
-                        background: i < cur ? col : "transparent",
-                        border: `2px solid ${col}`, cursor: "pointer", padding: 0,
-                      }}
-                      aria-label={`${f} ${i+1}`} />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
       {/* ── 6 Ability Cards (read) ─────────────────────────────────────── */}
       <div style={sx.card}>
         <div style={sx.ct}>⚔️ {t("bogen.abilities_h","Attribute")}</div>
