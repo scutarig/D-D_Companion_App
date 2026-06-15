@@ -21,12 +21,16 @@ import Spellbook from "./Spellbook.jsx";
 import Tokens from "./Tokens.jsx";
 import ConditionsTracker from "./ConditionsTracker.jsx";
 import CurrencyTab from "./CurrencyTab.jsx";
+import CharManagerV2 from "./CharManagerV2.jsx";
 
 export default function CharManager() {
   const { t } = useI18n();
   const { alert, confirm } = useDialog();
   const { active: profileActive } = useProfile();
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
+  // Feature-flag: neue 5-Tab-Char-Ansicht. Default off — alte 7-Subtab-Layout
+  // bleibt parallel bis V2 vollständig ist (Phase 8 räumt auf).
+  const [useV2, setUseV2] = usePersist("char_view_v2", false);
   const [subtab, _setSubtab] = useState("sheet");
   // Wrapper: bei Subtab-Wechsel Scroll zurück zum Anfang
   const setSubtab = (next) => {
@@ -279,27 +283,63 @@ export default function CharManager() {
         )}
       </div>
 
-      <div data-no-print style={{ display: "flex", gap: 5, marginBottom: 14, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 4 }}>
-        {[
-          ["sheet", `📜 ${t("char.tab_sheet","Bogen")}`],
-          ["currency", `💰 ${t("char.tab_currency","Währung")}`],
-          ["levelup", `⬆️ ${t("char.tab_levelup","Level-Up")}`],
-          ["aktionen", `⚔️ ${t("char.tab_actions","Aktionen")}`],
-          ["spells", `🔮 ${t("char.tab_spells","Spellbook")}`],
-          ["tokens", `🏷️ ${t("char.tab_tokens","Tokens")}`],
-          ["conditions", `⚡ ${t("char.tab_conditions","Conditions")}`],
-        ].map(([id, l]) => (
-          <button type="button" key={id} onClick={() => setSubtab(id)} style={{ ...sx.nb(subtab === id), flexShrink: 0 }}>{l}</button>
-        ))}
+      {/* View-Toggle: neue 5-Tab-Char-Ansicht vs. klassische 7-Subtab-Ansicht.
+          Während der inkrementellen Migration (Phase 1-8) bleibt die alte
+          Ansicht als Fallback erreichbar. */}
+      <div data-no-print style={{
+        display: "flex", alignItems: "center", justifyContent: "flex-end",
+        gap: 6, marginBottom: 10, fontSize: 11,
+      }}>
+        <button
+          type="button"
+          onClick={() => setUseV2((v) => !v)}
+          title={useV2
+            ? t("v2.toggle_to_classic_title", "Zur klassischen Ansicht zurückwechseln")
+            : t("v2.toggle_to_v2_title", "Neue 5-Tab-Ansicht aktivieren (in Entwicklung)")}
+          style={{
+            background: useV2 ? `${C.amberBright}22` : "transparent",
+            border: `1px solid ${useV2 ? C.amberBright : C.border}`,
+            borderRadius: 12,
+            color: useV2 ? C.amberBright : C.textDim,
+            fontFamily: FH, fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
+            padding: "5px 12px", cursor: "pointer",
+            display: "flex", alignItems: "center", gap: 6,
+          }}
+        >
+          <span style={{ fontSize: 11 }}>{useV2 ? "✨" : "📜"}</span>
+          {useV2
+            ? t("v2.toggle_label_active", "Neue Ansicht (Beta)")
+            : t("v2.toggle_label_inactive", "Neue Ansicht testen")}
+        </button>
       </div>
 
-      {subtab === "sheet" && <CharSheet char={active} setChar={setActive} printMode={printMode} />}
-      {subtab === "currency" && <CurrencyTab />}
-      {subtab === "levelup" && <LevelUpAssistant char={active} setChar={setActive} />}
-      {subtab === "aktionen" && <CharActions char={active} setChar={setActive} />}
-      {subtab === "spells" && <Spellbook key={aid} charId={aid} />}
-{subtab === "tokens" && <Tokens char={active} charId={aid} usedSlots={usedSlots} setUsedSlots={setUsedSlots} />}
-      {subtab === "conditions" && <ConditionsTracker char={active} setChar={setActive} />}
+      {useV2 ? (
+        <CharManagerV2 />
+      ) : (
+        <>
+          <div data-no-print style={{ display: "flex", gap: 5, marginBottom: 14, overflowX: "auto", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: 4 }}>
+            {[
+              ["sheet", `📜 ${t("char.tab_sheet","Bogen")}`],
+              ["currency", `💰 ${t("char.tab_currency","Währung")}`],
+              ["levelup", `⬆️ ${t("char.tab_levelup","Level-Up")}`],
+              ["aktionen", `⚔️ ${t("char.tab_actions","Aktionen")}`],
+              ["spells", `🔮 ${t("char.tab_spells","Spellbook")}`],
+              ["tokens", `🏷️ ${t("char.tab_tokens","Tokens")}`],
+              ["conditions", `⚡ ${t("char.tab_conditions","Conditions")}`],
+            ].map(([id, l]) => (
+              <button type="button" key={id} onClick={() => setSubtab(id)} style={{ ...sx.nb(subtab === id), flexShrink: 0 }}>{l}</button>
+            ))}
+          </div>
+
+          {subtab === "sheet" && <CharSheet char={active} setChar={setActive} printMode={printMode} />}
+          {subtab === "currency" && <CurrencyTab />}
+          {subtab === "levelup" && <LevelUpAssistant char={active} setChar={setActive} />}
+          {subtab === "aktionen" && <CharActions char={active} setChar={setActive} />}
+          {subtab === "spells" && <Spellbook key={aid} charId={aid} />}
+          {subtab === "tokens" && <Tokens char={active} charId={aid} usedSlots={usedSlots} setUsedSlots={setUsedSlots} />}
+          {subtab === "conditions" && <ConditionsTracker char={active} setChar={setActive} />}
+        </>
+      )}
     </div>
   );
 }
