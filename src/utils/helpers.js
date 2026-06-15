@@ -5,6 +5,25 @@ export const modStr = s => { const m = modOf(s); return m >= 0 ? `+${m}` : `${m}
 export const rollD = n => Math.floor(Math.random() * n) + 1;
 export const getPB = l => l < 5 ? 2 : l < 9 ? 3 : l < 13 ? 4 : l < 17 ? 5 : 6;
 
+// ── Hit Die per class (PHB 2024) — fixed class invariant, used to auto-derive
+//    char.hd whenever the user changes char.klass in the Aufbau tab.
+const CLASS_HD = {
+  Barbar: "d12",
+  Barde: "d8",
+  Druide: "d8",
+  Hexenmeister: "d8",
+  Kämpfer: "d10",
+  Kleriker: "d8",
+  Magier: "d6",
+  Mönch: "d8",
+  Paladin: "d10",
+  Schurke: "d8",
+  Waldläufer: "d10",
+  Zauberer: "d6",
+  Magieschmied: "d8",
+};
+export const getClassHd = (klass) => CLASS_HD[klass] || "d8";
+
 // ── Zauberplatz-Tabellen ──────────────────────────────────────────────────────
 export const SLOT_LABELS = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th"];
 

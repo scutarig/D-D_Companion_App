@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { C, sx, SC, ABS, SKILLS, FH } from "../../constants/theme.js";
-import { modOf, getPB } from "../../utils/helpers.js";
+import { modOf, getPB, getClassHd } from "../../utils/helpers.js";
 import { getMasteryCount } from "../../data/weaponMasteries.js";
+import { STANDARD_LANGUAGES, langLabel } from "../../data/languages.js";
 import { useI18n } from "../../i18n/index.js";
+import { useIsMobile } from "../../hooks/useIsMobile.js";
 import { useMulticlass } from "../../hooks/useMulticlass.js";
 import RaceSelector from "./RaceSelector.jsx";
 import BackgroundSelector from "./BackgroundSelector.jsx";
@@ -15,27 +17,39 @@ import TraitsFeatures from "./TraitsFeatures.jsx";
 /**
  * Aufbau — Char-Build / Edit view (Tab 2 of CharManagerV2).
  *
- * Organizes ALL char-defining controls into thematic Collapsible Sections.
- * Each section is independent — user expands what they want to edit.
+ * Layout: 2-column on desktop, 1-column on mobile.
+ *   LEFT  — selector sections in PHB-2024 character-creation order:
+ *     1. Klasse & Subclass     (start here per PHB)
+ *     2. Species (Volk)
+ *     3. Hintergrund & Origin-Feat
+ *     4. Attributwerte
+ *     5. Saves
+ *     6. Skills
+ *     7. Waffen-Mastery (only if class supports it)
+ *     8. Sprachen (Dropdown-Select from standard list)
+ *     9. Persönlichkeit
+ *   RIGHT — read-mostly summary:
+ *     • Identity card (always visible — name, class, level, PB, HD)
+ *     • Features & Traits (collapsible, default open)
  *
- * Sections (in order):
- *   1. Identität (Name, Klasse-Anzeige, Level-Anzeige, Spell-Ability-Select)
- *   2. Volk (RaceSelector)
- *   3. Klassen & Subclass (MulticlassManager + SubclassPicker)
- *   4. Hintergrund + Origin-Feat (BackgroundSelector + OriginFeatChoices)
- *   5. Attribute-Editor (STR/DEX/CON/INT/WIS/CHA Steppers)
- *   6. Save-Proficiency (6 Toggles)
- *   7. Skill-Proficiency (18 Skills × 3-state)
- *   8. Weapon-Mastery (WeaponMasteryPicker — nur martial)
- *   9. Sprachen-Editor
- *  10. Persönlichkeit (Traits/Ideals/Bonds/Flaws/Backstory edit)
- *  11. Features & Traits (TraitsFeatures)
+ * HD is now auto-derived from the chosen class (PHB invariant) — when the
+ * user changes char.klass we write char.hd accordingly so legacy/PDF code
+ * that reads char.hd stays correct.
  */
 export default function Aufbau({ char, setChar }) {
   const { t } = useI18n();
   const pb = getPB(char.level);
   const { classes, setSubclass } = useMulticlass(char.id, char, setChar);
   const masteryCount = getMasteryCount(char.klass, char.level) || 0;
+  const isMobile = useIsMobile(820);
+
+  // Auto-sync HD from class (PHB invariant). Runs whenever klass changes.
+  useEffect(() => {
+    const expected = getClassHd(char.klass);
+    if (char.hd !== expected) {
+      setChar((p) => ({ ...p, hd: expected }));
+    }
+  }, [char.klass]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -47,60 +61,71 @@ export default function Aufbau({ char, setChar }) {
         color: C.tealBright,
         fontSize: 11, lineHeight: 1.5, textAlign: "center",
       }}>
-        🧬 {t("aufbau.intro","Hier definierst du deinen Charakter. Jeder Bereich ist aufklappbar.")}
+        🧬 {t("aufbau.intro_v2","Reihenfolge wie im PHB 2024 — links wählen, rechts ergibt sich Identität und Features.")}
       </div>
 
-      <Section title={t("aufbau.section_identity","Identität")} icon="📝" defaultOpen>
-        <IdentitySection char={char} setChar={setChar} pb={pb} />
-      </Section>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.55fr) minmax(0, 1fr)",
+        gap: 14,
+        alignItems: "start",
+      }}>
+        {/* ── LEFT — Selectors in PHB-2024 character-creation order ───── */}
+        <div>
+          <Section title={t("aufbau.section_class","Klassen & Subclass")} icon="⚔️" defaultOpen>
+            <MulticlassManager char={char} setChar={setChar} />
+            <div style={{ marginTop: 8 }}>
+              <SubclassPicker char={char} classes={classes} setSubclass={setSubclass} />
+            </div>
+          </Section>
 
-      <Section title={t("aufbau.section_race","Volk / Species")} icon="🧝">
-        <RaceSelector char={char} setChar={setChar} />
-      </Section>
+          <Section title={t("aufbau.section_race","Volk / Species")} icon="🧝">
+            <RaceSelector char={char} setChar={setChar} />
+          </Section>
 
-      <Section title={t("aufbau.section_class","Klassen & Subclass")} icon="⚔️">
-        <MulticlassManager char={char} setChar={setChar} />
-        <div style={{ marginTop: 8 }}>
-          <SubclassPicker char={char} classes={classes} setSubclass={setSubclass} />
+          <Section title={t("aufbau.section_background","Hintergrund & Origin-Feat")} icon="📜">
+            <BackgroundSelector char={char} setChar={setChar} />
+            <div style={{ marginTop: 8 }}>
+              <OriginFeatChoices char={char} setChar={setChar} />
+            </div>
+          </Section>
+
+          <Section title={t("aufbau.section_abilities","Attributwerte")} icon="💪">
+            <AbilitiesEditor char={char} setChar={setChar} />
+          </Section>
+
+          <Section title={t("aufbau.section_saves","Rettungswürfe — Übung")} icon="🛡️">
+            <SavesEditor char={char} setChar={setChar} pb={pb} />
+          </Section>
+
+          <Section title={t("aufbau.section_skills","Fertigkeiten — Übung & Expertise")} icon="🎯">
+            <SkillsEditor char={char} setChar={setChar} pb={pb} />
+          </Section>
+
+          {masteryCount > 0 && (
+            <Section title={t("aufbau.section_mastery","Waffen-Meisterschaft")} icon="🗡️">
+              <WeaponMasteryPicker char={char} setChar={setChar} />
+            </Section>
+          )}
+
+          <Section title={t("aufbau.section_languages","Sprachen")} icon="🗣️">
+            <LanguagesEditor char={char} setChar={setChar} />
+          </Section>
+
+          <Section title={t("aufbau.section_personality","Persönlichkeit & Backstory")} icon="🎭">
+            <PersonalityEditor char={char} setChar={setChar} />
+          </Section>
         </div>
-      </Section>
 
-      <Section title={t("aufbau.section_background","Hintergrund & Origin-Feat")} icon="📜">
-        <BackgroundSelector char={char} setChar={setChar} />
-        <div style={{ marginTop: 8 }}>
-          <OriginFeatChoices char={char} setChar={setChar} />
+        {/* ── RIGHT — Identity card (always visible) + Features ────────── */}
+        <div style={{ position: isMobile ? "static" : "sticky", top: 10 }}>
+          <IdentityCard char={char} setChar={setChar} pb={pb} />
+
+          <Section title={t("aufbau.section_features","Features & Traits")} icon="✦" defaultOpen>
+            <TraitsFeatures char={char} setChar={setChar} />
+          </Section>
         </div>
-      </Section>
-
-      <Section title={t("aufbau.section_abilities","Attributwerte")} icon="💪">
-        <AbilitiesEditor char={char} setChar={setChar} />
-      </Section>
-
-      <Section title={t("aufbau.section_saves","Rettungswürfe — Übung")} icon="🛡️">
-        <SavesEditor char={char} setChar={setChar} pb={pb} />
-      </Section>
-
-      <Section title={t("aufbau.section_skills","Fertigkeiten — Übung & Expertise")} icon="🎯">
-        <SkillsEditor char={char} setChar={setChar} pb={pb} />
-      </Section>
-
-      {masteryCount > 0 && (
-        <Section title={t("aufbau.section_mastery","Waffen-Meisterschaft")} icon="🗡️">
-          <WeaponMasteryPicker char={char} setChar={setChar} />
-        </Section>
-      )}
-
-      <Section title={t("aufbau.section_languages","Sprachen")} icon="🗣️">
-        <LanguagesEditor char={char} setChar={setChar} />
-      </Section>
-
-      <Section title={t("aufbau.section_personality","Persönlichkeit & Backstory")} icon="🎭">
-        <PersonalityEditor char={char} setChar={setChar} />
-      </Section>
-
-      <Section title={t("aufbau.section_features","Features & Traits")} icon="✦">
-        <TraitsFeatures char={char} setChar={setChar} />
-      </Section>
+      </div>
     </div>
   );
 }
@@ -142,33 +167,73 @@ function Section({ title, icon, defaultOpen = false, children }) {
   );
 }
 
-// ─── Identity ─────────────────────────────────────────────────────────────
-function IdentitySection({ char, setChar, pb }) {
+// ─── Identity Card (always-visible, right column top) ────────────────────
+function IdentityCard({ char, setChar, pb }) {
   const { t } = useI18n();
   const u = (f, v) => setChar((p) => ({ ...p, [f]: v }));
+  const hd = char.hd || "—";
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 8 }}>
-      <div>
-        <label style={sx.lbl}>{t("sheet.name","Name")}</label>
-        <input value={char.name} onChange={(e) => u("name", e.target.value)}
-          style={{ ...sx.inp, fontSize: 14, fontFamily: FH, color: C.gold, fontWeight: 700 }} />
+    <div style={{
+      ...sx.card,
+      marginBottom: 8,
+      background: "linear-gradient(135deg, rgba(124,58,237,0.10), rgba(0,0,0,0.2))",
+      borderColor: `${C.gold}33`,
+    }}>
+      <div style={{
+        ...sx.ct, color: C.gold, fontSize: 11,
+        borderBottom: `1px solid ${C.gold}30`, paddingBottom: 6, marginBottom: 10,
+      }}>
+        📝 {t("aufbau.identity_h","Identität")}
       </div>
-      <div>
-        <label style={sx.lbl}>{t("sheet.spell_ability","Zauber-Attribut")}</label>
-        <select value={char.spellAbility || "INT"} onChange={(e) => u("spellAbility", e.target.value)}
-          style={sx.sel}>
-          {ABS.map((ab) => <option key={ab} value={ab}>{ab}</option>)}
-        </select>
+
+      <label style={sx.lbl}>{t("sheet.name","Name")}</label>
+      <input value={char.name} onChange={(e) => u("name", e.target.value)}
+        style={{ ...sx.inp, fontSize: 15, fontFamily: FH, color: C.gold, fontWeight: 700, marginBottom: 10 }} />
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <ReadField label={t("sheet.primary_class","Klasse")} value={char.klass || "—"} col={C.purpleBright} />
+        <ReadField label={t("sheet.level","Level")} value={char.level} col={C.amberBright} center />
       </div>
-      <div>
-        <label style={sx.lbl}>{t("sheet.hd_die","Trefferwürfel")}</label>
-        <input value={char.hd || ""} onChange={(e) => u("hd", e.target.value)}
-          placeholder="W8" style={{ ...sx.inp, fontFamily: FH }} />
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 10 }}>
+        <ReadField label={t("aufbau.hd_short","TW")} value={hd} col={C.tealBright} center
+          hint={t("aufbau.hd_auto","aus Klasse")} />
+        <ReadField label={t("sheet.pb_short","PB")} value={`+${pb}`} col={C.gold} center
+          hint={t("aufbau.computed","aus Level")} />
+        <div>
+          <label style={sx.lbl}>{t("sheet.spell_ability","Spell-Attr")}</label>
+          <select value={char.spellAbility || "INT"} onChange={(e) => u("spellAbility", e.target.value)}
+            style={{ ...sx.sel, padding: "6px 8px", fontSize: 13 }}>
+            {ABS.map((ab) => <option key={ab} value={ab}>{ab}</option>)}
+          </select>
+        </div>
       </div>
-      <div>
-        <label style={sx.lbl}>PB ({t("aufbau.computed","aus Level")})</label>
-        <div style={{ ...sx.inp, color: C.gold, fontFamily: FH, fontWeight: 700, textAlign: "center" }}>+{pb}</div>
+
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", fontSize: 11, color: C.textDim, paddingTop: 8, borderTop: `1px solid ${C.border}` }}>
+        {char.race && <span><strong style={{ color: C.tealBright }}>{char.race}</strong> {t("bogen.race_lbl","Volk")}</span>}
+        {char.background && <span><strong style={{ color: C.amberBright }}>{char.background}</strong> {t("bogen.bg_lbl","Hintergrund")}</span>}
+        {char.originFeat && <span><strong style={{ color: C.amberBright }}>⚔ {char.originFeat}</strong></span>}
       </div>
+    </div>
+  );
+}
+
+function ReadField({ label, value, col, center, hint }) {
+  return (
+    <div>
+      <label style={sx.lbl}>{label}</label>
+      <div style={{
+        ...sx.inp,
+        background: `${col}10`,
+        border: `1px solid ${col}33`,
+        fontFamily: FH, fontWeight: 700, color: col,
+        textAlign: center ? "center" : "left",
+        cursor: "default", userSelect: "text",
+        padding: "6px 8px", fontSize: 13,
+      }}>
+        {value}
+      </div>
+      {hint && <div style={{ fontSize: 9, color: C.textDim, marginTop: 2, textAlign: "center" }}>{hint}</div>}
     </div>
   );
 }
@@ -275,7 +340,6 @@ function SkillsEditor({ char, setChar, pb }) {
     const ek = `exp_${skill}`;
     const isProf = !!char.skills?.[pk];
     const isExp  = !!char.skills?.[ek];
-    // none → prof → expert → none
     if (!isProf && !isExp) {
       setChar((p) => ({ ...p, skills: { ...(p.skills || {}), [pk]: true, [ek]: false } }));
     } else if (isProf && !isExp) {
@@ -333,28 +397,71 @@ function SkillsEditor({ char, setChar, pb }) {
   );
 }
 
-// ─── Languages Editor ─────────────────────────────────────────────────────
+// ─── Languages Editor (Dropdown from PHB-2024 standard list + custom) ────
 function LanguagesEditor({ char, setChar }) {
-  const { t } = useI18n();
-  const [input, setInput] = useState("");
+  const { t, lang } = useI18n();
+  const [pick, setPick]   = useState("");
+  const [custom, setCustom] = useState("");
+
   const langs = Array.isArray(char.languages) ? char.languages : [];
-  const add = () => {
-    const v = input.trim();
-    if (!v) return;
-    if (langs.includes(v)) { setInput(""); return; }
+
+  // Standard languages not yet on the char (DE labels — canonical storage).
+  const available = STANDARD_LANGUAGES.filter((l) => !langs.includes(l.de));
+  const standard = available.filter((l) => l.tier === "standard");
+  const rare     = available.filter((l) => l.tier === "rare");
+
+  const addStored = (deLabel) => {
+    if (!deLabel || langs.includes(deLabel)) return;
+    setChar((p) => ({ ...p, languages: [...(p.languages || []), deLabel] }));
+  };
+  const addPick = () => {
+    if (!pick) return;
+    addStored(pick);
+    setPick("");
+  };
+  const addCustom = () => {
+    const v = custom.trim();
+    if (!v || langs.includes(v)) { setCustom(""); return; }
     setChar((p) => ({ ...p, languages: [...(p.languages || []), v] }));
-    setInput("");
+    setCustom("");
   };
   const remove = (l) => setChar((p) => ({ ...p, languages: (p.languages || []).filter((x) => x !== l) }));
+
   return (
     <div>
-      <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
-        <input value={input} onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && add()}
-          placeholder={t("aufbau.lang_placeholder","z.B. Elfisch, Zwergisch…")}
-          style={{ ...sx.inp, flex: 1 }} />
-        <button type="button" onClick={add} style={sx.btn(C.tealBright)}>＋</button>
+      {/* Standard-Liste Dropdown */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 8 }}>
+        <select value={pick} onChange={(e) => setPick(e.target.value)}
+          style={{ ...sx.sel, flex: 1 }}>
+          <option value="">— {t("aufbau.lang_pick_placeholder","Sprache wählen")} —</option>
+          {standard.length > 0 && (
+            <optgroup label={t("aufbau.lang_group_standard","Standard (Origin)")}>
+              {standard.map((l) => (
+                <option key={l.id} value={l.de}>{lang === "en" ? l.en : l.de}</option>
+              ))}
+            </optgroup>
+          )}
+          {rare.length > 0 && (
+            <optgroup label={t("aufbau.lang_group_rare","Selten (Feat / Klasse)")}>
+              {rare.map((l) => (
+                <option key={l.id} value={l.de}>{lang === "en" ? l.en : l.de}</option>
+              ))}
+            </optgroup>
+          )}
+        </select>
+        <button type="button" onClick={addPick} disabled={!pick} style={{ ...sx.btn(C.tealBright), opacity: pick ? 1 : 0.4 }}>＋</button>
       </div>
+
+      {/* Custom-Input für Sondersprachen */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
+        <input value={custom} onChange={(e) => setCustom(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && addCustom()}
+          placeholder={t("aufbau.lang_custom_placeholder","Eigene Sprache (z.B. Untertode)…")}
+          style={{ ...sx.inp, flex: 1 }} />
+        <button type="button" onClick={addCustom} style={sx.bsm(C.amber)}>＋</button>
+      </div>
+
+      {/* Gewählte Sprachen */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         {langs.length === 0 && (
           <span style={{ color: C.textDim, fontSize: 12, fontStyle: "italic" }}>
@@ -371,7 +478,7 @@ function LanguagesEditor({ char, setChar }) {
             color: C.tealBright,
             fontSize: 11, fontWeight: 700,
           }}>
-            {l}
+            {langLabel(l, lang)}
             <button type="button" onClick={() => remove(l)}
               aria-label={t("aufbau.lang_remove","Sprache entfernen")}
               style={{
