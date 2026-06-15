@@ -18,18 +18,23 @@ export default function WorldbuildingPage() {
 
   return (
     <div>
-      {/* Sub-tabs — zentriert, transparenter Hintergrund */}
+      {/* Sub-tabs — 2×2 grid auf Mobile (saubere Symmetrie statt 3+1 wrap),
+          horizontale Reihe auf größeren Viewports. */}
       <nav style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))",
         gap: 6,
-        padding: "10px 10px 4px",
+        padding: "10px 12px 4px",
+        maxWidth: 600,
+        margin: "0 auto",
         background: "transparent",
         border: "none",
       }}>
         {TABS.map(tb => (
-          <button type="button" key={tb.id} onClick={() => setTab(tb.id)} style={sx.nb(tab === tb.id)}>
+          <button type="button" key={tb.id} onClick={() => setTab(tb.id)} style={{
+            ...sx.nb(tab === tb.id),
+            textAlign: "center",
+          }}>
             {tb.label}
           </button>
         ))}
