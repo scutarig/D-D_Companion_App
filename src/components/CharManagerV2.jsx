@@ -3,6 +3,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
 import { useI18n } from "../i18n/index.js";
 import Bogen from "./CharacterSheet/Bogen.jsx";
+import Aufbau from "./CharacterSheet/Aufbau.jsx";
 
 /**
  * CharManagerV2 — new 5-tab character area.
@@ -60,7 +61,7 @@ export default function CharManagerV2() {
 
       <div>
         {tab === "bogen"    && <Bogen char={active} setChar={setActive} />}
-        {tab === "aufbau"   && <PlaceholderTab title="🧬 Aufbau" desc={t("v2.placeholder_aufbau", "Identity, Volk, Klassen, Hintergrund, Origin-Feat, Stats/Skill-Editor, Weapon-Mastery, Sprachen.")} phase={3} />}
+        {tab === "aufbau"   && <Aufbau char={active} setChar={setActive} />}
         {tab === "kampf"    && <PlaceholderTab title="⚔️ Kampf" desc={t("v2.placeholder_kampf", "Spellbook, Spell-Slots, Aktionen, Conditions, Equipped-Quick-View.")} phase={4} />}
         {tab === "inv"      && <PlaceholderTab title="🎒 Inventar" desc={t("v2.placeholder_inv", "Inventar, Equipped-Slots-Visual, Währung, Attunement-Tracker.")} phase={5} />}
         {tab === "progress" && <PlaceholderTab title="📈 Progress" desc={t("v2.placeholder_progress", "Level-Up-Assistant, Exhaustion, Hit-Dice, Wild-Shape.")} phase={6} />}
