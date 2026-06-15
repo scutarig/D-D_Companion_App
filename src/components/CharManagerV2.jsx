@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { sx } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
+import { usePersist } from "../hooks/usePersist.js";
 import { useI18n } from "../i18n/index.js";
 import Bogen from "./CharacterSheet/Bogen.jsx";
 import Aufbau from "./CharacterSheet/Aufbau.jsx";
@@ -20,7 +20,7 @@ import Progress from "./CharacterSheet/Progress.jsx";
 export default function CharManagerV2() {
   const { t } = useI18n();
   const { active, setActive } = useChar();
-  const [tab, setTab] = useState("bogen");
+  const [tab, setTab] = usePersist("char_tab_v2", "bogen");
 
   const TABS = [
     { id: "bogen",    label: t("v2.tab_bogen",    "📜 Bogen") },

@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
-import { usePersist } from "../hooks/usePersist.js";
-import { newChar } from "../utils/helpers.js";
-import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
-import { detectImportType, restoreProfileBackup } from "../utils/profileBackup.js";
+import { useChar } from "../context/CharContext.jsx";
 import { useProfile } from "../context/ProfileContext.jsx";
+import { useDialog } from "../hooks/useDialog.jsx";
+import { useMulticlass } from "../hooks/useMulticlass.js";
+import { usePersist } from "../hooks/usePersist.js";
+import { useI18n } from "../i18n/index.js";
+import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
+import { newChar } from "../utils/helpers.js";
+import { detectImportType, restoreProfileBackup } from "../utils/profileBackup.js";
+import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
+import CharManagerV2 from "./CharManagerV2.jsx";
 
 // Profile-backups (all chars + notes + worldbuilding) can legitimately be
 // larger than a single character — allow up to 5 MB for them.
 const MAX_PROFILE_BYTES = 5 * 1024 * 1024;
-import { useChar } from "../context/CharContext.jsx";
-import { useI18n } from "../i18n/index.js";
-import { useDialog } from "../hooks/useDialog.jsx";
-import { useMulticlass } from "../hooks/useMulticlass.js";
-import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
-import CharManagerV2 from "./CharManagerV2.jsx";
 
 export default function CharManager() {
   const { t } = useI18n();
