@@ -1,4 +1,4 @@
-import { C, sx, FH } from "../../../constants/theme.js";
+import { C, sx, FH, SC, ABS } from "../../../constants/theme.js";
 import { D3_KLASSEN } from "../../../data/classes.js";
 import { SUBCLASSES } from "../../../data/subclasses.js";
 import { useI18n } from "../../../i18n/index.js";
@@ -109,19 +109,33 @@ export default function Step15_LevelUpLoop({ state, updatePartial }) {
       {needsASI && (
         <section style={{ marginBottom: 18 }}>
           <label style={sx.lbl}>{t("wizard.s15.asi_lbl","ASI / Feat")}</label>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button type="button" onClick={() => setChoice({ asi: { mode: "asi" } })}
-              style={{ ...sx.btn(choice.asi?.mode === "asi" ? C.gold : C.textDim) }}>
-              {t("wizard.s15.asi_mode_asi","+2 / +1")}
+          <div style={{ fontSize: 11, color: C.textDim, marginBottom: 6, lineHeight: 1.45 }}>
+            {t("wizard.s15.asi_phb","PHB 2024: Entweder +2 auf 1 Attribut ODER +1 auf 2 Attribute ODER ein Feat.")}
+          </div>
+          <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+            <button type="button" onClick={() => setChoice({ asi: { mode: "ability_2", picks: {} } })}
+              style={{ ...sx.btn(choice.asi?.mode === "ability_2" ? C.gold : C.textDim) }}>
+              {t("wizard.s15.asi_mode_2","+2 auf 1 Attribut")}
+            </button>
+            <button type="button" onClick={() => setChoice({ asi: { mode: "ability_1_1", picks: {} } })}
+              style={{ ...sx.btn(choice.asi?.mode === "ability_1_1" ? C.gold : C.textDim) }}>
+              {t("wizard.s15.asi_mode_11","+1 auf 2 Attribute")}
             </button>
             <button type="button" onClick={() => setChoice({ asi: { mode: "feat" } })}
               style={{ ...sx.btn(choice.asi?.mode === "feat" ? C.gold : C.textDim) }}>
               {t("wizard.s15.asi_mode_feat","Feat")}
             </button>
           </div>
+
+          {(choice.asi?.mode === "ability_2" || choice.asi?.mode === "ability_1_1") && (
+            <AbilityPicker mode={choice.asi.mode} picks={choice.asi.picks || {}}
+              onChange={(picks) => setChoice({ asi: { ...choice.asi, picks } })} />
+          )}
+
           {choice.asi?.mode === "feat" && (
             <input value={choice.asi?.feat || ""} onChange={(e) => setChoice({ asi: { ...choice.asi, feat: e.target.value } })}
-              placeholder="Feat-Name (z.B. Lucky)" style={{ ...sx.inp, color: C.textBright, marginTop: 8 }} />
+              placeholder="Feat-Name (z.B. Lucky)"
+              style={{ ...sx.inp, color: C.textBright, marginTop: 8 }} />
           )}
         </section>
       )}
@@ -131,6 +145,67 @@ export default function Step15_LevelUpLoop({ state, updatePartial }) {
       )}
     </div>
   );
+}
+
+// ─── Ability picker — used in both +2 and +1+1 ASI modes ─────────────────
+function AbilityPicker({ mode, picks, onChange }) {
+  // Mode "ability_2": exactly one ability gets +2 (radio-like).
+  // Mode "ability_1_1": exactly two abilities each get +1, and the two
+  //                     must be different.
+  const togglePick = (ab) => {
+    if (mode === "ability_2") {
+      // Single-select +2
+      onChange(picks[ab] === 2 ? {} : { [ab]: 2 });
+      return;
+    }
+    // ability_1_1: toggle in/out, cap at 2 distinct abilities
+    const next = { ...picks };
+    if (next[ab]) {
+      delete next[ab];
+    } else if (Object.keys(next).length < 2) {
+      next[ab] = 1;
+    }
+    onChange(next);
+  };
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
+      {ABS.map((ab) => {
+        const val = picks[ab] || 0;
+        const col = SC[ab] || C.gold;
+        return (
+          <button type="button" key={ab} onClick={() => togglePick(ab)}
+            style={{
+              ...sx.card,
+              cursor: "pointer",
+              textAlign: "center",
+              padding: 10,
+              borderColor: val > 0 ? col : C.border,
+              background: val > 0 ? `${col}22` : "transparent",
+            }}>
+            <div style={{ fontFamily: FH, fontWeight: 700, fontSize: 13, color: col }}>{ab}</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: val > 0 ? col : C.textDim, marginTop: 2 }}>
+              {val > 0 ? `+${val}` : "—"}
+            </div>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function asiPicksValid(choice) {
+  if (!choice?.asi) return false;
+  if (choice.asi.mode === "ability_2") {
+    const vals = Object.values(choice.asi.picks || {});
+    return vals.length === 1 && vals[0] === 2;
+  }
+  if (choice.asi.mode === "ability_1_1") {
+    const vals = Object.values(choice.asi.picks || {});
+    return vals.length === 2 && vals.every((v) => v === 1);
+  }
+  if (choice.asi.mode === "feat") return !!choice.asi.feat?.trim();
+  return false;
 }
 
 export const validate = (s) => {
@@ -143,9 +218,6 @@ export const validate = (s) => {
     return { ok: false, errorKey: "wizard.err_no_choice" };
   }
   if (needsSubclass && !choice.subclass) return { ok: false, errorKey: "wizard.err_no_choice" };
-  if (needsASI) {
-    if (!choice.asi?.mode) return { ok: false, errorKey: "wizard.err_no_choice" };
-    if (choice.asi.mode === "feat" && !choice.asi.feat?.trim()) return { ok: false, errorKey: "wizard.err_no_choice" };
-  }
+  if (needsASI && !asiPicksValid(choice)) return { ok: false, errorKey: "wizard.err_no_choice" };
   return { ok: true };
 };

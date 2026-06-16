@@ -130,8 +130,11 @@ export function buildCharFromWizard(state) {
       if (lv === 3 && loopChoice.subclass) {
         char.subclasses = { ...(char.subclasses || {}), [state.klass]: loopChoice.subclass };
       }
-      // ASI/Feat
-      if (loopChoice.asi?.mode === "asi" && loopChoice.asi.picks) {
+      // ASI/Feat — PHB 2024: +2 to one ability OR +1 to two abilities OR a Feat.
+      // ability_2 mode picks: { STR: 2 }
+      // ability_1_1 mode picks: { STR: 1, DEX: 1 }
+      // feat mode: free-text feat name.
+      if ((loopChoice.asi?.mode === "ability_2" || loopChoice.asi?.mode === "ability_1_1") && loopChoice.asi.picks) {
         Object.entries(loopChoice.asi.picks).forEach(([abKey, bonus]) => {
           const k = abKey.toLowerCase();
           if (typeof char[k] === "number") char[k] += bonus;
