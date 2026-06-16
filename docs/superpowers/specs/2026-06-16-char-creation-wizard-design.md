@@ -206,7 +206,7 @@ Step 15 is not one screen — it's a sub-wizard with one screen per level from 2
 Rules:
 - **HP gain**: PHB 2024 average roll (HD-average + CON-mod). E.g. Lv2 Kämpfer (d10) with CON+2 → 6+2 = 8 HP. Stored as `hp: "avg"` in `levelupChoices[lv]`.
 - **Subclass pick**: At Lv3 (PHB 2024 normalized all classes to Lv3). User picks from `data/subclasses.js[klass]`.
-- **ASI / Feat**: At Lv4, 8, 12, 16, 19. Choice between +2 to one ability, +1/+1 to two abilities, or a feat from PHB 2024 feat list.
+- **ASI / Feat**: At Lv4, 8, 12, 16, 19 for all classes. **Additionally** Fighter at Lv6+14, Rogue at Lv10 (class-extra ASI levels). Choice between +2 to one ability, +1/+1 to two abilities, or a feat from PHB 2024 feat list.
 - **Spell upgrades**: For prepared casters, the prep-count grows; for "spells-known" casters (e.g. Sorcerer in 2024 if applicable), user picks new spells from class list.
 
 ## 8. Resume Behavior
