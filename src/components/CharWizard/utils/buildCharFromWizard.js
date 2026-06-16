@@ -2,7 +2,6 @@ import { newChar } from "../../../utils/helpers.js";
 import { getClassHd } from "../../../utils/multiclass.js";
 import { D3_KLASSEN } from "../../../data/classes.js";
 import { BACKGROUNDS_FULL } from "../../../data/backgrounds.js";
-import { RACES_FULL } from "../../../data/races.js";
 import { applyBackground, applyBackgroundAsi } from "../../../utils/backgrounds.js";
 import { applyRaceTraits } from "../../../utils/races.js";
 import { toEnSkill } from "../data/skillTranslation.js";

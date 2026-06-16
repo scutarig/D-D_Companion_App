@@ -19,6 +19,7 @@ import { calculateProficiencyBonus, PROF_CATEGORIES } from "../utils/proficiency
 import { useDerivedStats } from "../hooks/useDerivedStats.js";
 import { useI18n } from "../i18n/index.js";
 import DerivedStatsWidget from "./CharacterSheet/DerivedStatsWidget.jsx";
+import SkillsCard from "./CharacterSheet/SkillsCard.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -421,6 +422,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       <div style={{ marginBottom: 12 }}>
         <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
       </div>
+
+      {/* ── SKILLS (all 18 with computed bonus, for at-the-table rolls) ── */}
+      <SkillsCard char={char} pb={getPB(char.level || 1)} />
 
       {/* ── MAIN GRID: Equipment+Resources  |  Spells ── */}
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "260px 1fr", gap: 12, marginBottom: 12 }}>
