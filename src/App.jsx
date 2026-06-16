@@ -38,6 +38,7 @@ const QuickRef      = lazy(() => import("./components/QuickRef.jsx"));
 const CompanionsPage    = lazy(() => import("./components/Companions/CompanionsPage.jsx"));
 const ProficienciesPage = lazy(() => import("./components/Proficiencies/ProficienciesPage.jsx"));
 const WorldbuildingPage = lazy(() => import("./components/Worldbuilding/WorldbuildingPage.jsx"));
+const CharCreationWizard = lazy(() => import("./components/CharWizard/CharCreationWizard.jsx"));
 
 // ── Tab definitions with mode classification ─────────────────────────────────
 // mode: "player" | "dm" | "both"
@@ -1125,6 +1126,22 @@ function ShareImportListener() {
   return null;
 }
 
+// AppRouter — routes between full-screen wizard takeover and the normal app shell.
+// Keeping this as a thin wrapper around AppInner ensures AppInner always renders
+// the same number of hooks (avoiding the "rendered fewer hooks" error when the
+// wizard toggles on after AppInner has already mounted).
+function AppRouter() {
+  const [wizardActive] = usePersist("wizard_active_v1", null);
+  if (wizardActive) {
+    return (
+      <Suspense fallback={null}>
+        <CharCreationWizard />
+      </Suspense>
+    );
+  }
+  return <AppInner />;
+}
+
 export default function App() {
   return (
     <ErrorBoundary>
@@ -1133,7 +1150,7 @@ export default function App() {
           <CombatProvider>
             <DialogProvider>
               <ShareImportListener />
-              <AppInner />
+              <AppRouter />
             </DialogProvider>
           </CombatProvider>
         </CharProvider>
