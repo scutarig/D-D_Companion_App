@@ -6,9 +6,12 @@ import { useWizardState } from "./hooks/useWizardState.js";
 import { activeSteps, nextStepId, prevStepId } from "./utils/wizardSteps.js";
 import { validateWizardState } from "./utils/validateWizardState.js";
 import Placeholder from "./steps/Placeholder.jsx";
+import Step01_ClassSelect, { validate as validateStep01 } from "./steps/Step01_ClassSelect.jsx";
 
 // Step component registry — populated as steps are implemented.
-const STEP_COMPONENTS = {};
+const STEP_COMPONENTS = {
+  class_select: Object.assign(Step01_ClassSelect, { validate: validateStep01 }),
+};
 
 export default function CharCreationWizard() {
   const { t } = useI18n();
