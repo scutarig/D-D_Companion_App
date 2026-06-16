@@ -3,8 +3,41 @@ import { getClassHd } from "../../../utils/multiclass.js";
 import { D3_KLASSEN } from "../../../data/classes.js";
 import { BACKGROUNDS_FULL } from "../../../data/backgrounds.js";
 import { RACES_FULL } from "../../../data/races.js";
+import { applyBackground, applyBackgroundAsi } from "../../../utils/backgrounds.js";
+import { applyRaceTraits } from "../../../utils/races.js";
 
 const SAVE_CODES = new Set(["STR", "DEX", "CON", "INT", "WIS", "CHA"]);
+
+/**
+ * Parse a starting-equipment description (string or array) into individual
+ * inventory items and an aggregated gold amount. Recognises:
+ *   - "N GP" entries → adds N to gold (case-insensitive)
+ *   - "N <item>" entries → single inventory entry with qty=N
+ *   - any other entry → single inventory entry with qty=1
+ * The "·" character (or comma) separates entries when input is a string.
+ */
+function unpackEquipment(raw) {
+  if (!raw) return { items: [], gold: 0 };
+  const arr = Array.isArray(raw)
+    ? raw
+    : String(raw).split(/[·,]/).map((s) => s.trim()).filter(Boolean);
+  const items = [];
+  let gold = 0;
+  for (const entry of arr) {
+    const gpMatch = entry.match(/^(\d+)\s*GP$/i);
+    if (gpMatch) {
+      gold += parseInt(gpMatch[1], 10);
+      continue;
+    }
+    const qtyMatch = entry.match(/^(\d+)\s+(.+)$/);
+    if (qtyMatch) {
+      items.push({ name: qtyMatch[2], qty: parseInt(qtyMatch[1], 10) });
+    } else {
+      items.push({ name: entry, qty: 1 });
+    }
+  }
+  return { items, gold };
+}
 
 /**
  * Pure builder: wizard-state → fully-populated char object.
@@ -33,54 +66,63 @@ export function buildCharFromWizard(state) {
   // Class choices stored on the char object for later inspection
   char.classChoices = state.classChoices || {};
 
-  // Class equipment (PHB string is kept as a single inventory entry — UI
-  // can split it later; the wizard doesn't try to itemize free-text).
-  const eq = cls?.startingEquipment || {};
-  if (state.classEquipmentChoice && eq[state.classEquipmentChoice]) {
-    char.inventory = [...(char.inventory || []), { name: `Klasse Pack ${state.classEquipmentChoice}: ${eq[state.classEquipmentChoice]}`, qty: 1 }];
+  // Class equipment — unpacked into individual items + gold.
+  const classEq = cls?.startingEquipment?.[state.classEquipmentChoice];
+  if (classEq) {
+    const { items, gold } = unpackEquipment(classEq);
+    char.inventory = [...(char.inventory || []), ...items];
+    char.gold = (char.gold || 0) + gold;
   }
 
   // ── Phase 2 — Origin (Background + Species) ────────────────────────────
-  char.background = state.background;
-  const bg = BACKGROUNDS_FULL.find((b) => b.name === state.background);
-  char.originFeat = bg?.feat || "";
+  // Apply background via the canonical utility so bgTraits get populated with
+  // skill / tool / Origin-Feat entries (TraitsFeatures reads char.bgTraits).
+  char = applyBackground(char, state.background);
 
-  // Background skills
+  // applyBackground may not add skill_<name> map entries — wire those too so
+  // they show up in the skill list with their proficiency markers.
+  const bg = BACKGROUNDS_FULL.find((b) => b.name === state.background);
   (bg?.skillProfs || []).forEach((sk) => { char.skills[`skill_${sk}`] = true; });
 
-  // Background equipment
+  // Background equipment — also unpacked. Pack B is a flat "50 GP".
   if (state.bgEquipmentChoice === "A" && bg?.equipmentA) {
-    const items = Array.isArray(bg.equipmentA) ? bg.equipmentA.join(", ") : String(bg.equipmentA);
-    char.inventory = [...(char.inventory || []), { name: `Background Pack A: ${items}`, qty: 1 }];
+    const { items, gold } = unpackEquipment(bg.equipmentA);
+    char.inventory = [...(char.inventory || []), ...items];
+    char.gold = (char.gold || 0) + gold;
   } else if (state.bgEquipmentChoice === "B") {
-    char.gold = (char.gold || 0) + 50;
+    const { gold } = unpackEquipment(bg?.equipmentB || "50 GP");
+    char.gold = (char.gold || 0) + (gold || 50);
   }
 
-  // Species (race) + languages
-  char.race = state.race;
-  const sp = RACES_FULL.find((r) => r.name === state.race);
-  char.speed = sp?.speed || 30;
-  char.size = sp?.size || "Mittel";
-  char.languages = [];
-  (sp?.languages || []).forEach((l) => {
-    // Filter out the "1 Sprache (Background)" placeholder — the wizard
-    // would normally pick one, but our PHB-2024 data doesn't expose the
-    // choice yet, so it's left as Common only.
-    if (l && !/\(Background\)/i.test(l) && !char.languages.includes(l)) {
-      char.languages.push(l);
-    }
-  });
-  if (!char.languages.includes("Gemeinsprache")) char.languages.unshift("Gemeinsprache");
+  // Species (race) — applyRaceTraits handles raceTraits, languages, etc.
+  char = applyRaceTraits(char, state.race);
 
-  // ── Phase 3 — Stats (point-buy + background ASI) ───────────────────────
+  // Add the user-picked background language (if any) on top.
+  if (state.bgChoices?.language && !char.languages.includes(state.bgChoices.language)) {
+    char.languages = [...(char.languages || []), state.bgChoices.language];
+  }
+  // Ensure Common is present (some race data uses "Gemeinsprache" but a few
+  // legacy chars might lack it).
+  if (!char.languages?.includes("Gemeinsprache")) {
+    char.languages = ["Gemeinsprache", ...(char.languages || [])];
+  }
+
+  // ── Phase 3 — Stats: point-buy first, then apply background ASI delta ──
   const ab = state.abilityScores || {};
-  const asi = state.bgAsiPicks || {};
-  char.str = (ab.str || 8) + (asi.STR || 0);
-  char.dex = (ab.dex || 8) + (asi.DEX || 0);
-  char.con = (ab.con || 8) + (asi.CON || 0);
-  char.int = (ab.int || 8) + (asi.INT || 0);
-  char.wis = (ab.wis || 8) + (asi.WIS || 0);
-  char.cha = (ab.cha || 8) + (asi.CHA || 0);
+  char.str = ab.str || 8;
+  char.dex = ab.dex || 8;
+  char.con = ab.con || 8;
+  char.int = ab.int || 8;
+  char.wis = ab.wis || 8;
+  char.cha = ab.cha || 8;
+
+  // Convert UPPERCASE wizard picks to lowercase for applyBackgroundAsi.
+  const asiUC = state.bgAsiPicks || {};
+  const asiLC = {
+    str: asiUC.STR || 0, dex: asiUC.DEX || 0, con: asiUC.CON || 0,
+    int: asiUC.INT || 0, wis: asiUC.WIS || 0, cha: asiUC.CHA || 0,
+  };
+  char = applyBackgroundAsi(char, asiLC);
 
   // HP at Lv1: HD-max + CON-mod (PHB 2024 RAW)
   const hdMatch = (char.hd || "d10").match(/\d+/);
