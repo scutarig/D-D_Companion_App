@@ -1,6 +1,7 @@
 import { C, sx, SC, ABS, SKILLS, FH } from "../../constants/theme.js";
 import { modOf, modStr, getPB } from "../../utils/helpers.js";
 import { useI18n } from "../../i18n/index.js";
+import { alignLabel } from "../CharWizard/data/alignmentDescriptions.js";
 
 /**
  * Bogen — read-only Character-Sheet view (Tab 1 of CharManagerV2).
@@ -21,7 +22,7 @@ import { useI18n } from "../../i18n/index.js";
  * are editable here.
  */
 export default function Bogen({ char, setChar }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const pb = getPB(char.level);
 
   const spellAbilityKey = (char.spellAbility || "INT").toLowerCase();
@@ -55,6 +56,7 @@ export default function Bogen({ char, setChar }) {
           <span><strong style={{ color: C.tealBright }}>{char.race}</strong> {t("bogen.race_lbl","Volk")}</span>
           {char.background && <span><strong style={{ color: C.amberBright }}>{char.background}</strong> {t("bogen.bg_lbl","Hintergrund")}</span>}
           {char.originFeat && <span><strong style={{ color: C.amberBright }}>⚔ {char.originFeat}</strong></span>}
+          {char.alignment && <span><strong style={{ color: C.amberBright }}>⚖ {alignLabel(char.alignment, lang)}</strong></span>}
         </div>
       </div>
 

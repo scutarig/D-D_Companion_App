@@ -78,6 +78,7 @@ export function buildCharPdfHtml(char, opts = {}) {
     <p style="margin:4px 0 12px;color:#555">
       ${esc(char.race)} · ${esc(char.klass)} · Level ${esc(char.level)} · PB +${esc(pb)}
       ${char.background ? ` · ${esc(t("pdf.background_lbl","Hintergrund"))}: ${esc(char.background)}` : ""}
+      ${char.alignment ? ` · ${esc(t("pdf.alignment_lbl","Alignment"))}: ${esc(char.alignment)}` : ""}
     </p>`;
 
   // ── 2. Vitals grid ─────────────────────────────────────────────────────
