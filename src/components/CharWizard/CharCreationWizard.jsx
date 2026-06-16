@@ -15,6 +15,7 @@ import Step06_BackgroundSelect, { validate as validateStep06 } from "./steps/Ste
 import Step07_BackgroundASI, { validate as validateStep07 } from "./steps/Step07_BackgroundASI.jsx";
 import Step08_BackgroundChoices, { validate as validateStep08 } from "./steps/Step08_BackgroundChoices.jsx";
 import Step09_BackgroundEquipment, { validate as validateStep09 } from "./steps/Step09_BackgroundEquipment.jsx";
+import Step10_SpeciesSelect, { validate as validateStep10 } from "./steps/Step10_SpeciesSelect.jsx";
 
 // Step component registry — populated as steps are implemented.
 const STEP_COMPONENTS = {
@@ -27,6 +28,7 @@ const STEP_COMPONENTS = {
   bg_asi:          Object.assign(Step07_BackgroundASI,       { validate: validateStep07 }),
   bg_choices:      Object.assign(Step08_BackgroundChoices,   { validate: validateStep08 }),
   bg_equipment:    Object.assign(Step09_BackgroundEquipment, { validate: validateStep09 }),
+  species_select:  Object.assign(Step10_SpeciesSelect,       { validate: validateStep10 }),
 };
 
 export default function CharCreationWizard() {

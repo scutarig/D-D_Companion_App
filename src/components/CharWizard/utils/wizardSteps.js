@@ -22,9 +22,10 @@ export function hasBgChoice(background) {
 }
 
 export function hasSpeciesChoice(race) {
-  // Half-Elf (Halbelf), Tiefling, and Hochelf (Highelf subrace) have choices.
-  const choiceSpecies = ["Halbelf", "Tiefling", "Elf", "Hochelf"];
-  return choiceSpecies.some((c) => race?.includes(c));
+  // PHB 2024 races in our current data have fixed traits; no explicit
+  // open choice fields. The species_choices step renders an empty state
+  // and is therefore disabled until data grows explicit choice fields.
+  return false;
 }
 
 export const STEP_FLOW = [
