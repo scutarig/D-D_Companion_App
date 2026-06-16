@@ -14,11 +14,11 @@ export function hasClassLv1Choice(klass) {
 }
 
 export function hasBgChoice(background) {
-  // Pre-2024 backgrounds had tool/language choices; for the wizard we treat
-  // any non-empty background as potentially having a choice and let the step
-  // render an empty state if there's nothing to pick. Refined further once
-  // backgrounds.js data is audited (see Task D3).
-  return !!background;
+  // PHB 2024 backgrounds have fixed tool/skill/equipment in our data
+  // (backgrounds.js); no open choices to render. The bg_choices step is
+  // therefore skipped. Re-enable per background if/when the data grows
+  // explicit choice fields.
+  return false;
 }
 
 export function hasSpeciesChoice(race) {
