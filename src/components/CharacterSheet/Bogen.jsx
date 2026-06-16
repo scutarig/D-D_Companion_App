@@ -1,4 +1,4 @@
-import { C, sx, SC, ABS, SKILLS, FH, F } from "../../constants/theme.js";
+import { C, sx, SC, ABS, SKILLS, FH } from "../../constants/theme.js";
 import { modOf, modStr, getPB } from "../../utils/helpers.js";
 import { useI18n } from "../../i18n/index.js";
 

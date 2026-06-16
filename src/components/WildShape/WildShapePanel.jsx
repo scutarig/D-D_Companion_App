@@ -41,10 +41,11 @@ export default function WildShapePanel({ compact = false }) {
 
   const isDruid    = char?.klass === "Druide";
   const level      = char?.level ?? 1;
-  // Circle of Moon-Subklasse-Detection: subklass-Feld oder multiclass-Slot prüfen
-  const subclass   = char?.subclass || char?.subKlass || "";
-  const multiSubs  = (char?.classes || []).map(c => c.subclass || c.subKlass || "").filter(Boolean);
-  const isMoon     = /mond|moon/i.test(subclass) || multiSubs.some(s => /mond|moon/i.test(s));
+  // Circle of Moon-Subklasse-Detection: char.subclasses[KlassenName] ist die
+  // kanonische Quelle (gesetzt via useMulticlass.setSubclass).
+  const druidSub   = char?.subclasses?.["Druide"] || "";
+  const allSubs    = Object.values(char?.subclasses || {});
+  const isMoon     = /mond|moon/i.test(druidSub) || allSubs.some(s => /mond|moon/i.test(s));
   const maxUses    = level >= 20 ? Infinity : 2;
   const usesLeft   = Math.max(0, maxUses - uses);
 

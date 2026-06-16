@@ -5,24 +5,10 @@ export const modStr = s => { const m = modOf(s); return m >= 0 ? `+${m}` : `${m}
 export const rollD = n => Math.floor(Math.random() * n) + 1;
 export const getPB = l => l < 5 ? 2 : l < 9 ? 3 : l < 13 ? 4 : l < 17 ? 5 : 6;
 
-// ── Hit Die per class (PHB 2024) — fixed class invariant, used to auto-derive
-//    char.hd whenever the user changes char.klass in the Aufbau tab.
-const CLASS_HD = {
-  Barbar: "d12",
-  Barde: "d8",
-  Druide: "d8",
-  Hexenmeister: "d8",
-  Kämpfer: "d10",
-  Kleriker: "d8",
-  Magier: "d6",
-  Mönch: "d8",
-  Paladin: "d10",
-  Schurke: "d8",
-  Waldläufer: "d10",
-  Zauberer: "d6",
-  Magieschmied: "d8",
-};
-export const getClassHd = (klass) => CLASS_HD[klass] || "d8";
+// Re-export the canonical class-HD lookup so callers can keep importing
+// from helpers.js (the multiclass module is the source of truth — it reads
+// from D3_KLASSEN so it stays in sync with the class data).
+export { getClassHd } from "./multiclass.js";
 
 // ── Zauberplatz-Tabellen ──────────────────────────────────────────────────────
 export const SLOT_LABELS = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th"];
@@ -64,7 +50,7 @@ export const newChar = id => ({
   background: t("char.default_background", "Soldat"),
   str:10, dex:10, con:10, int:10, wis:10, cha:10,
   hp:10, maxHp:10, tempHp:0, ac:10, speed:30, initiative:0,
-  hd:"W10", hd_used:0, deathSaves:{suc:0,fail:0},
+  hd:"d10", hd_used:0, deathSaves:{suc:0,fail:0},
   saves:{STR:false,DEX:false,CON:false,INT:false,WIS:false,CHA:false},
   // spellDC/spellAtk werden live aus PB + Mod berechnet (Bogen.jsx, CombatInitiativeView)
   skills:{}, spellAbility:"INT", inspiration:false,

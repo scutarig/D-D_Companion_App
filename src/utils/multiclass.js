@@ -105,10 +105,10 @@ export function calculateMulticlassSpellSlots(classes) {
   };
 }
 
-/** HD for a known class, falls back to W8 */
+/** HD for a known class, falls back to d8 */
 export function getClassHd(className) {
   const cls = D3_KLASSEN.find(c => c.name === className);
-  return cls ? cls.hd : "W8";
+  return cls ? cls.hd : "d8";
 }
 
 /** Create a fresh class entry */
