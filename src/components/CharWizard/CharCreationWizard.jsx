@@ -8,11 +8,13 @@ import { validateWizardState } from "./utils/validateWizardState.js";
 import Placeholder from "./steps/Placeholder.jsx";
 import Step01_ClassSelect, { validate as validateStep01 } from "./steps/Step01_ClassSelect.jsx";
 import Step02_ClassSkills, { validate as validateStep02 } from "./steps/Step02_ClassSkills.jsx";
+import Step03_ClassChoices, { validate as validateStep03 } from "./steps/Step03_ClassChoices.jsx";
 
 // Step component registry — populated as steps are implemented.
 const STEP_COMPONENTS = {
-  class_select: Object.assign(Step01_ClassSelect, { validate: validateStep01 }),
-  class_skills: Object.assign(Step02_ClassSkills, { validate: validateStep02 }),
+  class_select:  Object.assign(Step01_ClassSelect,  { validate: validateStep01 }),
+  class_skills:  Object.assign(Step02_ClassSkills,  { validate: validateStep02 }),
+  class_choices: Object.assign(Step03_ClassChoices, { validate: validateStep03 }),
 };
 
 export default function CharCreationWizard() {
