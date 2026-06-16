@@ -1,26 +1,26 @@
 import { C, sx, FH } from "../../../constants/theme.js";
-import { useChar } from "../../../context/CharContext.jsx";
 import { useI18n } from "../../../i18n/index.js";
 import { buildCharFromWizard, spellIdsFromWizard } from "../utils/buildCharFromWizard.js";
 
 export default function Step16_Review({ state }) {
   const { t } = useI18n();
-  const { setChars, setAid } = useChar();
 
   const onCreate = () => {
     const char = buildCharFromWizard(state);
     const { knownSpellIds, preparedSpellIds } = spellIdsFromWizard(state);
 
+    // Write directly to localStorage. React's setState batching could defer
+    // a setChars call past window.location.reload(), so we bypass usePersist
+    // here and let the page reload pick up the persisted char-list on mount.
     try {
+      const existing = JSON.parse(localStorage.getItem("chars_v4") || "[]");
+      const next = Array.isArray(existing) ? [...existing, char] : [char];
+      localStorage.setItem("chars_v4", JSON.stringify(next));
+      localStorage.setItem("chars_active_v4", JSON.stringify(char.id));
       localStorage.setItem(`spells_known_${char.id}`, JSON.stringify(knownSpellIds));
       localStorage.setItem(`spells_prep_${char.id}`,  JSON.stringify(preparedSpellIds));
     } catch (_) { /* quota errors handled by the user via export tools */ }
 
-    setChars((prev) => [...(prev || []), char]);
-    setAid(char.id);
-
-    // Clear wizard state. Reload because AppRouter reads the value via
-    // usePersist on mount (no live cross-tree subscription).
     localStorage.removeItem("wizard_active_v1");
     window.location.reload();
   };
