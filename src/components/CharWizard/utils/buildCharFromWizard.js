@@ -108,11 +108,24 @@ export function buildCharFromWizard(state) {
   // ── Phase 6 — Level-up loop ────────────────────────────────────────────
   char.level = 1;
   if (state.targetLevel > 1) {
+    const hpAvg = Math.floor(hdSize / 2) + 1;
     for (let lv = 2; lv <= state.targetLevel; lv++) {
       const loopChoice = state.levelupChoices[lv] || {};
       char.level = lv;
-      // HP gain: HD-avg + CON-mod
-      char.maxHp += Math.floor(hdSize / 2) + 1 + conMod;
+      // HP gain — 3 modes selectable in the wizard, default "avg":
+      //   avg    → HD-average + CON-mod (PHB 2024 standard)
+      //   roll   → use the rolled value persisted in loopChoice.hpRoll
+      //   manual → use the value the user typed in loopChoice.hpManual
+      let hpGain;
+      if (loopChoice.hpMode === "roll" && typeof loopChoice.hpRoll === "number") {
+        hpGain = loopChoice.hpRoll + conMod;
+      } else if (loopChoice.hpMode === "manual" && typeof loopChoice.hpManual === "number") {
+        hpGain = loopChoice.hpManual + conMod;
+      } else {
+        hpGain = hpAvg + conMod;
+      }
+      // Floor at 1 — a level-up never reduces HP regardless of CON-mod sign.
+      char.maxHp += Math.max(1, hpGain);
       // Subclass at Lv3
       if (lv === 3 && loopChoice.subclass) {
         char.subclasses = { ...(char.subclasses || {}), [state.klass]: loopChoice.subclass };

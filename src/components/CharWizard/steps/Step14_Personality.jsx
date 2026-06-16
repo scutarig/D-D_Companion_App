@@ -38,17 +38,14 @@ export default function Step14_Personality({ state, updatePartial }) {
 }
 
 function Field({ label, value, onChange, accent }) {
-  // accent-styling only when an accent color is supplied; otherwise sx.inp's
-  // default color (C.textBright) must be preserved — setting `color: undefined`
-  // would override the spread and leave the input text invisible on the dark
-  // wizard background.
-  const style = accent
-    ? { ...sx.inp, color: accent, fontWeight: 700 }
-    : sx.inp;
+  // Force-set text color so the input value is always visible on the dark
+  // wizard background, even if sx.inp's color cascade is overridden by
+  // browser defaults.
   return (
     <div>
       <label style={sx.lbl}>{label}</label>
-      <input value={value || ""} onChange={(e) => onChange(e.target.value)} style={style} />
+      <input value={value || ""} onChange={(e) => onChange(e.target.value)}
+        style={{ ...sx.inp, color: accent || C.textBright, fontWeight: accent ? 700 : 400 }} />
     </div>
   );
 }
@@ -58,7 +55,7 @@ function TextArea({ label, value, onChange, col, rows = 2 }) {
     <div>
       <label style={{ ...sx.lbl, color: col }}>{label}</label>
       <textarea value={value || ""} onChange={(e) => onChange(e.target.value)} rows={rows}
-        style={{ ...sx.ta, borderLeft: `3px solid ${col}` }} />
+        style={{ ...sx.ta, color: C.textBright, borderLeft: `3px solid ${col}` }} />
     </div>
   );
 }

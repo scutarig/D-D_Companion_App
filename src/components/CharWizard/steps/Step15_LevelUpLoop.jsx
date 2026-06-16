@@ -14,11 +14,17 @@ function asiAtLevel(klass, lv) {
   return false;
 }
 
+function rollDie(size) {
+  return Math.floor(Math.random() * size) + 1;
+}
+
 export default function Step15_LevelUpLoop({ state, updatePartial }) {
   const { t } = useI18n();
   const lv = state.levelupCurrent;
   const cls = D3_KLASSEN.find((c) => c.name === state.klass);
-  const choice = state.levelupChoices[lv] || { hp: "avg" };
+  // Default HP-mode is "avg" (PHB 2024 standard). New chars get the average
+  // until the user explicitly picks roll/manual.
+  const choice = state.levelupChoices[lv] || { hpMode: "avg" };
   const setChoice = (patch) => updatePartial({
     levelupChoices: { ...state.levelupChoices, [lv]: { ...choice, ...patch } },
   });
@@ -29,7 +35,11 @@ export default function Step15_LevelUpLoop({ state, updatePartial }) {
 
   const hdMatch = (cls?.hd || "d8").match(/\d+/);
   const hdSize = hdMatch ? parseInt(hdMatch[0]) : 8;
-  const hpGainAvg = Math.floor(hdSize / 2) + 1;
+  const hpAvg = Math.floor(hdSize / 2) + 1;
+
+  const hpMode = choice.hpMode || "avg";
+
+  const onRoll = () => setChoice({ hpMode: "roll", hpRoll: rollDie(hdSize) });
 
   return (
     <div>
@@ -38,10 +48,52 @@ export default function Step15_LevelUpLoop({ state, updatePartial }) {
       </h2>
 
       <section style={{ marginBottom: 18 }}>
-        <label style={sx.lbl}>{t("wizard.s15.hp_lbl","TP-Gewinn (Average)")}</label>
-        <div style={{ ...sx.inp, color: C.tealBright, fontFamily: FH, fontWeight: 700 }}>
-          +{hpGainAvg} TP (HD-Average aus {cls?.hd || "d8"} + CON-Mod beim Commit)
+        <label style={sx.lbl}>
+          {t("wizard.s15.hp_lbl","TP-Gewinn")}
+          <span style={{ color: C.textDim, fontWeight: 400, marginLeft: 6 }}>
+            (+ CON-Mod beim Commit)
+          </span>
+        </label>
+
+        {/* Mode picker */}
+        <div style={{ display: "flex", gap: 6, marginBottom: 8, flexWrap: "wrap" }}>
+          <button type="button" onClick={() => setChoice({ hpMode: "avg" })}
+            style={{ ...sx.bsm(hpMode === "avg" ? C.tealBright : C.textDim) }}>
+            {t("wizard.s15.hp_avg","🎯 Average")} ({hpAvg})
+          </button>
+          <button type="button" onClick={onRoll}
+            style={{ ...sx.bsm(hpMode === "roll" ? C.tealBright : C.textDim) }}>
+            {t("wizard.s15.hp_roll","🎲 Würfeln")} (1{cls?.hd || "d8"})
+          </button>
+          <button type="button" onClick={() => setChoice({ hpMode: "manual", hpManual: choice.hpManual ?? hpAvg })}
+            style={{ ...sx.bsm(hpMode === "manual" ? C.tealBright : C.textDim) }}>
+            {t("wizard.s15.hp_manual","✏️ Manuell")}
+          </button>
         </div>
+
+        {/* Mode-specific display */}
+        {hpMode === "avg" && (
+          <div style={{ ...sx.inp, color: C.tealBright, fontFamily: FH, fontWeight: 700 }}>
+            +{hpAvg} TP {t("wizard.s15.hp_avg_hint","(HD-Average aus {hd})").replace("{hd}", cls?.hd || "d8")}
+          </div>
+        )}
+        {hpMode === "roll" && (
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ ...sx.inp, color: C.tealBright, fontFamily: FH, fontWeight: 700, flex: 1 }}>
+              {choice.hpRoll
+                ? `+${choice.hpRoll} TP ${t("wizard.s15.hp_roll_hint","(gewürfelt: {n} auf {hd})").replace("{n}", String(choice.hpRoll)).replace("{hd}", cls?.hd || "d8")}`
+                : t("wizard.s15.hp_no_roll","Noch nicht gewürfelt.")}
+            </div>
+            <button type="button" onClick={onRoll} style={sx.bsm(C.amber)}>
+              🎲 {t("wizard.s15.hp_reroll","Erneut")}
+            </button>
+          </div>
+        )}
+        {hpMode === "manual" && (
+          <input type="number" min={1} max={hdSize} value={choice.hpManual ?? hpAvg}
+            onChange={(e) => setChoice({ hpManual: Math.max(1, Math.min(hdSize, parseInt(e.target.value) || 1)) })}
+            style={{ ...sx.inp, color: C.tealBright, fontFamily: FH, fontWeight: 700 }} />
+        )}
       </section>
 
       {needsSubclass && (
@@ -69,7 +121,7 @@ export default function Step15_LevelUpLoop({ state, updatePartial }) {
           </div>
           {choice.asi?.mode === "feat" && (
             <input value={choice.asi?.feat || ""} onChange={(e) => setChoice({ asi: { ...choice.asi, feat: e.target.value } })}
-              placeholder="Feat-Name (z.B. Lucky)" style={{ ...sx.inp, marginTop: 8 }} />
+              placeholder="Feat-Name (z.B. Lucky)" style={{ ...sx.inp, color: C.textBright, marginTop: 8 }} />
           )}
         </section>
       )}
@@ -86,6 +138,10 @@ export const validate = (s) => {
   const choice = s.levelupChoices[lv] || {};
   const needsSubclass = lv === 3;
   const needsASI = asiAtLevel(s.klass, lv);
+  // HP roll mode requires an actual roll
+  if (choice.hpMode === "roll" && !choice.hpRoll) {
+    return { ok: false, errorKey: "wizard.err_no_choice" };
+  }
   if (needsSubclass && !choice.subclass) return { ok: false, errorKey: "wizard.err_no_choice" };
   if (needsASI) {
     if (!choice.asi?.mode) return { ok: false, errorKey: "wizard.err_no_choice" };
