@@ -14,17 +14,19 @@ import Step05_ClassEquipment, { validate as validateStep05 } from "./steps/Step0
 import Step06_BackgroundSelect, { validate as validateStep06 } from "./steps/Step06_BackgroundSelect.jsx";
 import Step07_BackgroundASI, { validate as validateStep07 } from "./steps/Step07_BackgroundASI.jsx";
 import Step08_BackgroundChoices, { validate as validateStep08 } from "./steps/Step08_BackgroundChoices.jsx";
+import Step09_BackgroundEquipment, { validate as validateStep09 } from "./steps/Step09_BackgroundEquipment.jsx";
 
 // Step component registry — populated as steps are implemented.
 const STEP_COMPONENTS = {
-  class_select:    Object.assign(Step01_ClassSelect,        { validate: validateStep01 }),
-  class_skills:    Object.assign(Step02_ClassSkills,        { validate: validateStep02 }),
-  class_choices:   Object.assign(Step03_ClassChoices,       { validate: validateStep03 }),
-  spellcasting:    Object.assign(Step04_Spellcasting,       { validate: validateStep04 }),
-  class_equipment: Object.assign(Step05_ClassEquipment,     { validate: validateStep05 }),
-  bg_select:       Object.assign(Step06_BackgroundSelect,   { validate: validateStep06 }),
-  bg_asi:          Object.assign(Step07_BackgroundASI,      { validate: validateStep07 }),
-  bg_choices:      Object.assign(Step08_BackgroundChoices,  { validate: validateStep08 }),
+  class_select:    Object.assign(Step01_ClassSelect,         { validate: validateStep01 }),
+  class_skills:    Object.assign(Step02_ClassSkills,         { validate: validateStep02 }),
+  class_choices:   Object.assign(Step03_ClassChoices,        { validate: validateStep03 }),
+  spellcasting:    Object.assign(Step04_Spellcasting,        { validate: validateStep04 }),
+  class_equipment: Object.assign(Step05_ClassEquipment,      { validate: validateStep05 }),
+  bg_select:       Object.assign(Step06_BackgroundSelect,    { validate: validateStep06 }),
+  bg_asi:          Object.assign(Step07_BackgroundASI,       { validate: validateStep07 }),
+  bg_choices:      Object.assign(Step08_BackgroundChoices,   { validate: validateStep08 }),
+  bg_equipment:    Object.assign(Step09_BackgroundEquipment, { validate: validateStep09 }),
 };
 
 export default function CharCreationWizard() {
