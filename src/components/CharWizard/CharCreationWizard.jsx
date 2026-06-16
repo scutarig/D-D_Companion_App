@@ -11,14 +11,16 @@ import Step02_ClassSkills, { validate as validateStep02 } from "./steps/Step02_C
 import Step03_ClassChoices, { validate as validateStep03 } from "./steps/Step03_ClassChoices.jsx";
 import Step04_Spellcasting, { validate as validateStep04 } from "./steps/Step04_Spellcasting.jsx";
 import Step05_ClassEquipment, { validate as validateStep05 } from "./steps/Step05_ClassEquipment.jsx";
+import Step06_BackgroundSelect, { validate as validateStep06 } from "./steps/Step06_BackgroundSelect.jsx";
 
 // Step component registry — populated as steps are implemented.
 const STEP_COMPONENTS = {
-  class_select:    Object.assign(Step01_ClassSelect,    { validate: validateStep01 }),
-  class_skills:    Object.assign(Step02_ClassSkills,    { validate: validateStep02 }),
-  class_choices:   Object.assign(Step03_ClassChoices,   { validate: validateStep03 }),
-  spellcasting:    Object.assign(Step04_Spellcasting,   { validate: validateStep04 }),
-  class_equipment: Object.assign(Step05_ClassEquipment, { validate: validateStep05 }),
+  class_select:    Object.assign(Step01_ClassSelect,       { validate: validateStep01 }),
+  class_skills:    Object.assign(Step02_ClassSkills,       { validate: validateStep02 }),
+  class_choices:   Object.assign(Step03_ClassChoices,      { validate: validateStep03 }),
+  spellcasting:    Object.assign(Step04_Spellcasting,      { validate: validateStep04 }),
+  class_equipment: Object.assign(Step05_ClassEquipment,    { validate: validateStep05 }),
+  bg_select:       Object.assign(Step06_BackgroundSelect,  { validate: validateStep06 }),
 };
 
 export default function CharCreationWizard() {
