@@ -72,6 +72,13 @@ export const newChar = id => ({
   exhaustion: 0,
   // Active concentration spell — null or { spellId, spellName, school, lv, slotLv, dur, startedAt }
   concentration: null,
+  // PHB 2024 character-details (formerly missing — wizard relies on these)
+  alignment: "",        // "" | "LG"|"NG"|"CG"|"LN"|"N"|"CN"|"LE"|"NE"|"CE"
+  age: "",              // free-text (e.g. "127")
+  sex: "",              // free-text
+  height: "",           // free-text (e.g. "5'8\"" or "175 cm")
+  weight: "",           // free-text
+  deity: "",            // free-text
 });
 
 /**
