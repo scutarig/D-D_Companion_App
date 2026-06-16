@@ -11,6 +11,8 @@ import { newChar } from "../utils/helpers.js";
 import { detectImportType, restoreProfileBackup } from "../utils/profileBackup.js";
 import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
 import CharManagerV2 from "./CharManagerV2.jsx";
+import { initialWizardState } from "./CharWizard/hooks/useWizardState.js";
+import ResumeBanner from "./CharWizard/ResumeBanner.jsx";
 
 // Profile-backups (all chars + notes + worldbuilding) can legitimately be
 // larger than a single character — allow up to 5 MB for them.
@@ -23,6 +25,7 @@ export default function CharManager() {
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
   const [, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
+  const [wizardState, setWizardState] = usePersist("wizard_active_v1", null);
   const [restMode, setRestMode] = useState(null);
   const [shortHpVal, setShortHpVal] = useState(0);
   const [shortResult, setShortResult] = useState(null);
@@ -31,7 +34,23 @@ export default function CharManager() {
   // Multiclass info needed for rest resource tracking
   const { classes } = useMulticlass(aid, active, setActive);
 
-  const addChar = () => { const id = Date.now(); setChars(p => [...p, newChar(id)]); setAid(id); };
+  // Wizard state is read by AppRouter via its own usePersist instance.
+  // usePersist doesn't subscribe to storage events, so a setState in this
+  // component doesn't trigger AppRouter to re-render. We persist directly to
+  // localStorage and reload to make AppRouter pick up the change on mount.
+  const startWizard = (targetLevel = 1) => {
+    const s = { ...initialWizardState(), targetLevel };
+    localStorage.setItem("wizard_active_v1", JSON.stringify(s));
+    window.location.reload();
+  };
+  const resumeWizard = () => {
+    // wizard_active_v1 is already present; reload to enter the takeover.
+    window.location.reload();
+  };
+  const discardWizard = () => {
+    setWizardState(null);
+    localStorage.removeItem("wizard_active_v1");
+  };
   const delChar = id => { if (chars.length <= 1) return; const nx = chars.find(c => c.id !== id); setChars(p => p.filter(c => c.id !== id)); setAid(nx?.id); };
 
   const doLongRest = () => {
@@ -131,6 +150,13 @@ export default function CharManager() {
 
   return (
     <div>
+      {wizardState && (
+        <ResumeBanner
+          wizardState={wizardState}
+          onResume={resumeWizard}
+          onDiscard={discardWizard}
+        />
+      )}
       <div data-no-print style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${C.border}`, borderRadius: 14, padding: "12px 16px", marginBottom: 14 }}>
         <div style={{ ...sx.jb, flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
@@ -140,7 +166,7 @@ export default function CharManager() {
                 {c.name} <span style={{ color: C.textDim, fontSize: 10 }}>Lv.{c.level}</span>
               </button>
             ))}
-            <button type="button" onClick={addChar} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
+            <button type="button" onClick={() => startWizard(1)} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
             {chars.length > 1 && <button type="button" onClick={() => delChar(aid)} style={sx.bsm(C.red)}>🗑</button>}
             <label style={{ ...sx.bsm(C.blue), cursor: "pointer" }}>
               {t("char.import_btn","📥 Import")}
