@@ -12,3 +12,4 @@ dist/
 
 # Tool cache (PDF text extraction caches)
 tools/_cache/
+.superpowers/
