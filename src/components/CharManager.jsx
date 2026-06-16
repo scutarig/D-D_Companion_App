@@ -27,6 +27,8 @@ export default function CharManager() {
   const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
   const [wizardState, setWizardState] = usePersist("wizard_active_v1", null);
   const [restMode, setRestMode] = useState(null);
+  const [showEntry, setShowEntry] = useState(false);
+  const [pickLevel, setPickLevel] = useState(1);
   const [shortHpVal, setShortHpVal] = useState(0);
   const [shortResult, setShortResult] = useState(null);
   const [longResult, setLongResult] = useState(null);
@@ -157,6 +159,25 @@ export default function CharManager() {
           onDiscard={discardWizard}
         />
       )}
+      {showEntry && (
+        <div style={{ ...sx.card, marginBottom: 12, padding: 18, borderColor: C.green }}>
+          <h3 style={{ color: C.greenBright, marginBottom: 8 }}>
+            {t("wizard.entry.title","Neuen Charakter erstellen")}
+          </h3>
+          <label style={sx.lbl}>{t("wizard.entry.lvl_lbl","Start-Level")}</label>
+          <input type="number" min={1} max={20} value={pickLevel}
+            onChange={(e) => setPickLevel(Math.max(1, Math.min(20, parseInt(e.target.value) || 1)))}
+            style={{ ...sx.inp, width: 80 }} />
+          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+            <button type="button" onClick={() => { setShowEntry(false); startWizard(pickLevel); }} style={sx.btn(C.green)}>
+              {t("wizard.entry.start","Wizard starten")}
+            </button>
+            <button type="button" onClick={() => setShowEntry(false)} style={sx.bsm(C.textDim)}>
+              {t("char.cancel_word","Abbrechen")}
+            </button>
+          </div>
+        </div>
+      )}
       <div data-no-print style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${C.border}`, borderRadius: 14, padding: "12px 16px", marginBottom: 14 }}>
         <div style={{ ...sx.jb, flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
@@ -166,7 +187,7 @@ export default function CharManager() {
                 {c.name} <span style={{ color: C.textDim, fontSize: 10 }}>Lv.{c.level}</span>
               </button>
             ))}
-            <button type="button" onClick={() => startWizard(1)} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
+            <button type="button" onClick={() => setShowEntry(true)} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
             {chars.length > 1 && <button type="button" onClick={() => delChar(aid)} style={sx.bsm(C.red)}>🗑</button>}
             <label style={{ ...sx.bsm(C.blue), cursor: "pointer" }}>
               {t("char.import_btn","📥 Import")}
