@@ -91,12 +91,19 @@ export default function CharCreationWizard() {
 
   const onCancel = async () => {
     const ok = await confirm(
-      t("wizard.shell.cancel_confirm_msg","Dein Fortschritt wird gespeichert — du kannst später fortsetzen."),
-      { title: t("wizard.shell.cancel_confirm_title","Wizard abbrechen?") }
+      t("wizard.shell.cancel_confirm_msg","Alle Auswahlen werden verworfen. Fortfahren?"),
+      {
+        title: t("wizard.shell.cancel_confirm_title","Wizard verwerfen?"),
+        danger: true,
+        okLabel: t("wizard.shell.cancel_confirm_ok","Verwerfen"),
+      }
     );
     if (ok) {
-      // State stays in localStorage. Reload puts us back on normal layout
-      // and the resume-banner picks the state up on next + Neu click.
+      // Clear the wizard state so AppRouter exits back to the normal app
+      // shell after the reload. Without removing the key, the takeover
+      // simply re-mounts at the same step and the user thinks "nothing
+      // happened".
+      localStorage.removeItem("wizard_active_v1");
       window.location.reload();
     }
   };

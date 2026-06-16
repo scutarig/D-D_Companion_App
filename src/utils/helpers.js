@@ -58,6 +58,8 @@ export const newChar = id => ({
   inventory:[], actions:[], gold:0, silver:0, copper:0, electrum:0, platinum:0,
   // Auto-applied trait groups
   raceTraits:[], bgTraits:[], classFeatures:[], subclassFeatures:[], feats:[],
+  // Tool proficiencies (from Background + class — wizard sets this, Aufbau can edit)
+  toolProfs:[],
   // Languages (merged from race + background + manual)
   languages:[],
   // Subclass selections per class: { "Barbar": "pfad_berserker", ... }

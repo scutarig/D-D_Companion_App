@@ -5,6 +5,7 @@ import { BACKGROUNDS_FULL } from "../../../data/backgrounds.js";
 import { RACES_FULL } from "../../../data/races.js";
 import { applyBackground, applyBackgroundAsi } from "../../../utils/backgrounds.js";
 import { applyRaceTraits } from "../../../utils/races.js";
+import { toEnSkill } from "../data/skillTranslation.js";
 
 const SAVE_CODES = new Set(["STR", "DEX", "CON", "INT", "WIS", "CHA"]);
 
@@ -80,9 +81,20 @@ export function buildCharFromWizard(state) {
   char = applyBackground(char, state.background);
 
   // applyBackground may not add skill_<name> map entries — wire those too so
-  // they show up in the skill list with their proficiency markers.
+  // they show up in the skill list with their proficiency markers. The
+  // background data uses German skill names; the canonical char.skills keys
+  // are English (matching constants/theme.js SKILLS), so translate.
   const bg = BACKGROUNDS_FULL.find((b) => b.name === state.background);
-  (bg?.skillProfs || []).forEach((sk) => { char.skills[`skill_${sk}`] = true; });
+  (bg?.skillProfs || []).forEach((sk) => {
+    char.skills[`skill_${toEnSkill(sk)}`] = true;
+  });
+
+  // Background tool proficiency — preserved verbatim (some backgrounds list a
+  // generic "1 Artisan's Tools deiner Wahl" choice that the user resolves
+  // later in the inventory tab).
+  if (bg?.toolProf) {
+    char.toolProfs = [...(char.toolProfs || []), bg.toolProf];
+  }
 
   // Background equipment — also unpacked. Pack B is a flat "50 GP".
   if (state.bgEquipmentChoice === "A" && bg?.equipmentA) {
