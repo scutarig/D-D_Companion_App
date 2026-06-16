@@ -20,6 +20,7 @@ import Step11_SpeciesChoices, { validate as validateStep11 } from "./steps/Step1
 import Step12_Abilities, { validate as validateStep12 } from "./steps/Step12_Abilities.jsx";
 import Step13_Alignment, { validate as validateStep13 } from "./steps/Step13_Alignment.jsx";
 import Step14_Personality, { validate as validateStep14 } from "./steps/Step14_Personality.jsx";
+import Step15_LevelUpLoop, { validate as validateStep15 } from "./steps/Step15_LevelUpLoop.jsx";
 
 // Step component registry — populated as steps are implemented.
 const STEP_COMPONENTS = {
@@ -37,6 +38,7 @@ const STEP_COMPONENTS = {
   abilities:       Object.assign(Step12_Abilities,           { validate: validateStep12 }),
   alignment:       Object.assign(Step13_Alignment,           { validate: validateStep13 }),
   personality:     Object.assign(Step14_Personality,         { validate: validateStep14 }),
+  levelup_loop:    Object.assign(Step15_LevelUpLoop,         { validate: validateStep15 }),
 };
 
 export default function CharCreationWizard() {
