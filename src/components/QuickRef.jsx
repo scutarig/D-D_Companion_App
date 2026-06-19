@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
-import { CONDITIONS } from "../data/conditions.js";
+import { CONDITIONS } from "../utils/conditions.js";
 import { useI18n } from "../i18n/index.js";
 
 // ─── PHB 2024 Schnellreferenz ────────────────────────────────────────────────
@@ -209,14 +209,19 @@ export default function QuickRef() {
         {SECTIONS.map(s => <button type="button" key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.labelKey ? t(s.labelKey, s.label) : s.label}</button>)}
       </div>
 
-      {/* CONDITIONS */}
+      {/* CONDITIONS — only the 14 official PHB 2024 entries + Concentration
+          (the canonical reference). Combat-tab markers like hidden / raging
+          live in utils/conditions.js for the fighter mechanics but aren't
+          PHB conditions, so they're filtered out here. */}
       {section === "conditions" && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
-          {CONDITIONS.map(c => {
-            const displayName = lang === "en" && c.nameEN ? c.nameEN : c.name;
-            const displayDesc = lang === "en" && c.descEN ? c.descEN : c.desc;
-            return <RuleCard key={c.id} title={`${c.icon} ${displayName}`} body={displayDesc} col={C.redBright} />;
-          })}
+          {CONDITIONS
+            .filter(c => c.id !== "hidden" && c.id !== "raging")
+            .map(c => {
+              const displayName = lang === "en" && c.nameEN ? c.nameEN : c.name;
+              const displayDesc = lang === "en" && c.descEN ? c.descEN : c.desc;
+              return <RuleCard key={c.id} title={`${c.icon} ${displayName}`} body={displayDesc} col={C.redBright} />;
+            })}
         </div>
       )}
 

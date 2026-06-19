@@ -85,6 +85,16 @@ export function applyLongRest(char, classes, usedAuto = {}) {
       hd_used: newHdUsed,
       exhaustion: newExhaustion,
       inspiration: grantInspiration ? true : char.inspiration,
+      // Long Rest also clears the attunement-changed tracker so the player
+      // can swap attuned items again next rest cycle.
+      attunementChangedSinceRest: [],
+      // PHB 2024 Lucky Origin Feat refills its used pool on Long Rest.
+      featChoices: {
+        ...(char.featChoices || {}),
+        ...(char.featChoices?.lucky
+          ? { lucky: { ...char.featChoices.lucky, used: 0 } }
+          : {}),
+      },
     },
     usedAuto: newUsedAuto,
     hdRecovered: actualHdRecovered,

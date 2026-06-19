@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { C, sx, FH } from "../../constants/theme.js";
-import { CONDITIONS } from "../../data/conditions.js";
+import { CONDITIONS } from "../../utils/conditions.js";
 import { useI18n } from "../../i18n/index.js";
 
 /**
@@ -46,9 +46,12 @@ export default function ConditionsCard({ char, setChar }) {
   const condByName = (id) => CONDITIONS.find((c) => c.id === id);
   const labelOf = (c) => (lang === "en" ? (c.nameEN || c.name) : c.name);
 
-  // Picker list excludes Exhaustion (own tracker) and already-active conditions
+  // Picker excludes Exhaustion (own tracker), non-PHB combat markers
+  // (concentration is tracked via ConcentrationBanner; hidden/raging are
+  // Combat-tab flags), and already-active conditions.
+  const NON_PICKABLE = new Set(["exhaustion", "concentration", "hidden", "raging"]);
   const pickable = CONDITIONS
-    .filter((c) => c.id !== "exhaustion" && !active.includes(c.id))
+    .filter((c) => !NON_PICKABLE.has(c.id) && !active.includes(c.id))
     .filter((c) => {
       if (!pickerFilter.trim()) return true;
       const q = pickerFilter.trim().toLowerCase();

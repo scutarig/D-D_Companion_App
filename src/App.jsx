@@ -14,14 +14,14 @@ import { buildCharPdfHtml } from "./utils/charPdf.js";
 // Lazy-load ShareCharDialog so the qrcode lib (~30 KB) only loads on first share-click,
 // not in every cold-boot of the main bundle.
 const ShareCharDialog = lazy(() => import("./components/ShareCharDialog.jsx"));
-import { getPB, buildSlotsForLevel, applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/helpers.js";
+import { getPB, buildSlotsForLevel } from "./utils/helpers.js";
+import { applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/restHelpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
 import { useI18n } from "./i18n/index.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
 import { useMulticlass } from "./hooks/useMulticlass.js";
-import { computeAllResources } from "./data/classResources.js";
 
 const Overview      = lazy(() => import("./components/CombatDashboard.jsx"));
 const CharManager   = lazy(() => import("./components/CharManager.jsx"));
@@ -152,22 +152,17 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
   const lbl = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
 
   const confirmRest = () => {
-    const autoResources = computeAllResources(classes, char);
     if (restBanner === "long") {
-      setChar(p => applyLongRest(p));
+      const { char: nextChar, usedAuto: nextAuto } = applyLongRest(char, classes, autoUsed);
+      setChar(() => nextChar);
+      setAutoUsed(nextAuto);
       setSlots(p => p.map(s => ({ ...s, used: 0 })));
       setCustom(p => p.map(tok => ({ ...tok, used: 0 })));
-      // Long rest resets ALL class resources (long + short)
-      const reset = {};
-      autoResources.forEach(r => { reset[r.id] = 0; });
-      setAutoUsed(p => ({ ...p, ...reset }));
     } else {
       const hpGain = parseInt(restHpInput) || 0;
-      setChar(p => applyShortRest(p, { hpGain }));
-      // Short rest resets only short-rest class resources
-      const reset = {};
-      autoResources.forEach(r => { if (r.reset === "short") reset[r.id] = 0; });
-      setAutoUsed(p => ({ ...p, ...reset }));
+      const { char: nextChar, usedAuto: nextAuto } = applyShortRest(char, classes, autoUsed, hpGain);
+      setChar(() => nextChar);
+      setAutoUsed(nextAuto);
     }
     setRestBanner(null); setRestHpInput("");
   };

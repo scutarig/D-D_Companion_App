@@ -83,48 +83,6 @@ export const newChar = id => ({
   deity: "",            // free-text
 });
 
-/**
- * Apply a Short Rest to a char object.
- * hpGain: HP healed via HD (passed in from UI).
- */
-export function applyShortRest(char, { hpGain = 0 } = {}) {
-  return {
-    ...char,
-    hp: Math.min(char.maxHp, char.hp + hpGain),
-    attunementChangedSinceRest: [],
-  };
-}
-
-/**
- * Returns true if char's species/feature grants Heroic Inspiration on Long Rest.
- * PHB 2024: Human's "Resourceful" trait grants it on every Long Rest.
- */
-export function grantsHeroicInspirationOnLR(char) {
-  return char.race === "Mensch" || char.race === "Human";
-}
-
-/**
- * Apply a Long Rest to a char object.
- * Restores HP, clears temp HP, death saves, regains HD, clears attunement tracking.
- * PHB 2024: Human's "Resourceful" trait auto-grants Heroic Inspiration.
- */
-export function applyLongRest(char) {
-  const regain = Math.max(1, Math.floor(char.level / 2));
-  return {
-    ...char,
-    hp:         char.maxHp,
-    tempHp:     0,
-    deathSaves: { suc: 0, fail: 0 },
-    hd_used:    Math.max(0, (char.hd_used || 0) - regain),
-    attunementChangedSinceRest: [],
-    // Long Rest reduziert Exhaustion um 1 Stufe (PHB)
-    exhaustion: Math.max(0, (char.exhaustion || 0) - 1),
-    // PHB 2024: Mensch (Resourceful) erhält automatisch Heroic Inspiration
-    inspiration: grantsHeroicInspirationOnLR(char) ? true : char.inspiration,
-    // PHB 2024 Lucky Origin Feat: Luck Points refill on Long Rest
-    featChoices: {
-      ...(char.featChoices || {}),
-      ...(char.featChoices?.lucky ? { lucky: { ...char.featChoices.lucky, used: 0 } } : {}),
-    },
-  };
-}
+// Rest logic lives in restHelpers.js (single source of truth).
+// applyShortRest / applyLongRest / grantsHeroicInspirationOnLR moved
+// there so multi-class resources reset correctly via one call.
