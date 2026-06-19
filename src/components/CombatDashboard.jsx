@@ -20,6 +20,9 @@ import { useDerivedStats } from "../hooks/useDerivedStats.js";
 import { useI18n } from "../i18n/index.js";
 import DerivedStatsWidget from "./CharacterSheet/DerivedStatsWidget.jsx";
 import SkillsCard from "./CharacterSheet/SkillsCard.jsx";
+import LanguagesCard from "./CharacterSheet/LanguagesCard.jsx";
+import ConditionsCard from "./CharacterSheet/ConditionsCard.jsx";
+import ActionsRefCard from "./CharacterSheet/ActionsRefCard.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -423,8 +426,17 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
       </div>
 
-      {/* ── SKILLS (all 18 with computed bonus, for at-the-table rolls) ── */}
+      {/* ── CONDITIONS quick-glance (click pill to remove) ── */}
+      <ConditionsCard char={char} setChar={setChar} />
+
+      {/* ── ACTION / BONUS / REACTION reference (collapsible) ── */}
+      <ActionsRefCard />
+
+      {/* ── SKILLS (all 18 with click-to-roll d20+bonus) ── */}
       <SkillsCard char={char} pb={getPB(char.level || 1)} />
+
+      {/* ── LANGUAGES pills row ── */}
+      <LanguagesCard char={char} />
 
       {/* ── MAIN GRID: Equipment+Resources  |  Spells ── */}
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "260px 1fr", gap: 12, marginBottom: 12 }}>
