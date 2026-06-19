@@ -11,7 +11,6 @@ import WildShapePanel from "./WildShape/WildShapePanel.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { computeAllResources } from "../data/classResources.js";
 import { SPELLS } from "../data/spells.js";
-import { CONDITIONS } from "../data/conditions.js";
 import { useCompanions } from "../hooks/useCompanions.js";
 import { typeOf } from "./Companions/CompanionCard.jsx";
 import { useProficiencies } from "../hooks/useProficiencies.js";
@@ -132,7 +131,6 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const { classes } = useMulticlass(aid, char, null);
   const autoResources = computeAllResources(classes, char);
   const setAutoUsedR = (id, used) => setAutoUsed(p => ({ ...p, [id]: used }));
-  const [activeConds, setActiveConds] = usePersist("cond_v4", []);
   const [prepIds, setPrepIds]       = useState([]);
   const [knownIds, setKnownIds]     = useState([]);
   const [castModal, setCastModal]   = useState(null);
@@ -401,49 +399,26 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
       </div>
 
-      {/* ── Death Saves + Conditions nebeneinander ── */}
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "auto 1fr", gap: 10, marginBottom: 10 }}>
-
-        {/* Death Saves */}
-        <div style={{ ...sx.card, border: `1px solid ${isDying ? C.red : C.border}`, padding: "10px 14px", opacity: isDying ? 1 : 0.5, transition: "opacity .3s, border-color .3s", minWidth: 160 }}>
-          <div style={{ fontSize: 10, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>{t("dash.death_saves_header","💀 Death Saves")}</div>
-          {[{ label: t("dash.success_word","✓ Erfolg"), col: C.greenBright, key: "suc" }, { label: t("dash.fail_word","✗ Fail"), col: C.redBright, key: "fail" }].map(row => (
-            <div key={row.key} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
-              <span style={{ fontSize: 11, color: row.col, minWidth: 56 }}>{row.label}</span>
-              <div style={{ display: "flex", gap: 5 }}>
-                {[0, 1, 2].map(i => (
-                  <button type="button" key={i}
-                    onClick={() => isDying && setChar(p => ({ ...p, deathSaves: { ...p.deathSaves, [row.key]: (p.deathSaves?.[row.key] || 0) === i + 1 ? i : i + 1 } }))}
-                    style={{ width: 32, height: 32, borderRadius: "50%", cursor: isDying ? "pointer" : "default", border: `2px solid ${row.col}`, background: i < (char.deathSaves?.[row.key] || 0) ? row.col : "transparent", padding: 0 }} />
-                ))}
-              </div>
+      {/* ── Death Saves (Conditions moved to ConditionsCard below — single
+          authoritative source via char.activeConditions) ── */}
+      <div style={{ ...sx.card, border: `1px solid ${isDying ? C.red : C.border}`, padding: "10px 14px", opacity: isDying ? 1 : 0.5, transition: "opacity .3s, border-color .3s", marginBottom: 10 }}>
+        <div style={{ fontSize: 10, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>{t("dash.death_saves_header","💀 Death Saves")}</div>
+        {[{ label: t("dash.success_word","✓ Erfolg"), col: C.greenBright, key: "suc" }, { label: t("dash.fail_word","✗ Fail"), col: C.redBright, key: "fail" }].map(row => (
+          <div key={row.key} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
+            <span style={{ fontSize: 11, color: row.col, minWidth: 56 }}>{row.label}</span>
+            <div style={{ display: "flex", gap: 5 }}>
+              {[0, 1, 2].map(i => (
+                <button type="button" key={i}
+                  onClick={() => isDying && setChar(p => ({ ...p, deathSaves: { ...p.deathSaves, [row.key]: (p.deathSaves?.[row.key] || 0) === i + 1 ? i : i + 1 } }))}
+                  style={{ width: 32, height: 32, borderRadius: "50%", cursor: isDying ? "pointer" : "default", border: `2px solid ${row.col}`, background: i < (char.deathSaves?.[row.key] || 0) ? row.col : "transparent", padding: 0 }} />
+              ))}
             </div>
-          ))}
-          {isDying && (
-            <button type="button" onClick={() => setChar(p => ({ ...p, hp: 1, deathSaves: { suc: 0, fail: 0 } }))}
-              style={{ ...sx.bsm(C.greenBright), fontSize: 10, marginTop: 4, width: "100%" }}>{t("dash.stabilize_1hp","↺ 1 HP stabil")}</button>
-          )}
-        </div>
-
-        {/* Conditions */}
-        <div style={{ ...sx.card, padding: "10px 12px" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 7 }}>
-            <span style={{ fontSize: 10, color: C.gold, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>{t("dash.conditions_header","🚨 Conditions")}</span>
-            {activeConds.length > 0 && <span style={{ fontSize: 11, color: C.redBright, fontWeight: 700 }}>{activeConds.length} {t("dash.active_word","aktiv")}</span>}
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-            {CONDITIONS.map(c => {
-              const active = activeConds.includes(c.id);
-              return (
-                <button type="button" key={c.id}
-                  onClick={() => setActiveConds(p => active ? p.filter(x => x !== c.id) : [...p, c.id])}
-                  style={{ padding: "3px 8px", borderRadius: 6, cursor: "pointer", fontSize: 10, fontWeight: 600, transition: "all .15s", background: active ? `${C.red}33` : "transparent", border: `1px solid ${active ? C.redBright : C.border}`, color: active ? C.redBright : C.textDim }}>
-                  {active ? "✕ " : ""}{c.icon} {c.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        ))}
+        {isDying && (
+          <button type="button" onClick={() => setChar(p => ({ ...p, hp: 1, deathSaves: { suc: 0, fail: 0 } }))}
+            style={{ ...sx.bsm(C.greenBright), fontSize: 10, marginTop: 4, width: "100%" }}>{t("dash.stabilize_1hp","↺ 1 HP stabil")}</button>
+        )}
       </div>
 
       {/* ── Wealth ── */}

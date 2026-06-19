@@ -7,26 +7,42 @@ versioning follows the `package.json` (`1.0.0`).
 
 ## [Unreleased]
 
+_No unreleased changes yet._
+
+---
+
+## [1.1.0] — 2026-06-19 — Dashboard becomes the play-cockpit
+
+The Übersicht tab now carries everything a player needs mid-encounter, so
+tab-switching during combat is largely unnecessary.
+
 ### Added
-- **Dashboard at-the-table cards** — 4 new sections on the Übersicht tab so the
-  player rarely needs to switch tabs during play
-  ([037e2f9](https://github.com/.../commit/037e2f9)):
+- **Dashboard at-the-table cards** — 4 new sections on the Übersicht tab
+  ([037e2f9](https://github.com/scutarig/D-D_Companion_App/commit/037e2f9)):
   - `ConditionsCard` — pill row of `char.activeConditions[]`, click to remove
   - `ActionsRefCard` — collapsible 3-column PHB 2024 Action/Bonus/Reaction
     reference (16 core actions)
   - `SkillsCard` — all 18 skills with proficiency markers (`○ ● ◉`), computed
     bonus, click-to-roll d20+bonus with NAT 20 / NAT 1 highlights
   - `LanguagesCard` — pill row of `char.languages[]`
-- **Hit-Dice tracker** on dashboard (planned, see Hit-Dice card)
-- **Inspiration toggle** in vitals header (planned)
-- **Conditions picker** with `+` button in `ConditionsCard` (planned)
+- **HitDiceCard** ([9e9b5cc](https://github.com/scutarig/D-D_Companion_App/commit/9e9b5cc))
+  — per-level pills (toggle spent/available), "🎲 Würfeln + heilen" rolls
+  `1d<hd> + CON-mod` and applies the heal in one click, `↺` resets all
+- **Inspiration toggle** in vitals row — glowing `✨ Insp.` pill, click
+  toggles `char.inspiration`
+- **Conditions picker** — `＋ Hinzufügen` popover in `ConditionsCard` with
+  searchable list over all PHB-2024 conditions (Exhaustion excluded — own
+  tracker in Kampf tab)
+- `CHANGELOG.md` introduced
+
+### Changed
+- Dashboard's old inline Conditions block (using `usePersist("cond_v4", [])`)
+  removed in favour of the new `ConditionsCard` (using `char.activeConditions`,
+  shared with `ConditionsTracker` in Kampf tab) — single source of truth
 
 ### Fixed
 - i18n key collision between `dash.actions_header` (existing Hotbar) and the
   new ActionsRefCard — renamed reference keys to `dash.actions_ref_*`
-
-### Performance
-- `FindingsView` (sibling ServerOverview project) — WPF virtualization enabled
 
 ---
 
