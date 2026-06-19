@@ -82,8 +82,8 @@ export default function StatusStrip({ char, setChar, totalGP, onOpenWealth }) {
         title={isDying
           ? t("strip.ds_dying","Stirbst — Klick auf einen Kreis = Save markieren")
           : t("strip.ds_stable","Death Saves (nur aktiv bei 0 HP)")}>
-        <span style={{ fontSize: 12, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: 0.3 }}>
-          💀
+        <span style={{ fontSize: 11, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: 0.3 }}>
+          💀 {t("strip.ds_short","DS")}
         </span>
         <div style={{ display: "flex", gap: 3 }} aria-label={t("strip.ds_successes","Successes")}>
           {[0, 1, 2].map(i => renderDot(i < sucCount, C.greenBright, "suc", i))}
@@ -134,7 +134,7 @@ export default function StatusStrip({ char, setChar, totalGP, onOpenWealth }) {
           maxWidth: 240,
           overflow: "hidden", textOverflow: "ellipsis",
         }}>
-        <span>🔮</span>
+        <span>🔮 {t("strip.conc_short","Konz.")}</span>
         <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
           {conc ? conc.spellName : t("strip.conc_dash","—")}
         </span>

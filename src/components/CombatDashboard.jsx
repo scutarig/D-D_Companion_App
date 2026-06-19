@@ -376,16 +376,27 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
         onOpenWealth={() => setShowWealthModal(true)} />
 
-      {/* ── DERIVED STATS WIDGET ── */}
-      <div style={{ marginBottom: 12 }}>
-        <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
+      {/* ── STATE TRIPLET: Conditions + HitDice + Combat Stats ──
+          Desktop (≥900px): two columns — light state pills on the left
+          (Conditions + HitDice stacked, both single-row content), full
+          Combat Stats widget on the right. Mobile: stacked, Conditions
+          and HitDice come before Combat Stats so they read as the
+          immediate at-a-glance state. */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1fr) minmax(0, 1fr)",
+        gap: isMobile ? 0 : 12,
+        marginBottom: 12,
+        alignItems: "start",
+      }}>
+        <div>
+          <ConditionsCard char={char} setChar={setChar} />
+          <HitDiceCard char={char} setChar={setChar} />
+        </div>
+        <div>
+          <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
+        </div>
       </div>
-
-      {/* ── CONDITIONS quick-glance (click pill to remove, ＋ to add) ── */}
-      <ConditionsCard char={char} setChar={setChar} />
-
-      {/* ── HIT DICE tracker (click pills or roll-to-heal) ── */}
-      <HitDiceCard char={char} setChar={setChar} />
 
       {/* ── ACTION / BONUS / REACTION reference (collapsible) ── */}
       <ActionsRefCard />

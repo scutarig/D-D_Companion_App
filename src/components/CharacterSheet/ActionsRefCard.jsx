@@ -3,17 +3,19 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useI18n } from "../../i18n/index.js";
 
 /**
- * ActionsRefCard — condensed 3-column reference of "what can I do this turn"
- * on the Dashboard. Source-of-truth STD_ACTIONS lives in CharActions.jsx;
- * this view repeats only the core list (no class-specifics) so it stays
- * scannable at the table. Click a row to toggle its long description.
+ * ActionsRefCard — condensed "what can I do this turn" reference for the
+ * Dashboard. Source-of-truth STD_ACTIONS lives in CharActions.jsx; this view
+ * repeats only the core PHB 2024 list (no class-specifics) so it stays
+ * scannable at the table.
+ *
+ * Layout mirrors SkillsCard: collapsible card, header with summary, and one
+ * flat auto-fit grid of action rows. Each row is colour-coded by type
+ * (⚔ action / ⚡ bonus / 🛡 reaction). Click a row to toggle its long
+ * description inline.
  */
 
-// Core PHB 2024 actions — kept in sync with the Standard Actions in
-// CharActions.jsx. Class-specific bonus actions are intentionally omitted
-// to keep this card compact; the Kampf tab still has the full picker.
 const CORE_ACTIONS = [
-  { type: "action", name: "Attack", desc: "Melee/Ranged. Extra Attacks from Lv5+." },
+  { type: "action", name: "Attack", desc: "Melee/Ranged. Extra Attacks ab Lv5+." },
   { type: "action", name: "Magic", desc: "Spell wirken / Magic Item / mag. Klassen-Feature." },
   { type: "action", name: "Dash", desc: "Extra-Bewegung = Speed (Rest des Zuges)." },
   { type: "action", name: "Disengage", desc: "Bewegung provoziert keine OAs." },
@@ -33,10 +35,13 @@ const CORE_ACTIONS = [
   { type: "reaction", name: "Readied Action", desc: "Trigger der Ready-Action löst Aktion aus." },
 ];
 
+// Per-type marker (3-letter abbrev shown like SkillsCard's ability column),
+// icon, and accent colour. Order in CORE_ACTIONS is already action → bonus →
+// reaction; that order also reads top-to-bottom in the flat grid.
 const TYPE_META = {
-  action:   { label: "Action",   icon: "⚔️", color: "#dc2626" },
-  bonus:    { label: "Bonus",    icon: "⚡", color: "#d97706" },
-  reaction: { label: "Reaction", icon: "🛡️", color: "#2563eb" },
+  action:   { ab: "ACT", icon: "⚔",  color: "#dc2626" },
+  bonus:    { ab: "BON", icon: "⚡", color: "#d97706" },
+  reaction: { ab: "RXN", icon: "🛡", color: "#2563eb" },
 };
 
 export default function ActionsRefCard() {
@@ -45,6 +50,13 @@ export default function ActionsRefCard() {
   const [expanded, setExpanded] = useState({});
 
   const toggleRow = (key) => setExpanded((e) => ({ ...e, [key]: !e[key] }));
+
+  // Header summary: counts per type so the closed header still tells you
+  // how many of each kind are listed.
+  const counts = CORE_ACTIONS.reduce((acc, a) => {
+    acc[a.type] = (acc[a.type] || 0) + 1;
+    return acc;
+  }, {});
 
   return (
     <div style={{ ...sx.card, marginBottom: 10, padding: 0, overflow: "hidden" }}>
@@ -56,59 +68,60 @@ export default function ActionsRefCard() {
           borderBottom: open ? `1px solid ${C.amberBright}30` : "none",
           color: C.amberBright,
           fontFamily: FH, fontSize: 13, fontWeight: 700, letterSpacing: 0.5,
-          padding: "10px 12px",
+          padding: "8px 12px",
           cursor: "pointer",
           display: "flex", alignItems: "center", gap: 8,
           textAlign: "left",
         }}>
         <span>⚔ {t("dash.actions_ref_header","Action / Bonus / Reaction")}</span>
         <span style={{ flex: 1, fontSize: 11, color: C.textDim, fontWeight: 400 }}>
-          {t("dash.actions_ref_meta","PHB 2024 Kern-Aktionen — Klick auf Zeile = Details")}
+          <span style={{ color: TYPE_META.action.color }}>⚔ {counts.action || 0}</span>
+          {" · "}
+          <span style={{ color: TYPE_META.bonus.color }}>⚡ {counts.bonus || 0}</span>
+          {" · "}
+          <span style={{ color: TYPE_META.reaction.color }}>🛡 {counts.reaction || 0}</span>
         </span>
         <span style={{ fontSize: 12, opacity: 0.6 }}>{open ? "▾" : "▸"}</span>
       </button>
 
       {open && (
-        <div style={{ padding: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 10 }}>
-          {Object.entries(TYPE_META).map(([type, meta]) => (
-            <section key={type}>
-              <div style={{
-                fontFamily: FH, fontSize: 12, fontWeight: 700,
-                color: meta.color, letterSpacing: 0.5, marginBottom: 6,
-                borderBottom: `1px solid ${meta.color}55`, paddingBottom: 4,
-              }}>
-                {meta.icon} {meta.label}
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                {CORE_ACTIONS.filter((a) => a.type === type).map((a) => {
-                  const key = `${type}_${a.name}`;
-                  const isOpen = !!expanded[key];
-                  return (
-                    <button key={key} type="button" onClick={() => toggleRow(key)}
-                      style={{
-                        background: isOpen ? `${meta.color}11` : "transparent",
-                        border: `1px solid ${isOpen ? meta.color + "55" : C.border}`,
-                        borderRadius: 6,
-                        padding: "5px 8px",
-                        textAlign: "left",
-                        cursor: "pointer",
-                        fontFamily: "inherit",
-                      }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                        <span style={{ fontWeight: 700, color: C.textBright, fontSize: 12 }}>{a.name}</span>
-                        <span style={{ marginLeft: "auto", fontSize: 10, color: C.textDim }}>{isOpen ? "▾" : "▸"}</span>
-                      </div>
-                      {isOpen && (
-                        <div style={{ fontSize: 11, color: C.textDim, marginTop: 4, lineHeight: 1.4 }}>
-                          {a.desc}
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
+        <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 4 }}>
+          {CORE_ACTIONS.map((a) => {
+            const meta = TYPE_META[a.type];
+            const key = `${a.type}_${a.name}`;
+            const isOpen = !!expanded[key];
+            return (
+              <button key={key} type="button" onClick={() => toggleRow(key)}
+                title={a.desc}
+                style={{
+                  display: "flex", flexDirection: "column", alignItems: "stretch",
+                  gap: 4,
+                  background: isOpen ? `${meta.color}0e` : "transparent",
+                  borderRadius: 6,
+                  border: "none",
+                  borderLeft: `3px solid ${meta.color}`,
+                  padding: "4px 8px",
+                  cursor: "pointer",
+                  textAlign: "left",
+                  fontFamily: "inherit",
+                }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ color: meta.color, fontFamily: FH, fontSize: 9, fontWeight: 700, width: 30 }}>
+                    {meta.ab}
+                  </span>
+                  <span style={{ flex: 1, fontSize: 12, color: C.textBright, fontWeight: 600 }}>
+                    {a.name}
+                  </span>
+                  <span style={{ fontSize: 10, color: C.textDim }}>{isOpen ? "▾" : "▸"}</span>
+                </div>
+                {isOpen && (
+                  <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4, paddingLeft: 38 }}>
+                    {a.desc}
+                  </div>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>
