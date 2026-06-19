@@ -53,28 +53,51 @@ export default function HitDiceCard({ char, setChar }) {
   const resetAll = () => setChar((p) => ({ ...p, hd_used: 0 }));
 
   return (
-    <div style={{ ...sx.card, marginBottom: 10, padding: "10px 12px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
+    <div style={{ marginBottom: 8, padding: "4px 4px" }}>
+      {/* Single-row header: label + counts + pills + actions all aligned. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
         <span style={{ fontFamily: FH, fontSize: 12, color: C.amberBright, fontWeight: 700, letterSpacing: 0.5 }}>
           🎲 {t("dash.hd_header","Trefferwürfel")}
         </span>
         <span style={{ fontSize: 11, color: C.textDim }}>
-          {hdStr.toLowerCase()} · {t("dash.hd_remaining","verfügbar")}: {" "}
+          {hdStr.toLowerCase()} ·{" "}
           <strong style={{ color: remaining > 0 ? C.amberBright : C.textDim }}>{remaining}</strong>
-          {" / "}{level}
+          /{level}
         </span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 3, marginLeft: 4 }}>
+          {Array.from({ length: level }).map((_, i) => {
+            const spent = i < used;
+            return (
+              <button key={i}
+                type="button"
+                onClick={() => togglePill(i)}
+                title={spent
+                  ? t("dash.hd_pill_spent","Verbraucht — Klick: wiederherstellen")
+                  : t("dash.hd_pill_avail","Verfügbar — Klick: als verbraucht markieren")}
+                aria-label={`HD ${i + 1}`}
+                style={{
+                  width: 14, height: 14, padding: 0,
+                  borderRadius: 4,
+                  border: `1.5px solid ${C.amberBright}`,
+                  background: spent ? "transparent" : C.amberBright,
+                  cursor: "pointer",
+                  transition: "background .15s",
+                }} />
+            );
+          })}
+        </div>
         <span style={{ flex: 1 }} />
         <button type="button"
           onClick={rollSpend}
           disabled={remaining <= 0 || char.hp >= char.maxHp}
           title={t("dash.hd_roll_hint","1d{n} + CON-Mod heilen und 1 HD verbrauchen").replace("{n}", String(hdSize))}
           style={{
-            padding: "4px 10px",
-            borderRadius: 7,
+            padding: "3px 8px",
+            borderRadius: 6,
             border: `1px solid ${remaining > 0 && char.hp < char.maxHp ? C.amberBright + "88" : C.border}`,
             background: remaining > 0 && char.hp < char.maxHp ? `${C.amberBright}22` : "transparent",
             color: remaining > 0 && char.hp < char.maxHp ? C.amberBright : C.textDim,
-            fontSize: 11,
+            fontSize: 10,
             fontWeight: 700,
             cursor: remaining > 0 && char.hp < char.maxHp ? "pointer" : "default",
             fontFamily: "inherit",
@@ -109,35 +132,6 @@ export default function HitDiceCard({ char, setChar }) {
         </div>
       )}
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-        {Array.from({ length: level }).map((_, i) => {
-          const spent = i < used;
-          return (
-            <button key={i}
-              type="button"
-              onClick={() => togglePill(i)}
-              title={spent
-                ? t("dash.hd_pill_spent","Verbraucht — Klick: wiederherstellen")
-                : t("dash.hd_pill_avail","Verfügbar — Klick: als verbraucht markieren")}
-              style={{
-                minWidth: 28,
-                height: 22,
-                padding: "0 6px",
-                borderRadius: 5,
-                border: `1.5px solid ${C.amberBright}`,
-                background: spent ? "transparent" : C.amberBright,
-                color: spent ? C.amberBright : C.bg,
-                fontSize: 10,
-                fontWeight: 700,
-                fontFamily: FH,
-                cursor: "pointer",
-                transition: "background .15s",
-              }}>
-              {hdStr.toLowerCase()}
-            </button>
-          );
-        })}
-      </div>
     </div>
   );
 }

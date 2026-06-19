@@ -59,7 +59,7 @@ export default function ConditionsCard({ char, setChar }) {
     });
 
   return (
-    <div style={{ ...sx.card, marginBottom: 10, padding: "8px 12px", position: "relative" }}>
+    <div style={{ marginBottom: 8, padding: "2px 4px", position: "relative" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
         <span style={{ fontFamily: FH, fontSize: 12, color: C.redBright, fontWeight: 700, letterSpacing: 0.5 }}>
           🌪 {t("dash.conditions_header","Aktive Conditions")}

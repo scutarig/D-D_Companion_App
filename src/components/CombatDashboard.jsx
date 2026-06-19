@@ -23,6 +23,8 @@ import LanguagesCard from "./CharacterSheet/LanguagesCard.jsx";
 import ConditionsCard from "./CharacterSheet/ConditionsCard.jsx";
 import ActionsRefCard from "./CharacterSheet/ActionsRefCard.jsx";
 import HitDiceCard from "./CharacterSheet/HitDiceCard.jsx";
+import StatusStrip from "./CharacterSheet/StatusStrip.jsx";
+import WealthModal from "./CharacterSheet/WealthModal.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -137,7 +139,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const [tempHpModal, setTempHpModal] = useState(false);
   const [tempHpInput, setTempHpInput] = useState("");
   const [infoModal, setInfoModal]   = useState(null);
-  const [showCurrency, setShowCurrency] = useState(false);
+  const [showWealthModal, setShowWealthModal] = useState(false);
   const isMobile = useIsMobile(900);
   const [eqModal,    setEqModal]    = useState(null);
   const [eqStep,     setEqStep]     = useState("pick");
@@ -214,14 +216,14 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const modHp     = d => setChar(p => ({ ...p, hp: Math.max(0, Math.min(p.maxHp, p.hp + d)) }));
   const modTempHp = d => setChar(p => ({ ...p, tempHp: Math.max(0, (p.tempHp || 0) + d) }));
 
-  const CURR = [
-    { id: "pp",       short: "PP", gpVal: 10,   col: "#e2e8f0" },
-    { id: "gold",     short: "GP", gpVal: 1,    col: C.gold    },
-    { id: "electrum", short: "EP", gpVal: 0.5,  col: "#67cdcd" },
-    { id: "silver",   short: "SP", gpVal: 0.1,  col: "#94a3b8" },
-    { id: "copper",   short: "CP", gpVal: 0.01, col: "#b45309" },
-  ];
-  const totalGP = CURR.reduce((s, c) => s + (char[c.id] || 0) * c.gpVal, 0);
+  // Total GP equivalent — used by StatusStrip pill. Per-coin editing happens
+  // in WealthModal (which owns its own CURR list to stay self-contained).
+  const totalGP =
+    (char.pp || 0) * 10 +
+    (char.gold || 0) +
+    (char.electrum || 0) * 0.5 +
+    (char.silver || 0) * 0.1 +
+    (char.copper || 0) * 0.01;
 
   const equipped       = Object.entries(char.equipSlots || {}).filter(([, v]) => v).map(([slot, item]) => ({ slot, item }));
   const preparedSpells = SPELLS.filter(s => prepIds.includes(s.id) && s.lv > 0);
@@ -252,35 +254,6 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
 
   const ctStyle = { fontFamily: FH, fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${C.gold}44`, paddingBottom: 6, marginBottom: 10 };
   const lbl     = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
-
-  // Wealth dropdown helper (reused in both mobile and desktop)
-  const WealthPanel = () => (
-    <div style={{ position: "relative" }}>
-      <div style={{ ...sx.card, padding: "8px 12px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
-        onClick={() => setShowCurrency(p => !p)}>
-        <span style={{ fontSize: 11, color: C.gold, fontFamily: FH, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>{t("dash.wealth_header","💰 Wealth")}</span>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: C.gold }}>{totalGP % 1 === 0 ? totalGP : totalGP.toFixed(2)} GP</span>
-          <span style={{ fontSize: 10, color: C.textDim }}>{showCurrency ? "▲" : "▼"}</span>
-        </div>
-      </div>
-      {showCurrency && (
-        <div style={{ ...sx.card, position: "absolute", top: "100%", left: 0, zIndex: 50, width: "100%", padding: 14, marginTop: 4 }}>
-          {CURR.map(c => (
-            <div key={c.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-              <span style={{ ...lbl, minWidth: 36 }}>{c.short}</span>
-              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <button type="button" onClick={() => setChar(p => ({ ...p, [c.id]: Math.max(0, (p[c.id] || 0) - 1) }))} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>−</button>
-                <input type="number" value={char[c.id] || 0} onChange={e => setChar(p => ({ ...p, [c.id]: parseInt(e.target.value) || 0 }))}
-                  style={{ width: 56, textAlign: "center", background: C.surface, border: `1px solid ${C.border}`, borderRadius: 6, color: C.textBright, padding: "3px 0", fontSize: 14 }} />
-                <button type="button" onClick={() => setChar(p => ({ ...p, [c.id]: (p[c.id] || 0) + 1 }))} style={{ width: 26, height: 26, borderRadius: 6, background: C.surface, border: `1px solid ${C.border}`, color: C.text, cursor: "pointer", fontSize: 15 }}>+</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
 
   return (
     <div>
@@ -399,32 +372,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
       </div>
 
-      {/* ── Death Saves (Conditions moved to ConditionsCard below — single
-          authoritative source via char.activeConditions) ── */}
-      <div style={{ ...sx.card, border: `1px solid ${isDying ? C.red : C.border}`, padding: "10px 14px", opacity: isDying ? 1 : 0.5, transition: "opacity .3s, border-color .3s", marginBottom: 10 }}>
-        <div style={{ fontSize: 10, color: isDying ? C.redBright : C.textDim, fontFamily: FH, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>{t("dash.death_saves_header","💀 Death Saves")}</div>
-        {[{ label: t("dash.success_word","✓ Erfolg"), col: C.greenBright, key: "suc" }, { label: t("dash.fail_word","✗ Fail"), col: C.redBright, key: "fail" }].map(row => (
-          <div key={row.key} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
-            <span style={{ fontSize: 11, color: row.col, minWidth: 56 }}>{row.label}</span>
-            <div style={{ display: "flex", gap: 5 }}>
-              {[0, 1, 2].map(i => (
-                <button type="button" key={i}
-                  onClick={() => isDying && setChar(p => ({ ...p, deathSaves: { ...p.deathSaves, [row.key]: (p.deathSaves?.[row.key] || 0) === i + 1 ? i : i + 1 } }))}
-                  style={{ width: 32, height: 32, borderRadius: "50%", cursor: isDying ? "pointer" : "default", border: `2px solid ${row.col}`, background: i < (char.deathSaves?.[row.key] || 0) ? row.col : "transparent", padding: 0 }} />
-              ))}
-            </div>
-          </div>
-        ))}
-        {isDying && (
-          <button type="button" onClick={() => setChar(p => ({ ...p, hp: 1, deathSaves: { suc: 0, fail: 0 } }))}
-            style={{ ...sx.bsm(C.greenBright), fontSize: 10, marginTop: 4, width: "100%" }}>{t("dash.stabilize_1hp","↺ 1 HP stabil")}</button>
-        )}
-      </div>
-
-      {/* ── Wealth ── */}
-      <div style={{ marginBottom: 12 }}>
-        <WealthPanel />
-      </div>
+      {/* ── STATUS STRIP: Death Saves dots + Wealth pill + Concentration pill ── */}
+      <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
+        onOpenWealth={() => setShowWealthModal(true)} />
 
       {/* ── DERIVED STATS WIDGET ── */}
       <div style={{ marginBottom: 12 }}>
@@ -1114,6 +1064,10 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           </div>
         </div>
       )}
+
+      {/* Wealth editor (opened via StatusStrip's Wealth pill) */}
+      <WealthModal open={showWealthModal} onClose={() => setShowWealthModal(false)}
+        char={char} setChar={setChar} />
     </div>
   );
 }
