@@ -23,6 +23,7 @@ import SkillsCard from "./CharacterSheet/SkillsCard.jsx";
 import LanguagesCard from "./CharacterSheet/LanguagesCard.jsx";
 import ConditionsCard from "./CharacterSheet/ConditionsCard.jsx";
 import ActionsRefCard from "./CharacterSheet/ActionsRefCard.jsx";
+import HitDiceCard from "./CharacterSheet/HitDiceCard.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -324,6 +325,35 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <div style={{ fontSize: 20, fontWeight: 700, color: C.text, fontFamily: FH, lineHeight: 1.1 }}>{char.speed || 30}<span style={{ fontSize: 10, fontWeight: 400 }}>ft</span></div>
           </div>
 
+          {/* Inspiration toggle — ✨ glows when held, dim otherwise. Click toggles. */}
+          <button type="button"
+            onClick={() => setChar(p => ({ ...p, inspiration: !p.inspiration }))}
+            title={char.inspiration
+              ? t("dash.inspiration_spend","Inspiration ausgeben (Vorteil auf 1 Wurf)")
+              : t("dash.inspiration_gain","Inspiration erhalten")}
+            aria-pressed={!!char.inspiration}
+            style={{
+              flex: "0 0 auto",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              padding: "3px 9px",
+              borderRadius: 8,
+              border: `1px solid ${char.inspiration ? C.amberBright + "aa" : C.border}`,
+              background: char.inspiration ? `${C.amberBright}22` : "transparent",
+              boxShadow: char.inspiration ? `0 0 10px ${C.amberBright}66` : "none",
+              cursor: "pointer",
+              transition: "all .2s",
+              fontFamily: "inherit",
+            }}>
+            <div style={{
+              fontSize: 9, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase",
+              color: char.inspiration ? C.amberBright : C.textDim,
+            }}>✨ {t("dash.inspiration_short","Insp.")}</div>
+            <div style={{
+              fontSize: 14, fontWeight: 700, fontFamily: FH, lineHeight: 1.1,
+              color: char.inspiration ? C.amberBright : C.textDim,
+            }}>{char.inspiration ? "✓" : "—"}</div>
+          </button>
+
           {/* Spacer */}
           <div style={{ flex: 1 }} />
 
@@ -426,8 +456,11 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
       </div>
 
-      {/* ── CONDITIONS quick-glance (click pill to remove) ── */}
+      {/* ── CONDITIONS quick-glance (click pill to remove, ＋ to add) ── */}
       <ConditionsCard char={char} setChar={setChar} />
+
+      {/* ── HIT DICE tracker (click pills or roll-to-heal) ── */}
+      <HitDiceCard char={char} setChar={setChar} />
 
       {/* ── ACTION / BONUS / REACTION reference (collapsible) ── */}
       <ActionsRefCard />
