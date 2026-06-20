@@ -383,12 +383,13 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         alignItems: "start",
       }}>
         {/* LEFT SIDEBAR — status, equipment, resources, wildshape */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
 
           {/* Status box: one shared grey card around the four thin
               state widgets so they read as a single grouped panel
-              instead of four loose rows. */}
-          <div style={sx.card}>
+              instead of four loose rows. marginBottom:0 here lets the
+              parent flex `gap` own all vertical spacing. */}
+          <div style={{ ...sx.card, marginBottom: 0 }}>
             <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
               onOpenWealth={() => setShowWealthModal(true)} />
             <ConditionsCard char={char} setChar={setChar} />
@@ -396,7 +397,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <LanguagesCard char={char} />
           </div>
 
-          <div style={sx.card}>
+          <div style={{ ...sx.card, marginBottom: 0 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
               <div style={ctStyle}>{t("dash.equipment_header","⚔️ Ausrüstung")}</div>
               <button type="button" onClick={() => { setEqModal("list"); setEqStep("pick"); setEqItem(null); setEqSearch(""); setEqType("All"); }}
@@ -427,7 +428,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           </div>
 
           {custom.length > 0 && (
-            <div style={sx.card}>
+            <div style={{ ...sx.card, marginBottom: 0 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
                 <div style={ctStyle}>{t("dash.resources_header","🏷️ Ressourcen")}</div>
                 <button type="button" onClick={() => setCustom(p => p.map(tk => ({ ...tk, used: 0 })))} style={sx.bsm(C.gold)}>↺ Reset</button>
@@ -458,7 +459,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           {/* WildShape / Polymorph — moved into sidebar so it slots
               underneath equipment instead of starting a new full-width
               row of its own. */}
-          <div style={sx.card}>
+          <div style={{ ...sx.card, marginBottom: 0 }}>
             <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, letterSpacing: 0.5, marginBottom: 10 }}>
               {t("dash.wild_shape_polymorph","🐺 WILD SHAPE & POLYMORPH")}
             </div>
@@ -467,12 +468,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
 
         {/* RIGHT MAIN — combat stats, skills, actions, then spells */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
           <SkillsCard char={char} pb={getPB(char.level || 1)} />
           <ActionsRefCard char={char} />
 
-          <div style={sx.card}>
+          <div style={{ ...sx.card, marginBottom: 0 }}>
             <div style={ctStyle}>{t("dash.magic_header","🔮 Magie & Ressourcen")}</div>
 
           {/* Class Resources (Rage, Ki, Sorcery, etc.) */}

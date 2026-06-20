@@ -53,7 +53,7 @@ export default function HitDiceCard({ char, setChar }) {
   const resetAll = () => setChar((p) => ({ ...p, hd_used: 0 }));
 
   return (
-    <div style={{ marginBottom: 8, padding: "4px 4px" }}>
+    <div style={{ marginBottom: 6, padding: "4px 4px" }}>
       {/* Single-row header: label + counts + pills + actions all aligned. */}
       <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
         <span style={{ fontFamily: FH, fontSize: 12, color: C.amberBright, fontWeight: 700, letterSpacing: 0.5 }}>

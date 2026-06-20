@@ -25,7 +25,7 @@ function DerivedStatsWidget({ stats, isMobile }) {
   const divider = <div style={{ height: 1, background: C.border, margin: "10px 0" }} />;
 
   return (
-    <div style={{ ...sx.card, padding: 0, overflow: "hidden" }}>
+    <div style={{ ...sx.card, marginBottom: 0, padding: 0, overflow: "hidden" }}>
 
       {/* ── Header / Toggle ── */}
       <button type="button"

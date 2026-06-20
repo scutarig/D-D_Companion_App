@@ -37,7 +37,7 @@ export default function SkillsCard({ char, pb }) {
   const expCount  = profKeys.filter((k) => k.startsWith("exp_")   && char.skills[k]).length;
 
   return (
-    <div style={{ ...sx.card, marginBottom: 10, padding: 0, overflow: "hidden" }}>
+    <div style={{ ...sx.card, marginBottom: 0, padding: 0, overflow: "hidden" }}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

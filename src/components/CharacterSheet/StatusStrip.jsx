@@ -69,7 +69,7 @@ export default function StatusStrip({ char, setChar, totalGP, onOpenWealth }) {
   return (
     <div style={{
       display: "flex", flexWrap: "wrap", gap: 6,
-      marginBottom: 10,
+      marginBottom: 6,
       alignItems: "center",
     }}>
       {/* Death Saves */}

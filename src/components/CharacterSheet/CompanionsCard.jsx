@@ -48,7 +48,7 @@ export default function CompanionsCard({ companions, updateHp, update, remove })
   };
 
   return (
-    <div style={{ ...sx.card, marginBottom: 10, padding: 0, overflow: "hidden" }}>
+    <div style={{ ...sx.card, marginBottom: 0, padding: 0, overflow: "hidden" }}>
       <button type="button" onClick={handleToggle} aria-expanded={open}
         style={{
           width: "100%",
