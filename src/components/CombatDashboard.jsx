@@ -232,13 +232,6 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const availSlots = lv => { const s = slots.find(x => x.lv === lv); return s ? s.tot - s.used : 0; };
   const useSlot    = lv => setSlots(p => p.map(x => x.lv === lv && x.used < x.tot ? { ...x, used: x.used + 1 } : x));
 
-  const actions = char.actions || [];
-  const ACT_SLOT = {
-    action:   { col: C.blueBright,  label: t("dash.action_word","Aktion")       },
-    bonus:    { col: C.amberBright, label: t("dash.bonus_action_word","Bonus-Aktion") },
-    reaction: { col: C.tealBright,  label: t("dash.reaction_word","Reaktion")     },
-  };
-
   const HP_BTNS = [
     { label: "−5", fn: () => modHp(-5), bg: C.red   + "33", border: C.redBright   + "77", col: C.redBright   },
     { label: "−1", fn: () => modHp(-1), bg: C.red   + "18", border: C.border,              col: C.text        },
@@ -387,7 +380,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       </div>
 
       {/* ── ACTION / BONUS / REACTION reference (collapsible) ── */}
-      <ActionsRefCard />
+      <ActionsRefCard char={char} />
 
       {/* ── SKILLS (all 18 with click-to-roll d20+bonus) ── */}
       <SkillsCard char={char} pb={getPB(char.level || 1)} />
@@ -600,41 +593,6 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
         <WildShapePanel compact={true} />
       </div>
-
-      {/* ── ACTIONS HOTBAR ── */}
-      {actions.length > 0 && (
-        <div style={sx.card}>
-          <div style={ctStyle}>{t("dash.actions_header","⚔️ Aktionen")}</div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 12 }}>
-            {["action", "bonus", "reaction"].map(slot => {
-              const { col, label } = ACT_SLOT[slot];
-              const acts = actions.filter(a => a.type === slot);
-              return (
-                <div key={slot}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: col, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8, borderBottom: `1px solid ${col}44`, paddingBottom: 5 }}>{label}</div>
-                  {acts.length === 0 ? <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>—</div> : (
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                      {acts.map((action, idx) => (
-                        <button type="button" key={action.id}
-                          onClick={() => setInfoModal({ title: action.name, color: col, badges: [{ label, col }, action.range && { label: action.range, col: C.textDim }].filter(Boolean), stats: [action.toHit && { label: t("dash.to_hit_label","To Hit"), val: action.toHit, col: C.blueBright }, action.damage && action.damage !== "—" && { label: t("dash.damage_label","Schaden"), val: action.damage, col: C.redBright }, action.saveDC && { label: t("dash.save_dc_label","Save DC"), val: `${action.saveDC} ${action.saveAbility || ""}`, col: C.amberBright }].filter(Boolean), desc: action.description })}
-                          style={{ background: idx === 0 ? `${col}22` : C.surface, border: `1px solid ${idx === 0 ? col + "88" : C.border}`, borderRadius: 9, padding: idx === 0 ? "10px 12px" : "7px 10px", cursor: "pointer", textAlign: "left" }}>
-                          <div style={{ fontSize: idx === 0 ? 14 : 12, fontWeight: 600, color: idx === 0 ? col : C.text, marginBottom: idx === 0 ? 4 : 2 }}>{action.name}</div>
-                          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                            {action.toHit && <span style={{ fontSize: 10, color: C.blueBright }}>Hit {action.toHit}</span>}
-                            {action.damage && action.damage !== "—" && <span style={{ fontSize: 10, color: C.redBright }}>{action.damage}</span>}
-                            {action.saveDC && <span style={{ fontSize: 10, color: C.amberBright }}>DC {action.saveDC}</span>}
-                            {action.range && <span style={{ fontSize: 10, color: C.textDim }}>⬡ {action.range}</span>}
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
       {/* ── BEGLEITER WIDGET ── */}
       {companions.length > 0 && (

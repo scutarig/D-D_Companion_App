@@ -3,52 +3,49 @@ import { C, sx, FH } from "../../constants/theme.js";
 import { useI18n } from "../../i18n/index.js";
 
 /**
- * ActionsRefCard — condensed "what can I do this turn" reference for the
- * Dashboard. Source-of-truth STD_ACTIONS lives in CharActions.jsx; this view
- * repeats only the core PHB 2024 list (no class-specifics) so it stays
- * scannable at the table.
+ * ActionsRefCard — character-specific Action / Bonus Action / Reaction list
+ * on the Übersicht tab. Reads `char.actions` directly so anything the player
+ * adds in the Charakter → Kampf → Aktionen panel shows up here too. The old
+ * "⚔️ Aktionen" hotbar at the bottom of the dashboard has been removed in
+ * favour of this single, scannable view.
  *
- * Layout mirrors SkillsCard: collapsible card, header with summary, and one
- * flat auto-fit grid of action rows. Each row is colour-coded by type
- * (⚔ action / ⚡ bonus / 🛡 reaction) and shows its description inline at
- * all times — no extra click needed to read what the action does.
+ * Layout mirrors SkillsCard: collapsible card header with summary counts,
+ * one flat auto-fit grid of rows below. Each row is colour-coded by type
+ * (⚔ action / ⚡ bonus / 🛡 reaction) and shows its description + the small
+ * mechanical badges (range / to-hit / damage / save DC) inline at all times,
+ * so the player can read everything at a glance without another tap.
  */
-
-const CORE_ACTIONS = [
-  { type: "action", name: "Attack", desc: "Melee/Ranged. Extra Attacks ab Lv5+." },
-  { type: "action", name: "Magic", desc: "Spell wirken / Magic Item / mag. Klassen-Feature." },
-  { type: "action", name: "Dash", desc: "Extra-Bewegung = Speed (Rest des Zuges)." },
-  { type: "action", name: "Disengage", desc: "Bewegung provoziert keine OAs." },
-  { type: "action", name: "Dodge", desc: "Angriffe vs. dich = Nachteil; DEX-Saves = Vorteil." },
-  { type: "action", name: "Help", desc: "Ally erhält Vorteil auf nächste Probe/Angriff." },
-  { type: "action", name: "Hide", desc: "DEX(Stealth)-Check → Invisible bis Angriff/Sicht." },
-  { type: "action", name: "Influence", desc: "CHA-Check (oder WIS Animal-Handling) ändert NPC-Attitude." },
-  { type: "action", name: "Ready", desc: "Aktion + Trigger; löst als Reaktion aus." },
-  { type: "action", name: "Search", desc: "WIS-Check (Insight/Medicine/Perception/Survival)." },
-  { type: "action", name: "Study", desc: "INT-Check (Arcana/History/Investigation/Nature/Religion)." },
-  { type: "action", name: "Utilize", desc: "Nicht-magisches Objekt verwenden (Trank, Schalter, …)." },
-
-  { type: "bonus", name: "Off-Hand Attack", desc: "Nach Attack mit Light Weapon: 2. Angriff (kein Mod)." },
-  { type: "bonus", name: "Bonus-Action Spell", desc: "1-BA-Spell; Action-Spell danach nur Cantrip." },
-
-  { type: "reaction", name: "Opportunity Attack", desc: "Feind verlässt 5ft ohne Disengage: 1 Nahkampfangriff." },
-  { type: "reaction", name: "Readied Action", desc: "Trigger der Ready-Action löst Aktion aus." },
-];
 
 const TYPE_META = {
   action:   { ab: "ACT", icon: "⚔",  color: "#dc2626" },
   bonus:    { ab: "BON", icon: "⚡", color: "#d97706" },
   reaction: { ab: "RXN", icon: "🛡", color: "#2563eb" },
 };
+const TYPE_ORDER = ["action", "bonus", "reaction"];
 
-export default function ActionsRefCard() {
-  const { t } = useI18n();
+export default function ActionsRefCard({ char }) {
+  const { t, lang } = useI18n();
   const [open, setOpen] = useState(false);
 
-  // Header summary: counts per type so the closed header still tells you
-  // how many of each kind are listed.
-  const counts = CORE_ACTIONS.reduce((acc, a) => {
-    acc[a.type] = (acc[a.type] || 0) + 1;
+  const actions = Array.isArray(char?.actions) ? char.actions : [];
+  const isEN = lang === "en";
+  const pickDesc   = (a) => (isEN && a.descriptionEN) ? a.descriptionEN : (a.description || "");
+  const pickRange  = (a) => (isEN && a.rangeEN)       ? a.rangeEN       : a.range;
+  const pickDamage = (a) => (isEN && a.damageEN)      ? a.damageEN      : a.damage;
+
+  // Group by type, render in fixed action → bonus → reaction order so the
+  // grid reads predictably regardless of the order user added them.
+  const sorted = TYPE_ORDER.flatMap((type) =>
+    actions.filter((a) => a.type === type)
+  );
+  // Append any actions whose type isn't one of the three known buckets at
+  // the end so we never silently drop them.
+  const unknown = actions.filter((a) => !TYPE_ORDER.includes(a.type));
+  const rows = [...sorted, ...unknown];
+
+  // Header counts per known type
+  const counts = TYPE_ORDER.reduce((acc, type) => {
+    acc[type] = actions.filter((a) => a.type === type).length;
     return acc;
   }, {});
 
@@ -67,7 +64,7 @@ export default function ActionsRefCard() {
           display: "flex", alignItems: "center", gap: 8,
           textAlign: "left",
         }}>
-        <span>⚔ {t("dash.actions_ref_header","Action / Bonus / Reaction")}</span>
+        <span>⚔ {t("dash.actions_ref_header","Aktionen / Bonus / Reaktionen")}</span>
         <span style={{ flex: 1, fontSize: 11, color: C.textDim, fontWeight: 400 }}>
           <span style={{ color: TYPE_META.action.color }}>⚔ {counts.action || 0}</span>
           {" · "}
@@ -79,33 +76,52 @@ export default function ActionsRefCard() {
       </button>
 
       {open && (
-        <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 6 }}>
-          {CORE_ACTIONS.map((a) => {
-            const meta = TYPE_META[a.type];
-            return (
-              <div key={`${a.type}_${a.name}`}
-                style={{
-                  display: "flex", flexDirection: "column", gap: 3,
-                  background: `${meta.color}0e`,
-                  borderRadius: 6,
-                  borderLeft: `3px solid ${meta.color}`,
-                  padding: "5px 8px",
-                }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ color: meta.color, fontFamily: FH, fontSize: 9, fontWeight: 700, width: 30 }}>
-                    {meta.ab}
-                  </span>
-                  <span style={{ flex: 1, fontSize: 12, color: C.textBright, fontWeight: 600 }}>
-                    {a.name}
-                  </span>
+        rows.length === 0 ? (
+          <div style={{ padding: "12px 14px", fontSize: 12, color: C.textDim, fontStyle: "italic" }}>
+            {t("dash.actions_ref_empty","Noch keine Aktionen gepflegt. Füge welche im Tab Charakter → Kampf → Aktionen hinzu (es gibt einen 'Standard-Aktionen hinzufügen'-Button).")}
+          </div>
+        ) : (
+          <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 6 }}>
+            {rows.map((a) => {
+              const meta = TYPE_META[a.type] || { ab: "?", icon: "?", color: C.textDim };
+              const desc = pickDesc(a);
+              const range = pickRange(a);
+              const damage = pickDamage(a);
+              return (
+                <div key={a.id || `${a.type}_${a.name}`}
+                  style={{
+                    display: "flex", flexDirection: "column", gap: 4,
+                    background: `${meta.color}0e`,
+                    borderRadius: 6,
+                    borderLeft: `3px solid ${meta.color}`,
+                    padding: "5px 8px",
+                  }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ color: meta.color, fontFamily: FH, fontSize: 9, fontWeight: 700, width: 30 }}>
+                      {meta.ab}
+                    </span>
+                    <span style={{ flex: 1, fontSize: 12, color: C.textBright, fontWeight: 600 }}>
+                      {a.name}
+                    </span>
+                  </div>
+                  {(a.toHit || (damage && damage !== "—") || a.saveDC || range) && (
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", paddingLeft: 38, fontSize: 10 }}>
+                      {a.toHit && <span style={{ color: C.blueBright }}>Hit {a.toHit}</span>}
+                      {damage && damage !== "—" && <span style={{ color: C.redBright }}>{damage}</span>}
+                      {a.saveDC && <span style={{ color: C.amberBright }}>DC {a.saveDC}{a.saveAbility ? ` ${a.saveAbility}` : ""}</span>}
+                      {range && range !== "—" && <span style={{ color: C.textDim }}>⬡ {range}</span>}
+                    </div>
+                  )}
+                  {desc && (
+                    <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4, paddingLeft: 38 }}>
+                      {desc}
+                    </div>
+                  )}
                 </div>
-                <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4, paddingLeft: 38 }}>
-                  {a.desc}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )
       )}
     </div>
   );
