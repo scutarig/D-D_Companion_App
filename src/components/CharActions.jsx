@@ -11,7 +11,9 @@ const TYPES = [
 // ─── PHB 2024 Standard Actions (Chapter 1, p.15) ───────────────────────────
 // Core-Aktionen für ALLE Charaktere (Klassenspezifische separat unten).
 // Jeder Eintrag hat description (DE) + descriptionEN für lang-Toggle.
-const STD_ACTIONS = [
+// Exported so the Dashboard's ActionsRefCard can union this PHB-Core list
+// with the player's own char.actions without keeping a second hardcoded copy.
+export const STD_ACTIONS = [
   // ── Core Actions ───
   { type: "action", name: "Attack", range: "5ft / Range", toHit: "STR/DEX+PB", damage: "Waffe", damageEN: "Weapon",
     description: "Nahkampf- oder Fernkampfangriff mit Waffe. Extra-Angriffe ab Lv5+ (Klassen-Feature).",
@@ -99,7 +101,7 @@ const STD_ACTIONS = [
 ];
 
 // ── Core-Aktionen (für alle Klassen) — werden vom 'Alle hinzufügen'-Button gesetzt
-const CORE_ACTION_NAMES = new Set([
+export const CORE_ACTION_NAMES = new Set([
   "Attack", "Magic (Cast a Spell)", "Dash", "Disengage", "Dodge", "Help", "Hide",
   "Influence", "Ready", "Search", "Study", "Utilize",
   "Grapple (Unarmed Strike)", "Shove (Unarmed Strike)",
