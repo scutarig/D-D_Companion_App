@@ -10,8 +10,8 @@ import { useI18n } from "../../i18n/index.js";
  *
  * Layout mirrors SkillsCard: collapsible card, header with summary, and one
  * flat auto-fit grid of action rows. Each row is colour-coded by type
- * (⚔ action / ⚡ bonus / 🛡 reaction). Click a row to toggle its long
- * description inline.
+ * (⚔ action / ⚡ bonus / 🛡 reaction) and shows its description inline at
+ * all times — no extra click needed to read what the action does.
  */
 
 const CORE_ACTIONS = [
@@ -35,9 +35,6 @@ const CORE_ACTIONS = [
   { type: "reaction", name: "Readied Action", desc: "Trigger der Ready-Action löst Aktion aus." },
 ];
 
-// Per-type marker (3-letter abbrev shown like SkillsCard's ability column),
-// icon, and accent colour. Order in CORE_ACTIONS is already action → bonus →
-// reaction; that order also reads top-to-bottom in the flat grid.
 const TYPE_META = {
   action:   { ab: "ACT", icon: "⚔",  color: "#dc2626" },
   bonus:    { ab: "BON", icon: "⚡", color: "#d97706" },
@@ -47,9 +44,6 @@ const TYPE_META = {
 export default function ActionsRefCard() {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState({});
-
-  const toggleRow = (key) => setExpanded((e) => ({ ...e, [key]: !e[key] }));
 
   // Header summary: counts per type so the closed header still tells you
   // how many of each kind are listed.
@@ -85,25 +79,17 @@ export default function ActionsRefCard() {
       </button>
 
       {open && (
-        <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 4 }}>
+        <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 6 }}>
           {CORE_ACTIONS.map((a) => {
             const meta = TYPE_META[a.type];
-            const key = `${a.type}_${a.name}`;
-            const isOpen = !!expanded[key];
             return (
-              <button key={key} type="button" onClick={() => toggleRow(key)}
-                title={a.desc}
+              <div key={`${a.type}_${a.name}`}
                 style={{
-                  display: "flex", flexDirection: "column", alignItems: "stretch",
-                  gap: 4,
-                  background: isOpen ? `${meta.color}0e` : "transparent",
+                  display: "flex", flexDirection: "column", gap: 3,
+                  background: `${meta.color}0e`,
                   borderRadius: 6,
-                  border: "none",
                   borderLeft: `3px solid ${meta.color}`,
-                  padding: "4px 8px",
-                  cursor: "pointer",
-                  textAlign: "left",
-                  fontFamily: "inherit",
+                  padding: "5px 8px",
                 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{ color: meta.color, fontFamily: FH, fontSize: 9, fontWeight: 700, width: 30 }}>
@@ -112,14 +98,11 @@ export default function ActionsRefCard() {
                   <span style={{ flex: 1, fontSize: 12, color: C.textBright, fontWeight: 600 }}>
                     {a.name}
                   </span>
-                  <span style={{ fontSize: 10, color: C.textDim }}>{isOpen ? "▾" : "▸"}</span>
                 </div>
-                {isOpen && (
-                  <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4, paddingLeft: 38 }}>
-                    {a.desc}
-                  </div>
-                )}
-              </button>
+                <div style={{ fontSize: 11, color: C.textDim, lineHeight: 1.4, paddingLeft: 38 }}>
+                  {a.desc}
+                </div>
+              </div>
             );
           })}
         </div>
