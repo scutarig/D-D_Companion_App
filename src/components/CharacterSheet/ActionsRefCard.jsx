@@ -38,27 +38,29 @@ export default function ActionsRefCard({ char }) {
   const pickRange  = (a) => (isEN && a.rangeEN)       ? a.rangeEN       : a.range;
   const pickDamage = (a) => (isEN && a.damageEN)      ? a.damageEN      : a.damage;
 
-  // Build the merged list: PHB core actions always show up; any matching
-  // entry from char.actions overrides the PHB row (so a tuned Attack with
-  // the right to-hit + damage wins). Custom (non-PHB) char.actions are
-  // appended at the end of their type bucket. Match is case-insensitive on
-  // the action name.
-  const customByName = new Map(customActions.map((a) => [a.name?.toLowerCase(), a]));
-  const phbCore = STD_ACTIONS.filter((a) => CORE_ACTION_NAMES.has(a.name));
-  const mergedPhb = phbCore.map((std) => customByName.get(std.name.toLowerCase()) || std);
-  const phbNames = new Set(phbCore.map((a) => a.name.toLowerCase()));
-  const customExtras = customActions.filter((a) => !phbNames.has((a.name || "").toLowerCase()));
-  const allActions = [...mergedPhb, ...customExtras];
+  // Two-block layout: all of the player's own actions come first as a
+  // single block (sorted action → bonus → reaction inside the block), then
+  // the remaining PHB-Core entries the player hasn't overridden form a
+  // second block in the same internal order. Match is case-insensitive on
+  // the action name, so a custom 'Attack' replaces the PHB Attack instead
+  // of appearing twice. Unknown-type rows are appended last so they never
+  // silently vanish.
+  const customNames = new Set(customActions.map((a) => (a.name || "").toLowerCase()));
+  const phbExtras = STD_ACTIONS
+    .filter((a) => CORE_ACTION_NAMES.has(a.name))
+    .filter((a) => !customNames.has(a.name.toLowerCase()));
 
-  // Group by type, render in fixed action → bonus → reaction order so the
-  // grid reads predictably regardless of how rows arrived.
-  const sorted = TYPE_ORDER.flatMap((type) =>
-    allActions.filter((a) => a.type === type)
-  );
-  // Append any actions whose type isn't one of the three known buckets at
-  // the end so we never silently drop them.
-  const unknown = allActions.filter((a) => !TYPE_ORDER.includes(a.type));
-  const rows = [...sorted, ...unknown];
+  const byType = (list) =>
+    TYPE_ORDER.flatMap((type) => list.filter((a) => a.type === type));
+  const unknownType = (list) => list.filter((a) => !TYPE_ORDER.includes(a.type));
+
+  const rows = [
+    ...byType(customActions),
+    ...byType(phbExtras),
+    ...unknownType(customActions),
+    ...unknownType(phbExtras),
+  ];
+  const allActions = rows;  // counts run on the same merged list
 
   // Header counts per known type — from the merged list, so the summary
   // reflects what's actually shown below.
