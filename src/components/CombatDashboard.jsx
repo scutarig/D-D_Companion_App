@@ -365,15 +365,16 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
       </div>
 
-      {/* ── State + Stats panel ──
-          Desktop (≥900 px): 320 px sidebar with ALL the thin "what's my
-          state" widgets on the left (Status pills → Conditions →
-          HitDice → Languages), the wider stats + skills + actions stack
-          on the right. The Status pills (Death Saves / Wealth / Konz)
-          wrap naturally in the narrow column instead of forming their
-          own near-empty full-width strip above the grid.
-          Mobile (<900 px, incl. Samsung S7 FE portrait): single column,
-          stacks top-down in reading order. */}
+      {/* ── Unified 2-col panel ──
+          Desktop (≥900 px): 320 px sidebar with ALL narrow widgets
+          stacked continuously — Status box (shared grey card around
+          StatusStrip+Conditions+HitDice+Languages), then Equipment,
+          Resources, WildShape. Right column carries the wide content:
+          DerivedStats → Skills → ActionsRef → Magic/Spells. Columns
+          flow independently so a long inventory in the sidebar doesn't
+          push the spells panel down.
+          Mobile (<900 px): grid collapses to one column; everything
+          stacks in the JSX-order it appears below. */}
       <div style={{
         display: "grid",
         gridTemplateColumns: isMobile ? "1fr" : "320px minmax(0, 1fr)",
@@ -381,29 +382,19 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         marginBottom: 12,
         alignItems: "start",
       }}>
-        <div>
-          <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
-            onOpenWealth={() => setShowWealthModal(true)} />
-          <ConditionsCard char={char} setChar={setChar} />
-          <HitDiceCard char={char} setChar={setChar} />
-          <LanguagesCard char={char} />
-        </div>
-        <div>
-          <div style={{ marginBottom: 12 }}>
-            <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
-          </div>
-          <SkillsCard char={char} pb={getPB(char.level || 1)} />
-          <ActionsRefCard char={char} />
-        </div>
-      </div>
-
-      {/* ── MAIN GRID: Equipment+Resources  |  Spells ──
-          320 px sidebar matches the upper state-sidebar so both columns
-          line up vertically on desktop. */}
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "320px minmax(0, 1fr)", gap: 12, marginBottom: 12 }}>
-
-        {/* Left: Equipment + Resources */}
+        {/* LEFT SIDEBAR — status, equipment, resources, wildshape */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+
+          {/* Status box: one shared grey card around the four thin
+              state widgets so they read as a single grouped panel
+              instead of four loose rows. */}
+          <div style={sx.card}>
+            <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
+              onOpenWealth={() => setShowWealthModal(true)} />
+            <ConditionsCard char={char} setChar={setChar} />
+            <HitDiceCard char={char} setChar={setChar} />
+            <LanguagesCard char={char} />
+          </div>
 
           <div style={sx.card}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
@@ -463,11 +454,26 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               ))}
             </div>
           )}
+
+          {/* WildShape / Polymorph — moved into sidebar so it slots
+              underneath equipment instead of starting a new full-width
+              row of its own. */}
+          <div style={sx.card}>
+            <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, letterSpacing: 0.5, marginBottom: 10 }}>
+              {t("dash.wild_shape_polymorph","🐺 WILD SHAPE & POLYMORPH")}
+            </div>
+            <WildShapePanel compact={true} />
+          </div>
         </div>
 
-        {/* Right: Spells */}
-        <div style={sx.card}>
-          <div style={ctStyle}>{t("dash.magic_header","🔮 Magie & Ressourcen")}</div>
+        {/* RIGHT MAIN — combat stats, skills, actions, then spells */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
+          <SkillsCard char={char} pb={getPB(char.level || 1)} />
+          <ActionsRefCard char={char} />
+
+          <div style={sx.card}>
+            <div style={ctStyle}>{t("dash.magic_header","🔮 Magie & Ressourcen")}</div>
 
           {/* Class Resources (Rage, Ki, Sorcery, etc.) */}
           {autoResources.length > 0 && (
@@ -594,15 +600,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               })}
             </div>
           )}
+          </div>
         </div>
-      </div>
-
-      {/* ── WILD SHAPE / POLYMORPH ── */}
-      <div style={sx.card}>
-        <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, letterSpacing: 0.5, marginBottom: 10 }}>
-          {t("dash.wild_shape_polymorph","🐺 WILD SHAPE & POLYMORPH")}
-        </div>
-        <WildShapePanel compact={true} />
       </div>
 
       {/* ── BEGLEITER WIDGET ── */}
