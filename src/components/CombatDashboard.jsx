@@ -12,7 +12,6 @@ import { useMulticlass } from "../hooks/useMulticlass.js";
 import { computeAllResources } from "../data/classResources.js";
 import { SPELLS } from "../data/spells.js";
 import { useCompanions } from "../hooks/useCompanions.js";
-import { typeOf } from "./Companions/CompanionCard.jsx";
 import { useProficiencies } from "../hooks/useProficiencies.js";
 import { calculateProficiencyBonus, PROF_CATEGORIES } from "../utils/proficiency.js";
 import { useDerivedStats } from "../hooks/useDerivedStats.js";
@@ -25,6 +24,7 @@ import ActionsRefCard from "./CharacterSheet/ActionsRefCard.jsx";
 import HitDiceCard from "./CharacterSheet/HitDiceCard.jsx";
 import StatusStrip from "./CharacterSheet/StatusStrip.jsx";
 import WealthModal from "./CharacterSheet/WealthModal.jsx";
+import CompanionsCard from "./CharacterSheet/CompanionsCard.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -127,7 +127,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const { t } = useI18n();
   const slotLabel = (sd) => sd?.key ? t(sd.key, sd.label) : (sd?.label || "");
   const { active: char, setActive: setChar, aid } = useChar();
-  const { companions, updateHp: updateCompanionHp } = useCompanions(aid);
+  const { companions, updateHp: updateCompanionHp, update: updateCompanion, remove: removeCompanion } = useCompanions(aid);
   const { proficiencies } = useProficiencies(aid);
   const derivedStats = useDerivedStats(char, proficiencies);
   const { classes } = useMulticlass(aid, char, null);
@@ -601,60 +601,17 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             </div>
           )}
           </div>
+
+          {/* Begleiter — collapsible card under Magic, always shown so the
+              empty header doubles as a "no companions yet" reminder. */}
+          <CompanionsCard
+            companions={companions}
+            updateHp={updateCompanionHp}
+            update={updateCompanion}
+            remove={removeCompanion}
+          />
         </div>
       </div>
-
-      {/* ── BEGLEITER WIDGET ── */}
-      {companions.length > 0 && (
-        <div style={sx.card}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <div style={ctStyle}>{t("dash.companions_header","🐾 Begleiter")}</div>
-            <span style={{ fontSize: 10, color: C.textDim }}>
-              {companions.filter(c => c.hp > 0).length}/{companions.length} {t("dash.active_count","aktiv")}
-            </span>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {companions.map(c => {
-              const cfg = typeOf(c.type);
-              const pct = Math.max(0, Math.min(1, c.hp / (c.maxHp || 1)));
-              const hpCol = pct > 0.5 ? C.green : pct > 0.25 ? C.amber : C.red;
-              const hpTxt = pct > 0.5 ? C.greenBright : pct > 0.25 ? C.amberBright : C.redBright;
-              return (
-                <div key={c.id} style={{
-                  display: "flex", alignItems: "center", gap: 10,
-                  background: `${cfg.color}08`, border: `1px solid ${cfg.color}20`,
-                  borderLeft: `3px solid ${cfg.color}`, borderRadius: 8, padding: "8px 10px",
-                  opacity: c.hp <= 0 ? 0.5 : 1,
-                }}>
-                  <span style={{ fontSize: 16, flexShrink: 0 }}>{cfg.icon}</span>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: C.textBright, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                      {c.name} {c.hp <= 0 && <span style={{ color: C.red }}>☠</span>}
-                    </div>
-                    <div style={{ height: 3, background: C.surface, borderRadius: 2, marginTop: 3, overflow: "hidden" }}>
-                      <div style={{ height: "100%", width: `${pct * 100}%`, background: hpCol, borderRadius: 2, transition: "width .2s" }} />
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
-                    <button type="button"
-                      onMouseDown={() => updateCompanionHp(c.id, -1)}
-                      style={{ ...sx.bsm(C.red), padding: "2px 7px", fontSize: 13, fontWeight: 700 }}
-                    >−</button>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: hpTxt, minWidth: 36, textAlign: "center" }}>
-                      {c.hp}/{c.maxHp}
-                    </span>
-                    <button type="button"
-                      onMouseDown={() => updateCompanionHp(c.id, +1)}
-                      style={{ ...sx.bsm(C.green), padding: "2px 7px", fontSize: 13, fontWeight: 700 }}
-                    >+</button>
-                  </div>
-                  <span style={{ fontSize: 10, color: C.textDim, flexShrink: 0 }}>{t("dash.ac_short","RK")} {c.ac}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
       {/* ── PROFICIENCY WIDGET ── */}
       {proficiencies.length > 0 && (() => {
