@@ -365,18 +365,15 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
       </div>
 
-      {/* ── STATUS STRIP: Death Saves dots + Wealth pill + Concentration pill ── */}
-      <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
-        onOpenWealth={() => setShowWealthModal(true)} />
-
       {/* ── State + Stats panel ──
-          Desktop (≥900 px): 320 px sidebar with the thin "what's my state"
-          rows on the left (Conditions / HitDice / Languages), the wider
-          stats + skills + actions stack on the right. This collapses the
-          empty-row whitespace the single-column layout produced.
-          Mobile (<900 px, incl. Samsung S7 FE portrait): everything
-          stacked top-down in reading order — state first, then stats,
-          then play tools. */}
+          Desktop (≥900 px): 320 px sidebar with ALL the thin "what's my
+          state" widgets on the left (Status pills → Conditions →
+          HitDice → Languages), the wider stats + skills + actions stack
+          on the right. The Status pills (Death Saves / Wealth / Konz)
+          wrap naturally in the narrow column instead of forming their
+          own near-empty full-width strip above the grid.
+          Mobile (<900 px, incl. Samsung S7 FE portrait): single column,
+          stacks top-down in reading order. */}
       <div style={{
         display: "grid",
         gridTemplateColumns: isMobile ? "1fr" : "320px minmax(0, 1fr)",
@@ -385,6 +382,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         alignItems: "start",
       }}>
         <div>
+          <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
+            onOpenWealth={() => setShowWealthModal(true)} />
           <ConditionsCard char={char} setChar={setChar} />
           <HitDiceCard char={char} setChar={setChar} />
           <LanguagesCard char={char} />
@@ -398,8 +397,10 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         </div>
       </div>
 
-      {/* ── MAIN GRID: Equipment+Resources  |  Spells ── */}
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "260px 1fr", gap: 12, marginBottom: 12 }}>
+      {/* ── MAIN GRID: Equipment+Resources  |  Spells ──
+          320 px sidebar matches the upper state-sidebar so both columns
+          line up vertically on desktop. */}
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "320px minmax(0, 1fr)", gap: 12, marginBottom: 12 }}>
 
         {/* Left: Equipment + Resources */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
