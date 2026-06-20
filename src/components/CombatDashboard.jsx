@@ -369,24 +369,34 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
         onOpenWealth={() => setShowWealthModal(true)} />
 
-      {/* ── State + Stats: all full-width and stacked. Conditions and
-          HitDice live directly above the Combat-Stats widget so the
-          at-a-glance state reads top-down without competing for
-          horizontal space with the wider stats grid. */}
-      <ConditionsCard char={char} setChar={setChar} />
-      <HitDiceCard char={char} setChar={setChar} />
-      <div style={{ marginBottom: 12 }}>
-        <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
+      {/* ── State + Stats panel ──
+          Desktop (≥900 px): 320 px sidebar with the thin "what's my state"
+          rows on the left (Conditions / HitDice / Languages), the wider
+          stats + skills + actions stack on the right. This collapses the
+          empty-row whitespace the single-column layout produced.
+          Mobile (<900 px, incl. Samsung S7 FE portrait): everything
+          stacked top-down in reading order — state first, then stats,
+          then play tools. */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "320px minmax(0, 1fr)",
+        gap: isMobile ? 0 : 12,
+        marginBottom: 12,
+        alignItems: "start",
+      }}>
+        <div>
+          <ConditionsCard char={char} setChar={setChar} />
+          <HitDiceCard char={char} setChar={setChar} />
+          <LanguagesCard char={char} />
+        </div>
+        <div>
+          <div style={{ marginBottom: 12 }}>
+            <DerivedStatsWidget stats={derivedStats} isMobile={isMobile} />
+          </div>
+          <SkillsCard char={char} pb={getPB(char.level || 1)} />
+          <ActionsRefCard char={char} />
+        </div>
       </div>
-
-      {/* ── ACTION / BONUS / REACTION reference (collapsible) ── */}
-      <ActionsRefCard char={char} />
-
-      {/* ── SKILLS (all 18 with click-to-roll d20+bonus) ── */}
-      <SkillsCard char={char} pb={getPB(char.level || 1)} />
-
-      {/* ── LANGUAGES pills row ── */}
-      <LanguagesCard char={char} />
 
       {/* ── MAIN GRID: Equipment+Resources  |  Spells ── */}
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "260px 1fr", gap: 12, marginBottom: 12 }}>
