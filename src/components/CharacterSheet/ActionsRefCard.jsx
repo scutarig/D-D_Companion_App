@@ -22,9 +22,9 @@ import { STD_ACTIONS, CORE_ACTION_NAMES } from "../CharActions.jsx";
  */
 
 const TYPE_META = {
-  action:   { ab: "ACT", icon: "⚔",  color: "#dc2626" },
-  bonus:    { ab: "BON", icon: "⚡", color: "#d97706" },
-  reaction: { ab: "RXN", icon: "🛡", color: "#2563eb" },
+  action:   { ab: "ACT", color: "#dc2626" },
+  bonus:    { ab: "BON", color: "#d97706" },
+  reaction: { ab: "RXN", color: "#2563eb" },
 };
 const TYPE_ORDER = ["action", "bonus", "reaction"];
 
@@ -105,7 +105,7 @@ export default function ActionsRefCard({ char }) {
         ) : (
           <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 6 }}>
             {rows.map((a) => {
-              const meta = TYPE_META[a.type] || { ab: "?", icon: "?", color: C.textDim };
+              const meta = TYPE_META[a.type] || { ab: "?", color: C.textDim };
               const desc = pickDesc(a);
               const range = pickRange(a);
               const damage = pickDamage(a);
