@@ -67,6 +67,8 @@ export default function HitDiceCard({ char, setChar }) {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 3, marginLeft: 4 }}>
           {Array.from({ length: level }).map((_, i) => {
             const spent = i < used;
+            // 28×28 button so it's comfortable to tap on mobile; visual
+            // pill stays 14×14 inside an inner span.
             return (
               <button key={i}
                 type="button"
@@ -76,13 +78,22 @@ export default function HitDiceCard({ char, setChar }) {
                   : t("dash.hd_pill_avail","Verfügbar — Klick: als verbraucht markieren")}
                 aria-label={`HD ${i + 1}`}
                 style={{
-                  width: 14, height: 14, padding: 0,
+                  width: 28, height: 28, padding: 0,
+                  background: "transparent",
+                  border: "none",
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  cursor: "pointer",
+                }}>
+                <span aria-hidden="true" style={{
+                  display: "block",
+                  width: 14, height: 14,
                   borderRadius: 4,
                   border: `1.5px solid ${C.amberBright}`,
                   background: spent ? "transparent" : C.amberBright,
-                  cursor: "pointer",
                   transition: "background .15s",
+                  pointerEvents: "none",
                 }} />
+              </button>
             );
           })}
         </div>

@@ -3,6 +3,7 @@ import { C, sx, FH } from "../../constants/theme.js";
 import Modal from "../Modal.jsx";
 import { typeOf } from "../Companions/CompanionCard.jsx";
 import { useI18n } from "../../i18n/index.js";
+import { useDialog } from "../../hooks/useDialog.jsx";
 
 /**
  * CompanionsCard — at-a-glance companion overview for the Übersicht tab.
@@ -21,6 +22,7 @@ import { useI18n } from "../../i18n/index.js";
  */
 export default function CompanionsCard({ companions, updateHp, update, remove }) {
   const { t } = useI18n();
+  const { confirm } = useDialog();
   const list = Array.isArray(companions) ? companions : [];
   const hasAny = list.length > 0;
   // Track whether the user has explicitly toggled the card. Until they do,
@@ -138,7 +140,16 @@ export default function CompanionsCard({ companions, updateHp, update, remove })
           companion={editing}
           onClose={() => setEditId(null)}
           onUpdate={(changes) => update(editing.id, changes)}
-          onDelete={() => { remove(editing.id); setEditId(null); }}
+          onDelete={async () => {
+            // Themed confirm via useDialog (replaces previous silent delete
+            // that could lose a companion with one accidental tap).
+            const ok = await confirm(
+              t("companions.delete_confirm","„{name}\" wirklich löschen? Dies kann nicht rückgängig gemacht werden.")
+                .replace("{name}", editing.name || "?"),
+              { title: t("companions.delete_title","Begleiter löschen?"), danger: true }
+            );
+            if (ok) { remove(editing.id); setEditId(null); }
+          }}
         />
       )}
     </div>

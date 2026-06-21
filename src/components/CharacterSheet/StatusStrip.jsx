@@ -31,20 +31,34 @@ export default function StatusStrip({ char, setChar, totalGP, onOpenWealth }) {
       },
     }));
   };
+  // Tap-area is 28×28 so the dot is comfortable to hit on touch, but the
+  // visual dot stays the same small 12×12 circle. Inner span absorbs no
+  // pointer events so the whole button receives the click.
   const renderDot = (filled, col, key, idx) => (
     <button key={`${key}_${idx}`} type="button"
       onClick={() => toggleDS(key, idx)}
       disabled={!isDying}
       aria-label={`${key} ${idx + 1}`}
+      title={isDying
+        ? t("strip.ds_toggle","Save markieren / zurücksetzen")
+        : t("strip.ds_stable","Death Saves (nur aktiv bei 0 HP)")}
       style={{
-        width: 12, height: 12, padding: 0,
+        width: 28, height: 28, padding: 0,
+        background: "transparent",
+        border: "none",
+        display: "inline-flex", alignItems: "center", justifyContent: "center",
+        cursor: isDying ? "pointer" : "default",
+        opacity: isDying ? 1 : 0.55,
+      }}>
+      <span aria-hidden="true" style={{
+        display: "block",
+        width: 12, height: 12,
         borderRadius: "50%",
         border: `1.5px solid ${isDying ? col : C.border}`,
         background: filled ? (isDying ? col : C.border) : "transparent",
-        cursor: isDying ? "pointer" : "default",
-        opacity: isDying ? 1 : 0.55,
-      }}
-    />
+        pointerEvents: "none",
+      }} />
+    </button>
   );
 
   // Concentration — click to break; disabled when no spell.

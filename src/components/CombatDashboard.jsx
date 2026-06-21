@@ -83,13 +83,14 @@ const getCompatibleSlots = item => {
 function hpAccent(hp, max) { const p = hp / max; return p > 0.5 ? C.green : p > 0.25 ? C.amber : C.red; }
 function hpText(hp, max)   { const p = hp / max; return p > 0.5 ? C.greenBright : p > 0.25 ? C.amberBright : C.redBright; }
 
-function HoldBtn({ label, onPress, style }) {
+function HoldBtn({ label, onPress, style, title, ariaLabel }) {
   const t = useRef(null), iv = useRef(null);
   const start = e => { e.preventDefault(); onPress(); t.current = setTimeout(() => { iv.current = setInterval(onPress, 80); }, 400); };
   const stop  = () => { clearTimeout(t.current); clearInterval(iv.current); t.current = null; iv.current = null; };
   // Cleanup if unmounted mid-hold
   useEffect(() => stop, []);
-  return <button type="button" style={style} onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
+  return <button type="button" style={style} title={title} aria-label={ariaLabel || title || label}
+    onMouseDown={start} onMouseUp={stop} onMouseLeave={stop} onTouchStart={start} onTouchEnd={stop}>{label}</button>;
 }
 
 function InfoModal({ data, onClose }) {
@@ -233,16 +234,16 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const useSlot    = lv => setSlots(p => p.map(x => x.lv === lv && x.used < x.tot ? { ...x, used: x.used + 1 } : x));
 
   const HP_BTNS = [
-    { label: "−5", fn: () => modHp(-5), bg: C.red   + "33", border: C.redBright   + "77", col: C.redBright   },
-    { label: "−1", fn: () => modHp(-1), bg: C.red   + "18", border: C.border,              col: C.text        },
-    { label: "+1", fn: () => modHp(1),  bg: C.green + "18", border: C.border,              col: C.text        },
-    { label: "+5", fn: () => modHp(5),  bg: C.green + "33", border: C.greenBright + "77", col: C.greenBright },
+    { label: "−5", fn: () => modHp(-5), bg: C.red   + "33", border: C.redBright   + "77", col: C.redBright,   title: t("dash.hp_minus_5","HP −5 (halten für mehr)") },
+    { label: "−1", fn: () => modHp(-1), bg: C.red   + "18", border: C.border,              col: C.text,        title: t("dash.hp_minus_1","HP −1 (halten für mehr)") },
+    { label: "+1", fn: () => modHp(1),  bg: C.green + "18", border: C.border,              col: C.text,        title: t("dash.hp_plus_1","HP +1 (halten für mehr)") },
+    { label: "+5", fn: () => modHp(5),  bg: C.green + "33", border: C.greenBright + "77", col: C.greenBright, title: t("dash.hp_plus_5","HP +5 (halten für mehr)") },
   ];
   const TEMP_BTNS = [
-    { label: "−5", fn: () => modTempHp(-5), bg: C.blue + "33", border: C.blueBright + "77",    col: C.blueBright  },
-    { label: "−1", fn: () => modTempHp(-1), bg: C.blue + "18", border: C.border,               col: C.text        },
-    { label: "+1", fn: () => modTempHp(1),  bg: C.blue + "18", border: C.border,               col: C.text        },
-    { label: "+5", fn: () => modTempHp(5),  bg: C.blue + "33", border: C.blueBright + "77",    col: C.blueBright  },
+    { label: "−5", fn: () => modTempHp(-5), bg: C.blue + "33", border: C.blueBright + "77",    col: C.blueBright,  title: t("dash.temp_minus_5","Temp-HP −5 (halten für mehr)") },
+    { label: "−1", fn: () => modTempHp(-1), bg: C.blue + "18", border: C.border,               col: C.text,        title: t("dash.temp_minus_1","Temp-HP −1 (halten für mehr)") },
+    { label: "+1", fn: () => modTempHp(1),  bg: C.blue + "18", border: C.border,               col: C.text,        title: t("dash.temp_plus_1","Temp-HP +1 (halten für mehr)") },
+    { label: "+5", fn: () => modTempHp(5),  bg: C.blue + "33", border: C.blueBright + "77",    col: C.blueBright,  title: t("dash.temp_plus_5","Temp-HP +5 (halten für mehr)") },
   ];
 
   const ctStyle = { fontFamily: FH, fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${C.gold}44`, paddingBottom: 6, marginBottom: 10 };
@@ -326,6 +327,8 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <span style={{ fontSize: 9, color: C.blueBright, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5 }}>💙 Temp</span>
             <span style={{ fontSize: 18, fontWeight: 800, color: (char.tempHp || 0) > 0 ? C.blueBright : C.textDim, fontFamily: FH, minWidth: 18 }}>{char.tempHp || 0}</span>
             <button type="button" onClick={() => { setTempHpInput(String(char.tempHp || "")); setTempHpModal(true); }}
+              title={t("dash.temp_hp_edit","Temporäre HP setzen …")}
+              aria-label={t("dash.temp_hp_edit","Temporäre HP setzen …")}
               style={{ fontSize: 10, padding: "3px 8px", borderRadius: 5, border: `1px solid ${C.blueBright}44`, background: `${C.blueBright}10`, color: C.blueBright, cursor: "pointer" }}>±</button>
           </div>
 
@@ -337,7 +340,9 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
               {exhaustInfo.icon} {t("dash.exhaustion","Erschöpfung")} {exhaustLv}/6
             </span>
           )}
-          <button type="button" onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))} style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
+          <button type="button" onClick={() => setChar(p => ({ ...p, hp: p.maxHp }))}
+            title={t("dash.hp_to_max","HP auf Maximum setzen")}
+            style={{ ...sx.tag(hpTxt), cursor: "pointer", fontSize: 10, flex: "0 0 auto" }}>⟳ Max</button>
         </div>
 
         {/* Concentration Banner */}
@@ -354,12 +359,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         {/* Zeile 3: HP-Buttons + TempHP-Buttons kombiniert */}
         <div style={{ display: "flex", gap: 5, alignItems: "center" }}>
           {HP_BTNS.map(b => (
-            <HoldBtn key={b.label} label={b.label} onPress={b.fn}
+            <HoldBtn key={b.label} label={b.label} onPress={b.fn} title={b.title}
               style={{ flex: 1, height: 32, fontSize: 12, fontWeight: 700, background: b.bg, border: `1px solid ${b.border}`, color: b.col, borderRadius: 7, cursor: "pointer" }} />
           ))}
           <div style={{ width: 1, background: C.border, alignSelf: "stretch", margin: "2px 0" }} />
           {TEMP_BTNS.map(b => (
-            <HoldBtn key={`t${b.label}`} label={b.label} onPress={b.fn}
+            <HoldBtn key={`t${b.label}`} label={b.label} onPress={b.fn} title={b.title}
               style={{ width: 34, height: 32, fontSize: 11, fontWeight: 700, background: b.bg, border: `1px solid ${b.border}`, color: b.col, borderRadius: 7, cursor: "pointer" }} />
           ))}
         </div>
