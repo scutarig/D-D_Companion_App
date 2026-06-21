@@ -54,8 +54,11 @@ export default function HitDiceCard({ char, setChar }) {
 
   return (
     <div style={{ marginBottom: 6, padding: "4px 4px" }}>
-      {/* Single-row header: label + counts + pills + actions all aligned. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+      {/* Header row: label + count summary on its own line so it reads
+          like Conditions / Languages above it. Pills and actions land on
+          the row below, which keeps the layout from getting cramped on
+          mobile / tablet widths even with many HD. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
         <span style={{ fontFamily: FH, fontSize: 12, color: C.amberBright, fontWeight: 700, letterSpacing: 0.5 }}>
           🎲 {t("dash.hd_header","Trefferwürfel")}
         </span>
@@ -64,7 +67,11 @@ export default function HitDiceCard({ char, setChar }) {
           <strong style={{ color: remaining > 0 ? C.amberBright : C.textDim }}>{remaining}</strong>
           /{level}
         </span>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 3, marginLeft: 4 }}>
+      </div>
+
+      {/* Content row: pills (left, may wrap), actions (right). */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
           {Array.from({ length: level }).map((_, i) => {
             const spent = i < used;
             // 28×28 button so it's comfortable to tap on mobile; visual
