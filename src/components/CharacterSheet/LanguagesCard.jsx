@@ -13,10 +13,15 @@ export default function LanguagesCard({ char }) {
 
   return (
     <div style={{ padding: "2px 4px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+      {/* Header on its own row so the first language pill / empty hint
+          doesn't sit on the same line as the heading (matches the new
+          ConditionsCard rhythm). */}
+      <div style={{ marginBottom: 4 }}>
         <span style={{ fontFamily: FH, fontSize: 12, color: C.tealBright, fontWeight: 700, letterSpacing: 0.5 }}>
           🗣 {t("dash.languages_header","Sprachen")}
         </span>
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         {langs.length === 0 ? (
           <span style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>
             {t("dash.languages_none","Keine Sprachen eingetragen")}

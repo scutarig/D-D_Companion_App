@@ -60,10 +60,36 @@ export default function ConditionsCard({ char, setChar }) {
 
   return (
     <div style={{ marginBottom: 6, padding: "2px 4px", position: "relative" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+      {/* Header row: title left, ＋ Hinzufügen anchored right. Content
+          (pills or empty-state hint) lives on its own row below so the
+          first condition doesn't sit on the same line as the heading. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
         <span style={{ fontFamily: FH, fontSize: 12, color: C.redBright, fontWeight: 700, letterSpacing: 0.5 }}>
           🌪 {t("dash.conditions_header","Aktive Conditions")}
         </span>
+        <span style={{ flex: 1 }} />
+        <button type="button"
+          onClick={() => setPickerOpen((o) => !o)}
+          title={t("dash.conditions_add_hint","Condition hinzufügen")}
+          aria-expanded={pickerOpen}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 4,
+            padding: "3px 10px",
+            background: pickerOpen ? `${C.tealBright}22` : "transparent",
+            border: `1px dashed ${C.tealBright}88`,
+            borderRadius: 12,
+            color: C.tealBright,
+            fontSize: 11,
+            fontWeight: 700,
+            cursor: "pointer",
+            flexShrink: 0,
+          }}>
+          <span>＋</span>
+          <span>{t("dash.conditions_add","Hinzufügen")}</span>
+        </button>
+      </div>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         {active.length === 0 ? (
           <span style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>
             {t("dash.conditions_none","Keine — alles klar")}
@@ -97,27 +123,6 @@ export default function ConditionsCard({ char, setChar }) {
             );
           })
         )}
-
-        {/* "+" picker pill — always visible so the player can add quickly. */}
-        <button type="button"
-          onClick={() => setPickerOpen((o) => !o)}
-          title={t("dash.conditions_add_hint","Condition hinzufügen")}
-          aria-expanded={pickerOpen}
-          style={{
-            marginLeft: "auto",
-            display: "inline-flex", alignItems: "center", gap: 4,
-            padding: "3px 10px",
-            background: pickerOpen ? `${C.tealBright}22` : "transparent",
-            border: `1px dashed ${C.tealBright}88`,
-            borderRadius: 12,
-            color: C.tealBright,
-            fontSize: 11,
-            fontWeight: 700,
-            cursor: "pointer",
-          }}>
-          <span>＋</span>
-          <span>{t("dash.conditions_add","Hinzufügen")}</span>
-        </button>
       </div>
 
       {/* Popover picker — anchored to card top-right, scrolls if long. */}
