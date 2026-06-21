@@ -249,8 +249,55 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const ctStyle = { fontFamily: FH, fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${C.gold}44`, paddingBottom: 6, marginBottom: 10 };
   const lbl     = { fontSize: 10, color: C.textDim, letterSpacing: 0.6, textTransform: "uppercase" };
 
+  // ── Onboarding-detection ─────────────────────────────────────────────
+  // A brand-new visitor lands on the default character that newChar()
+  // auto-creates (name "Neuer Held"/"New Hero", level 1, untouched stats).
+  // Surface a one-click CTA into the Charakter-Wizard so they aren't left
+  // staring at placeholder values without a clear next step.
+  const defaultName = t("char.default_name","Neuer Held");
+  const looksLikeDefault =
+    char.name === defaultName && char.level === 1 && char.maxHp === 10;
+  const startWizard = () => {
+    // Mirrors CharManager.startWizard — write the wizard-state key directly
+    // and reload so AppRouter picks it up via its own usePersist instance.
+    localStorage.setItem(
+      "wizard_active_v1",
+      JSON.stringify({ step: 0, targetLevel: 1, klass: null, race: null }),
+    );
+    window.location.reload();
+  };
+
   return (
     <div>
+      {looksLikeDefault && (
+        <div style={{
+          background: `linear-gradient(135deg, ${C.purple}28, ${C.gold}18)`,
+          border: `1px solid ${C.brandGold}55`,
+          borderRadius: 12,
+          padding: "14px 16px",
+          marginBottom: 10,
+          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
+        }}>
+          <span style={{ fontSize: 32, flexShrink: 0 }}>👋</span>
+          <div style={{ flex: 1, minWidth: 180 }}>
+            <div style={{ fontFamily: FH, fontSize: 14, fontWeight: 700, color: C.gold, marginBottom: 3 }}>
+              {t("dash.onboard_title","Willkommen bei der D&D Companion App!")}
+            </div>
+            <div style={{ fontSize: 12, color: C.text, lineHeight: 1.4 }}>
+              {t("dash.onboard_body","Diese Übersicht zeigt aktuell einen Standard-Charakter. Starte den Charakter-Wizard, um deinen eigenen Helden zu erstellen — inkl. Klasse, Volk, Skills und Ausrüstung.")}
+            </div>
+          </div>
+          <button type="button" onClick={startWizard}
+            style={{
+              ...sx.btn(C.gold),
+              fontSize: 13, fontWeight: 700, padding: "10px 18px",
+              flexShrink: 0,
+            }}>
+            ✨ {t("dash.onboard_cta","Charakter erstellen")}
+          </button>
+        </div>
+      )}
+
       {/* ── VITALS: Kompakte Vollbreite-Karte ── */}
       <div style={{ ...sx.card, border: `2px solid ${hpAcc}`, marginBottom: 10 }}>
 

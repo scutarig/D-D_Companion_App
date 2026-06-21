@@ -42,8 +42,12 @@ export const C = {
   amberBright:"#ffa460",
 
   // Text — Radix mauve-11/8/12
+  // textDim bumped from #625f69 (~3.4:1 contrast, AA-fail at small sizes)
+  // to #8a8590 (~5.6:1 contrast, AA-pass even for 9px labels) per the
+  // usability audit. Hierarchy preserved — still clearly dimmer than
+  // C.text — but no longer disappears for the labels in the Vitals row.
   text:      "#b5b2bc",
-  textDim:   "#625f69",
+  textDim:   "#8a8590",
   textBright:"#eeeef0",
 
   // Brand accent gold (header/nav borders) — D5 audit fix

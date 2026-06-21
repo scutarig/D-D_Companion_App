@@ -131,7 +131,10 @@ export default function StatusStrip({ char, setChar, totalGP, onOpenWealth }) {
         </span>
       </button>
 
-      {/* Concentration */}
+      {/* Concentration. When idle the pill still shows '(inaktiv)' next
+          to the icon so touch users (no hover/tooltip) understand the
+          dim pill represents 'no concentration spell active', not a
+          broken UI element. */}
       <button type="button"
         onClick={breakConc}
         disabled={!conc}
@@ -150,7 +153,7 @@ export default function StatusStrip({ char, setChar, totalGP, onOpenWealth }) {
         }}>
         <span>🔮 {t("strip.conc_short","Konz.")}</span>
         <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-          {conc ? conc.spellName : t("strip.conc_dash","—")}
+          {conc ? conc.spellName : t("strip.conc_idle","inaktiv")}
         </span>
         {conc?.slotLv > conc?.lv && (
           <span style={{ fontSize: 9, color: C.amberBright, marginLeft: 2 }}>↑{conc.slotLv}</span>

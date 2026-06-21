@@ -29,3 +29,19 @@ nav::-webkit-scrollbar { display: none; }
 body[style*="position: fixed"] {
   overflow-y: hidden !important;
 }
+
+/* ── Keyboard-focus indicator (a11y) ─────────────────────────────────────
+   Only shows on :focus-visible (keyboard / programmatic), not on mouse
+   click — so it doesn't pollute the touch-first UI. Uses the brand gold
+   so it reads as intentional against the dark mauve background. */
+:focus { outline: none; }
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #e1e378;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
