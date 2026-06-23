@@ -430,7 +430,12 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
       <div style={{
         display: "grid",
         gridTemplateColumns: isMobile ? "1fr" : "320px minmax(0, 1fr)",
-        gap: isMobile ? 0 : 12,
+        // On mobile the grid collapses to one column, so the grid `gap`
+        // becomes the VERTICAL seam between the sidebar's last card
+        // (WildShape) and the main column's first card (Combat Stats).
+        // gap: 0 made them touch / overlap. 8 px matches the inner-
+        // column flex gap so the seam is invisible to the user.
+        gap: isMobile ? 8 : 12,
         marginBottom: 12,
         alignItems: "start",
       }}>
