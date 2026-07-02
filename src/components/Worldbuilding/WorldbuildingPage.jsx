@@ -5,6 +5,7 @@ import LocationsList    from "./LocationsList.jsx";
 import FactionsList     from "./FactionsList.jsx";
 import QuestList        from "./QuestList.jsx";
 import DowntimeTracker  from "../Downtime/DowntimeTracker.jsx";
+import WeatherPanel     from "./WeatherPanel.jsx";
 
 export default function WorldbuildingPage() {
   const { t } = useI18n();
@@ -13,6 +14,7 @@ export default function WorldbuildingPage() {
     { id: "locations", label: t("wb.tab_locations","📍 Orte")    },
     { id: "factions",  label: t("wb.tab_factions","⚔️ Fraktionen") },
     { id: "downtime",  label: t("wb.tab_downtime","⏳ Downtime") },
+    { id: "weather",   label: t("wb.tab_weather","🌤 Wetter")    },
   ];
   const [tab, setTab] = useState("quests");
 
@@ -46,6 +48,7 @@ export default function WorldbuildingPage() {
         {tab === "locations" && <LocationsList />}
         {tab === "factions"  && <FactionsList />}
         {tab === "downtime"  && <DowntimeTracker />}
+        {tab === "weather"   && <WeatherPanel />}
       </div>
     </div>
   );

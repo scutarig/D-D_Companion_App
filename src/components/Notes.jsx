@@ -5,6 +5,7 @@ import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 import { useI18n } from "../i18n/index.js";
 import { useDialog } from "../hooks/useDialog.jsx";
 import Modal from "./Modal.jsx";
+import { sessionLogTemplate } from "../data/dmGenerators.js";
 
 // Built-in categories — cannot be edited/deleted.
 const BUILTIN_CATS = [
@@ -86,6 +87,21 @@ export default function Notes() {
 
   const addNote = (cat) => {
     const n = { id: Date.now(), title: t("notes.new_note","Neue Notiz"), content: "", cat };
+    setNotes(p => [...p, n]);
+    setAid(n.id);
+    setCatFilter("all");
+    setSearch("");
+  };
+  // Session-Log: creates a 'Session vom YYYY-MM-DD' story note pre-filled
+  // with the Markdown skeleton from dmGenerators.
+  const addSessionLog = () => {
+    const today = new Date().toISOString().slice(0, 10);
+    const n = {
+      id: Date.now(),
+      title: t("notes.session_title","Session vom {date}").replace("{date}", today),
+      content: sessionLogTemplate(today),
+      cat: "story",
+    };
     setNotes(p => [...p, n]);
     setAid(n.id);
     setCatFilter("all");
@@ -250,6 +266,23 @@ export default function Notes() {
           }}
         >
           ＋ {t("notes.add_custom_cat","Eigener Filter")}
+        </button>
+
+        {/* Session-Log template — one-click note with a filled-in DM
+            recap skeleton (📖 Session vom ...). */}
+        <button type="button"
+          onClick={addSessionLog}
+          title={t("notes.session_hint","Neue Story-Notiz mit Session-Log-Vorlage anlegen")}
+          style={{
+            marginTop: 6,
+            background: `${C.amberBright}18`,
+            border: `1px solid ${C.amberBright}66`,
+            borderRadius: 8, padding: "5px 10px",
+            cursor: "pointer", color: C.amberBright,
+            fontSize: 11, fontWeight: 700,
+            fontFamily: F,
+          }}>
+          📖 {t("notes.session_btn","Session-Log-Vorlage")}
         </button>
 
         {/* ── Add-Note-Buttons ─────────────────────────────────────── */}

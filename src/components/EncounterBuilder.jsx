@@ -4,6 +4,8 @@ import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile } from "../hooks/useIsMobile.js";
 import { MONSTERS } from "../data/monsters.js";
 import { useCombatArchive } from "../hooks/useCombatArchive.js";
+import { generateLoot } from "../data/dmGenerators.js";
+import Modal from "./Modal.jsx";
 import { useI18n } from "../i18n/index.js";
 import { useDialog } from "../hooks/useDialog.jsx";
 
@@ -68,6 +70,17 @@ export default function EncounterBuilder() {
   const [savedEncounters, setSavedEncounters] = usePersist("encounters_v1", []);
   const { archives, deleteArchive } = useCombatArchive();
   const [showArchive, setShowArchive] = useState(false);
+  const [lootModal, setLootModal] = useState(null);
+
+  // Best-effort CR for the loot roll: highest CR in the encounter (or the
+  // party level if nothing is added yet).
+  const rollLoot = () => {
+    const maxCR = encounter.reduce((mx, e) => {
+      const m = MONSTERS.find(x => x.id === e.monsterId);
+      return Math.max(mx, CR_TO_NUM(m?.cr));
+    }, 0);
+    setLootModal({ cr: maxCR || partyLevel, ...generateLoot(maxCR || partyLevel) });
+  };
 
   // Budget calculations
   const threshold = getThreshold(partyLevel);
@@ -247,8 +260,10 @@ export default function EncounterBuilder() {
               <span style={{ color: C.red }}>❤️ {totalHp} HP</span>
               <span style={{ color: C.blue }}>🛡️ Ø {avgAc} AC</span>
             </div>
-            <div style={{ display: "flex", gap: 5 }}>
+            <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
               <button type="button" onClick={saveEncounter} style={{ ...sx.bsm(C.tealBright), fontSize: 10 }}>💾 Speichern</button>
+              <button type="button" onClick={rollLoot} title={t("encounter.loot_hint","Beute für diesen Kampf würfeln (Coin + Gems + Magic bei CR ≥ passend)")}
+                style={{ ...sx.bsm(C.amberBright), fontSize: 10 }}>🎲 Beute</button>
               <button type="button" onClick={clearEncounter} style={{ ...sx.bsm(C.red), fontSize: 10 }}>🗑 Leeren</button>
             </div>
           </div>
@@ -390,6 +405,69 @@ export default function EncounterBuilder() {
             ))}
           </div>
         </div>
+      )}
+
+      {/* Loot-roll result modal */}
+      {lootModal && (
+        <Modal open onClose={() => setLootModal(null)}
+          title={`🎲 ${t("encounter.loot_title","Beute")} · CR ${lootModal.cr}`}
+          maxWidth={420}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 12 }}>
+            <div>
+              <div style={{ fontFamily: FH, fontSize: 12, color: C.gold, fontWeight: 700, marginBottom: 4 }}>
+                💰 {t("encounter.loot_coins","Münzen")}
+              </div>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                {Object.entries(lootModal.coins).map(([k, v]) => (
+                  <span key={k} style={{ color: v > 0 ? C.text : C.textDim }}>
+                    {k.toUpperCase()}: <strong>{v}</strong>
+                  </span>
+                ))}
+              </div>
+            </div>
+            {lootModal.gems.length > 0 && (
+              <div>
+                <div style={{ fontFamily: FH, fontSize: 12, color: C.tealBright, fontWeight: 700, marginBottom: 4 }}>
+                  💎 {t("encounter.loot_gems","Edelsteine")}
+                </div>
+                {lootModal.gems.map((g, i) => <div key={i}>· {g.name} — {g.value}</div>)}
+              </div>
+            )}
+            {lootModal.art.length > 0 && (
+              <div>
+                <div style={{ fontFamily: FH, fontSize: 12, color: C.purpleBright, fontWeight: 700, marginBottom: 4 }}>
+                  🎨 {t("encounter.loot_art","Kunstgegenstände")}
+                </div>
+                {lootModal.art.map((a, i) => <div key={i}>· {a.name} — {a.value}</div>)}
+              </div>
+            )}
+            {lootModal.magic.length > 0 && (
+              <div>
+                <div style={{ fontFamily: FH, fontSize: 12, color: C.amberBright, fontWeight: 700, marginBottom: 4 }}>
+                  ✨ {t("encounter.loot_magic","Magische Gegenstände")}
+                </div>
+                {lootModal.magic.map((m, i) => (
+                  <div key={i} style={{ color: C.amberBright }}>
+                    · {m.name} <span style={{ fontSize: 10, opacity: 0.7 }}>({m.rarity})</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {lootModal.gems.length === 0 && lootModal.art.length === 0 && lootModal.magic.length === 0 && (
+              <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>
+                {t("encounter.loot_nothing_extra","Nur Münzen — keine besonderen Funde.")}
+              </div>
+            )}
+            <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
+              <button type="button" onClick={rollLoot} style={{ ...sx.btn(C.amberBright), flex: 1 }}>
+                🎲 {t("encounter.loot_reroll","Nochmal")}
+              </button>
+              <button type="button" onClick={() => setLootModal(null)} style={{ ...sx.btn(C.textDim), flex: 1 }}>
+                {t("modal.close","Schließen")}
+              </button>
+            </div>
+          </div>
+        </Modal>
       )}
     </div>
   );

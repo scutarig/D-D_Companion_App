@@ -3,6 +3,7 @@ import { C, sx, FH } from "../constants/theme.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useIsMobile as useMobile } from "../hooks/useIsMobile.js";
 import { SRD_NPCS } from "../data/npcs.js";
+import { generateNPC } from "../data/dmGenerators.js";
 import { useI18n } from "../i18n/index.js";
 
 // helper: faction color dot
@@ -151,7 +152,17 @@ export default function NpcList() {
 
         {/* ── Meine NPCs ── */}
         {view === "list" && <>
-          <button type="button" onClick={() => { setForm(blank); setSel(null); setShowForm(true); }} style={{ ...sx.btn(C.purple), width: "100%" }}>{t("npc.new_npc_btn","+ Neuer NPC")}</button>
+          <div style={{ display: "flex", gap: 6 }}>
+            <button type="button" onClick={() => { setForm(blank); setSel(null); setShowForm(true); }}
+              style={{ ...sx.btn(C.purple), flex: 1 }}>
+              {t("npc.new_npc_btn","+ Neuer NPC")}
+            </button>
+            <button type="button" onClick={() => { setForm({ ...blank, ...generateNPC() }); setSel(null); setShowForm(true); }}
+              title={t("npc.random_hint","Zufälligen NPC generieren (Name + Rasse + Rolle + Quirk)")}
+              style={{ ...sx.btn(C.amberBright), flex: "0 0 auto", padding: "0 14px" }}>
+              🎲 {t("npc.random_btn","Zufällig")}
+            </button>
+          </div>
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("npc.search_placeholder","🔍 Name, Rolle, Ort...")} style={sx.inp} />
           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
             {["Alle", "freundlich", "neutral", "feindlich", "unbekannt"].map(a => (
