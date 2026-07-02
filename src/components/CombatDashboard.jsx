@@ -28,6 +28,9 @@ import CompanionsCard from "./CharacterSheet/CompanionsCard.jsx";
 import EncumbranceCard from "./CharacterSheet/EncumbranceCard.jsx";
 import AttunementSlots from "./CharacterSheet/AttunementSlots.jsx";
 import ConsumablesCard from "./CharacterSheet/ConsumablesCard.jsx";
+import SpellbookControls from "./CharacterSheet/SpellbookControls.jsx";
+import { getSpellPreparedLimit } from "../data/spellPreparation.js";
+import { requiresConcentration as reqConc } from "../utils/concentration.js";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -144,6 +147,13 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const [tempHpInput, setTempHpInput] = useState("");
   const [infoModal, setInfoModal]   = useState(null);
   const [showWealthModal, setShowWealthModal] = useState(false);
+  // Spellbook filter/search state — owned here so the state survives when
+  // the Magic card scrolls in and out on mobile.
+  const [spellSearch, setSpellSearch] = useState("");
+  const [spellLevelFilter, setSpellLevelFilter] = useState("all");
+  const [spellRitualOnly, setSpellRitualOnly] = useState(false);
+  const [spellConcOnly, setSpellConcOnly] = useState(false);
+  const [slotPickerFor, setSlotPickerFor] = useState(null); // spell.id | null
   const isMobile = useIsMobile(900);
   const [eqModal,    setEqModal]    = useState(null);
   const [eqStep,     setEqStep]     = useState("pick");
@@ -578,17 +588,53 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             </div>
           )}
 
-          {/* Cantrips */}
-          {cantrips.length > 0 && (
-            <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
-              <span style={lbl}>{t("dash.cantrips_word","Cantrips")}</span>
-              {cantrips.map(c => (
-                <button type="button" key={c.id}
-                  onClick={() => setInfoModal({ title: c.name, color: C.tealBright, badges: [{ label: c.school, col: C.tealBright }, { label: c.ct, col: C.textDim }, { label: c.range, col: C.textDim }], stats: [c.dmg !== "—" && { label: t("dash.damage_label","Schaden"), val: c.dmg, col: C.redBright }].filter(Boolean), desc: c.desc })}
-                  style={{ ...sx.tag(C.tealBright), cursor: "pointer", fontSize: 12, padding: "3px 10px" }}>{c.name}</button>
-              ))}
-            </div>
-          )}
+          {/* Spellbook search + filters + prepared/known counter */}
+          {(cantrips.length + preparedSpells.length) > 0 && (() => {
+            let preparedMax = null;
+            try {
+              const res = getSpellPreparedLimit(char.klass, char.level || 1, char);
+              // API returns { limit, formula, ability } — pull the number out
+              // (falls back to a plain number if the shape ever changes).
+              preparedMax = typeof res === "number" ? res : res?.limit ?? null;
+            } catch (_) { preparedMax = null; }
+            return (
+              <SpellbookControls
+                search={spellSearch} setSearch={setSpellSearch}
+                levelFilter={spellLevelFilter} setLevelFilter={setSpellLevelFilter}
+                ritualOnly={spellRitualOnly} setRitualOnly={setSpellRitualOnly}
+                concOnly={spellConcOnly} setConcOnly={setSpellConcOnly}
+                prepared={prepIds.filter((id) => {
+                  const s = SPELLS.find(x => x.id === id);
+                  return s && s.lv > 0;
+                }).length}
+                maxPrepared={preparedMax}
+                known={knownIds.length + prepIds.length}
+              />
+            );
+          })()}
+
+          {/* Cantrips (filtered) */}
+          {(() => {
+            const q = spellSearch.trim().toLowerCase();
+            const cantripsFiltered = cantrips.filter((c) => {
+              if (spellLevelFilter !== "all" && spellLevelFilter !== "0") return false;
+              if (spellRitualOnly && !c.ritual) return false;
+              if (spellConcOnly && !reqConc(c)) return false;
+              if (q && !c.name.toLowerCase().includes(q) && !(c.school || "").toLowerCase().includes(q)) return false;
+              return true;
+            });
+            if (cantripsFiltered.length === 0) return null;
+            return (
+              <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
+                <span style={lbl}>{t("dash.cantrips_word","Cantrips")}</span>
+                {cantripsFiltered.map(c => (
+                  <button type="button" key={c.id}
+                    onClick={() => setInfoModal({ title: c.name, color: C.tealBright, badges: [{ label: c.school, col: C.tealBright }, { label: c.ct, col: C.textDim }, { label: c.range, col: C.textDim }], stats: [c.dmg !== "—" && { label: t("dash.damage_label","Schaden"), val: c.dmg, col: C.redBright }].filter(Boolean), desc: c.desc })}
+                    style={{ ...sx.tag(C.tealBright), cursor: "pointer", fontSize: 12, padding: "3px 10px" }}>{c.name}</button>
+                ))}
+              </div>
+            );
+          })()}
 
           {/* Slot bar */}
           {slots.some(s => s.tot > 0) && (
@@ -613,12 +659,29 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             </div>
           )}
 
-          {/* Spell list */}
+          {/* Spell list (filtered) */}
           {preparedSpells.length === 0 ? (
             <div style={{ fontSize: 12, color: C.textDim, fontStyle: "italic" }}>{t("dash.no_prepared_hint","Keine Zauber vorbereitet (Charakter → Spellbook → 🕯️)")}</div>
-          ) : (
+          ) : (() => {
+            const q = spellSearch.trim().toLowerCase();
+            const preparedFiltered = preparedSpells.filter((s) => {
+              if (spellLevelFilter !== "all" && spellLevelFilter !== "0" && String(s.lv) !== spellLevelFilter) return false;
+              if (spellLevelFilter === "0") return false;
+              if (spellRitualOnly && !s.ritual) return false;
+              if (spellConcOnly && !reqConc(s)) return false;
+              if (q && !s.name.toLowerCase().includes(q) && !(s.school || "").toLowerCase().includes(q)) return false;
+              return true;
+            });
+            if (preparedFiltered.length === 0) {
+              return (
+                <div style={{ fontSize: 11, color: C.textDim, fontStyle: "italic", padding: "6px 0" }}>
+                  {t("dash.spellbook_no_match","Keine Zauber passen zu Suche/Filter.")}
+                </div>
+              );
+            }
+            return (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-              {preparedSpells.map(spell => {
+              {preparedFiltered.map(spell => {
                 const lowestSlot = slots.find(sl => sl.lv >= spell.lv && sl.tot > 0 && sl.tot > sl.used);
                 const canCast    = !!lowestSlot;
                 const canRitual  = !!spell.ritual;
@@ -651,18 +714,57 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                           {requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}ℛ +10 Min.
                         </button>
                       )}
-                      <button type="button" disabled={!canCast} onClick={() => canCast && handleCast(spell, lowestSlot.lv)}
-                        style={{ padding: "5px 14px", borderRadius: 7, cursor: canCast ? "pointer" : "default", fontSize: 12, fontWeight: 600, background: canCast ? `${C.purple}44` : C.bg, border: `1px solid ${canCast ? C.purpleBright : C.border}`, color: canCast ? C.purpleBright : C.textDim, whiteSpace: "nowrap" }}>
-                        {canCast
-                          ? <>{requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}{t("dash.cast_at_lv","Wirken Lv{lv}").replace("{lv}", lowestSlot.lv)}</>
-                          : t("dash.no_slots_word","Keine Slots")}
-                      </button>
+                      <div style={{ position: "relative" }}>
+                        <button type="button" disabled={!canCast}
+                          onClick={() => canCast && setSlotPickerFor(slotPickerFor === spell.id ? null : spell.id)}
+                          title={canCast ? t("dash.cast_pick_slot_hint","Slot-Level wählen") : ""}
+                          style={{ padding: "5px 14px", borderRadius: 7, cursor: canCast ? "pointer" : "default", fontSize: 12, fontWeight: 600, background: canCast ? `${C.purple}44` : C.bg, border: `1px solid ${canCast ? C.purpleBright : C.border}`, color: canCast ? C.purpleBright : C.textDim, whiteSpace: "nowrap" }}>
+                          {canCast
+                            ? <>{requiresConcentration(spell) && char?.concentration ? "⚠️ " : ""}{t("dash.cast_at_lv","Wirken Lv{lv}").replace("{lv}", lowestSlot.lv)} ▾</>
+                            : t("dash.no_slots_word","Keine Slots")}
+                        </button>
+                        {slotPickerFor === spell.id && canCast && (() => {
+                          // Levels that satisfy: >= spell.lv AND slot available
+                          const opts = slots.filter(sl => sl.lv >= spell.lv && sl.tot > sl.used);
+                          return (
+                            <div style={{
+                              position: "absolute", top: "100%", right: 0, marginTop: 4,
+                              background: C.card, border: `1px solid ${C.purpleBright}66`,
+                              borderRadius: 8, padding: 4, zIndex: 40,
+                              boxShadow: "0 6px 24px rgba(0,0,0,0.6)",
+                              minWidth: 120,
+                            }} onClick={(e) => e.stopPropagation()}>
+                              {opts.map(sl => (
+                                <button key={sl.lv} type="button"
+                                  onClick={() => { handleCast(spell, sl.lv); setSlotPickerFor(null); }}
+                                  style={{
+                                    display: "block", width: "100%",
+                                    padding: "5px 10px",
+                                    background: "transparent",
+                                    border: "none",
+                                    color: sl.lv > spell.lv ? C.amberBright : C.purpleBright,
+                                    fontSize: 12, fontWeight: 700,
+                                    cursor: "pointer",
+                                    textAlign: "left",
+                                    fontFamily: "inherit",
+                                  }}>
+                                  {sl.lv > spell.lv ? "↑ " : ""}Lv{sl.lv}
+                                  <span style={{ float: "right", color: C.textDim, fontSize: 10, fontWeight: 400 }}>
+                                    {sl.tot - sl.used}/{sl.tot}
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          );
+                        })()}
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>
-          )}
+            );
+          })()}
           </div>
 
           {/* Begleiter — collapsible card under Magic, always shown so the
