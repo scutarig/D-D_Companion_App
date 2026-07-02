@@ -29,6 +29,7 @@ import EncumbranceCard from "./CharacterSheet/EncumbranceCard.jsx";
 import AttunementSlots from "./CharacterSheet/AttunementSlots.jsx";
 import ConsumablesCard from "./CharacterSheet/ConsumablesCard.jsx";
 import SpellbookControls from "./CharacterSheet/SpellbookControls.jsx";
+import CoverCard from "./CharacterSheet/CoverCard.jsx";
 import { getSpellPreparedLimit } from "../data/spellPreparation.js";
 import { requiresConcentration as reqConc } from "../utils/concentration.js";
 
@@ -465,6 +466,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             <HitDiceCard char={char} setChar={setChar} />
             <EncumbranceCard char={char} />
             <AttunementSlots char={char} setChar={setChar} />
+            <CoverCard char={char} setChar={setChar} />
             <ConsumablesCard char={char} setChar={setChar} />
             <LanguagesCard char={char} />
           </div>

@@ -89,6 +89,51 @@ export default function ConditionsCard({ char, setChar }) {
         </button>
       </div>
 
+      {/* Aggregate-effect summary when 2+ conditions stack. Only surfaces
+          the mechanical hints (auto-fail saves + attack-modifier notes)
+          rather than repeating each condition's full description — the
+          per-pill tooltips still carry the source text. */}
+      {(() => {
+        if (active.length < 2) return null;
+        const conds = active.map(condByName).filter(Boolean);
+        const failSet = new Set();
+        let attackerDisadv = 0, attackerAdv = 0;
+        let targetAdv = 0, targetDisadv = 0;
+        let speedZero = false, noActions = false;
+        for (const c of conds) {
+          const e = c.effects || {};
+          (e.autoFailSaves || []).forEach((s) => failSet.add(s));
+          if (e.attackerDisadvantage) attackerDisadv++;
+          if (e.attackerAdvantage)    attackerAdv++;
+          if (e.targetAdvantage)      targetAdv++;
+          if (e.targetDisadvantage)   targetDisadv++;
+          if (e.speedZero)  speedZero = true;
+          if (e.noActions)  noActions = true;
+        }
+        const bits = [];
+        if (failSet.size)      bits.push(`✗ ${t("dash.cond_int_autofail","Auto-Fail")}: ${[...failSet].join(", ")}`);
+        if (attackerDisadv)    bits.push(`⬇ ${t("dash.cond_int_your_attacks_dis","Deine Angriffe: Nachteil")}`);
+        if (attackerAdv)       bits.push(`⬆ ${t("dash.cond_int_your_attacks_adv","Deine Angriffe: Vorteil")}`);
+        if (targetAdv)         bits.push(`⬆ ${t("dash.cond_int_vs_you_adv","Angriffe gegen dich: Vorteil")}`);
+        if (targetDisadv)      bits.push(`⬇ ${t("dash.cond_int_vs_you_dis","Angriffe gegen dich: Nachteil")}`);
+        if (speedZero)         bits.push(`⛔ ${t("dash.cond_int_speed_zero","Speed 0")}`);
+        if (noActions)         bits.push(`💫 ${t("dash.cond_int_no_actions","Keine Aktionen/Reaktionen")}`);
+        if (!bits.length) return null;
+        return (
+          <div style={{
+            marginBottom: 6,
+            padding: "4px 8px",
+            background: `${C.redBright}10`,
+            border: `1px solid ${C.redBright}44`,
+            borderRadius: 6,
+            fontSize: 10, color: C.redBright,
+            display: "flex", flexWrap: "wrap", gap: 6,
+          }}>
+            {bits.map((b, i) => <span key={i}>{b}</span>)}
+          </div>
+        );
+      })()}
+
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         {active.length === 0 ? (
           <span style={{ fontSize: 11, color: C.textDim, fontStyle: "italic" }}>

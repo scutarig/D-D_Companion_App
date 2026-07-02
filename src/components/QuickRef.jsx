@@ -189,6 +189,35 @@ const DataTable = ({ title, headers, rows, col }) => (
 export default function QuickRef() {
   const { t, lang } = useI18n();
   const [section, setSection] = useState("conditions");
+  // Global full-text search over conditions + rules. Overrides the section
+  // tab-nav when a query is entered — matches by title/name + body
+  // substring so "grapp" surfaces Grappled, "vantage" surfaces the Adv/
+  // Disadv rules row.
+  const [globalSearch, setGlobalSearch] = useState("");
+
+  const searchTerms = globalSearch.trim().toLowerCase();
+  const matchesQuery = (t, b) => {
+    if (!searchTerms) return true;
+    return (t || "").toLowerCase().includes(searchTerms)
+        || (b || "").toLowerCase().includes(searchTerms);
+  };
+  // When searching, aggregate hits across every section.
+  const searchHits = searchTerms ? (() => {
+    const hits = [];
+    // Conditions
+    CONDITIONS.filter(c => c.id !== "hidden" && c.id !== "raging").forEach((c) => {
+      const nm = lang === "en" && c.nameEN ? c.nameEN : c.name;
+      const dc = lang === "en" && c.descEN ? c.descEN : c.desc;
+      if (matchesQuery(`${c.icon} ${nm}`, dc)) hits.push({ title: `${c.icon} ${nm}`, body: dc, col: C.redBright, from: "conditions" });
+    });
+    // Rules sections
+    Object.entries(RULES || {}).forEach(([sec, rows]) => {
+      (rows || []).forEach((r, i) => {
+        if (matchesQuery(r.t, r.b)) hits.push({ title: r.t, body: r.b, col: C.tealBright, from: sec, key: `${sec}_${i}` });
+      });
+    });
+    return hits;
+  })() : null;
 
   return (
     <div>
@@ -205,15 +234,49 @@ export default function QuickRef() {
         <span>{t("quickref.banner", "Schnellreferenz nach PHB 2024 · Zustände, Aktionen, Meisterschaft, Waffen-Eigenschaften, Regel-Glossar")}</span>
       </div>
 
-      <div style={{ display: "flex", gap: 5, marginBottom: 14, flexWrap: "wrap" }}>
-        {SECTIONS.map(s => <button type="button" key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.labelKey ? t(s.labelKey, s.label) : s.label}</button>)}
+      <div style={{ display: "flex", gap: 6, marginBottom: 10, alignItems: "center", flexWrap: "wrap" }}>
+        <input
+          type="text"
+          value={globalSearch}
+          onChange={(e) => setGlobalSearch(e.target.value)}
+          placeholder={t("quickref.search_placeholder","🔍 Regel- oder Zustands-Suche …")}
+          style={{ ...sx.inp, flex: 1, minWidth: 180, fontSize: 12, padding: "5px 10px" }}
+        />
+        {searchTerms && (
+          <span style={{ fontSize: 11, color: C.textDim }}>
+            {t("quickref.search_hits","Treffer")}: <strong style={{ color: C.amberBright }}>{searchHits?.length || 0}</strong>
+            <button type="button" onClick={() => setGlobalSearch("")}
+              style={{ ...sx.bsm(C.textDim), fontSize: 10, marginLeft: 6 }}>✕</button>
+          </span>
+        )}
       </div>
+
+      {!searchTerms && (
+        <div style={{ display: "flex", gap: 5, marginBottom: 14, flexWrap: "wrap" }}>
+          {SECTIONS.map(s => <button type="button" key={s.id} onClick={() => setSection(s.id)} style={sx.nb(section === s.id)}>{s.labelKey ? t(s.labelKey, s.label) : s.label}</button>)}
+        </div>
+      )}
+
+      {/* SEARCH RESULTS — overrides the section view when there's a query */}
+      {searchTerms && (
+        searchHits.length === 0 ? (
+          <div style={{ fontSize: 12, color: C.textDim, fontStyle: "italic", padding: "12px 6px" }}>
+            {t("quickref.search_empty","Kein Treffer. Versuche einen anderen Suchbegriff.")}
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
+            {searchHits.map((h, i) => <RuleCard key={h.key || i} title={h.title} body={h.body} col={h.col} />)}
+          </div>
+        )
+      )}
+      {searchTerms && null /* rest of view suppressed while searching */}
+      {searchTerms ? null : null}
 
       {/* CONDITIONS — only the 14 official PHB 2024 entries + Concentration
           (the canonical reference). Combat-tab markers like hidden / raging
           live in utils/conditions.js for the fighter mechanics but aren't
           PHB conditions, so they're filtered out here. */}
-      {section === "conditions" && (
+      {!searchTerms && section === "conditions" && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
           {CONDITIONS
             .filter(c => c.id !== "hidden" && c.id !== "raging")
@@ -226,14 +289,14 @@ export default function QuickRef() {
       )}
 
       {/* RULES sections (combat, movement, resting, magic, checks) */}
-      {["combat", "movement", "resting", "magic", "checks"].includes(section) && (
+      {!searchTerms && ["combat", "movement", "resting", "magic", "checks"].includes(section) && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
           {(RULES[section] || []).map((r, i) => <RuleCard key={i} title={r.t} body={r.b} col={COL[section]} />)}
         </div>
       )}
 
       {/* ACTIONS (PHB 2024) */}
-      {section === "actions" && (
+      {!searchTerms && section === "actions" && (
         <div>
           {["Aktion", "Bonus", "Reaktion"].map(typ => {
             const col = ACTIONCOLS[typ];
@@ -271,7 +334,7 @@ export default function QuickRef() {
       )}
 
       {/* MASTERY PROPERTIES (PHB 2024 NEU) */}
-      {section === "mastery" && (
+      {!searchTerms && section === "mastery" && (
         <div>
           <div style={{
             background: `${C.amberBright}11`, border: `1px solid ${C.amberBright}33`,
@@ -297,14 +360,14 @@ export default function QuickRef() {
       )}
 
       {/* WEAPON PROPERTIES */}
-      {section === "weapons" && (
+      {!searchTerms && section === "weapons" && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 8 }}>
           {WEAPON_PROPS.map((w, i) => <RuleCard key={i} title={w.t} body={w.b} col={C.tealBright} />)}
         </div>
       )}
 
       {/* TABLES */}
-      {section === "tables" && (
+      {!searchTerms && section === "tables" && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 10 }}>
           <DataTable title="Proficiency Bonus" headers={["Level", "PB"]} rows={[["1-4", "+2"], ["5-8", "+3"], ["9-12", "+4"], ["13-16", "+5"], ["17-20", "+6"]]} col={C.gold} />
           <DataTable title="DC Schwierigkeit" headers={["DC", "Stufe"]} rows={[["5", "Trivial"], ["10", "Einfach"], ["15", "Mittel"], ["20", "Schwer"], ["25", "Sehr schwer"], ["30", "Fast unmöglich"]]} col={C.amber} />
