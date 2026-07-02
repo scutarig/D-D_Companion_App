@@ -25,6 +25,9 @@ import HitDiceCard from "./CharacterSheet/HitDiceCard.jsx";
 import StatusStrip from "./CharacterSheet/StatusStrip.jsx";
 import WealthModal from "./CharacterSheet/WealthModal.jsx";
 import CompanionsCard from "./CharacterSheet/CompanionsCard.jsx";
+import EncumbranceCard from "./CharacterSheet/EncumbranceCard.jsx";
+import AttunementSlots from "./CharacterSheet/AttunementSlots.jsx";
+import ConsumablesCard from "./CharacterSheet/ConsumablesCard.jsx";
 
 const RARITY_COL = {
   Common: C.textDim, Uncommon: C.greenBright, Rare: C.blueBright,
@@ -442,15 +445,17 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         {/* LEFT SIDEBAR — status, equipment, resources, wildshape */}
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
 
-          {/* Status box: one shared grey card around the four thin
-              state widgets so they read as a single grouped panel
-              instead of four loose rows. marginBottom:0 here lets the
-              parent flex `gap` own all vertical spacing. */}
+          {/* Status box: one shared grey card around the state widgets
+              so they read as a single grouped panel. marginBottom:0 here
+              lets the parent flex `gap` own all vertical spacing. */}
           <div style={{ ...sx.card, marginBottom: 0 }}>
             <StatusStrip char={char} setChar={setChar} totalGP={totalGP}
               onOpenWealth={() => setShowWealthModal(true)} />
             <ConditionsCard char={char} setChar={setChar} />
             <HitDiceCard char={char} setChar={setChar} />
+            <EncumbranceCard char={char} />
+            <AttunementSlots char={char} setChar={setChar} />
+            <ConsumablesCard char={char} setChar={setChar} />
             <LanguagesCard char={char} />
           </div>
 
