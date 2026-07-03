@@ -10,10 +10,9 @@ import { useI18n } from "../i18n/index.js";
  *
  * State lives in a single usePersist("user_settings_v1", …) blob. Changes
  * are applied globally by toggling data-attributes on <html>; CSS rules in
- * index.css react to those and cascade into every screen. Inline styles
- * still use `px` so font-scale is applied via the CSS zoom property on
- * <html>, which is respected by the whole document without touching each
- * component's inline sizes.
+ * index.css react to those and cascade into every screen. Font-scale is
+ * applied by setting the root font-size and a `--ui-scale` custom property,
+ * which CSS in index.css uses to nudge readable text without zooming layout.
  *
  * The applyUserSettings hook is exported so App can call it once at mount
  * even when the modal is closed.
@@ -30,9 +29,13 @@ export function useUserSettings() {
   const [settings, setSettings] = usePersist("user_settings_v1", DEFAULT_SETTINGS);
   useEffect(() => {
     const html = document.documentElement;
-    // Font scale via zoom (Chromium + WebKit; Firefox falls back to no-op —
-    // acceptable, most Dark-Souls players use Chromium PWA).
-    html.style.zoom = String(settings.fontScale || 1);
+    const scale = settings.fontScale || 1;
+    // Root font-size scaling — affects rem/em only, layouts (px) stay put.
+    // A CSS custom property lets targeted rules scale specific text.
+    html.style.fontSize = (16 * scale) + "px";
+    html.style.setProperty("--ui-scale", String(scale));
+    // Clear any legacy zoom from previous builds
+    html.style.zoom = "";
     html.dataset.a11yHighContrast = settings.highContrast ? "true" : "false";
     html.dataset.a11yColorblind   = settings.colorblind   ? "true" : "false";
     html.dataset.a11yReducedMotion = settings.reducedMotion ? "true" : "false";
@@ -106,7 +109,7 @@ export default function SettingsModal({ open, onClose }) {
   return (
     <Modal open={open} onClose={onClose} title={`⚙ ${t("settings.title","Einstellungen")}`} maxWidth={420}>
       <Row label={t("settings.font_size","Schriftgröße")}
-        hint={t("settings.font_size_hint","Skaliert die gesamte Oberfläche.")}>
+        hint={t("settings.font_size_hint","Skaliert nur Text — Layout bleibt stabil.")}>
         <div style={{ display: "flex", gap: 4 }}>
           <FontChip id="s" label={t("settings.font_s","S")} />
           <FontChip id="m" label={t("settings.font_m","M")} />

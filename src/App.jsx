@@ -1038,8 +1038,7 @@ function AppInner() {
         <button type="button" data-phone-compact
           onClick={requestModeSwitch}
           style={{
-            width: "100%",
-            padding: "8px 12px",
+            padding: "8px 10px",
             borderRadius: 9,
             border: `1.5px solid ${isDM ? C.purpleBright : C.gold}`,
             background: isDM
@@ -1048,20 +1047,37 @@ function AppInner() {
             color: isDM ? C.purpleBright : C.gold,
             fontFamily: FH,
             fontWeight: 700,
-            fontSize: 11,
-            letterSpacing: 0.8,
+            fontSize: 10,
+            letterSpacing: 0.5,
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: 8,
+            gap: 6,
             boxShadow: isDM ? `0 0 12px ${C.purple}44` : `0 0 12px ${C.gold}33`,
             flex: 1,
+            minWidth: 0,
           }}
         >
-          <span style={{ fontSize: 16 }}>{isDM ? "🎲" : "👤"}</span>
-          <span>{isDM ? t("save.dm_mode_active","DM-MODUS AKTIV") : t("save.player_mode_active","SPIELER-MODUS AKTIV")}</span>
-          <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 4 }}>↻ {t("save.switch","Wechseln")}</span>
+          <span style={{ fontSize: 14 }}>{isDM ? "🎲" : "👤"}</span>
+          <span style={{ overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{isDM ? t("save.dm_mode_active","DM-MODUS AKTIV") : t("save.player_mode_active","SPIELER-MODUS AKTIV")}</span>
+          <span style={{ fontSize: 9, opacity: 0.6 }}>↻</span>
+        </button>
+        <button type="button" data-phone-compact
+          onClick={() => setSettingsOpen(true)}
+          title={t("settings.title","Einstellungen")}
+          aria-label={t("settings.title","Einstellungen")}
+          style={{
+            padding: "6px 10px", borderRadius: 8,
+            border: `1px solid ${C.textDim}55`,
+            background: `${C.textDim}11`,
+            color: C.text,
+            fontFamily: FH, fontSize: 14, fontWeight: 700,
+            cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+          ⚙
         </button>
       </div>
 
@@ -1113,6 +1129,7 @@ function AppInner() {
         })}
       </nav>
       {modeConfirmModal}
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </div>
   );
 }
