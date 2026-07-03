@@ -46,8 +46,29 @@ export function useUserSettings() {
 }
 
 export default function SettingsModal({ open, onClose }) {
-  const { t } = useI18n();
+  const { t, lang, setLang } = useI18n();
   const [settings, setSettings] = useUserSettings();
+
+  const LangChip = ({ id, label }) => {
+    const on = lang === id;
+    return (
+      <button type="button" onClick={() => setLang(id)}
+        style={{
+          padding: "6px 14px",
+          borderRadius: 8,
+          border: `1px solid ${on ? C.blueBright + "aa" : C.border}`,
+          background: on ? `${C.blueBright}22` : "transparent",
+          color: on ? C.blueBright : C.text,
+          fontSize: 11,
+          fontFamily: FH,
+          fontWeight: 700,
+          letterSpacing: 0.5,
+          cursor: "pointer",
+        }}>
+        {label}
+      </button>
+    );
+  };
 
   const patch = (k, v) => setSettings((p) => ({ ...(p || DEFAULT_SETTINGS), [k]: v }));
   const reset = () => setSettings(DEFAULT_SETTINGS);
@@ -85,6 +106,14 @@ export default function SettingsModal({ open, onClose }) {
 
   return (
     <Modal open={open} onClose={onClose} title={`⚙ ${t("settings.title","Einstellungen")}`} maxWidth={420}>
+      <Row label={t("settings.language","Sprache")}
+        hint={t("settings.language_hint","Wechselt die Oberfläche zwischen Deutsch und Englisch.")}>
+        <div style={{ display: "flex", gap: 6 }}>
+          <LangChip id="de" label="DE" />
+          <LangChip id="en" label="EN" />
+        </div>
+      </Row>
+
       <Row label={t("settings.high_contrast","Hoher Kontrast")}
         hint={t("settings.high_contrast_hint","Verstärkt Text-Kontrast auf dunklem Hintergrund.")}>
         <Toggle on={settings.highContrast} onChange={(v) => patch("highContrast", v)} colorOn={C.gold} />
