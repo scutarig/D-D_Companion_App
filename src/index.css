@@ -31,6 +31,13 @@ body[style*="position: fixed"] {
 }
 
 /* ── User settings (SettingsModal writes these data attributes on <html>) ── */
+/* Font-scale — scoped to <main> so nav / sidebar / modals stay at native
+   size. Zoom is Chromium + WebKit only; Firefox falls back to no-op. Applied
+   to <main> because the content area is the "reading" surface — inflating
+   or shrinking it there doesn't shift breakpoints or nav layout. */
+html[data-font-scale="s"] main { zoom: 0.9; }
+html[data-font-scale="l"] main { zoom: 1.15; }
+
 /* Reduced motion — nukes CSS transitions and animations globally. */
 html[data-a11y-reduced-motion="true"] *,
 html[data-a11y-reduced-motion="true"] *::before,

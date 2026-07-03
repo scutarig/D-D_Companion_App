@@ -12,18 +12,18 @@ import { useI18n } from "../i18n/index.js";
  * are applied globally by toggling data-attributes on <html>; CSS rules in
  * index.css react to those and cascade into every screen.
  *
- * Font-scaling was intentionally dropped: the codebase uses inline `px`
- * throughout, so a global scale either did nothing (rem-only) or caused
- * layout to shift/zoom, both of which broke the "stays responsive"
- * requirement. If a text-size preference returns later, it should apply
- * per component via an explicit scalable class, not as a document-root
- * override.
+ * Font-scale is applied via `data-font-scale="s|m|l"` on <html> and a
+ * scoped `main { zoom: … }` rule in index.css. Confining zoom to the
+ * content area means nav / sidebar / modal chrome stay at native size
+ * and breakpoints don't shift, which was the failure mode of the earlier
+ * `html.style.zoom` and `html.style.fontSize` attempts.
  *
  * The applyUserSettings hook is exported so App can call it once at mount
  * even when the modal is closed.
  */
 
 export const DEFAULT_SETTINGS = {
+  fontScale: "m",      // "s" | "m" | "l" — applied via CSS to <main> only
   highContrast: false,
   colorblind: false,
   reducedMotion: false,
@@ -33,21 +33,46 @@ export function useUserSettings() {
   const [settings, setSettings] = usePersist("user_settings_v1", DEFAULT_SETTINGS);
   useEffect(() => {
     const html = document.documentElement;
-    // Clear any legacy font-scale artefacts from prior builds so stored
-    // fontScale values can't leak into the layout after upgrade.
+    // Clear any legacy font-scale artefacts from prior builds so the
+    // previous html-level zoom / fontSize approach can't leak in.
     html.style.zoom = "";
     html.style.fontSize = "";
     html.style.removeProperty("--ui-scale");
+    // Font-scale is a data-attribute; CSS scopes `zoom` to <main> so
+    // nav / sidebar / modals stay untouched.
+    html.dataset.fontScale = ["s","m","l"].includes(settings.fontScale) ? settings.fontScale : "m";
     html.dataset.a11yHighContrast = settings.highContrast ? "true" : "false";
     html.dataset.a11yColorblind   = settings.colorblind   ? "true" : "false";
     html.dataset.a11yReducedMotion = settings.reducedMotion ? "true" : "false";
-  }, [settings.highContrast, settings.colorblind, settings.reducedMotion]);
+  }, [settings.fontScale, settings.highContrast, settings.colorblind, settings.reducedMotion]);
   return [settings, setSettings];
 }
 
 export default function SettingsModal({ open, onClose }) {
   const { t, lang, setLang } = useI18n();
   const [settings, setSettings] = useUserSettings();
+
+  const currentScale = ["s","m","l"].includes(settings.fontScale) ? settings.fontScale : "m";
+
+  const FontChip = ({ id, label }) => {
+    const on = currentScale === id;
+    return (
+      <button type="button" onClick={() => patch("fontScale", id)}
+        style={{
+          padding: "6px 14px",
+          borderRadius: 8,
+          border: `1px solid ${on ? C.gold + "aa" : C.border}`,
+          background: on ? `${C.gold}22` : "transparent",
+          color: on ? C.gold : C.text,
+          fontSize: 12,
+          fontFamily: FH,
+          fontWeight: 700,
+          cursor: "pointer",
+        }}>
+        {label}
+      </button>
+    );
+  };
 
   const LangChip = ({ id, label }) => {
     const on = lang === id;
@@ -111,6 +136,15 @@ export default function SettingsModal({ open, onClose }) {
         <div style={{ display: "flex", gap: 6 }}>
           <LangChip id="de" label="DE" />
           <LangChip id="en" label="EN" />
+        </div>
+      </Row>
+
+      <Row label={t("settings.font_size","Schriftgröße")}
+        hint={t("settings.font_size_hint","Skaliert nur den Inhaltsbereich — Nav & Menüs bleiben unverändert.")}>
+        <div style={{ display: "flex", gap: 4 }}>
+          <FontChip id="s" label={t("settings.font_s","S")} />
+          <FontChip id="m" label={t("settings.font_m","M")} />
+          <FontChip id="l" label={t("settings.font_l","L")} />
         </div>
       </Row>
 

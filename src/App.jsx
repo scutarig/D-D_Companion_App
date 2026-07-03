@@ -837,22 +837,7 @@ function AppInner() {
           )}
           {/* Profile Switcher */}
           <ProfileSwitcher variant="sidebar" />
-          {/* Lang Toggle */}
-          <button type="button"
-            onClick={() => setLang(lang === "de" ? "en" : "de")}
-            title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
-            style={{
-              width: "100%", padding: "6px 4px", borderRadius: 7,
-              border: `1px solid ${C.blueBright}55`,
-              background: `${C.blueBright}11`,
-              color: C.blueBright,
-              fontFamily: FH, fontSize: 10, fontWeight: 700,
-              cursor: "pointer", letterSpacing: 0.5,
-              transition: "all .15s",
-            }}>
-            🌐 {lang.toUpperCase()}
-          </button>
-          {/* Settings Modal Trigger */}
+          {/* Settings Modal Trigger (language toggle lives inside) */}
           <button type="button"
             onClick={() => setSettingsOpen(true)}
             title={t("settings.title","Einstellungen")}
@@ -1020,21 +1005,6 @@ function AppInner() {
         alignItems: "stretch",
       }}>
         <ProfileSwitcher variant="compact" />
-        <button type="button" data-phone-compact
-          onClick={() => setLang(lang === "de" ? "en" : "de")}
-          title={lang === "de" ? "Sprache wechseln (English)" : "Switch language (Deutsch)"}
-          style={{
-            padding: "6px 10px", borderRadius: 8,
-            border: `1px solid ${C.blueBright}55`,
-            background: `${C.blueBright}11`,
-            color: C.blueBright,
-            fontFamily: FH, fontSize: 10, fontWeight: 700,
-            cursor: "pointer", letterSpacing: 0.5,
-            display: "flex", alignItems: "center", gap: 4,
-            flexShrink: 0,
-          }}>
-          🌐 {lang.toUpperCase()}
-        </button>
         <button type="button" data-phone-compact
           onClick={requestModeSwitch}
           style={{
