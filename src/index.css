@@ -30,6 +30,28 @@ body[style*="position: fixed"] {
   overflow-y: hidden !important;
 }
 
+/* ── User settings (SettingsModal writes these data attributes on <html>) ── */
+/* Reduced motion — nukes CSS transitions and animations globally. */
+html[data-a11y-reduced-motion="true"] *,
+html[data-a11y-reduced-motion="true"] *::before,
+html[data-a11y-reduced-motion="true"] *::after {
+  transition: none !important;
+  animation: none !important;
+  scroll-behavior: auto !important;
+}
+/* High contrast — bumps default text to pure white and border to a
+   brighter grey, without touching the accent colours the app relies on
+   for status meaning. */
+html[data-a11y-high-contrast="true"] {
+  filter: contrast(1.15);
+}
+/* Colourblind-friendly (deuteranopia) — a mild filter re-maps red/green
+   into a range that stays distinguishable for red-green colour blind
+   players. */
+html[data-a11y-colorblind="true"] {
+  filter: url(#deuter-safe) hue-rotate(15deg);
+}
+
 /* ── Keyboard-focus indicator (a11y) ─────────────────────────────────────
    Only shows on :focus-visible (keyboard / programmatic), not on mouse
    click — so it doesn't pollute the touch-first UI. Uses the brand gold

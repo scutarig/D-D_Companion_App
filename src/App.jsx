@@ -5,6 +5,7 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
 import { ProfileProvider, useProfile } from "./context/ProfileContext.jsx";
 import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
+import SettingsModal, { useUserSettings } from "./components/SettingsModal.jsx";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
 import { buildProfileBackup } from "./utils/profileBackup.js";
 import { buildCharPdfHtml } from "./utils/charPdf.js";
@@ -317,7 +318,11 @@ function AppInner() {
   const { active: profileActive } = useProfile();
   const [refOpen,  setRefOpen]  = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
+  // Applies persisted a11y settings to <html> so they survive reloads even
+  // if the modal is never opened.
+  useUserSettings();
   const [charOpen, setCharOpen] = useState(false);
 
   // Auto-tab-switch when mode changes and current tab is invalid
@@ -829,6 +834,21 @@ function AppInner() {
             }}>
             🌐 {lang.toUpperCase()}
           </button>
+          {/* Settings Modal Trigger */}
+          <button type="button"
+            onClick={() => setSettingsOpen(true)}
+            title={t("settings.title","Einstellungen")}
+            style={{
+              width: "100%", padding: "6px 4px", borderRadius: 7,
+              border: `1px solid ${C.gold}55`,
+              background: `${C.gold}11`,
+              color: C.gold,
+              fontFamily: FH, fontSize: 12, fontWeight: 700,
+              cursor: "pointer",
+              transition: "all .15s",
+            }}>
+            ⚙
+          </button>
           {/* Mode-Toggle: prominent, hervorgehoben, unterhalb Exporte */}
           <button type="button"
             onClick={requestModeSwitch}
@@ -900,6 +920,7 @@ function AppInner() {
       </div>
       {modeConfirmModal}
       {shareOpen && <Suspense fallback={null}><ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} /></Suspense>}
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </div>
   );
 
