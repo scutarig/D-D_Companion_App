@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useRef, useEffect, useMemo } from "react";
+import { lazy, Suspense, useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
@@ -6,6 +6,7 @@ import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
 import { ProfileProvider, useProfile } from "./context/ProfileContext.jsx";
 import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
 import SettingsModal, { useUserSettings } from "./components/SettingsModal.jsx";
+import { useTabSwipe } from "./hooks/useTabSwipe.js";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
 import { buildProfileBackup } from "./utils/profileBackup.js";
 import { buildCharPdfHtml } from "./utils/charPdf.js";
@@ -327,6 +328,23 @@ function AppInner() {
 
   // Auto-tab-switch when mode changes and current tab is invalid
   const allowedTabIds = useMemo(() => tabsForMode(mode).map(td => td.id), [mode]);
+  // Swipe left → next tab, swipe right → previous tab, wrapping inside the
+  // currently-allowed list. Only wired on mobile (mainRef.current is the
+  // <main> element in the mobile branch below).
+  const mainRef = useRef(null);
+  const goSibling = useCallback((direction) => {
+    const idx = allowedTabIds.indexOf(tab);
+    if (idx < 0) return;
+    const nextIdx = direction === "left"
+      ? (idx + 1) % allowedTabIds.length
+      : (idx - 1 + allowedTabIds.length) % allowedTabIds.length;
+    setTab(allowedTabIds[nextIdx]);
+  }, [allowedTabIds, tab, setTab]);
+  // `isMobile` is declared further down in AppInner (line 559-ish). Hoist
+  // it here via the same hook — safe: hooks are idempotent per component
+  // instance, so calling useIsMobile twice returns the same value.
+  const swipeEnabled = useIsMobile(900);
+  useTabSwipe({ ref: mainRef, enabled: swipeEnabled, onSwipe: goSibling });
   useEffect(() => {
     if (!allowedTabIds.includes(tab)) {
       setTab(mode === "dm" ? "combat" : "overview");
@@ -914,7 +932,7 @@ function AppInner() {
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
         <OfflineBanner />
         <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
-        <main style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
+        <main ref={mainRef} style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
           {content}
         </main>
       </div>
@@ -930,8 +948,10 @@ function AppInner() {
       <OfflineBanner />
       <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
 
-      {/* Main content — click closes sub-menu */}
+      {/* Main content — click closes sub-menu. mainRef enables swipe-
+          left/right tab navigation via useTabSwipe. */}
       <main
+        ref={mainRef}
         style={{ flex:1, overflowY:"auto", overflowX:"hidden", padding:"12px", boxSizing:"border-box" }}
         onClick={() => mobileMenu && setMobileMenu(null)}
       >
