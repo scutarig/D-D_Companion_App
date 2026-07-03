@@ -10,16 +10,20 @@ import { useI18n } from "../i18n/index.js";
  *
  * State lives in a single usePersist("user_settings_v1", …) blob. Changes
  * are applied globally by toggling data-attributes on <html>; CSS rules in
- * index.css react to those and cascade into every screen. Font-scale is
- * applied by setting the root font-size and a `--ui-scale` custom property,
- * which CSS in index.css uses to nudge readable text without zooming layout.
+ * index.css react to those and cascade into every screen.
+ *
+ * Font-scaling was intentionally dropped: the codebase uses inline `px`
+ * throughout, so a global scale either did nothing (rem-only) or caused
+ * layout to shift/zoom, both of which broke the "stays responsive"
+ * requirement. If a text-size preference returns later, it should apply
+ * per component via an explicit scalable class, not as a document-root
+ * override.
  *
  * The applyUserSettings hook is exported so App can call it once at mount
  * even when the modal is closed.
  */
 
 export const DEFAULT_SETTINGS = {
-  fontScale: 1,        // 0.9 | 1 | 1.15
   highContrast: false,
   colorblind: false,
   reducedMotion: false,
@@ -29,17 +33,15 @@ export function useUserSettings() {
   const [settings, setSettings] = usePersist("user_settings_v1", DEFAULT_SETTINGS);
   useEffect(() => {
     const html = document.documentElement;
-    const scale = settings.fontScale || 1;
-    // Root font-size scaling — affects rem/em only, layouts (px) stay put.
-    // A CSS custom property lets targeted rules scale specific text.
-    html.style.fontSize = (16 * scale) + "px";
-    html.style.setProperty("--ui-scale", String(scale));
-    // Clear any legacy zoom from previous builds
+    // Clear any legacy font-scale artefacts from prior builds so stored
+    // fontScale values can't leak into the layout after upgrade.
     html.style.zoom = "";
+    html.style.fontSize = "";
+    html.style.removeProperty("--ui-scale");
     html.dataset.a11yHighContrast = settings.highContrast ? "true" : "false";
     html.dataset.a11yColorblind   = settings.colorblind   ? "true" : "false";
     html.dataset.a11yReducedMotion = settings.reducedMotion ? "true" : "false";
-  }, [settings.fontScale, settings.highContrast, settings.colorblind, settings.reducedMotion]);
+  }, [settings.highContrast, settings.colorblind, settings.reducedMotion]);
   return [settings, setSettings];
 }
 
@@ -81,42 +83,8 @@ export default function SettingsModal({ open, onClose }) {
     </button>
   );
 
-  const FontChip = ({ id, label }) => (
-    <button type="button" onClick={() => patch("fontScale", id === "s" ? 0.9 : id === "l" ? 1.15 : 1)}
-      style={{
-        padding: "5px 12px",
-        borderRadius: 8,
-        border: `1px solid ${
-          (settings.fontScale === 0.9 && id === "s") ||
-          (settings.fontScale === 1.15 && id === "l") ||
-          ((!settings.fontScale || settings.fontScale === 1) && id === "m")
-            ? C.gold + "aa" : C.border
-        }`,
-        background: (
-          (settings.fontScale === 0.9 && id === "s") ||
-          (settings.fontScale === 1.15 && id === "l") ||
-          ((!settings.fontScale || settings.fontScale === 1) && id === "m")
-        ) ? `${C.gold}22` : "transparent",
-        color: C.text,
-        fontSize: 12,
-        cursor: "pointer",
-        fontFamily: "inherit",
-      }}>
-      {label}
-    </button>
-  );
-
   return (
     <Modal open={open} onClose={onClose} title={`⚙ ${t("settings.title","Einstellungen")}`} maxWidth={420}>
-      <Row label={t("settings.font_size","Schriftgröße")}
-        hint={t("settings.font_size_hint","Skaliert nur Text — Layout bleibt stabil.")}>
-        <div style={{ display: "flex", gap: 4 }}>
-          <FontChip id="s" label={t("settings.font_s","S")} />
-          <FontChip id="m" label={t("settings.font_m","M")} />
-          <FontChip id="l" label={t("settings.font_l","L")} />
-        </div>
-      </Row>
-
       <Row label={t("settings.high_contrast","Hoher Kontrast")}
         hint={t("settings.high_contrast_hint","Verstärkt Text-Kontrast auf dunklem Hintergrund.")}>
         <Toggle on={settings.highContrast} onChange={(v) => patch("highContrast", v)} colorOn={C.gold} />
