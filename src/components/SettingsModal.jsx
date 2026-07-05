@@ -3,6 +3,15 @@ import { C, sx, FH } from "../constants/theme.js";
 import Modal from "./Modal.jsx";
 import { usePersist } from "../hooks/usePersist.js";
 import { useI18n } from "../i18n/index.js";
+import { useChar } from "../context/CharContext.jsx";
+import { useDialog } from "../hooks/useDialog.jsx";
+import { detectImportType, restoreProfileBackup } from "../utils/profileBackup.js";
+import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
+import { newChar } from "../utils/helpers.js";
+
+// Profile-backups (all chars + notes + worldbuilding) can legitimately be
+// larger than a single character — allow up to 5 MB.
+const MAX_PROFILE_BYTES = 5 * 1024 * 1024;
 
 /**
  * SettingsModal — user-facing accessibility + preferences panel opened
@@ -51,6 +60,67 @@ export function useUserSettings() {
 export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF, canExportPDF = true }) {
   const { t, lang, setLang } = useI18n();
   const [settings, setSettings] = useUserSettings();
+  const { setChars, setAid } = useChar();
+  const { alert, confirm } = useDialog();
+
+  const handleImport = async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    if (file.size > MAX_PROFILE_BYTES) {
+      alert(t("import.file_too_large","Datei zu groß (max 5 MB)."));
+      return;
+    }
+    const raw = await file.text();
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch { alert(t("char.json_error","JSON konnte nicht gelesen werden.")); return; }
+
+    const kind = detectImportType(parsed);
+
+    if (kind === "profile") {
+      const stats = parsed.stats || {};
+      const msg = t("import.profile_confirm_simple",
+        "Backup importieren?\n\n• Chars: {chars}\n• Notizen: {notes}\n• Gesamt-Keys: {keys}\n\n⚠ Deine aktuellen Daten werden ÜBERSCHRIEBEN.")
+        .replace("{chars}", stats.chars ?? "?")
+        .replace("{notes}", stats.notes ?? "?")
+        .replace("{keys}", stats.totalKeys ?? "?");
+      const ok = await confirm(msg, {
+        title: t("import.profile_title","Backup importieren"),
+        danger: true,
+        okLabel: t("import.profile_ok","Importieren"),
+      });
+      if (!ok) return;
+      const r = restoreProfileBackup(parsed);
+      if (!r.ok) {
+        alert(t("import.profile_error","Restore fehlgeschlagen: {err}").replace("{err}", r.error));
+        return;
+      }
+      await alert(t("import.profile_done","✓ Backup importiert ({n} Keys). Die Seite wird neu geladen, um alle Daten zu aktivieren.").replace("{n}", r.written));
+      window.location.reload();
+      return;
+    }
+
+    if (kind === "char") {
+      if (file.size > MAX_FILE_BYTES) {
+        alert(t("char.file_too_large","Datei zu groß (max 512 KB)."));
+        return;
+      }
+      const result = sanitizeCharImport(parsed, file.size);
+      if (!result.ok) {
+        alert(t("char.invalid_file","Ungültige Charakter-Datei."));
+        return;
+      }
+      const id = (typeof crypto !== "undefined" && crypto.randomUUID) ? crypto.randomUUID() : `imp-${Date.now()}`;
+      const c = { ...newChar(id), ...result.data, id };
+      setChars(prev => [...prev, c]);
+      setAid(id);
+      onClose?.();
+      return;
+    }
+
+    alert(t("char.invalid_file","Ungültige Charakter-Datei."));
+  };
 
   const currentScale = ["s","m","l"].includes(settings.fontScale) ? settings.fontScale : "m";
 
@@ -185,6 +255,10 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
                 📄 {t("save.export_pdf", "PDF drucken")}
               </button>
             )}
+            <label style={{ ...sx.btn(C.blue), fontSize: 12, flex: "1 1 140px", cursor: "pointer", textAlign: "center", display: "inline-block" }}>
+              📥 {t("save.import_json", "JSON importieren")}
+              <input type="file" accept=".json,application/json" onChange={handleImport} style={{ display: "none" }} />
+            </label>
           </div>
         </div>
       )}

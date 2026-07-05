@@ -1,32 +1,30 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
-import { useDialog } from "../hooks/useDialog.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { usePersist } from "../hooks/usePersist.js";
 import { useI18n } from "../i18n/index.js";
-import { sanitizeCharImport, MAX_FILE_BYTES } from "../utils/charImport.js";
-import { newChar } from "../utils/helpers.js";
-import { detectImportType, restoreProfileBackup } from "../utils/profileBackup.js";
 import { applyLongRest as applyLongRestUtil, applyShortRest as applyShortRestUtil, spendHitDie } from "../utils/restHelpers.js";
 import CharManagerV2 from "./CharManagerV2.jsx";
-import { initialWizardState } from "./CharWizard/hooks/useWizardState.js";
 import ResumeBanner from "./CharWizard/ResumeBanner.jsx";
 
-// Profile-backups (all chars + notes + worldbuilding) can legitimately be
-// larger than a single character — allow up to 5 MB for them.
-const MAX_PROFILE_BYTES = 5 * 1024 * 1024;
-
+/**
+ * CharManager — Charakter-Tab.
+ *
+ * The old header row (char-list buttons, +Neu, delete, Import) was moved out
+ * of here:
+ *   - Char selection / creation / deletion → CharSwitcher in the sidebar.
+ *   - Backup import → Settings modal.
+ * What stays is what actually belongs to the tab itself: the rest tracker
+ * (Kurze Rast / Lange Rast) and the CharManagerV2 sub-tabs.
+ */
 export default function CharManager() {
   const { t } = useI18n();
-  const { alert, confirm } = useDialog();
-  const { chars, setChars, aid, setAid, active, setActive } = useChar();
+  const { aid, active, setActive } = useChar();
   const [, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
   const [wizardState, setWizardState] = usePersist("wizard_active_v1", null);
   const [restMode, setRestMode] = useState(null);
-  const [showEntry, setShowEntry] = useState(false);
-  const [pickLevel, setPickLevel] = useState(1);
   const [shortHpVal, setShortHpVal] = useState(0);
   const [shortResult, setShortResult] = useState(null);
   const [longResult, setLongResult] = useState(null);
@@ -34,24 +32,15 @@ export default function CharManager() {
   // Multiclass info needed for rest resource tracking
   const { classes } = useMulticlass(aid, active, setActive);
 
-  // Wizard state is read by AppRouter via its own usePersist instance.
-  // usePersist doesn't subscribe to storage events, so a setState in this
-  // component doesn't trigger AppRouter to re-render. We persist directly to
-  // localStorage and reload to make AppRouter pick up the change on mount.
-  const startWizard = (targetLevel = 1) => {
-    const s = { ...initialWizardState(), targetLevel };
-    localStorage.setItem("wizard_active_v1", JSON.stringify(s));
-    window.location.reload();
-  };
+  // AppRouter reads wizard_active_v1 via its own usePersist instance, which
+  // doesn't subscribe to storage events. Reload to make the takeover mount.
   const resumeWizard = () => {
-    // wizard_active_v1 is already present; reload to enter the takeover.
     window.location.reload();
   };
   const discardWizard = () => {
     setWizardState(null);
     localStorage.removeItem("wizard_active_v1");
   };
-  const delChar = id => { if (chars.length <= 1) return; const nx = chars.find(c => c.id !== id); setChars(p => p.filter(c => c.id !== id)); setAid(nx?.id); };
 
   const doLongRest = () => {
     const result = applyLongRestUtil(active, classes, usedAuto);
@@ -85,66 +74,6 @@ export default function CharManager() {
     setHdRollLog(prev => [...prev, { roll: result.roll, hdSize: result.hdSize, mod: result.modifier, healed: result.healed }]);
   };
 
-  const importJSON = e => {
-    const file = e.target.files[0]; if (!file) return;
-    if (file.size > MAX_PROFILE_BYTES) {
-      alert(t("char.file_too_large","Datei zu groß (max 512 KB).").replace("512 KB", "5 MB"));
-      e.target.value = "";
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = async ev => {
-      let raw;
-      try { raw = JSON.parse(ev.target.result); }
-      catch { alert(t("char.json_error","JSON konnte nicht gelesen werden.")); return; }
-
-      const kind = detectImportType(raw);
-      if (kind === "profile") {
-        const stats = raw.stats || {};
-        const msg = t("import.profile_confirm_simple",
-          "Backup importieren?\n\n• Chars: {chars}\n• Notizen: {notes}\n• Gesamt-Keys: {keys}\n\n⚠ Deine aktuellen Daten werden ÜBERSCHRIEBEN.")
-          .replace("{chars}", stats.chars ?? "?")
-          .replace("{notes}", stats.notes ?? "?")
-          .replace("{keys}", stats.totalKeys ?? "?");
-        const ok = await confirm(msg, {
-          title: t("import.profile_title","Profil-Backup importieren"),
-          danger: true,
-          okLabel: t("import.profile_ok","Importieren"),
-        });
-        if (!ok) return;
-        const r = restoreProfileBackup(raw);
-        if (!r.ok) {
-          alert(t("import.profile_error","Restore fehlgeschlagen: {err}").replace("{err}", r.error));
-          return;
-        }
-        await alert(t("import.profile_done","✓ Backup importiert ({n} Keys). Die Seite wird neu geladen, um alle Daten zu aktivieren.").replace("{n}", r.written));
-        window.location.reload();
-        return;
-      }
-
-      if (kind === "char") {
-        if (file.size > MAX_FILE_BYTES) {
-          alert(t("char.file_too_large","Datei zu groß (max 512 KB)."));
-          return;
-        }
-        const result = sanitizeCharImport(raw, file.size);
-        if (!result.ok) {
-          alert(t("char.invalid_file","Ungültige Charakter-Datei."));
-          return;
-        }
-        const id = Date.now();
-        const newC = { ...newChar(id), ...result.data, id };
-        setChars(p => [...p, newC]);
-        setAid(id);
-        return;
-      }
-
-      alert(t("char.invalid_file","Ungültige Charakter-Datei."));
-    };
-    reader.readAsText(file);
-    e.target.value = "";
-  };
-
   if (!active) return null;
 
   return (
@@ -156,40 +85,13 @@ export default function CharManager() {
           onDiscard={discardWizard}
         />
       )}
-      {showEntry && (
-        <div style={{ ...sx.card, marginBottom: 12, padding: 18, borderColor: C.green }}>
-          <h3 style={{ color: C.greenBright, marginBottom: 8 }}>
-            {t("wizard.entry.title","Neuen Charakter erstellen")}
-          </h3>
-          <label style={sx.lbl}>{t("wizard.entry.lvl_lbl","Start-Level")}</label>
-          <input type="number" min={1} max={20} value={pickLevel}
-            onChange={(e) => setPickLevel(Math.max(1, Math.min(20, parseInt(e.target.value) || 1)))}
-            style={{ ...sx.inp, width: 80 }} />
-          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-            <button type="button" onClick={() => { setShowEntry(false); startWizard(pickLevel); }} style={sx.btn(C.green)}>
-              {t("wizard.entry.start","Wizard starten")}
-            </button>
-            <button type="button" onClick={() => setShowEntry(false)} style={sx.bsm(C.textDim)}>
-              {t("char.cancel_word","Abbrechen")}
-            </button>
-          </div>
-        </div>
-      )}
       <div data-no-print style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${C.border}`, borderRadius: 14, padding: "12px 16px", marginBottom: 14 }}>
         <div style={{ ...sx.jb, flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
             <span style={{ fontSize: 11, color: C.textDim, fontFamily: FH, letterSpacing: 1 }}>{t("char.character_label","CHARAKTER")}</span>
-            {chars.map(c => (
-              <button type="button" key={c.id} onClick={() => setAid(c.id)} style={{ background: c.id === aid ? "linear-gradient(135deg,#7c3aed44,#5b21b622)" : "transparent", border: `1px solid ${c.id === aid ? C.purple : C.border}`, borderRadius: 20, color: c.id === aid ? C.purpleBright : C.textBright, fontFamily: FH, fontSize: 12, padding: "5px 14px", cursor: "pointer", fontWeight: c.id === aid ? 700 : 400, boxShadow: c.id === aid ? "0 0 12px rgba(124,58,237,0.3)" : "none", transition: "all .2s" }}>
-                {c.name} <span style={{ color: C.textDim, fontSize: 10 }}>Lv.{c.level}</span>
-              </button>
-            ))}
-            <button type="button" onClick={() => setShowEntry(true)} style={sx.bsm(C.green)}>{t("char.new_short","+ Neu")}</button>
-            {chars.length > 1 && <button type="button" onClick={() => delChar(aid)} style={sx.bsm(C.red)}>🗑</button>}
-            <label style={{ ...sx.bsm(C.blue), cursor: "pointer" }}>
-              {t("char.import_btn","📥 Import")}
-              <input type="file" accept=".json" onChange={importJSON} style={{ display: "none" }} />
-            </label>
+            <span style={{ fontFamily: FH, fontSize: 13, color: C.purpleBright, fontWeight: 700 }}>
+              {active.name} <span style={{ color: C.textDim, fontSize: 10, fontWeight: 400 }}>Lv.{active.level}</span>
+            </span>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             <button type="button" onClick={() => setRestMode(restMode === "short" ? null : "short")} style={{ ...sx.bsm(C.teal), background: restMode === "short" ? `${C.teal}30` : `${C.teal}18`, border: `1px solid ${C.teal}55`, fontWeight: 700 }}>🌙 {t("header.short_rest","Kurze Rast")}</button>
