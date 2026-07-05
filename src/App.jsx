@@ -837,37 +837,26 @@ function AppInner() {
             }}>
             ⚙
           </button>
-          {/* Mode-Toggle: prominent, hervorgehoben, unterhalb Exporte */}
+          {/* Mode-Toggle: icon-only, same footprint as ⚙ / 🧙 so the sidebar
+              bottom cluster reads as one row of equally-weighted controls. */}
           <button type="button"
             onClick={requestModeSwitch}
             title={isDM ? "🎲 DM-Modus aktiv — Klick: Wechsel in Spieler-Modus" : "👤 Spieler-Modus aktiv — Klick: Wechsel in DM-Modus"}
+            aria-label={isDM ? "DM-Modus aktiv" : "Spieler-Modus aktiv"}
             style={{
               width: "100%",
-              marginTop: 4,
-              padding: "10px 4px",
-              borderRadius: 9,
-              border: `1.5px solid ${isDM ? C.purpleBright : C.gold}`,
-              background: isDM
-                ? `linear-gradient(135deg, ${C.purple}55 0%, ${C.purple}22 100%)`
-                : `linear-gradient(135deg, ${C.gold}33 0%, ${C.gold}11 100%)`,
+              padding: "6px 4px",
+              borderRadius: 8,
+              border: `1px solid ${isDM ? C.purpleBright : C.gold}55`,
+              background: isDM ? `${C.purple}11` : `${C.gold}11`,
               color: isDM ? C.purpleBright : C.gold,
-              fontFamily: FH,
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: 0.6,
+              fontFamily: FH, fontWeight: 700,
               cursor: "pointer",
-              transition: "all .18s",
-              boxShadow: isDM
-                ? `0 0 12px ${C.purple}55`
-                : `0 0 12px ${C.gold}33`,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 3,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              lineHeight: 1,
             }}
           >
-            <span style={{ fontSize: 18, lineHeight: 1 }}>{isDM ? "🎲" : "👤"}</span>
-            <span style={{ fontSize: 10, lineHeight: 1 }}>{isDM ? "DM" : "PLAYER"}</span>
+            <span style={{ fontSize: 16 }}>{isDM ? "🎲" : "👤"}</span>
           </button>
         </div>
       </aside>
