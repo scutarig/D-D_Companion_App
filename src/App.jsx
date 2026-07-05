@@ -5,6 +5,7 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
 import CharSwitcher from "./components/CharSwitcher.jsx";
 import SettingsModal, { useUserSettings } from "./components/SettingsModal.jsx";
+import AutoSaveIndicator from "./components/AutoSaveIndicator.jsx";
 import { useTabSwipe } from "./hooks/useTabSwipe.js";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
 import { buildProfileBackup } from "./utils/profileBackup.js";
@@ -896,7 +897,7 @@ function AppInner() {
         </main>
       </div>
       {modeConfirmModal}
-      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} />
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} tabs={ALL_TABS} />
     </div>
   );
 
@@ -1062,7 +1063,7 @@ function AppInner() {
         })}
       </nav>
       {modeConfirmModal}
-      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} />
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} tabs={ALL_TABS} />
     </div>
   );
 }
@@ -1137,6 +1138,7 @@ export default function App() {
           <DialogProvider>
             <ShareImportListener />
             <AppRouter />
+            <AutoSaveIndicator />
           </DialogProvider>
         </CombatProvider>
       </CharProvider>

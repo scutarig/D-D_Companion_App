@@ -38,6 +38,26 @@ body[style*="position: fixed"] {
 html[data-font-scale="s"] main { zoom: 0.9; }
 html[data-font-scale="l"] main { zoom: 1.15; }
 
+/* Theme — CSS filter approach. All colours are inline JS strings, so we
+   can't swap a palette variable-first; a document-wide filter is the
+   cheapest way to offer a Sepia (outdoor/parchment) and a Light mode
+   without touching every component. Filters cascade through the whole
+   page including modals. */
+html[data-theme="sepia"] {
+  filter: sepia(0.35) brightness(1.08) contrast(0.95);
+}
+html[data-theme="light"] {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95);
+}
+/* Keep media (images / videos) rendering in their original colours in
+   light mode — the invert would otherwise photonegative them. Emojis are
+   inline text, they stay natural. */
+html[data-theme="light"] img,
+html[data-theme="light"] video,
+html[data-theme="light"] canvas {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* Reduced motion — nukes CSS transitions and animations globally. */
 html[data-a11y-reduced-motion="true"] *,
 html[data-a11y-reduced-motion="true"] *::before,

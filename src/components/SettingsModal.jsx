@@ -33,6 +33,8 @@ const MAX_PROFILE_BYTES = 5 * 1024 * 1024;
 
 export const DEFAULT_SETTINGS = {
   fontScale: "m",      // "s" | "m" | "l" — applied via CSS to <main> only
+  theme: "dark",       // "dark" | "sepia" | "light" — applied via CSS filter on <html>
+  startTab: "last",    // "last" or a tab id — where the app opens on boot
   highContrast: false,
   colorblind: false,
   reducedMotion: false,
@@ -50,18 +52,42 @@ export function useUserSettings() {
     // Font-scale is a data-attribute; CSS scopes `zoom` to <main> so
     // nav / sidebar / modals stay untouched.
     html.dataset.fontScale = ["s","m","l"].includes(settings.fontScale) ? settings.fontScale : "m";
+    // Theme via CSS filter — sepia keeps hues, light inverts. Dark = no-op.
+    html.dataset.theme = ["dark","sepia","light"].includes(settings.theme) ? settings.theme : "dark";
     html.dataset.a11yHighContrast = settings.highContrast ? "true" : "false";
     html.dataset.a11yColorblind   = settings.colorblind   ? "true" : "false";
     html.dataset.a11yReducedMotion = settings.reducedMotion ? "true" : "false";
-  }, [settings.fontScale, settings.highContrast, settings.colorblind, settings.reducedMotion]);
+  }, [settings.fontScale, settings.theme, settings.highContrast, settings.colorblind, settings.reducedMotion]);
   return [settings, setSettings];
 }
 
-export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF, canExportPDF = true }) {
+export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF, canExportPDF = true, tabs = [] }) {
   const { t, lang, setLang } = useI18n();
   const [settings, setSettings] = useUserSettings();
   const { setChars, setAid } = useChar();
   const { alert, confirm } = useDialog();
+
+  // Unregister the PWA service-worker + wipe every Cache Storage entry and
+  // reload. Used when a stale bundle refuses to update via HMR — e.g. after
+  // a Vercel deploy where the SW is still serving the old chunks.
+  const resetPWA = async () => {
+    const ok = await confirm(
+      t("settings.pwa_reset_confirm", "Cache & Service-Worker leeren?\n\nDeine gespeicherten Charaktere und Einstellungen bleiben erhalten. Die App lädt danach neu."),
+      { title: t("settings.pwa_reset_title", "App-Cache leeren"), danger: true, okLabel: t("settings.pwa_reset_btn", "Leeren & neu laden") }
+    );
+    if (!ok) return;
+    try {
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map(r => r.unregister()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map(k => caches.delete(k)));
+      }
+    } catch (_) { /* best-effort */ }
+    window.location.reload();
+  };
 
   const handleImport = async (e) => {
     const file = e.target.files?.[0];
@@ -144,6 +170,29 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
     );
   };
 
+  const currentTheme = ["dark","sepia","light"].includes(settings.theme) ? settings.theme : "dark";
+
+  const ThemeChip = ({ id, label, tint }) => {
+    const on = currentTheme === id;
+    return (
+      <button type="button" onClick={() => patch("theme", id)}
+        style={{
+          padding: "6px 10px",
+          borderRadius: 8,
+          border: `1px solid ${on ? tint + "aa" : C.border}`,
+          background: on ? `${tint}22` : "transparent",
+          color: on ? tint : C.text,
+          fontSize: 11,
+          fontFamily: FH,
+          fontWeight: 700,
+          cursor: "pointer",
+          letterSpacing: 0.3,
+        }}>
+        {label}
+      </button>
+    );
+  };
+
   const LangChip = ({ id, label }) => {
     const on = lang === id;
     return (
@@ -218,6 +267,38 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
         </div>
       </Row>
 
+      <Row label={t("settings.theme","Farbschema")}
+        hint={t("settings.theme_hint","Dark = Standard, Sepia = warm für draußen, Light = hell.")}>
+        <div style={{ display: "flex", gap: 4 }}>
+          <ThemeChip id="dark"  label={t("settings.theme_dark","Dark")}   tint={C.blueBright} />
+          <ThemeChip id="sepia" label={t("settings.theme_sepia","Sepia")} tint={C.amberBright} />
+          <ThemeChip id="light" label={t("settings.theme_light","Light")} tint={C.textBright} />
+        </div>
+      </Row>
+
+      <Row label={t("settings.start_tab","Start-Ansicht")}
+        hint={t("settings.start_tab_hint","Welche Ansicht öffnet sich beim App-Start?")}>
+        <select
+          value={settings.startTab || "last"}
+          onChange={(e) => patch("startTab", e.target.value)}
+          style={{
+            padding: "5px 8px", borderRadius: 6,
+            border: `1px solid ${C.border}`,
+            background: C.surface, color: C.text,
+            fontFamily: FH, fontSize: 11,
+            cursor: "pointer",
+            minWidth: 140,
+          }}
+        >
+          <option value="last">{t("settings.start_tab_last","Zuletzt geöffnet")}</option>
+          {tabs.map(td => (
+            <option key={td.id} value={td.id}>
+              {td.icon} {td.labelKey ? t(td.labelKey, td.label) : td.label}
+            </option>
+          ))}
+        </select>
+      </Row>
+
       <Row label={t("settings.high_contrast","Hoher Kontrast")}
         hint={t("settings.high_contrast_hint","Verstärkt Text-Kontrast auf dunklem Hintergrund.")}>
         <Toggle on={settings.highContrast} onChange={(v) => patch("highContrast", v)} colorOn={C.gold} />
@@ -232,6 +313,19 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
         hint={t("settings.reduced_motion_hint","Blendet Transitions und Fanfaren aus.")}>
         <Toggle on={settings.reducedMotion} onChange={(v) => patch("reducedMotion", v)} colorOn={C.blueBright} />
       </Row>
+
+      <div style={{ padding: "12px 0 4px", borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ fontSize: 12, color: C.textBright, fontWeight: 600, marginBottom: 4 }}>
+          {t("settings.maintenance","Wartung")}
+        </div>
+        <div style={{ fontSize: 10, color: C.textDim, marginBottom: 8 }}>
+          {t("settings.pwa_reset_hint","Nach einem App-Update noch die alte Version? Cache & Service-Worker leeren, deine Daten bleiben.")}
+        </div>
+        <button type="button" onClick={resetPWA}
+          style={{ ...sx.bsm(C.amber), fontSize: 11, padding: "6px 12px" }}>
+          🧹 {t("settings.pwa_reset","App-Cache leeren")}
+        </button>
+      </div>
 
       {(onExportJSON || onExportPDF) && (
         <div style={{ padding: "12px 0 4px", borderBottom: `1px solid ${C.border}` }}>

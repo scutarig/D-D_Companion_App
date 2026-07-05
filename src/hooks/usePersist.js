@@ -1,5 +1,17 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
+// Every successful persist dispatches a `dnd:persisted` event so the
+// AutoSaveIndicator can flash a confirmation without every screen having
+// to wire up its own callback. `__` app-meta keys (marker, migration,
+// dev flags) don't count as user-visible saves.
+function notifyPersisted(key) {
+  if (typeof window === "undefined") return;
+  if (typeof key === "string" && key.startsWith("__")) return;
+  try {
+    window.dispatchEvent(new CustomEvent("dnd:persisted", { detail: { key, at: Date.now() } }));
+  } catch (_) {}
+}
+
 // Unified storage: Tauri/Capacitor window.storage if available, else localStorage
 const store = {
   get: async (key) => {
@@ -10,8 +22,8 @@ const store = {
     } catch (e) { return null; }
   },
   set: (key, val) => {
-    if (typeof window !== "undefined" && window.storage) { window.storage.set(key, val); return; }
-    try { localStorage.setItem(key, val); } catch (e) {
+    if (typeof window !== "undefined" && window.storage) { window.storage.set(key, val); notifyPersisted(key); return; }
+    try { localStorage.setItem(key, val); notifyPersisted(key); } catch (e) {
       if (typeof console !== "undefined") console.warn("[usePersist] storage write failed for", key, e);
       // A6 audit fix: notify user once on quota exceeded
       const isQuota = e && (e.name === "QuotaExceededError" || e.code === 22 || /quota/i.test(String(e.message)));

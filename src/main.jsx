@@ -11,6 +11,20 @@ import { migrateProfilesToSingle } from './utils/migrateProfiles.js'
 // boots exit immediately via a marker key.
 migrateProfilesToSingle();
 
+// Honour the user's start-tab preference before React reads app_tab_v5.
+// If the setting is a specific tab id, overwrite the last-visited value so
+// AppInner's usePersist picks up the desired tab on its very first render.
+// `"last"` (default) or missing → keep whatever tab the user was on.
+try {
+  const raw = localStorage.getItem("user_settings_v1");
+  if (raw) {
+    const s = JSON.parse(raw);
+    if (s && typeof s.startTab === "string" && s.startTab !== "last" && s.startTab.length > 0) {
+      localStorage.setItem("app_tab_v5", JSON.stringify(s.startTab));
+    }
+  }
+} catch (_) { /* corrupt settings just fall through to last-tab behaviour */ }
+
 // Service-worker registration. onNeedRefresh fires when a new SW is waiting —
 // we accept immediately so the user always runs the latest build.
 const updateSW = registerSW({
