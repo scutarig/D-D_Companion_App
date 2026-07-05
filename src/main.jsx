@@ -3,6 +3,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { registerSW } from 'virtual:pwa-register'
+import { migrateProfilesToSingle } from './utils/migrateProfiles.js'
+
+// Consolidate any leftover multi-profile localStorage layout into the flat
+// single-account layout. Runs synchronously before React mounts so contexts
+// see the merged state on their very first render. Idempotent — subsequent
+// boots exit immediately via a marker key.
+migrateProfilesToSingle();
 
 // Service-worker registration. onNeedRefresh fires when a new SW is waiting —
 // we accept immediately so the user always runs the latest build.

@@ -3,8 +3,7 @@ import { C, sx, FH, F } from "./constants/theme.js";
 import { usePersist } from "./hooks/usePersist.js";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { DialogProvider, useDialog } from "./hooks/useDialog.jsx";
-import { ProfileProvider, useProfile } from "./context/ProfileContext.jsx";
-import ProfileSwitcher from "./components/ProfileSwitcher.jsx";
+import CharSwitcher from "./components/CharSwitcher.jsx";
 import SettingsModal, { useUserSettings } from "./components/SettingsModal.jsx";
 import { useTabSwipe } from "./hooks/useTabSwipe.js";
 import { extractShareFromHash, clearShareHash, decodeChar } from "./utils/charShare.js";
@@ -313,7 +312,6 @@ function AppInner() {
   const [tab, setTab]         = usePersist("app_tab_v5", "overview");
   const { lang, setLang, t }  = useI18n();
   const { active, aid, setActive: setChar } = useChar();
-  const { active: profileActive } = useProfile();
   const [refOpen,  setRefOpen]  = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
@@ -651,15 +649,13 @@ function AppInner() {
   const exportJSON = () => {
     // Exports a COMPLETE profile backup (all chars + notes + worldbuilding +
     // combat + spells + slots + companions + proficiencies + …).
-    // Legacy single-char export → use the QR-share button instead.
-    const backup = buildProfileBackup(profileActive);
+    const backup = buildProfileBackup();
     const blob = new Blob([JSON.stringify(backup, null, 2)], { type:"application/json" });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement("a");
-    const safeName = (profileActive?.name || "profil").replace(/[^a-z0-9_-]+/gi, "_");
     const date = new Date().toISOString().slice(0, 10);
     a.href = url;
-    a.download = `dnd-profil-${safeName}-${date}.json`;
+    a.download = `dnd-backup-${date}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -669,8 +665,7 @@ function AppInner() {
     // Pull this char's companions — stored per-char as `companions_v1_<id>`.
     const companions = (() => {
       try {
-        const prefix = profileActive?.id && profileActive.id !== "default" ? `p_${profileActive.id}_` : "";
-        const v = localStorage.getItem(`${prefix}companions_v1_${active.id}`);
+        const v = localStorage.getItem(`companions_v1_${active.id}`);
         const parsed = v ? JSON.parse(v) : [];
         return Array.isArray(parsed) ? parsed : [];
       } catch (_) { return []; }
@@ -826,7 +821,7 @@ function AppInner() {
             (Export / PDF now live inside the Settings modal) */}
         <div style={{ padding:"8px 4px 14px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
           {/* Profile Switcher */}
-          <ProfileSwitcher variant="sidebar" />
+          <CharSwitcher variant="sidebar" />
           {/* Settings Modal Trigger (language toggle lives inside) */}
           <button type="button"
             onClick={() => setSettingsOpen(true)}
@@ -982,7 +977,7 @@ function AppInner() {
         gap: 6,
         alignItems: "stretch",
       }}>
-        <ProfileSwitcher variant="compact" />
+        <CharSwitcher variant="compact" />
         <button type="button" data-phone-compact
           onClick={requestModeSwitch}
           style={{
@@ -1090,7 +1085,6 @@ function AppInner() {
 function ShareImportListener() {
   const { confirm, alert } = useDialog();
   const { setChars, setAid } = useChar();
-  const { active } = useProfile();
   const { t } = useI18n();
 
   useEffect(() => {
@@ -1107,9 +1101,8 @@ function ShareImportListener() {
       }
       handled = true;
       const ok = await confirm(
-        t("share.import_confirm","Charakter \"{name}\" in Profil \"{prof}\" importieren?")
-          .replace("{name}", decoded.name || "?")
-          .replace("{prof}", active?.name || "?"),
+        t("share.import_confirm_simple","Charakter \"{name}\" importieren?")
+          .replace("{name}", decoded.name || "?"),
         { title: t("share.import_title","Charakter importieren"), okLabel: t("share.import_btn","Importieren") }
       );
       if (!ok) return;
@@ -1125,8 +1118,7 @@ function ShareImportListener() {
     const onHash = () => { handled = false; tryImport(); };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active?.id]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null;
 }
@@ -1150,16 +1142,14 @@ function AppRouter() {
 export default function App() {
   return (
     <ErrorBoundary>
-      <ProfileProvider>
-        <CharProvider>
-          <CombatProvider>
-            <DialogProvider>
-              <ShareImportListener />
-              <AppRouter />
-            </DialogProvider>
-          </CombatProvider>
-        </CharProvider>
-      </ProfileProvider>
+      <CharProvider>
+        <CombatProvider>
+          <DialogProvider>
+            <ShareImportListener />
+            <AppRouter />
+          </DialogProvider>
+        </CombatProvider>
+      </CharProvider>
     </ErrorBoundary>
   );
 }

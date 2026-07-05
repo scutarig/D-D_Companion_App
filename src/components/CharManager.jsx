@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { C, sx, FH } from "../constants/theme.js";
 import { useChar } from "../context/CharContext.jsx";
-import { useProfile } from "../context/ProfileContext.jsx";
 import { useDialog } from "../hooks/useDialog.jsx";
 import { useMulticlass } from "../hooks/useMulticlass.js";
 import { usePersist } from "../hooks/usePersist.js";
@@ -21,7 +20,6 @@ const MAX_PROFILE_BYTES = 5 * 1024 * 1024;
 export default function CharManager() {
   const { t } = useI18n();
   const { alert, confirm } = useDialog();
-  const { active: profileActive } = useProfile();
   const { chars, setChars, aid, setAid, active, setActive } = useChar();
   const [, setUsedSlots] = usePersist(`tokens_used_${aid}`, {});
   const [usedAuto, setUsedAuto] = usePersist(`tokens_auto_used_${aid}`, {});
@@ -103,19 +101,18 @@ export default function CharManager() {
       const kind = detectImportType(raw);
       if (kind === "profile") {
         const stats = raw.stats || {};
-        const msg = t("import.profile_confirm",
-          "Profil-Backup importieren?\n\n• Chars: {chars}\n• Notizen: {notes}\n• Gesamt-Keys: {keys}\n\n⚠ Daten im aktuellen Profil \"{prof}\" werden ÜBERSCHRIEBEN.")
+        const msg = t("import.profile_confirm_simple",
+          "Backup importieren?\n\n• Chars: {chars}\n• Notizen: {notes}\n• Gesamt-Keys: {keys}\n\n⚠ Deine aktuellen Daten werden ÜBERSCHRIEBEN.")
           .replace("{chars}", stats.chars ?? "?")
           .replace("{notes}", stats.notes ?? "?")
-          .replace("{keys}", stats.totalKeys ?? "?")
-          .replace("{prof}", profileActive?.name || "?");
+          .replace("{keys}", stats.totalKeys ?? "?");
         const ok = await confirm(msg, {
           title: t("import.profile_title","Profil-Backup importieren"),
           danger: true,
           okLabel: t("import.profile_ok","Importieren"),
         });
         if (!ok) return;
-        const r = restoreProfileBackup(raw, profileActive?.id || "default");
+        const r = restoreProfileBackup(raw);
         if (!r.ok) {
           alert(t("import.profile_error","Restore fehlgeschlagen: {err}").replace("{err}", r.error));
           return;

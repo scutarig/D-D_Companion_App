@@ -1,15 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useProfile } from "../context/ProfileContext.jsx";
-
-function useEffectiveKey(rawKey) {
-  // useProfile() returns null if ProfileProvider isn't mounted yet — safe default.
-  const ctx = useProfile();
-  if (!rawKey) return rawKey;
-  if (rawKey.startsWith("__")) return rawKey;            // global keys (profile list itself)
-  const aid = ctx?.activeId;
-  if (!aid || aid === "default") return rawKey;          // default profile = backwards-compat
-  return `p_${aid}_${rawKey}`;
-}
 
 // Unified storage: Tauri/Capacitor window.storage if available, else localStorage
 const store = {
@@ -30,7 +19,6 @@ const store = {
         window.__dndQuotaNotified = true;
         try {
           const msg = "⚠ Speicher voll: Browser-localStorage hat sein Limit erreicht. Bitte alte Charaktere exportieren und löschen, sonst gehen weitere Änderungen verloren.";
-          // Use setTimeout so we don't block the failing setter
           setTimeout(() => { try { alert(msg); } catch (_) {} }, 0);
         } catch (_) {}
       }
@@ -38,8 +26,13 @@ const store = {
   },
 };
 
-export function usePersist(rawKey, def) {
-  const key = useEffectiveKey(rawKey);
+/**
+ * usePersist — hydrated from Tauri/Capacitor window.storage when present,
+ * else localStorage. Keys are used raw; the old multi-profile prefix
+ * (`p_<id>_…`) was removed when profiles were consolidated into a single
+ * account so all characters live under one flat namespace.
+ */
+export function usePersist(key, def) {
   const [v, setRaw] = useState(def);
   const [rdy, setRdy] = useState(false);
   // readyRef breaks the race: set() calls before the async load finishes are
@@ -62,7 +55,6 @@ export function usePersist(rawKey, def) {
         if (r?.value) loaded = JSON.parse(r.value);
       } catch (e) {}
       if (cancelled || keyRef.current !== key) return;
-      // Apply any pending update on top of loaded value, then persist once.
       let base = loaded !== null ? loaded : (Array.isArray(def) ? [...def] : typeof def === "object" && def !== null ? { ...def } : def);
       if (pendingRef.current) {
         for (const u of pendingRef.current) base = typeof u === "function" ? u(base) : u;
