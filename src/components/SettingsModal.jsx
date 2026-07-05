@@ -48,7 +48,7 @@ export function useUserSettings() {
   return [settings, setSettings];
 }
 
-export default function SettingsModal({ open, onClose }) {
+export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF, canExportPDF = true }) {
   const { t, lang, setLang } = useI18n();
   const [settings, setSettings] = useUserSettings();
 
@@ -162,6 +162,32 @@ export default function SettingsModal({ open, onClose }) {
         hint={t("settings.reduced_motion_hint","Blendet Transitions und Fanfaren aus.")}>
         <Toggle on={settings.reducedMotion} onChange={(v) => patch("reducedMotion", v)} colorOn={C.blueBright} />
       </Row>
+
+      {(onExportJSON || onExportPDF) && (
+        <div style={{ padding: "12px 0 4px", borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ fontSize: 12, color: C.textBright, fontWeight: 600, marginBottom: 4 }}>
+            {t("settings.backup", "Sichern & Export")}
+          </div>
+          <div style={{ fontSize: 10, color: C.textDim, marginBottom: 8 }}>
+            {t("settings.backup_hint", "Vollständiges Profil-Backup als JSON oder aktueller Charakter als druckbares PDF.")}
+          </div>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
+            {onExportJSON && (
+              <button type="button" onClick={() => { onExportJSON(); onClose?.(); }}
+                style={{ ...sx.btn(C.teal), fontSize: 12, flex: "1 1 140px" }}>
+                ⬇️ {t("save.export_json", "JSON exportieren")}
+              </button>
+            )}
+            {onExportPDF && (
+              <button type="button" onClick={() => { onExportPDF(); onClose?.(); }}
+                disabled={!canExportPDF}
+                style={{ ...sx.btn(C.amber), fontSize: 12, flex: "1 1 140px", opacity: canExportPDF ? 1 : 0.4, cursor: canExportPDF ? "pointer" : "not-allowed" }}>
+                📄 {t("save.export_pdf", "PDF drucken")}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 14, gap: 8 }}>
         <button type="button" onClick={reset}

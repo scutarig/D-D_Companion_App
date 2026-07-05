@@ -9,26 +9,15 @@
 
 const MAGIC = "dndchar:v1:";
 
-const toBase64Url = (str) => {
-  const bin = unescape(encodeURIComponent(str));
-  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-};
 const fromBase64Url = (b64u) => {
   const padded = b64u.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat((4 - b64u.length % 4) % 4);
   return decodeURIComponent(escape(atob(padded)));
 };
 
-/** Encode a char object → URL-safe payload string. */
-export function encodeChar(char) {
-  if (!char || typeof char !== "object") throw new Error("encodeChar: invalid char");
-  // Strip transient fields that shouldn't travel
-  const stripped = { ...char };
-  delete stripped.id;             // recipient assigns own id
-  const payload = MAGIC + JSON.stringify(stripped);
-  return toBase64Url(payload);
-}
-
-/** Decode a payload string → char object. Returns null if invalid. */
+/** Decode a payload string → char object. Returns null if invalid.
+ *  Kept for backwards compatibility with URL-hash share links from earlier
+ *  versions of the app. The encoding UI (ShareCharDialog / QR button) was
+ *  removed because the incomplete payload skipped per-char extras. */
 export function decodeChar(payload) {
   if (!payload || typeof payload !== "string") return null;
   try {
@@ -41,13 +30,6 @@ export function decodeChar(payload) {
   } catch (_) {
     return null;
   }
-}
-
-/** Build a full share URL for a char, using window.location.origin. */
-export function shareUrlFor(char) {
-  if (typeof window === "undefined") return "";
-  const payload = encodeChar(char);
-  return `${window.location.origin}${window.location.pathname}#share=${payload}`;
 }
 
 /** Extract payload from window.location.hash (#share=...). Returns null if none. */

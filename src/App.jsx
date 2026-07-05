@@ -13,9 +13,6 @@ import { buildCharPdfHtml } from "./utils/charPdf.js";
 // SPELLS (100 KB) ist nur in exportPDF nötig — dynamic import via lazy-loader
 // hält das Main-Bundle schlank (sonst landet die ganze Spell-DB im initial-load).
 
-// Lazy-load ShareCharDialog so the qrcode lib (~30 KB) only loads on first share-click,
-// not in every cold-boot of the main bundle.
-const ShareCharDialog = lazy(() => import("./components/ShareCharDialog.jsx"));
 import { getPB, buildSlotsForLevel } from "./utils/helpers.js";
 import { applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/restHelpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
@@ -318,7 +315,6 @@ function AppInner() {
   const { active, aid, setActive: setChar } = useChar();
   const { active: profileActive } = useProfile();
   const [refOpen,  setRefOpen]  = useState(false);
-  const [shareOpen, setShareOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [refPos,   setRefPos]   = useState({ top: 0 });
   // Applies persisted a11y settings to <html> so they survive reloads even
@@ -826,15 +822,9 @@ function AppInner() {
           </div>
         </nav>
 
-        {/* Bottom: export (nur Player) + Lang + Mode-Toggle */}
+        {/* Bottom: Profile Switcher + Settings + Mode-Toggle
+            (Export / PDF now live inside the Settings modal) */}
         <div style={{ padding:"8px 4px 14px", borderTop:"1px solid rgba(201,168,76,0.10)", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
-          {!isDM && (
-            <>
-              <button type="button" title={t("nav.export_json","JSON exportieren")} aria-label={t("nav.export_json","JSON exportieren")} onClick={exportJSON} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>⬇️</button>
-              <button type="button" title={t("nav.export_pdf","PDF exportieren")}  aria-label={t("nav.export_pdf","PDF exportieren")} onClick={exportPDF}  style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.amberBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📄</button>
-              <button type="button" title={t("share.btn","Teilen (QR)")} aria-label={t("share.btn","Teilen (QR)")} onClick={() => setShareOpen(true)} style={{ fontSize:16, background:"none", border:"none", cursor:"pointer", color:C.tealBright, opacity:active?1:0.3, padding:"4px 0", width:"100%" }}>📤</button>
-            </>
-          )}
           {/* Profile Switcher */}
           <ProfileSwitcher variant="sidebar" />
           {/* Settings Modal Trigger (language toggle lives inside) */}
@@ -922,8 +912,7 @@ function AppInner() {
         </main>
       </div>
       {modeConfirmModal}
-      {shareOpen && <Suspense fallback={null}><ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} /></Suspense>}
-      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} />
     </div>
   );
 
@@ -942,17 +931,6 @@ function AppInner() {
       >
         <div style={{ width:"100%", maxWidth:"100%" }}>
           {content}
-          {tab === "char" && active && !isDM && (
-            <div style={{ marginTop:12, padding:"12px 14px", background:C.card, borderRadius:12, border:`1px solid ${C.border}` }}>
-              <div style={{ fontSize:10, color:C.textDim, letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>{t("save.title", "Charakter speichern")}</div>
-              <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
-                <button type="button" onClick={exportJSON} style={{ ...sx.btn(C.teal), flex:"1 1 120px", fontSize:12 }}>⬇️ {t("save.export_json", "JSON exportieren")}</button>
-                <button type="button" onClick={exportPDF}  style={{ ...sx.btn(C.amber), flex:"1 1 120px", fontSize:12 }}>📄 {t("save.export_pdf", "PDF drucken")}</button>
-                <button type="button" onClick={() => setShareOpen(true)} style={{ ...sx.btn(C.tealBright), flex:"1 1 120px", fontSize:12 }}>📤 {t("share.btn", "Teilen (QR)")}</button>
-              </div>
-            </div>
-          )}
-          {shareOpen && <Suspense fallback={null}><ShareCharDialog open={shareOpen} char={active} onClose={() => setShareOpen(false)} /></Suspense>}
         </div>
       </main>
 
@@ -1099,7 +1077,7 @@ function AppInner() {
         })}
       </nav>
       {modeConfirmModal}
-      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} />
     </div>
   );
 }
