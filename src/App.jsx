@@ -1135,7 +1135,11 @@ function ShareImportListener() {
         { title: t("share.import_title","Charakter importieren"), okLabel: t("share.import_btn","Importieren") }
       );
       if (!ok) return;
-      const id = Date.now();
+      // randomUUID avoids the sub-ms collision that Date.now() causes when
+      // two share links are imported inside the same tick.
+      const id = (typeof crypto !== "undefined" && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : `share-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
       setChars(prev => [...prev, { ...decoded, id }]);
       setAid(id);
     };

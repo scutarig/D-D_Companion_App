@@ -1,8 +1,8 @@
 import { C, FH, SC } from "../../constants/theme.js";
+import { modOf } from "../../utils/helpers.js";
+import { fmtMod } from "../../utils/derivedStats.js";
 
 const ABS = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
-const modOf = (s) => Math.floor((s - 10) / 2);
-const fmtMod = (m) => (m >= 0 ? `+${m}` : `${m}`);
 
 /**
  * CompanionStats — D&D 5e stat block for a companion

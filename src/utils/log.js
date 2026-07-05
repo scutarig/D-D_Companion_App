@@ -34,18 +34,6 @@ export const logJoin = (state, fighterName, hp, ac) => {
   return addLog(state, "join", `${fighterName} joins combat (HP ${hp}/${hp}, AC ${ac})`);
 };
 
-export const logRoundStart = (state, round) => {
-  return addLog(state, "round", `--- Round ${round} starts ---`);
-};
-
-export const logTurnStart = (state, fighterName, initiative, sourceId) => {
-  return addLog(state, "turn", `Turn: ${fighterName} (Initiative ${initiative})`, sourceId);
-};
-
-export const logTurnEnd = (state, fighterName, sourceId) => {
-  return addLog(state, "turn", `${fighterName} ends turn`, sourceId);
-};
-
 export const logAttack = (
   state,
   attackerName,
@@ -129,20 +117,6 @@ export const logDefeat = (state) => {
   return addLog(state, "victory", "☠️ Combat ended - Defeat!");
 };
 
-export const logManualEntry = (state, text) => {
-  return addLog(state, "generic", text);
-};
-
-// Format log for display
-export const formatLogEntry = (entry) => {
-  return {
-    ...entry,
-    displayText: entry.text,
-    icon: getLogIcon(entry.type),
-    color: getLogColor(entry.type),
-  };
-};
-
 // Get icon for log entry type
 const getLogIcon = (type) => {
   const icons = {
@@ -192,20 +166,6 @@ export const searchLog = (log, query) => {
 export const filterLogByType = (log, types) => {
   if (!types || types.length === 0) return log;
   return log.filter((entry) => types.includes(entry.type));
-};
-
-// Get last N log entries
-export const getRecentLog = (log, count = 10) => {
-  return log.slice(0, count);
-};
-
-// Clear old log entries (keep only last N)
-export const pruneLog = (state, maxEntries = 500) => {
-  if (state.log.length <= maxEntries) return state;
-  return {
-    ...state,
-    log: state.log.slice(0, maxEntries),
-  };
 };
 
 // Export log as text

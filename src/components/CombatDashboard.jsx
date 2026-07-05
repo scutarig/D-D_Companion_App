@@ -211,7 +211,13 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
         if (window.storage) { const r = await window.storage.get(key); return r?.value ? JSON.parse(r.value) : []; }
         const v = localStorage.getItem(key);
         return v ? JSON.parse(v) : [];
-      } catch { return []; }
+      } catch (err) {
+        // Corrupt JSON at this key silently reset the spell prep/known list
+        // before; surface it in dev-tools so we can spot cross-device / import
+        // corruption instead of just losing the data.
+        console.warn(`[CombatDashboard] Failed to parse "${key}"; resetting to [].`, err);
+        return [];
+      }
     };
     (async () => {
       setPrepIds(await getVal(`spells_prep_${aid}`));
