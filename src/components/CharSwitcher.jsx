@@ -4,6 +4,21 @@ import { useChar } from "../context/CharContext.jsx";
 import { useDialog } from "../hooks/useDialog.jsx";
 import { useI18n } from "../i18n/index.js";
 import { initialWizardState } from "./CharWizard/hooks/useWizardState.js";
+import { D3_KLASSEN } from "../data/classes.js";
+
+// Map a saved char.klass value (DE name, EN name or id) to the class-icon
+// defined in classes.js. Falls back to a neutral 🧝 so unknown values don't
+// break the layout.
+function classIcon(klass) {
+  if (!klass) return "🧝";
+  const needle = String(klass).toLowerCase().trim();
+  const hit = D3_KLASSEN.find(k =>
+    k.name?.toLowerCase() === needle ||
+    k.enName?.toLowerCase() === needle ||
+    k.id?.toLowerCase() === needle,
+  );
+  return hit?.icon || "🧝";
+}
 
 /**
  * CharSwitcher — dropdown that owns character selection, creation, and
@@ -80,14 +95,18 @@ export default function CharSwitcher({ variant = "sidebar" }) {
     border: `1px solid ${C.amberBright}55`,
     borderRadius: 8,
     color: C.amberBright,
-    fontFamily: FH, fontWeight: 700,
+    fontFamily: FH, fontWeight: 700, fontSize: 11,
     cursor: "pointer",
-    padding: "6px 4px",
-    display: "flex", alignItems: "center", justifyContent: "center",
+    padding: "6px 6px",
+    display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
     width: "100%",
+    letterSpacing: 0.3,
   };
 
   const tooltip = `${t("charswitch.title","Charakter wechseln")}: ${active?.name || "—"}`;
+  const activeIcon = active ? classIcon(active.klass) : "🧙";
+  // Sidebar has ~50 px of usable width — truncate to keep it single-line.
+  const shortName = (active?.name || "").slice(0, 8);
 
   return (
     <div ref={wrapRef} style={{
@@ -107,7 +126,14 @@ export default function CharSwitcher({ variant = "sidebar" }) {
         aria-expanded={open}
         style={triggerStyle}
       >
-        <span style={{ fontSize: variant === "compact" ? 14 : 16, lineHeight: 1 }}>🧙</span>
+        <span style={{ fontSize: variant === "compact" ? 14 : 14, lineHeight: 1 }}>{activeIcon}</span>
+        {variant === "sidebar" && shortName && (
+          <span style={{
+            fontSize: 10, lineHeight: 1,
+            overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+            maxWidth: "100%",
+          }}>{shortName}</span>
+        )}
       </button>
 
       {open && (
@@ -167,7 +193,7 @@ export default function CharSwitcher({ variant = "sidebar" }) {
                     textAlign: "left",
                   }}
                 >
-                  <span style={{ fontSize: 14 }}>🧝</span>
+                  <span style={{ fontSize: 14 }}>{classIcon(c.klass)}</span>
                   <span style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.name || "—"}</div>
                     {subtitle && <div style={{ fontSize: 9, color: C.textDim, marginTop: 1 }}>{subtitle}</div>}

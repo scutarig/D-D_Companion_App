@@ -987,12 +987,12 @@ function AppInner() {
             justifyContent: "center",
             gap: 6,
             boxShadow: isDM ? `0 0 12px ${C.purple}44` : `0 0 12px ${C.gold}33`,
-            flex: 1,
+            flex: "0 0 auto",
             minWidth: 0,
           }}
         >
           <span style={{ fontSize: 14 }}>{isDM ? "🎲" : "👤"}</span>
-          <span style={{ overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{isDM ? t("save.dm_mode_active","DM-MODUS AKTIV") : t("save.player_mode_active","SPIELER-MODUS AKTIV")}</span>
+          <span style={{ overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{isDM ? t("save.dm_short","DM") : t("save.player_short","SPIELER")}</span>
           <span style={{ fontSize: 9, opacity: 0.6 }}>↻</span>
         </button>
         <button type="button" data-phone-compact
@@ -1008,6 +1008,7 @@ function AppInner() {
             cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center",
             flexShrink: 0,
+            marginLeft: "auto",
           }}>
           ⚙
         </button>
