@@ -25,6 +25,17 @@ html, body {
 /* Hide scrollbars in nav while keeping scroll */
 nav::-webkit-scrollbar { display: none; }
 
+/* PWA / standalone display mode — lock the document to the viewport so the
+   only scroll surface is <main>. Some tablets (S7 FE observed) let the whole
+   shell scroll when installed, dragging the top-bar and sidebar with it. */
+@media (display-mode: standalone), (display-mode: fullscreen) {
+  html, body {
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+  }
+}
+
 /* When scroll-lock is active, hide scrollbar to avoid jump */
 body[style*="position: fixed"] {
   overflow-y: hidden !important;

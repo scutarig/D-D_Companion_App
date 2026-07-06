@@ -868,11 +868,14 @@ function AppInner() {
         </div>
       )}
 
-      {/* Main column */}
-      <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
+      {/* Main column — minHeight:0 lets the flex child (main) shrink below
+          its own intrinsic content height, otherwise <main>'s content can
+          push the whole column past the viewport and produce an outer scroll
+          (visible when installed as a standalone PWA on tablets). */}
+      <div style={{ flex:1, minHeight:0, display:"flex", flexDirection:"column", overflow:"hidden" }}>
         <OfflineBanner />
         <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
-        <main ref={mainRef} style={{ flex:1, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
+        <main ref={mainRef} style={{ flex:1, minHeight:0, overflowY:"auto", padding:"14px 16px", boxSizing:"border-box" }}>
           {content}
         </main>
       </div>
@@ -883,7 +886,12 @@ function AppInner() {
 
   // ── Mobile ─────────────────────────────────────────────────────────────────
   return (
-    <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text, overflowX:"hidden" }}>
+    // overflow: hidden on both axes here + minHeight: 0 on main pins the
+    // header / mode-strip / bottom-nav to the viewport and lets only <main>
+    // scroll. Previously only overflow-x was pinned, so a tall page (long
+    // char sheet) would push the whole shell outside the viewport when
+    // installed as a standalone PWA on tablets.
+    <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg, fontFamily:F, color:C.text, overflow:"hidden" }}>
       <OfflineBanner />
       <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
 
@@ -891,7 +899,7 @@ function AppInner() {
           left/right tab navigation via useTabSwipe. */}
       <main
         ref={mainRef}
-        style={{ flex:1, overflowY:"auto", overflowX:"hidden", padding:"12px", boxSizing:"border-box" }}
+        style={{ flex:1, minHeight:0, overflowY:"auto", overflowX:"hidden", padding:"12px", boxSizing:"border-box" }}
         onClick={() => mobileMenu && setMobileMenu(null)}
       >
         <div style={{ width:"100%", maxWidth:"100%" }}>
