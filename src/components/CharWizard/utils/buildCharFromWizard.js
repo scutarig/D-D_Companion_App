@@ -2,6 +2,7 @@ import { newChar } from "../../../utils/helpers.js";
 import { getClassHd } from "../../../utils/multiclass.js";
 import { D3_KLASSEN } from "../../../data/classes.js";
 import { BACKGROUNDS_FULL } from "../../../data/backgrounds.js";
+import { SRD_ITEMS } from "../../../data/items.js";
 import { applyBackground, applyBackgroundAsi } from "../../../utils/backgrounds.js";
 import { applyRaceTraits } from "../../../utils/races.js";
 import { toEnSkill } from "../data/skillTranslation.js";
@@ -9,11 +10,242 @@ import { toEnSkill } from "../data/skillTranslation.js";
 const SAVE_CODES = new Set(["STR", "DEX", "CON", "INT", "WIS", "CHA"]);
 
 /**
+ * Class starting-equipment strings mix English (Chain Mail, Greatsword) and
+ * German (Speer, Bettrolle), while SRD_ITEMS is DE-only. This lookup maps a
+ * normalized (lowercased, punctuation-stripped) raw entry to a canonical
+ * SRD_ITEMS name, so we can inherit type / rarity / weight / notes rather
+ * than dropping a bare `{name, qty}` into the inventory.
+ *
+ * Additions here need only cover names that actually appear in
+ * data/classes.js and data/backgrounds.js — the fallback path generates a
+ * generic Common Gear item for unknowns, so unrecognised names still land in
+ * the bag, they just miss metadata.
+ */
+const NAME_MAP = new Map([
+  // ── Armor ──
+  ["chain mail",       "Kettenpanzer"],
+  ["studded leather",  "Verstärktes Leder"],
+  ["leather armor",    "Lederpanzer"],
+  ["leather",          "Lederpanzer"],
+  ["scale mail",       "Schuppenpanzer"],
+  ["half plate",       "Halbplatte"],
+  ["splint",           "Schienenpanzer"],
+  ["ring mail",        "Ringpanzer"],
+  ["padded",           "Gepolsterter Harnisch"],
+  ["hide",             "Tierhaut"],
+  ["breastplate",      "Brustplatte"],
+  ["plate",            "Plattenpanzer"],
+  ["shield",           "Schild"],
+  // ── Melee weapons ──
+  ["longsword",        "Langschwert"],
+  ["shortsword",       "Kurzschwert"],
+  ["dagger",           "Dolch"],
+  ["daggers",          "Dolch"],
+  ["greataxe",         "Großaxt"],
+  ["greatsword",       "Großschwert"],
+  ["handaxe",          "Handaxt"],
+  ["handaxes",         "Handaxt"],
+  ["flail",            "Flegel"],
+  ["javelin",          "Wurfspeer"],
+  ["javelins",         "Wurfspeer"],
+  ["rapier",           "Rapier"],
+  ["scimitar",         "Scimitar"],
+  ["mace",             "Streitkolben"],
+  ["warhammer",        "Kriegshammer"],
+  ["quarterstaff",     "Viertelstab"],
+  ["spear",            "Speer"],
+  ["club",             "Keule"],
+  ["sickle",           "Sichel"],
+  ["light hammer",     "Leichter Hammer"],
+  ["battleaxe",        "Streitaxt"],
+  ["trident",          "Dreizack"],
+  ["whip",             "Peitsche"],
+  ["net",              "Netz"],
+  ["halberd",          "Hellebarde"],
+  ["lance",            "Lanze"],
+  ["glaive",           "Glefe"],
+  ["pike",             "Pike"],
+  ["war pick",         "Kriegspick"],
+  ["morningstar",      "Morgenstern"],
+  // ── Ranged weapons ──
+  ["longbow",          "Langbogen"],
+  ["shortbow",         "Kurzbogen"],
+  ["light crossbow",   "Leichte Armbrust"],
+  ["heavy crossbow",   "Schwere Armbrust"],
+  ["blowgun",          "Blasrohr"],
+  ["sling",            "Schleuder"],
+  ["dart",             "Wurfpfeil"],
+  // ── Ammo (bundle items — qty stays 1 regardless of "20 Arrows") ──
+  ["arrow",            "Pfeile (20)"],
+  ["arrows",           "Pfeile (20)"],
+  ["pfeile",           "Pfeile (20)"],
+  ["crossbow bolt",    "Armbrustbolzen (20)"],
+  ["crossbow bolts",   "Armbrustbolzen (20)"],
+  ["bolts",            "Armbrustbolzen (20)"],
+  ["bolzen",           "Armbrustbolzen (20)"],
+  ["blowgun needle",   "Blasrohr-Nadeln (50)"],
+  ["blowgun needles",  "Blasrohr-Nadeln (50)"],
+  // ── Tools ──
+  ["thieves' tools",   "Diebeswerkzeug"],
+  ["thieves tools",    "Diebeswerkzeug"],
+  ["herbalism kit",    "Kräuterkundeset"],
+  ["healer's kit",     "Heilertasche"],
+  ["healers kit",      "Heilertasche"],
+  ["navigator's tools","Navigationswerkzeug"],
+  ["navigators tools", "Navigationswerkzeug"],
+  ["smith's tools",    "Schmiedewerkzeug"],
+  ["disguise kit",     "Verkleidungsset"],
+  ["poisoner's kit",   "Vergiftungsset"],
+  // ── Adventuring gear ──
+  ["backpack",         "Rucksack"],
+  ["rucksack",         "Rucksack"],
+  ["crowbar",          "Brecheisen"],
+  ["brechstange",      "Brecheisen"],
+  ["torch",            "Fackeln (10)"],
+  ["torches",          "Fackeln (10)"],
+  ["fackel",           "Fackeln (10)"],
+  ["fackeln",          "Fackeln (10)"],
+  ["tinderbox",        "Tinderbox"],
+  ["ration",           "Feldration (1 Tag)"],
+  ["rations",          "Feldration (1 Tag)"],
+  ["day's rations",    "Feldration (1 Tag)"],
+  ["days rations",     "Feldration (1 Tag)"],
+  ["feldration",       "Feldration (1 Tag)"],
+  ["waterskin",        "Wasser-/Weinflasche"],
+  ["wasserschlauch",   "Wasser-/Weinflasche"],
+  ["rope",             "Seil (50ft)"],
+  ["seil",             "Seil (50ft)"],
+  ["hooded lantern",   "Kapuzenlaterne"],
+  ["oil",              "Öl (Flask)"],
+  ["oil flask",        "Öl (Flask)"],
+  ["öl",               "Öl (Flask)"],
+  ["öl (flask)",       "Öl (Flask)"],
+  ["grappling hook",   "Enterhaken"],
+  ["alchemist's fire", "Alchemisten-Feuer"],
+  ["climbing kit",     "Kletterausrüstung"],
+  ["kletterausrüstung","Kletterausrüstung"],
+  ["tent",             "Zelt (2 Personen)"],
+  ["zelt",             "Zelt (2 Personen)"],
+  ["flint & steel",    "Feuerstein & Stahl"],
+  ["feuerstein & stahl","Feuerstein & Stahl"],
+  ["spyglass",         "Fernrohr"],
+  ["fernrohr",         "Fernrohr"],
+  ["steel mirror",     "Stahlspiegel"],
+  ["stahlspiegel",     "Stahlspiegel"],
+  ["manacles",         "Handschellen"],
+  ["handschellen",     "Handschellen"],
+  ["arcane focus",     "Arkaner Fokus"],
+  ["arkaner fokus",    "Arkaner Fokus"],
+]);
+
+/**
+ * PHB 2024 pack contents. Instead of dropping "Explorer's Pack" as a single
+ * mystery-blob item, we expand each pack into its RAW contents. Each entry
+ * is [nameForLookup, quantity]. Names route through NAME_MAP just like any
+ * other equipment string, so pack members inherit SRD metadata where
+ * available and fall back to Common Gear otherwise.
+ *
+ * Content lists follow PHB 2024 pack definitions verbatim. Note that
+ * bundle-items like "Torches" resolve to "Fackeln (10)" (already 10 in one
+ * entry), so "10 Torches" in a pack becomes qty=1 of the bundle — see the
+ * bundle-detection in resolveItem below.
+ */
+const PACK_CONTENTS = {
+  "Explorer's Pack": [
+    ["Backpack", 1], ["Bedroll", 1], ["Rations", 2], ["Rope", 1],
+    ["Tinderbox", 1], ["Torches", 10], ["Waterskin", 1],
+  ],
+  "Dungeoneer's Pack": [
+    ["Backpack", 1], ["Crowbar", 1], ["Hammer", 1], ["Pitons", 10],
+    ["Torches", 10], ["Tinderbox", 1], ["Rations", 10], ["Waterskin", 1],
+    ["Rope", 1],
+  ],
+  "Priest's Pack": [
+    ["Backpack", 1], ["Blanket", 1], ["Candles", 10], ["Tinderbox", 1],
+    ["Alms Box", 1], ["Incense Blocks", 2], ["Censer", 1], ["Vestments", 1],
+    ["Rations", 2], ["Waterskin", 1],
+  ],
+  "Burglar's Pack": [
+    ["Backpack", 1], ["Ball Bearings", 1000], ["Bell", 1], ["Candles", 5],
+    ["Crowbar", 1], ["Hammer", 1], ["Pitons", 10], ["Hooded Lantern", 1],
+    ["Oil", 2], ["Rations", 5], ["Tinderbox", 1], ["Waterskin", 1],
+    ["Rope", 1],
+  ],
+  "Entertainer's Pack": [
+    ["Backpack", 1], ["Bedroll", 1], ["Costume", 2], ["Candles", 5],
+    ["Rations", 5], ["Waterskin", 1], ["Disguise Kit", 1],
+  ],
+  "Scholar's Pack": [
+    ["Backpack", 1], ["Book of Lore", 1], ["Ink", 1], ["Ink Pen", 1],
+    ["Parchment", 10], ["Small Bag of Sand", 1], ["Small Knife", 1],
+  ],
+  "Diplomat's Pack": [
+    ["Chest", 1], ["Map Case", 2], ["Fine Clothes", 1], ["Ink", 1],
+    ["Ink Pen", 1], ["Lamp", 1], ["Oil", 2], ["Parchment", 5],
+    ["Perfume", 1], ["Sealing Wax", 1], ["Soap", 1],
+  ],
+};
+
+/** Collision-free uid consistent with CharInventory.addCustom (line ~181). */
+function makeUid() {
+  return Date.now() + Math.random();
+}
+
+/** Bundle items encode their count in a bare parenthesised number
+ *  ("Pfeile (20)", "Blasrohr-Nadeln (50)"). We only match a fully-numeric
+ *  parenthesis so descriptive names like "Feldration (1 Tag)" or
+ *  "Seil (50ft)" are NOT treated as bundles — those still take the caller's
+ *  qty (e.g. Explorer's Pack ships 2 Rations = qty 2, not qty 1). */
+function isBundleItem(srdItem) {
+  return !!srdItem && /\(\d+\)/.test(srdItem.name);
+}
+
+/**
+ * Resolve a raw equipment entry (name + qty) into a fully-populated
+ * inventory item. Path:
+ *   1. Look up the normalised name in NAME_MAP → canonical SRD name.
+ *   2. Fall back to a direct case-insensitive match on SRD_ITEMS.
+ *   3. Fall back to a generic Common Gear entry so the player still sees
+ *      the item, just without pre-filled stats.
+ */
+function resolveItem(rawName, qty) {
+  const trimmed = String(rawName).trim();
+  const key = trimmed
+    .toLowerCase()
+    .replace(/[.,]$/, "")           // drop trailing punctuation
+    .replace(/\s*\(.*?\)\s*/g, "")  // drop parentheticals like "(gewählt)"
+    .trim();
+  const canonName = NAME_MAP.get(key);
+
+  let srdItem = canonName ? SRD_ITEMS.find((i) => i.name === canonName) : null;
+  if (!srdItem) {
+    srdItem = SRD_ITEMS.find((i) => i.name.toLowerCase() === trimmed.toLowerCase());
+  }
+
+  if (srdItem) {
+    // Strip the SRD `id` — inventory items are uid-keyed. Keep display fields.
+    const { id, ...rest } = srdItem;
+    return { ...rest, uid: makeUid(), qty: isBundleItem(srdItem) ? 1 : qty };
+  }
+  // Fallback for names we don't recognise (chosen tools, "Robe", "Kostüm"…).
+  return {
+    uid: makeUid(),
+    name: trimmed,
+    qty,
+    type: "Item", sub: "Gear", rar: "Common",
+    dmg: "", ac: "", eff: "", wt: "—", notes: "",
+  };
+}
+
+/**
  * Parse a starting-equipment description (string or array) into individual
  * inventory items and an aggregated gold amount. Recognises:
- *   - "N GP" entries → adds N to gold (case-insensitive)
- *   - "N <item>" entries → single inventory entry with qty=N
- *   - any other entry → single inventory entry with qty=1
+ *   - "N GP" entries → adds N to gold (case-insensitive).
+ *   - Known packs (Explorer's Pack, Dungeoneer's Pack, …) → expanded into
+ *     their PHB 2024 contents, each resolved through resolveItem so the
+ *     items land in the bag with proper metadata instead of a "pack blob".
+ *   - "N <item>" entries → resolveItem with qty=N (bundle items keep qty=1).
+ *   - Any other entry → resolveItem with qty=1.
  * The "·" character (or comma) separates entries when input is a string.
  */
 function unpackEquipment(raw) {
@@ -29,11 +261,25 @@ function unpackEquipment(raw) {
       gold += parseInt(gpMatch[1], 10);
       continue;
     }
+
+    // Pack expansion — match on canonical pack name (case-insensitive) so a
+    // leading number like "1 Explorer's Pack" still resolves. The lookup key
+    // trims a leading count.
+    const packKey = Object.keys(PACK_CONTENTS).find((k) =>
+      entry.toLowerCase().replace(/^\d+\s+/, "") === k.toLowerCase()
+    );
+    if (packKey) {
+      for (const [subName, subQty] of PACK_CONTENTS[packKey]) {
+        items.push(resolveItem(subName, subQty));
+      }
+      continue;
+    }
+
     const qtyMatch = entry.match(/^(\d+)\s+(.+)$/);
     if (qtyMatch) {
-      items.push({ name: qtyMatch[2], qty: parseInt(qtyMatch[1], 10) });
+      items.push(resolveItem(qtyMatch[2], parseInt(qtyMatch[1], 10)));
     } else {
-      items.push({ name: entry, qty: 1 });
+      items.push(resolveItem(entry, 1));
     }
   }
   return { items, gold };

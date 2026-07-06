@@ -220,73 +220,6 @@ export default function CharInventory({ char, setChar }) {
   return (
     <div>
 
-      {/* ── Attunement Widget ── */}
-      {allMagicItems.length > 0 && (
-        <div style={{ ...panelBg, marginBottom: 12 }}>
-          <div style={secTitle}>{t("inv.attunement_header","✨ Attunement")} ({attunedItems.length}/{MAX_ATTUNEMENT})</div>
-
-          {/* Rest-Hinweis wenn Änderungen seit letzter Rast */}
-          {attunementChangedSinceRest.length > 0 && (
-            <div style={{
-              marginBottom: 8, padding: "6px 10px", borderRadius: 7,
-              background: `${C.amberBright}10`, border: `1px solid ${C.amberBright}44`,
-              fontSize: 11, color: C.amberBright, display: "flex", alignItems: "center", gap: 7,
-            }}>
-              <span>⏳</span>
-              <span>
-                {t("inv.attunement_change_warning","Attunement-Änderungen aktiv — benötigt")} <strong>{t("inv.attunement_rest_word","Kurze/Lange Rast")}</strong> {t("inv.attunement_complete","zum Abschließen")}
-                ({attunementChangedSinceRest.length} {attunementChangedSinceRest.length !== 1 ? t("inv.item_plural","Gegenstände") : t("inv.item_singular","Gegenstand")})
-              </span>
-            </div>
-          )}
-          <div style={{ display: "flex", gap: 6, marginBottom: attunedItems.length > 0 ? 10 : 0 }}>
-            {Array.from({ length: MAX_ATTUNEMENT }).map((_, i) => {
-              const uid  = attunedItems[i];
-              const item = uid ? inv.find(x => x.uid === uid) : null;
-              const col  = item ? RC[item.rar] || C.purpleBright : "#2a2440";
-              return (
-                <div key={i} style={{
-                  flex: 1, borderRadius: 8, border: `2px solid ${col}`,
-                  background: item ? `${col}18` : "rgba(0,0,0,0.3)",
-                  padding: "6px 8px", minHeight: 48,
-                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                  boxShadow: item ? GLOW[item.rar] : "none",
-                }}>
-                  {item ? (
-                    <>
-                      <div style={{ fontSize: 10, color: col, fontFamily: FH, fontWeight: 700, textAlign: "center", marginBottom: 2 }}>
-                        {item.name.length > 16 ? item.name.slice(0, 14) + "…" : item.name}
-                      </div>
-                      <button type="button" onClick={() => toggleAttune(uid)} style={{
-                        fontSize: 9, padding: "1px 6px", borderRadius: 4,
-                        background: `${C.red}22`, border: `1px solid ${C.red}55`,
-                        color: C.redBright, cursor: "pointer",
-                      }}>{t("inv.remove_word","entfernen")}</button>
-                    </>
-                  ) : (
-                    <div style={{ fontSize: 11, color: "#3a3060", fontFamily: FH }}>{t("inv.empty_slot","leer")}</div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Active bonus summary */}
-          {bonusSummary.length > 0 && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-              <span style={{ fontSize: 10, color: C.textDim, alignSelf: "center", marginRight: 2 }}>{t("inv.active_bonuses","Aktive Boni:")}</span>
-              {bonusSummary.map((b, i) => (
-                <span key={i} style={{
-                  fontSize: 10, padding: "2px 7px", borderRadius: 10,
-                  background: `${C.purpleBright}20`, border: `1px solid ${C.purpleBright}44`,
-                  color: C.purpleBright, fontWeight: 700,
-                }}>{b}</span>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
       {/* ── Equip-mode Banner ── */}
       {selForEquip && (
         <div style={{ ...sx.card, marginBottom:12, background:`${RC[selForEquip.rar]||C.purple}18`, border:`1px solid ${RC[selForEquip.rar]||C.purple}44` }}>
@@ -402,6 +335,88 @@ export default function CharInventory({ char, setChar }) {
             <span style={{color:"#00c840"}}>{t("inv.valid_slot_label","✚ Gültiger Slot")}</span>
             <span style={{margin:"0 8px"}}>·</span>
             <span style={{opacity:0.5}}>{t("inv.invalid_slot_label","Ausgegraut = inkompatibel")}</span>
+          </div>
+        )}
+      </div>
+
+      {/* ── Attunement Widget — always visible, sits directly under the
+             Equipment slots so the "gear column" reads top-to-bottom
+             (Slots → Attunement → Rucksack). When there are no magic
+             items yet, the 3 slots show an empty state (⟨"leer"⟩) just
+             like the equipment slots do. ── */}
+      <div style={{ ...panelBg, marginBottom: 12 }}>
+        <div style={secTitle}>{t("inv.attunement_header","✨ Attunement")} ({attunedItems.length}/{MAX_ATTUNEMENT})</div>
+
+        {attunementChangedSinceRest.length > 0 && (
+          <div style={{
+            marginBottom: 8, padding: "6px 10px", borderRadius: 7,
+            background: `${C.amberBright}10`, border: `1px solid ${C.amberBright}44`,
+            fontSize: 11, color: C.amberBright, display: "flex", alignItems: "center", gap: 7,
+          }}>
+            <span>⏳</span>
+            <span>
+              {t("inv.attunement_change_warning","Attunement-Änderungen aktiv — benötigt")} <strong>{t("inv.attunement_rest_word","Kurze/Lange Rast")}</strong> {t("inv.attunement_complete","zum Abschließen")}
+              ({attunementChangedSinceRest.length} {attunementChangedSinceRest.length !== 1 ? t("inv.item_plural","Gegenstände") : t("inv.item_singular","Gegenstand")})
+            </span>
+          </div>
+        )}
+
+        <div style={{ display: "flex", gap: 6, marginBottom: (attunedItems.length > 0 || allMagicItems.length === 0) ? 10 : 0 }}>
+          {Array.from({ length: MAX_ATTUNEMENT }).map((_, i) => {
+            const uid  = attunedItems[i];
+            const item = uid ? inv.find(x => x.uid === uid) : null;
+            const col  = item ? RC[item.rar] || C.purpleBright : "#2a2440";
+            return (
+              <div key={i} style={{
+                flex: 1, borderRadius: 8, border: `2px solid ${col}`,
+                background: item ? `${col}18` : "rgba(0,0,0,0.3)",
+                padding: "6px 8px", minHeight: 48,
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                boxShadow: item ? GLOW[item.rar] : "none",
+              }}>
+                {item ? (
+                  <>
+                    <div style={{ fontSize: 10, color: col, fontFamily: FH, fontWeight: 700, textAlign: "center", marginBottom: 2 }}>
+                      {item.name.length > 16 ? item.name.slice(0, 14) + "…" : item.name}
+                    </div>
+                    <button type="button" onClick={() => toggleAttune(uid)} style={{
+                      fontSize: 9, padding: "1px 6px", borderRadius: 4,
+                      background: `${C.red}22`, border: `1px solid ${C.red}55`,
+                      color: C.redBright, cursor: "pointer",
+                    }}>{t("inv.remove_word","entfernen")}</button>
+                  </>
+                ) : (
+                  <div style={{ fontSize: 11, color: "#3a3060", fontFamily: FH }}>{t("inv.empty_slot","leer")}</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Empty-state hint when the character owns no magic items yet — so
+            the widget explains *why* the slots are empty instead of looking
+            like a bug. Mirrors the "Rucksack leer" hint pattern below. */}
+        {allMagicItems.length === 0 && (
+          <div style={{
+            fontSize: 10, color: C.textDim, textAlign: "center",
+            padding: "4px 8px 0", fontStyle: "italic", lineHeight: 1.4,
+          }}>
+            {t("inv.attunement_empty_hint","Noch keine magischen Items im Inventar — hier erscheinen bis zu 3 attunierte Gegenstände.")}
+          </div>
+        )}
+
+        {/* Active bonus summary — only meaningful when at least one item is
+            attuned and actually grants bonuses. */}
+        {bonusSummary.length > 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+            <span style={{ fontSize: 10, color: C.textDim, alignSelf: "center", marginRight: 2 }}>{t("inv.active_bonuses","Aktive Boni:")}</span>
+            {bonusSummary.map((b, i) => (
+              <span key={i} style={{
+                fontSize: 10, padding: "2px 7px", borderRadius: 10,
+                background: `${C.purpleBright}20`, border: `1px solid ${C.purpleBright}44`,
+                color: C.purpleBright, fontWeight: 700,
+              }}>{b}</span>
+            ))}
           </div>
         )}
       </div>
