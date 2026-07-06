@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { aggregateBonuses, formatBonusSummary } from "../utils/magicItemBonuses.js";
-import { useI18n } from "../i18n/index.js";
+import { useI18n, itemLabel } from "../i18n/index.js";
 
 // ── Rarity colours ────────────────────────────────────────────────────────────
 const RC   = { Common: C.textDim, Uncommon: "#00c040", Rare: "#3b82f6", "Very Rare": "#a855f7", Legendary: "#f59e0b" };
@@ -226,7 +226,7 @@ export default function CharInventory({ char, setChar }) {
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
             <span style={{fontSize:20}}>{TICON[selForEquip.type]||"📦"}</span>
             <div style={{flex:1}}>
-              <div style={{fontFamily:FH,fontSize:12,color:RC[selForEquip.rar]||C.gold,fontWeight:700}}>{selForEquip.name}</div>
+              <div style={{fontFamily:FH,fontSize:12,color:RC[selForEquip.rar]||C.gold,fontWeight:700}}>{itemLabel(selForEquip.name)}</div>
               <div style={{fontSize:11,color:C.textDim}}>
                 {compatSlots.length > 0
                   ? `${t("inv.valid_slots","Gültige Slots:")} ${compatSlots.map(id => slotLabel(SLOTS.find(s=>s.id===id))).join(", ")}`
@@ -272,7 +272,7 @@ export default function CharInventory({ char, setChar }) {
                   if (selForEquip)         equipTo(slot.id);
                   else if (item)           setSlotModal({ ...item, _slotId: slot.id });
                 }}
-                title={item ? `${item.name}${info ? " · " + info : ""}` : slotLabel(slot)}
+                title={item ? `${itemLabel(item.name)}${info ? " · " + info : ""}` : slotLabel(slot)}
                 style={{
                   background: isOffLockedByTwoHand
                     ? "rgba(133,0,0,0.15)"
@@ -311,7 +311,7 @@ export default function CharInventory({ char, setChar }) {
                       textAlign:"center", width:"100%", overflow:"hidden", textOverflow:"ellipsis",
                       whiteSpace:"nowrap", padding:"0 2px", lineHeight:1.3,
                     }}>
-                      {item ? item.name : slotLabel(slot)}
+                      {item ? itemLabel(item.name) : slotLabel(slot)}
                     </span>
                     {item && info && (
                       <span style={{
@@ -377,7 +377,7 @@ export default function CharInventory({ char, setChar }) {
                 {item ? (
                   <>
                     <div style={{ fontSize: 10, color: col, fontFamily: FH, fontWeight: 700, textAlign: "center", marginBottom: 2 }}>
-                      {item.name.length > 16 ? item.name.slice(0, 14) + "…" : item.name}
+                      {(() => { const l = itemLabel(item.name); return l.length > 16 ? l.slice(0, 14) + "…" : l; })()}
                     </div>
                     <button type="button" onClick={() => toggleAttune(uid)} style={{
                       fontSize: 9, padding: "1px 6px", borderRadius: 4,
@@ -478,7 +478,7 @@ export default function CharInventory({ char, setChar }) {
                   <span style={{fontSize:20,flexShrink:0}}>{TICON[item.type]||"📦"}</span>
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{fontFamily:FH,fontSize:13,color:C.textBright,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-                      {item.name}
+                      {itemLabel(item.name)}
                       {isTwoHanded(item) && <span style={{fontSize:9,color:C.amberBright,marginLeft:6,fontFamily:F}}>2H</span>}
                       {item.magic && <span style={{fontSize:9,color:C.purpleBright,marginLeft:6,fontFamily:F}}>✨</span>}
                       {item.attunement && attunedItems.includes(item.uid) && <span style={{fontSize:9,color:C.purpleBright,marginLeft:3,fontFamily:F}}>🔗</span>}
@@ -608,7 +608,7 @@ export default function CharInventory({ char, setChar }) {
             <div style={{display:"flex",gap:14,alignItems:"flex-start",marginBottom:14}}>
               <span style={{fontSize:44}}>{TICON[slotModal.type]||"📦"}</span>
               <div>
-                <div style={{fontFamily:FH,fontSize:20,color:RC[slotModal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{slotModal.name}</div>
+                <div style={{fontFamily:FH,fontSize:20,color:RC[slotModal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{itemLabel(slotModal.name)}</div>
                 <div style={{fontSize:12,color:C.textDim,marginTop:4}}>
                   {slotModal.sub||slotModal.type} · <span style={{color:RC[slotModal.rar]||C.textDim}}>{slotModal.rar}</span>
                   <span style={{...sx.tag(C.purple),marginLeft:8,fontSize:9}}>{t("inv.equipped_tag","Ausgerüstet")}</span>

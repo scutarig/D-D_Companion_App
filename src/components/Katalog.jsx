@@ -2,7 +2,7 @@ import { useState } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { SRD_ITEMS, MAGIC_MODIFIERS, applyMagicModifier } from "../data/items.js";
 import { usePersist } from "../hooks/usePersist.js";
-import { useI18n } from "../i18n/index.js";
+import { useI18n, itemLabel } from "../i18n/index.js";
 import { useScrollLock } from "../hooks/useScrollLock.js";
 
 // Check if item can be enhanced with +0/+1/+2/+3 magic modifier
@@ -136,11 +136,19 @@ export default function Katalog({ char, setChar }) {
   const allItems = [...SRD_ITEMS, ...custom];
 
   const catFn  = CATS.find(c => c.id === cat)?.match || (() => true);
-  const shown  = allItems.filter(i =>
-    catFn(i) &&
-    (rar === "Alle" || i.rar === rar) &&
-    (!q || i.name.toLowerCase().includes(q.toLowerCase()) || i.sub?.toLowerCase().includes(q.toLowerCase()) || i.notes?.toLowerCase().includes(q.toLowerCase()))
-  );
+  const shown  = allItems.filter(i => {
+    if (!catFn(i)) return false;
+    if (rar !== "Alle" && i.rar !== rar) return false;
+    if (!q) return true;
+    const needle = q.toLowerCase();
+    // Match both the canonical (DE) and translated (EN) name so a user in
+    // English mode can search for "longsword" — otherwise the German-only
+    // catalogue name would silently miss.
+    return i.name.toLowerCase().includes(needle)
+        || itemLabel(i.name).toLowerCase().includes(needle)
+        || i.sub?.toLowerCase().includes(needle)
+        || i.notes?.toLowerCase().includes(needle);
+  });
 
   const countInInv = name => inv.filter(i => i.name === name).reduce((s,i)=>(s+(i.qty||1)),0);
   const addToInv = (item, magicPlus = 0) => {
@@ -239,7 +247,7 @@ export default function Katalog({ char, setChar }) {
               }}>
               <span style={{fontSize:22,flexShrink:0,marginTop:2}}>{TICON[item.type]||"📦"}</span>
               <div style={{flex:1,minWidth:0}}>
-                <div style={{fontFamily:FH,fontSize:12,color:C.textBright,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{item.name}</div>
+                <div style={{fontFamily:FH,fontSize:12,color:C.textBright,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{itemLabel(item.name)}</div>
                 <div style={{fontSize:9,color:col,marginBottom:3}}>{item.rar} · {item.sub||item.type}</div>
                 <div style={{display:"flex",gap:4,flexWrap:"wrap"}}>
                   {item.dmg && item.dmg!=="—" && <span style={{fontSize:9,color:C.red}}>⚔️ {item.dmg}</span>}
@@ -293,7 +301,7 @@ export default function Katalog({ char, setChar }) {
             <div style={{display:"flex",gap:14,alignItems:"flex-start",marginBottom:14,paddingRight:50}}>
               <span style={{fontSize:44}}>{TICON[modal.type]||"📦"}</span>
               <div style={{flex:1}}>
-                <div style={{fontFamily:FH,fontSize:20,color:RC[modal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{modal.name}</div>
+                <div style={{fontFamily:FH,fontSize:20,color:RC[modal.rar]||C.gold,fontWeight:700,lineHeight:1.2}}>{itemLabel(modal.name)}</div>
                 <div style={{fontSize:12,color:C.textDim,marginTop:4}}>
                   {modal.sub||modal.type} · <span style={{color:RC[modal.rar]||C.textDim}}>{modal.rar}</span>
                   {modal.custom && <span style={{...sx.tag(C.purple),marginLeft:8,fontSize:9}}>{t("katalog.custom_item_tag","Eigenes Item")}</span>}
@@ -329,7 +337,7 @@ export default function Katalog({ char, setChar }) {
                 </div>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                   {MAGIC_MODIFIERS.map(mod => {
-                    const previewName = mod.plus === 0 ? modal.name : `${modal.name} +${mod.plus}`;
+                    const previewName = mod.plus === 0 ? itemLabel(modal.name) : `${itemLabel(modal.name)} +${mod.plus}`;
                     const cnt = countInInv(previewName);
                     return (
                       <button type="button"

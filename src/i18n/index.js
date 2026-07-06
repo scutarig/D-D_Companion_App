@@ -22,6 +22,7 @@
 import { useEffect, useState } from "react";
 import { D3_KLASSEN } from "../data/classes.js";
 import { RACES_FULL } from "../data/races.js";
+import { ITEM_EN_NAMES } from "../data/items.js";
 
 const STORAGE_KEY = "app_lang_v1";
 const DEFAULT_LANG = "de";
@@ -3421,6 +3422,24 @@ export function raceLabel(name) {
   if (!name) return "";
   if (_currentLang === "de") return name;
   return _raceLookup.get(name) ?? name;
+}
+
+/**
+ * Translate an item name (as stored on inventory entries) to the active
+ * language. Handles magic-modifier suffixes generated at add-time — items
+ * like "Langschwert +2" get translated to "Longsword +2" by splitting off
+ * the trailing "+N" and re-applying it to the translated base name.
+ * Falls back to the raw name if no mapping exists (custom items, homebrew).
+ */
+export function itemLabel(name) {
+  if (!name) return "";
+  if (_currentLang === "de") return name;
+  // Detect a magic-modifier suffix ("Langschwert +2", "Kettenpanzer +1")
+  const m = name.match(/^(.+?)\s+(\+\d+)$/);
+  const base = m ? m[1] : name;
+  const suffix = m ? " " + m[2] : "";
+  const en = ITEM_EN_NAMES[base] ?? base;
+  return en + suffix;
 }
 
 /** React hook: returns { lang, setLang, t } */
