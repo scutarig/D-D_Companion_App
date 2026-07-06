@@ -88,8 +88,12 @@ export default function CharSwitcher({ variant = "sidebar" }) {
     cursor: "pointer", letterSpacing: 0.5,
     padding: "6px 10px",
     display: "flex", alignItems: "center", justifyContent: "center",
-    flexShrink: 0,
-    minWidth: 56,
+    // Fill the mobile strip 50/50 with the ⚙ button next to it.
+    // width + minWidth: 0 + overflow-hidden let the emoji stay centred without
+    // the intrinsic content width forcing the wrapper wider than half.
+    width: "100%",
+    minWidth: 0,
+    overflow: "hidden",
   } : {
     background: `${C.amberBright}11`,
     border: `1px solid ${C.amberBright}55`,
@@ -111,7 +115,11 @@ export default function CharSwitcher({ variant = "sidebar" }) {
   return (
     <div ref={wrapRef} style={{
       position: "relative",
-      flexShrink: 0,
+      // Compact: fill half the mobile strip so it splits 50/50 with the ⚙
+      // button next to it. Sidebar: full-width column entry.
+      flex: variant === "compact" ? "1 1 0" : undefined,
+      minWidth: variant === "compact" ? 0 : undefined,
+      flexShrink: variant === "compact" ? 1 : 0,
       display: variant === "compact" ? "flex" : undefined,
       alignSelf: variant === "compact" ? "stretch" : undefined,
       width: variant === "sidebar" ? "100%" : undefined,

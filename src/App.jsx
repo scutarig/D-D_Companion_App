@@ -937,18 +937,23 @@ function AppInner() {
         );
       })()}
 
-      {/* Mode-Toggle-Strip — über Bottom-Nav, prominenter Wechsel-Button */}
+      {/* Account-Strip — CharSwitcher (left) + Settings (right) split 50/50.
+          Grid guarantees the two columns stay exactly equal regardless of
+          intrinsic content width; flex was giving one child ~20 px more when
+          its content had a longer min-content size. */}
       <div style={{
         background: "#0e0c14",
         borderTop: "1px solid rgba(201,168,76,0.10)",
         padding: "6px 10px",
         flexShrink: 0,
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
         gap: 6,
         alignItems: "stretch",
       }}>
         <CharSwitcher variant="compact" />
-        {/* Mode toggle (DM/Spieler) lives inside the Settings modal now. */}
+        {/* Mode toggle (DM/Spieler) lives inside the Settings modal now.
+            CharSwitcher + ⚙ split the mobile strip 50/50 via flex: 1 on both. */}
         <button type="button" data-phone-compact
           onClick={() => setSettingsOpen(true)}
           title={t("settings.title","Einstellungen")}
@@ -961,8 +966,8 @@ function AppInner() {
             fontFamily: FH, fontSize: 14, fontWeight: 700,
             cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
-            marginLeft: "auto",
+            flex: "1 1 0",
+            minWidth: 0,
           }}>
           ⚙
         </button>
