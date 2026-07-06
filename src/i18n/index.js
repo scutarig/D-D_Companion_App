@@ -20,6 +20,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useEffect, useState } from "react";
+import { D3_KLASSEN } from "../data/classes.js";
+import { RACES_FULL } from "../data/races.js";
 
 const STORAGE_KEY = "app_lang_v1";
 const DEFAULT_LANG = "de";
@@ -36,6 +38,7 @@ const TRANSLATIONS = {
     "mode.confirm_dm_desc": "Im DM-Modus siehst du alle Monster-Stats ohne Spoiler-Filter und alle Referenzen. Save/PDF-Funktionen + Rast-Buttons werden versteckt.",
     "mode.confirm_player_desc": "Im Spieler-Modus werden alle DM-Tabs (Kampf, Bestiary, Klassen-Ref, Völker-Ref, Encounter) ausgeblendet. Save/PDF und Heldenhafte Inspiration werden wieder sichtbar.",
     "header.heroic_inspiration": "Heldenhafte Inspiration",
+    "header.level_word": "Level",
     "header.short_rest": "Kurze Rast",
     "header.long_rest": "Lange Rast",
     "rest.short_active": "◆ KURZE RAST",
@@ -1052,6 +1055,7 @@ const TRANSLATIONS = {
     "inv.attunement_complete": "zum Abschließen",
     "inv.item_singular": "Gegenstand",
     "inv.item_plural": "Gegenstände",
+    "inv.attunement_empty_hint": "Noch keine magischen Items im Inventar — hier erscheinen bis zu 3 attunierte Gegenstände.",
     "inv.active_bonuses": "Aktive Boni:",
     "inv.remove_word": "entfernen",
     "inv.empty_slot": "leer",
@@ -1694,6 +1698,7 @@ const TRANSLATIONS = {
     "mode.confirm_dm_desc": "In DM mode you see all monster stats without spoiler filter and all references. Save/PDF + Rest buttons are hidden.",
     "mode.confirm_player_desc": "In Player mode all DM tabs (Combat, Bestiary, Classes Ref, Species Ref, Encounter) are hidden. Save/PDF and Heroic Inspiration become visible again.",
     "header.heroic_inspiration": "Heroic Inspiration",
+    "header.level_word": "Level",
     "header.short_rest": "Short Rest",
     "header.long_rest": "Long Rest",
     "rest.short_active": "◆ SHORT REST",
@@ -2710,6 +2715,7 @@ const TRANSLATIONS = {
     "inv.attunement_complete": "to complete",
     "inv.item_singular": "item",
     "inv.item_plural": "items",
+    "inv.attunement_empty_hint": "No magical items in your inventory yet — up to 3 attuned items will appear here.",
     "inv.active_bonuses": "Active bonuses:",
     "inv.remove_word": "remove",
     "inv.empty_slot": "empty",
@@ -3373,6 +3379,48 @@ export function getLang() {
 export function t(key, fallback = "") {
   const dict = TRANSLATIONS[_currentLang] || TRANSLATIONS[DEFAULT_LANG];
   return dict[key] ?? fallback ?? key;
+}
+
+// ─── Data-side label helpers ────────────────────────────────────────────────
+// Data models (chars, wizard state) store class + race names in German
+// verbatim ("Kämpfer", "Elf"), because that's how the wizard writes them.
+// UI can't just render the raw field when lang="en", or "Kämpfer" leaks into
+// the English screen. These helpers do a DE→EN lookup against the canonical
+// data tables. When no mapping exists (custom-typed names, legacy chars) we
+// fall back to the raw string so nothing disappears.
+//
+// classes.js uses `enName`, races.js uses `nameEN` — the helpers hide that
+// asymmetry from callers.
+//
+// Both maps also index each entry under its EN name (identity), so a char
+// that was created with an EN class already resolves correctly instead of
+// missing the lookup and echoing "Fighter" as-is (still correct — but this
+// keeps the code path uniform).
+
+const _classLookup = new Map();
+for (const c of D3_KLASSEN) {
+  if (c.name)   _classLookup.set(c.name,   c.enName || c.name);
+  if (c.enName) _classLookup.set(c.enName, c.enName);
+}
+
+const _raceLookup = new Map();
+for (const r of RACES_FULL) {
+  if (r.name)   _raceLookup.set(r.name,   r.nameEN || r.name);
+  if (r.nameEN) _raceLookup.set(r.nameEN, r.nameEN);
+}
+
+/** Translate a class name (as stored on char.klass) to the active language. */
+export function classLabel(name) {
+  if (!name) return "";
+  if (_currentLang === "de") return name;
+  return _classLookup.get(name) ?? name;
+}
+
+/** Translate a race name (as stored on char.race) to the active language. */
+export function raceLabel(name) {
+  if (!name) return "";
+  if (_currentLang === "de") return name;
+  return _raceLookup.get(name) ?? name;
 }
 
 /** React hook: returns { lang, setLang, t } */

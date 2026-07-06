@@ -16,7 +16,7 @@ import { buildCharPdfHtml } from "./utils/charPdf.js";
 import { getPB, buildSlotsForLevel } from "./utils/helpers.js";
 import { applyShortRest, applyLongRest, grantsHeroicInspirationOnLR } from "./utils/restHelpers.js";
 import { getMasteryCount } from "./data/weaponMasteries.js";
-import { useI18n } from "./i18n/index.js";
+import { useI18n, classLabel, raceLabel } from "./i18n/index.js";
 import { CharProvider, useChar } from "./context/CharContext.jsx";
 import { CombatProvider } from "./context/CombatContext.jsx";
 import { useIsMobile } from "./hooks/useIsMobile.js";
@@ -185,7 +185,7 @@ function CharHeader({ restBanner, setRestBanner, restHpInput, setRestHpInput, se
         <div>
           <div style={{ fontFamily:FH, fontSize:14, fontWeight:700, color:C.gold, lineHeight:1.1 }}>{char.name}</div>
           <div style={{ fontSize:11, color:C.textDim, marginTop:1, display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
-            <span>{char.race} · {char.klass} · Level {char.level}</span>
+            <span>{raceLabel(char.race)} · {classLabel(char.klass)} · {t("header.level_word","Level")} {char.level}</span>
             {char.originFeat && (
               <span
                 title={`Origin Feat (von Background ${char.background || "—"})`}
