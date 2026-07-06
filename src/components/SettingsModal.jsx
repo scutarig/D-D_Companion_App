@@ -61,7 +61,7 @@ export function useUserSettings() {
   return [settings, setSettings];
 }
 
-export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF, canExportPDF = true, tabs = [] }) {
+export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF, canExportPDF = true, tabs = [], mode, onRequestModeSwitch }) {
   const { t, lang, setLang } = useI18n();
   const [settings, setSettings] = useUserSettings();
   const { setChars, setAid } = useChar();
@@ -193,6 +193,32 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
     );
   };
 
+  const isDM = mode === "dm";
+  const ModeChip = ({ id, label, icon, tint }) => {
+    const on = (id === "dm" && isDM) || (id === "player" && !isDM);
+    return (
+      <button type="button"
+        onClick={() => { if (!on) onRequestModeSwitch?.(); }}
+        aria-pressed={on}
+        style={{
+          padding: "6px 12px",
+          borderRadius: 8,
+          border: `1px solid ${on ? tint + "aa" : C.border}`,
+          background: on ? `${tint}22` : "transparent",
+          color: on ? tint : C.text,
+          fontSize: 11,
+          fontFamily: FH,
+          fontWeight: 700,
+          cursor: on ? "default" : "pointer",
+          letterSpacing: 0.5,
+          display: "flex", alignItems: "center", gap: 4,
+        }}>
+        <span style={{ fontSize: 13 }}>{icon}</span>
+        <span>{label}</span>
+      </button>
+    );
+  };
+
   const LangChip = ({ id, label }) => {
     const on = lang === id;
     return (
@@ -250,6 +276,16 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
 
   return (
     <Modal open={open} onClose={onClose} title={`⚙ ${t("settings.title","Einstellungen")}`} maxWidth={420}>
+      {onRequestModeSwitch && (
+        <Row label={t("settings.mode","Modus")}
+          hint={t("settings.mode_hint","Wechselt zwischen Spieler- und DM-Ansicht. Öffnet einen Bestätigungs-Dialog.")}>
+          <div style={{ display: "flex", gap: 6 }}>
+            <ModeChip id="player" label={t("settings.mode_player","Spieler")} icon="👤" tint={C.gold} />
+            <ModeChip id="dm"     label={t("settings.mode_dm","DM")}         icon="🎲" tint={C.purpleBright} />
+          </div>
+        </Row>
+      )}
+
       <Row label={t("settings.language","Sprache")}
         hint={t("settings.language_hint","Wechselt die Oberfläche zwischen Deutsch und Englisch.")}>
         <div style={{ display: "flex", gap: 6 }}>

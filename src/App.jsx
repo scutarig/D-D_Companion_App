@@ -838,27 +838,7 @@ function AppInner() {
             }}>
             ⚙
           </button>
-          {/* Mode-Toggle: icon-only, same footprint as ⚙ / 🧙 so the sidebar
-              bottom cluster reads as one row of equally-weighted controls. */}
-          <button type="button"
-            onClick={requestModeSwitch}
-            title={isDM ? "🎲 DM-Modus aktiv — Klick: Wechsel in Spieler-Modus" : "👤 Spieler-Modus aktiv — Klick: Wechsel in DM-Modus"}
-            aria-label={isDM ? "DM-Modus aktiv" : "Spieler-Modus aktiv"}
-            style={{
-              width: "100%",
-              padding: "6px 4px",
-              borderRadius: 8,
-              border: `1px solid ${isDM ? C.purpleBright : C.gold}55`,
-              background: isDM ? `${C.purple}11` : `${C.gold}11`,
-              color: isDM ? C.purpleBright : C.gold,
-              fontFamily: FH, fontWeight: 700,
-              cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              lineHeight: 1,
-            }}
-          >
-            <span style={{ fontSize: 16 }}>{isDM ? "🎲" : "👤"}</span>
-          </button>
+          {/* Mode toggle (DM/Spieler) lives inside the Settings modal now. */}
         </div>
       </aside>
 
@@ -897,7 +877,7 @@ function AppInner() {
         </main>
       </div>
       {modeConfirmModal}
-      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} tabs={ALL_TABS} />
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} tabs={ALL_TABS} mode={mode} onRequestModeSwitch={requestModeSwitch} />
     </div>
   );
 
@@ -968,34 +948,7 @@ function AppInner() {
         alignItems: "stretch",
       }}>
         <CharSwitcher variant="compact" />
-        <button type="button" data-phone-compact
-          onClick={requestModeSwitch}
-          style={{
-            padding: "8px 10px",
-            borderRadius: 9,
-            border: `1.5px solid ${isDM ? C.purpleBright : C.gold}`,
-            background: isDM
-              ? `linear-gradient(135deg, ${C.purple}55 0%, ${C.purple}22 100%)`
-              : `linear-gradient(135deg, ${C.gold}33 0%, ${C.gold}11 100%)`,
-            color: isDM ? C.purpleBright : C.gold,
-            fontFamily: FH,
-            fontWeight: 700,
-            fontSize: 10,
-            letterSpacing: 0.5,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 6,
-            boxShadow: isDM ? `0 0 12px ${C.purple}44` : `0 0 12px ${C.gold}33`,
-            flex: "0 0 auto",
-            minWidth: 0,
-          }}
-        >
-          <span style={{ fontSize: 14 }}>{isDM ? "🎲" : "👤"}</span>
-          <span style={{ overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{isDM ? t("save.dm_short","DM") : t("save.player_short","SPIELER")}</span>
-          <span style={{ fontSize: 9, opacity: 0.6 }}>↻</span>
-        </button>
+        {/* Mode toggle (DM/Spieler) lives inside the Settings modal now. */}
         <button type="button" data-phone-compact
           onClick={() => setSettingsOpen(true)}
           title={t("settings.title","Einstellungen")}
@@ -1063,7 +1016,7 @@ function AppInner() {
         })}
       </nav>
       {modeConfirmModal}
-      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} tabs={ALL_TABS} />
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} onExportJSON={exportJSON} onExportPDF={exportPDF} canExportPDF={!!active} tabs={ALL_TABS} mode={mode} onRequestModeSwitch={requestModeSwitch} />
     </div>
   );
 }
