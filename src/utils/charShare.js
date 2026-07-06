@@ -1,11 +1,12 @@
-// ── Character share encoding/decoding ──────────────────────────────────────
-// Encode a character as a URL-safe base64 string so it can be embedded in a
-// share URL (and rendered as QR code). Uses gzip-like compaction via JSON
-// minification; raw base64 keeps things simple, no external compression dep.
+// ── Legacy character share decoder ─────────────────────────────────────────
+// The QR-share encoder and its UI were removed because the payload skipped
+// per-character sidecar data (spells, slots, companions, …) — full backup is
+// now the only supported transfer path. What's left here is the DECODE side
+// so URLs like `<origin>/#share=<base64>` that older versions of the app
+// already handed out to players still import correctly on receive.
 //
-// URL format:  <origin>/#share=<base64>
-// Max practical QR payload at error-correction-L: ~2900 chars. A typical full
-// character JSON is ~1-3 KB minified → base64 adds ~33% → fits comfortably.
+// The base64 encoding uses a URL-safe alphabet (`-` and `_` instead of `+`
+// and `/`) with the padding stripped, matching what the old encoder produced.
 
 const MAGIC = "dndchar:v1:";
 
