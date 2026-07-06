@@ -22,7 +22,7 @@
 import { useEffect, useState } from "react";
 import { D3_KLASSEN } from "../data/classes.js";
 import { RACES_FULL } from "../data/races.js";
-import { ITEM_EN_NAMES } from "../data/items.js";
+import { ITEM_EN_NAMES, ITEM_EN_NOTES, ITEM_EN_EFF } from "../data/items.js";
 
 const STORAGE_KEY = "app_lang_v1";
 const DEFAULT_LANG = "de";
@@ -3440,6 +3440,27 @@ export function itemLabel(name) {
   const suffix = m ? " " + m[2] : "";
   const en = ITEM_EN_NAMES[base] ?? base;
   return en + suffix;
+}
+
+/** Translate an item's `notes` field. Falls back to raw notes when no
+ *  translation is registered (custom / homebrew / newly-added items). */
+export function itemNotes(item) {
+  if (!item) return "";
+  const raw = item.notes ?? "";
+  if (_currentLang === "de") return raw;
+  // Look up by the item's canonical German name (strip magic-modifier
+  // suffix so "Langschwert +2" still resolves to the base entry).
+  const key = String(item.name || "").replace(/\s+\+\d+$/, "");
+  return ITEM_EN_NOTES[key] ?? raw;
+}
+
+/** Translate an item's `eff` field. Same fallback semantics as itemNotes. */
+export function itemEff(item) {
+  if (!item) return "";
+  const raw = item.eff ?? "";
+  if (_currentLang === "de") return raw;
+  const key = String(item.name || "").replace(/\s+\+\d+$/, "");
+  return ITEM_EN_EFF[key] ?? raw;
 }
 
 /** React hook: returns { lang, setLang, t } */

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { C, sx, F, FH } from "../constants/theme.js";
 import { aggregateBonuses, formatBonusSummary } from "../utils/magicItemBonuses.js";
-import { useI18n, itemLabel } from "../i18n/index.js";
+import { useI18n, itemLabel, itemNotes, itemEff } from "../i18n/index.js";
 
 // ── Rarity colours ────────────────────────────────────────────────────────────
 const RC   = { Common: C.textDim, Uncommon: "#00c040", Rare: "#3b82f6", "Very Rare": "#a855f7", Legendary: "#f59e0b" };
@@ -105,7 +105,8 @@ function keyInfo(item) {
   const parts = [];
   if (item.ac  && item.ac  !== "—") parts.push(`🛡️ ${item.ac}`);
   if (item.dmg && item.dmg !== "—") parts.push(`⚔️ ${item.dmg}`);
-  if (item.eff && item.eff !== "—") parts.push(`✨ ${item.eff.length > 14 ? item.eff.slice(0,12)+"…" : item.eff}`);
+  const effTxt = itemEff(item);
+  if (effTxt && effTxt !== "—") parts.push(`✨ ${effTxt.length > 14 ? effTxt.slice(0,12)+"…" : effTxt}`);
   if (item.wt  && item.wt  !== "—" && parts.length < 2) parts.push(`${item.wt}`);
   return parts.slice(0, 2).join(" · ");
 }
@@ -511,14 +512,14 @@ export default function CharInventory({ char, setChar }) {
                       <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
                         {item.dmg && item.dmg!=="—" && <span style={sx.tag(C.red)}>⚔️ {item.dmg}</span>}
                         {item.ac  && <span style={sx.tag(C.blue)}>🛡️ {item.ac}</span>}
-                        {item.eff && item.eff!=="—" && <span style={sx.tag(C.green)}>✨ {item.eff}</span>}
+                        {itemEff(item) && itemEff(item)!=="—" && <span style={sx.tag(C.green)}>✨ {itemEff(item)}</span>}
                         {item.wt  && item.wt!=="—"  && <span style={sx.tag(C.textDim)}>⚖️ {item.wt}</span>}
                         {isTwoHanded(item) && <span style={sx.tag(C.amber)}>{t("inv.two_handed_short","Zweihändig")}</span>}
                       </div>
                     )}
-                    {item.notes && item.notes!=="—" && (
+                    {itemNotes(item) && itemNotes(item)!=="—" && (
                       <div style={{fontSize:12,color:C.text,lineHeight:1.6,padding:"8px 10px",background:"rgba(0,0,0,0.3)",borderRadius:6}}>
-                        {item.notes}
+                        {itemNotes(item)}
                       </div>
                     )}
                     {/* Attunement toggle */}
@@ -619,12 +620,12 @@ export default function CharInventory({ char, setChar }) {
             <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:14}}>
               {slotModal.dmg && slotModal.dmg!=="—" && <span style={sx.tag(C.red)}>⚔️ {slotModal.dmg}</span>}
               {slotModal.ac  && <span style={sx.tag(C.blue)}>🛡️ {slotModal.ac}</span>}
-              {slotModal.eff && <span style={sx.tag(C.green)}>✨ {slotModal.eff}</span>}
+              {itemEff(slotModal) && <span style={sx.tag(C.green)}>✨ {itemEff(slotModal)}</span>}
               {slotModal.wt  && slotModal.wt!=="—" && <span style={sx.tag(C.textDim)}>⚖️ {slotModal.wt}</span>}
             </div>
-            {slotModal.notes && slotModal.notes!=="—" && (
+            {itemNotes(slotModal) && itemNotes(slotModal)!=="—" && (
               <div style={{fontSize:13,color:C.text,lineHeight:1.7,marginBottom:16,padding:"10px 12px",background:"rgba(0,0,0,0.3)",borderRadius:8}}>
-                {slotModal.notes}
+                {itemNotes(slotModal)}
               </div>
             )}
             <div style={{display:"flex",gap:8}}>
