@@ -1,14 +1,19 @@
 import { C, sx, FH } from "../../constants/theme.js";
 import { useChar } from "../../context/CharContext.jsx";
 import { useProficiencies } from "../../hooks/useProficiencies.js";
-import { calculateProficiencyBonus, PROF_CATEGORIES } from "../../utils/proficiency.js";
+import { calculateProficiencyBonus, PROF_CATEGORIES, deriveProficiencies } from "../../utils/proficiency.js";
 import { useI18n } from "../../i18n/index.js";
 import ProficiencyList from "./ProficiencyList.jsx";
 
 export default function ProficienciesPage() {
   const { t } = useI18n();
   const { active: char, aid } = useChar();
-  const { proficiencies, add, update, remove } = useProficiencies(aid);
+  const { proficiencies: manual, add, update, remove } = useProficiencies(aid);
+  // Class / background / race proficiencies show up read-only alongside
+  // the manually-added ones so the page reflects everything the character
+  // actually has, not just what the user typed in.
+  const derived = deriveProficiencies(char);
+  const proficiencies = [...derived, ...manual];
 
   const level = char?.level ?? 1;
   const pb = calculateProficiencyBonus(level);

@@ -87,8 +87,8 @@ export default function ProficiencyList({ proficiencies, add, update, remove, pb
                   prof={prof}
                   cat={group}
                   pb={pb}
-                  onEdit={() => handleEdit(prof)}
-                  onDelete={() => remove(prof.id)}
+                  onEdit={prof.locked ? null : () => handleEdit(prof)}
+                  onDelete={prof.locked ? null : () => remove(prof.id)}
                 />
               ))}
             </div>
@@ -164,17 +164,27 @@ function ProficiencyItem({ prof, cat, pb, onEdit, onDelete }) {
         </span>
       )}
 
-      {/* Actions */}
-      <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
-        <button type="button"
-          onClick={onEdit}
-          style={{ ...sx.bsm(C.border), padding: "3px 8px", fontSize: 12, color: C.textDim }}
-        >✎</button>
-        <button type="button"
-          onClick={onDelete}
-          style={{ ...sx.bsm(C.red), padding: "3px 8px", fontSize: 12 }}
-         aria-label={t("modal.close","Schließen")}>✕</button>
-      </div>
+      {/* Actions — hidden on locked (auto-derived) items so they can't be
+          removed here; changing them requires editing the underlying char
+          on the Character tab. */}
+      {prof.locked ? (
+        <span title={prof.notes} style={{
+          fontSize: 9, fontWeight: 700, color: C.textDim,
+          background: C.surface, border: `1px solid ${C.border}`,
+          borderRadius: 8, padding: "2px 6px", flexShrink: 0, letterSpacing: 0.3,
+        }}>🔒 AUTO</span>
+      ) : (
+        <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
+          <button type="button"
+            onClick={onEdit}
+            style={{ ...sx.bsm(C.border), padding: "3px 8px", fontSize: 12, color: C.textDim }}
+          >✎</button>
+          <button type="button"
+            onClick={onDelete}
+            style={{ ...sx.bsm(C.red), padding: "3px 8px", fontSize: 12 }}
+            aria-label="Delete">✕</button>
+        </div>
+      )}
     </div>
   );
 }

@@ -13,7 +13,7 @@ import { computeAllResources } from "../data/classResources.js";
 import { SPELLS } from "../data/spells.js";
 import { useCompanions } from "../hooks/useCompanions.js";
 import { useProficiencies } from "../hooks/useProficiencies.js";
-import { calculateProficiencyBonus, PROF_CATEGORIES } from "../utils/proficiency.js";
+import { calculateProficiencyBonus, PROF_CATEGORIES, deriveProficiencies } from "../utils/proficiency.js";
 import { useDerivedStats } from "../hooks/useDerivedStats.js";
 import { useI18n } from "../i18n/index.js";
 import DerivedStatsWidget from "./CharacterSheet/DerivedStatsWidget.jsx";
@@ -136,7 +136,10 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const slotLabel = (sd) => sd?.key ? t(sd.key, sd.label) : (sd?.label || "");
   const { active: char, setActive: setChar, aid } = useChar();
   const { companions, updateHp: updateCompanionHp, update: updateCompanion, remove: removeCompanion } = useCompanions(aid);
-  const { proficiencies } = useProficiencies(aid);
+  const { proficiencies: manualProficiencies } = useProficiencies(aid);
+  // Sidebar widget + derived-stats need to see class/background/race
+  // proficiencies too, not only manual entries.
+  const proficiencies = [...deriveProficiencies(char), ...manualProficiencies];
   const derivedStats = useDerivedStats(char, proficiencies);
   const { classes } = useMulticlass(aid, char, null);
   const autoResources = computeAllResources(classes, char);
