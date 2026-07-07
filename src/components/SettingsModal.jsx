@@ -253,24 +253,37 @@ export default function SettingsModal({ open, onClose, onExportJSON, onExportPDF
     </div>
   );
 
+  // A labelled AN/AUS chip instead of a sliding pill. The sliding pill (46×24
+  // with an absolutely-positioned knob) rendered as a giant native-styled
+  // square on Samsung Galaxy S7 FE — the WebView's default `<button>`
+  // appearance leaked through inline `border-radius` in that build.
+  //
+  // This chip variant matches ModeChip / LangChip elsewhere in this same
+  // modal (which the user confirmed render correctly), and defensively resets
+  // every property native mobile browsers tend to override: `appearance`,
+  // `WebkitAppearance`, `boxSizing`, `WebkitTapHighlightColor`.
   const Toggle = ({ on, onChange, colorOn = C.greenBright }) => (
     <button type="button" onClick={() => onChange(!on)} role="switch" aria-checked={on}
       style={{
-        width: 46, height: 24,
-        borderRadius: 12,
-        border: `1px solid ${on ? colorOn + "88" : C.border}`,
-        background: on ? `${colorOn}33` : C.surface,
+        appearance: "none",
+        WebkitAppearance: "none",
+        boxSizing: "border-box",
+        WebkitTapHighlightColor: "transparent",
+        padding: "6px 14px",
+        minWidth: 60,
+        borderRadius: 8,
+        border: `1px solid ${on ? colorOn + "aa" : C.border}`,
+        background: on ? `${colorOn}22` : "transparent",
+        color: on ? colorOn : C.textDim,
+        fontSize: 11,
+        fontFamily: FH,
+        fontWeight: 700,
+        letterSpacing: 0.5,
         cursor: "pointer",
-        position: "relative",
-        transition: "background .15s, border-color .15s",
+        textAlign: "center",
+        transition: "background .15s, color .15s, border-color .15s",
       }}>
-      <span style={{
-        position: "absolute", top: 2, left: on ? 24 : 2,
-        width: 18, height: 18,
-        borderRadius: "50%",
-        background: on ? colorOn : C.textDim,
-        transition: "left .15s, background .15s",
-      }} />
+      {on ? t("settings.toggle_on","AN") : t("settings.toggle_off","AUS")}
     </button>
   );
 
