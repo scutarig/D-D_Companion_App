@@ -913,71 +913,62 @@ function AppInner() {
         </div>
       </main>
 
-      {/* Sub-menu panel — appears between content and nav.
-          zIndex: 5 keeps the panel and its buttons above any content that
-          might have positioned children (equipped slots on the char sheet,
-          combat-log overlays, etc.). Without an explicit stacking context
-          the buttons sometimes end up behind items that use position:relative,
-          which was the root cause of the "taps go through / nothing opens"
-          bug on Samsung Galaxy S7 FE — the sub-menu rendered visually but a
-          higher-priority element captured the touch.
-          The onClick on each button uses stopPropagation so an accidental
-          bubble to main's close-on-outside-click never eats the tap. */}
+      {/* Sub-menu — full-screen fixed overlay (backdrop + bottom sheet).
+          Earlier attempts kept the panel in normal flex flow between main
+          and nav, but on tablet the taps "fell through" to the content
+          behind it (user report: tapping a child landed on the GP row of
+          the sheet below). Root cause was a fragile stacking context plus a
+          capture-phase stopPropagation that swallowed the child buttons'
+          touch events.
+          A fixed overlay with a high z-index removes every ambiguity: the
+          backdrop owns the whole viewport, so nothing behind it is
+          reachable, and the buttons live in their own top layer. Backdrop
+          tap closes; button tap switches the tab. Plain onClick is enough
+          once the element is genuinely on top. */}
       {mobileMenu && (() => {
         const group = (isDM ? MOBILE_NAV_DM : MOBILE_NAV_PLAYER).find(n => n.id === mobileMenu);
         if (!group?.children) return null;
         return (
           <div
-            onTouchStartCapture={(e) => e.stopPropagation()}
+            onClick={() => setMobileMenu(null)}
             style={{
-              background: "linear-gradient(180deg,#1e1a2e 0%,#18142a 100%)",
-              borderTop: `1px solid ${C.border}`,
-              padding: "12px",
-              flexShrink: 0,
-              position: "relative",
-              zIndex: 5,
-              touchAction: "manipulation",
+              position: "fixed", inset: 0, zIndex: 8000,
+              background: "rgba(0,0,0,0.55)",
+              display: "flex", flexDirection: "column", justifyContent: "flex-end",
             }}>
-            {/* Handle bar */}
-            <div style={{ width:32, height:3, background:C.border, borderRadius:2, margin:"0 auto 10px" }} />
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:7 }}>
-              {group.children.map(child => {
-                const isActive = tab === child.id;
-                // Belt-and-braces: track pointer-down + fire on pointer-up.
-                // The Samsung Galaxy S7 FE WebView drops the synthesized
-                // `click` when the target unmounts between touchend and
-                // click. onPointerUp fires earlier in the touch pipeline and
-                // survives the re-render. `firedRef` blocks double-invoke
-                // when both pointerup and click actually make it through.
-                const firedRef = { current: false };
-                const openChild = (e) => {
-                  if (firedRef.current) return;
-                  firedRef.current = true;
-                  e.stopPropagation();
-                  setTab(child.id);
-                  setMobileMenu(null);
-                };
-                return (
-                  <button type="button" key={child.id}
-                    onPointerUp={openChild}
-                    onTouchEnd={openChild}
-                    onClick={openChild}
-                    style={{
-                      display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
-                      gap:5, padding:"11px 6px", borderRadius:11, cursor:"pointer",
-                      background: isActive ? `${C.purple}33` : C.surface,
-                      border: `1px solid ${isActive ? C.purpleBright + "88" : C.border}`,
-                      color: isActive ? C.purpleBright : C.text,
-                      boxShadow: isActive ? `0 0 12px ${C.purple}44` : "none",
-                      transition: "all .15s",
-                      WebkitTapHighlightColor: "transparent",
-                      touchAction: "manipulation",
-                    }}>
-                    <span style={{ fontSize:22 }}>{child.icon}</span>
-                    <span style={{ fontSize:10, fontFamily:FH, letterSpacing:0.4, textAlign:"center", lineHeight:1.2 }}>{child.labelKey ? t(child.labelKey, child.label) : child.label}</span>
-                  </button>
-                );
-              })}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                background: "linear-gradient(180deg,#1e1a2e 0%,#18142a 100%)",
+                borderTop: `1px solid ${C.border}`,
+                borderRadius: "16px 16px 0 0",
+                padding: "12px 12px calc(16px + env(safe-area-inset-bottom,0px))",
+                boxShadow: "0 -8px 40px rgba(0,0,0,0.6)",
+              }}>
+              {/* Handle bar */}
+              <div style={{ width:36, height:4, background:C.border, borderRadius:2, margin:"0 auto 12px" }} />
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:8 }}>
+                {group.children.map(child => {
+                  const isActive = tab === child.id;
+                  return (
+                    <button type="button" key={child.id}
+                      onClick={() => { setTab(child.id); setMobileMenu(null); }}
+                      style={{
+                        display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
+                        gap:5, padding:"14px 6px", borderRadius:12, cursor:"pointer",
+                        background: isActive ? `${C.purple}33` : C.surface,
+                        border: `1px solid ${isActive ? C.purpleBright + "88" : C.border}`,
+                        color: isActive ? C.purpleBright : C.text,
+                        boxShadow: isActive ? `0 0 12px ${C.purple}44` : "none",
+                        WebkitTapHighlightColor: "transparent",
+                        touchAction: "manipulation",
+                      }}>
+                      <span style={{ fontSize:24 }}>{child.icon}</span>
+                      <span style={{ fontSize:11, fontFamily:FH, letterSpacing:0.4, textAlign:"center", lineHeight:1.2 }}>{child.labelKey ? t(child.labelKey, child.label) : child.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         );
