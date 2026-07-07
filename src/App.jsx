@@ -934,13 +934,23 @@ function AppInner() {
             <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:7 }}>
               {group.children.map(child => {
                 const isActive = tab === child.id;
+                // Belt-and-braces: track pointer-down + fire on pointer-up.
+                // The Samsung Galaxy S7 FE WebView drops the synthesized
+                // `click` when the target unmounts between touchend and
+                // click. onPointerUp fires earlier in the touch pipeline and
+                // survives the re-render. `firedRef` blocks double-invoke
+                // when both pointerup and click actually make it through.
+                const firedRef = { current: false };
                 const openChild = (e) => {
+                  if (firedRef.current) return;
+                  firedRef.current = true;
                   e.stopPropagation();
                   setTab(child.id);
                   setMobileMenu(null);
                 };
                 return (
                   <button type="button" key={child.id}
+                    onPointerUp={openChild}
                     onClick={openChild}
                     style={{
                       display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",

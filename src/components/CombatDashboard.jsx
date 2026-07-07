@@ -536,6 +536,60 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
             </div>
           )}
 
+          {/* Proficiencies — user-requested sidebar slot: below Equipment,
+              above WildShape/Polymorph. Always rendered with empty state. */}
+          {(() => {
+            const profPb = calculateProficiencyBonus(char.level ?? 1);
+            const grouped = PROF_CATEGORIES.map(cat => ({
+              ...cat,
+              items: proficiencies.filter(p => p.category === cat.id),
+            })).filter(g => g.items.length > 0);
+            const isEmpty = proficiencies.length === 0;
+            return (
+              <div style={{ ...sx.card, marginBottom: 0 }}>
+                <div style={{ marginBottom: 10 }}>
+                  <div style={ctStyle}>{t("dash.profs_header","🎓 Proficiencies")}</div>
+                </div>
+                {isEmpty ? (
+                  <div style={{ fontSize: 11, color: C.textDim, textAlign: "center", padding: "10px 4px", fontStyle: "italic", lineHeight: 1.5 }}>
+                    {t("dash.profs_empty","Noch keine Übungen erfasst — leg welche im Charakter-Tab an.")}
+                  </div>
+                ) : (
+                  <>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {grouped.map(group => (
+                        <div key={group.id} style={{
+                          display: "flex", alignItems: "center", gap: 5,
+                          background: `${group.color}10`, border: `1px solid ${group.color}25`,
+                          borderRadius: 20, padding: "4px 10px",
+                        }}>
+                          <span style={{ fontSize: 12 }}>{group.icon}</span>
+                          <span style={{ fontSize: 11, color: group.color, fontWeight: 600 }}>{group.label}</span>
+                          <span style={{
+                            fontSize: 11, fontWeight: 800, color: group.color,
+                            background: `${group.color}20`, borderRadius: 8, padding: "0 5px",
+                          }}>{group.items.length}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {proficiencies.some(p => p.type === "expertise") && (
+                      <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
+                        {proficiencies.filter(p => p.type === "expertise").map(p => (
+                          <span key={p.id} style={{
+                            fontSize: 10, padding: "2px 8px", borderRadius: 8, fontWeight: 700,
+                            background: `${C.amber}18`, border: `1px solid ${C.amber}44`, color: C.amberBright,
+                          }}>
+                            ★ {p.name} <span style={{ color: C.textDim }}>+{profPb * 2}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            );
+          })()}
+
           {/* WildShape / Polymorph — moved into sidebar so it slots
               underneath equipment instead of starting a new full-width
               row of its own. */}
@@ -785,71 +839,6 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           />
         </div>
       </div>
-
-      {/* ── PROFICIENCY WIDGET — always shown, empty state matches the
-             CompanionsCard pattern above so the Overview page has a
-             consistent look. Previously this card was hidden until the
-             player added at least one proficiency, which made the Overview
-             feel randomly different for new characters. ── */}
-      {(() => {
-        const profPb = calculateProficiencyBonus(char.level ?? 1);
-        const grouped = PROF_CATEGORIES.map(cat => ({
-          ...cat,
-          items: proficiencies.filter(p => p.category === cat.id),
-        })).filter(g => g.items.length > 0);
-        const isEmpty = proficiencies.length === 0;
-
-        return (
-          <div style={sx.card}>
-            <div style={{ marginBottom: 10 }}>
-              <div style={ctStyle}>{t("dash.profs_header","🎓 Proficiencies")}</div>
-            </div>
-
-            {isEmpty ? (
-              <div style={{
-                fontSize: 11, color: C.textDim, textAlign: "center",
-                padding: "10px 4px", fontStyle: "italic", lineHeight: 1.5,
-              }}>
-                {t("dash.profs_empty","Noch keine Übungen erfasst — leg welche im Charakter-Tab an.")}
-              </div>
-            ) : (
-              <>
-                {/* Category pills */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {grouped.map(group => (
-                    <div key={group.id} style={{
-                      display: "flex", alignItems: "center", gap: 5,
-                      background: `${group.color}10`, border: `1px solid ${group.color}25`,
-                      borderRadius: 20, padding: "4px 10px",
-                    }}>
-                      <span style={{ fontSize: 12 }}>{group.icon}</span>
-                      <span style={{ fontSize: 11, color: group.color, fontWeight: 600 }}>{group.label}</span>
-                      <span style={{
-                        fontSize: 11, fontWeight: 800, color: group.color,
-                        background: `${group.color}20`, borderRadius: 8, padding: "0 5px",
-                      }}>{group.items.length}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Expertise highlight */}
-                {proficiencies.some(p => p.type === "expertise") && (
-                  <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
-                    {proficiencies.filter(p => p.type === "expertise").map(p => (
-                      <span key={p.id} style={{
-                        fontSize: 10, padding: "2px 8px", borderRadius: 8, fontWeight: 700,
-                        background: `${C.amber}18`, border: `1px solid ${C.amber}44`, color: C.amberBright,
-                      }}>
-                        ★ {p.name} <span style={{ color: C.textDim }}>+{profPb * 2}</span>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        );
-      })()}
 
       {/* ── Equip Modal ── */}
       {eqModal && (() => {
