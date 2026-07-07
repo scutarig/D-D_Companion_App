@@ -896,11 +896,17 @@ function AppInner() {
       <CharHeader restBanner={restBanner} setRestBanner={setRestBanner} restHpInput={restHpInput} setRestHpInput={setRestHpInput} setSlots={setSlots} setCustom={setCustom} autoUsed={autoUsed} setAutoUsed={setAutoUsed} mode={mode} />
 
       {/* Main content — click closes sub-menu. mainRef enables swipe-
-          left/right tab navigation via useTabSwipe. */}
+          left/right tab navigation via useTabSwipe.
+          The onClick guards against child-originated events: on Samsung
+          Galaxy S7 FE PWA the sub-menu tap was being registered on main
+          (event bubbled from a stale phantom target after the sub-button
+          unmounted), which called setMobileMenu(null) without any tab
+          switch. `e.target === e.currentTarget` only fires the close
+          handler when main itself is the direct tap target. */}
       <main
         ref={mainRef}
         style={{ flex:1, minHeight:0, overflowY:"auto", overflowX:"hidden", padding:"12px", boxSizing:"border-box" }}
-        onClick={() => mobileMenu && setMobileMenu(null)}
+        onClick={(e) => { if (mobileMenu && e.target === e.currentTarget) setMobileMenu(null); }}
       >
         <div style={{ width:"100%", maxWidth:"100%" }}>
           {content}
@@ -921,14 +927,17 @@ function AppInner() {
         const group = (isDM ? MOBILE_NAV_DM : MOBILE_NAV_PLAYER).find(n => n.id === mobileMenu);
         if (!group?.children) return null;
         return (
-          <div style={{
-            background: "linear-gradient(180deg,#1e1a2e 0%,#18142a 100%)",
-            borderTop: `1px solid ${C.border}`,
-            padding: "12px",
-            flexShrink: 0,
-            position: "relative",
-            zIndex: 5,
-          }}>
+          <div
+            onTouchStartCapture={(e) => e.stopPropagation()}
+            style={{
+              background: "linear-gradient(180deg,#1e1a2e 0%,#18142a 100%)",
+              borderTop: `1px solid ${C.border}`,
+              padding: "12px",
+              flexShrink: 0,
+              position: "relative",
+              zIndex: 5,
+              touchAction: "manipulation",
+            }}>
             {/* Handle bar */}
             <div style={{ width:32, height:3, background:C.border, borderRadius:2, margin:"0 auto 10px" }} />
             <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:7 }}>
@@ -951,6 +960,7 @@ function AppInner() {
                 return (
                   <button type="button" key={child.id}
                     onPointerUp={openChild}
+                    onTouchEnd={openChild}
                     onClick={openChild}
                     style={{
                       display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
