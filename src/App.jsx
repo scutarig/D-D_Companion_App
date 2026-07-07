@@ -907,7 +907,16 @@ function AppInner() {
         </div>
       </main>
 
-      {/* Sub-menu panel — appears between content and nav */}
+      {/* Sub-menu panel — appears between content and nav.
+          zIndex: 5 keeps the panel and its buttons above any content that
+          might have positioned children (equipped slots on the char sheet,
+          combat-log overlays, etc.). Without an explicit stacking context
+          the buttons sometimes end up behind items that use position:relative,
+          which was the root cause of the "taps go through / nothing opens"
+          bug on Samsung Galaxy S7 FE — the sub-menu rendered visually but a
+          higher-priority element captured the touch.
+          The onClick on each button uses stopPropagation so an accidental
+          bubble to main's close-on-outside-click never eats the tap. */}
       {mobileMenu && (() => {
         const group = (isDM ? MOBILE_NAV_DM : MOBILE_NAV_PLAYER).find(n => n.id === mobileMenu);
         if (!group?.children) return null;
@@ -917,15 +926,22 @@ function AppInner() {
             borderTop: `1px solid ${C.border}`,
             padding: "12px",
             flexShrink: 0,
+            position: "relative",
+            zIndex: 5,
           }}>
             {/* Handle bar */}
             <div style={{ width:32, height:3, background:C.border, borderRadius:2, margin:"0 auto 10px" }} />
             <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:7 }}>
               {group.children.map(child => {
                 const isActive = tab === child.id;
+                const openChild = (e) => {
+                  e.stopPropagation();
+                  setTab(child.id);
+                  setMobileMenu(null);
+                };
                 return (
                   <button type="button" key={child.id}
-                    onClick={() => { setTab(child.id); setMobileMenu(null); }}
+                    onClick={openChild}
                     style={{
                       display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
                       gap:5, padding:"11px 6px", borderRadius:11, cursor:"pointer",
@@ -934,6 +950,8 @@ function AppInner() {
                       color: isActive ? C.purpleBright : C.text,
                       boxShadow: isActive ? `0 0 12px ${C.purple}44` : "none",
                       transition: "all .15s",
+                      WebkitTapHighlightColor: "transparent",
+                      touchAction: "manipulation",
                     }}>
                     <span style={{ fontSize:22 }}>{child.icon}</span>
                     <span style={{ fontSize:10, fontFamily:FH, letterSpacing:0.4, textAlign:"center", lineHeight:1.2 }}>{child.labelKey ? t(child.labelKey, child.label) : child.label}</span>
