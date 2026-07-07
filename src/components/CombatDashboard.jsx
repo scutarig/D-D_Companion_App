@@ -169,6 +169,7 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
   const [swapSearch, setSwapSearch] = useState("");
   const [swapType,   setSwapType]   = useState("All");
   const [eqInfoModal, setEqInfoModal] = useState(null);
+  const [profModal,  setProfModal]  = useState(null); // PROF_CATEGORIES entry | null
   const [concWarn,   setConcWarn]   = useState(null); // { spell, slotLv } pending cast
 
   // Auto-break concentration when unconscious or dead
@@ -561,18 +562,21 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
                   <>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                       {grouped.map(group => (
-                        <div key={group.id} style={{
-                          display: "flex", alignItems: "center", gap: 5,
-                          background: `${group.color}10`, border: `1px solid ${group.color}25`,
-                          borderRadius: 20, padding: "4px 10px",
-                        }}>
+                        <button type="button" key={group.id}
+                          onClick={() => setProfModal(group)}
+                          title={t("dash.profs_pill_hint","Details anzeigen")}
+                          style={{
+                            display: "flex", alignItems: "center", gap: 5,
+                            background: `${group.color}10`, border: `1px solid ${group.color}25`,
+                            borderRadius: 20, padding: "4px 10px", cursor: "pointer",
+                          }}>
                           <span style={{ fontSize: 12 }}>{group.icon}</span>
                           <span style={{ fontSize: 11, color: group.color, fontWeight: 600 }}>{group.label}</span>
                           <span style={{
                             fontSize: 11, fontWeight: 800, color: group.color,
                             background: `${group.color}20`, borderRadius: 8, padding: "0 5px",
                           }}>{group.items.length}</span>
-                        </div>
+                        </button>
                       ))}
                     </div>
                     {proficiencies.some(p => p.type === "expertise") && (
@@ -1087,6 +1091,64 @@ export default function CombatDashboard({ slots, setSlots, custom, setCustom, au
           </div>
         </div>
       )}
+
+      {/* Proficiency detail modal — opened by clicking a category pill in
+          the sidebar widget. Lists every proficiency in that category with
+          its bonus and source (auto / manual). */}
+      {profModal && (() => {
+        const profPb = calculateProficiencyBonus(char.level ?? 1);
+        const items = proficiencies.filter(p => p.category === profModal.id);
+        return (
+          <div onClick={() => setProfModal(null)}
+            style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.85)", zIndex:9000, display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+            <div onClick={e => e.stopPropagation()}
+              style={{
+                width:"100%", maxWidth:560,
+                background: C.surface,
+                borderTop:`2px solid ${profModal.color}`,
+                borderRadius:"18px 18px 0 0",
+                padding:"20px 18px 36px",
+                maxHeight:"80vh", overflowY:"auto",
+                boxShadow:"0 -8px 40px rgba(0,0,0,0.7)",
+              }}>
+              <div style={{ width:40, height:4, background:C.border, borderRadius:2, margin:"0 auto 16px" }} />
+              <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:14 }}>
+                <span style={{ fontSize:34 }}>{profModal.icon}</span>
+                <div style={{ flex:1 }}>
+                  <div style={{ fontFamily:FH, fontSize:19, color:profModal.color, fontWeight:700, lineHeight:1.1 }}>{profModal.label}</div>
+                  <div style={{ fontSize:11, color:C.textDim, marginTop:2 }}>{items.length} {t("prof.n_entries","Einträge")}</div>
+                </div>
+                <button type="button" onClick={() => setProfModal(null)} style={{ ...sx.bsm(C.textDim), padding:"6px 12px" }}>✕</button>
+              </div>
+              <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+                {items.map(p => {
+                  const isExp = p.type === "expertise";
+                  const bonus = isExp ? profPb * 2 : profPb;
+                  return (
+                    <div key={p.id} style={{
+                      display:"flex", alignItems:"center", gap:10,
+                      background:`${profModal.color}08`, border:`1px solid ${profModal.color}22`,
+                      borderLeft:`3px solid ${profModal.color}`, borderRadius:8, padding:"8px 10px",
+                    }}>
+                      <div style={{ minWidth:38, textAlign:"center", background:`${profModal.color}18`, border:`1px solid ${profModal.color}40`, borderRadius:6, padding:"3px 4px", flexShrink:0 }}>
+                        <div style={{ fontSize:9, color:profModal.color, fontWeight:700 }}>{isExp ? "EXP" : "PROF"}</div>
+                        <div style={{ fontSize:13, fontWeight:800, color:profModal.color, lineHeight:1.1 }}>+{bonus}</div>
+                      </div>
+                      <div style={{ flex:1, minWidth:0 }}>
+                        <div style={{ fontSize:13, fontWeight:700, color:C.textBright, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{p.name}</div>
+                        {p.notes && <div style={{ fontSize:10, color:C.textDim, marginTop:1 }}>{p.notes}</div>}
+                      </div>
+                      {p.locked
+                        ? <span style={{ fontSize:9, fontWeight:700, color:C.textDim, background:C.surface, border:`1px solid ${C.border}`, borderRadius:8, padding:"2px 6px", flexShrink:0 }}>🔒 AUTO</span>
+                        : isExp && <span style={{ fontSize:9, fontWeight:700, color:C.amberBright, background:`${C.amber}22`, border:`1px solid ${C.amber}44`, borderRadius:8, padding:"2px 6px", flexShrink:0 }}>×2</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Info Modal */}
       <InfoModal data={infoModal} onClose={() => setInfoModal(null)} />
