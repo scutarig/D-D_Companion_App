@@ -842,9 +842,18 @@ function AppInner() {
         </div>
       </aside>
 
-      {/* Charakter dropdown popover */}
+      {/* Charakter dropdown popover.
+          onTouchStart stopPropagation is critical: the outside-close effect
+          (see the useEffect near toggleChar) listens for `touchstart` on
+          window to dismiss the menu. Without stopping it here, tapping a
+          menu item on a touch device fired that window listener first,
+          unmounting the menu before the item's synthesized click could
+          land — so the tap "fell through" to the content behind. Mouse
+          (desktop) never hit this because there's no touchstart; phones use
+          the separate mobile bottom-sheet. It only bit touch tablets in the
+          desktop (sidebar) layout. */}
       {charOpen && !isDM && (
-        <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:charPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.gold}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
+        <div onClick={e => e.stopPropagation()} onTouchStart={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:charPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.gold}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
           {CHAR_GROUP.map(td => (
             <button type="button" key={td.id} onClick={() => { setTab(td.id); setCharOpen(false); }}
               style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===td.id?`${C.gold}22`:"transparent", border:"none", borderRadius:7, color:tab===td.id?C.gold:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
@@ -857,7 +866,7 @@ function AppInner() {
 
       {/* Referenz dropdown popover (DM-only) */}
       {refOpen && isDM && (
-        <div onClick={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:refPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.purple}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
+        <div onClick={e => e.stopPropagation()} onTouchStart={e => e.stopPropagation()} style={{ position:"fixed", left:62, top:refPos.top, zIndex:9999, background:C.card, border:`1px solid ${C.purple}44`, borderRadius:10, padding:6, minWidth:190, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" }}>
           {REF_TABS.map(td => (
             <button type="button" key={td.id} onClick={() => { setTab(td.id); setRefOpen(false); }}
               style={{ display:"flex", alignItems:"center", gap:10, width:"100%", textAlign:"left", background:tab===td.id?`${C.purple}33`:"transparent", border:"none", borderRadius:7, color:tab===td.id?C.purpleBright:C.textBright, fontFamily:FH, fontSize:11, padding:"9px 12px", cursor:"pointer", transition:"all .15s" }}>
