@@ -52,12 +52,18 @@ export function usePersist(key, def) {
   const readyRef = useRef(false);
   const pendingRef = useRef(null);
   const keyRef = useRef(key);
+  // Mirror of the latest value so `set` can resolve functional updates
+  // without a setRaw updater — keeps the persist side-effect out of the
+  // render phase (React warns if we dispatch during another component's render).
+  const vRef = useRef(v);
 
   useEffect(() => {
     keyRef.current = key;
     readyRef.current = false;
     pendingRef.current = null;
-    setRaw(Array.isArray(def) ? [...def] : typeof def === "object" && def !== null ? { ...def } : def);
+    const seed = Array.isArray(def) ? [...def] : typeof def === "object" && def !== null ? { ...def } : def;
+    vRef.current = seed;
+    setRaw(seed);
     setRdy(false);
     let cancelled = false;
     (async () => {
@@ -73,6 +79,7 @@ export function usePersist(key, def) {
         pendingRef.current = null;
         store.set(key, JSON.stringify(base));
       }
+      vRef.current = base;
       setRaw(base);
       readyRef.current = true;
       setRdy(true);
@@ -81,17 +88,20 @@ export function usePersist(key, def) {
   }, [key]); // eslint-disable-line
 
   const set = useCallback((u) => {
+    // Resolve the next value from the mirrored ref so the persist side-effect
+    // runs here (in the event handler), never inside a setRaw updater — which
+    // React may invoke mid-render, causing a "setState during render" warning
+    // when store.set dispatches dnd:persisted to AutoSaveIndicator.
+    const next = typeof u === "function" ? u(vRef.current) : u;
+    vRef.current = next;
     if (!readyRef.current) {
       if (!pendingRef.current) pendingRef.current = [];
       pendingRef.current.push(u);
-      setRaw(prev => typeof u === "function" ? u(prev) : u);
+      setRaw(next);
       return;
     }
-    setRaw(prev => {
-      const next = typeof u === "function" ? u(prev) : u;
-      store.set(key, JSON.stringify(next));
-      return next;
-    });
+    store.set(key, JSON.stringify(next));
+    setRaw(next);
   }, [key]);
 
   return [v, set, rdy];
